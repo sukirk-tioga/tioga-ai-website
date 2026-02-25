@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
     await transporter.verify();
     await transporter.sendMail({
       from: `"Tioga AI" <${process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER,
+      to: "hello@tioga.ai",
       subject: "Test email from Tioga AI",
       text: "SMTP is working correctly!",
     });

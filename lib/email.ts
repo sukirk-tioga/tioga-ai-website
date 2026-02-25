@@ -95,7 +95,7 @@ export async function sendInquiryEmail({
 
   await transporter.sendMail({
     from: `"Tioga AI" <${process.env.SMTP_USER}>`,
-    to: process.env.SMTP_USER,
+    to: "hello@tioga.ai",
     replyTo: email,
     subject: `[${urgencyEmoji} ${classification.urgency.toUpperCase()}] New Inquiry: ${classification.service} — ${name}${company ? ` (${company})` : ""}`,
     html,
