@@ -1,3 +1,5 @@
+import SmartContactForm from "@/components/SmartContactForm";
+
 export default function HomePage() {
   return (
     <main
@@ -117,7 +119,7 @@ export default function HomePage() {
       <section id="process" className="py-20 px-6 max-w-4xl mx-auto">
         <h2 className="text-3xl font-bold text-white text-center mb-4">Our Process</h2>
         <p className="text-slate-400 text-center mb-12">
-          From first conversation to production deployment — here's how we work.
+          From first conversation to production deployment — here&apos;s how we work.
         </p>
         <div className="space-y-4">
           {[
@@ -153,69 +155,18 @@ export default function HomePage() {
       {/* Contact */}
       <section id="contact" className="py-20 px-6 max-w-2xl mx-auto text-center">
         <h2 className="text-3xl font-bold text-white mb-4">Ready to Build?</h2>
-        <p className="text-slate-400 mb-10">
-          Tell us about your project and we'll get back to you within 1 business day.
-          Or just use the chat widget — it's powered by the same AI we build for clients.
+        <p className="text-slate-400 mb-4">
+          Tell us about your project and our AI will instantly classify your inquiry
+          and route it to the right specialist.
         </p>
         <div
-          className="p-8 rounded-2xl text-left"
-          style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8"
+          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
         >
-          <form
-            action="mailto:hello@tioga.ai"
-            method="post"
-            encType="text/plain"
-            className="space-y-4"
-          >
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="text-xs text-slate-500 mb-1.5 block">Name</label>
-                <input
-                  name="name"
-                  placeholder="Jane Smith"
-                  className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:ring-1"
-                  style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
-                />
-              </div>
-              <div>
-                <label className="text-xs text-slate-500 mb-1.5 block">Company</label>
-                <input
-                  name="company"
-                  placeholder="Acme Corp"
-                  className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none"
-                  style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
-                />
-              </div>
-            </div>
-            <div>
-              <label className="text-xs text-slate-500 mb-1.5 block">Email</label>
-              <input
-                name="email"
-                type="email"
-                placeholder="jane@acme.com"
-                className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none"
-                style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
-              />
-            </div>
-            <div>
-              <label className="text-xs text-slate-500 mb-1.5 block">Project Description</label>
-              <textarea
-                name="project"
-                placeholder="Tell us what you're trying to build or automate..."
-                rows={4}
-                className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none resize-none"
-                style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
-            >
-              Send Message
-            </button>
-          </form>
+          <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
+          AI-powered routing — live demo of our email triage service
         </div>
+        <SmartContactForm />
       </section>
 
       {/* Footer */}
