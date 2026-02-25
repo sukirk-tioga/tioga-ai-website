@@ -1,5 +1,6 @@
 import { anthropic } from "@/lib/anthropic";
 import { rateLimit } from "@/lib/rate-limit";
+import { sendInquiryEmail } from "@/lib/email";
 import { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
@@ -60,10 +61,14 @@ Base complexity on: scope, number of systems mentioned, enterprise vs SMB signal
 
     const text = response.content[0].type === "text" ? response.content[0].text : "";
 
-    // Parse the JSON response
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) throw new Error("No JSON in response");
     const classification = JSON.parse(jsonMatch[0]);
+
+    // Send email notification (non-blocking — don't fail the request if email fails)
+    sendInquiryEmail({ name, email, company, description, classification }).catch((err) =>
+      console.error("Email send failed:", err)
+    );
 
     return new Response(JSON.stringify({ classification }), {
       status: 200,
