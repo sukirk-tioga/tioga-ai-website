@@ -65,12 +65,16 @@ Base complexity on: scope, number of systems mentioned, enterprise vs SMB signal
     if (!jsonMatch) throw new Error("No JSON in response");
     const classification = JSON.parse(jsonMatch[0]);
 
-    // Send email notification (non-blocking — don't fail the request if email fails)
-    sendInquiryEmail({ name, email, company, description, classification }).catch((err) =>
-      console.error("Email send failed:", err)
-    );
+    // Send email — await so we can capture errors in response
+    let emailStatus = "sent";
+    try {
+      await sendInquiryEmail({ name, email, company, description, classification });
+    } catch (emailErr: unknown) {
+      emailStatus = (emailErr as Error).message;
+      console.error("Email send failed:", emailErr);
+    }
 
-    return new Response(JSON.stringify({ classification }), {
+    return new Response(JSON.stringify({ classification, emailStatus }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
