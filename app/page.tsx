@@ -153,7 +153,7 @@ export default function HomePage() {
  <section className="py-16 px-6 max-w-5xl mx-auto">
  <p className="text-center text-xs text-slate-600 uppercase tracking-widest mb-8">We integrate with your existing enterprise stack</p>
  <div className="flex flex-wrap justify-center items-center gap-3">
- {["SAP", "", "Salesforce", "ServiceNow", "Oracle", "Workday", "SharePoint", "Slack"].map((name) => (
+ {["SAP", "Salesforce", "ServiceNow", "Oracle", "Workday", "SharePoint", "Slack", "Microsoft 365"].map((name) => (
  <div
  key={name}
  className="px-5 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white transition-colors"

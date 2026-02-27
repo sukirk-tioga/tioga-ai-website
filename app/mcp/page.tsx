@@ -28,7 +28,7 @@ function ArchDiagram() {
 
  const systems = [
  { label: "SAP", sub: "Finance / ERP", icon: "💼", color: "#F59E0B" },
- { label: "", sub: "HR / Workforce", icon: "👥", color: "#10B981" },
+ { label: "Workday", sub: "HR / Workforce", icon: "👥", color: "#10B981" },
  { label: "Salesforce", sub: "CRM / Pipeline", icon: "☁", color: "#3B82F6" },
  { label: "ServiceNow", sub: "IT / Ticketing", icon: "🔧", color: "#8B5CF6" },
  ];
@@ -170,9 +170,9 @@ async def get_pending_invoices(
 # "Show me all pending invoices over $10k from CloudStack"`,
  },
  {
- label: "",
+ label: "Workday",
  lang: "python",
- code: `# Tioga AI MCP Server — connector
+ code: `# Tioga AI MCP Server — Workday connector
 @mcp.tool()
 async def get_employee_data(
  dept: str = None,
@@ -277,7 +277,7 @@ function LiveDemo() {
  const [messages, setMessages] = useState<MCPMessage[]>([
  {
  role: "assistant",
- content: "I'm connected to your enterprise systems via MCP. Ask me anything about your SAP invoices employees, or Salesforce pipeline.",
+ content: "I'm connected to your enterprise systems via MCP. Ask me anything about your SAP invoices, Workday employees, or Salesforce pipeline.",
  },
  ]);
  const [input, setInput] = useState("");
@@ -337,7 +337,7 @@ function LiveDemo() {
  <div className="px-4 py-2 flex gap-2" style={{ borderBottom: "1px solid #0D1526" }}>
  {[
  { label: "SAP", color: "#F59E0B" },
- { label: "", color: "#10B981" },
+ { label: "Workday", color: "#10B981" },
  { label: "Salesforce", color: "#3B82F6" },
  ].map((s) => (
  <span
