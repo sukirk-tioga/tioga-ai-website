@@ -19,36 +19,22 @@ export async function POST(req: NextRequest) {
     }
 
     const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
     const fileName = file.name.toLowerCase();
     const mimeType = file.type;
 
     let text = "";
 
     if (mimeType === "application/pdf" || fileName.endsWith(".pdf")) {
-      const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
-      
-      const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(buffer) });
-      const pdf = await loadingTask.promise;
-      
-      const pages: string[] = [];
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const content = await page.getTextContent();
-        const pageText = content.items
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          .map((item: any) => item.str ?? "")
-          .join(" ");
-        pages.push(pageText);
-      }
-      text = pages.join("\n\n");
+      const { extractText } = await import("unpdf");
+      const { text: extracted } = await extractText(new Uint8Array(bytes), { mergePages: true });
+      text = extracted;
     } else if (
       mimeType.startsWith("text/") ||
       fileName.endsWith(".txt") ||
       fileName.endsWith(".csv") ||
       fileName.endsWith(".md")
     ) {
-      text = buffer.toString("utf-8");
+      text = Buffer.from(bytes).toString("utf-8");
     } else {
       return new Response(
         JSON.stringify({ error: "Unsupported file type. Please upload a PDF or text file." }),
@@ -58,7 +44,7 @@ export async function POST(req: NextRequest) {
 
     if (!text.trim()) {
       return new Response(
-        JSON.stringify({ error: "Could not extract text from file. The file may be empty or image-based." }),
+        JSON.stringify({ error: "Could not extract text. The file may be empty or image-based (scanned PDF)." }),
         { status: 400 }
       );
     }
