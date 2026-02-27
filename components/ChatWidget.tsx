@@ -26,16 +26,17 @@ export default function ChatWidget() {
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
-      inputRef.current.focus();
+      inputRef.current.focus({ preventScroll: true });
     }
   }, [isOpen]);
 
   useEffect(() => {
+    if (!isOpen) return;
     const container = scrollContainerRef.current;
     if (container) {
       container.scrollTop = container.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, isOpen]);
 
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
