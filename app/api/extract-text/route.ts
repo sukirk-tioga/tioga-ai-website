@@ -20,31 +20,35 @@ export async function POST(req: NextRequest) {
 
     const bytes = await file.arrayBuffer();
     const fileName = file.name.toLowerCase();
-    const mimeType = file.type;
+
+    // Detect type by extension (more reliable than MIME type across browsers)
+    const isPDF = fileName.endsWith(".pdf");
+    const isDocx = fileName.endsWith(".docx") || fileName.endsWith(".doc");
+    const isText = fileName.endsWith(".txt") || fileName.endsWith(".md") ||
+                   fileName.endsWith(".csv") || fileName.endsWith(".rtf");
 
     let text = "";
 
-    if (mimeType === "application/pdf" || fileName.endsWith(".pdf")) {
+    if (isPDF) {
       const { extractText } = await import("unpdf");
       const { text: extracted } = await extractText(new Uint8Array(bytes), { mergePages: true });
       text = extracted;
-    } else if (
-      mimeType.startsWith("text/") ||
-      fileName.endsWith(".txt") ||
-      fileName.endsWith(".csv") ||
-      fileName.endsWith(".md")
-    ) {
+    } else if (isDocx) {
+      const mammoth = await import("mammoth");
+      const result = await mammoth.extractRawText({ buffer: Buffer.from(bytes) });
+      text = result.value;
+    } else if (isText) {
       text = Buffer.from(bytes).toString("utf-8");
     } else {
       return new Response(
-        JSON.stringify({ error: "Unsupported file type. Please upload a PDF or text file." }),
+        JSON.stringify({ error: "Unsupported file type. Please upload a PDF, DOCX, TXT, MD, or CSV file." }),
         { status: 400 }
       );
     }
 
     if (!text.trim()) {
       return new Response(
-        JSON.stringify({ error: "Could not extract text. The file may be empty or image-based (scanned PDF)." }),
+        JSON.stringify({ error: "Could not extract text. The file may be empty or a scanned image PDF." }),
         { status: 400 }
       );
     }

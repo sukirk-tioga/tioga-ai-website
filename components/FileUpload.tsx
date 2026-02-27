@@ -7,7 +7,7 @@ interface FileUploadProps {
   accept?: string;
 }
 
-export default function FileUpload({ onTextExtracted, accept = ".pdf,.txt,.md,.csv" }: FileUploadProps) {
+export default function FileUpload({ onTextExtracted, accept = ".pdf,.docx,.doc,.txt,.md,.csv" }: FileUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [state, setState] = useState<"idle" | "loading" | "error">("idle");
   const [error, setError] = useState("");
@@ -77,7 +77,7 @@ export default function FileUpload({ onTextExtracted, accept = ".pdf,.txt,.md,.c
             <p className="text-sm text-slate-400">
               <span style={{ color: "#00D4FF" }}>Click to upload</span> or drag & drop
             </p>
-            <p className="text-xs text-slate-600">PDF, TXT, CSV, MD supported</p>
+            <p className="text-xs text-slate-600">PDF, DOCX, TXT, MD, CSV supported</p>
           </>
         )}
       </div>
