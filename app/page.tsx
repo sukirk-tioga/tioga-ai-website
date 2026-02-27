@@ -50,24 +50,26 @@ export default function HomePage() {
           <br />
           <span style={{ color: "#00D4FF" }}>your enterprise</span> actually uses
         </h1>
-        <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
-          From MCP integrations to custom AI agents — Tioga AI delivers production-ready
-          implementations that connect to your existing systems and deliver measurable ROI.
+        <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-4">
+          Most AI projects fail at integration. We specialize in delivery — production-ready systems that connect to your SAP, Salesforce, or PeopleSoft.
+        </p>
+        <p className="text-sm text-slate-500 max-w-2xl mx-auto mb-10">
+          Faster deployments. Better ROI. Measurable outcomes visible in the pilot.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="#contact"
+            href="/demos"
             className="px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
           >
-            Start a Conversation
+            See Live Demo
           </a>
           <a
-            href="#services"
+            href="#contact"
             className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500"
             style={{ border: "1px solid #1E2D4A", color: "#94a3b8" }}
           >
-            See Our Services
+            Start a Conversation
           </a>
         </div>
         <p className="text-sm text-slate-600 mt-6">
@@ -75,7 +77,54 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* Services */}
+      {/* Try It Live Section - NEW */}
+      <section className="py-16 px-6 max-w-5xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-white mb-3">Try It Live</h2>
+          <p className="text-slate-400">Three interactive demos. No signup required. Real AI, real workflows.</p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-4">
+          {[
+            {
+              icon: "📄",
+              title: "Invoice Processing",
+              desc: "Upload a PDF. Get structured data instantly.",
+              href: "/demos?tab=invoice"
+            },
+            {
+              icon: "📧",
+              title: "Email Triage",
+              desc: "Paste an email. Watch AI classify & route.",
+              href: "/demos?tab=email"
+            },
+            {
+              icon: "📋",
+              title: "Document Classification",
+              desc: "Upload any doc. Identify type & entities.",
+              href: "/demos?tab=document"
+            },
+          ].map((demo) => (
+            <a
+              key={demo.title}
+              href={demo.href}
+              className="group p-6 rounded-2xl transition-all hover:border-slate-500 cursor-pointer"
+              style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+              <div className="text-4xl mb-3">{demo.icon}</div>
+              <h3 className="text-lg font-semibold text-white mb-2">{demo.title}</h3>
+              <p className="text-sm text-slate-400 mb-4">{demo.desc}</p>
+              <span className="text-sm font-medium" style={{ color: "#00D4FF" }}>Try Demo →</span>
+            </a>
+          ))}
+        </div>
+
+        <p className="text-xs text-slate-600 text-center mt-6">
+          These aren't mockups. Every demo runs on our production Claude API.
+        </p>
+      </section>
+
+      {/* Divider */}
+      <div style={{ borderColor: "#1E2D4A", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
       <section id="services" className="py-20 px-6 max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold text-white text-center mb-4">What We Build</h2>
         <p className="text-slate-400 text-center mb-12">
@@ -158,8 +207,7 @@ export default function HomePage() {
       <section id="contact" className="py-20 px-6 max-w-2xl mx-auto text-center">
         <h2 className="text-3xl font-bold text-white mb-4">Ready to Build?</h2>
         <p className="text-slate-400 mb-4">
-          Tell us about your project and our AI will instantly classify your inquiry
-          and route it to the right specialist.
+          Tell us about your project. Our AI classifies it. A specialist reaches out within 4 hours.
         </p>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8"

@@ -12,7 +12,7 @@ const WELCOME_MESSAGE: Message = {
   id: "welcome",
   role: "assistant",
   content:
-    "Hi! I'm Tioga AI's assistant. Ask me about our AI services, see what we've built, or tell me about your project — I'm happy to help.",
+    "Hi! I'm Tioga AI's assistant. Most AI projects fail at integration — we specialize in delivery. Want to see a live demo? Learn about MCP integrations? Or tell me about your challenge.",
 };
 
 export default function ChatWidget() {
