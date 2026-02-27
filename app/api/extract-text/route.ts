@@ -27,7 +27,9 @@ export async function POST(req: NextRequest) {
 
     if (mimeType === "application/pdf" || fileName.endsWith(".pdf")) {
       // Dynamically import to avoid edge runtime issues
-      const pdfParse = (await import("pdf-parse")).default;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const pdfModule = await import("pdf-parse") as any;
+      const pdfParse = pdfModule.default ?? pdfModule;
       const parsed = await pdfParse(buffer);
       text = parsed.text;
     } else if (
