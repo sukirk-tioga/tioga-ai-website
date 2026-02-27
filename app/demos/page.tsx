@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import FileUpload from "@/components/FileUpload";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -279,8 +280,10 @@ function InvoiceDemo() {
   return (
     <div>
       <p className="text-sm text-slate-400 mb-4">
-        Paste any invoice text below. Claude will extract all structured fields instantly.
+        Upload an invoice file or paste text below. Claude will extract all structured fields instantly.
       </p>
+      <FileUpload onTextExtracted={(text, name) => { setInput(text); setState("idle"); setData(null); console.log("Loaded:", name); }} />
+      <p className="text-xs text-slate-600 text-center mb-2">— or paste text directly —</p>
       <textarea
         value={input}
         onChange={(e) => { setInput(e.target.value); setState("idle"); setData(null); }}
@@ -399,8 +402,10 @@ function EmailTriageDemo() {
   return (
     <div>
       <p className="text-sm text-slate-400 mb-3">
-        Pick a sample email or paste your own. Claude will classify, route, and draft a reply.
+        Upload an email file, pick a sample, or paste your own. Claude will classify, route, and draft a reply.
       </p>
+      <FileUpload onTextExtracted={(text) => analyze(text)} />
+      <p className="text-xs text-slate-600 text-center mb-2">— or pick a sample —</p>
 
       <div className="flex flex-wrap gap-2 mb-3">
         {SAMPLE_EMAILS.map((s) => (
@@ -517,8 +522,10 @@ function DocumentDemo() {
   return (
     <div>
       <p className="text-sm text-slate-400 mb-3">
-        Paste any document text or pick a sample. Claude will classify, extract entities, and recommend actions.
+        Upload a document, pick a sample, or paste text. Claude will classify, extract entities, and recommend actions.
       </p>
+      <FileUpload onTextExtracted={(text) => analyze(text)} />
+      <p className="text-xs text-slate-600 text-center mb-2">— or pick a sample —</p>
 
       <div className="flex flex-wrap gap-2 mb-3">
         {SAMPLE_DOCS.map((s) => (
