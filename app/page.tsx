@@ -22,6 +22,7 @@ export default function HomePage() {
         </div>
         <div className="hidden md:flex items-center gap-8 text-sm text-slate-400">
           <a href="#services" className="hover:text-white transition-colors">Services</a>
+          <a href="/demos" className="hover:text-white transition-colors">Live Demos</a>
           <a href="#process" className="hover:text-white transition-colors">Process</a>
           <a href="#contact" className="hover:text-white transition-colors">Contact</a>
         </div>
