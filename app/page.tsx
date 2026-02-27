@@ -4,36 +4,6 @@ export default function HomePage() {
   return (
     <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
 
-      {/* Nav */}
-      <nav
-        className="fixed top-0 left-0 right-0 z-40 px-6 py-4 flex items-center justify-between"
-        style={{ background: "rgba(10,15,28,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid #1E2D4A" }}
-      >
-        <div className="flex items-center gap-2">
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
-          >
-            T
-          </div>
-          <span className="font-semibold text-white text-lg tracking-tight">tioga.ai</span>
-        </div>
-        <div className="hidden md:flex items-center gap-8 text-sm text-slate-400">
-          <a href="#services" className="hover:text-white transition-colors">Services</a>
-          <a href="/demos" className="hover:text-white transition-colors">Live Demos</a>
-          <a href="/mcp" className="hover:text-white transition-colors">MCP</a>
-          <a href="#process" className="hover:text-white transition-colors">Process</a>
-          <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-        </div>
-        <a
-          href="#contact"
-          className="px-4 py-2 rounded-lg text-sm font-medium text-white transition-all hover:opacity-90"
-          style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
-        >
-          Get Started
-        </a>
-      </nav>
-
       {/* Hero */}
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative overflow-hidden">
         <div
@@ -375,28 +345,6 @@ export default function HomePage() {
         </div>
         <SmartContactForm />
       </section>
-
-      {/* Footer */}
-      <footer className="py-10 px-6" style={{ borderTop: "1px solid #1E2D4A" }}>
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-600">
-          <div className="flex items-center gap-2">
-            <div
-              className="w-6 h-6 rounded flex items-center justify-center text-white font-bold text-xs"
-              style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
-            >
-              T
-            </div>
-            <span>Tioga AI</span>
-          </div>
-          <div className="flex items-center gap-6 text-xs">
-            <a href="/demos" className="hover:text-slate-400 transition-colors">Live Demos</a>
-            <a href="/mcp" className="hover:text-slate-400 transition-colors">MCP</a>
-            <a href="#contact" className="hover:text-slate-400 transition-colors">Contact</a>
-            <a href="mailto:hello@tioga.ai" className="hover:text-slate-400 transition-colors">hello@tioga.ai</a>
-          </div>
-          <p>© {new Date().getFullYear()} Tioga AI</p>
-        </div>
-      </footer>
     </main>
   );
 }

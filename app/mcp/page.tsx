@@ -285,7 +285,9 @@ function LiveDemo() {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messages.length > 1) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages]);
 
   const send = async (query: string) => {
@@ -502,24 +504,6 @@ export default function MCPPage() {
         .fade-in-2 { animation-delay: 0.2s; }
         .fade-in-3 { animation-delay: 0.3s; }
       `}</style>
-
-      {/* Nav */}
-      <nav
-        className="fixed top-0 left-0 right-0 z-40 px-6 py-4 flex items-center justify-between"
-        style={{ background: "rgba(10,15,28,0.9)", backdropFilter: "blur(12px)", borderBottom: "1px solid #1E2D4A" }}
-      >
-        <a href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm" style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}>T</div>
-          <span className="font-semibold text-white text-lg tracking-tight">tioga.ai</span>
-        </a>
-        <div className="hidden md:flex items-center gap-6 text-sm text-slate-400">
-          <a href="/demos" className="hover:text-white transition-colors">Live Demos</a>
-          <a href="/#contact" className="hover:text-white transition-colors">Contact</a>
-        </div>
-        <a href="/#contact" className="px-4 py-2 rounded-lg text-sm font-medium text-white transition-all hover:opacity-90" style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}>
-          Build With Us
-        </a>
-      </nav>
 
       <div className="pt-28 pb-20 px-6 max-w-5xl mx-auto">
 
