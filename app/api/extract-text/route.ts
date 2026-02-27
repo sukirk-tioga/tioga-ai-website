@@ -20,18 +20,28 @@ export async function POST(req: NextRequest) {
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    const mimeType = file.type;
     const fileName = file.name.toLowerCase();
+    const mimeType = file.type;
 
     let text = "";
 
     if (mimeType === "application/pdf" || fileName.endsWith(".pdf")) {
-      // Dynamically import to avoid edge runtime issues
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const pdfModule = await import("pdf-parse") as any;
-      const pdfParse = pdfModule.default ?? pdfModule;
-      const parsed = await pdfParse(buffer);
-      text = parsed.text;
+      const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
+      
+      const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(buffer) });
+      const pdf = await loadingTask.promise;
+      
+      const pages: string[] = [];
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        const pageText = content.items
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          .map((item: any) => item.str ?? "")
+          .join(" ");
+        pages.push(pageText);
+      }
+      text = pages.join("\n\n");
     } else if (
       mimeType.startsWith("text/") ||
       fileName.endsWith(".txt") ||
@@ -40,11 +50,17 @@ export async function POST(req: NextRequest) {
     ) {
       text = buffer.toString("utf-8");
     } else {
-      return new Response(JSON.stringify({ error: "Unsupported file type. Please upload a PDF or text file." }), { status: 400 });
+      return new Response(
+        JSON.stringify({ error: "Unsupported file type. Please upload a PDF or text file." }),
+        { status: 400 }
+      );
     }
 
     if (!text.trim()) {
-      return new Response(JSON.stringify({ error: "Could not extract text from file." }), { status: 400 });
+      return new Response(
+        JSON.stringify({ error: "Could not extract text from file. The file may be empty or image-based." }),
+        { status: 400 }
+      );
     }
 
     return new Response(JSON.stringify({ text: text.slice(0, 10000) }), {
@@ -53,6 +69,7 @@ export async function POST(req: NextRequest) {
     });
   } catch (err) {
     console.error("Extract text error:", err);
-    return new Response(JSON.stringify({ error: "Failed to process file." }), { status: 500 });
+    const message = err instanceof Error ? err.message : "Unknown error";
+    return new Response(JSON.stringify({ error: `Failed to process file: ${message}` }), { status: 500 });
   }
 }
