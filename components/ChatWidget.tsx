@@ -156,11 +156,8 @@ export default function ChatWidget() {
             className="px-4 py-3 flex items-center gap-3"
             style={{ borderBottom: "1px solid #1E2D4A" }}
           >
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
-              style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
-            >
-              T
+            <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden" style={{ background: "#0A0F1C" }}>
+              <img src="/logo-icon.png" alt="Tioga AI" className="w-full h-full object-contain object-bottom" />
             </div>
             <div>
               <p className="text-sm font-semibold text-white">Tioga AI Assistant</p>

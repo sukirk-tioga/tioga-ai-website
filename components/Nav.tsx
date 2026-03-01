@@ -43,7 +43,7 @@ export default function Nav() {
             alt="tioga.ai logo"
             width={52}
             height={52}
-            className="w-12 h-12 object-contain"
+            className="w-12 h-12 object-contain object-bottom"
           />
           <span className="font-semibold text-white text-xl tracking-tight">tioga<span style={{ color: "#00D4FF" }}>.ai</span></span>
         </a>

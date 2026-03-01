@@ -10,7 +10,7 @@ export default function Footer() {
             alt="tioga.ai"
             width={24}
             height={24}
-            className="w-6 h-6 object-contain"
+            className="w-6 h-6 object-contain object-bottom"
           />
           <span>Tioga AI</span>
         </a>
