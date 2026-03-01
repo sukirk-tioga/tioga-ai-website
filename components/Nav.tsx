@@ -49,7 +49,7 @@ export default function Nav() {
         </a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8 text-base text-slate-400">
+        <div className="hidden md:flex items-center gap-8 text-base text-slate-400 font-semibold">
           {links.map((l) => (
             <a
               key={l.href}
