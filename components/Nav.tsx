@@ -37,14 +37,15 @@ export default function Nav() {
         }}
       >
         {/* Logo */}
-        <a href="/" className="flex items-center shrink-0">
+        <a href="/" className="flex items-center gap-2 shrink-0">
           <Image
-            src="/logo-full.png"
-            alt="tioga.ai"
-            width={160}
-            height={60}
-            className="h-10 w-auto object-contain"
+            src="/logo-icon.png"
+            alt="tioga.ai logo"
+            width={36}
+            height={36}
+            className="w-9 h-9 object-contain"
           />
+          <span className="font-semibold text-white text-lg tracking-tight">tioga<span style={{ color: "#00D4FF" }}>.ai</span></span>
         </a>
 
         {/* Desktop links */}
