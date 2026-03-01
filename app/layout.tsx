@@ -9,8 +9,11 @@ export const metadata: Metadata = {
   description:
     "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise clients.",
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/logo-icon.png", sizes: "any" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
 };
 
