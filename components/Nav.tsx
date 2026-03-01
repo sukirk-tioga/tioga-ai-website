@@ -39,13 +39,12 @@ export default function Nav() {
         {/* Logo */}
         <a href="/" className="flex items-center shrink-0">
           <Image
-            src="/favicon.png"
+            src="/logo-full.png"
             alt="tioga.ai"
-            width={40}
-            height={40}
-            className="w-9 h-9 object-contain"
+            width={160}
+            height={60}
+            className="h-10 w-auto object-contain"
           />
-          <span className="font-semibold text-white text-lg tracking-tight -ml-1">tioga.ai</span>
         </a>
 
         {/* Desktop links */}
