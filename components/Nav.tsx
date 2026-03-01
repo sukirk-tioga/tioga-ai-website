@@ -45,11 +45,11 @@ export default function Nav() {
             height={52}
             className="w-12 h-12 object-contain"
           />
-          <span className="font-semibold text-white text-lg tracking-tight">tioga<span style={{ color: "#00D4FF" }}>.ai</span></span>
+          <span className="font-semibold text-white text-xl tracking-tight">tioga<span style={{ color: "#00D4FF" }}>.ai</span></span>
         </a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8 text-sm text-slate-400">
+        <div className="hidden md:flex items-center gap-8 text-base text-slate-400">
           {links.map((l) => (
             <a
               key={l.href}
@@ -66,7 +66,7 @@ export default function Nav() {
         <div className="flex items-center gap-3">
           <a
             href="/#contact"
-            className="hidden md:inline-flex px-4 py-2 rounded-lg text-sm font-medium text-white transition-all hover:opacity-90"
+            className="hidden md:inline-flex px-5 py-2.5 rounded-lg text-base font-medium text-white transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
           >
             Get Started
