@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   title: "Tioga AI — Enterprise AI Implementation",
   description:
     "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise clients.",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

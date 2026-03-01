@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,14 +37,15 @@ export default function Nav() {
         }}
       >
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2 shrink-0">
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
-          >
-            T
-          </div>
-          <span className="font-semibold text-white text-lg tracking-tight">tioga.ai</span>
+        <a href="/" className="flex items-center shrink-0">
+          <Image
+            src="/favicon.png"
+            alt="tioga.ai"
+            width={40}
+            height={40}
+            className="w-9 h-9 object-contain"
+          />
+          <span className="font-semibold text-white text-lg tracking-tight -ml-1">tioga.ai</span>
         </a>
 
         {/* Desktop links */}
