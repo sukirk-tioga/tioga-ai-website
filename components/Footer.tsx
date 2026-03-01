@@ -1,14 +1,17 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="py-10 px-6" style={{ borderTop: "1px solid #1E2D4A" }}>
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-600">
         <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <div
-            className="w-6 h-6 rounded flex items-center justify-center text-white font-bold text-xs"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
-          >
-            T
-          </div>
+          <Image
+            src="/logo-icon.png"
+            alt="tioga.ai"
+            width={24}
+            height={24}
+            className="w-6 h-6 object-contain"
+          />
           <span>Tioga AI</span>
         </a>
         <div className="flex items-center gap-6 text-xs">
