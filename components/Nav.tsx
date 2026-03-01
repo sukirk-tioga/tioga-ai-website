@@ -29,7 +29,7 @@ export default function Nav() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between transition-all duration-200"
+        className="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between transition-all duration-200"
         style={{
           background: scrolled ? "rgba(10,15,28,0.97)" : "rgba(10,15,28,0.92)",
           backdropFilter: "blur(16px)",
@@ -41,9 +41,9 @@ export default function Nav() {
           <Image
             src="/logo-icon.png"
             alt="tioga.ai logo"
-            width={36}
-            height={36}
-            className="w-9 h-9 object-contain"
+            width={52}
+            height={52}
+            className="w-12 h-12 object-contain"
           />
           <span className="font-semibold text-white text-lg tracking-tight">tioga<span style={{ color: "#00D4FF" }}>.ai</span></span>
         </a>
