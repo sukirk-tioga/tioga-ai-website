@@ -171,58 +171,62 @@ export default function HomePage() {
  {/* Services */}
  <section id="services" className="py-20 px-6 max-w-5xl mx-auto">
  <div className="text-center mb-12">
- <h2 className="text-3xl font-bold text-white mb-3">What We Build</h2>
- <p className="text-slate-400 text-sm max-w-lg mx-auto">Production AI systems — not prototypes — that integrate with your existing stack and deliver measurable ROI within the pilot.</p>
+ <h2 className="text-3xl font-bold text-white mb-3">Where to start</h2>
+ <p className="text-slate-400 text-sm max-w-lg mx-auto">
+ Three entry-point offers — each delivers a concrete, reviewable output in weeks, not quarters.
+ </p>
  </div>
- <div className="grid md:grid-cols-2 gap-5">
+ <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
  {[
  {
- icon: "🤖",
- title: "Custom AI Agents",
- desc: "Bespoke agents that automate complex multi-step workflows, handle exceptions intelligently and integrate with your enterprise systems. Built for reliability, not demos.",
- outcomes: ["Workflow automation", "Exception handling", "ERP integration"],
+ name: "AI Operations Assessment",
+ valueProp: "Find the workflows AI can take off your plate",
+ desc: "2–3 weeks. Map manual workflows across finance, HR, procurement, and operations. Rank automation opportunities by ROI and feasibility. Concrete plan in your hands.",
+ investment: "$10–15K",
  },
  {
- icon: "🔗",
- title: "MCP Integrations",
- desc: "Connect Claude and other frontier LLMs to your SAP, Salesforce, or ServiceNow environments via Model Context Protocol — the new standard for AI-to-system connections.",
- outcomes: ["Natural language to action", "Secure data access", "Any LLM compatible"],
+ name: "AI Governance Readiness Assessment",
+ valueProp: "Get audit-ready before regulators or customers ask",
+ desc: "3–4 weeks. NIST AI RMF, ISO 42001, EU AI Act, and US state law gap analysis with a prioritized remediation roadmap. Sample executive summary included.",
+ investment: "$20–35K",
  },
  {
- icon: "📊",
- title: "AI Strategy Consulting",
- desc: "Discovery workshops, POC development, ROI analysis and AI roadmapping — so your organization invests in the right problems and avoids costly misdirection.",
- outcomes: ["ROI-first prioritization", "Proof of concepts", "Implementation roadmap"],
+ name: "AI Agent Pilot",
+ valueProp: "Build one working agent against your highest-value workflow",
+ desc: "4–8 weeks. Production-ready agent. Governance built in from day one. Working pilot you can extend or hand off.",
+ investment: "$25–50K",
  },
- {
- icon: "🎓",
- title: "AI Training & Enablement",
- desc: "Upskill your team on prompt engineering, AI governance and responsible deployment. Make sure your organization can sustain and evolve its AI investments independently.",
- outcomes: ["Prompt engineering", "AI governance", "Team certification"],
- },
- ].map((s) => (
+ ].map((offer) => (
  <div
- key={s.title}
- className="p-7 rounded-2xl hover:border-slate-600 transition-all"
- style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+ key={offer.name}
+ className="flex flex-col rounded-2xl overflow-hidden"
+ style={{ background: "#0D1526", border: "1px solid rgba(255,255,255,0.08)" }}
  >
- <div className="text-3xl mb-3">{s.icon}</div>
- <h3 className="text-lg font-semibold text-white mb-2">{s.title}</h3>
- <p className="text-sm text-slate-400 leading-relaxed mb-4">{s.desc}</p>
- <div className="flex flex-wrap gap-2">
- {s.outcomes.map((o) => (
- <span
- key={o}
- className="text-xs px-2.5 py-1 rounded-full"
- style={{ background: "#1E2D4A", color: "#64748b" }}
+ <div className="h-px w-full" style={{ background: "linear-gradient(90deg, #00D4FF, #0066CC)" }} />
+ <div className="flex flex-col flex-1 p-8">
+ <h3 className="text-2xl font-semibold text-white mb-3 leading-snug">{offer.name}</h3>
+ <p className="text-lg font-medium text-slate-400 mb-5 leading-snug">{offer.valueProp}</p>
+ <p className="text-base leading-relaxed flex-1 mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>{offer.desc}</p>
+ <div className="space-y-4">
+ <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{offer.investment}</p>
+ <a
+ href="#contact"
+ className="block text-center w-full px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
+ style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
  >
- {o}
- </span>
+ Start a conversation
+ </a>
+ </div>
+ </div>
+ </div>
  ))}
  </div>
- </div>
- ))}
- </div>
+ <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
+ Plus 7 more offers — ERP Modernization Advisory, Legacy System AI Augmentation, EU AI Act Conformity Program, Multi-State AI Compliance, ISO 42001 Implementation Sprint, Agentic AI Governance Framework, Fractional AI Governance Officer.{" "}
+ <a href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "#00D4FF" }}>
+ See all services →
+ </a>
+ </p>
  </section>
 
  {/* Why Tioga */}
