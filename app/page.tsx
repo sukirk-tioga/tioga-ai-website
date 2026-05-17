@@ -173,52 +173,46 @@ export default function HomePage() {
  <div className="text-center mb-12">
  <h2 className="text-3xl font-bold text-white mb-3">Where to start</h2>
  <p className="text-slate-400 text-sm max-w-lg mx-auto">
- Three entry-point offers — each delivers measurable output in weeks, not quarters.
+ Three entry-point offers — each delivers a concrete, reviewable output in weeks, not quarters.
  </p>
  </div>
- <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+ <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
  {[
  {
  name: "AI Operations Assessment",
- valueProp: "Know exactly where AI will move the needle — before you commit.",
- desc: "We audit your current workflows and systems, identify the highest-ROI AI opportunities, and deliver a prioritized roadmap with a working prototype included. You get clarity on what to automate first, what systems to connect, and what a full engagement will cost.",
+ valueProp: "Find the workflows AI can take off your plate",
+ desc: "2–3 weeks. Map manual workflows across finance, HR, procurement, and operations. Rank automation opportunities by ROI and feasibility. Concrete plan in your hands.",
  investment: "$10–15K",
- duration: "2–3 weeks",
  },
  {
  name: "AI Governance Readiness Assessment",
- valueProp: "Find your governance gaps before a regulator — or an enterprise buyer — does.",
- desc: "We assess your AI systems against NIST AI RMF, ISO 42001, and EU AI Act requirements, identifying gaps and remediation priorities. Output includes a board-ready governance report, a risk register, and a remediation roadmap your legal and compliance teams can act on.",
+ valueProp: "Get audit-ready before regulators or customers ask",
+ desc: "3–4 weeks. NIST AI RMF, ISO 42001, EU AI Act, and US state law gap analysis with a prioritized remediation roadmap. Sample executive summary included.",
  investment: "$20–35K",
- duration: "3–4 weeks",
  },
  {
  name: "AI Agent Pilot",
- valueProp: "A working AI agent, running in your real systems, in 4–8 weeks.",
- desc: "We build a production-ready AI agent that connects directly to your ERP, CRM, or HRIS — not a sandbox demo, not a mockup, but code that works against your live data. Governance documentation ships alongside the code so your compliance review runs in parallel with delivery.",
+ valueProp: "Build one working agent against your highest-value workflow",
+ desc: "4–8 weeks. Production-ready agent. Governance built in from day one. Working pilot you can extend or hand off.",
  investment: "$25–50K",
- duration: "4–8 weeks",
  },
  ].map((offer) => (
  <div
  key={offer.name}
  className="flex flex-col rounded-2xl overflow-hidden"
- style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+ style={{ background: "#0D1526", border: "1px solid rgba(255,255,255,0.08)" }}
  >
- <div className="h-0.5 w-full" style={{ background: "linear-gradient(90deg, #00D4FF, #0066CC)" }} />
- <div className="flex flex-col flex-1 p-7">
- <h3 className="text-base font-semibold text-white mb-2 leading-snug">{offer.name}</h3>
- <p className="text-sm font-medium mb-4 leading-snug" style={{ color: "#00D4FF" }}>{offer.valueProp}</p>
- <p className="text-sm text-slate-400 leading-relaxed flex-1 mb-6">{offer.desc}</p>
+ <div className="h-px w-full" style={{ background: "linear-gradient(90deg, #00D4FF, #0066CC)" }} />
+ <div className="flex flex-col flex-1 p-8">
+ <h3 className="text-2xl font-semibold text-white mb-3 leading-snug">{offer.name}</h3>
+ <p className="text-lg font-medium text-slate-400 mb-5 leading-snug">{offer.valueProp}</p>
+ <p className="text-base leading-relaxed flex-1 mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>{offer.desc}</p>
  <div className="space-y-4">
- <div className="flex items-center gap-3">
- <span className="text-sm font-bold" style={{ color: "#00D4FF" }}>{offer.investment}</span>
- <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "#1E2D4A", color: "#64748b" }}>{offer.duration}</span>
- </div>
+ <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{offer.investment}</p>
  <a
  href="#contact"
- className="block text-center w-full py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
- style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)", color: "white" }}
+ className="block text-center w-full px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
+ style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
  >
  Start a conversation
  </a>
@@ -227,10 +221,10 @@ export default function HomePage() {
  </div>
  ))}
  </div>
- <p className="text-center mt-8 text-sm text-slate-500">
- Plus 7 more offers —{" "}
- <a href="/services" className="transition-colors hover:text-white" style={{ color: "#00D4FF" }}>
- see all services →
+ <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
+ Plus 7 more offers — ERP Modernization Advisory, Legacy System AI Augmentation, EU AI Act Conformity Program, Multi-State AI Compliance, ISO 42001 Implementation Sprint, Agentic AI Governance Framework, Fractional AI Governance Officer.{" "}
+ <a href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "#00D4FF" }}>
+ See all services →
  </a>
  </p>
  </section>
