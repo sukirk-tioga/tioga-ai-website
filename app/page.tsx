@@ -15,19 +15,20 @@ export default function HomePage() {
  style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
- Enterprise AI Implementation Partner
+ AI Agents for Enterprise Systems
  </div>
- <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
- AI that works<br />
+ <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
+ The systems you stand on<br />
+ Will{" "}
  <span style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
- in production
+ stand on AI
  </span>
  </h1>
  <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed">
- Most enterprise AI projects fail at integration. We specialize in delivery — connecting LLMs to your SAP, Salesforce and ServiceNow environments so teams actually use them.
+ We deploy AI agents that work inside your existing ERP, CRM, and HRIS — with NIST, ISO 42001, and EU AI Act governance built into the architecture, not bolted on later.
  </p>
  <p className="text-sm text-slate-500 max-w-xl mx-auto mb-10">
- 5-day discovery sprint. 2–4 week pilot. Production-ready from day one.
+ 5-day discovery sprint. 2–4 week pilot. Production agents and governance docs ship together.
  </p>
  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
  <a
@@ -35,7 +36,7 @@ export default function HomePage() {
  className="px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
  style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
  >
- See Live Demos
+ Try a Live Agent
  </a>
  <a
  href="#contact"
