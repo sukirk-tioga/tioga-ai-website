@@ -17,7 +17,7 @@ export default function HomePage() {
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  AI Agents for Enterprise Systems
  </div>
- <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
+ <h1 className="text-4xl lg:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
  The systems you stand on<br />
  Will{" "}
  <span style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
@@ -204,8 +204,8 @@ export default function HomePage() {
  >
  <div className="h-px w-full" style={{ background: "linear-gradient(90deg, #00D4FF, #0066CC)" }} />
  <div className="flex flex-col flex-1 p-8">
- <h3 className="text-2xl font-semibold text-white mb-3 leading-snug">{offer.name}</h3>
- <p className="text-lg font-medium text-slate-400 mb-5 leading-snug">{offer.valueProp}</p>
+ <h3 className="text-2xl font-semibold text-white mb-3 leading-snug lg:min-h-[6.25rem]">{offer.name}</h3>
+ <p className="text-lg font-medium text-slate-400 mb-5 leading-snug lg:min-h-[5.25rem]">{offer.valueProp}</p>
  <p className="text-base leading-relaxed flex-1 mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>{offer.desc}</p>
  <div className="space-y-4">
  <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{offer.investment}</p>
