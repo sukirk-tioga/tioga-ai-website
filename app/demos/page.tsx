@@ -682,6 +682,46 @@ export default function DemosPage() {
           </p>
         </div>
 
+        {/* Featured: Migration Assessment */}
+        <a
+          href="/demos/migration-assessment"
+          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
+          style={{
+            background: "linear-gradient(135deg, #0D1526 0%, #0D1F33 100%)",
+            border: "1px solid #00D4FF40",
+            boxShadow: "0 0 30px #00D4FF0A",
+          }}
+        >
+          <span
+            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#00D4FF" strokeWidth={1.8}>
+              <ellipse cx="7" cy="6" rx="4" ry="2" />
+              <path d="M3 6v6c0 1.1 1.8 2 4 2s4-.9 4-2V6" />
+              <path strokeLinecap="round" d="M13.5 12H18m0 0l-2.5-2.5M18 12l-2.5 2.5" />
+              <ellipse cx="17" cy="18" rx="4" ry="2" transform="translate(0 -2)" />
+            </svg>
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 mb-1">
+              <p className="font-semibold text-white">Migration Assessment</p>
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
+                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "#00D4FF" }}
+              >
+                Flagship
+              </span>
+            </div>
+            <p className="text-sm text-slate-400">
+              Get a sample EBS → SAP migration readiness assessment in 60 seconds.
+            </p>
+          </div>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "#00D4FF" }}>
+            Try it live →
+          </span>
+        </a>
+
         {/* Demo selector */}
         <div className="grid grid-cols-3 gap-3 mb-8">
           {DEMOS.map((demo) => (
