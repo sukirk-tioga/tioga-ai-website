@@ -1,0 +1,150 @@
+import { callClaude } from "@/app/demos/_lib/anthropic";
+import { rateLimit } from "@/lib/rate-limit";
+import { NextRequest } from "next/server";
+
+export const runtime = "nodejs";
+
+// ── Allowed values — nothing outside these enums ever reaches the prompt ─────
+const VERSIONS = ["R12.1", "R12.2"] as const;
+const MODULES = ["FI", "AP", "AR", "GL", "FA", "INV", "PO"] as const;
+const VOLUMES = ["1-10GB", "10-100GB", "100GB-1TB", "1TB+"] as const;
+const TARGETS = ["S/4HANA Cloud", "S/4HANA Private Cloud", "S/4HANA On-Premise"] as const;
+
+const MODULE_NAMES: Record<string, string> = {
+  FI: "Financials (FI)",
+  AP: "Accounts Payable (AP)",
+  AR: "Accounts Receivable (AR)",
+  GL: "General Ledger (GL)",
+  FA: "Fixed Assets (FA)",
+  INV: "Inventory (INV)",
+  PO: "Purchasing (PO)",
+};
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function bad(message: string, status = 400) {
+  return new Response(JSON.stringify({ error: message }), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+export async function POST(req: NextRequest) {
+  const ip = (req.headers.get("x-forwarded-for") ?? "unknown").split(",")[0].trim();
+  const { allowed } = rateLimit(`migration:${ip}`, 5, 10 * 60 * 1000); // 5 requests / 10 min
+  if (!allowed) {
+    return bad("You've reached the demo limit. Try again in a few minutes — or book a call for the real thing.", 429);
+  }
+
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return bad("Invalid request body.");
+  }
+  const { version, modules, dataVolume, target, email } = (body ?? {}) as Record<string, unknown>;
+
+  // Strict enum validation — no free text reaches the prompt
+  if (typeof version !== "string" || !(VERSIONS as readonly string[]).includes(version)) {
+    return bad("Invalid Oracle EBS version.");
+  }
+  if (
+    !Array.isArray(modules) ||
+    modules.length === 0 ||
+    modules.length > MODULES.length ||
+    !modules.every((m) => typeof m === "string" && (MODULES as readonly string[]).includes(m))
+  ) {
+    return bad("Select at least one valid module.");
+  }
+  const selectedModules = Array.from(new Set(modules as string[]));
+  if (typeof dataVolume !== "string" || !(VOLUMES as readonly string[]).includes(dataVolume)) {
+    return bad("Invalid data volume.");
+  }
+  if (typeof target !== "string" || !(TARGETS as readonly string[]).includes(target)) {
+    return bad("Invalid target SAP edition.");
+  }
+  if (email !== undefined && email !== "" && (typeof email !== "string" || email.length > 254 || !EMAIL_RE.test(email))) {
+    return bad("Invalid email address.");
+  }
+
+  if (typeof email === "string" && email) {
+    // v1: log only — no persistence yet
+    console.log(`[migration-assessment] copy requested by ${email} (${version}, ${selectedModules.join("/")}, ${dataVolume}, ${target})`);
+  }
+
+  const hasFinancials = selectedModules.some((m) => ["FI", "GL", "AP"].includes(m));
+
+  const system = `You are a senior migration architect at Tioga AI with 15+ years leading Oracle E-Business Suite to SAP S/4HANA programs for enterprises. You produce honest, conservative readiness assessments.
+
+Rules:
+- Be SPECIFIC to the modules selected — name module-level concerns (e.g., open AP/AR item reconciliation, FA depreciation history conversion, GL chart-of-accounts redesign, INV valuation method changes, open PO commitments), not generic migration advice.
+- Be conservative on timelines. Enterprises consistently underestimate data migration and parallel-run phases.
+- ${hasFinancials ? "FI/GL/AP modules are in scope: you MUST explicitly address SOX compliance and audit-trail preservation in the risks or reasoning." : "Note compliance considerations where relevant."}
+- Respond with VALID JSON ONLY. No markdown, no code fences, no commentary outside the JSON object.`;
+
+  const prompt = `Assess this Oracle EBS to SAP S/4HANA migration:
+
+- Oracle EBS version: ${version}
+- Modules in use: ${selectedModules.map((m) => MODULE_NAMES[m]).join(", ")}
+- Approximate data volume: ${dataVolume}
+- Target SAP edition: ${target}
+
+Return exactly this JSON structure:
+{
+  "complexityScore": <integer 1-10, where 10 is most complex>,
+  "scoreReasoning": "<2-3 sentences explaining the score, referencing the specific modules and data volume>",
+  "timelineRange": "<conservative range, e.g. '10-16 months'>",
+  "topRisks": [
+    { "title": "<short risk title>", "detail": "<exactly 2 sentences of specific detail>" },
+    { "title": "...", "detail": "..." },
+    { "title": "...", "detail": "..." }
+  ],
+  "recommendedApproach": {
+    "approach": "<one of: greenfield | brownfield | selective>",
+    "reasoning": "<2-3 sentences on why, given this module mix and target edition>"
+  },
+  "nextSteps": ["<concrete step>", "<concrete step>", "<optional third step>"]
+}`;
+
+  try {
+    const raw = await callClaude({ system, prompt });
+
+    // Defensive parse: strip code fences, extract the outermost JSON object
+    const cleaned = raw.replace(/```(?:json)?/gi, "").trim();
+    const match = cleaned.match(/\{[\s\S]*\}/);
+    if (!match) throw new Error("no JSON object in model output");
+    const result = JSON.parse(match[0]);
+
+    const score = Math.min(10, Math.max(1, Math.round(Number(result.complexityScore))));
+    if (!Number.isFinite(score)) throw new Error("bad complexityScore");
+    if (!Array.isArray(result.topRisks) || result.topRisks.length === 0) throw new Error("bad topRisks");
+    const approach = String(result.recommendedApproach?.approach ?? "").toLowerCase();
+    if (!["greenfield", "brownfield", "selective"].includes(approach)) throw new Error("bad approach");
+
+    return new Response(
+      JSON.stringify({
+        assessment: {
+          complexityScore: score,
+          scoreReasoning: String(result.scoreReasoning ?? ""),
+          timelineRange: String(result.timelineRange ?? ""),
+          topRisks: result.topRisks.slice(0, 3).map((r: { title?: unknown; detail?: unknown }) => ({
+            title: String(r.title ?? ""),
+            detail: String(r.detail ?? ""),
+          })),
+          recommendedApproach: {
+            approach,
+            reasoning: String(result.recommendedApproach?.reasoning ?? ""),
+          },
+          nextSteps: Array.isArray(result.nextSteps) ? result.nextSteps.slice(0, 3).map(String) : [],
+        },
+      }),
+      { status: 200, headers: { "Content-Type": "application/json" } }
+    );
+  } catch (err) {
+    console.error("[migration-assessment] generation failed:", err);
+    return bad(
+      "We couldn't generate the assessment just now — please try again in a moment.",
+      502
+    );
+  }
+}
