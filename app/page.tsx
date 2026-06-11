@@ -118,11 +118,18 @@ export default function HomePage() {
  href: "/demos?tab=email"
  },
  {
- icon: "📋",
- title: "Document Classification",
- desc: "Upload any document. Instantly identify type, extract key entities, suggest next actions.",
- tag: "Document Processing",
- href: "/demos?tab=document"
+ icon: (
+ <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="#00D4FF" strokeWidth={1.8}>
+ <ellipse cx="7" cy="6" rx="4" ry="2" />
+ <path d="M3 6v6c0 1.1 1.8 2 4 2s4-.9 4-2V6" />
+ <path strokeLinecap="round" d="M13.5 12H18m0 0l-2.5-2.5M18 12l-2.5 2.5" />
+ <ellipse cx="17" cy="16" rx="4" ry="2" />
+ </svg>
+ ),
+ title: "Migration Assessment",
+ desc: "Get a sample EBS → SAP migration readiness assessment in 60 seconds.",
+ tag: "Oracle EBS → S/4HANA",
+ href: "/demos/migration-assessment"
  },
  ].map((demo) => (
  <a
