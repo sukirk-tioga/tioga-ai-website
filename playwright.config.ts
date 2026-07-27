@@ -13,7 +13,10 @@ export default defineConfig({
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [
+    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    { name: "mobile-safari", use: { ...devices["iPhone 14"] }, testMatch: /pages\.spec\.ts/ },
+  ],
   // Only spin up a local server when no BASE_URL is given (i.e. not testing
   // against a live deployment like production or a Vercel preview).
   webServer: BASE_URL
