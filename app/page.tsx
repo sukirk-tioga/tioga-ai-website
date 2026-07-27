@@ -28,7 +28,7 @@ export default function HomePage() {
  We deploy AI agents that work inside your existing ERP, CRM, and HRIS — with NIST, ISO 42001, and EU AI Act governance built into the architecture, not bolted on later.
  </p>
  <p className="text-sm text-slate-500 max-w-xl mx-auto mb-10">
- 5-day discovery sprint. 2–4 week pilot. Production agents and governance docs ship together.
+ 5-day discovery sprint, $5,000 flat. 2–4 week pilot. Production agents and governance docs ship together.
  </p>
  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
  <a
@@ -56,7 +56,7 @@ export default function HomePage() {
  { value: "5 days", label: "Discovery Sprint" },
  { value: "2–4 wks", label: "Pilot to Production" },
  { value: "100%", label: "Real System Integration" },
- { value: "SOC2", label: "Enterprise Ready" },
+ { value: "SOC2", label: "Ready Architecture" },
  ].map((stat) => (
  <div key={stat.label} className="px-6 py-5 text-center" style={{ background: "#0D1526" }}>
  <div className="text-2xl font-bold mb-1" style={{ color: "#00D4FF" }}>{stat.value}</div>
@@ -275,7 +275,7 @@ export default function HomePage() {
  <div className="space-y-4">
  {[
  {
- step: "01", title: "Discovery Sprint", duration: "5 days",
+ step: "01", title: "Discovery Sprint", duration: "5 days · $5,000 flat",
  desc: "We map your systems, identify the highest-ROI AI opportunities and define a clear scope with your team. You get a working prototype and a detailed delivery plan — before any large commitment.",
  detail: "System audit · Use-case prioritization · Prototype · Delivery plan"
  },

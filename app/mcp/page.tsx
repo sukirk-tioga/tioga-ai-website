@@ -526,7 +526,7 @@ export default function MCPPage() {
  and Claude can query SAP, Salesforce and more in plain English.
  </p>
  <div className="flex flex-wrap gap-3 justify-center text-sm text-slate-400">
- {["Open standard by Anthropic", "Works with any LLM", "Enterprise-grade security", "Tioga AI certified"].map((f) => (
+ {["Open standard by Anthropic", "Works with any LLM", "Enterprise-grade security", "Built on Anthropic's MCP spec"].map((f) => (
  <span key={f} className="flex items-center gap-1.5">
  <span style={{ color: "#00D4FF" }}>✓</span> {f}
  </span>
@@ -585,10 +585,10 @@ export default function MCPPage() {
  </div>
 
  {/* Stats row */}
- <div className="grid grid-cols-3 gap-4 mb-16">
+ <div className="grid grid-cols-3 gap-4 mb-4">
  {[
  { stat: "< 2 weeks", label: "to first MCP integration" },
- { stat: "10+", label: "enterprise connectors built" },
+ { stat: "10+", label: "connector tools built against test/demo instances" },
  { stat: "Zero", label: "custom APIs per system" },
  ].map((s) => (
  <div
@@ -601,6 +601,9 @@ export default function MCPPage() {
  </div>
  ))}
  </div>
+ <p className="text-center text-xs text-slate-600 mb-16">
+ See exactly what&apos;s shipped, in order — <a href="/changelog" className="underline hover:text-slate-400 transition-colors">Build Log →</a>
+ </p>
 
  <div className="text-center mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
  <a href="/mcp/vs-custom-integration" className="text-sm hover:text-white transition-colors" style={{ color: "#00D4FF" }}>

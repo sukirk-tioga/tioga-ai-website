@@ -33,6 +33,7 @@ export default function SmartContactForm() {
     company: "",
     description: "",
   });
+  const [consent, setConsent] = useState(false);
   const [state, setState] = useState<"idle" | "classifying" | "done" | "error">("idle");
   const [classification, setClassification] = useState<Classification | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
@@ -43,7 +44,7 @@ export default function SmartContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.description) return;
+    if (!form.name || !form.email || !form.description || !consent) return;
 
     setState("classifying");
     setErrorMsg("");
@@ -162,6 +163,7 @@ export default function SmartContactForm() {
           onClick={() => {
             setForm({ name: "", email: "", company: "", description: "" });
             setClassification(null);
+            setConsent(false);
             setState("idle");
           }}
           className="mt-4 text-sm text-slate-500 hover:text-slate-300 transition-colors"
@@ -241,9 +243,29 @@ export default function SmartContactForm() {
           <p className="text-sm text-red-400">{errorMsg}</p>
         )}
 
+        <label className="flex items-start gap-2.5 text-xs text-slate-500 leading-relaxed cursor-pointer">
+          <input
+            type="checkbox"
+            checked={consent}
+            onChange={(e) => setConsent(e.target.checked)}
+            required
+            className="mt-0.5 w-3.5 h-3.5 shrink-0 rounded"
+            style={{ accentColor: "#00D4FF" }}
+          />
+          <span>
+            I agree to the{" "}
+            <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-300 transition-colors">
+              Privacy Policy
+            </a>
+            . I understand my submission is sent to Claude to classify this
+            inquiry and emailed to the Tioga AI team to respond — not used to
+            train any model, not stored beyond that.
+          </span>
+        </label>
+
         <button
           type="submit"
-          disabled={state === "classifying"}
+          disabled={state === "classifying" || !consent}
           className="w-full py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
         >

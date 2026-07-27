@@ -35,7 +35,7 @@ const FRAMEWORKS = [
     tag: "EU regulation",
     body: "Risk-tiering, conformity documentation, and technical files for organizations with EU exposure — including the Article 50 transparency obligations phasing in through 2026.",
     offer: "EU AI Act Conformity Program",
-    price: "$20–200K",
+    price: "$75–200K",
     href: "/trust/eu-ai-act",
     linkText: "What non-compliance costs →",
   },

@@ -678,9 +678,13 @@ export default function DemosPage() {
             Live AI Demos — Powered by Claude
           </div>
           <h1 className="text-4xl font-bold text-white mb-3">See Our AI In Action</h1>
-          <p className="text-slate-400 max-w-xl mx-auto">
+          <p className="text-slate-400 max-w-xl mx-auto mb-3">
             These are real AI features — the same capabilities we build into enterprise systems.
             Try them with your own data.
+          </p>
+          <p className="text-xs text-slate-600 max-w-xl mx-auto">
+            Files and text you submit here are sent to Claude to generate the result shown and are not stored by Tioga AI or used to train any model. See our{" "}
+            <a href="/privacy" className="underline hover:text-slate-400 transition-colors">Privacy Policy →</a>
           </p>
         </div>
 

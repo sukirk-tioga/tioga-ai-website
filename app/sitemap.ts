@@ -21,6 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/engineering/invoice-processing", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/engineering/email-triage", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/engineering/migration-assessment", priority: 0.5, changeFrequency: "monthly" as const },
+    { path: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },
+    { path: "/terms", priority: 0.3, changeFrequency: "yearly" as const },
   ];
 
   return routes.map((route) => ({

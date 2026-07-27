@@ -79,8 +79,11 @@ export default function ServicesPage() {
  <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
  <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
  <h1 className="text-4xl font-bold text-white mb-6">Services</h1>
- <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-16">
+ <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-4">
  Tioga AI offers ten engagements spanning AI agent development, enterprise systems modernization, and AI governance. Each is scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
+ </p>
+ <p className="text-slate-500 text-sm max-w-2xl leading-relaxed mb-16">
+ Every engagement below starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment.
  </p>
  <div className="space-y-4">
  {offers.map((offer, i) => (

@@ -24,7 +24,13 @@ export default function Footer() {
           <a href="/#contact" className="hover:text-slate-400 transition-colors">Contact</a>
           <a href="mailto:hello@tioga.ai" className="hover:text-slate-400 transition-colors">hello@tioga.ai</a>
         </div>
-        <p>© {new Date().getFullYear()} Tioga AI</p>
+        <div className="flex flex-col items-center gap-1">
+          <p>© {new Date().getFullYear()} Tioga AI</p>
+          <div className="flex items-center gap-3 text-xs">
+            <a href="/privacy" className="hover:text-slate-400 transition-colors">Privacy</a>
+            <a href="/terms" className="hover:text-slate-400 transition-colors">Terms</a>
+          </div>
+        </div>
       </div>
     </footer>
   );
