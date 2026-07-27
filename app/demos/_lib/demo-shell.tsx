@@ -5,10 +5,12 @@ import type { ReactNode } from "react";
 export default function DemoShell({
   title,
   description,
+  badge = "Live AI Demo — Powered by Claude",
   children,
 }: {
   title: string;
   description: string;
+  badge?: string;
   children: ReactNode;
 }) {
   return (
@@ -30,7 +32,7 @@ export default function DemoShell({
             style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
           >
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
-            Live AI Demo — Powered by Claude
+            {badge}
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">{title}</h1>
           <p className="text-slate-400 max-w-xl">{description}</p>
