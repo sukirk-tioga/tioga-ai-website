@@ -18,6 +18,8 @@ const FRAMEWORKS = [
     body: "The four-function model — Govern, Map, Measure, Manage — that structures how we design every agent's logging, cost controls, and human oversight from day one.",
     offer: "AI Governance Readiness Assessment",
     price: "$20–35K",
+    href: "/trust/framework-mapping",
+    linkText: "See the ISO 42001 mapping →",
   },
   {
     name: "ISO 42001",
@@ -25,6 +27,8 @@ const FRAMEWORKS = [
     body: "The AI management system standard for organizations that need certification-ready documentation, not just internal policy — audit trail structured for a third-party assessor.",
     offer: "ISO 42001 Implementation Sprint",
     price: "$50–120K",
+    href: "/trust/framework-mapping",
+    linkText: "See the NIST AI RMF mapping →",
   },
   {
     name: "EU AI Act",
@@ -33,6 +37,7 @@ const FRAMEWORKS = [
     offer: "EU AI Act Conformity Program",
     price: "$20–200K",
     href: "/trust/eu-ai-act",
+    linkText: "What non-compliance costs →",
   },
 ];
 
@@ -97,7 +102,7 @@ export default function TrustPage() {
                   <p className="text-xs mt-0.5" style={{ color: "#00D4FF" }}>{f.price}</p>
                   {f.href && (
                     <a href={f.href} className="inline-block text-xs mt-3 hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
-                      What non-compliance costs →
+                      {f.linkText}
                     </a>
                   )}
                 </div>
