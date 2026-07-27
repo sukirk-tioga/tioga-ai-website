@@ -32,6 +32,7 @@ const FRAMEWORKS = [
     body: "Risk-tiering, conformity documentation, and technical files for organizations with EU exposure — including the Article 50 transparency obligations phasing in through 2026.",
     offer: "EU AI Act Conformity Program",
     price: "$20–200K",
+    href: "/trust/eu-ai-act",
   },
 ];
 
@@ -94,6 +95,11 @@ export default function TrustPage() {
                   <p className="text-xs text-slate-500 mb-0.5">Mapped offer</p>
                   <p className="text-sm font-semibold text-white">{f.offer}</p>
                   <p className="text-xs mt-0.5" style={{ color: "#00D4FF" }}>{f.price}</p>
+                  {f.href && (
+                    <a href={f.href} className="inline-block text-xs mt-3 hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+                      What non-compliance costs →
+                    </a>
+                  )}
                 </div>
               </div>
             ))}

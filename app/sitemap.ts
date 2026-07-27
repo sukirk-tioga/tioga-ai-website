@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/demos/migration-assessment", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/about", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/trust", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/trust/eu-ai-act", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/changelog", priority: 0.6, changeFrequency: "weekly" as const },
   ];
 
