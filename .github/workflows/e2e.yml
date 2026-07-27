@@ -16,7 +16,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium webkit
       - name: Run structural tests (page loads, links, SEO — no AI calls)
         run: npx playwright test tests/pages.spec.ts
       - uses: actions/upload-artifact@v4
