@@ -2,7 +2,7 @@
 // (lib/anthropic.ts) — import this ONLY from route handlers, never from client components.
 import { anthropic } from "@/lib/anthropic";
 
-const DEMO_MODEL = "claude-sonnet-4-20250514";
+const DEMO_MODEL = "claude-sonnet-5";
 
 export async function callClaude(opts: {
   prompt: string;
@@ -12,6 +12,7 @@ export async function callClaude(opts: {
   const response = await anthropic.messages.create({
     model: DEMO_MODEL,
     max_tokens: opts.maxTokens ?? 1500,
+    thinking: { type: "disabled" },
     ...(opts.system ? { system: opts.system } : {}),
     messages: [{ role: "user", content: opts.prompt }],
   });
