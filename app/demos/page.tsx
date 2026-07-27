@@ -640,6 +640,7 @@ const DEMOS = [
     title: "Invoice Processing",
     subtitle: "Extract structured data from any invoice",
     component: <InvoiceDemo />,
+    engineeringHref: "/engineering/invoice-processing",
   },
   {
     id: "email",
@@ -647,6 +648,7 @@ const DEMOS = [
     title: "Email Triage",
     subtitle: "Classify, route & draft replies automatically",
     component: <EmailTriageDemo />,
+    engineeringHref: "/engineering/email-triage",
   },
   {
     id: "document",
@@ -685,7 +687,7 @@ export default function DemosPage() {
         {/* Featured: Migration Assessment */}
         <a
           href="/demos/migration-assessment"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
+          className="group flex items-center gap-5 p-6 rounded-2xl mb-2 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, #0D1526 0%, #0D1F33 100%)",
             border: "1px solid #00D4FF40",
@@ -721,6 +723,11 @@ export default function DemosPage() {
             Try it live →
           </span>
         </a>
+        <div className="text-right mb-8">
+          <a href="/engineering/migration-assessment" className="text-xs hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+            How we built this →
+          </a>
+        </div>
 
         {/* Featured: Governance Ledger */}
         <a
@@ -791,9 +798,16 @@ export default function DemosPage() {
               <h2 className="font-semibold text-white">{activeDemo.title}</h2>
               <p className="text-sm text-slate-400">{activeDemo.subtitle}</p>
             </div>
-            <div className="ml-auto flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              <span className="text-xs text-slate-400">Live</span>
+            <div className="ml-auto flex items-center gap-3">
+              {activeDemo.engineeringHref && (
+                <a href={activeDemo.engineeringHref} className="text-xs hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+                  How we built this →
+                </a>
+              )}
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                <span className="text-xs text-slate-400">Live</span>
+              </div>
             </div>
           </div>
           {activeDemo.component}

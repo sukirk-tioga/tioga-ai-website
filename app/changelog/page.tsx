@@ -24,6 +24,24 @@ interface Entry {
 const ENTRIES: Entry[] = [
   {
     date: "2026-07-27",
+    kind: "Content",
+    title: "Engineering writeups for the live demos",
+    body: "\"How we built it\" pages for the invoice processing, email triage, and migration assessment demos — model choices, input validation, and rate limiting, grounded in the actual route code, not a summary of it.",
+  },
+  {
+    date: "2026-07-27",
+    kind: "Content",
+    title: "EU AI Act exposure page",
+    body: "A dedicated penalty-structure explainer — Article 99's three tiers, what's already enforceable versus what phases in through August 2026 — linked from the Trust page.",
+  },
+  {
+    date: "2026-07-27",
+    kind: "Content",
+    title: "Founder, Trust, and Build Log pages",
+    body: "Closed the biggest content gap on the site: zero founder content existed anywhere. Added an About page, a consolidated NIST AI RMF / ISO 42001 / EU AI Act Trust page, and this build log itself.",
+  },
+  {
+    date: "2026-07-27",
     kind: "Infra",
     title: "Two-tier automated QA suite",
     body: "Added a Playwright E2E suite: a structural pass (every page loads, correct title, no console errors, nav/footer links resolve) that runs free on every push, plus a functional pass that calls the live Claude-powered demos and runs on a daily cron.",
@@ -147,8 +165,12 @@ export default function ChangelogPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-slate-600 mb-4">
             Curious how something was built?{" "}
+            <a href="/engineering" style={{ color: "#00D4FF" }} className="hover:text-white transition-colors">
+              Read the engineering writeups →
+            </a>
+            {" "}or see the{" "}
             <a href="/trust" style={{ color: "#00D4FF" }} className="hover:text-white transition-colors">
-              See the governance approach →
+              governance approach →
             </a>
           </p>
           <a

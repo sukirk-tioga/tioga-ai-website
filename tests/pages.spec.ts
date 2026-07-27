@@ -14,6 +14,10 @@ const PAGES = [
   { path: "/about", title: "About — Tioga AI" },
   { path: "/trust", title: "Trust & Governance — Tioga AI" },
   { path: "/trust/eu-ai-act", title: "EU AI Act Exposure — Tioga AI" },
+  { path: "/engineering", title: "How We Built It — Tioga AI" },
+  { path: "/engineering/invoice-processing", title: "How We Built the Invoice Processing Demo — Tioga AI" },
+  { path: "/engineering/email-triage", title: "How We Built the Email Triage Demo — Tioga AI" },
+  { path: "/engineering/migration-assessment", title: "How We Built the Migration Assessment Demo — Tioga AI" },
   { path: "/changelog", title: "Build Log — Tioga AI" },
 ];
 

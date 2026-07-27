@@ -13,6 +13,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/trust", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/trust/eu-ai-act", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/changelog", priority: 0.6, changeFrequency: "weekly" as const },
+    { path: "/engineering", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/engineering/invoice-processing", priority: 0.5, changeFrequency: "monthly" as const },
+    { path: "/engineering/email-triage", priority: 0.5, changeFrequency: "monthly" as const },
+    { path: "/engineering/migration-assessment", priority: 0.5, changeFrequency: "monthly" as const },
   ];
 
   return routes.map((route) => ({
