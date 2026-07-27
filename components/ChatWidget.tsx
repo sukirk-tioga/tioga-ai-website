@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
 interface Message {
   id: string;
@@ -195,7 +196,39 @@ export default function ChatWidget() {
                       : { background: "#131f35", border: "1px solid #1E2D4A" }
                   }
                 >
-                  {message.content || (
+                  {message.content ? (
+                    message.role === "assistant" ? (
+                      <ReactMarkdown
+                        components={{
+                          p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                          strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+                          ul: ({ children }) => <ul className="list-disc pl-4 mb-2 last:mb-0 space-y-1">{children}</ul>,
+                          ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 last:mb-0 space-y-1">{children}</ol>,
+                          li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+                          a: ({ children, href }) => (
+                            <a
+                              href={href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline hover:opacity-80"
+                              style={{ color: "#00D4FF" }}
+                            >
+                              {children}
+                            </a>
+                          ),
+                          code: ({ children }) => (
+                            <code className="px-1 py-0.5 rounded text-xs" style={{ background: "#0A0F1C" }}>
+                              {children}
+                            </code>
+                          ),
+                        }}
+                      >
+                        {message.content}
+                      </ReactMarkdown>
+                    ) : (
+                      message.content
+                    )
+                  ) : (
                     <span className="inline-flex gap-1 items-center">
                       <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                       <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
