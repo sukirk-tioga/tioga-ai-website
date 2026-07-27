@@ -5,7 +5,11 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Tioga AI — Enterprise AI Implementation",
+  metadataBase: new URL("https://tioga.ai"),
+  title: {
+    default: "Tioga AI — Enterprise AI Implementation",
+    template: "%s — Tioga AI",
+  },
   description:
     "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise clients.",
   icons: {
@@ -15,6 +19,20 @@ export const metadata: Metadata = {
     ],
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    title: "Tioga AI — Enterprise AI Implementation",
+    description:
+      "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise clients.",
+    url: "https://tioga.ai",
+    siteName: "Tioga AI",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tioga AI — Enterprise AI Implementation",
+    description:
+      "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise clients.",
   },
 };
 

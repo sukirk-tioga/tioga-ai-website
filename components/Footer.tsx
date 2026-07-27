@@ -15,6 +15,7 @@ export default function Footer() {
           <span>Tioga AI</span>
         </a>
         <div className="flex items-center gap-6 text-xs">
+          <a href="/services" className="hover:text-slate-400 transition-colors">Services</a>
           <a href="/demos" className="hover:text-slate-400 transition-colors">Live Demos</a>
           <a href="/mcp" className="hover:text-slate-400 transition-colors">MCP</a>
           <a href="/#contact" className="hover:text-slate-400 transition-colors">Contact</a>

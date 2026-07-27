@@ -1,3 +1,16 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Custom AI agents, MCP integrations connecting LLMs to SAP/Salesforce/ServiceNow, AI strategy consulting, and team enablement — Tioga AI's enterprise service offerings.",
+  openGraph: {
+    title: "Services — Tioga AI",
+    description:
+      "Custom AI agents, MCP integrations, AI strategy consulting, and team enablement for enterprise clients.",
+  },
+};
+
 export default function ServicesPage() {
  const offers = [
  {

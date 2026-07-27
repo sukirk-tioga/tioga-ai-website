@@ -1,4 +1,16 @@
+import type { Metadata } from "next";
 import DemoShell from "../_lib/demo-shell";
+
+export const metadata: Metadata = {
+  title: "Governance Ledger Demo — Tioga AI",
+  description:
+    "A real excerpt from Tioga AI's own AI routing gateway ledger — every model call logged, costed, budget-capped, and mapped to the NIST AI RMF.",
+  openGraph: {
+    title: "Governance Ledger Demo — Tioga AI",
+    description:
+      "Live operational data — not a simulation. Every AI call logged, costed, and mapped to the NIST AI RMF.",
+  },
+};
 
 // Real excerpt from Tioga's own AI routing gateway ledger (JARVIS), captured
 // 2026-07-26. Not synthetic — this is what the governed-write-path and
