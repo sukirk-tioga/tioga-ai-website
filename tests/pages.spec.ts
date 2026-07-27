@@ -11,6 +11,9 @@ const PAGES = [
   { path: "/demos", title: "Live AI Demos — Tioga AI" },
   { path: "/demos/governance-ledger", title: "Governance Ledger Demo — Tioga AI" },
   { path: "/demos/migration-assessment", title: "Migration Assessment Demo — Tioga AI" },
+  { path: "/about", title: "About — Tioga AI" },
+  { path: "/trust", title: "Trust & Governance — Tioga AI" },
+  { path: "/changelog", title: "Build Log — Tioga AI" },
 ];
 
 for (const { path, title } of PAGES) {

@@ -22,6 +22,7 @@ export default function Nav() {
     { href: "/#services", label: "Services" },
     { href: "/demos", label: "Live Demos" },
     { href: "/mcp", label: "MCP" },
+    { href: "/about", label: "About" },
     { href: "/#process", label: "Process" },
     { href: "/#contact", label: "Contact" },
   ];
