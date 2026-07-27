@@ -25,6 +25,12 @@ const ENTRIES: Entry[] = [
   {
     date: "2026-07-27",
     kind: "Content",
+    title: "MCP vs. custom integration comparison page",
+    body: "First entry in an ongoing buyer-education content track: what actually changes when a system is connected via an MCP tool server instead of a point-to-point integration — including where custom integration is still the simpler, correct choice.",
+  },
+  {
+    date: "2026-07-27",
+    kind: "Content",
     title: "Live gateway snapshot on the Governance Ledger",
     body: "Extended the ledger demo with real, freshly-checked numbers from the gateway's own status tool — budget cap, current spend, per-request ceiling, backend health — clearly dated separately from the historical Jul 17-25 ledger rows so the two snapshots aren't conflated.",
   },

@@ -8,6 +8,7 @@ const PAGES = [
   { path: "/", title: "Tioga AI — Enterprise AI Implementation" },
   { path: "/services", title: "Services — Tioga AI" },
   { path: "/mcp", title: "MCP Integrations — Tioga AI" },
+  { path: "/mcp/vs-custom-integration", title: "MCP vs. Custom Integration — Tioga AI" },
   { path: "/demos", title: "Live AI Demos — Tioga AI" },
   { path: "/demos/governance-ledger", title: "Governance Ledger Demo — Tioga AI" },
   { path: "/demos/migration-assessment", title: "Migration Assessment Demo — Tioga AI" },

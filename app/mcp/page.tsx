@@ -602,6 +602,12 @@ export default function MCPPage() {
  ))}
  </div>
 
+ <div className="text-center mb-8">
+ <a href="/mcp/vs-custom-integration" className="text-sm hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+ MCP vs. custom integration — what actually changes →
+ </a>
+ </div>
+
  {/* CTA */}
  <div
  className="rounded-2xl p-10 text-center"

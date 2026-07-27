@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MCP Integrations",
+  title: {
+    default: "MCP Integrations",
+    template: "%s — Tioga AI",
+  },
   description:
     "See how Claude connects to enterprise systems like SAP, Salesforce, and ServiceNow via the Model Context Protocol — live, interactive demo.",
   openGraph: {
