@@ -56,6 +56,16 @@ const STATS = [
   { label: "Paid vs. free-tier", value: "2 / 17", sub: "88% of calls settled at $0 before touching billed credit" },
 ];
 
+// Pulled live from the gateway's own status tool on Jul 27, 2026 — a
+// separate check from the ledger rows above (captured Jul 17-25). Refreshed
+// manually when this page is updated, not a real-time ticker.
+const LIVE_STATS = [
+  { label: "Monthly budget cap", value: "$30.00", sub: "hard ceiling, shared across every machine running this infrastructure" },
+  { label: "Spent this window", value: "$0.0007", sub: "0.002% of cap — window opened Jul 17, 2026" },
+  { label: "Per-request ceiling", value: "$1.00", sub: "reserved and checked before any single call goes out" },
+  { label: "Backend health", value: "3 / 3", sub: "local T0, Google, and OpenRouter all reachable at last check" },
+];
+
 const FUNCTIONS = [
   {
     name: "GOVERN",
@@ -162,6 +172,25 @@ export default function GovernanceLedgerPage() {
               ))}
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* Live gateway snapshot */}
+      <div className="mt-8">
+        <h2 className="font-semibold text-white mb-1">Live gateway snapshot</h2>
+        <p className="text-xs text-slate-500 mb-4">
+          Checked directly against the gateway&apos;s own status tool on Jul 27,
+          2026 — a separate, fresher check than the ledger rows above, not a
+          live-refreshing counter on this page.
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {LIVE_STATS.map((s) => (
+            <div key={s.label} className="p-4 rounded-xl" style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}>
+              <p className="text-[11px] text-slate-500 uppercase tracking-wide mb-1.5">{s.label}</p>
+              <p className="text-xl font-bold text-white font-mono">{s.value}</p>
+              <p className="text-xs text-slate-500 mt-1 leading-snug">{s.sub}</p>
+            </div>
+          ))}
         </div>
       </div>
 

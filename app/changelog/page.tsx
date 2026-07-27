@@ -24,6 +24,12 @@ interface Entry {
 const ENTRIES: Entry[] = [
   {
     date: "2026-07-27",
+    kind: "Content",
+    title: "Live gateway snapshot on the Governance Ledger",
+    body: "Extended the ledger demo with real, freshly-checked numbers from the gateway's own status tool — budget cap, current spend, per-request ceiling, backend health — clearly dated separately from the historical Jul 17-25 ledger rows so the two snapshots aren't conflated.",
+  },
+  {
+    date: "2026-07-27",
     kind: "Feature",
     title: "EU AI Act readiness calculator",
     body: "An interactive risk-tier check — deliberately built as deterministic, rules-based logic rather than a model call, since real regulatory classification isn't something to let an LLM improvise on a live compliance page.",
