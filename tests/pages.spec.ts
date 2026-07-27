@@ -14,6 +14,7 @@ const PAGES = [
   { path: "/about", title: "About — Tioga AI" },
   { path: "/trust", title: "Trust & Governance — Tioga AI" },
   { path: "/trust/eu-ai-act", title: "EU AI Act Exposure — Tioga AI" },
+  { path: "/trust/eu-ai-act/calculator", title: "EU AI Act Readiness Calculator — Tioga AI" },
   { path: "/trust/framework-mapping", title: "NIST AI RMF ↔ ISO 42001 Mapping — Tioga AI" },
   { path: "/engineering", title: "How We Built It — Tioga AI" },
   { path: "/engineering/invoice-processing", title: "How We Built the Invoice Processing Demo — Tioga AI" },

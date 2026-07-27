@@ -24,6 +24,12 @@ interface Entry {
 const ENTRIES: Entry[] = [
   {
     date: "2026-07-27",
+    kind: "Feature",
+    title: "EU AI Act readiness calculator",
+    body: "An interactive risk-tier check — deliberately built as deterministic, rules-based logic rather than a model call, since real regulatory classification isn't something to let an LLM improvise on a live compliance page.",
+  },
+  {
+    date: "2026-07-27",
     kind: "Content",
     title: "NIST AI RMF ↔ ISO 42001 framework mapping",
     body: "A conceptual alignment between NIST's four functions and what ISO 42001 requires organizations to address — deliberately scoped to what could be verified against public sources, since Tioga AI is not yet ISO 42001 certified.",

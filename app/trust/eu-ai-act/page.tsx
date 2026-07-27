@@ -121,6 +121,22 @@ export default function EUAIActPage() {
           </p>
         </div>
 
+        {/* Calculator CTA */}
+        <div className="mb-10 p-6 rounded-2xl text-center" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+          <h2 className="text-lg font-bold text-white mb-2">Not sure which tier applies to you?</h2>
+          <p className="text-sm text-slate-400 leading-relaxed mb-5 max-w-md mx-auto">
+            A quick, rules-based check — select what your AI system does, get
+            the likely risk tier and penalty exposure.
+          </p>
+          <a
+            href="/trust/eu-ai-act/calculator"
+            className="inline-block px-6 py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90"
+            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+          >
+            Run the readiness calculator →
+          </a>
+        </div>
+
         {/* Offer tie-in */}
         <div className="text-center">
           <p className="text-sm text-slate-400 mb-4">
