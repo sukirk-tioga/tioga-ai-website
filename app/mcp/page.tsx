@@ -602,9 +602,12 @@ export default function MCPPage() {
  ))}
  </div>
 
- <div className="text-center mb-8">
+ <div className="text-center mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
  <a href="/mcp/vs-custom-integration" className="text-sm hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
- MCP vs. custom integration — what actually changes →
+ MCP vs. custom integration →
+ </a>
+ <a href="/mcp/vs-rpa" className="text-sm hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+ MCP vs. RPA →
  </a>
  </div>
 

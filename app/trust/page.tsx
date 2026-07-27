@@ -19,7 +19,7 @@ const FRAMEWORKS = [
     offer: "AI Governance Readiness Assessment",
     price: "$20–35K",
     href: "/trust/framework-mapping",
-    linkText: "See the ISO 42001 mapping →",
+    linkText: "See how it maps to ISO 42001 and the EU AI Act →",
   },
   {
     name: "ISO 42001",
@@ -28,7 +28,7 @@ const FRAMEWORKS = [
     offer: "ISO 42001 Implementation Sprint",
     price: "$50–120K",
     href: "/trust/framework-mapping",
-    linkText: "See the NIST AI RMF mapping →",
+    linkText: "See how it maps to NIST AI RMF and the EU AI Act →",
   },
   {
     name: "EU AI Act",

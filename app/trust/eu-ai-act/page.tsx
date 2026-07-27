@@ -112,13 +112,16 @@ export default function EUAIActPage() {
         {/* ISO 42001 note */}
         <div className="mb-16 p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}>
           <h2 className="text-lg font-bold text-white mb-2">Where ISO 42001 fits in</h2>
-          <p className="text-sm text-slate-300 leading-relaxed">
+          <p className="text-sm text-slate-300 leading-relaxed mb-4">
             ISO 42001 certification isn&apos;t itself an EU AI Act requirement,
             but it&apos;s emerging as the proof point enterprise buyers use to
             screen whether a vendor&apos;s governance claims are real rather
             than self-reported — reason enough to build toward it even before
             certification is complete.
           </p>
+          <a href="/trust/framework-mapping" className="text-sm hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+            See how NIST AI RMF, ISO 42001, and the EU AI Act line up →
+          </a>
         </div>
 
         {/* Calculator CTA */}

@@ -25,6 +25,12 @@ const ENTRIES: Entry[] = [
   {
     date: "2026-07-27",
     kind: "Content",
+    title: "MCP vs. RPA comparison page, and EU AI Act joins the framework mapping",
+    body: "Added a second buyer-education comparison page (MCP vs. RPA), and extended the NIST ↔ ISO 42001 mapping into a three-way comparison against the EU AI Act's high-risk obligations — GOVERN/MAP/MEASURE/MANAGE, now read against a voluntary framework, a certifiable standard, and binding law side by side.",
+  },
+  {
+    date: "2026-07-27",
+    kind: "Content",
     title: "MCP vs. custom integration comparison page",
     body: "First entry in an ongoing buyer-education content track: what actually changes when a system is connected via an MCP tool server instead of a point-to-point integration — including where custom integration is still the simpler, correct choice.",
   },
