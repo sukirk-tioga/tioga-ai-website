@@ -1,4 +1,5 @@
 import { callClaude } from "@/app/demos/_lib/anthropic";
+import { sendMigrationAssessmentCopy } from "@/lib/email";
 import { rateLimit } from "@/lib/rate-limit";
 import { NextRequest } from "next/server";
 
@@ -67,11 +68,6 @@ export async function POST(req: NextRequest) {
     return bad("Invalid email address.");
   }
 
-  if (typeof email === "string" && email) {
-    // v1: log only — no persistence yet
-    console.log(`[migration-assessment] copy requested by ${email} (${version}, ${selectedModules.join("/")}, ${dataVolume}, ${target})`);
-  }
-
   const hasFinancials = selectedModules.some((m) => ["FI", "GL", "AP"].includes(m));
 
   const system = `You are a senior migration architect at Tioga AI with 15+ years leading Oracle E-Business Suite to SAP S/4HANA programs for enterprises. You produce honest, conservative readiness assessments.
@@ -121,23 +117,40 @@ Return exactly this JSON structure:
     const approach = String(result.recommendedApproach?.approach ?? "").toLowerCase();
     if (!["greenfield", "brownfield", "selective"].includes(approach)) throw new Error("bad approach");
 
+    const assessment = {
+      complexityScore: score,
+      scoreReasoning: String(result.scoreReasoning ?? ""),
+      timelineRange: String(result.timelineRange ?? ""),
+      topRisks: result.topRisks.slice(0, 3).map((r: { title?: unknown; detail?: unknown }) => ({
+        title: String(r.title ?? ""),
+        detail: String(r.detail ?? ""),
+      })),
+      recommendedApproach: {
+        approach,
+        reasoning: String(result.recommendedApproach?.reasoning ?? ""),
+      },
+      nextSteps: Array.isArray(result.nextSteps) ? result.nextSteps.slice(0, 3).map(String) : [],
+    };
+
+    let emailed = false;
+    if (typeof email === "string" && email) {
+      try {
+        await sendMigrationAssessmentCopy({
+          to: email,
+          version,
+          modules: selectedModules.map((m) => MODULE_NAMES[m]).join(", "),
+          dataVolume,
+          target,
+          assessment,
+        });
+        emailed = true;
+      } catch (err) {
+        console.error("[migration-assessment] email delivery failed:", err);
+      }
+    }
+
     return new Response(
-      JSON.stringify({
-        assessment: {
-          complexityScore: score,
-          scoreReasoning: String(result.scoreReasoning ?? ""),
-          timelineRange: String(result.timelineRange ?? ""),
-          topRisks: result.topRisks.slice(0, 3).map((r: { title?: unknown; detail?: unknown }) => ({
-            title: String(r.title ?? ""),
-            detail: String(r.detail ?? ""),
-          })),
-          recommendedApproach: {
-            approach,
-            reasoning: String(result.recommendedApproach?.reasoning ?? ""),
-          },
-          nextSteps: Array.isArray(result.nextSteps) ? result.nextSteps.slice(0, 3).map(String) : [],
-        },
-      }),
+      JSON.stringify({ assessment, emailed }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (err) {

@@ -72,6 +72,7 @@ export default function SmartContactForm() {
   if (state === "done" && classification) {
     return (
       <div
+        role="status"
         className="p-8 rounded-2xl text-left"
         style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
       >
@@ -182,8 +183,9 @@ export default function SmartContactForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="text-xs text-slate-500 mb-1.5 block">Name *</label>
+            <label htmlFor="contact-name" className="text-xs text-slate-500 mb-1.5 block">Name *</label>
             <input
+              id="contact-name"
               name="name"
               value={form.name}
               onChange={handleChange}
@@ -194,8 +196,9 @@ export default function SmartContactForm() {
             />
           </div>
           <div>
-            <label className="text-xs text-slate-500 mb-1.5 block">Company</label>
+            <label htmlFor="contact-company" className="text-xs text-slate-500 mb-1.5 block">Company</label>
             <input
+              id="contact-company"
               name="company"
               value={form.company}
               onChange={handleChange}
@@ -207,8 +210,9 @@ export default function SmartContactForm() {
         </div>
 
         <div>
-          <label className="text-xs text-slate-500 mb-1.5 block">Email *</label>
+          <label htmlFor="contact-email" className="text-xs text-slate-500 mb-1.5 block">Email *</label>
           <input
+            id="contact-email"
             name="email"
             type="email"
             value={form.email}
@@ -221,13 +225,14 @@ export default function SmartContactForm() {
         </div>
 
         <div>
-          <label className="text-xs text-slate-500 mb-1.5 block">
+          <label htmlFor="contact-description" className="text-xs text-slate-500 mb-1.5 block">
             Project Description *
             <span className="ml-2 text-slate-600 normal-case font-normal">
               — the more detail, the better the classification
             </span>
           </label>
           <textarea
+            id="contact-description"
             name="description"
             value={form.description}
             onChange={handleChange}
@@ -240,8 +245,11 @@ export default function SmartContactForm() {
         </div>
 
         {state === "error" && (
-          <p className="text-sm text-red-400">{errorMsg}</p>
+          <p role="alert" className="text-sm text-red-400">{errorMsg}</p>
         )}
+        <p aria-live="polite" className="sr-only">
+          {state === "classifying" ? "Classifying your inquiry…" : ""}
+        </p>
 
         <label className="flex items-start gap-2.5 text-xs text-slate-500 leading-relaxed cursor-pointer">
           <input
@@ -258,8 +266,10 @@ export default function SmartContactForm() {
               Privacy Policy
             </a>
             . I understand my submission is sent to Claude to classify this
-            inquiry and emailed to the Tioga AI team to respond — not used to
-            train any model, not stored beyond that.
+            inquiry and emailed to the Tioga AI team, where it&apos;s kept in
+            the founder&apos;s inbox to respond to and follow up on my
+            inquiry — not used to train any model, not sold, not stored in
+            any database.
           </span>
         </label>
 

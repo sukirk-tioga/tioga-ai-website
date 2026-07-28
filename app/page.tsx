@@ -28,7 +28,7 @@ export default function HomePage() {
  We deploy AI agents that work inside your existing ERP, CRM, and HRIS — with NIST, ISO 42001, and EU AI Act governance built into the architecture, not bolted on later.
  </p>
  <p className="text-sm text-slate-500 max-w-xl mx-auto mb-10">
- 5-day discovery sprint, $5,000 flat. 2–4 week pilot. Production agents and governance docs ship together.
+ 5-day discovery sprint, $5,000 flat. Pilot build in 2–8 weeks, scope-dependent. Production agents and governance docs ship together.
  </p>
  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
  <a
@@ -54,7 +54,7 @@ export default function HomePage() {
  <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden" style={{ background: "#1E2D4A" }}>
  {[
  { value: "5 days", label: "Discovery Sprint" },
- { value: "2–4 wks", label: "Pilot to Production" },
+ { value: "2–8 wks", label: "Discovery to Pilot" },
  { value: "100%", label: "Real System Integration" },
  { value: "SOC2", label: "Ready Architecture" },
  ].map((stat) => (
@@ -99,7 +99,7 @@ export default function HomePage() {
  Live on our production API
  </div>
  <h2 className="text-3xl font-bold text-white mb-3">Try It Right Now</h2>
- <p className="text-slate-400 max-w-lg mx-auto text-sm">Three real AI workflows. No signup. No mockups. The same Claude models we deploy for enterprise clients.</p>
+ <p className="text-slate-400 max-w-lg mx-auto text-sm">Three real AI workflows. No signup. No mockups. The same Claude models built into every Tioga AI engagement.</p>
  </div>
  <div className="grid md:grid-cols-3 gap-4">
  {[
@@ -240,15 +240,15 @@ export default function HomePage() {
  <section className="px-6 pb-20 max-w-5xl mx-auto">
  <div className="rounded-2xl p-8 md:p-10" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
  <div className="text-center mb-10">
- <h2 className="text-3xl font-bold text-white mb-3">Why enterprises choose Tioga AI</h2>
- <p className="text-slate-400 text-sm max-w-lg mx-auto">We&apos;re not a generic AI consultancy. We specialize in one thing: getting AI into production inside complex enterprise environments.</p>
+ <h2 className="text-3xl font-bold text-white mb-3">What working with Tioga AI looks like</h2>
+ <p className="text-slate-400 text-sm max-w-lg mx-auto">Not a generic AI consultancy. One founder who specializes in one thing: getting AI into production inside complex enterprise environments.</p>
  </div>
  <div className="grid md:grid-cols-3 gap-6">
  {[
  { icon: "⚡", title: "Speed to value", desc: "Our 5-day discovery sprint gives you a working prototype and a delivery plan before most firms finish scoping." },
- { icon: "🔐", title: "Enterprise-grade security", desc: "SOC2-ready architecture, role-based access, audit logging and your data never leaves your environment." },
+ { icon: "🔐", title: "Enterprise-grade security", desc: "SOC2-ready architecture, role-based access, and audit logging designed so your systems of record stay under your control." },
  { icon: "🎯", title: "Integration-first approach", desc: "We build for your stack from day one. No rip-and-replace. Your existing systems become more powerful." },
- { icon: "🧪", title: "No toy demos", desc: "Every pilot runs against your real data and real systems. When it works in the pilot, it works in production." },
+ { icon: "🧪", title: "No toy demos", desc: "Every pilot runs against your real data and real systems, built to carry into production, not thrown away after the demo." },
  { icon: "📐", title: "MCP-native builds", desc: "We specialize in Model Context Protocol — the emerging standard for connecting AI to enterprise systems at scale." },
  { icon: "📈", title: "Measurable ROI", desc: "We define success metrics before we start. You see ROI calculations in the pilot, not after a 6-month engagement." },
  ].map((item) => (
@@ -280,7 +280,7 @@ export default function HomePage() {
  detail: "System audit · Use-case prioritization · Prototype · Delivery plan"
  },
  {
- step: "02", title: "Pilot Build", duration: "2–4 weeks",
+ step: "02", title: "Pilot Build", duration: "2–8 weeks · scope-dependent",
  desc: "We build a production-ready proof of concept integrated with your real systems. No toy demos — this runs against live data and real integrations. You see exactly what the full system will do.",
  detail: "Full integration · Real data · Stakeholder review · Go/no-go decision"
  },
@@ -327,7 +327,7 @@ export default function HomePage() {
  </div>
  <h3 className="text-xl font-bold text-white mb-2">Model Context Protocol (MCP)</h3>
  <p className="text-sm text-slate-400 max-w-lg">
- MCP is how frontier AI connects to enterprise systems. We&apos;re one of the first implementation partners building production MCP integrations for SAP and Salesforce. See the architecture, explore live demos and understand why your next AI project should be MCP-native.
+ MCP is how frontier AI connects to enterprise systems. Tioga AI is built MCP-native from day one, with working connectors for SAP and Salesforce you can try below. See the architecture, explore live demos and understand why your next AI project should be MCP-native.
  </p>
  </div>
  <div
@@ -346,7 +346,8 @@ export default function HomePage() {
  <section id="contact" className="py-20 px-6 max-w-2xl mx-auto text-center">
  <h2 className="text-3xl font-bold text-white mb-3">Ready to Build?</h2>
  <p className="text-slate-400 mb-2 text-sm max-w-md mx-auto">
- Tell us about your project. Our AI instantly classifies your inquiry and routes it to the right specialist. Response within 4 hours.
+ Tell us about your project. Our AI instantly classifies your inquiry so it reaches me with the right context. Response within one business day — or email{" "}
+ <a href="mailto:hello@tioga.ai" className="underline hover:text-white transition-colors">hello@tioga.ai</a> directly.
  </p>
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8"

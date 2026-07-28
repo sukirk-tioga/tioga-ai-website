@@ -104,9 +104,17 @@ export default function EUAIActPage() {
             </div>
             <div className="flex gap-4">
               <span className="text-xs font-mono text-white w-24 shrink-0 pt-0.5">Aug 2026</span>
-              <p className="text-sm text-slate-300">High-risk system obligations and Article 50 transparency requirements (AI-generated content disclosure, chatbot disclosure) phase in — the deadline most mid-market enterprises still have open exposure against.</p>
+              <p className="text-sm text-slate-300">High-risk system obligations (Annex III — the category most enterprise AI agents in finance, HR, and CRM fall into) and Article 50 transparency requirements (AI-generated content disclosure, chatbot disclosure) phase in — the deadline most mid-market enterprises still have open exposure against.</p>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-xs font-mono text-slate-500 w-24 shrink-0 pt-0.5">Aug 2027</span>
+              <p className="text-sm text-slate-400">High-risk systems that are safety components of products already regulated under existing EU product-safety law (Annex I — machinery, medical devices, and similar) get a one-year later deadline.</p>
             </div>
           </div>
+          <p className="text-xs text-slate-600 mt-4">
+            Dates per the EU AI Act&apos;s official timeline; not legal advice.
+            Confirm applicability for your specific system with counsel. Reviewed 2026-07-27.
+          </p>
         </div>
 
         {/* ISO 42001 note */}

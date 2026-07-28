@@ -78,6 +78,7 @@ export default function MigrationAssessmentPage() {
   const [stage, setStage] = useState(0);
   const [error, setError] = useState("");
   const [result, setResult] = useState<Assessment | null>(null);
+  const [emailed, setEmailed] = useState(false);
 
   useEffect(() => {
     if (state !== "loading") return;
@@ -105,6 +106,7 @@ export default function MigrationAssessmentPage() {
       const json = await res.json();
       if (!res.ok) throw new Error(json.error ?? "Request failed.");
       setResult(json.assessment);
+      setEmailed(Boolean(json.emailed));
       setState("done");
     } catch (e: unknown) {
       setError((e as Error).message ?? "Something went wrong.");
@@ -277,6 +279,16 @@ export default function MigrationAssessmentPage() {
             This is a sample assessment. A full assessment includes data profiling, code analysis,
             and a module-by-module roadmap.
           </p>
+          {emailed && (
+            <p className="text-xs text-center mt-2" style={{ color: "#4ADE80" }}>
+              A copy has been emailed to {email}.
+            </p>
+          )}
+          {email && !emailed && (
+            <p className="text-xs text-slate-500 text-center mt-2">
+              We couldn&apos;t email a copy just now — you can still copy this page&apos;s results manually.
+            </p>
+          )}
         </div>
       )}
     </DemoShell>

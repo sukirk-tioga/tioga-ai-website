@@ -57,6 +57,7 @@ export default function Nav() {
               href={l.href}
               className="hover:text-white transition-colors"
               style={pathname === l.href ? { color: "white" } : {}}
+              aria-current={pathname === l.href ? "page" : undefined}
             >
               {l.label}
             </a>
@@ -78,6 +79,8 @@ export default function Nav() {
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg transition-colors hover:bg-white/5"
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav-menu"
           >
             <span
               className="block w-5 h-0.5 bg-slate-400 transition-all duration-200 origin-center"
@@ -97,6 +100,7 @@ export default function Nav() {
 
       {/* Mobile dropdown */}
       <div
+        id="mobile-nav-menu"
         className="fixed top-[65px] left-0 right-0 z-40 md:hidden transition-all duration-200 overflow-hidden"
         style={{
           maxHeight: menuOpen ? "400px" : "0px",

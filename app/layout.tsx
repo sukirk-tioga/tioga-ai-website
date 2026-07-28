@@ -11,7 +11,10 @@ export const metadata: Metadata = {
     template: "%s — Tioga AI",
   },
   description:
-    "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise clients.",
+    "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise systems.",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -23,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tioga AI — Enterprise AI Implementation",
     description:
-      "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise clients.",
+      "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise systems.",
     url: "https://tioga.ai",
     siteName: "Tioga AI",
     type: "website",
@@ -32,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tioga AI — Enterprise AI Implementation",
     description:
-      "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise clients.",
+      "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise systems.",
   },
 };
 
@@ -41,9 +44,34 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Tioga AI",
+    url: "https://tioga.ai",
+    founder: {
+      "@type": "Person",
+      name: "Sukir Kumaresan",
+    },
+    description:
+      "Tioga AI builds production-ready AI agents, MCP integrations, and AI governance programs for enterprise systems — NIST AI RMF, ISO 42001, and EU AI Act compliance built into the architecture.",
+    areaServed: "Global",
+    knowsAbout: [
+      "Model Context Protocol",
+      "AI agent implementation",
+      "NIST AI RMF",
+      "ISO 42001",
+      "EU AI Act",
+    ],
+  };
+
   return (
     <html lang="en">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
         <Nav />
         {children}
         <Footer />

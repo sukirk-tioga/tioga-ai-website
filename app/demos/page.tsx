@@ -777,6 +777,7 @@ export default function DemosPage() {
             <button
               key={demo.id}
               onClick={() => setActive(demo.id)}
+              aria-pressed={active === demo.id}
               className="p-4 rounded-xl text-left transition-all"
               style={{
                 background: active === demo.id ? "#0D1526" : "transparent",

@@ -50,11 +50,13 @@ export default function FileUpload({ onTextExtracted, accept = ".pdf,.docx,.doc,
 
   return (
     <div className="mb-3">
-      <div
+      <button
+        type="button"
         onClick={() => inputRef.current?.click()}
         onDrop={handleDrop}
         onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
         onDragLeave={() => setDragOver(false)}
+        aria-busy={state === "loading"}
         className="w-full rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-2 py-5 cursor-pointer transition-all"
         style={{
           borderColor: dragOver ? "#00D4FF" : "#1E2D4A",
@@ -80,10 +82,12 @@ export default function FileUpload({ onTextExtracted, accept = ".pdf,.docx,.doc,
             <p className="text-xs text-slate-600">PDF, DOCX, TXT, MD, CSV supported</p>
           </>
         )}
-      </div>
-      {error && <p className="text-xs text-red-400 mt-1.5">{error}</p>}
+      </button>
+      {error && <p role="alert" className="text-xs text-red-400 mt-1.5">{error}</p>}
+      <label htmlFor="file-upload-input" className="sr-only">Upload a file</label>
       <input
         ref={inputRef}
+        id="file-upload-input"
         type="file"
         accept={accept}
         onChange={handleFileChange}

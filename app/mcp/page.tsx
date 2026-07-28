@@ -217,10 +217,12 @@ function CodeBlock() {
  return (
  <div className="rounded-2xl overflow-hidden" style={{ background: "#060B14", border: "1px solid #1E2D4A" }}>
  {/* Tabs */}
- <div className="flex" style={{ borderBottom: "1px solid #1E2D4A" }}>
+ <div role="tablist" aria-label="Connector examples" className="flex" style={{ borderBottom: "1px solid #1E2D4A" }}>
  {CODE_EXAMPLES.map((ex, i) => (
  <button
  key={ex.label}
+ role="tab"
+ aria-selected={active === i}
  onClick={() => setActive(i)}
  className="px-4 py-2.5 text-xs font-medium transition-all"
  style={{
@@ -526,7 +528,7 @@ export default function MCPPage() {
  and Claude can query SAP, Salesforce and more in plain English.
  </p>
  <div className="flex flex-wrap gap-3 justify-center text-sm text-slate-400">
- {["Open standard by Anthropic", "Works with any LLM", "Enterprise-grade security", "Built on Anthropic's MCP spec"].map((f) => (
+ {["Open standard by Anthropic", "Works with any MCP-capable client", "Enterprise-grade security", "Built on Anthropic's MCP spec"].map((f) => (
  <span key={f} className="flex items-center gap-1.5">
  <span style={{ color: "#00D4FF" }}>✓</span> {f}
  </span>
@@ -538,8 +540,9 @@ export default function MCPPage() {
  <div className="mb-16 fade-in fade-in-1">
  <h2 className="text-xl font-bold text-white mb-2">How MCP Works</h2>
  <p className="text-slate-400 text-sm mb-5">
- A single MCP server sits between Claude and all your enterprise systems.
- Claude calls tools, MCP handles auth and routing, your systems return data.
+ Each enterprise system gets its own MCP tool server. Claude calls tools,
+ MCP handles auth and routing, your systems return data — and once a
+ tool server exists, every use case and every MCP-aware client can reuse it.
  </p>
  <ArchDiagram />
  </div>
@@ -589,7 +592,7 @@ export default function MCPPage() {
  {[
  { stat: "< 2 weeks", label: "to first MCP integration" },
  { stat: "10+", label: "connector tools built against test/demo instances" },
- { stat: "Zero", label: "custom APIs per system" },
+ { stat: "Zero", label: "new integrations per additional use case" },
  ].map((s) => (
  <div
  key={s.label}

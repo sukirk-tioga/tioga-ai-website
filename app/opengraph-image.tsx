@@ -62,7 +62,7 @@ export default async function OpengraphImage() {
               lineHeight: 1.5,
             }}
           >
-            Production-ready AI agents, MCP integrations, and governed automation — built by the team that gets AI live, not just prototyped.
+            Production-ready AI agents, MCP integrations, and governed automation — built by the founder who gets AI live, not just prototyped.
           </div>
         </div>
 

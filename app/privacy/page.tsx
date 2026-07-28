@@ -64,6 +64,15 @@ export default function PrivacyPage() {
             have no further copy of what you submitted.
           </p>
           <p>
+            <strong className="text-white">
+              &ldquo;Send me a copy&rdquo; on the migration assessment.
+            </strong>{" "}
+            If you optionally enter an email address on that demo, it is used
+            once, in memory, to send that one assessment to you by email — it
+            is not logged, written to a database, or sent to us. See Third
+            Parties below for the mail provider that transmits it.
+          </p>
+          <p>
             <strong className="text-white">Chat widget.</strong> Messages you
             send to the chat assistant are sent to Claude to generate a reply
             and are not stored after your browser session ends.
@@ -104,7 +113,8 @@ export default function PrivacyPage() {
             <li>
               <strong className="text-white">Google (Gmail SMTP)</strong> —
               delivers the contact-form notification email to Tioga AI&apos;s
-              inbox.
+              inbox, and delivers your copy of the migration assessment
+              directly to you if you request one.
             </li>
             <li>
               <strong className="text-white">Vercel</strong> — hosts this

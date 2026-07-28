@@ -24,11 +24,26 @@ export default function ChatWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus({ preventScroll: true });
     }
+  }, [isOpen]);
+
+  const close = () => {
+    setIsOpen(false);
+    toggleButtonRef.current?.focus({ preventScroll: true });
+  };
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [isOpen]);
 
   useEffect(() => {
@@ -126,10 +141,13 @@ export default function ChatWidget() {
     <>
       {/* Floating button */}
       <button
+        ref={toggleButtonRef}
         onClick={() => setIsOpen((o) => !o)}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110"
         style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
-        aria-label="Open chat"
+        aria-label={isOpen ? "Close chat" : "Open chat"}
+        aria-expanded={isOpen}
+        aria-haspopup="dialog"
       >
         {isOpen ? (
           <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -145,6 +163,9 @@ export default function ChatWidget() {
       {/* Chat panel */}
       {isOpen && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Tioga AI Assistant chat"
           className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           style={{
             background: "#0D1526",
@@ -168,7 +189,8 @@ export default function ChatWidget() {
               </div>
             </div>
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={close}
+              aria-label="Close chat"
               className="ml-auto text-slate-500 hover:text-slate-300 transition-colors"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -178,7 +200,13 @@ export default function ChatWidget() {
           </div>
 
           {/* Messages */}
-          <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4 chat-scroll">
+          <div
+            ref={scrollContainerRef}
+            role="log"
+            aria-live="polite"
+            aria-label="Chat messages"
+            className="flex-1 overflow-y-auto p-4 space-y-4 chat-scroll"
+          >
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -252,6 +280,7 @@ export default function ChatWidget() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about our services..."
+              aria-label="Chat message"
               disabled={isLoading}
               className="flex-1 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:ring-1 disabled:opacity-50"
               style={{
@@ -269,6 +298,7 @@ export default function ChatWidget() {
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
+              aria-label="Send message"
               className="w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
             >

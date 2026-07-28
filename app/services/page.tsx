@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Services — Tioga AI",
     description:
-      "Custom AI agents, MCP integrations, AI strategy consulting, and team enablement for enterprise clients.",
+      "Custom AI agents, MCP integrations, AI strategy consulting, and team enablement for enterprise systems.",
   },
 };
 
@@ -112,7 +112,7 @@ export default function ServicesPage() {
  </div>
  <div className="mt-16 text-center">
  <a
- href="#contact"
+ href="/#contact"
  className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
  style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
  >
