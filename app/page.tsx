@@ -229,7 +229,7 @@ export default function HomePage() {
  ))}
  </div>
  <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
- Plus 7 more offers — ERP Modernization Advisory, Legacy System AI Augmentation, EU AI Act Conformity Program, Multi-State AI Compliance, ISO 42001 Implementation Sprint, Agentic AI Governance Framework, Fractional AI Governance Officer.{" "}
+ Plus 10 more offers — ERP Modernization Advisory, Legacy System AI Augmentation, EU AI Act Conformity Program, Multi-State AI Compliance, ISO 42001 Implementation Sprint, Agentic AI Governance Framework, Fractional AI Governance Officer, Agent-Ready ERP Diagnostic, AI Governance Evidence Package for Insurance, AI Cost & Model Governance Assessment.{" "}
  <a href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "#00D4FF" }}>
  See all services →
  </a>

@@ -152,14 +152,14 @@ export default function TrustPage() {
         {/* All offers */}
         <div className="text-center">
           <p className="text-sm text-slate-400 mb-4">
-            Seven of Tioga AI&apos;s ten engagements are governance-focused.
+            Ten of Tioga AI&apos;s thirteen engagements are governance-focused.
           </p>
           <a
             href="/services"
             className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white inline-block"
             style={{ border: "1px solid #1E2D4A", color: "#94a3b8" }}
           >
-            See all ten offers →
+            See all thirteen offers →
           </a>
         </div>
       </section>

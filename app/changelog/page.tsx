@@ -25,6 +25,12 @@ const ENTRIES: Entry[] = [
   {
     date: "2026-07-27",
     kind: "Content",
+    title: "Three new offers added — Agent-Ready ERP Diagnostic, AI Insurance Governance Evidence Package, AI Cost & Model Governance Assessment",
+    body: "Expanded /services from ten offers to thirteen. The Agent-Ready ERP Diagnostic & Governed Write-Path unblocks agent pilots stalled at the internal-audit stage; the AI Governance Evidence Package packages NIST AI RMF work for an insurance renewal or underwriter questionnaire; the AI Cost & Model Governance Assessment is built directly on the routing infrastructure behind the live Governance Ledger demo. All three were referenced informally on the Governance Ledger page before this — now they're priced, scoped, and live.",
+  },
+  {
+    date: "2026-07-27",
+    kind: "Content",
     title: "MCP vs. RPA comparison page, and EU AI Act joins the framework mapping",
     body: "Added a second buyer-education comparison page (MCP vs. RPA), and extended the NIST ↔ ISO 42001 mapping into a three-way comparison against the EU AI Act's high-risk obligations — GOVERN/MAP/MEASURE/MANAGE, now read against a voluntary framework, a certifiable standard, and binding law side by side.",
   },

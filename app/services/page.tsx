@@ -73,6 +73,24 @@ export default function ServicesPage() {
  price: "$12–25K/month",
  duration: "6–12 months",
  },
+ {
+ name: "Agent-Ready ERP Diagnostic & Governed Write-Path",
+ desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear.",
+ price: "$60–120K",
+ duration: "~6 weeks",
+ },
+ {
+ name: "AI Governance Evidence Package for Insurance Underwriting",
+ desc: "A written AI Systems Program mapped to NIST AI RMF, built for an insurance renewal or underwriter questionnaire — system inventory, human-oversight documentation, and a one-page summary your broker can hand to the carrier.",
+ price: "$15–25K",
+ duration: "2–3 weeks",
+ },
+ {
+ name: "AI Cost & Model Governance Assessment",
+ desc: "Model-tiering policy, token/cache optimization, budget guardrails, and model-governance rules — built on the same routing infrastructure behind Tioga's own live Governance Ledger demo.",
+ price: "$10–20K",
+ duration: "2–3 weeks",
+ },
  ];
 
  return (
@@ -80,7 +98,7 @@ export default function ServicesPage() {
  <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
  <h1 className="text-4xl font-bold text-white mb-6">Services</h1>
  <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-4">
- Tioga AI offers ten engagements spanning AI agent development, enterprise systems modernization, and AI governance. Each is scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
+ Tioga AI offers thirteen engagements spanning AI agent development, enterprise systems modernization, and AI governance. Each is scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
  </p>
  <p className="text-slate-500 text-sm max-w-2xl leading-relaxed mb-16">
  Every engagement below starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment.

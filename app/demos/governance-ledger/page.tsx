@@ -220,13 +220,18 @@ export default function GovernanceLedgerPage() {
         </p>
         <div className="flex flex-wrap gap-2 mt-4">
           {[
-            "Agent-Ready ERP Diagnostic — $60–120K",
-            "AI Insurance-Readiness Package — $15–25K",
+            "Agent-Ready ERP Diagnostic & Governed Write-Path — $60–120K",
+            "AI Governance Evidence Package for Insurance Underwriting — $15–25K",
             "AI Cost & Model Governance Assessment — $10–20K",
           ].map((o) => (
-            <span key={o} className="text-xs px-3 py-1.5 rounded-lg" style={{ background: "#0A0F1C", border: "1px solid #1E2D4A", color: "#94a3b8" }}>
+            <a
+              key={o}
+              href="/services"
+              className="text-xs px-3 py-1.5 rounded-lg transition-colors hover:border-slate-500"
+              style={{ background: "#0A0F1C", border: "1px solid #1E2D4A", color: "#94a3b8" }}
+            >
               {o}
-            </span>
+            </a>
           ))}
         </div>
       </div>
