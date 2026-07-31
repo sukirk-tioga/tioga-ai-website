@@ -35,35 +35,35 @@ const LIMITED_RISK_ITEMS = [
 const RESULTS: Record<Tier, { title: string; color: string; penalty: string; body: string; cta: { label: string; href: string } }> = {
   none: {
     title: "Likely minimal exposure today",
-    color: "#4ADE80",
+    color: "var(--success)",
     penalty: "—",
     body: "Based on what you selected, you don't have EU exposure to worry about right now. That can change fast as AI usage grows inside an organization — worth revisiting if that's in motion.",
     cta: { label: "See the full exposure breakdown →", href: "/trust/eu-ai-act" },
   },
   prohibited: {
     title: "This falls under prohibited practices",
-    color: "#EF4444",
+    color: "var(--error)",
     penalty: "Up to €35M or 7% of global annual turnover",
     body: "Article 5 prohibited practices aren't a compliance gap to document — they're already illegal in the EU, in force since February 2025. This isn't something a governance program brings into compliance; it needs legal review and likely a redesign or discontinuation of this specific use case. If you want an independent technical read on whether this classification is actually right, that's something we can help with.",
     cta: { label: "Get a second opinion →", href: "/#contact" },
   },
   high: {
     title: "This falls under Annex III high-risk",
-    color: "#F59E0B",
+    color: "var(--warning)",
     penalty: "Up to €15M or 3% of global annual turnover",
     body: "High-risk systems require a conformity assessment, technical documentation, a risk management system, and human oversight before deployment — obligations phasing in through August 2026. This is exactly what a conformity program is built to produce.",
     cta: { label: "See the EU AI Act Conformity Program →", href: "/services" },
   },
   limited: {
     title: "This falls under limited-risk transparency rules",
-    color: "#00D4FF",
+    color: "var(--accent)",
     penalty: "Same \"other obligations\" tier as high-risk: up to €15M or 3%",
     body: "Article 50 transparency obligations apply — disclosing that people are interacting with AI, and labeling AI-generated or synthetic content. Lower burden than high-risk, but still a real, enforceable requirement phasing in through August 2026.",
     cta: { label: "See what's already in force →", href: "/trust/eu-ai-act" },
   },
   minimal: {
     title: "No specific high-risk category identified",
-    color: "#4ADE80",
+    color: "var(--success)",
     penalty: "General obligations only",
     body: "Nothing you selected maps to a named risk tier under the Act. Voluntary codes of conduct and general AI literacy obligations still apply, but there's no elevated compliance burden based on what's selected here.",
     cta: { label: "See the full framework →", href: "/trust" },
@@ -75,13 +75,13 @@ function CheckItem({ checked, onChange, label }: { checked: boolean; onChange: (
     <button
       onClick={onChange}
       className="w-full flex items-start gap-3 p-3 rounded-xl text-left transition-all"
-      style={{ background: checked ? "#00D4FF10" : "transparent", border: `1px solid ${checked ? "#00D4FF40" : "#1E2D4A"}` }}
+      style={{ background: checked ? "#00D4FF10" : "transparent", border: `1px solid ${checked ? "#00D4FF40" : "var(--border)"}` }}
     >
       <span
         className="mt-0.5 w-4 h-4 rounded shrink-0 flex items-center justify-center text-[10px]"
-        style={{ background: checked ? "#00D4FF" : "transparent", border: `1px solid ${checked ? "#00D4FF" : "#475569"}` }}
+        style={{ background: checked ? "var(--accent)" : "transparent", border: `1px solid ${checked ? "var(--accent)" : "var(--text-muted-3)"}` }}
       >
-        {checked && <span style={{ color: "#0A0F1C" }}>✓</span>}
+        {checked && <span style={{ color: "var(--bg-dark)" }}>✓</span>}
       </span>
       <span className="text-sm text-slate-300 leading-snug">{label}</span>
     </button>
@@ -114,14 +114,14 @@ export default function EUAIActCalculatorPage() {
   const result = RESULTS[tier];
 
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
-        <a href="/trust/eu-ai-act" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+        <a href="/trust/eu-ai-act" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
           ← EU AI Act Exposure
         </a>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Readiness Calculator
@@ -151,14 +151,14 @@ export default function EUAIActCalculatorPage() {
                 <button
                   onClick={() => setEuExposure(true)}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === true ? "#00D4FF15" : "#0D1526", border: `1px solid ${euExposure === true ? "#00D4FF" : "#1E2D4A"}`, color: euExposure === true ? "#00D4FF" : "#94a3b8" }}
+                  style={{ background: euExposure === true ? "#00D4FF15" : "var(--bg-card)", border: `1px solid ${euExposure === true ? "var(--accent)" : "var(--border)"}`, color: euExposure === true ? "var(--accent)" : "var(--text-muted)" }}
                 >
                   Yes
                 </button>
                 <button
                   onClick={() => setEuExposure(false)}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === false ? "#00D4FF15" : "#0D1526", border: `1px solid ${euExposure === false ? "#00D4FF" : "#1E2D4A"}`, color: euExposure === false ? "#00D4FF" : "#94a3b8" }}
+                  style={{ background: euExposure === false ? "#00D4FF15" : "var(--bg-card)", border: `1px solid ${euExposure === false ? "var(--accent)" : "var(--border)"}`, color: euExposure === false ? "var(--accent)" : "var(--text-muted)" }}
                 >
                   No / not sure
                 </button>
@@ -212,23 +212,23 @@ export default function EUAIActCalculatorPage() {
           {/* Result panel */}
           <div className="lg:sticky lg:top-28 h-fit">
             {euExposure === null ? (
-              <div className="p-6 rounded-2xl" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+              <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
                 <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-2">Result</p>
                 <p className="text-sm text-slate-400 leading-relaxed">
                   Answer the question above to see your likely risk tier.
                 </p>
               </div>
             ) : (
-              <div className="p-6 rounded-2xl" style={{ background: "#0D1526", border: `1px solid ${result.color}40` }}>
+              <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: `1px solid ${result.color}40` }}>
                 <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-2">Result</p>
                 <h2 className="text-lg font-bold mb-3" style={{ color: result.color }}>{result.title}</h2>
-                <div className="mb-4 pb-4" style={{ borderBottom: "1px solid #1E2D4A" }}>
+                <div className="mb-4 pb-4" style={{ borderBottom: "1px solid var(--border)" }}>
                   <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-1">Penalty exposure</p>
                   <p className="text-sm font-semibold text-white">{result.penalty}</p>
                 </div>
                 <p className="text-sm text-slate-400 leading-relaxed mb-5">{result.body}</p>
                 {gpai && euExposure && (
-                  <p className="text-xs text-slate-500 leading-relaxed mb-5 p-3 rounded-lg" style={{ background: "#0A0F1C" }}>
+                  <p className="text-xs text-slate-500 leading-relaxed mb-5 p-3 rounded-lg" style={{ background: "var(--bg-dark)" }}>
                     You also flagged building your own model — that adds GPAI
                     provider obligations (documentation, copyright policy, and
                     systemic-risk assessment for the most capable models) on top
@@ -238,7 +238,7 @@ export default function EUAIActCalculatorPage() {
                 <a
                   href={result.cta.href}
                   className="block text-center px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
-                  style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+                  style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
                 >
                   {result.cta.label}
                 </a>

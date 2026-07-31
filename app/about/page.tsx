@@ -28,11 +28,11 @@ const PILLARS = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Who&apos;s behind Tioga AI
@@ -40,7 +40,7 @@ export default function AboutPage() {
 
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
           Built by one person.<br />
-          <span style={{ color: "#00D4FF" }}>Run against real systems.</span>
+          <span style={{ color: "var(--accent)" }}>Run against real systems.</span>
         </h1>
 
         <div className="space-y-5 text-lg text-slate-300 leading-relaxed max-w-2xl mb-14">
@@ -80,7 +80,7 @@ export default function AboutPage() {
               <div
                 key={p.label}
                 className="p-5 rounded-2xl"
-                style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+                style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
               >
                 <h3 className="font-semibold text-white mb-2">{p.label}</h3>
                 <p className="text-sm text-slate-400 leading-relaxed">{p.body}</p>
@@ -113,7 +113,7 @@ export default function AboutPage() {
             <a
               href="/demos/migration-assessment"
               className="p-4 rounded-xl transition-all hover:border-slate-500"
-              style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+              style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
               <p className="text-sm font-semibold text-white mb-1">Migration Assessment →</p>
               <p className="text-xs text-slate-500">A live EBS → S/4HANA readiness agent, running against real assessment logic.</p>
@@ -121,7 +121,7 @@ export default function AboutPage() {
             <a
               href="/demos/governance-ledger"
               className="p-4 rounded-xl transition-all hover:border-slate-500"
-              style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+              style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
               <p className="text-sm font-semibold text-white mb-1">Governance Ledger →</p>
               <p className="text-xs text-slate-500">Real operational data from the AI routing gateway this business runs on.</p>
@@ -129,7 +129,7 @@ export default function AboutPage() {
             <a
               href="/changelog"
               className="p-4 rounded-xl transition-all hover:border-slate-500"
-              style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+              style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
               <p className="text-sm font-semibold text-white mb-1">Build Log →</p>
               <p className="text-xs text-slate-500">What&apos;s actually shipped on this site, in order, since launch.</p>
@@ -141,7 +141,7 @@ export default function AboutPage() {
           <a
             href="/#contact"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Start a conversation
           </a>

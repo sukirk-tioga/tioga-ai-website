@@ -17,7 +17,7 @@ const TIERS = [
     scope: "Prohibited AI practices",
     detail: "Article 5 violations — the highest tier. These provisions have been in force since February 2025.",
     status: "In force",
-    statusColor: "#EF4444",
+    statusColor: "var(--error)",
   },
   {
     amount: "€15M or 3%",
@@ -25,7 +25,7 @@ const TIERS = [
     scope: "High-risk system & GPAI provider obligations",
     detail: "Non-compliance with the requirements for high-risk AI systems or general-purpose AI model obligations.",
     status: "Phasing in",
-    statusColor: "#F59E0B",
+    statusColor: "var(--warning)",
   },
   {
     amount: "€7.5M or 1%",
@@ -33,24 +33,24 @@ const TIERS = [
     scope: "Incorrect or incomplete information",
     detail: "Supplying incorrect, incomplete, or misleading information to regulators or notified bodies.",
     status: "Phasing in",
-    statusColor: "#F59E0B",
+    statusColor: "var(--warning)",
   },
 ];
 
 export default function EUAIActPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EF444415", border: "1px solid #EF444430", color: "#EF4444" }}
+          style={{ background: "#EF444415", border: "1px solid #EF444430", color: "var(--error)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Regulatory exposure
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
           What EU AI Act non-compliance<br />
-          <span style={{ color: "#00D4FF" }}>actually costs</span>
+          <span style={{ color: "var(--accent)" }}>actually costs</span>
         </h1>
         <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mb-16">
           Enterprises with any EU exposure now carry material financial risk
@@ -64,7 +64,7 @@ export default function EUAIActPage() {
           <h2 className="text-xl font-bold text-white mb-6">Three penalty tiers, Article 99</h2>
           <div className="space-y-4">
             {TIERS.map((t) => (
-              <div key={t.scope} className="p-6 rounded-2xl flex flex-col md:flex-row md:items-center gap-5" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+              <div key={t.scope} className="p-6 rounded-2xl flex flex-col md:flex-row md:items-center gap-5" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
                 <div className="md:w-56 shrink-0">
                   <p className="text-2xl font-bold text-white leading-tight">{t.amount}</p>
                   <p className="text-xs text-slate-500 mt-1">{t.label}</p>
@@ -91,7 +91,7 @@ export default function EUAIActPage() {
         </div>
 
         {/* Timeline */}
-        <div className="mb-16 p-6 rounded-2xl" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+        <div className="mb-16 p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <h2 className="text-lg font-bold text-white mb-4">What&apos;s already live vs. what&apos;s coming</h2>
           <div className="space-y-4">
             <div className="flex gap-4">
@@ -127,13 +127,13 @@ export default function EUAIActPage() {
             than self-reported — reason enough to build toward it even before
             certification is complete.
           </p>
-          <a href="/trust/framework-mapping" className="text-sm hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+          <a href="/trust/framework-mapping" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
             See how NIST AI RMF, ISO 42001, and the EU AI Act line up →
           </a>
         </div>
 
         {/* Calculator CTA */}
-        <div className="mb-10 p-6 rounded-2xl text-center" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+        <div className="mb-10 p-6 rounded-2xl text-center" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <h2 className="text-lg font-bold text-white mb-2">Not sure which tier applies to you?</h2>
           <p className="text-sm text-slate-400 leading-relaxed mb-5 max-w-md mx-auto">
             A quick, rules-based check — select what your AI system does, get
@@ -142,7 +142,7 @@ export default function EUAIActPage() {
           <a
             href="/trust/eu-ai-act/calculator"
             className="inline-block px-6 py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Run the readiness calculator →
           </a>
@@ -157,7 +157,7 @@ export default function EUAIActPage() {
           <a
             href="/services"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             See the Conformity Program →
           </a>

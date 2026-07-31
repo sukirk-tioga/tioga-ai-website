@@ -145,19 +145,19 @@ const ENTRIES: Entry[] = [
 ];
 
 const KIND_STYLE: Record<Kind, { color: string; bg: string }> = {
-  Feature: { color: "#00D4FF", bg: "#00D4FF15" },
-  Fix: { color: "#F59E0B", bg: "#F59E0B15" },
-  Infra: { color: "#8B5CF6", bg: "#8B5CF615" },
-  Content: { color: "#4ADE80", bg: "#4ADE8015" },
+  Feature: { color: "var(--accent)", bg: "#00D4FF15" },
+  Fix: { color: "var(--warning)", bg: "#F59E0B15" },
+  Infra: { color: "var(--violet)", bg: "#8B5CF615" },
+  Content: { color: "var(--success)", bg: "#4ADE8015" },
 };
 
 export default function ChangelogPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Build Log
@@ -174,13 +174,13 @@ export default function ChangelogPage() {
         </p>
 
         <div className="relative pl-8">
-          <div className="absolute left-[7px] top-2 bottom-2 w-px" style={{ background: "#1E2D4A" }} />
+          <div className="absolute left-[7px] top-2 bottom-2 w-px" style={{ background: "var(--border)" }} />
           <div className="space-y-8">
             {ENTRIES.map((e, i) => (
               <div key={i} className="relative">
                 <div
                   className="absolute -left-8 top-1.5 w-3.5 h-3.5 rounded-full"
-                  style={{ background: "#0A0F1C", border: `2px solid ${KIND_STYLE[e.kind].color}` }}
+                  style={{ background: "var(--bg-dark)", border: `2px solid ${KIND_STYLE[e.kind].color}` }}
                 />
                 <div className="flex items-center gap-3 mb-1.5">
                   <span className="text-xs font-mono text-slate-500">{e.date}</span>
@@ -201,18 +201,18 @@ export default function ChangelogPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-slate-600 mb-4">
             Curious how something was built?{" "}
-            <a href="/engineering" style={{ color: "#00D4FF" }} className="hover:text-white transition-colors">
+            <a href="/engineering" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               Read the engineering writeups →
             </a>
             {" "}or see the{" "}
-            <a href="/trust" style={{ color: "#00D4FF" }} className="hover:text-white transition-colors">
+            <a href="/trust" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               governance approach →
             </a>
           </p>
           <a
             href="/#contact"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Start a conversation
           </a>

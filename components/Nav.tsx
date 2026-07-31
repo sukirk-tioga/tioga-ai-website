@@ -22,6 +22,7 @@ export default function Nav() {
     { href: "/#services", label: "Services" },
     { href: "/demos", label: "Live Demos" },
     { href: "/mcp", label: "MCP" },
+    { href: "/engineering", label: "Engineering" },
     { href: "/about", label: "About" },
     { href: "/#process", label: "Process" },
     { href: "/#contact", label: "Contact" },
@@ -34,7 +35,7 @@ export default function Nav() {
         style={{
           background: scrolled ? "rgba(10,15,28,0.97)" : "rgba(10,15,28,0.92)",
           backdropFilter: "blur(16px)",
-          borderBottom: "1px solid #1E2D4A",
+          borderBottom: "1px solid var(--border)",
         }}
       >
         {/* Logo */}
@@ -46,7 +47,7 @@ export default function Nav() {
             height={52}
             className="w-12 h-12 object-contain"
           />
-          <span className="font-semibold text-white text-xl tracking-tight">tioga<span style={{ color: "#00D4FF" }}>.ai</span></span>
+          <span className="font-semibold text-white text-xl tracking-tight">tioga<span style={{ color: "var(--accent)" }}>.ai</span></span>
         </a>
 
         {/* Desktop links */}
@@ -69,7 +70,7 @@ export default function Nav() {
           <a
             href="/#contact"
             className="hidden md:inline-flex px-5 py-2.5 rounded-lg text-base font-medium text-white transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Get Started
           </a>
@@ -105,7 +106,7 @@ export default function Nav() {
         style={{
           maxHeight: menuOpen ? "400px" : "0px",
           background: "rgba(10,15,28,0.98)",
-          borderBottom: menuOpen ? "1px solid #1E2D4A" : "none",
+          borderBottom: menuOpen ? "1px solid var(--border)" : "none",
           backdropFilter: "blur(16px)",
         }}
       >
@@ -124,7 +125,7 @@ export default function Nav() {
             href="/#contact"
             onClick={() => setMenuOpen(false)}
             className="mt-3 py-3 rounded-lg text-sm font-medium text-white text-center transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Get Started
           </a>

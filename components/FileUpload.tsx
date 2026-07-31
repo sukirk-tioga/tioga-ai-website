@@ -59,7 +59,7 @@ export default function FileUpload({ onTextExtracted, accept = ".pdf,.docx,.doc,
         aria-busy={state === "loading"}
         className="w-full rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-2 py-5 cursor-pointer transition-all"
         style={{
-          borderColor: dragOver ? "#00D4FF" : "#1E2D4A",
+          borderColor: dragOver ? "var(--accent)" : "var(--border)",
           background: dragOver ? "#00D4FF08" : "transparent",
         }}
       >
@@ -77,7 +77,7 @@ export default function FileUpload({ onTextExtracted, accept = ".pdf,.docx,.doc,
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
             </svg>
             <p className="text-sm text-slate-400">
-              <span style={{ color: "#00D4FF" }}>Click to upload</span> or drag & drop
+              <span style={{ color: "var(--accent)" }}>Click to upload</span> or drag & drop
             </p>
             <p className="text-xs text-slate-600">PDF, DOCX, TXT, MD, CSV supported</p>
           </>

@@ -90,14 +90,14 @@ const FUNCTIONS = [
 ];
 
 const poolStyle = {
-  free: { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "#4ADE80" },
-  paid: { background: "#FBBF2415", border: "1px solid #FBBF2440", color: "#FBBF24" },
+  free: { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" },
+  paid: { background: "#FBBF2415", border: "1px solid #FBBF2440", color: "var(--warning-light)" },
 } as const;
 
 const tagStyle: Record<string, { color: string }> = {
-  MAP: { color: "#00D4FF" },
-  MEASURE: { color: "#E2E8F0" },
-  MANAGE: { color: "#FBBF24" },
+  MAP: { color: "var(--accent)" },
+  MEASURE: { color: "var(--text)" },
+  MANAGE: { color: "var(--warning-light)" },
 };
 
 export default function GovernanceLedgerPage() {
@@ -110,7 +110,7 @@ export default function GovernanceLedgerPage() {
       {/* Stat strip */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         {STATS.map((s) => (
-          <div key={s.label} className="p-4 rounded-xl" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+          <div key={s.label} className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <p className="text-[11px] text-slate-500 uppercase tracking-wide mb-1.5">{s.label}</p>
             <p className="text-xl font-bold text-white font-mono">{s.value}</p>
             <p className="text-xs text-slate-500 mt-1 leading-snug">{s.sub}</p>
@@ -119,7 +119,7 @@ export default function GovernanceLedgerPage() {
       </div>
 
       {/* Ledger table */}
-      <div className="rounded-2xl overflow-hidden" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+      <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div className="px-5 pt-5 pb-3">
           <h2 className="font-semibold text-white">Per-call ledger</h2>
           <p className="text-xs text-slate-500 mt-1">
@@ -130,7 +130,7 @@ export default function GovernanceLedgerPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm" style={{ minWidth: 720 }}>
             <thead>
-              <tr style={{ borderTop: "1px solid #1E2D4A", borderBottom: "1px solid #1E2D4A" }}>
+              <tr style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
                 {["Timestamp", "Requested → served", "Tokens in/out", "Cost", "Pool", "Quality", "Evidences"].map((h) => (
                   <th key={h} className="text-left text-[11px] text-slate-500 uppercase tracking-wide font-medium px-4 py-2.5 whitespace-nowrap">
                     {h}
@@ -140,7 +140,7 @@ export default function GovernanceLedgerPage() {
             </thead>
             <tbody>
               {LEDGER.map((row, i) => (
-                <tr key={i} style={{ borderBottom: i === LEDGER.length - 1 ? "none" : "1px solid #1E2D4A" }}>
+                <tr key={i} style={{ borderBottom: i === LEDGER.length - 1 ? "none" : "1px solid var(--border)" }}>
                   <td className="px-4 py-2.5 font-mono text-xs text-slate-400 whitespace-nowrap">{row.ts}</td>
                   <td className="px-4 py-2.5 whitespace-nowrap">
                     <span className="text-slate-500">{row.requested}</span>
@@ -161,7 +161,7 @@ export default function GovernanceLedgerPage() {
                         <span
                           key={t}
                           className="text-[10px] font-bold tracking-wide px-1.5 py-0.5 rounded"
-                          style={{ border: "1px solid #1E2D4A", ...tagStyle[t] }}
+                          style={{ border: "1px solid var(--border)", ...tagStyle[t] }}
                         >
                           {t}
                         </span>
@@ -185,7 +185,7 @@ export default function GovernanceLedgerPage() {
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {LIVE_STATS.map((s) => (
-            <div key={s.label} className="p-4 rounded-xl" style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}>
+            <div key={s.label} className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
               <p className="text-[11px] text-slate-500 uppercase tracking-wide mb-1.5">{s.label}</p>
               <p className="text-xl font-bold text-white font-mono">{s.value}</p>
               <p className="text-xs text-slate-500 mt-1 leading-snug">{s.sub}</p>
@@ -202,8 +202,8 @@ export default function GovernanceLedgerPage() {
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
           {FUNCTIONS.map((f) => (
-            <div key={f.name} className="p-4 rounded-xl" style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}>
-              <p className="text-xs font-bold tracking-wide mb-1.5" style={{ color: "#00D4FF" }}>{f.name}</p>
+            <div key={f.name} className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
+              <p className="text-xs font-bold tracking-wide mb-1.5" style={{ color: "var(--accent)" }}>{f.name}</p>
               <p className="text-sm text-slate-400 leading-relaxed">{f.body}</p>
               <p className="text-[11px] font-mono text-slate-600 mt-2">{f.field}</p>
             </div>
@@ -212,7 +212,7 @@ export default function GovernanceLedgerPage() {
       </div>
 
       {/* Offer tie-in */}
-      <div className="mt-6 p-5 rounded-2xl" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+      <div className="mt-6 p-5 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <p className="text-sm text-slate-300 leading-relaxed">
           This is the pattern we build into client systems: every AI action logged, budgeted,
           and attributable — applied to a governed write-path into your ERP, or packaged as
@@ -228,7 +228,7 @@ export default function GovernanceLedgerPage() {
               key={o}
               href="/services"
               className="text-xs px-3 py-1.5 rounded-lg transition-colors hover:border-slate-500"
-              style={{ background: "#0A0F1C", border: "1px solid #1E2D4A", color: "#94a3b8" }}
+              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text-muted)" }}
             >
               {o}
             </a>

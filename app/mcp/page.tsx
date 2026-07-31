@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 
 // ── Animated flow line component ──────────────────────────────────────────────
 
-function FlowDot({ delay = 0, color = "#00D4FF" }: { delay?: number; color?: string }) {
+function FlowDot({ delay = 0, color = "var(--accent)" }: { delay?: number; color?: string }) {
  return (
  <span
  className="absolute w-1.5 h-1.5 rounded-full"
@@ -21,20 +21,20 @@ function FlowDot({ delay = 0, color = "#00D4FF" }: { delay?: number; color?: str
 
 function ArchDiagram() {
  const nodes = [
- { id: "user", label: "User", sub: "Natural language", icon: "👤", color: "#64748b" },
- { id: "claude", label: "Claude", sub: "AI reasoning layer", icon: "✦", color: "#00D4FF" },
- { id: "mcp", label: "MCP Server", sub: "Tool orchestration", icon: "⬡", color: "#00D4FF" },
+ { id: "user", label: "User", sub: "Natural language", icon: "👤", color: "var(--text-muted-2)" },
+ { id: "claude", label: "Claude", sub: "AI reasoning layer", icon: "✦", color: "var(--accent)" },
+ { id: "mcp", label: "MCP Server", sub: "Tool orchestration", icon: "⬡", color: "var(--accent)" },
  ];
 
  const systems = [
- { label: "SAP", sub: "Finance / ERP", icon: "💼", color: "#F59E0B" },
- { label: "Workday", sub: "HR / Workforce", icon: "👥", color: "#10B981" },
- { label: "Salesforce", sub: "CRM / Pipeline", icon: "☁", color: "#3B82F6" },
- { label: "ServiceNow", sub: "IT / Ticketing", icon: "🔧", color: "#8B5CF6" },
+ { label: "SAP", sub: "Finance / ERP", icon: "💼", color: "var(--warning)" },
+ { label: "Workday", sub: "HR / Workforce", icon: "👥", color: "var(--success-dark)" },
+ { label: "Salesforce", sub: "CRM / Pipeline", icon: "☁", color: "var(--blue)" },
+ { label: "ServiceNow", sub: "IT / Ticketing", icon: "🔧", color: "var(--violet)" },
  ];
 
  return (
- <div className="relative w-full overflow-hidden rounded-2xl p-6" style={{ background: "#060B14", border: "1px solid #1E2D4A" }}>
+ <div className="relative w-full overflow-hidden rounded-2xl p-6" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)" }}>
  <style>{`
  @keyframes flowRight {
  0% { left: 0%; opacity: 0; }
@@ -84,7 +84,7 @@ function ArchDiagram() {
 
  {/* Connector arrow */}
  {i < nodes.length - 1 && (
- <div className="flex-1 mx-3 relative h-0.5 flex items-center" style={{ background: "#1E2D4A" }}>
+ <div className="flex-1 mx-3 relative h-0.5 flex items-center" style={{ background: "var(--border)" }}>
  <FlowDot delay={i * 0.7} />
  <FlowDot delay={i * 0.7 + 0.5} />
  <span className="absolute right-0 text-slate-600 text-xs">▶</span>
@@ -100,12 +100,12 @@ function ArchDiagram() {
 
  {/* Vertical connector from MCP down */}
  <div className="flex justify-end mb-4 pr-7">
- <div className="relative w-0.5 h-8" style={{ background: "#1E2D4A" }}>
+ <div className="relative w-0.5 h-8" style={{ background: "var(--border)" }}>
  <span
  className="absolute w-1.5 h-1.5 rounded-full left-1/2 -translate-x-1/2"
  style={{
- background: "#00D4FF",
- boxShadow: "0 0 6px #00D4FF",
+ background: "var(--accent)",
+ boxShadow: "0 0 6px var(--accent)",
  animation: "flowDown 2s 0.3s infinite linear",
  }}
  />
@@ -134,11 +134,11 @@ function ArchDiagram() {
  {/* Legend */}
  <div className="mt-4 flex items-center gap-4 justify-center">
  <div className="flex items-center gap-1.5">
- <div className="w-3 h-0.5 rounded" style={{ background: "#00D4FF" }} />
+ <div className="w-3 h-0.5 rounded" style={{ background: "var(--accent)" }} />
  <span className="text-xs text-slate-500">MCP protocol</span>
  </div>
  <div className="flex items-center gap-1.5">
- <div className="w-2 h-2 rounded-full" style={{ background: "#00D4FF", boxShadow: "0 0 6px #00D4FF" }} />
+ <div className="w-2 h-2 rounded-full" style={{ background: "var(--accent)", boxShadow: "0 0 6px var(--accent)" }} />
  <span className="text-xs text-slate-500">live data flow</span>
  </div>
  </div>
@@ -215,9 +215,9 @@ function CodeBlock() {
  const [active, setActive] = useState(0);
 
  return (
- <div className="rounded-2xl overflow-hidden" style={{ background: "#060B14", border: "1px solid #1E2D4A" }}>
+ <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)" }}>
  {/* Tabs */}
- <div role="tablist" aria-label="Connector examples" className="flex" style={{ borderBottom: "1px solid #1E2D4A" }}>
+ <div role="tablist" aria-label="Connector examples" className="flex" style={{ borderBottom: "1px solid var(--border)" }}>
  {CODE_EXAMPLES.map((ex, i) => (
  <button
  key={ex.label}
@@ -226,8 +226,8 @@ function CodeBlock() {
  onClick={() => setActive(i)}
  className="px-4 py-2.5 text-xs font-medium transition-all"
  style={{
- color: active === i ? "#00D4FF" : "#64748b",
- borderBottom: active === i ? "2px solid #00D4FF" : "2px solid transparent",
+ color: active === i ? "var(--accent)" : "var(--text-muted-2)",
+ borderBottom: active === i ? "2px solid var(--accent)" : "2px solid transparent",
  background: "transparent",
  }}
  >
@@ -238,7 +238,7 @@ function CodeBlock() {
  {/* Code */}
  <pre
  className="p-5 text-xs leading-relaxed overflow-x-auto font-mono"
- style={{ color: "#94a3b8" }}
+ style={{ color: "var(--text-muted)" }}
  >
  {CODE_EXAMPLES[active].code.split("\n").map((line, i) => {
  const isComment = line.trim().startsWith("#");
@@ -247,7 +247,7 @@ function CodeBlock() {
  return (
  <div key={i}>
  <span style={{
- color: isComment ? "#475569" : isDecorator ? "#F59E0B" : isKeyword ? "#00D4FF" : "#94a3b8"
+ color: isComment ? "var(--text-muted-3)" : isDecorator ? "var(--warning)" : isKeyword ? "var(--accent)" : "var(--text-muted)"
  }}>
  {line || " "}
  </span>
@@ -320,13 +320,13 @@ function LiveDemo() {
  };
 
  return (
- <div className="rounded-2xl overflow-hidden" style={{ background: "#060B14", border: "1px solid #1E2D4A" }}>
+ <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)" }}>
  {/* Header */}
- <div className="px-4 py-3 flex items-center gap-3" style={{ borderBottom: "1px solid #1E2D4A" }}>
+ <div className="px-4 py-3 flex items-center gap-3" style={{ borderBottom: "1px solid var(--border)" }}>
  <div className="flex gap-1.5">
- <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#EF4444" }} />
- <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#F59E0B" }} />
- <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#10B981" }} />
+ <div className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--error)" }} />
+ <div className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--warning)" }} />
+ <div className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--success-dark)" }} />
  </div>
  <span className="text-xs font-mono text-slate-500">claude + mcp-server → enterprise</span>
  <div className="ml-auto flex items-center gap-1.5">
@@ -336,11 +336,11 @@ function LiveDemo() {
  </div>
 
  {/* Connected systems pill row */}
- <div className="px-4 py-2 flex gap-2" style={{ borderBottom: "1px solid #0D1526" }}>
+ <div className="px-4 py-2 flex gap-2" style={{ borderBottom: "1px solid var(--bg-card)" }}>
  {[
- { label: "SAP", color: "#F59E0B" },
- { label: "Workday", color: "#10B981" },
- { label: "Salesforce", color: "#3B82F6" },
+ { label: "SAP", color: "var(--warning)" },
+ { label: "Workday", color: "var(--success-dark)" },
+ { label: "Salesforce", color: "var(--blue)" },
  ].map((s) => (
  <span
  key={s.label}
@@ -361,8 +361,8 @@ function LiveDemo() {
  className="rounded-xl px-4 py-2.5 text-sm leading-relaxed"
  style={
  msg.role === "user"
- ? { background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#e2e8f0" }
- : { background: "#0D1526", border: "1px solid #1E2D4A", color: "#cbd5e1" }
+ ? { background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--text)" }
+ : { background: "var(--bg-card)", border: "1px solid var(--border)", color: "#cbd5e1" }
  }
  >
  {msg.content}
@@ -386,7 +386,7 @@ function LiveDemo() {
  ))}
  {loading && (
  <div className="flex justify-start">
- <div className="rounded-xl px-4 py-3" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+ <div className="rounded-xl px-4 py-3" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
  <div className="flex gap-1 items-center">
  <span className="text-xs text-slate-500 font-mono mr-2">querying systems</span>
  {[0, 1, 2].map((i) => (
@@ -404,14 +404,14 @@ function LiveDemo() {
  </div>
 
  {/* Sample queries */}
- <div className="px-4 py-2 flex flex-wrap gap-1.5" style={{ borderTop: "1px solid #0D1526" }}>
+ <div className="px-4 py-2 flex flex-wrap gap-1.5" style={{ borderTop: "1px solid var(--bg-card)" }}>
  {SAMPLE_QUERIES.map((q) => (
  <button
  key={q}
  onClick={() => send(q)}
  disabled={loading}
  className="text-xs px-2.5 py-1 rounded-lg transition-all hover:border-slate-500 disabled:opacity-40"
- style={{ background: "#0A0F1C", border: "1px solid #1E2D4A", color: "#64748b" }}
+ style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text-muted-2)" }}
  >
  {q}
  </button>
@@ -419,7 +419,7 @@ function LiveDemo() {
  </div>
 
  {/* Input */}
- <div className="p-3 flex gap-2" style={{ borderTop: "1px solid #1E2D4A" }}>
+ <div className="p-3 flex gap-2" style={{ borderTop: "1px solid var(--border)" }}>
  <input
  value={input}
  onChange={(e) => setInput(e.target.value)}
@@ -427,13 +427,13 @@ function LiveDemo() {
  placeholder="Ask anything about your enterprise data..."
  disabled={loading}
  className="flex-1 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-600 outline-none font-mono"
- style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
+ style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
  />
  <button
  onClick={() => send(input)}
  disabled={loading || !input.trim()}
  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:opacity-90 disabled:opacity-40"
- style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+ style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
  >
  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -475,7 +475,7 @@ function Comparison() {
 
  {/* After */}
  <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #00D4FF30" }}>
- <div className="px-4 py-3 text-sm font-semibold" style={{ color: "#00D4FF", background: "#00D4FF08", borderBottom: "1px solid #00D4FF30" }}>
+ <div className="px-4 py-3 text-sm font-semibold" style={{ color: "var(--accent)", background: "#00D4FF08", borderBottom: "1px solid #00D4FF30" }}>
  ✓ After MCP
  </div>
  <div className="divide-y" style={{ borderColor: "#00D4FF15" }}>
@@ -495,7 +495,7 @@ function Comparison() {
 
 export default function MCPPage() {
  return (
- <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+ <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
  <style>{`
  @keyframes fadeInUp {
  from { opacity: 0; transform: translateY(20px); }
@@ -513,14 +513,14 @@ export default function MCPPage() {
  <div className="text-center mb-16 fade-in">
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-5 font-mono"
- style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+ style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  Model Context Protocol
  </div>
  <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
  Let Claude talk to your<br />
- <span style={{ color: "#00D4FF" }}>enterprise systems</span>
+ <span style={{ color: "var(--accent)" }}>enterprise systems</span>
  </h1>
  <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-6">
  MCP is the open protocol that connects AI to your real business data.
@@ -530,7 +530,7 @@ export default function MCPPage() {
  <div className="flex flex-wrap gap-3 justify-center text-sm text-slate-400">
  {["Open standard by Anthropic", "Works with any MCP-capable client", "Enterprise-grade security", "Built on Anthropic's MCP spec"].map((f) => (
  <span key={f} className="flex items-center gap-1.5">
- <span style={{ color: "#00D4FF" }}>✓</span> {f}
+ <span style={{ color: "var(--accent)" }}>✓</span> {f}
  </span>
  ))}
  </div>
@@ -559,7 +559,7 @@ export default function MCPPage() {
  </div>
  <div
  className="px-3 py-1.5 rounded-full text-xs font-mono ml-4 flex-shrink-0"
- style={{ background: "#10B98115", border: "1px solid #10B98130", color: "#10B981" }}
+ style={{ background: "#10B98115", border: "1px solid #10B98130", color: "var(--success-dark)" }}
  >
  ● mock data
  </div>
@@ -597,9 +597,9 @@ export default function MCPPage() {
  <div
  key={s.label}
  className="p-5 rounded-2xl text-center"
- style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+ style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
  >
- <p className="text-2xl font-bold mb-1" style={{ color: "#00D4FF" }}>{s.stat}</p>
+ <p className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>{s.stat}</p>
  <p className="text-sm text-slate-400">{s.label}</p>
  </div>
  ))}
@@ -609,10 +609,10 @@ export default function MCPPage() {
  </p>
 
  <div className="text-center mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
- <a href="/mcp/vs-custom-integration" className="text-sm hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+ <a href="/mcp/vs-custom-integration" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
  MCP vs. custom integration →
  </a>
- <a href="/mcp/vs-rpa" className="text-sm hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+ <a href="/mcp/vs-rpa" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
  MCP vs. RPA →
  </a>
  </div>
@@ -630,7 +630,7 @@ export default function MCPPage() {
  <a
  href="/#contact"
  className="inline-flex px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
- style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+ style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
  >
  Start a Discovery Sprint
  </a>

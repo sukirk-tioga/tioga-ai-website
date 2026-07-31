@@ -10,6 +10,7 @@ const config: Config = {
       colors: {
         brand: {
           primary: "#00D4FF",
+          primaryDark: "#0066CC",
           dark: "#0A0F1C",
           card: "#0D1526",
           border: "#1E2D4A",

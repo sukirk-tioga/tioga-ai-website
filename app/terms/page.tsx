@@ -20,11 +20,11 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Terms of Service

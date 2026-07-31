@@ -62,18 +62,18 @@ const FUNCTIONS = [
 
 export default function TrustPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Trust &amp; Governance
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
           Governance built in.<br />
-          <span style={{ color: "#00D4FF" }}>Not bolted on.</span>
+          <span style={{ color: "var(--accent)" }}>Not bolted on.</span>
         </h1>
         <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mb-16">
           Most AI vendors treat governance as documentation written after a
@@ -92,16 +92,16 @@ export default function TrustPage() {
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             {FRAMEWORKS.map((f) => (
-              <div key={f.name} className="p-6 rounded-2xl flex flex-col" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+              <div key={f.name} className="p-6 rounded-2xl flex flex-col" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
                 <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-1">{f.tag}</p>
                 <h3 className="text-lg font-bold text-white mb-3">{f.name}</h3>
                 <p className="text-sm text-slate-400 leading-relaxed mb-5 flex-1">{f.body}</p>
-                <div className="pt-4" style={{ borderTop: "1px solid #1E2D4A" }}>
+                <div className="pt-4" style={{ borderTop: "1px solid var(--border)" }}>
                   <p className="text-xs text-slate-500 mb-0.5">Mapped offer</p>
                   <p className="text-sm font-semibold text-white">{f.offer}</p>
-                  <p className="text-xs mt-0.5" style={{ color: "#00D4FF" }}>{f.price}</p>
+                  <p className="text-xs mt-0.5" style={{ color: "var(--accent)" }}>{f.price}</p>
                   {f.href && (
-                    <a href={f.href} className="inline-block text-xs mt-3 hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+                    <a href={f.href} className="inline-block text-xs mt-3 hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
                       {f.linkText}
                     </a>
                   )}
@@ -120,8 +120,8 @@ export default function TrustPage() {
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
             {FUNCTIONS.map((f) => (
-              <div key={f.name} className="p-5 rounded-xl" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
-                <p className="text-xs font-bold tracking-wide mb-1.5" style={{ color: "#00D4FF" }}>{f.name}</p>
+              <div key={f.name} className="p-5 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+                <p className="text-xs font-bold tracking-wide mb-1.5" style={{ color: "var(--accent)" }}>{f.name}</p>
                 <p className="text-sm text-slate-400 leading-relaxed">{f.body}</p>
               </div>
             ))}
@@ -143,7 +143,7 @@ export default function TrustPage() {
           <a
             href="/demos/governance-ledger"
             className="inline-flex px-6 py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             See the live ledger →
           </a>
@@ -157,7 +157,7 @@ export default function TrustPage() {
           <a
             href="/services"
             className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white inline-block"
-            style={{ border: "1px solid #1E2D4A", color: "#94a3b8" }}
+            style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
           >
             See all thirteen offers →
           </a>

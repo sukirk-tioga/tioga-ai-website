@@ -1,0 +1,122 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "How We Built the Governance Ledger Demo",
+  description:
+    "Why the Governance Ledger demo is a dated snapshot instead of a live feed, how the NIST AI RMF mapping falls out of the routing gateway's own design, and what runs with no model call at all.",
+  openGraph: {
+    title: "How We Built the Governance Ledger Demo — Tioga AI",
+    description: "A real ledger excerpt, a framework the infra was built against — not retrofitted to — and zero prompt-injection surface.",
+  },
+};
+
+export default function GovernanceLedgerWriteup() {
+  return (
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+      <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
+        <a href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+          ← How We Built It
+        </a>
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}>
+            No model call
+          </span>
+        </div>
+        <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+          How we built the Governance Ledger demo
+        </h1>
+        <p className="text-lg text-slate-400 leading-relaxed mb-12">
+          The other three demos on this site take an input and run it through
+          a model live. This one doesn&apos;t take an input at all — it&apos;s a
+          real, dated excerpt from the routing ledger that Tioga&apos;s own AI
+          infrastructure (JARVIS) writes to on every call it makes, anywhere,
+          for any purpose. The interesting engineering here isn&apos;t a
+          prompt; it&apos;s what the ledger had to look like for this page to
+          be honest.
+        </p>
+
+        <div className="space-y-10">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-3">A snapshot, not a ticker — on purpose</h2>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              The 17-row ledger and the &quot;live gateway snapshot&quot; stats above
+              it are hardcoded, dated, and captured at two different times
+              (the ledger rows span Jul 17–25, the snapshot is Jul 27) rather
+              than fetched from a live endpoint on page load. That&apos;s a
+              deliberate tradeoff, not a shortcut: a public demo page that
+              live-queries an internal cost/routing gateway is an unnecessary
+              exposed surface for zero real benefit — visitors don&apos;t need
+              millisecond freshness on someone else&apos;s infrastructure spend,
+              they need to see the shape of what gets logged. The two
+              timestamps are labeled separately in the UI instead of merged
+              into one implied &quot;live&quot; number, so the distinction between
+              &quot;real excerpt&quot; and &quot;real-time&quot; stays honest rather than
+              blurred for effect.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold text-white mb-3">The NIST mapping falls out of the schema, not the copy</h2>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              GOVERN / MAP / MEASURE / MANAGE aren&apos;t a label applied to this
+              page after the fact — they&apos;re fields the gateway already
+              records on every call: <code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>policy: budget.json</code> for
+              GOVERN, <code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>model → served_model</code> for
+              MAP, token/cost/quality fields for MEASURE, and a
+              reserve-then-charge budget check for MANAGE. The page just
+              renders what the ledger schema already tracked. That ordering
+              matters for the offers this demo backs (governed ERP write-path,
+              insurance-underwriting evidence, cost/model governance
+              assessments) — the pitch is that governance evidence is a
+              byproduct of how the infrastructure is built, not a report
+              generated to satisfy an auditor after the fact.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold text-white mb-3">What &quot;requested → served&quot; is actually showing</h2>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Most rows show a cheap model name requested (<code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>glm-flash</code>)
+              resolving to a different model actually serving it
+              (<code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>qwen/qwen3-8b</code>) at $0.000000 —
+              that&apos;s the routing policy working: local/free-tier backends
+              absorb calls before anything touches billed credit, and the
+              ledger records both the request and the resolution so that
+              substitution is auditable rather than invisible. 15 of the 17
+              rows in this excerpt settled at $0 for exactly that reason —
+              consistent with the &quot;88% free-tier&quot; stat in the strip above it,
+              which is computed from the same rows, not asserted separately.
+            </p>
+          </div>
+
+          {/* Design decisions callout */}
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}>
+            <h2 className="text-lg font-bold text-white mb-3">Why this is the one demo with no prompt-injection surface</h2>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Every other demo on this site accepts either a constrained form
+              or a file upload, and the corresponding writeup spends real
+              space on how untrusted input is validated before it reaches a
+              model. This page has no input field and calls no model at
+              request time — it renders a static array shipped in the page
+              bundle. There&apos;s nothing to sanitize because there&apos;s no path
+              from a visitor&apos;s browser to a prompt at all. That&apos;s not a
+              gap in this demo; it&apos;s the correct shape for what it&apos;s
+              actually demonstrating — operational governance data, not a
+              live inference endpoint.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-16 text-center">
+          <a
+            href="/demos/governance-ledger"
+            className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
+          >
+            View the live ledger excerpt →
+          </a>
+        </div>
+      </section>
+    </main>
+  );
+}
