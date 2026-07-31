@@ -94,7 +94,7 @@ export default function ServicesPage() {
  ];
 
  return (
- <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+ <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
  <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
  <h1 className="text-4xl font-bold text-white mb-6">Services</h1>
  <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-4">
@@ -108,12 +108,12 @@ export default function ServicesPage() {
  <div
  key={offer.name}
  className="p-7 rounded-2xl"
- style={{ background: "#0D1526", border: "1px solid rgba(255,255,255,0.08)" }}
+ style={{ background: "var(--bg-card)", border: "1px solid rgba(255,255,255,0.08)" }}
  >
  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
  <div className="flex-1">
  <div className="flex items-center gap-3 mb-2">
- <span className="text-xs font-mono" style={{ color: "#00D4FF" }}>
+ <span className="text-xs font-mono" style={{ color: "var(--accent)" }}>
  {String(i + 1).padStart(2, "0")}
  </span>
  <h2 className="text-lg font-semibold text-white">{offer.name}</h2>
@@ -132,13 +132,13 @@ export default function ServicesPage() {
  <a
  href="/#contact"
  className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
- style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+ style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
  >
  Start a conversation
  </a>
  <p className="text-xs text-slate-600 mt-4">
  Not sure where to start?{" "}
- <a href="/#services" style={{ color: "#00D4FF" }} className="hover:text-white transition-colors">
+ <a href="/#services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
  See the three entry-point offers →
  </a>
  </p>

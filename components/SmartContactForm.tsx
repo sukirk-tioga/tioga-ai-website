@@ -13,10 +13,10 @@ interface Classification {
 }
 
 const urgencyColors = {
-  low: { bg: "#00D4FF10", border: "#00D4FF30", text: "#00D4FF" },
-  medium: { bg: "#F59E0B10", border: "#F59E0B30", text: "#F59E0B" },
-  high: { bg: "#EF444410", border: "#EF444430", text: "#EF4444" },
-  critical: { bg: "#EF444420", border: "#EF4444", text: "#EF4444" },
+  low: { bg: "#00D4FF10", border: "#00D4FF30", text: "var(--accent)" },
+  medium: { bg: "#F59E0B10", border: "#F59E0B30", text: "var(--warning)" },
+  high: { bg: "#EF444410", border: "#EF444430", text: "var(--error)" },
+  critical: { bg: "#EF444420", border: "var(--error)", text: "var(--error)" },
 };
 
 const complexityLabel = {
@@ -74,13 +74,13 @@ export default function SmartContactForm() {
       <div
         role="status"
         className="p-8 rounded-2xl text-left"
-        style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+        style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
       >
         {/* Success header */}
         <div className="flex items-center gap-3 mb-6">
           <div
             className="w-10 h-10 rounded-full flex items-center justify-center text-lg"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             ✓
           </div>
@@ -93,7 +93,7 @@ export default function SmartContactForm() {
         {/* Classification result */}
         <div
           className="p-5 rounded-xl mb-5"
-          style={{ background: "#0A0F1C", border: `1px solid ${colors.border}` }}
+          style={{ background: "var(--bg-dark)", border: `1px solid ${colors.border}` }}
         >
           <p className="text-xs text-slate-500 uppercase tracking-wider mb-3">AI Classification</p>
 
@@ -133,7 +133,7 @@ export default function SmartContactForm() {
                       key={i}
                       className="w-2 h-2 rounded-full"
                       style={{
-                        background: i < classification.fitScore ? "#00D4FF" : "#1E2D4A",
+                        background: i < classification.fitScore ? "var(--accent)" : "var(--border)",
                       }}
                     />
                   ))}
@@ -144,7 +144,7 @@ export default function SmartContactForm() {
           </div>
 
           {/* Summary */}
-          <div className="border-t pt-3" style={{ borderColor: "#1E2D4A" }}>
+          <div className="border-t pt-3" style={{ borderColor: "var(--border)" }}>
             <p className="text-xs text-slate-500 mb-1">Summary</p>
             <p className="text-sm text-slate-300">{classification.summary}</p>
           </div>
@@ -155,7 +155,7 @@ export default function SmartContactForm() {
           className="p-4 rounded-xl"
           style={{ background: "#00D4FF08", border: "1px solid #00D4FF20" }}
         >
-          <p className="text-xs font-medium mb-1" style={{ color: "#00D4FF" }}>What happens next</p>
+          <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>What happens next</p>
           <p className="text-sm text-slate-300">{classification.nextStep}</p>
         </div>
 
@@ -178,7 +178,7 @@ export default function SmartContactForm() {
   return (
     <div
       className="p-8 rounded-2xl text-left"
-      style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+      style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
@@ -192,7 +192,7 @@ export default function SmartContactForm() {
               placeholder="Jane Smith"
               required
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:ring-1"
-              style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
+              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -204,7 +204,7 @@ export default function SmartContactForm() {
               onChange={handleChange}
               placeholder="Acme Corp"
               className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none"
-              style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
+              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
             />
           </div>
         </div>
@@ -220,7 +220,7 @@ export default function SmartContactForm() {
             placeholder="jane@acme.com"
             required
             className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none"
-            style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
+            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
           />
         </div>
 
@@ -240,7 +240,7 @@ export default function SmartContactForm() {
             rows={4}
             required
             className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none resize-none"
-            style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
+            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
           />
         </div>
 
@@ -258,7 +258,7 @@ export default function SmartContactForm() {
             onChange={(e) => setConsent(e.target.checked)}
             required
             className="mt-0.5 w-3.5 h-3.5 shrink-0 rounded"
-            style={{ accentColor: "#00D4FF" }}
+            style={{ accentColor: "var(--accent)" }}
           />
           <span>
             I agree to the{" "}
@@ -277,7 +277,7 @@ export default function SmartContactForm() {
           type="submit"
           disabled={state === "classifying" || !consent}
           className="w-full py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-          style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+          style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
         >
           {state === "classifying" ? (
             <>
@@ -293,7 +293,7 @@ export default function SmartContactForm() {
         </button>
 
         <p className="text-xs text-center text-slate-600">
-          Powered by <span style={{ color: "#00D4FF" }}>Claude</span> — your inquiry will be instantly classified and routed
+          Powered by <span style={{ color: "var(--accent)" }}>Claude</span> — your inquiry will be instantly classified and routed
         </p>
       </form>
     </div>

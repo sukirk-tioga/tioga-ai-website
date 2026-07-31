@@ -144,7 +144,7 @@ export default function ChatWidget() {
         ref={toggleButtonRef}
         onClick={() => setIsOpen((o) => !o)}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110"
-        style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+        style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
         aria-label={isOpen ? "Close chat" : "Open chat"}
         aria-expanded={isOpen}
         aria-haspopup="dialog"
@@ -168,17 +168,17 @@ export default function ChatWidget() {
           aria-label="Tioga AI Assistant chat"
           className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           style={{
-            background: "#0D1526",
-            border: "1px solid #1E2D4A",
+            background: "var(--bg-card)",
+            border: "1px solid var(--border)",
             height: "520px",
           }}
         >
           {/* Header */}
           <div
             className="px-4 py-3 flex items-center gap-3"
-            style={{ borderBottom: "1px solid #1E2D4A" }}
+            style={{ borderBottom: "1px solid var(--border)" }}
           >
-            <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden" style={{ background: "#0A0F1C" }}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden" style={{ background: "var(--bg-dark)" }}>
               <img src="/logo-icon.png" alt="Tioga AI" className="w-full h-full object-contain object-bottom" />
             </div>
             <div>
@@ -221,7 +221,7 @@ export default function ChatWidget() {
                   style={
                     message.role === "user"
                       ? { background: "linear-gradient(135deg, #00D4FF20, #0066CC40)", border: "1px solid #00D4FF40" }
-                      : { background: "#131f35", border: "1px solid #1E2D4A" }
+                      : { background: "#131f35", border: "1px solid var(--border)" }
                   }
                 >
                   {message.content ? (
@@ -239,13 +239,13 @@ export default function ChatWidget() {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="underline hover:opacity-80"
-                              style={{ color: "#00D4FF" }}
+                              style={{ color: "var(--accent)" }}
                             >
                               {children}
                             </a>
                           ),
                           code: ({ children }) => (
-                            <code className="px-1 py-0.5 rounded text-xs" style={{ background: "#0A0F1C" }}>
+                            <code className="px-1 py-0.5 rounded text-xs" style={{ background: "var(--bg-dark)" }}>
                               {children}
                             </code>
                           ),
@@ -273,7 +273,7 @@ export default function ChatWidget() {
           <form
             onSubmit={handleSubmit}
             className="p-3 flex gap-2 items-center"
-            style={{ borderTop: "1px solid #1E2D4A" }}
+            style={{ borderTop: "1px solid var(--border)" }}
           >
             <input
               ref={inputRef}
@@ -284,8 +284,8 @@ export default function ChatWidget() {
               disabled={isLoading}
               className="flex-1 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:ring-1 disabled:opacity-50"
               style={{
-                background: "#0A0F1C",
-                border: "1px solid #1E2D4A",
+                background: "var(--bg-dark)",
+                border: "1px solid var(--border)",
                 "--tw-ring-color": "#00D4FF40",
               } as React.CSSProperties}
               onKeyDown={(e) => {
@@ -300,7 +300,7 @@ export default function ChatWidget() {
               disabled={isLoading || !input.trim()}
               aria-label="Send message"
               className="w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+              style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
             >
               <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -312,7 +312,7 @@ export default function ChatWidget() {
           <div className="px-4 pb-3 text-center">
             <p className="text-xs text-slate-600">
               Powered by{" "}
-              <span style={{ color: "#00D4FF" }}>Claude</span> · Tioga AI
+              <span style={{ color: "var(--accent)" }}>Claude</span> · Tioga AI
             </p>
           </div>
         </div>

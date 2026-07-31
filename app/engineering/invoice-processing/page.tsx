@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 
 export default function InvoiceProcessingWriteup() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <a href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+        <a href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
           ← How We Built It
         </a>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "#00D4FF", background: "#00D4FF15", border: "1px solid #00D4FF30" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}>
             Claude Haiku 4.5
           </span>
         </div>
@@ -46,7 +46,7 @@ export default function InvoiceProcessingWriteup() {
           <div>
             <h2 className="text-xl font-bold text-white mb-3">The pipeline</h2>
             <p className="text-sm text-slate-400 leading-relaxed mb-4">
-              File upload hits a shared <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "#0D1526", color: "#00D4FF" }}>/api/extract-text</code> route
+              File upload hits a shared <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>/api/extract-text</code> route
               before the invoice-specific logic ever runs:
             </p>
             <ol className="space-y-3">
@@ -58,7 +58,7 @@ export default function InvoiceProcessingWriteup() {
                 "Text truncated to a 10,000-character ceiling before it ever reaches a model call.",
               ].map((step, i) => (
                 <li key={i} className="flex gap-3 text-sm text-slate-400 leading-relaxed">
-                  <span className="font-mono text-xs shrink-0 pt-0.5" style={{ color: "#00D4FF" }}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-mono text-xs shrink-0 pt-0.5" style={{ color: "var(--accent)" }}>{String(i + 1).padStart(2, "0")}</span>
                   {step}
                 </li>
               ))}
@@ -72,8 +72,8 @@ export default function InvoiceProcessingWriteup() {
               dates, PO number, line items, subtotal, tax, total, payment
               instructions, and a self-reported confidence score — and
               nothing else. The response is regex-matched for the outermost
-              <code className="text-xs px-1.5 py-0.5 rounded mx-1" style={{ background: "#0D1526", color: "#00D4FF" }}>{"{...}"}</code>
-              block before <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "#0D1526", color: "#00D4FF" }}>JSON.parse</code>, since
+              <code className="text-xs px-1.5 py-0.5 rounded mx-1" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>{"{...}"}</code>
+              block before <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>JSON.parse</code>, since
               models occasionally wrap output in a sentence even when told not to.
             </p>
           </div>
@@ -98,7 +98,7 @@ export default function InvoiceProcessingWriteup() {
           <a
             href="/demos"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Try it with your own invoice →
           </a>

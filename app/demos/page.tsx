@@ -173,13 +173,13 @@ Python, PyTorch, TensorFlow, Kubernetes, AWS, LLM fine-tuning, RAG, MLOps`,
 // ── Shared UI ────────────────────────────────────────────────────────────────
 
 const urgencyColors: Record<string, { bg: string; border: string; text: string }> = {
-  low: { bg: "#00D4FF10", border: "#00D4FF40", text: "#00D4FF" },
-  medium: { bg: "#F59E0B10", border: "#F59E0B40", text: "#F59E0B" },
-  high: { bg: "#EF444410", border: "#EF444440", text: "#EF4444" },
-  critical: { bg: "#EF444420", border: "#EF4444", text: "#FF6B6B" },
+  low: { bg: "#00D4FF10", border: "#00D4FF40", text: "var(--accent)" },
+  medium: { bg: "#F59E0B10", border: "#F59E0B40", text: "var(--warning)" },
+  high: { bg: "#EF444410", border: "#EF444440", text: "var(--error)" },
+  critical: { bg: "#EF444420", border: "var(--error)", text: "#FF6B6B" },
 };
 
-function Badge({ label, color = "#00D4FF" }: { label: string; color?: string }) {
+function Badge({ label, color = "var(--accent)" }: { label: string; color?: string }) {
   return (
     <span
       className="text-xs px-2 py-0.5 rounded-full font-medium"
@@ -194,7 +194,7 @@ function ResultCard({ children }: { children: React.ReactNode }) {
   return (
     <div
       className="p-5 rounded-xl mt-4"
-      style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
+      style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
     >
       {children}
     </div>
@@ -289,14 +289,14 @@ function InvoiceDemo() {
         onChange={(e) => { setInput(e.target.value); setState("idle"); setData(null); }}
         rows={10}
         className="w-full px-4 py-3 rounded-xl text-sm text-slate-300 placeholder-slate-600 outline-none resize-none font-mono"
-        style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
+        style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
         placeholder="Paste invoice text here..."
       />
       <button
         onClick={analyze}
         disabled={state === "loading" || !input.trim()}
         className="mt-3 w-full py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-        style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+        style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
       >
         {state === "loading" ? (
           <>
@@ -316,10 +316,10 @@ function InvoiceDemo() {
           <div className="flex items-center justify-between mb-4">
             <p className="text-xs text-slate-500 uppercase tracking-wider">Extracted Data</p>
             <div className="flex items-center gap-2">
-              <div className="h-1.5 w-24 rounded-full overflow-hidden" style={{ background: "#1E2D4A" }}>
+              <div className="h-1.5 w-24 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
                 <div
                   className="h-full rounded-full transition-all"
-                  style={{ width: `${data.confidence}%`, background: "linear-gradient(90deg, #00D4FF, #0066CC)" }}
+                  style={{ width: `${data.confidence}%`, background: "linear-gradient(90deg, var(--accent), var(--accent-dark))" }}
                 />
               </div>
               <span className="text-xs text-slate-400">{data.confidence}% confidence</span>
@@ -342,7 +342,7 @@ function InvoiceDemo() {
             ))}
           </div>
 
-          <div className="border-t pt-3 mb-3" style={{ borderColor: "#1E2D4A" }}>
+          <div className="border-t pt-3 mb-3" style={{ borderColor: "var(--border)" }}>
             <p className="text-xs text-slate-500 mb-2">Line Items</p>
             <div className="space-y-1">
               {data.lineItems.map((item, i) => (
@@ -351,15 +351,15 @@ function InvoiceDemo() {
                   <span className="text-white font-medium font-mono">{item.amount}</span>
                 </div>
               ))}
-              <div className="border-t mt-2 pt-2 flex justify-between text-sm font-semibold" style={{ borderColor: "#1E2D4A" }}>
-                <span style={{ color: "#00D4FF" }}>Total Due</span>
+              <div className="border-t mt-2 pt-2 flex justify-between text-sm font-semibold" style={{ borderColor: "var(--border)" }}>
+                <span style={{ color: "var(--accent)" }}>Total Due</span>
                 <span className="text-white font-mono">{data.total}</span>
               </div>
             </div>
           </div>
 
           <div style={{ background: "#00D4FF08", border: "1px solid #00D4FF20", borderRadius: 8, padding: "10px 12px" }}>
-            <p className="text-xs font-medium mb-1" style={{ color: "#00D4FF" }}>→ Ready to route to AP team</p>
+            <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>→ Ready to route to AP team</p>
             <p className="text-xs text-slate-400">{data.paymentInstructions}</p>
           </div>
         </ResultCard>
@@ -413,7 +413,7 @@ function EmailTriageDemo() {
             key={s.label}
             onClick={() => analyze(s.text)}
             className="text-xs px-3 py-1.5 rounded-lg transition-all hover:border-slate-500"
-            style={{ background: "#0A0F1C", border: "1px solid #1E2D4A", color: "#94a3b8" }}
+            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text-muted)" }}
           >
             {s.label}
           </button>
@@ -425,14 +425,14 @@ function EmailTriageDemo() {
         onChange={(e) => { setInput(e.target.value); setState("idle"); setResult(null); }}
         rows={8}
         className="w-full px-4 py-3 rounded-xl text-sm text-slate-300 placeholder-slate-600 outline-none resize-none"
-        style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
+        style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
         placeholder="Or paste an email here..."
       />
       <button
         onClick={() => analyze(input)}
         disabled={state === "loading" || !input.trim()}
         className="mt-3 w-full py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-        style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+        style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
       >
         {state === "loading" ? (
           <><svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg> Analyzing...</>
@@ -464,7 +464,7 @@ function EmailTriageDemo() {
             </div>
           </div>
 
-          <div className="border-t pt-3 mb-3" style={{ borderColor: "#1E2D4A" }}>
+          <div className="border-t pt-3 mb-3" style={{ borderColor: "var(--border)" }}>
             <p className="text-xs text-slate-500 mb-1">Summary</p>
             <p className="text-sm text-slate-300">{result.summary}</p>
           </div>
@@ -474,14 +474,14 @@ function EmailTriageDemo() {
               <p className="text-xs text-slate-500 mb-2">Key Entities</p>
               <div className="flex flex-wrap gap-1.5">
                 {result.keyEntities.map((e) => (
-                  <span key={e} className="text-xs px-2 py-0.5 rounded-md" style={{ background: "#1E2D4A", color: "#94a3b8" }}>{e}</span>
+                  <span key={e} className="text-xs px-2 py-0.5 rounded-md" style={{ background: "var(--border)", color: "var(--text-muted)" }}>{e}</span>
                 ))}
               </div>
             </div>
           )}
 
-          <div className="border-t pt-3" style={{ borderColor: "#1E2D4A" }}>
-            <p className="text-xs font-medium mb-2" style={{ color: "#00D4FF" }}>✦ Draft Reply</p>
+          <div className="border-t pt-3" style={{ borderColor: "var(--border)" }}>
+            <p className="text-xs font-medium mb-2" style={{ color: "var(--accent)" }}>✦ Draft Reply</p>
             <p className="text-sm text-slate-300 leading-relaxed italic">&ldquo;{result.suggestedReply}&rdquo;</p>
           </div>
         </ResultCard>
@@ -533,7 +533,7 @@ function DocumentDemo() {
             key={s.label}
             onClick={() => analyze(s.text)}
             className="text-xs px-3 py-1.5 rounded-lg transition-all hover:border-slate-500"
-            style={{ background: "#0A0F1C", border: "1px solid #1E2D4A", color: "#94a3b8" }}
+            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text-muted)" }}
           >
             {s.label}
           </button>
@@ -545,14 +545,14 @@ function DocumentDemo() {
         onChange={(e) => { setInput(e.target.value); setState("idle"); setResult(null); }}
         rows={8}
         className="w-full px-4 py-3 rounded-xl text-sm text-slate-300 placeholder-slate-600 outline-none resize-none"
-        style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}
+        style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
         placeholder="Or paste document text here..."
       />
       <button
         onClick={() => analyze(input)}
         disabled={state === "loading" || !input.trim()}
         className="mt-3 w-full py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-        style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+        style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
       >
         {state === "loading" ? (
           <><svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg> Classifying...</>
@@ -573,8 +573,8 @@ function DocumentDemo() {
             <div className="text-right">
               <p className="text-xs text-slate-500 mb-1">Confidence</p>
               <div className="flex items-center gap-2">
-                <div className="h-1.5 w-20 rounded-full overflow-hidden" style={{ background: "#1E2D4A" }}>
-                  <div className="h-full rounded-full" style={{ width: `${result.confidence}%`, background: "linear-gradient(90deg, #00D4FF, #0066CC)" }} />
+                <div className="h-1.5 w-20 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
+                  <div className="h-full rounded-full" style={{ width: `${result.confidence}%`, background: "linear-gradient(90deg, var(--accent), var(--accent-dark))" }} />
                 </div>
                 <span className="text-sm font-mono text-white">{result.confidence}%</span>
               </div>
@@ -593,7 +593,7 @@ function DocumentDemo() {
                   <p className="text-xs text-slate-500 mb-1 capitalize">{type}</p>
                   <div className="flex flex-wrap gap-1">
                     {items.map((item: string) => (
-                      <span key={item} className="text-xs px-2 py-0.5 rounded-md" style={{ background: "#1E2D4A", color: "#94a3b8" }}>{item}</span>
+                      <span key={item} className="text-xs px-2 py-0.5 rounded-md" style={{ background: "var(--border)", color: "var(--text-muted)" }}>{item}</span>
                     ))}
                   </div>
                 </div>
@@ -601,12 +601,12 @@ function DocumentDemo() {
             )}
           </div>
 
-          <div className="border-t pt-3 mb-3" style={{ borderColor: "#1E2D4A" }}>
-            <p className="text-xs font-medium mb-2" style={{ color: "#00D4FF" }}>Suggested Actions</p>
+          <div className="border-t pt-3 mb-3" style={{ borderColor: "var(--border)" }}>
+            <p className="text-xs font-medium mb-2" style={{ color: "var(--accent)" }}>Suggested Actions</p>
             <ul className="space-y-1">
               {result.suggestedActions.map((a, i) => (
                 <li key={i} className="text-sm text-slate-300 flex gap-2">
-                  <span style={{ color: "#00D4FF" }}>→</span> {a}
+                  <span style={{ color: "var(--accent)" }}>→</span> {a}
                 </li>
               ))}
             </ul>
@@ -665,14 +665,14 @@ export default function DemosPage() {
   const activeDemo = DEMOS.find((d) => d.id === active)!;
 
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
 
       <div className="pt-28 pb-20 px-6 max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
           >
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
             Live AI Demos — Powered by Claude
@@ -693,7 +693,7 @@ export default function DemosPage() {
           href="/demos/migration-assessment"
           className="group flex items-center gap-5 p-6 rounded-2xl mb-2 transition-all hover:border-slate-500"
           style={{
-            background: "linear-gradient(135deg, #0D1526 0%, #0D1F33 100%)",
+            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
             border: "1px solid #00D4FF40",
             boxShadow: "0 0 30px #00D4FF0A",
           }}
@@ -702,7 +702,7 @@ export default function DemosPage() {
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
             style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#00D4FF" strokeWidth={1.8}>
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <ellipse cx="7" cy="6" rx="4" ry="2" />
               <path d="M3 6v6c0 1.1 1.8 2 4 2s4-.9 4-2V6" />
               <path strokeLinecap="round" d="M13.5 12H18m0 0l-2.5-2.5M18 12l-2.5 2.5" />
@@ -714,7 +714,7 @@ export default function DemosPage() {
               <p className="font-semibold text-white">Migration Assessment</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "#00D4FF" }}
+                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
               >
                 Flagship
               </span>
@@ -723,12 +723,12 @@ export default function DemosPage() {
               Get a sample EBS → SAP migration readiness assessment in 60 seconds.
             </p>
           </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "#00D4FF" }}>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
             Try it live →
           </span>
         </a>
         <div className="text-right mb-8">
-          <a href="/engineering/migration-assessment" className="text-xs hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+          <a href="/engineering/migration-assessment" className="text-xs hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
             How we built this →
           </a>
         </div>
@@ -738,7 +738,7 @@ export default function DemosPage() {
           href="/demos/governance-ledger"
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
-            background: "linear-gradient(135deg, #0D1526 0%, #0D1F33 100%)",
+            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
             border: "1px solid #00D4FF40",
             boxShadow: "0 0 30px #00D4FF0A",
           }}
@@ -747,7 +747,7 @@ export default function DemosPage() {
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
             style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#00D4FF" strokeWidth={1.8}>
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
             </svg>
           </span>
@@ -756,7 +756,7 @@ export default function DemosPage() {
               <p className="font-semibold text-white">Governance Ledger</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#4ADE8015", border: "1px solid #4ADE8040", color: "#4ADE80" }}
+                style={{ background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" }}
               >
                 Real Data
               </span>
@@ -766,7 +766,7 @@ export default function DemosPage() {
               mapped to NIST AI RMF. Not a mockup.
             </p>
           </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "#00D4FF" }}>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
             View the ledger →
           </span>
         </a>
@@ -780,8 +780,8 @@ export default function DemosPage() {
               aria-pressed={active === demo.id}
               className="p-4 rounded-xl text-left transition-all"
               style={{
-                background: active === demo.id ? "#0D1526" : "transparent",
-                border: `1px solid ${active === demo.id ? "#00D4FF40" : "#1E2D4A"}`,
+                background: active === demo.id ? "var(--bg-card)" : "transparent",
+                border: `1px solid ${active === demo.id ? "#00D4FF40" : "var(--border)"}`,
                 boxShadow: active === demo.id ? "0 0 20px #00D4FF10" : "none",
               }}
             >
@@ -795,7 +795,7 @@ export default function DemosPage() {
         {/* Active demo */}
         <div
           className="p-6 rounded-2xl"
-          style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+          style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
         >
           <div className="flex items-center gap-3 mb-5">
             <span className="text-2xl">{activeDemo.icon}</span>
@@ -805,7 +805,7 @@ export default function DemosPage() {
             </div>
             <div className="ml-auto flex items-center gap-3">
               {activeDemo.engineeringHref && (
-                <a href={activeDemo.engineeringHref} className="text-xs hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+                <a href={activeDemo.engineeringHref} className="text-xs hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
                   How we built this →
                 </a>
               )}
@@ -824,7 +824,7 @@ export default function DemosPage() {
           <a
             href="/#contact"
             className="inline-flex px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Let&apos;s Build Together
           </a>

@@ -6,6 +6,21 @@
   --bg-card: #0D1526;
   --border: #1E2D4A;
   --accent: #00D4FF;
+  --accent-dark: #0066CC;
+  --bg-darker: #060B14;
+  --bg-card-alt: #0D1F33;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-muted-2: #64748b;
+  --text-muted-3: #475569;
+  --error: #EF4444;
+  --error-light: #F87171;
+  --warning: #F59E0B;
+  --warning-light: #FBBF24;
+  --success: #4ADE80;
+  --success-dark: #10B981;
+  --violet: #8B5CF6;
+  --blue: #3B82F6;
 }
 
 * {
@@ -14,7 +29,7 @@
 
 body {
   background-color: var(--bg-dark);
-  color: #e2e8f0;
+  color: var(--text);
   font-family: 'Inter', system-ui, sans-serif;
 }
 
@@ -26,7 +41,7 @@ body {
   background: transparent;
 }
 .chat-scroll::-webkit-scrollbar-thumb {
-  background: #1E2D4A;
+  background: var(--border);
   border-radius: 2px;
 }
 

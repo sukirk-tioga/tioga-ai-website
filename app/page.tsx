@@ -2,17 +2,17 @@ import SmartContactForm from "@/components/SmartContactForm";
 
 export default function HomePage() {
  return (
- <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+ <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
 
  {/* Hero */}
  <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative overflow-hidden">
  <div
  className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full opacity-10 pointer-events-none"
- style={{ background: "radial-gradient(ellipse, #00D4FF, transparent 70%)", filter: "blur(60px)" }}
+ style={{ background: "radial-gradient(ellipse, var(--accent), transparent 70%)", filter: "blur(60px)" }}
  />
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
- style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+ style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  AI Agents for Enterprise Systems
@@ -20,7 +20,7 @@ export default function HomePage() {
  <h1 className="text-4xl lg:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
  The systems you stand on<br />
  Will{" "}
- <span style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+ <span style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
  stand on AI
  </span>
  </h1>
@@ -34,32 +34,44 @@ export default function HomePage() {
  <a
  href="/demos"
  className="px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
- style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+ style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
  >
  Try a Live Agent
  </a>
  <a
  href="#contact"
  className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
- style={{ border: "1px solid #1E2D4A", color: "#94a3b8" }}
+ style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
  >
  Start a Conversation
  </a>
+ </div>
+ <div className="flex flex-wrap items-center justify-center gap-2 mb-4 text-xs">
+ <span style={{ color: "var(--text-muted-3)" }}>Built to:</span>
+ {["NIST AI RMF", "ISO 42001", "EU AI Act"].map((std) => (
+ <span
+ key={std}
+ className="px-3 py-1 rounded-full font-medium"
+ style={{ background: "var(--bg-card)", border: "1px solid var(--border)", color: "var(--text-muted)" }}
+ >
+ {std}
+ </span>
+ ))}
  </div>
  <p className="text-xs text-slate-600">Or click the chat bubble ↘ to talk to our AI assistant right now</p>
  </section>
 
  {/* Stats Bar */}
  <section className="px-6 pb-16 max-w-5xl mx-auto">
- <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden" style={{ background: "#1E2D4A" }}>
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden" style={{ background: "var(--border)" }}>
  {[
  { value: "5 days", label: "Discovery Sprint" },
  { value: "2–8 wks", label: "Discovery to Pilot" },
  { value: "100%", label: "Real System Integration" },
  { value: "SOC2", label: "Ready Architecture" },
  ].map((stat) => (
- <div key={stat.label} className="px-6 py-5 text-center" style={{ background: "#0D1526" }}>
- <div className="text-2xl font-bold mb-1" style={{ color: "#00D4FF" }}>{stat.value}</div>
+ <div key={stat.label} className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
+ <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>{stat.value}</div>
  <div className="text-xs text-slate-500 uppercase tracking-wide">{stat.label}</div>
  </div>
  ))}
@@ -78,7 +90,7 @@ export default function HomePage() {
  Enterprise AI projects stall because generic consultants build demos that can&apos;t connect to real systems. Your ERP, CRM and HRIS are locked behind custom APIs, legacy auth and security layers that require deep enterprise expertise to navigate.
  </p>
  </div>
- <div className="hidden md:block w-px self-stretch" style={{ background: "#1E2D4A" }} />
+ <div className="hidden md:block w-px self-stretch" style={{ background: "var(--border)" }} />
  <div className="flex-1">
  <h3 className="text-lg font-semibold text-white mb-2">The Tioga difference</h3>
  <p className="text-sm text-slate-400 leading-relaxed">
@@ -91,9 +103,12 @@ export default function HomePage() {
  {/* Try It Live */}
  <section className="py-4 px-6 max-w-5xl mx-auto">
  <div className="text-center mb-8">
+ <p className="text-xs mb-3" style={{ color: "var(--text-muted-3)" }}>
+ We don&apos;t have client logos to show you yet — as a new practice, that&apos;s the truth. Try the product instead.
+ </p>
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
- style={{ background: "#00D4FF10", border: "1px solid #00D4FF25", color: "#00D4FF" }}
+ style={{ background: "#00D4FF10", border: "1px solid #00D4FF25", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  Live on our production API
@@ -119,7 +134,7 @@ export default function HomePage() {
  },
  {
  icon: (
- <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="#00D4FF" strokeWidth={1.8}>
+ <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
  <ellipse cx="7" cy="6" rx="4" ry="2" />
  <path d="M3 6v6c0 1.1 1.8 2 4 2s4-.9 4-2V6" />
  <path strokeLinecap="round" d="M13.5 12H18m0 0l-2.5-2.5M18 12l-2.5 2.5" />
@@ -136,25 +151,46 @@ export default function HomePage() {
  key={demo.title}
  href={demo.href}
  className="group p-6 rounded-2xl transition-all hover:border-slate-500 cursor-pointer block"
- style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+ style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
  >
  <div className="flex items-start justify-between mb-4">
  <span className="text-3xl">{demo.icon}</span>
  <span
  className="text-xs px-2 py-0.5 rounded-full"
- style={{ background: "#00D4FF10", color: "#00D4FF", border: "1px solid #00D4FF25" }}
+ style={{ background: "#00D4FF10", color: "var(--accent)", border: "1px solid #00D4FF25" }}
  >
  {demo.tag}
  </span>
  </div>
  <h3 className="text-base font-semibold text-white mb-2">{demo.title}</h3>
  <p className="text-xs text-slate-400 leading-relaxed mb-4">{demo.desc}</p>
- <span className="text-sm font-medium inline-flex items-center gap-1.5" style={{ color: "#00D4FF" }}>
+ <span className="text-sm font-medium inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
  Try it live →
  </span>
  </a>
  ))}
  </div>
+ </section>
+
+ {/* Governance Ledger Callout */}
+ <section className="pt-2 pb-4 px-6 max-w-5xl mx-auto">
+ <a
+ href="/demos/governance-ledger"
+ className="block rounded-2xl p-6 transition-all hover:border-slate-500 group"
+ style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+ >
+ <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+ <div>
+ <h3 className="text-base font-semibold text-white mb-1">See how we govern our own AI</h3>
+ <p className="text-xs leading-relaxed max-w-lg" style={{ color: "var(--text-muted)" }}>
+ The Governance Ledger is real operational data from Tioga&apos;s own AI routing gateway, mapped to NIST AI RMF — not a mockup. Live, public, running right now.
+ </p>
+ </div>
+ <div className="shrink-0 text-sm font-medium transition-all group-hover:opacity-80" style={{ color: "var(--accent)" }}>
+ View the ledger →
+ </div>
+ </div>
+ </a>
  </section>
 
  {/* Integrations */}
@@ -165,7 +201,7 @@ export default function HomePage() {
  <div
  key={name}
  className="px-5 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white transition-colors"
- style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+ style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
  >
  {name}
  </div>
@@ -173,7 +209,7 @@ export default function HomePage() {
  </div>
  </section>
 
- <div style={{ borderColor: "#1E2D4A", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
+ <div style={{ borderColor: "var(--border)", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
 
  {/* Services */}
  <section id="services" className="py-20 px-6 max-w-5xl mx-auto">
@@ -181,6 +217,9 @@ export default function HomePage() {
  <h2 className="text-3xl font-bold text-white mb-3">Where to start</h2>
  <p className="text-slate-400 text-sm max-w-lg mx-auto">
  Three entry-point offers — each delivers a concrete, reviewable output in weeks, not quarters.
+ </p>
+ <p className="text-xs max-w-lg mx-auto mt-2" style={{ color: "var(--text-muted-3)" }}>
+ Pricing published up front, not gated behind a sales call.
  </p>
  </div>
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -207,9 +246,9 @@ export default function HomePage() {
  <div
  key={offer.name}
  className="flex flex-col rounded-2xl overflow-hidden"
- style={{ background: "#0D1526", border: "1px solid rgba(255,255,255,0.08)" }}
+ style={{ background: "var(--bg-card)", border: "1px solid rgba(255,255,255,0.08)" }}
  >
- <div className="h-px w-full" style={{ background: "linear-gradient(90deg, #00D4FF, #0066CC)" }} />
+ <div className="h-px w-full" style={{ background: "linear-gradient(90deg, var(--accent), var(--accent-dark))" }} />
  <div className="flex flex-col flex-1 p-8">
  <h3 className="text-2xl font-semibold text-white mb-3 leading-snug lg:min-h-[6.25rem]">{offer.name}</h3>
  <p className="text-lg font-medium text-slate-400 mb-5 leading-snug lg:min-h-[5.25rem]">{offer.valueProp}</p>
@@ -219,7 +258,7 @@ export default function HomePage() {
  <a
  href="#contact"
  className="block text-center w-full px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
- style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+ style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
  >
  Start a conversation
  </a>
@@ -230,7 +269,7 @@ export default function HomePage() {
  </div>
  <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
  Plus 10 more offers — ERP Modernization Advisory, Legacy System AI Augmentation, EU AI Act Conformity Program, Multi-State AI Compliance, ISO 42001 Implementation Sprint, Agentic AI Governance Framework, Fractional AI Governance Officer, Agent-Ready ERP Diagnostic, AI Governance Evidence Package for Insurance, AI Cost & Model Governance Assessment.{" "}
- <a href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "#00D4FF" }}>
+ <a href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
  See all services →
  </a>
  </p>
@@ -238,10 +277,15 @@ export default function HomePage() {
 
  {/* Why Tioga */}
  <section className="px-6 pb-20 max-w-5xl mx-auto">
- <div className="rounded-2xl p-8 md:p-10" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+ <div className="rounded-2xl p-8 md:p-10" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
  <div className="text-center mb-10">
  <h2 className="text-3xl font-bold text-white mb-3">What working with Tioga AI looks like</h2>
  <p className="text-slate-400 text-sm max-w-lg mx-auto">Not a generic AI consultancy. One founder who specializes in one thing: getting AI into production inside complex enterprise environments.</p>
+ </div>
+ <div className="mb-10 pb-8 text-center" style={{ borderBottom: "1px solid var(--border)" }}>
+ <p className="text-sm max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
+ Tioga AI is built by <span className="text-white font-medium">Sukir Kumaresan</span>, who spent decades on the operating side of enterprise systems — Oracle EBS, SAP, finance, HR, procurement — and the governance work that keeps those systems audit-ready. Every demo on this site, including the Governance Ledger above, is code Sukir wrote and infrastructure Sukir runs. No outsourced build, no slide deck.
+ </p>
  </div>
  <div className="grid md:grid-cols-3 gap-6">
  {[
@@ -264,7 +308,7 @@ export default function HomePage() {
  </div>
  </section>
 
- <div style={{ borderColor: "#1E2D4A", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
+ <div style={{ borderColor: "var(--border)", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
 
  {/* Process */}
  <section id="process" className="py-20 px-6 max-w-4xl mx-auto">
@@ -290,14 +334,14 @@ export default function HomePage() {
  detail: "Production deploy · Monitoring · Support SLA · Continuous improvement"
  },
  ].map((p) => (
- <div key={p.step} className="flex gap-6 p-7 rounded-2xl" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
- <div className="text-2xl font-bold font-mono shrink-0 mt-0.5" style={{ color: "#00D4FF" }}>{p.step}</div>
+ <div key={p.step} className="flex gap-6 p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+ <div className="text-2xl font-bold font-mono shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>{p.step}</div>
  <div className="flex-1">
  <div className="flex flex-wrap items-center gap-3 mb-2">
  <h3 className="font-semibold text-white">{p.title}</h3>
  <span
  className="text-xs px-2 py-0.5 rounded-full"
- style={{ background: "#00D4FF15", color: "#00D4FF", border: "1px solid #00D4FF30" }}
+ style={{ background: "#00D4FF15", color: "var(--accent)", border: "1px solid #00D4FF30" }}
  >
  {p.duration}
  </span>
@@ -321,7 +365,7 @@ export default function HomePage() {
  <div>
  <div
  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-3"
- style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+ style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
  >
  New Standard
  </div>
@@ -332,7 +376,7 @@ export default function HomePage() {
  </div>
  <div
  className="shrink-0 px-6 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all group-hover:opacity-90"
- style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)", color: "white" }}
+ style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))", color: "white" }}
  >
  Explore MCP →
  </div>
@@ -340,7 +384,7 @@ export default function HomePage() {
  </a>
  </section>
 
- <div style={{ borderColor: "#1E2D4A", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
+ <div style={{ borderColor: "var(--border)", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
 
  {/* Contact */}
  <section id="contact" className="py-20 px-6 max-w-2xl mx-auto text-center">
@@ -351,7 +395,7 @@ export default function HomePage() {
  </p>
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8"
- style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+ style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  AI-powered routing — live demo of our email triage service

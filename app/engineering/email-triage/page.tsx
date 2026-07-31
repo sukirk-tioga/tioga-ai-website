@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 
 export default function EmailTriageWriteup() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <a href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+        <a href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
           ← How We Built It
         </a>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "#00D4FF", background: "#00D4FF15", border: "1px solid #00D4FF30" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}>
             Claude Haiku 4.5
           </span>
         </div>
@@ -53,13 +53,13 @@ export default function EmailTriageWriteup() {
               round trips, and the fields stay consistent with each other
               since one call reasons about all of them together.
             </p>
-            <div className="p-5 rounded-xl" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+            <div className="p-5 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
               <p className="text-xs text-slate-500 mb-3 uppercase tracking-wide">Every field is a closed enum, not free text</p>
               <div className="grid sm:grid-cols-2 gap-2 text-xs font-mono text-slate-400">
-                <p><span style={{ color: "#00D4FF" }}>category</span>: Sales | Support | Complaint | Partnership | Spam | Internal | Invoice | Legal</p>
-                <p><span style={{ color: "#00D4FF" }}>urgency</span>: low | medium | high | critical</p>
-                <p><span style={{ color: "#00D4FF" }}>sentiment</span>: positive | neutral | negative | frustrated | urgent</p>
-                <p><span style={{ color: "#00D4FF" }}>routeTo</span>: Sales | Support | Finance | Legal | Management | Spam | HR</p>
+                <p><span style={{ color: "var(--accent)" }}>category</span>: Sales | Support | Complaint | Partnership | Spam | Internal | Invoice | Legal</p>
+                <p><span style={{ color: "var(--accent)" }}>urgency</span>: low | medium | high | critical</p>
+                <p><span style={{ color: "var(--accent)" }}>sentiment</span>: positive | neutral | negative | frustrated | urgent</p>
+                <p><span style={{ color: "var(--accent)" }}>routeTo</span>: Sales | Support | Finance | Legal | Management | Spam | HR</p>
               </div>
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function EmailTriageWriteup() {
           <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}>
             <h2 className="text-lg font-bold text-white mb-3">Why enums, not open categories</h2>
             <p className="text-sm text-slate-300 leading-relaxed">
-              An open-ended <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "#0A0F1C", color: "#00D4FF" }}>&quot;category&quot;: string</code> field
+              An open-ended <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-dark)", color: "var(--accent)" }}>&quot;category&quot;: string</code> field
               looks more flexible, but it pushes the hard part downstream: whatever
               consumes this output — a routing rule, a dashboard filter, a
               ticketing integration — now has to handle arbitrary strings a
@@ -85,7 +85,7 @@ export default function EmailTriageWriteup() {
           <a
             href="/demos"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Try it with your own email →
           </a>

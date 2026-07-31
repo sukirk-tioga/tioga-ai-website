@@ -12,6 +12,12 @@ export const metadata: Metadata = {
 
 const WRITEUPS = [
   {
+    href: "/engineering/governance-ledger",
+    title: "Governance Ledger",
+    model: "No model call",
+    summary: "Why this is a dated ledger excerpt instead of a live feed, how the NIST AI RMF mapping falls out of the routing gateway's own schema, and the one demo with zero prompt-injection surface.",
+  },
+  {
     href: "/engineering/invoice-processing",
     title: "Invoice Processing",
     model: "Claude Haiku 4.5",
@@ -33,11 +39,11 @@ const WRITEUPS = [
 
 export default function EngineeringIndexPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           How We Built It
@@ -58,7 +64,7 @@ export default function EngineeringIndexPage() {
               key={w.href}
               href={w.href}
               className="block p-6 rounded-2xl transition-all hover:border-slate-500"
-              style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}
+              style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
               <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
                 <div className="flex-1">
@@ -66,14 +72,14 @@ export default function EngineeringIndexPage() {
                     <h2 className="text-lg font-semibold text-white">{w.title}</h2>
                     <span
                       className="text-[11px] font-mono px-2 py-0.5 rounded-full"
-                      style={{ color: "#00D4FF", background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+                      style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}
                     >
                       {w.model}
                     </span>
                   </div>
                   <p className="text-sm text-slate-400 leading-relaxed max-w-xl">{w.summary}</p>
                 </div>
-                <span className="text-sm shrink-0" style={{ color: "#00D4FF" }}>Read →</span>
+                <span className="text-sm shrink-0" style={{ color: "var(--accent)" }}>Read →</span>
               </div>
             </a>
           ))}
@@ -82,14 +88,14 @@ export default function EngineeringIndexPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-slate-600 mb-4">
             Prefer the running history?{" "}
-            <a href="/changelog" style={{ color: "#00D4FF" }} className="hover:text-white transition-colors">
+            <a href="/changelog" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               See the build log →
             </a>
           </p>
           <a
             href="/demos"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Try the live demos
           </a>

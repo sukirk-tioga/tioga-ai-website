@@ -52,14 +52,14 @@ const ROWS: Row[] = [
 
 export default function McpVsCustomIntegrationPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <a href="/mcp" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+        <a href="/mcp" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
           ← MCP Integrations
         </a>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
         >
           Comparison
         </div>
@@ -94,12 +94,12 @@ export default function McpVsCustomIntegrationPage() {
             <h2 className="text-xl font-bold text-white mb-3">What MCP changes</h2>
             <p className="text-sm text-slate-400 leading-relaxed">
               MCP (Model Context Protocol) inverts the shape of the work: you
-              build a tool server for the system — <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "#0D1526", color: "#00D4FF" }}>get_pending_invoices</code>,{" "}
-              <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "#0D1526", color: "#00D4FF" }}>get_employee_data</code>,{" "}
-              <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "#0D1526", color: "#00D4FF" }}>get_pipeline</code> — not around any one workflow. Any
+              build a tool server for the system — <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>get_pending_invoices</code>,{" "}
+              <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>get_employee_data</code>,{" "}
+              <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>get_pipeline</code> — not around any one workflow. Any
               MCP-aware model can call those tools, decide which ones it
               needs for a given question, and chain them. The{" "}
-              <a href="/mcp" style={{ color: "#00D4FF" }} className="hover:text-white transition-colors">
+              <a href="/mcp" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
                 live MCP demo
               </a>{" "}
               on this site shows the actual tool-server code for SAP,
@@ -109,18 +109,18 @@ export default function McpVsCustomIntegrationPage() {
 
           <div>
             <h2 className="text-xl font-bold text-white mb-4">Side by side</h2>
-            <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid #1E2D4A" }}>
+            <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid var(--border)" }}>
               <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
                 <thead>
-                  <tr style={{ background: "#0D1526" }}>
+                  <tr style={{ background: "var(--bg-card)" }}>
                     <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Dimension</th>
                     <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Custom integration</th>
-                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide" style={{ color: "#00D4FF" }}>MCP</th>
+                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--accent)" }}>MCP</th>
                   </tr>
                 </thead>
                 <tbody>
                   {ROWS.map((r, i) => (
-                    <tr key={r.dimension} style={{ borderTop: "1px solid #1E2D4A", background: i % 2 === 1 ? "#0A0F1C" : "transparent" }}>
+                    <tr key={r.dimension} style={{ borderTop: "1px solid var(--border)", background: i % 2 === 1 ? "var(--bg-dark)" : "transparent" }}>
                       <td className="p-4 text-white font-medium align-top whitespace-nowrap">{r.dimension}</td>
                       <td className="p-4 text-slate-400 leading-relaxed align-top">{r.custom}</td>
                       <td className="p-4 text-slate-300 leading-relaxed align-top">{r.mcp}</td>
@@ -147,14 +147,14 @@ export default function McpVsCustomIntegrationPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-slate-600 mb-4">
             See the pattern applied to a real workflow in the{" "}
-            <a href="/engineering/migration-assessment" style={{ color: "#00D4FF" }} className="hover:text-white transition-colors">
+            <a href="/engineering/migration-assessment" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               Migration Assessment writeup →
             </a>
           </p>
           <a
             href="/mcp"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Try the live MCP demo →
           </a>

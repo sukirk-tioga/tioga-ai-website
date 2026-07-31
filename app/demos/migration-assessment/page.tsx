@@ -33,8 +33,8 @@ interface Assessment {
 }
 
 const inputStyle = {
-  background: "#0A0F1C",
-  border: "1px solid #1E2D4A",
+  background: "var(--bg-dark)",
+  border: "1px solid var(--border)",
 } as const;
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
@@ -49,11 +49,11 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 function ScoreRing({ score }: { score: number }) {
   const r = 34;
   const c = 2 * Math.PI * r;
-  const color = score <= 3 ? "#4ADE80" : score <= 6 ? "#FBBF24" : "#F87171";
+  const color = score <= 3 ? "var(--success)" : score <= 6 ? "var(--warning-light)" : "var(--error-light)";
   return (
     <div className="relative w-24 h-24 flex-none">
       <svg viewBox="0 0 80 80" className="w-24 h-24 -rotate-90">
-        <circle cx="40" cy="40" r={r} fill="none" stroke="#1E2D4A" strokeWidth="6" />
+        <circle cx="40" cy="40" r={r} fill="none" stroke="var(--border)" strokeWidth="6" />
         <circle
           cx="40" cy="40" r={r} fill="none"
           stroke={color} strokeWidth="6" strokeLinecap="round"
@@ -120,7 +120,7 @@ export default function MigrationAssessmentPage() {
       description="Answer four questions about your Oracle EBS environment and get a sample S/4HANA migration readiness assessment — generated in about 60 seconds."
     >
       {/* Form */}
-      <div className="p-6 rounded-2xl" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
+      <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <h2 className="font-semibold text-white mb-5">Tell us about your Oracle EBS environment</h2>
         <div className="space-y-5">
           <div className="grid sm:grid-cols-2 gap-5">
@@ -158,8 +158,8 @@ export default function MigrationAssessmentPage() {
                     className="px-3 py-1.5 rounded-full text-xs font-medium transition-all"
                     style={{
                       background: on ? "#00D4FF15" : "transparent",
-                      border: `1px solid ${on ? "#00D4FF50" : "#1E2D4A"}`,
-                      color: on ? "#00D4FF" : "#94A3B8",
+                      border: `1px solid ${on ? "#00D4FF50" : "var(--border)"}`,
+                      color: on ? "var(--accent)" : "var(--text-muted)",
                     }}
                   >
                     {m.label}
@@ -196,7 +196,7 @@ export default function MigrationAssessmentPage() {
             onClick={submit}
             disabled={state === "loading" || modules.length === 0}
             className="w-full py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             {state === "loading" ? (
               <span className="inline-flex items-center gap-2.5">
@@ -214,7 +214,7 @@ export default function MigrationAssessmentPage() {
             <p className="text-xs text-slate-500 text-center -mt-2">Select at least one module.</p>
           )}
           {state === "error" && (
-            <p className="text-sm text-center" style={{ color: "#F87171" }}>{error}</p>
+            <p className="text-sm text-center" style={{ color: "var(--error-light)" }}>{error}</p>
           )}
         </div>
       </div>
@@ -222,16 +222,16 @@ export default function MigrationAssessmentPage() {
       {/* Results */}
       {state === "done" && result && (
         <div className="mt-8">
-          <div className="p-6 rounded-2xl" style={{ background: "#0D1526", border: "1px solid #00D4FF30" }}>
+          <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid #00D4FF30" }}>
             {/* Score + timeline */}
-            <div className="flex flex-col sm:flex-row items-start gap-6 pb-6 mb-6" style={{ borderBottom: "1px solid #1E2D4A" }}>
+            <div className="flex flex-col sm:flex-row items-start gap-6 pb-6 mb-6" style={{ borderBottom: "1px solid var(--border)" }}>
               <ScoreRing score={result.complexityScore} />
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-3 mb-2">
                   <h3 className="text-lg font-semibold text-white">Migration Complexity</h3>
                   <span
                     className="text-xs px-2.5 py-1 rounded-full font-medium uppercase tracking-wide"
-                    style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "#00D4FF" }}
+                    style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
                   >
                     {result.recommendedApproach.approach}
                   </span>
@@ -248,8 +248,8 @@ export default function MigrationAssessmentPage() {
             <h4 className="text-sm font-semibold text-white uppercase tracking-wide mb-3">Top Risks</h4>
             <div className="grid sm:grid-cols-3 gap-3 mb-6">
               {result.topRisks.map((r, i) => (
-                <div key={i} className="p-4 rounded-xl" style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}>
-                  <p className="text-sm font-semibold mb-1.5" style={{ color: "#FBBF24" }}>{r.title}</p>
+                <div key={i} className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
+                  <p className="text-sm font-semibold mb-1.5" style={{ color: "var(--warning-light)" }}>{r.title}</p>
                   <p className="text-xs text-slate-400 leading-relaxed">{r.detail}</p>
                 </div>
               ))}
@@ -257,16 +257,16 @@ export default function MigrationAssessmentPage() {
 
             {/* Approach + next steps */}
             <div className="grid sm:grid-cols-2 gap-3">
-              <div className="p-4 rounded-xl" style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}>
+              <div className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
                 <p className="text-xs text-slate-500 uppercase tracking-wide mb-1.5">Recommended approach</p>
                 <p className="text-sm text-slate-300 leading-relaxed">{result.recommendedApproach.reasoning}</p>
               </div>
-              <div className="p-4 rounded-xl" style={{ background: "#0A0F1C", border: "1px solid #1E2D4A" }}>
+              <div className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
                 <p className="text-xs text-slate-500 uppercase tracking-wide mb-1.5">Next steps</p>
                 <ul className="space-y-1.5">
                   {result.nextSteps.map((s, i) => (
                     <li key={i} className="text-sm text-slate-300 flex gap-2">
-                      <span style={{ color: "#00D4FF" }}>→</span>
+                      <span style={{ color: "var(--accent)" }}>→</span>
                       <span>{s}</span>
                     </li>
                   ))}
@@ -280,7 +280,7 @@ export default function MigrationAssessmentPage() {
             and a module-by-module roadmap.
           </p>
           {emailed && (
-            <p className="text-xs text-center mt-2" style={{ color: "#4ADE80" }}>
+            <p className="text-xs text-center mt-2" style={{ color: "var(--success)" }}>
               A copy has been emailed to {email}.
             </p>
           )}

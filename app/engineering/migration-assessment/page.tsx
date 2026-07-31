@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 
 export default function MigrationAssessmentWriteup() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <a href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "#00D4FF" }}>
+        <a href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
           ← How We Built It
         </a>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "#00D4FF", background: "#00D4FF15", border: "1px solid #00D4FF30" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}>
             Claude Sonnet 5
           </span>
         </div>
@@ -42,7 +42,7 @@ export default function MigrationAssessmentWriteup() {
               edition — is validated against a fixed allowlist before
               anything is assembled into a prompt:
             </p>
-            <pre className="p-4 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed" style={{ background: "#060B14", border: "1px solid #1E2D4A", color: "#94a3b8" }}>
+            <pre className="p-4 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)", color: "var(--text-muted)" }}>
 {`const VERSIONS = ["R12.1", "R12.2"] as const;
 const MODULES  = ["FI", "AP", "AR", "GL", "FA", "INV", "PO"] as const;
 const VOLUMES  = ["1-10GB", "10-100GB", "100GB-1TB", "1TB+"] as const;
@@ -90,7 +90,7 @@ const TARGETS  = ["S/4HANA Cloud", "S/4HANA Private Cloud",
                 "topRisks and nextSteps are truncated to 3 items regardless of how many the model returns, keeping the response shape predictable for the UI.",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm text-slate-400 leading-relaxed">
-                  <span style={{ color: "#00D4FF" }}>✓</span>
+                  <span style={{ color: "var(--accent)" }}>✓</span>
                   {item}
                 </li>
               ))}
@@ -120,7 +120,7 @@ const TARGETS  = ["S/4HANA Cloud", "S/4HANA Private Cloud",
           <a
             href="/demos/migration-assessment"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Try the live assessment →
           </a>

@@ -39,18 +39,18 @@ const MAPPING = [
 
 export default function FrameworkMappingPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "#0A0F1C" }}>
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "#00D4FF" }}
+          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Framework Mapping
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
           NIST, ISO 42001, and the EU AI Act<br />
-          <span style={{ color: "#00D4FF" }}>aren&apos;t three separate homeworks</span>
+          <span style={{ color: "var(--accent)" }}>aren&apos;t three separate homeworks</span>
         </h1>
         <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mb-6">
           NIST AI RMF is a voluntary US risk-management framework organized
@@ -74,18 +74,18 @@ export default function FrameworkMappingPage() {
 
         <div className="space-y-4 mb-16">
           {MAPPING.map((m) => (
-            <div key={m.function} className="p-6 rounded-2xl" style={{ background: "#0D1526", border: "1px solid #1E2D4A" }}>
-              <p className="text-xs font-bold tracking-wide mb-3" style={{ color: "#00D4FF" }}>{m.function}</p>
+            <div key={m.function} className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+              <p className="text-xs font-bold tracking-wide mb-3" style={{ color: "var(--accent)" }}>{m.function}</p>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
                   <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-1.5">NIST AI RMF</p>
                   <p className="text-sm text-slate-400 leading-relaxed">{m.nist}</p>
                 </div>
-                <div className="md:pl-6" style={{ borderLeft: "1px solid #1E2D4A" }}>
+                <div className="md:pl-6" style={{ borderLeft: "1px solid var(--border)" }}>
                   <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-1.5">ISO 42001</p>
                   <p className="text-sm text-slate-400 leading-relaxed">{m.iso}</p>
                 </div>
-                <div className="md:pl-6" style={{ borderLeft: "1px solid #1E2D4A" }}>
+                <div className="md:pl-6" style={{ borderLeft: "1px solid var(--border)" }}>
                   <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-1.5">EU AI Act</p>
                   <p className="text-sm text-slate-400 leading-relaxed">{m.euAiAct}</p>
                 </div>
@@ -98,14 +98,14 @@ export default function FrameworkMappingPage() {
           <a
             href="/services"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #00D4FF, #0066CC)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             See the ISO 42001 Implementation Sprint →
           </a>
           <a
             href="/trust/eu-ai-act/calculator"
             className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
-            style={{ border: "1px solid #1E2D4A", color: "#94a3b8" }}
+            style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
           >
             Check your EU AI Act risk tier →
           </a>
