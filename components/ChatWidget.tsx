@@ -221,7 +221,7 @@ export default function ChatWidget() {
                   style={
                     message.role === "user"
                       ? { background: "linear-gradient(135deg, #00D4FF20, #0066CC40)", border: "1px solid #00D4FF40" }
-                      : { background: "#131f35", border: "1px solid var(--border)" }
+                      : { background: "var(--bg-card-alt)", border: "1px solid var(--border)" }
                   }
                 >
                   {message.content ? (

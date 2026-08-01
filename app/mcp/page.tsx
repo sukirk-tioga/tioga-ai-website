@@ -362,7 +362,7 @@ function LiveDemo() {
  style={
  msg.role === "user"
  ? { background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--text)" }
- : { background: "var(--bg-card)", border: "1px solid var(--border)", color: "#cbd5e1" }
+ : { background: "var(--bg-card)", border: "1px solid var(--border)", color: "var(--text)" }
  }
  >
  {msg.content}

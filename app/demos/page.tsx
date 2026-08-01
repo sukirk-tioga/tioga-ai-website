@@ -176,7 +176,7 @@ const urgencyColors: Record<string, { bg: string; border: string; text: string }
   low: { bg: "#00D4FF10", border: "#00D4FF40", text: "var(--accent)" },
   medium: { bg: "#F59E0B10", border: "#F59E0B40", text: "var(--warning)" },
   high: { bg: "#EF444410", border: "#EF444440", text: "var(--error)" },
-  critical: { bg: "#EF444420", border: "var(--error)", text: "#FF6B6B" },
+  critical: { bg: "#EF444420", border: "var(--error)", text: "var(--error-light)" },
 };
 
 function Badge({ label, color = "var(--accent)" }: { label: string; color?: string }) {
