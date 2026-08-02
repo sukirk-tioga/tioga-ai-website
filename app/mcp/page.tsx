@@ -79,7 +79,7 @@ function ArchDiagram() {
  {node.icon}
  </div>
  <p className="text-xs font-semibold text-white">{node.label}</p>
- <p className="text-xs text-slate-500">{node.sub}</p>
+ <p className="text-xs text-slate-400">{node.sub}</p>
  </div>
 
  {/* Connector arrow */}
@@ -87,9 +87,9 @@ function ArchDiagram() {
  <div className="flex-1 mx-3 relative h-0.5 flex items-center" style={{ background: "var(--border)" }}>
  <FlowDot delay={i * 0.7} />
  <FlowDot delay={i * 0.7 + 0.5} />
- <span className="absolute right-0 text-slate-600 text-xs">▶</span>
+ <span className="absolute right-0 text-slate-400 text-xs">▶</span>
  {/* Label */}
- <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-xs text-slate-600 whitespace-nowrap font-mono">
+ <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-xs text-slate-400 whitespace-nowrap font-mono">
  {i === 0 ? "query" : "tool_call()"}
  </span>
  </div>
@@ -126,7 +126,7 @@ function ArchDiagram() {
  >
  <div className="text-lg mb-1">{sys.icon}</div>
  <p className="text-xs font-semibold text-white">{sys.label}</p>
- <p className="text-xs text-slate-500">{sys.sub}</p>
+ <p className="text-xs text-slate-400">{sys.sub}</p>
  </div>
  ))}
  </div>
@@ -135,11 +135,11 @@ function ArchDiagram() {
  <div className="mt-4 flex items-center gap-4 justify-center">
  <div className="flex items-center gap-1.5">
  <div className="w-3 h-0.5 rounded" style={{ background: "var(--accent)" }} />
- <span className="text-xs text-slate-500">MCP protocol</span>
+ <span className="text-xs text-slate-400">MCP protocol</span>
  </div>
  <div className="flex items-center gap-1.5">
  <div className="w-2 h-2 rounded-full" style={{ background: "var(--accent)", boxShadow: "0 0 6px var(--accent)" }} />
- <span className="text-xs text-slate-500">live data flow</span>
+ <span className="text-xs text-slate-400">live data flow</span>
  </div>
  </div>
  </div>
@@ -328,10 +328,10 @@ function LiveDemo() {
  <div className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--warning)" }} />
  <div className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--success-dark)" }} />
  </div>
- <span className="text-xs font-mono text-slate-500">claude + mcp-server → enterprise</span>
+ <span className="text-xs font-mono text-slate-400">claude + mcp-server → enterprise</span>
  <div className="ml-auto flex items-center gap-1.5">
  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
- <span className="text-xs text-slate-500">3 systems connected</span>
+ <span className="text-xs text-slate-400">3 systems connected</span>
  </div>
  </div>
 
@@ -388,7 +388,7 @@ function LiveDemo() {
  <div className="flex justify-start">
  <div className="rounded-xl px-4 py-3" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
  <div className="flex gap-1 items-center">
- <span className="text-xs text-slate-500 font-mono mr-2">querying systems</span>
+ <span className="text-xs text-slate-400 font-mono mr-2">querying systems</span>
  {[0, 1, 2].map((i) => (
  <span
  key={i}
@@ -466,7 +466,7 @@ function Comparison() {
  <div className="divide-y" style={{ borderColor: "#EF444420" }}>
  {rows.map((r) => (
  <div key={r.topic} className="px-4 py-3">
- <p className="text-xs text-slate-500 mb-0.5">{r.topic}</p>
+ <p className="text-xs text-slate-400 mb-0.5">{r.topic}</p>
  <p className="text-sm text-slate-300">{r.before}</p>
  </div>
  ))}
@@ -481,7 +481,7 @@ function Comparison() {
  <div className="divide-y" style={{ borderColor: "#00D4FF15" }}>
  {rows.map((r) => (
  <div key={r.topic} className="px-4 py-3">
- <p className="text-xs text-slate-500 mb-0.5">{r.topic}</p>
+ <p className="text-xs text-slate-400 mb-0.5">{r.topic}</p>
  <p className="text-sm text-slate-300">{r.after}</p>
  </div>
  ))}
@@ -605,7 +605,7 @@ export default function MCPPage() {
  </div>
  ))}
  </div>
- <p className="text-center text-xs text-slate-600 mb-16">
+ <p className="text-center text-xs text-slate-400 mb-16">
  See exactly what&apos;s shipped, in order — <a href="/changelog" className="underline hover:text-slate-400 transition-colors">Build Log →</a>
  </p>
 
@@ -635,7 +635,7 @@ export default function MCPPage() {
  >
  Start a Discovery Sprint
  </a>
- <p className="text-xs text-slate-600 mt-3">$5,000 flat · 5 days · prototype included</p>
+ <p className="text-xs text-slate-400 mt-3">$5,000 flat · 5 days · prototype included</p>
  </div>
  </div>
  </main>

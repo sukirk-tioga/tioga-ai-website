@@ -283,7 +283,7 @@ function InvoiceDemo() {
         Upload an invoice file or paste text below. Claude will extract all structured fields instantly.
       </p>
       <FileUpload onTextExtracted={(text, name) => { setInput(text); setState("idle"); setData(null); console.log("Loaded:", name); }} />
-      <p className="text-xs text-slate-600 text-center mb-2">— or paste text directly —</p>
+      <p className="text-xs text-slate-400 text-center mb-2">— or paste text directly —</p>
       <textarea
         value={input}
         onChange={(e) => { setInput(e.target.value); setState("idle"); setData(null); }}
@@ -314,7 +314,7 @@ function InvoiceDemo() {
       {state === "done" && data && (
         <ResultCard>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-xs text-slate-500 uppercase tracking-wider">Extracted Data</p>
+            <p className="text-xs text-slate-400 uppercase tracking-wider">Extracted Data</p>
             <div className="flex items-center gap-2">
               <div className="h-1.5 w-24 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
                 <div
@@ -336,14 +336,14 @@ function InvoiceDemo() {
               { label: "Total Due", value: data.total },
             ].map((f) => (
               <div key={f.label}>
-                <p className="text-xs text-slate-500 mb-0.5">{f.label}</p>
+                <p className="text-xs text-slate-400 mb-0.5">{f.label}</p>
                 <p className="text-sm font-medium text-white">{f.value}</p>
               </div>
             ))}
           </div>
 
           <div className="border-t pt-3 mb-3" style={{ borderColor: "var(--border)" }}>
-            <p className="text-xs text-slate-500 mb-2">Line Items</p>
+            <p className="text-xs text-slate-400 mb-2">Line Items</p>
             <div className="space-y-1">
               {data.lineItems.map((item, i) => (
                 <div key={i} className="flex justify-between text-sm">
@@ -405,7 +405,7 @@ function EmailTriageDemo() {
         Upload an email file, pick a sample, or paste your own. Claude will classify, route, and draft a reply.
       </p>
       <FileUpload onTextExtracted={(text) => analyze(text)} />
-      <p className="text-xs text-slate-600 text-center mb-2">— or pick a sample —</p>
+      <p className="text-xs text-slate-400 text-center mb-2">— or pick a sample —</p>
 
       <div className="flex flex-wrap gap-2 mb-3">
         {SAMPLE_EMAILS.map((s) => (
@@ -447,31 +447,31 @@ function EmailTriageDemo() {
         <ResultCard>
           <div className="grid grid-cols-2 gap-3 mb-4">
             <div>
-              <p className="text-xs text-slate-500 mb-1">Category</p>
+              <p className="text-xs text-slate-400 mb-1">Category</p>
               <Badge label={result.category} />
             </div>
             <div>
-              <p className="text-xs text-slate-500 mb-1">Urgency</p>
+              <p className="text-xs text-slate-400 mb-1">Urgency</p>
               <Badge label={result.urgency.toUpperCase()} color={colors.text} />
             </div>
             <div>
-              <p className="text-xs text-slate-500 mb-1">Sentiment</p>
+              <p className="text-xs text-slate-400 mb-1">Sentiment</p>
               <p className="text-sm text-white capitalize">{result.sentiment}</p>
             </div>
             <div>
-              <p className="text-xs text-slate-500 mb-1">Route To</p>
+              <p className="text-xs text-slate-400 mb-1">Route To</p>
               <p className="text-sm text-white font-medium">{result.routeTo}</p>
             </div>
           </div>
 
           <div className="border-t pt-3 mb-3" style={{ borderColor: "var(--border)" }}>
-            <p className="text-xs text-slate-500 mb-1">Summary</p>
+            <p className="text-xs text-slate-400 mb-1">Summary</p>
             <p className="text-sm text-slate-300">{result.summary}</p>
           </div>
 
           {result.keyEntities.length > 0 && (
             <div className="mb-3">
-              <p className="text-xs text-slate-500 mb-2">Key Entities</p>
+              <p className="text-xs text-slate-400 mb-2">Key Entities</p>
               <div className="flex flex-wrap gap-1.5">
                 {result.keyEntities.map((e) => (
                   <span key={e} className="text-xs px-2 py-0.5 rounded-md" style={{ background: "var(--border)", color: "var(--text-muted)" }}>{e}</span>
@@ -525,7 +525,7 @@ function DocumentDemo() {
         Upload a document, pick a sample, or paste text. Claude will classify, extract entities, and recommend actions.
       </p>
       <FileUpload onTextExtracted={(text) => analyze(text)} />
-      <p className="text-xs text-slate-600 text-center mb-2">— or pick a sample —</p>
+      <p className="text-xs text-slate-400 text-center mb-2">— or pick a sample —</p>
 
       <div className="flex flex-wrap gap-2 mb-3">
         {SAMPLE_DOCS.map((s) => (
@@ -567,11 +567,11 @@ function DocumentDemo() {
         <ResultCard>
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="text-xs text-slate-500 mb-1">Document Type</p>
+              <p className="text-xs text-slate-400 mb-1">Document Type</p>
               <p className="text-lg font-bold text-white">{result.documentType}</p>
             </div>
             <div className="text-right">
-              <p className="text-xs text-slate-500 mb-1">Confidence</p>
+              <p className="text-xs text-slate-400 mb-1">Confidence</p>
               <div className="flex items-center gap-2">
                 <div className="h-1.5 w-20 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
                   <div className="h-full rounded-full" style={{ width: `${result.confidence}%`, background: "linear-gradient(90deg, var(--accent), var(--accent-dark))" }} />
@@ -582,7 +582,7 @@ function DocumentDemo() {
           </div>
 
           <div className="mb-3">
-            <p className="text-xs text-slate-500 mb-1">Summary</p>
+            <p className="text-xs text-slate-400 mb-1">Summary</p>
             <p className="text-sm text-slate-300">{result.summary}</p>
           </div>
 
@@ -590,7 +590,7 @@ function DocumentDemo() {
             {Object.entries(result.keyEntities).map(([type, items]) =>
               items.length > 0 ? (
                 <div key={type}>
-                  <p className="text-xs text-slate-500 mb-1 capitalize">{type}</p>
+                  <p className="text-xs text-slate-400 mb-1 capitalize">{type}</p>
                   <div className="flex flex-wrap gap-1">
                     {items.map((item: string) => (
                       <span key={item} className="text-xs px-2 py-0.5 rounded-md" style={{ background: "var(--border)", color: "var(--text-muted)" }}>{item}</span>
@@ -622,7 +622,7 @@ function DocumentDemo() {
           )}
 
           <div className="mt-3 flex items-center justify-between">
-            <span className="text-xs text-slate-500">Owner Department</span>
+            <span className="text-xs text-slate-400">Owner Department</span>
             <Badge label={result.department} />
           </div>
         </ResultCard>
@@ -682,7 +682,7 @@ export default function DemosPage() {
             These are real AI features — the same capabilities we build into enterprise systems.
             Try them with your own data.
           </p>
-          <p className="text-xs text-slate-600 max-w-xl mx-auto">
+          <p className="text-xs text-slate-400 max-w-xl mx-auto">
             Files and text you submit here are sent to Claude to generate the result shown and are not stored by Tioga AI or used to train any model. See our{" "}
             <a href="/privacy" className="underline hover:text-slate-400 transition-colors">Privacy Policy →</a>
           </p>
@@ -787,7 +787,7 @@ export default function DemosPage() {
             >
               <div className="text-2xl mb-2">{demo.icon}</div>
               <p className="text-sm font-semibold text-white">{demo.title}</p>
-              <p className="text-xs text-slate-500 mt-0.5">{demo.subtitle}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{demo.subtitle}</p>
             </button>
           ))}
         </div>

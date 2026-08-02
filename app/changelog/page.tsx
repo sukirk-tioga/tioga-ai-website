@@ -183,7 +183,7 @@ export default function ChangelogPage() {
                   style={{ background: "var(--bg-dark)", border: `2px solid ${KIND_STYLE[e.kind].color}` }}
                 />
                 <div className="flex items-center gap-3 mb-1.5">
-                  <span className="text-xs font-mono text-slate-500">{e.date}</span>
+                  <span className="text-xs font-mono text-slate-400">{e.date}</span>
                   <span
                     className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
                     style={{ color: KIND_STYLE[e.kind].color, background: KIND_STYLE[e.kind].bg }}
@@ -199,7 +199,7 @@ export default function ChangelogPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-xs text-slate-600 mb-4">
+          <p className="text-xs text-slate-400 mb-4">
             Curious how something was built?{" "}
             <a href="/engineering" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               Read the engineering writeups →

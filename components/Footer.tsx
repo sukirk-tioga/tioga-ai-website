@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="py-10 px-6" style={{ borderTop: "1px solid var(--border)" }}>
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-600">
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-400">
         <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Image
             src="/logo-icon.png"

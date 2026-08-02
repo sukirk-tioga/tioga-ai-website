@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/trust/framework-mapping", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/changelog", priority: 0.6, changeFrequency: "weekly" as const },
     { path: "/engineering", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/engineering/governance-ledger", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/engineering/invoice-processing", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/engineering/email-triage", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/engineering/migration-assessment", priority: 0.5, changeFrequency: "monthly" as const },

@@ -113,8 +113,8 @@ export default function McpVsCustomIntegrationPage() {
               <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: "var(--bg-card)" }}>
-                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Dimension</th>
-                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Custom integration</th>
+                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-slate-400">Dimension</th>
+                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-slate-400">Custom integration</th>
                     <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--accent)" }}>MCP</th>
                   </tr>
                 </thead>
@@ -145,7 +145,7 @@ export default function McpVsCustomIntegrationPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-xs text-slate-600 mb-4">
+          <p className="text-xs text-slate-400 mb-4">
             See the pattern applied to a real workflow in the{" "}
             <a href="/engineering/migration-assessment" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               Migration Assessment writeup →

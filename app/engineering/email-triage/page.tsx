@@ -54,7 +54,7 @@ export default function EmailTriageWriteup() {
               since one call reasons about all of them together.
             </p>
             <div className="p-5 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-              <p className="text-xs text-slate-500 mb-3 uppercase tracking-wide">Every field is a closed enum, not free text</p>
+              <p className="text-xs text-slate-400 mb-3 uppercase tracking-wide">Every field is a closed enum, not free text</p>
               <div className="grid sm:grid-cols-2 gap-2 text-xs font-mono text-slate-400">
                 <p><span style={{ color: "var(--accent)" }}>category</span>: Sales | Support | Complaint | Partnership | Spam | Internal | Invoice | Legal</p>
                 <p><span style={{ color: "var(--accent)" }}>urgency</span>: low | medium | high | critical</p>

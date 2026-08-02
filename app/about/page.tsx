@@ -116,7 +116,7 @@ export default function AboutPage() {
               style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
               <p className="text-sm font-semibold text-white mb-1">Migration Assessment →</p>
-              <p className="text-xs text-slate-500">A live EBS → S/4HANA readiness agent, running against real assessment logic.</p>
+              <p className="text-xs text-slate-400">A live EBS → S/4HANA readiness agent, running against real assessment logic.</p>
             </a>
             <a
               href="/demos/governance-ledger"
@@ -124,7 +124,7 @@ export default function AboutPage() {
               style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
               <p className="text-sm font-semibold text-white mb-1">Governance Ledger →</p>
-              <p className="text-xs text-slate-500">Real operational data from the AI routing gateway this business runs on.</p>
+              <p className="text-xs text-slate-400">Real operational data from the AI routing gateway this business runs on.</p>
             </a>
             <a
               href="/changelog"
@@ -132,7 +132,7 @@ export default function AboutPage() {
               style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
               <p className="text-sm font-semibold text-white mb-1">Build Log →</p>
-              <p className="text-xs text-slate-500">What&apos;s actually shipped on this site, in order, since launch.</p>
+              <p className="text-xs text-slate-400">What&apos;s actually shipped on this site, in order, since launch.</p>
             </a>
           </div>
         </div>

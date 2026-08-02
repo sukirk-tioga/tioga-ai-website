@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import ChatWidget from "@/components/ChatWidget";
 import Nav from "@/components/Nav";
@@ -7,11 +8,11 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://tioga.ai"),
   title: {
-    default: "Tioga AI — Enterprise AI Implementation",
+    default: "Tioga AI — Governed AI Agents for Oracle and SAP",
     template: "%s — Tioga AI",
   },
   description:
-    "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise systems.",
+    "Tioga AI builds governed AI agents for Oracle and SAP — finance, procurement and operations automation that works inside your existing systems without weakening your controls.",
   alternates: {
     canonical: "/",
   },
@@ -24,18 +25,18 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Tioga AI — Enterprise AI Implementation",
+    title: "Tioga AI — Governed AI Agents for Oracle and SAP",
     description:
-      "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise systems.",
+      "Tioga AI builds governed AI agents for Oracle and SAP — finance, procurement and operations automation that works inside your existing systems without weakening your controls.",
     url: "https://tioga.ai",
     siteName: "Tioga AI",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tioga AI — Enterprise AI Implementation",
+    title: "Tioga AI — Governed AI Agents for Oracle and SAP",
     description:
-      "Tioga AI builds production-ready AI systems, MCP integrations, and intelligent automations for enterprise systems.",
+      "Tioga AI builds governed AI agents for Oracle and SAP — finance, procurement and operations automation that works inside your existing systems without weakening your controls.",
   },
 };
 
@@ -54,9 +55,11 @@ export default function RootLayout({
       name: "Sukir Kumaresan",
     },
     description:
-      "Tioga AI builds production-ready AI agents, MCP integrations, and AI governance programs for enterprise systems — NIST AI RMF, ISO 42001, and EU AI Act compliance built into the architecture.",
+      "Tioga AI builds governed AI agents for Oracle and SAP — finance, procurement and operations automation, with NIST AI RMF, ISO 42001, and EU AI Act governance built into the architecture.",
     areaServed: "Global",
     knowsAbout: [
+      "Oracle ERP",
+      "SAP",
       "Model Context Protocol",
       "AI agent implementation",
       "NIST AI RMF",
@@ -76,6 +79,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <ChatWidget />
+        <Analytics />
       </body>
     </html>
   );

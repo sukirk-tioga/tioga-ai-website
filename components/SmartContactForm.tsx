@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 
 interface Classification {
   service: string;
@@ -61,6 +62,11 @@ export default function SmartContactForm() {
 
       setClassification(data.classification);
       setState("done");
+      track("contact_form_submitted", {
+        service: data.classification.service,
+        urgency: data.classification.urgency,
+        complexity: data.classification.complexity,
+      });
     } catch (err: unknown) {
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
       setState("error");
@@ -95,18 +101,18 @@ export default function SmartContactForm() {
           className="p-5 rounded-xl mb-5"
           style={{ background: "var(--bg-dark)", border: `1px solid ${colors.border}` }}
         >
-          <p className="text-xs text-slate-500 uppercase tracking-wider mb-3">AI Classification</p>
+          <p className="text-xs text-slate-400 uppercase tracking-wider mb-3">AI Classification</p>
 
           <div className="grid grid-cols-2 gap-3 mb-4">
             {/* Service */}
             <div>
-              <p className="text-xs text-slate-500 mb-1">Service Match</p>
+              <p className="text-xs text-slate-400 mb-1">Service Match</p>
               <p className="text-sm font-medium text-white">{classification.service}</p>
             </div>
 
             {/* Urgency */}
             <div>
-              <p className="text-xs text-slate-500 mb-1">Urgency</p>
+              <p className="text-xs text-slate-400 mb-1">Urgency</p>
               <span
                 className="text-xs px-2 py-1 rounded-full font-medium capitalize"
                 style={{ background: colors.bg, color: colors.text, border: `1px solid ${colors.border}` }}
@@ -117,7 +123,7 @@ export default function SmartContactForm() {
 
             {/* Complexity */}
             <div>
-              <p className="text-xs text-slate-500 mb-1">Project Size</p>
+              <p className="text-xs text-slate-400 mb-1">Project Size</p>
               <p className="text-sm font-medium text-white">
                 {complexityLabel[classification.complexity as keyof typeof complexityLabel] || classification.complexity}
               </p>
@@ -125,7 +131,7 @@ export default function SmartContactForm() {
 
             {/* Fit Score */}
             <div>
-              <p className="text-xs text-slate-500 mb-1">Fit Score</p>
+              <p className="text-xs text-slate-400 mb-1">Fit Score</p>
               <div className="flex items-center gap-2">
                 <div className="flex gap-0.5">
                   {Array.from({ length: 10 }).map((_, i) => (
@@ -145,7 +151,7 @@ export default function SmartContactForm() {
 
           {/* Summary */}
           <div className="border-t pt-3" style={{ borderColor: "var(--border)" }}>
-            <p className="text-xs text-slate-500 mb-1">Summary</p>
+            <p className="text-xs text-slate-400 mb-1">Summary</p>
             <p className="text-sm text-slate-300">{classification.summary}</p>
           </div>
         </div>
@@ -167,7 +173,7 @@ export default function SmartContactForm() {
             setConsent(false);
             setState("idle");
           }}
-          className="mt-4 text-sm text-slate-500 hover:text-slate-300 transition-colors"
+          className="mt-4 text-sm text-slate-400 hover:text-slate-300 transition-colors"
         >
           ← Submit another inquiry
         </button>
@@ -183,7 +189,7 @@ export default function SmartContactForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="contact-name" className="text-xs text-slate-500 mb-1.5 block">Name *</label>
+            <label htmlFor="contact-name" className="text-xs text-slate-400 mb-1.5 block">Name *</label>
             <input
               id="contact-name"
               name="name"
@@ -196,7 +202,7 @@ export default function SmartContactForm() {
             />
           </div>
           <div>
-            <label htmlFor="contact-company" className="text-xs text-slate-500 mb-1.5 block">Company</label>
+            <label htmlFor="contact-company" className="text-xs text-slate-400 mb-1.5 block">Company</label>
             <input
               id="contact-company"
               name="company"
@@ -210,7 +216,7 @@ export default function SmartContactForm() {
         </div>
 
         <div>
-          <label htmlFor="contact-email" className="text-xs text-slate-500 mb-1.5 block">Email *</label>
+          <label htmlFor="contact-email" className="text-xs text-slate-400 mb-1.5 block">Email *</label>
           <input
             id="contact-email"
             name="email"
@@ -225,9 +231,9 @@ export default function SmartContactForm() {
         </div>
 
         <div>
-          <label htmlFor="contact-description" className="text-xs text-slate-500 mb-1.5 block">
+          <label htmlFor="contact-description" className="text-xs text-slate-400 mb-1.5 block">
             Project Description *
-            <span className="ml-2 text-slate-600 normal-case font-normal">
+            <span className="ml-2 text-slate-400 normal-case font-normal">
               — the more detail, the better the classification
             </span>
           </label>
@@ -251,7 +257,7 @@ export default function SmartContactForm() {
           {state === "classifying" ? "Classifying your inquiry…" : ""}
         </p>
 
-        <label className="flex items-start gap-2.5 text-xs text-slate-500 leading-relaxed cursor-pointer">
+        <label className="flex items-start gap-2.5 text-xs text-slate-400 leading-relaxed cursor-pointer">
           <input
             type="checkbox"
             checked={consent}
@@ -292,7 +298,7 @@ export default function SmartContactForm() {
           )}
         </button>
 
-        <p className="text-xs text-center text-slate-600">
+        <p className="text-xs text-center text-slate-400">
           Powered by <span style={{ color: "var(--accent)" }}>Claude</span> — your inquiry will be instantly classified and routed
         </p>
       </form>

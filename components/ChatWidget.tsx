@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import { track } from "@vercel/analytics";
 
 interface Message {
   id: string;
@@ -142,7 +143,12 @@ export default function ChatWidget() {
       {/* Floating button */}
       <button
         ref={toggleButtonRef}
-        onClick={() => setIsOpen((o) => !o)}
+        onClick={() =>
+          setIsOpen((o) => {
+            if (!o) track("chat_opened");
+            return !o;
+          })
+        }
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110"
         style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
         aria-label={isOpen ? "Close chat" : "Open chat"}
@@ -191,7 +197,7 @@ export default function ChatWidget() {
             <button
               onClick={close}
               aria-label="Close chat"
-              className="ml-auto text-slate-500 hover:text-slate-300 transition-colors"
+              className="ml-auto text-slate-400 hover:text-slate-300 transition-colors"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -310,7 +316,7 @@ export default function ChatWidget() {
 
           {/* Powered by */}
           <div className="px-4 pb-3 text-center">
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-slate-400">
               Powered by{" "}
               <span style={{ color: "var(--accent)" }}>Claude</span> · Tioga AI
             </p>

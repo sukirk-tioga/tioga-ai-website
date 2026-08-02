@@ -93,11 +93,11 @@ export default function TrustPage() {
           <div className="grid md:grid-cols-3 gap-4">
             {FRAMEWORKS.map((f) => (
               <div key={f.name} className="p-6 rounded-2xl flex flex-col" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-                <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-1">{f.tag}</p>
+                <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-1">{f.tag}</p>
                 <h3 className="text-lg font-bold text-white mb-3">{f.name}</h3>
                 <p className="text-sm text-slate-400 leading-relaxed mb-5 flex-1">{f.body}</p>
                 <div className="pt-4" style={{ borderTop: "1px solid var(--border)" }}>
-                  <p className="text-xs text-slate-500 mb-0.5">Mapped offer</p>
+                  <p className="text-xs text-slate-400 mb-0.5">Mapped offer</p>
                   <p className="text-sm font-semibold text-white">{f.offer}</p>
                   <p className="text-xs mt-0.5" style={{ color: "var(--accent)" }}>{f.price}</p>
                   {f.href && (

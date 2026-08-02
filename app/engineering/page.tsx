@@ -86,7 +86,7 @@ export default function EngineeringIndexPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-xs text-slate-600 mb-4">
+          <p className="text-xs text-slate-400 mb-4">
             Prefer the running history?{" "}
             <a href="/changelog" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               See the build log →

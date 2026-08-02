@@ -1,4 +1,5 @@
 import SmartContactForm from "@/components/SmartContactForm";
+import TrackedCTA from "@/components/TrackedCTA";
 
 export default function HomePage() {
  return (
@@ -28,26 +29,30 @@ export default function HomePage() {
  <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed">
  Tioga AI builds governed agents for finance, procurement and operations. Start with a five-day sprint and leave with a working prototype, ROI estimate and production plan.
  </p>
- <p className="text-sm text-slate-500 max-w-xl mx-auto mb-10">
+ <p className="text-sm text-slate-400 max-w-xl mx-auto mb-10">
  Five-day discovery sprint, $5,000 flat — credited toward your project if you move forward.
  </p>
- <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
- <a
+ <div className="flex flex-col items-center sm:flex-row gap-4 justify-center mb-4">
+ <TrackedCTA
  href="#contact"
+ event="cta_book_call"
+ data={{ location: "hero" }}
  className="px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
  style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
  >
  Book a 20-minute fit call
- </a>
- <a
+ </TrackedCTA>
+ <TrackedCTA
  href="/demos?tab=invoice"
+ event="cta_view_demo"
+ data={{ location: "hero" }}
  className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
  style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
  >
  See an AP agent run
- </a>
+ </TrackedCTA>
  </div>
- <p className="text-xs text-slate-600">Or click the chat bubble ↘ to talk to our AI assistant right now</p>
+ <p className="text-xs text-slate-400">Or click the chat bubble ↘ to talk to our AI assistant right now</p>
  </section>
 
  {/* Stats Bar */}
@@ -61,7 +66,7 @@ export default function HomePage() {
  ].map((stat) => (
  <div key={stat.label} className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
  <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>{stat.value}</div>
- <div className="text-xs text-slate-500 uppercase tracking-wide">{stat.label}</div>
+ <div className="text-xs text-slate-400 uppercase tracking-wide">{stat.label}</div>
  </div>
  ))}
  </div>
@@ -200,7 +205,7 @@ export default function HomePage() {
 
  {/* Integrations */}
  <section className="py-16 px-6 max-w-5xl mx-auto">
- <p className="text-center text-xs text-slate-600 uppercase tracking-widest mb-8">We integrate with your existing enterprise stack</p>
+ <p className="text-center text-xs text-slate-400 uppercase tracking-widest mb-8">We integrate with your existing enterprise stack</p>
  <div className="flex flex-wrap justify-center items-center gap-3">
  {["SAP", "Salesforce", "ServiceNow", "Oracle", "Workday", "SharePoint", "Slack", "Microsoft 365"].map((name) => (
  <div
@@ -305,7 +310,7 @@ export default function HomePage() {
  <span className="text-xl shrink-0 mt-0.5">{item.icon}</span>
  <div>
  <h4 className="text-sm font-semibold text-white mb-1">{item.title}</h4>
- <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+ <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
  </div>
  </div>
  ))}
@@ -352,7 +357,7 @@ export default function HomePage() {
  </span>
  </div>
  <p className="text-sm text-slate-400 leading-relaxed mb-2">{p.desc}</p>
- <p className="text-xs text-slate-600">{p.detail}</p>
+ <p className="text-xs text-slate-400">{p.detail}</p>
  </div>
  </div>
  ))}

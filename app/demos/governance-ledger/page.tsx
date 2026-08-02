@@ -111,9 +111,9 @@ export default function GovernanceLedgerPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         {STATS.map((s) => (
           <div key={s.label} className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-            <p className="text-[11px] text-slate-500 uppercase tracking-wide mb-1.5">{s.label}</p>
+            <p className="text-[11px] text-slate-400 uppercase tracking-wide mb-1.5">{s.label}</p>
             <p className="text-xl font-bold text-white font-mono">{s.value}</p>
-            <p className="text-xs text-slate-500 mt-1 leading-snug">{s.sub}</p>
+            <p className="text-xs text-slate-400 mt-1 leading-snug">{s.sub}</p>
           </div>
         ))}
       </div>
@@ -122,7 +122,7 @@ export default function GovernanceLedgerPage() {
       <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div className="px-5 pt-5 pb-3">
           <h2 className="font-semibold text-white">Per-call ledger</h2>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-slate-400 mt-1">
             What was requested, what actually served it, what it cost, and which governance
             function it evidences. Nothing here was written for this page.
           </p>
@@ -132,7 +132,7 @@ export default function GovernanceLedgerPage() {
             <thead>
               <tr style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
                 {["Timestamp", "Requested → served", "Tokens in/out", "Cost", "Pool", "Quality", "Evidences"].map((h) => (
-                  <th key={h} className="text-left text-[11px] text-slate-500 uppercase tracking-wide font-medium px-4 py-2.5 whitespace-nowrap">
+                  <th key={h} className="text-left text-[11px] text-slate-400 uppercase tracking-wide font-medium px-4 py-2.5 whitespace-nowrap">
                     {h}
                   </th>
                 ))}
@@ -143,8 +143,8 @@ export default function GovernanceLedgerPage() {
                 <tr key={i} style={{ borderBottom: i === LEDGER.length - 1 ? "none" : "1px solid var(--border)" }}>
                   <td className="px-4 py-2.5 font-mono text-xs text-slate-400 whitespace-nowrap">{row.ts}</td>
                   <td className="px-4 py-2.5 whitespace-nowrap">
-                    <span className="text-slate-500">{row.requested}</span>
-                    <span className="mx-1.5 text-slate-600">→</span>
+                    <span className="text-slate-400">{row.requested}</span>
+                    <span className="mx-1.5 text-slate-400">→</span>
                     <span className="text-white font-medium">{row.served}</span>
                   </td>
                   <td className="px-4 py-2.5 font-mono text-xs text-slate-300 whitespace-nowrap">{row.in} / {row.out}</td>
@@ -154,7 +154,7 @@ export default function GovernanceLedgerPage() {
                       {row.pool === "free" ? "free-tier" : "OpenRouter"}
                     </span>
                   </td>
-                  <td className="px-4 py-2.5 font-mono text-xs text-slate-500 whitespace-nowrap">{row.quality ?? "—"}</td>
+                  <td className="px-4 py-2.5 font-mono text-xs text-slate-400 whitespace-nowrap">{row.quality ?? "—"}</td>
                   <td className="px-4 py-2.5 whitespace-nowrap">
                     <div className="flex gap-1.5">
                       {row.tags.map((t) => (
@@ -178,7 +178,7 @@ export default function GovernanceLedgerPage() {
       {/* Live gateway snapshot */}
       <div className="mt-8">
         <h2 className="font-semibold text-white mb-1">Live gateway snapshot</h2>
-        <p className="text-xs text-slate-500 mb-4">
+        <p className="text-xs text-slate-400 mb-4">
           Checked directly against the gateway&apos;s own status tool on Jul 27,
           2026 — a separate, fresher check than the ledger rows above, not a
           live-refreshing counter on this page.
@@ -186,9 +186,9 @@ export default function GovernanceLedgerPage() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {LIVE_STATS.map((s) => (
             <div key={s.label} className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-              <p className="text-[11px] text-slate-500 uppercase tracking-wide mb-1.5">{s.label}</p>
+              <p className="text-[11px] text-slate-400 uppercase tracking-wide mb-1.5">{s.label}</p>
               <p className="text-xl font-bold text-white font-mono">{s.value}</p>
-              <p className="text-xs text-slate-500 mt-1 leading-snug">{s.sub}</p>
+              <p className="text-xs text-slate-400 mt-1 leading-snug">{s.sub}</p>
             </div>
           ))}
         </div>
@@ -197,7 +197,7 @@ export default function GovernanceLedgerPage() {
       {/* NIST AI RMF mapping */}
       <div className="mt-8">
         <h2 className="font-semibold text-white mb-1">What this satisfies</h2>
-        <p className="text-xs text-slate-500 mb-4">
+        <p className="text-xs text-slate-400 mb-4">
           Mapped to the NIST AI RMF&apos;s four functions — the framework this ledger was built against, not retrofitted to.
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
@@ -205,7 +205,7 @@ export default function GovernanceLedgerPage() {
             <div key={f.name} className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
               <p className="text-xs font-bold tracking-wide mb-1.5" style={{ color: "var(--accent)" }}>{f.name}</p>
               <p className="text-sm text-slate-400 leading-relaxed">{f.body}</p>
-              <p className="text-[11px] font-mono text-slate-600 mt-2">{f.field}</p>
+              <p className="text-[11px] font-mono text-slate-400 mt-2">{f.field}</p>
             </div>
           ))}
         </div>

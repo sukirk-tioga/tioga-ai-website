@@ -62,7 +62,7 @@ function ScoreRing({ score }: { score: number }) {
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-2xl font-bold text-white leading-none">{score}</span>
-        <span className="text-[10px] text-slate-500 mt-0.5">/ 10</span>
+        <span className="text-[10px] text-slate-400 mt-0.5">/ 10</span>
       </div>
     </div>
   );
@@ -186,7 +186,7 @@ export default function MigrationAssessmentPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="w-full rounded-lg px-3 py-2.5 text-sm text-slate-200 outline-none focus:border-slate-500 placeholder:text-slate-600"
+                className="w-full rounded-lg px-3 py-2.5 text-sm text-slate-200 outline-none focus:border-slate-500 placeholder:text-slate-400"
                 style={inputStyle}
               />
             </Field>
@@ -211,7 +211,7 @@ export default function MigrationAssessmentPage() {
             )}
           </button>
           {modules.length === 0 && (
-            <p className="text-xs text-slate-500 text-center -mt-2">Select at least one module.</p>
+            <p className="text-xs text-slate-400 text-center -mt-2">Select at least one module.</p>
           )}
           {state === "error" && (
             <p className="text-sm text-center" style={{ color: "var(--error-light)" }}>{error}</p>
@@ -238,7 +238,7 @@ export default function MigrationAssessmentPage() {
                 </div>
                 <p className="text-sm text-slate-400 leading-relaxed mb-3">{result.scoreReasoning}</p>
                 <p className="text-sm">
-                  <span className="text-slate-500">Estimated timeline: </span>
+                  <span className="text-slate-400">Estimated timeline: </span>
                   <span className="text-white font-semibold font-mono">{result.timelineRange}</span>
                 </p>
               </div>
@@ -258,11 +258,11 @@ export default function MigrationAssessmentPage() {
             {/* Approach + next steps */}
             <div className="grid sm:grid-cols-2 gap-3">
               <div className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-                <p className="text-xs text-slate-500 uppercase tracking-wide mb-1.5">Recommended approach</p>
+                <p className="text-xs text-slate-400 uppercase tracking-wide mb-1.5">Recommended approach</p>
                 <p className="text-sm text-slate-300 leading-relaxed">{result.recommendedApproach.reasoning}</p>
               </div>
               <div className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-                <p className="text-xs text-slate-500 uppercase tracking-wide mb-1.5">Next steps</p>
+                <p className="text-xs text-slate-400 uppercase tracking-wide mb-1.5">Next steps</p>
                 <ul className="space-y-1.5">
                   {result.nextSteps.map((s, i) => (
                     <li key={i} className="text-sm text-slate-300 flex gap-2">
@@ -275,7 +275,7 @@ export default function MigrationAssessmentPage() {
             </div>
           </div>
 
-          <p className="text-xs text-slate-500 text-center mt-4 max-w-lg mx-auto">
+          <p className="text-xs text-slate-400 text-center mt-4 max-w-lg mx-auto">
             This is a sample assessment. A full assessment includes data profiling, code analysis,
             and a module-by-module roadmap.
           </p>
@@ -285,7 +285,7 @@ export default function MigrationAssessmentPage() {
             </p>
           )}
           {email && !emailed && (
-            <p className="text-xs text-slate-500 text-center mt-2">
+            <p className="text-xs text-slate-400 text-center mt-2">
               We couldn&apos;t email a copy just now — you can still copy this page&apos;s results manually.
             </p>
           )}

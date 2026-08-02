@@ -138,7 +138,7 @@ export default function ServicesPage() {
         <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-4">
           Tioga AI runs three practices — automating finance and operations, modernizing ERP with an agent layer, and governing enterprise AI. Thirteen engagements sit underneath them, each scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
         </p>
-        <p className="text-slate-500 text-sm max-w-2xl leading-relaxed mb-16">
+        <p className="text-slate-400 text-sm max-w-2xl leading-relaxed mb-16">
           Every engagement below starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment. If you move forward, the $5,000 is credited toward the price of the engagement below.
         </p>
 
@@ -166,7 +166,7 @@ export default function ServicesPage() {
                       </div>
                       <div className="shrink-0 text-right md:pl-8">
                         <p className="text-sm font-semibold text-white">{offer.price}</p>
-                        <p className="text-xs text-slate-500 mt-0.5">{offer.duration}</p>
+                        <p className="text-xs text-slate-400 mt-0.5">{offer.duration}</p>
                       </div>
                     </div>
                     <div className="mt-5 pt-5" style={{ borderTop: "1px solid var(--border)" }}>
@@ -193,7 +193,7 @@ export default function ServicesPage() {
           >
             Start a conversation
           </a>
-          <p className="text-xs text-slate-600 mt-4">
+          <p className="text-xs text-slate-400 mt-4">
             Not sure where to start?{" "}
             <a href="/#services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               See the three entry-point offers →

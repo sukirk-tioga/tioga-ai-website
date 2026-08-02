@@ -67,7 +67,7 @@ export default function EUAIActPage() {
               <div key={t.scope} className="p-6 rounded-2xl flex flex-col md:flex-row md:items-center gap-5" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
                 <div className="md:w-56 shrink-0">
                   <p className="text-2xl font-bold text-white leading-tight">{t.amount}</p>
-                  <p className="text-xs text-slate-500 mt-1">{t.label}</p>
+                  <p className="text-xs text-slate-400 mt-1">{t.label}</p>
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
@@ -84,7 +84,7 @@ export default function EUAIActPage() {
               </div>
             ))}
           </div>
-          <p className="text-xs text-slate-600 mt-4">
+          <p className="text-xs text-slate-400 mt-4">
             Whichever figure is higher applies to large enterprises; SMEs and
             startups face the lower of the two amounts in each tier.
           </p>
@@ -95,11 +95,11 @@ export default function EUAIActPage() {
           <h2 className="text-lg font-bold text-white mb-4">What&apos;s already live vs. what&apos;s coming</h2>
           <div className="space-y-4">
             <div className="flex gap-4">
-              <span className="text-xs font-mono text-slate-500 w-24 shrink-0 pt-0.5">Feb 2025</span>
+              <span className="text-xs font-mono text-slate-400 w-24 shrink-0 pt-0.5">Feb 2025</span>
               <p className="text-sm text-slate-400">Prohibited-practice provisions and AI literacy obligations took effect — the €35M/7% tier is already enforceable.</p>
             </div>
             <div className="flex gap-4">
-              <span className="text-xs font-mono text-slate-500 w-24 shrink-0 pt-0.5">Aug 2025</span>
+              <span className="text-xs font-mono text-slate-400 w-24 shrink-0 pt-0.5">Aug 2025</span>
               <p className="text-sm text-slate-400">General-purpose AI model provider obligations and governance-authority designations took effect.</p>
             </div>
             <div className="flex gap-4">
@@ -107,11 +107,11 @@ export default function EUAIActPage() {
               <p className="text-sm text-slate-300">High-risk system obligations (Annex III — the category most enterprise AI agents in finance, HR, and CRM fall into) and Article 50 transparency requirements (AI-generated content disclosure, chatbot disclosure) phase in — the deadline most mid-market enterprises still have open exposure against.</p>
             </div>
             <div className="flex gap-4">
-              <span className="text-xs font-mono text-slate-500 w-24 shrink-0 pt-0.5">Aug 2027</span>
+              <span className="text-xs font-mono text-slate-400 w-24 shrink-0 pt-0.5">Aug 2027</span>
               <p className="text-sm text-slate-400">High-risk systems that are safety components of products already regulated under existing EU product-safety law (Annex I — machinery, medical devices, and similar) get a one-year later deadline.</p>
             </div>
           </div>
-          <p className="text-xs text-slate-600 mt-4">
+          <p className="text-xs text-slate-400 mt-4">
             Dates per the EU AI Act&apos;s official timeline; not legal advice.
             Confirm applicability for your specific system with counsel. Reviewed 2026-07-27.
           </p>

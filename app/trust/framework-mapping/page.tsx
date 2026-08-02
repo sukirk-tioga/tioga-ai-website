@@ -62,7 +62,7 @@ export default function FrameworkMappingPage() {
           the same four functions from the other direction: as legal
           requirements rather than best practices.
         </p>
-        <p className="text-sm text-slate-500 leading-relaxed max-w-2xl mb-16">
+        <p className="text-sm text-slate-400 leading-relaxed max-w-2xl mb-16">
           This is a conceptual alignment, not a claim of ISO 42001
           certification, a control-by-control audit mapping, or legal advice
           — Tioga AI is not yet ISO 42001 certified, and the EU AI Act
@@ -78,15 +78,15 @@ export default function FrameworkMappingPage() {
               <p className="text-xs font-bold tracking-wide mb-3" style={{ color: "var(--accent)" }}>{m.function}</p>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
-                  <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-1.5">NIST AI RMF</p>
+                  <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5">NIST AI RMF</p>
                   <p className="text-sm text-slate-400 leading-relaxed">{m.nist}</p>
                 </div>
                 <div className="md:pl-6" style={{ borderLeft: "1px solid var(--border)" }}>
-                  <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-1.5">ISO 42001</p>
+                  <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5">ISO 42001</p>
                   <p className="text-sm text-slate-400 leading-relaxed">{m.iso}</p>
                 </div>
                 <div className="md:pl-6" style={{ borderLeft: "1px solid var(--border)" }}>
-                  <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-1.5">EU AI Act</p>
+                  <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5">EU AI Act</p>
                   <p className="text-sm text-slate-400 leading-relaxed">{m.euAiAct}</p>
                 </div>
               </div>
@@ -94,7 +94,7 @@ export default function FrameworkMappingPage() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center text-center">
+        <div className="flex flex-col items-center sm:flex-row gap-4 justify-center text-center">
           <a
             href="/services"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"

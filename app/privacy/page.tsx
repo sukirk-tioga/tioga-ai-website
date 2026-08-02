@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </div>
         <h1 className="text-4xl font-bold text-white mb-4">Privacy Policy</h1>
-        <p className="text-sm text-slate-500 mb-14">Last updated: 2026-07-27</p>
+        <p className="text-sm text-slate-400 mb-14">Last updated: 2026-07-27</p>
 
         <Section title="The short version">
           <p>

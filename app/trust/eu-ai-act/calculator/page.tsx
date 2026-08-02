@@ -134,7 +134,7 @@ export default function EUAIActCalculatorPage() {
           categories — not a model-generated guess. Select everything that
           applies; nothing here is saved or sent anywhere.
         </p>
-        <p className="text-xs text-slate-600 mb-12">
+        <p className="text-xs text-slate-400 mb-12">
           This is a directional check, not legal advice — a real classification
           depends on facts a form can&apos;t capture. Talk to counsel for anything
           consequential.
@@ -179,7 +179,7 @@ export default function EUAIActCalculatorPage() {
 
                 <div className="mb-8">
                   <p className="text-sm font-semibold text-white mb-1">Is your AI system used for any of these?</p>
-                  <p className="text-xs text-slate-500 mb-3">Annex III high-risk categories.</p>
+                  <p className="text-xs text-slate-400 mb-3">Annex III high-risk categories.</p>
                   <div className="space-y-2">
                     {HIGH_RISK_ITEMS.map((i) => (
                       <CheckItem key={i.id} checked={selected.has(i.id)} onChange={() => toggle(i.id)} label={i.label} />
@@ -189,7 +189,7 @@ export default function EUAIActCalculatorPage() {
 
                 <div className="mb-8">
                   <p className="text-sm font-semibold text-white mb-1">Does your AI system do any of these?</p>
-                  <p className="text-xs text-slate-500 mb-3">Limited-risk — Article 50 transparency obligations.</p>
+                  <p className="text-xs text-slate-400 mb-3">Limited-risk — Article 50 transparency obligations.</p>
                   <div className="space-y-2">
                     {LIMITED_RISK_ITEMS.map((i) => (
                       <CheckItem key={i.id} checked={selected.has(i.id)} onChange={() => toggle(i.id)} label={i.label} />
@@ -213,22 +213,22 @@ export default function EUAIActCalculatorPage() {
           <div className="lg:sticky lg:top-28 h-fit">
             {euExposure === null ? (
               <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-                <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-2">Result</p>
+                <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-2">Result</p>
                 <p className="text-sm text-slate-400 leading-relaxed">
                   Answer the question above to see your likely risk tier.
                 </p>
               </div>
             ) : (
               <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: `1px solid ${result.color}40` }}>
-                <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-2">Result</p>
+                <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-2">Result</p>
                 <h2 className="text-lg font-bold mb-3" style={{ color: result.color }}>{result.title}</h2>
                 <div className="mb-4 pb-4" style={{ borderBottom: "1px solid var(--border)" }}>
-                  <p className="text-[11px] uppercase tracking-wide text-slate-500 mb-1">Penalty exposure</p>
+                  <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-1">Penalty exposure</p>
                   <p className="text-sm font-semibold text-white">{result.penalty}</p>
                 </div>
                 <p className="text-sm text-slate-400 leading-relaxed mb-5">{result.body}</p>
                 {gpai && euExposure && (
-                  <p className="text-xs text-slate-500 leading-relaxed mb-5 p-3 rounded-lg" style={{ background: "var(--bg-dark)" }}>
+                  <p className="text-xs text-slate-400 leading-relaxed mb-5 p-3 rounded-lg" style={{ background: "var(--bg-dark)" }}>
                     You also flagged building your own model — that adds GPAI
                     provider obligations (documentation, copyright policy, and
                     systemic-risk assessment for the most capable models) on top
