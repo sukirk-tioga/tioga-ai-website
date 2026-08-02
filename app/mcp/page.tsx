@@ -572,7 +572,8 @@ export default function MCPPage() {
  <h2 className="text-xl font-bold text-white mb-2">Before & After</h2>
  <p className="text-slate-400 text-sm mb-5">
  Traditional enterprise integrations require custom code per system.
- MCP replaces all of that with a single, standardized layer.
+ MCP standardizes the interface layer — Tioga still builds the authentication,
+ business rules, controls and error handling underneath it for each system.
  </p>
  <Comparison />
  </div>
@@ -592,7 +593,7 @@ export default function MCPPage() {
  {[
  { stat: "< 2 weeks", label: "to first MCP integration" },
  { stat: "10+", label: "connector tools built against test/demo instances" },
- { stat: "Zero", label: "new integrations per additional use case" },
+ { stat: "Reusable", label: "tools cut duplicate integration work per use case" },
  ].map((s) => (
  <div
  key={s.label}

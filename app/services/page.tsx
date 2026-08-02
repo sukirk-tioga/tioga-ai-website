@@ -11,139 +11,196 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ServicesPage() {
- const offers = [
- {
- name: "AI Operations Assessment",
- desc: "Map manual workflows across finance, HR, procurement, and operations. Rank automation opportunities by ROI and feasibility. Concrete plan in your hands.",
- price: "$10–15K",
- duration: "2–3 weeks",
- },
- {
- name: "AI Governance Readiness Assessment",
- desc: "NIST AI RMF, ISO 42001, EU AI Act, and US state law gap analysis with a prioritized remediation roadmap and sample executive summary.",
- price: "$20–35K",
- duration: "3–4 weeks",
- },
- {
- name: "ERP Modernization Advisory",
- desc: "Ongoing strategic guidance for organizations modernizing Oracle EBS, SAP legacy, or custom ERP environments — with AI integration as a first-class requirement.",
- price: "$15–25K/month",
- duration: "3–12 months",
- },
- {
- name: "AI Agent Pilot",
- desc: "Production-ready AI agent built against your highest-value workflow, integrated with your real systems, with governance documentation delivered alongside the code.",
- price: "$25–50K",
- duration: "4–8 weeks",
- },
- {
- name: "Legacy System AI Augmentation",
- desc: "Add AI capability to your existing ERP, CRM, or HRIS without replacing the underlying system — extending what works rather than ripping it out.",
- price: "$40–100K",
- duration: "8–16 weeks",
- },
- {
- name: "EU AI Act Conformity Program",
- desc: "Full conformity documentation, technical files, and governance controls for organizations subject to the EU AI Act, structured for audit readiness.",
- price: "$75–200K",
- duration: "4–8 months",
- },
- {
- name: "Multi-State AI Compliance Program",
- desc: "Gap analysis and remediation roadmap across US state AI laws for organizations operating in multiple jurisdictions.",
- price: "$40–80K",
- duration: "6–10 weeks",
- },
- {
- name: "ISO 42001 Implementation Sprint",
- desc: "Structured implementation of an AI management system aligned to ISO 42001, from readiness assessment to certification-ready documentation.",
- price: "$50–120K",
- duration: "3–6 months",
- },
- {
- name: "Agentic AI Governance Framework",
- desc: "Governance architecture for organizations deploying autonomous AI agents in production — risk registers, oversight controls, and escalation protocols.",
- price: "$30–75K",
- duration: "4–8 weeks",
- },
- {
- name: "Fractional AI Governance Officer",
- desc: "Ongoing governance leadership for organizations that need AI risk management expertise without a full-time hire — structured as a monthly retainer.",
- price: "$12–25K/month",
- duration: "6–12 months",
- },
- {
- name: "Agent-Ready ERP Diagnostic & Governed Write-Path",
- desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear.",
- price: "$60–120K",
- duration: "~6 weeks",
- },
- {
- name: "AI Governance Evidence Package for Insurance Underwriting",
- desc: "A written AI Systems Program mapped to NIST AI RMF, built for an insurance renewal or underwriter questionnaire — system inventory, human-oversight documentation, and a one-page summary your broker can hand to the carrier.",
- price: "$15–25K",
- duration: "2–3 weeks",
- },
- {
- name: "AI Cost & Model Governance Assessment",
- desc: "Model-tiering policy, token/cache optimization, budget guardrails, and model-governance rules — built on the same routing infrastructure behind Tioga's own live Governance Ledger demo.",
- price: "$10–20K",
- duration: "2–3 weeks",
- },
- ];
+interface Offer {
+  name: string;
+  desc: string;
+  price: string;
+  duration: string;
+}
 
- return (
- <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
- <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
- <h1 className="text-4xl font-bold text-white mb-6">Services</h1>
- <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-4">
- Tioga AI offers thirteen engagements spanning AI agent development, enterprise systems modernization, and AI governance. Each is scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
- </p>
- <p className="text-slate-500 text-sm max-w-2xl leading-relaxed mb-16">
- Every engagement below starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment.
- </p>
- <div className="space-y-4">
- {offers.map((offer, i) => (
- <div
- key={offer.name}
- className="p-7 rounded-2xl"
- style={{ background: "var(--bg-card)", border: "1px solid rgba(255,255,255,0.08)" }}
- >
- <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
- <div className="flex-1">
- <div className="flex items-center gap-3 mb-2">
- <span className="text-xs font-mono" style={{ color: "var(--accent)" }}>
- {String(i + 1).padStart(2, "0")}
- </span>
- <h2 className="text-lg font-semibold text-white">{offer.name}</h2>
- </div>
- <p className="text-sm text-slate-400 leading-relaxed">{offer.desc}</p>
- </div>
- <div className="shrink-0 text-right md:pl-8">
- <p className="text-sm font-semibold text-white">{offer.price}</p>
- <p className="text-xs text-slate-500 mt-0.5">{offer.duration}</p>
- </div>
- </div>
- </div>
- ))}
- </div>
- <div className="mt-16 text-center">
- <a
- href="/#contact"
- className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
- style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
- >
- Start a conversation
- </a>
- <p className="text-xs text-slate-600 mt-4">
- Not sure where to start?{" "}
- <a href="/#services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
- See the three entry-point offers →
- </a>
- </p>
- </div>
- </section>
- </main>
- );
+interface Practice {
+  key: string;
+  name: string;
+  blurb: string;
+  offers: Offer[];
+}
+
+const PRACTICES: Practice[] = [
+  {
+    key: "automate",
+    name: "Automate finance and operations",
+    blurb:
+      "Find the highest-ROI manual work in finance, HR, procurement, and operations, then build a production agent against it.",
+    offers: [
+      {
+        name: "AI Operations Assessment",
+        desc: "Map manual workflows across finance, HR, procurement, and operations. Rank automation opportunities by ROI and feasibility. Concrete plan in your hands.",
+        price: "$10–15K",
+        duration: "2–3 weeks",
+      },
+      {
+        name: "AI Agent Pilot",
+        desc: "Production-ready AI agent built against your highest-value workflow, integrated with your real systems, with governance documentation delivered alongside the code.",
+        price: "$25–50K",
+        duration: "4–8 weeks",
+      },
+    ],
+  },
+  {
+    key: "erp",
+    name: "Modernize ERP with an agent layer",
+    blurb:
+      "Add AI capability to Oracle EBS, SAP, or a legacy ERP without ripping out what already works — including the one stalled agent-to-ERP write path that's actually blocking you.",
+    offers: [
+      {
+        name: "Agent-Ready ERP Diagnostic & Governed Write-Path",
+        desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear.",
+        price: "$60–120K",
+        duration: "~6 weeks",
+      },
+      {
+        name: "Legacy System AI Augmentation",
+        desc: "Add AI capability to your existing ERP, CRM, or HRIS without replacing the underlying system — extending what works rather than ripping it out.",
+        price: "$40–100K",
+        duration: "8–16 weeks",
+      },
+      {
+        name: "ERP Modernization Advisory",
+        desc: "Ongoing strategic guidance for organizations modernizing Oracle EBS, SAP legacy, or custom ERP environments — with AI integration as a first-class requirement.",
+        price: "$15–25K/month",
+        duration: "3–12 months",
+      },
+    ],
+  },
+  {
+    key: "govern",
+    name: "Govern enterprise AI",
+    blurb:
+      "NIST AI RMF, ISO 42001, EU AI Act, and US state-law programs — plus fractional leadership — for organizations that need AI risk management built into the architecture, not backfilled after a pilot succeeds. This is the deepest bench of the three practices: eight engagements, from a one-time gap analysis to ongoing governance leadership.",
+    offers: [
+      {
+        name: "AI Governance Readiness Assessment",
+        desc: "NIST AI RMF, ISO 42001, EU AI Act, and US state law gap analysis with a prioritized remediation roadmap and sample executive summary.",
+        price: "$20–35K",
+        duration: "3–4 weeks",
+      },
+      {
+        name: "AI Cost & Model Governance Assessment",
+        desc: "Model-tiering policy, token/cache optimization, budget guardrails, and model-governance rules — built on the same routing infrastructure behind Tioga's own live Governance Ledger demo.",
+        price: "$10–20K",
+        duration: "2–3 weeks",
+      },
+      {
+        name: "AI Governance Evidence Package for Insurance Underwriting",
+        desc: "A written AI Systems Program mapped to NIST AI RMF, built for an insurance renewal or underwriter questionnaire — system inventory, human-oversight documentation, and a one-page summary your broker can hand to the carrier.",
+        price: "$15–25K",
+        duration: "2–3 weeks",
+      },
+      {
+        name: "Agentic AI Governance Framework",
+        desc: "Governance architecture for organizations deploying autonomous AI agents in production — risk registers, oversight controls, and escalation protocols.",
+        price: "$30–75K",
+        duration: "4–8 weeks",
+      },
+      {
+        name: "Multi-State AI Compliance Program",
+        desc: "Gap analysis and remediation roadmap across US state AI laws for organizations operating in multiple jurisdictions.",
+        price: "$40–80K",
+        duration: "6–10 weeks",
+      },
+      {
+        name: "ISO 42001 Implementation Sprint",
+        desc: "Structured implementation of an AI management system aligned to ISO 42001, from readiness assessment to certification-ready documentation.",
+        price: "$50–120K",
+        duration: "3–6 months",
+      },
+      {
+        name: "EU AI Act Conformity Program",
+        desc: "Full conformity documentation, technical files, and governance controls for organizations subject to the EU AI Act, structured for audit readiness.",
+        price: "$75–200K",
+        duration: "4–8 months",
+      },
+      {
+        name: "Fractional AI Governance Officer",
+        desc: "Ongoing governance leadership for organizations that need AI risk management expertise without a full-time hire — structured as a monthly retainer.",
+        price: "$12–25K/month",
+        duration: "6–12 months",
+      },
+    ],
+  },
+];
+
+export default function ServicesPage() {
+  return (
+    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+      <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
+        <h1 className="text-4xl font-bold text-white mb-6">Services</h1>
+        <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-4">
+          Tioga AI runs three practices — automating finance and operations, modernizing ERP with an agent layer, and governing enterprise AI. Thirteen engagements sit underneath them, each scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
+        </p>
+        <p className="text-slate-500 text-sm max-w-2xl leading-relaxed mb-16">
+          Every engagement below starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment. If you move forward, the $5,000 is credited toward the price of the engagement below.
+        </p>
+
+        <div className="space-y-16">
+          {PRACTICES.map((practice, pi) => (
+            <div key={practice.key}>
+              <div className="flex items-baseline gap-3 mb-2">
+                <span className="text-sm font-mono" style={{ color: "var(--accent)" }}>
+                  {String(pi + 1).padStart(2, "0")}
+                </span>
+                <h2 className="text-2xl font-bold text-white">{practice.name}</h2>
+              </div>
+              <p className="text-sm text-slate-400 max-w-2xl leading-relaxed mb-6">{practice.blurb}</p>
+              <div className="space-y-4">
+                {practice.offers.map((offer) => (
+                  <div
+                    key={offer.name}
+                    className="p-7 rounded-2xl"
+                    style={{ background: "var(--bg-card)", border: "1px solid rgba(255,255,255,0.08)" }}
+                  >
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-white mb-2">{offer.name}</h3>
+                        <p className="text-sm text-slate-400 leading-relaxed">{offer.desc}</p>
+                      </div>
+                      <div className="shrink-0 text-right md:pl-8">
+                        <p className="text-sm font-semibold text-white">{offer.price}</p>
+                        <p className="text-xs text-slate-500 mt-0.5">{offer.duration}</p>
+                      </div>
+                    </div>
+                    <div className="mt-5 pt-5" style={{ borderTop: "1px solid var(--border)" }}>
+                      <a
+                        href="/#contact"
+                        className="text-sm font-medium transition-colors hover:text-white"
+                        style={{ color: "var(--accent)" }}
+                      >
+                        Start a conversation about this engagement →
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <a
+            href="/#contact"
+            className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
+          >
+            Start a conversation
+          </a>
+          <p className="text-xs text-slate-600 mt-4">
+            Not sure where to start?{" "}
+            <a href="/#services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+              See the three entry-point offers →
+            </a>
+          </p>
+        </div>
+      </section>
+    </main>
+  );
 }

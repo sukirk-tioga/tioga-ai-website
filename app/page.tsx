@@ -15,39 +15,62 @@ export default function HomePage() {
  style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
- AI Agents for Enterprise Systems
+ Governed AI Automation for Enterprise Systems
  </div>
- <h1 className="text-4xl lg:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
- The systems you stand on<br />
- Will{" "}
+ <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight">
+ Put AI to work in{" "}
  <span style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
- stand on AI
+ Oracle and SAP
  </span>
+ <br />
+ without replacing the systems or weakening your controls.
  </h1>
  <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed">
- We deploy AI agents that work inside your existing ERP, CRM, and HRIS — with NIST, ISO 42001, and EU AI Act governance built into the architecture, not bolted on later.
+ Tioga AI builds governed agents for finance, procurement and operations. Start with a five-day sprint and leave with a working prototype, ROI estimate and production plan.
  </p>
  <p className="text-sm text-slate-500 max-w-xl mx-auto mb-10">
- 5-day discovery sprint, $5,000 flat. Pilot build in 2–8 weeks, scope-dependent. Production agents and governance docs ship together.
+ Five-day discovery sprint, $5,000 flat — credited toward your project if you move forward.
  </p>
  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
  <a
- href="/demos"
+ href="#contact"
  className="px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
  style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
  >
- Try a Live Agent
+ Book a 20-minute fit call
  </a>
  <a
- href="#contact"
+ href="/demos?tab=invoice"
  className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
  style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
  >
- Start a Conversation
+ See an AP agent run
  </a>
  </div>
- <div className="flex flex-wrap items-center justify-center gap-2 mb-4 text-xs">
- <span style={{ color: "var(--text-muted-3)" }}>Built to:</span>
+ <p className="text-xs text-slate-600">Or click the chat bubble ↘ to talk to our AI assistant right now</p>
+ </section>
+
+ {/* Stats Bar */}
+ <section className="px-6 pb-8 max-w-5xl mx-auto">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden" style={{ background: "var(--border)" }}>
+ {[
+ { value: "5 days", label: "Discovery sprint + prototype" },
+ { value: "Oracle + SAP", label: "Enterprise-system specialization" },
+ { value: "Controls", label: "Identity, approvals, audit trail" },
+ { value: "2–8 wks", label: "Pilot timeline, scope-dependent" },
+ ].map((stat) => (
+ <div key={stat.label} className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
+ <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>{stat.value}</div>
+ <div className="text-xs text-slate-500 uppercase tracking-wide">{stat.label}</div>
+ </div>
+ ))}
+ </div>
+ </section>
+
+ {/* Frameworks strip — de-emphasized per positioning review */}
+ <section className="px-6 pb-16 max-w-5xl mx-auto">
+ <div className="flex flex-wrap items-center justify-center gap-2 text-xs">
+ <span style={{ color: "var(--text-muted-3)" }}>Governed to:</span>
  {["NIST AI RMF", "ISO 42001", "EU AI Act"].map((std) => (
  <span
  key={std}
@@ -56,24 +79,6 @@ export default function HomePage() {
  >
  {std}
  </span>
- ))}
- </div>
- <p className="text-xs text-slate-600">Or click the chat bubble ↘ to talk to our AI assistant right now</p>
- </section>
-
- {/* Stats Bar */}
- <section className="px-6 pb-16 max-w-5xl mx-auto">
- <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden" style={{ background: "var(--border)" }}>
- {[
- { value: "5 days", label: "Discovery Sprint" },
- { value: "2–8 wks", label: "Discovery to Pilot" },
- { value: "100%", label: "Real System Integration" },
- { value: "SOC2", label: "Ready Architecture" },
- ].map((stat) => (
- <div key={stat.label} className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
- <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>{stat.value}</div>
- <div className="text-xs text-slate-500 uppercase tracking-wide">{stat.label}</div>
- </div>
  ))}
  </div>
  </section>
@@ -111,7 +116,7 @@ export default function HomePage() {
  style={{ background: "#00D4FF10", border: "1px solid #00D4FF25", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
- Live on our production API
+ Live in our environment — demo data
  </div>
  <h2 className="text-3xl font-bold text-white mb-3">Try It Right Now</h2>
  <p className="text-slate-400 max-w-lg mx-auto text-sm">Three real AI workflows. No signup. No mockups. The same Claude models built into every Tioga AI engagement.</p>
@@ -219,7 +224,7 @@ export default function HomePage() {
  Three entry-point offers — each delivers a concrete, reviewable output in weeks, not quarters.
  </p>
  <p className="text-xs max-w-lg mx-auto mt-2" style={{ color: "var(--text-muted-3)" }}>
- Pricing published up front, not gated behind a sales call.
+ Pricing published up front, not gated behind a sales call. The $5,000 discovery sprint is credited toward whichever offer you move forward with.
  </p>
  </div>
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -268,7 +273,7 @@ export default function HomePage() {
  ))}
  </div>
  <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
- Plus 10 more offers — ERP Modernization Advisory, Legacy System AI Augmentation, EU AI Act Conformity Program, Multi-State AI Compliance, ISO 42001 Implementation Sprint, Agentic AI Governance Framework, Fractional AI Governance Officer, Agent-Ready ERP Diagnostic, AI Governance Evidence Package for Insurance, AI Cost & Model Governance Assessment.{" "}
+ Plus ten more engagements across two practices — modernizing ERP with an agent layer, and governing enterprise AI end to end.{" "}
  <a href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
  See all services →
  </a>
@@ -290,7 +295,7 @@ export default function HomePage() {
  <div className="grid md:grid-cols-3 gap-6">
  {[
  { icon: "⚡", title: "Speed to value", desc: "Our 5-day discovery sprint gives you a working prototype and a delivery plan before most firms finish scoping." },
- { icon: "🔐", title: "Enterprise-grade security", desc: "SOC2-ready architecture, role-based access, and audit logging designed so your systems of record stay under your control." },
+ { icon: "🔐", title: "Enterprise-grade security", desc: "Security controls — role-based access, audit logging, and architecture aligned to SOC 2 Trust Services Criteria — so your systems of record stay under your control. No independent SOC 2 report exists yet." },
  { icon: "🎯", title: "Integration-first approach", desc: "We build for your stack from day one. No rip-and-replace. Your existing systems become more powerful." },
  { icon: "🧪", title: "No toy demos", desc: "Every pilot runs against your real data and real systems, built to carry into production, not thrown away after the demo." },
  { icon: "📐", title: "MCP-native builds", desc: "We specialize in Model Context Protocol — the emerging standard for connecting AI to enterprise systems at scale." },

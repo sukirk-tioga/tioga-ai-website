@@ -26,7 +26,7 @@ const ROWS: Row[] = [
   {
     dimension: "Adding a second use case",
     custom: "Usually a second integration, even against the same system — the first one was wired to one workflow's shape.",
-    mcp: "Usually zero new integration work — the new use case calls tools that already exist.",
+    mcp: "Usually minimal new integration work — the new use case calls tools that already exist, though new business rules or approvals may still need review.",
   },
   {
     dimension: "Where the logic lives",
