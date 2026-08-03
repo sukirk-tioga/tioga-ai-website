@@ -41,6 +41,20 @@ const FRAMEWORKS = [
   },
 ];
 
+const SUBPROCESSORS = [
+  { name: "Anthropic", purpose: "Processes text submitted to demos, the chat widget, and contact-form classification, per Anthropic's own privacy policy." },
+  { name: "Google (Gmail SMTP)", purpose: "Delivers contact-form notifications and optional demo-result emails — nothing beyond that." },
+  { name: "Vercel", purpose: "Hosts this site and its serverless functions." },
+];
+
+const SECURITY_PRACTICES = [
+  "Strict Content-Security-Policy on every response — no inline script execution beyond Next.js's own hydration payload, no framing by other sites (frame-ancestors 'none'), no eval in production.",
+  "X-Frame-Options: DENY, X-Content-Type-Options: nosniff, and a locked-down Permissions-Policy blocking camera/microphone/geolocation access sitewide.",
+  "Per-IP rate limiting on every demo and API endpoint, so no single visitor can exhaust the shared model budget or hammer an endpoint.",
+  "No demo or chat submission is retained after the response is generated — see the Privacy Policy for the full breakdown, endpoint by endpoint.",
+  "No API keys or secrets ship to the browser — every model call is proxied through a server-side route.",
+];
+
 const FUNCTIONS = [
   {
     name: "GOVERN",
@@ -147,6 +161,109 @@ export default function TrustPage() {
           >
             See the live ledger →
           </a>
+        </div>
+
+        {/* Compliance & certification status */}
+        <div className="mb-16">
+          <h2 className="text-xl font-bold text-white mb-2">Compliance &amp; certification status</h2>
+          <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mb-4">
+            The three frameworks above are engagements we build for clients —
+            not certifications Tioga AI itself currently holds. Said plainly,
+            not implied:
+          </p>
+          <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <ul className="list-disc pl-5 space-y-2 text-sm text-slate-400 leading-relaxed">
+              <li>
+                Our own infrastructure&apos;s security controls — role-based
+                access, audit logging, architecture aligned to SOC 2 Trust
+                Services Criteria — are real and demonstrated live in the{" "}
+                <a href="/demos/governance-ledger" className="underline hover:text-white transition-colors">Governance Ledger demo</a>.
+                No independent SOC 2 report exists yet.
+              </li>
+              <li>
+                We are not ISO 42001 certified. The ISO 42001 Implementation
+                Sprint helps a client&apos;s AI management system reach that
+                bar — it is a delivery engagement, not a badge we display.
+              </li>
+              <li>
+                NIST AI RMF is a voluntary framework with no certification to
+                hold; ISO 42001 and EU AI Act obligations attach to the
+                systems we help build, not to Tioga AI as a vendor.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Data handling & sub-processors */}
+        <div className="mb-16">
+          <h2 className="text-xl font-bold text-white mb-2">Data handling &amp; sub-processors</h2>
+          <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mb-6">
+            Tioga AI is a solo-run practice — no marketing database, no ad
+            tracking, no resale of anything you submit. The full breakdown,
+            endpoint by endpoint, is in the{" "}
+            <a href="/privacy" className="underline hover:text-white transition-colors">Privacy Policy</a>.
+            Exactly three external parties ever touch your data:
+          </p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {SUBPROCESSORS.map((s) => (
+              <div key={s.name} className="p-5 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+                <p className="text-sm font-semibold text-white mb-1.5">{s.name}</p>
+                <p className="text-xs text-slate-400 leading-relaxed">{s.purpose}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Security practices */}
+        <div className="mb-16">
+          <h2 className="text-xl font-bold text-white mb-2">Security practices</h2>
+          <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mb-6">
+            What&apos;s actually enforced on this site today, not a generic
+            checklist:
+          </p>
+          <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <ul className="list-disc pl-5 space-y-2.5 text-sm text-slate-400 leading-relaxed">
+              {SECURITY_PRACTICES.map((p) => (
+                <li key={p}>{p}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Availability & incident response */}
+        <div className="mb-16 grid sm:grid-cols-2 gap-4">
+          <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <h2 className="text-lg font-bold text-white mb-2">Availability</h2>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Hosted on Vercel&apos;s global edge network. As a pre-launch,
+              solo-founder practice, there is no formal uptime SLA published
+              yet — that&apos;s a real gap, not hidden. If tioga.ai is down,
+              there is currently no separate status page; check the site
+              directly or email us.
+            </p>
+          </div>
+          <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <h2 className="text-lg font-bold text-white mb-2">Incident response</h2>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              No dedicated security team — the founder personally reviews and
+              responds to anything reported. What that means in practice: a
+              fast, direct response from the person who built the system,
+              not a ticket queue.
+            </p>
+          </div>
+        </div>
+
+        {/* Security contact / responsible disclosure */}
+        <div className="mb-16">
+          <h2 className="text-xl font-bold text-white mb-2">Report a security issue</h2>
+          <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mb-2">
+            Found a vulnerability? There is no formal bug bounty program yet
+            — but every report is read and acted on personally. Email{" "}
+            <a href="mailto:hello@tioga.ai?subject=Security" className="underline hover:text-white transition-colors">
+              hello@tioga.ai
+            </a>{" "}
+            with subject line &ldquo;Security&rdquo; and what you found.
+          </p>
         </div>
 
         {/* All offers */}
