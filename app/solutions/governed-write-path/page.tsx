@@ -73,6 +73,7 @@ const content: SolutionContent = {
     { href: "/solutions/oracle", label: "Governed write-path for Oracle EBS" },
     { href: "/solutions/sap", label: "Governed write-path for SAP" },
     { href: "/demos/governance-ledger", label: "See the Governance Ledger demo" },
+    { href: "/articles/governed-write-path-pattern", label: "Read: how the governed write-path pattern works" },
     { href: "/trust", label: "See the Trust Center" },
   ],
   demoLink: { href: "/demos/ap-exception-workflow", label: "Try the AP Exception Workflow demo" },

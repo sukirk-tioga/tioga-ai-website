@@ -19,6 +19,7 @@ export default function Footer() {
           <a href="/demos" className="hover:text-slate-400 transition-colors">Live Demos</a>
           <a href="/mcp" className="hover:text-slate-400 transition-colors">MCP</a>
           <a href="/engineering" className="hover:text-slate-400 transition-colors">Engineering</a>
+          <a href="/articles" className="hover:text-slate-400 transition-colors">Articles</a>
           <a href="/about" className="hover:text-slate-400 transition-colors">About</a>
           <a href="/trust" className="hover:text-slate-400 transition-colors">Trust</a>
           <a href="/changelog" className="hover:text-slate-400 transition-colors">Build Log</a>

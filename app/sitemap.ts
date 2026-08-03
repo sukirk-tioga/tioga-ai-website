@@ -31,6 +31,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/engineering/invoice-processing", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/engineering/email-triage", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/engineering/migration-assessment", priority: 0.5, changeFrequency: "monthly" as const },
+    { path: "/articles", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/articles/governed-write-path-pattern", priority: 0.5, changeFrequency: "monthly" as const },
+    { path: "/articles/framework-mapping-not-three-checklists", priority: 0.5, changeFrequency: "monthly" as const },
+    { path: "/articles/mcp-scoped-permissions", priority: 0.5, changeFrequency: "monthly" as const },
+    { path: "/articles/migration-complexity-scoring", priority: 0.5, changeFrequency: "monthly" as const },
+    { path: "/articles/ai-cost-governance-ledger", priority: 0.5, changeFrequency: "monthly" as const },
+    { path: "/articles/ap-exception-auto-approve-antipattern", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },
     { path: "/terms", priority: 0.3, changeFrequency: "yearly" as const },
   ];

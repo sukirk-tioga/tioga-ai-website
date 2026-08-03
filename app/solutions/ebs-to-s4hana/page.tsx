@@ -78,6 +78,7 @@ const content: SolutionContent = {
   related: [
     { href: "/solutions/oracle", label: "AI agents for Oracle EBS (if staying)" },
     { href: "/solutions/sap", label: "AI agents for SAP (post-migration)" },
+    { href: "/articles/migration-complexity-scoring", label: "Read: what actually drives migration complexity" },
     { href: "/services", label: "See all engagements" },
   ],
   demoLink: { href: "/demos/migration-assessment", label: "Try the migration-readiness demo" },

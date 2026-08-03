@@ -78,6 +78,7 @@ const content: SolutionContent = {
   related: [
     { href: "/mcp", label: "What is MCP, and how Tioga uses it" },
     { href: "/mcp/vs-custom-integration", label: "MCP vs. custom integration" },
+    { href: "/articles/mcp-scoped-permissions", label: "Read: MCP still needs the same approval gates" },
     { href: "/trust", label: "See the Trust Center" },
   ],
   demoLink: { href: "/mcp", label: "See how Tioga's MCP integration works" },

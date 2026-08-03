@@ -78,6 +78,7 @@ const content: SolutionContent = {
   related: [
     { href: "/solutions/oracle", label: "AP automation for Oracle EBS" },
     { href: "/solutions/sap", label: "AP automation for SAP" },
+    { href: "/articles/ap-exception-auto-approve-antipattern", label: "Read: why a single spend threshold isn't a policy" },
     { href: "/services", label: "See all engagements" },
   ],
   demoLink: { href: "/demos?tab=invoice", label: "Try the invoice-processing demo" },
