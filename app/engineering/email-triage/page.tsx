@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BenchmarkCard from "@/components/BenchmarkCard";
 
 export const metadata: Metadata = {
   title: "How We Built the Email Triage Demo",
@@ -79,6 +80,27 @@ export default function EmailTriageWriteup() {
               removes an entire category of downstream bugs.
             </p>
           </div>
+
+          <BenchmarkCard
+            data={{
+              date: "2026-08-02",
+              model: "Claude Haiku 4.5 (claude-haiku-4-5-20251001)",
+              dataSource:
+                "8 hand-authored synthetic emails (complaint, sales inquiry, invoice, security incident, partnership pitch, spam, internal HR note, legal notice) run live against the production endpoint at tioga.ai.",
+              sampleSize: "8 synthetic emails",
+              metrics: [
+                { label: "Category exact-match", value: "8/8 (100%)" },
+                { label: "Urgency exact-match", value: "5/8 (63%)" },
+                { label: "Successful classifications", value: "8/8 (HTTP 200)" },
+                { label: "Average latency", value: "~1.8s" },
+              ],
+              limitations: [
+                "Urgency is inherently more subjective than category — all 3 mismatches were one severity level off (e.g. \"high\" vs \"critical\"), and every miss erred toward flagging higher urgency, not lower.",
+                "Sample size is small (8 cases) and hand-authored; a production engagement would calibrate urgency thresholds against your team's actual triage decisions.",
+                "Sentiment and routing fields weren't scored in this run — only category and urgency.",
+              ],
+            }}
+          />
         </div>
 
         <div className="mt-16 text-center">

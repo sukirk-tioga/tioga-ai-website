@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BenchmarkCard from "@/components/BenchmarkCard";
 
 export const metadata: Metadata = {
   title: "How We Built the Migration Assessment Demo",
@@ -114,6 +115,27 @@ const TARGETS  = ["S/4HANA Cloud", "S/4HANA Private Cloud",
               curious visitors.
             </p>
           </div>
+
+          <BenchmarkCard
+            data={{
+              date: "2026-08-02",
+              model: "Claude Sonnet 5 (extended thinking disabled)",
+              dataSource:
+                "4 distinct Oracle EBS module / data-volume / target-edition combinations, run live against the production endpoint at tioga.ai.",
+              sampleSize: "4 configurations attempted; 3 completed (see limitations)",
+              metrics: [
+                { label: "Schema-valid responses", value: "3/3 completed runs (100%)" },
+                { label: "SOX-disclosure rule followed", value: "1/1 confirmed applicable case" },
+                { label: "Average latency", value: "~14.6s" },
+                { label: "Rate limit enforced", value: "Confirmed: 5 requests / 10 min per IP" },
+              ],
+              limitations: [
+                "This is a reasoning/judgment task, not classification — there's no single \"correct\" complexity score or timeline to measure accuracy against. The metrics above check structural reliability (valid output, compliance-instruction adherence), not correctness of the recommendation itself.",
+                "One test case was rejected by the demo's own 5-requests/10-minute rate limit during this benchmark run — a real constraint, not a bug, but it means only 1 of 2 financial-module cases fully confirmed the SOX-disclosure instruction.",
+                "Complexity scores and timelines haven't been validated against real migration outcomes; treat them as directional, not calibrated.",
+              ],
+            }}
+          />
         </div>
 
         <div className="mt-16 text-center">

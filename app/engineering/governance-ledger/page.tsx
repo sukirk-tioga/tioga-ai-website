@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BenchmarkCard from "@/components/BenchmarkCard";
 
 export const metadata: Metadata = {
   title: "How We Built the Governance Ledger Demo",
@@ -105,6 +106,27 @@ export default function GovernanceLedgerWriteup() {
               live inference endpoint.
             </p>
           </div>
+
+          <BenchmarkCard
+            data={{
+              date: "2026-07-27",
+              model: "No model call — static ledger excerpt (governance/observability data only)",
+              dataSource:
+                "Real excerpt from Tioga AI's own JARVIS routing gateway ledger — not synthetic, not a demo dataset.",
+              sampleSize: "17 logged calls, unsampled (every call in the captured window, not a spot check)",
+              metrics: [
+                { label: "Calls logged", value: "17 (unsampled)" },
+                { label: "Free-tier resolution", value: "15/17 calls (88%) settled at $0 via local/free-tier routing" },
+                { label: "Ledger window", value: "Jul 17–25, 2026" },
+                { label: "Snapshot captured", value: "Jul 27, 2026" },
+              ],
+              limitations: [
+                "This is a fixed, dated snapshot, not a live feed — updated manually when the page is refreshed, not real-time.",
+                "17 calls is Tioga's own internal AI-operations volume in this window, not a claim about the scale a client engagement would produce.",
+                "Demonstrates the pattern (governance data as a byproduct of routing infrastructure), not a benchmark of model accuracy or task performance — there's no task being scored here.",
+              ],
+            }}
+          />
         </div>
 
         <div className="mt-16 text-center">

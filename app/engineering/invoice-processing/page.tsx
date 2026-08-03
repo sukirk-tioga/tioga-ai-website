@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BenchmarkCard from "@/components/BenchmarkCard";
 
 export const metadata: Metadata = {
   title: "How We Built the Invoice Processing Demo",
@@ -92,6 +93,27 @@ export default function InvoiceProcessingWriteup() {
               to client work, not just this site.
             </p>
           </div>
+
+          <BenchmarkCard
+            data={{
+              date: "2026-08-02",
+              model: "Claude Haiku 4.5 (claude-haiku-4-5-20251001)",
+              dataSource:
+                "8 hand-authored synthetic invoices (clean, messy, multilingual, non-invoice, credit-memo formats) run live against the production endpoint at tioga.ai — not a cached or pre-recorded result.",
+              sampleSize: "8 synthetic invoices, 21 scored fields",
+              metrics: [
+                { label: "Field-match rate (vendor / invoice # / total)", value: "21/21 fields (100%)" },
+                { label: "Successful extractions", value: "8/8 (HTTP 200)" },
+                { label: "Average latency", value: "~1.7s" },
+                { label: "Non-invoice input", value: "Correctly flagged, confidence 5/100, no fabricated fields" },
+              ],
+              limitations: [
+                "Sample size is small (8 cases) and hand-authored, not drawn from a real-world invoice corpus — a production engagement would validate against your actual invoice formats before go-live.",
+                "Field-match scoring used fuzzy substring matching, not strict equality — an exact-match check would likely show a lower, more conservative number.",
+                "Only 3 fields (vendor, invoice number, total) were scored; line-item and date-field accuracy weren't measured in this run.",
+              ],
+            }}
+          />
         </div>
 
         <div className="mt-16 text-center">
