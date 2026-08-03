@@ -1,6 +1,8 @@
 import SmartContactForm from "@/components/SmartContactForm";
 import TrackedCTA from "@/components/TrackedCTA";
 
+const CAL_LINK = "https://cal.com/sukir-kumaresan-rfgb7k/introduction-chat";
+
 export default function HomePage() {
  return (
  <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
@@ -34,7 +36,9 @@ export default function HomePage() {
  </p>
  <div className="flex flex-col items-center sm:flex-row gap-4 justify-center mb-4">
  <TrackedCTA
- href="#contact"
+ href={CAL_LINK}
+ target="_blank"
+ rel="noopener noreferrer"
  event="cta_book_call"
  data={{ location: "hero" }}
  className="px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
@@ -402,6 +406,19 @@ export default function HomePage() {
  <p className="text-slate-400 mb-2 text-sm max-w-md mx-auto">
  Tell us about your project. Our AI instantly classifies your inquiry so it reaches me with the right context. Response within one business day — or email{" "}
  <a href="mailto:hello@tioga.ai" className="underline hover:text-white transition-colors">hello@tioga.ai</a> directly.
+ </p>
+ <p className="text-sm mb-6">
+ <TrackedCTA
+ href={CAL_LINK}
+ target="_blank"
+ rel="noopener noreferrer"
+ event="cta_book_call"
+ data={{ location: "contact_section" }}
+ className="underline hover:text-white transition-colors"
+ style={{ color: "var(--accent)" }}
+ >
+ Or skip the form and book a 20-minute call directly →
+ </TrackedCTA>
  </p>
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8"
