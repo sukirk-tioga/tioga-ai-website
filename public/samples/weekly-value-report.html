@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample: Weekly Value Report — Tioga AI</title>
+<style>
+  :root{
+    --bg-dark:#0A0F1C; --bg-card:#0D1526; --border:#1E2D4A; --accent:#00D4FF;
+    --accent-dark:#0066CC; --text:#e2e8f0; --text-muted:#94a3b8; --success:#4ADE80; --warning:#F59E0B;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg-dark);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+  .wrap{max-width:760px;margin:0 auto;padding:56px 28px 80px;}
+  .eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  h1{font-size:28px;margin:0 0 6px;color:#fff;}
+  .sub{color:var(--text-muted);margin:0 0 28px;max-width:56ch;}
+  .disclaimer{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.35);border-radius:8px;padding:12px 16px;font-size:13px;color:#fbbf24;margin-bottom:36px;}
+  h2{font-size:17px;color:#fff;margin:34px 0 10px;padding-left:12px;border-left:3px solid var(--accent);}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  th{font-family:ui-monospace,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);background:var(--bg-card);}
+  ul{margin:8px 0;padding-left:20px;color:var(--text-muted);}
+  li{margin-bottom:6px;}
+  .card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0;}
+  .stat-row{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;}
+  .stat{flex:1;min-width:140px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+  .stat .n{font-family:ui-monospace,monospace;font-size:22px;color:#fff;font-weight:600;}
+  .stat .l{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);margin-top:2px;}
+  .assump{font-size:13px;color:var(--text-muted);}
+  .foot{margin-top:52px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);}
+  @media print{
+    body{background:#fff;color:#111;}
+    .disclaimer{background:#fff8e6;color:#92610a;}
+    .card,.stat{background:#fafafa;border-color:#ddd;}
+    th{background:#f3f3f3;color:#555;}
+    td,th{border-color:#ddd;}
+    .stat .n{color:#111;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">tioga.ai — sample artifact</div>
+  <h1>Weekly Value Report</h1>
+  <p class="sub">What an ongoing engagement's client sees every week — hours saved, $ value, and a trend line, with the assumptions shown so your own FP&amp;A team can check the math.</p>
+  <div class="disclaimer">SAMPLE — illustrative structure and content. Client name, volumes, and figures below are fictional. Tioga is pre-launch with no live client engagements yet; this is the template and methodology the first real engagement's reports will follow, not a real result.</div>
+
+  <h2>01 — Engagement &amp; assumptions</h2>
+  <table>
+    <tr><th>Client</th><td>Meridian Steel Supply (illustrative) — AP Exception Handling</td></tr>
+    <tr><th>Week</th><td>2026-09-08 to 2026-09-12</td></tr>
+    <tr><th>Baseline time per exception</th><td>14 min — <span class="assump">client AP team lead's own estimate, captured 2026-09-01</span></td></tr>
+    <tr><th>Loaded labor rate</th><td>$42/hr — <span class="assump">client-provided, not an industry figure</span></td></tr>
+  </table>
+
+  <h2>02 — This week's actions</h2>
+  <table>
+    <tr><th>Action type</th><th>Volume</th><th>Baseline</th><th>AI time</th><th>Hours saved</th></tr>
+    <tr><td>PO adjustment (auto-approved)</td><td>31</td><td>14 min</td><td>~2s</td><td>7.2 hrs</td></tr>
+    <tr><td>PO adjustment (escalated → approved)</td><td>6</td><td>14 min</td><td>~2s</td><td>1.4 hrs</td></tr>
+  </table>
+
+  <h2>03 — Totals</h2>
+  <div class="stat-row">
+    <div class="stat"><div class="n">37</div><div class="l">Actions processed</div></div>
+    <div class="stat"><div class="n">6 (16%)</div><div class="l">Escalated to human</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">Blocked by policy</div></div>
+    <div class="stat"><div class="n">8.6 hrs</div><div class="l">Hours saved</div></div>
+    <div class="stat"><div class="n">$361</div><div class="l">Value this week</div></div>
+  </div>
+  <p class="assump">Escalated and blocked actions are counted here deliberately — the same "every decision is evidence, not just the successes" principle behind the <a href="/demos/ap-exception-workflow" style="color:var(--accent)">Governed AP Exception Workflow demo</a>'s audit ledger. A report that only shows the wins isn't one a governance-minded buyer should trust.</p>
+
+  <h2>04 — Trend (last 4 weeks)</h2>
+  <table>
+    <tr><th>Week of</th><th>Hours saved</th><th>Value</th></tr>
+    <tr><td>2026-08-18</td><td>6.9 hrs</td><td>$290</td></tr>
+    <tr><td>2026-08-25</td><td>7.5 hrs</td><td>$315</td></tr>
+    <tr><td>2026-09-01</td><td>8.1 hrs</td><td>$340</td></tr>
+    <tr><td>2026-09-08</td><td>8.6 hrs</td><td>$361</td></tr>
+  </table>
+
+  <h2>05 — How this is calculated (so you can check it)</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Baseline time comes from the client, not an industry average.</strong> Captured during the discovery sprint or a follow-up interview, with the source stated on every report.</li>
+      <li><strong>Hourly rate comes from the client's own fully-loaded labor cost</strong> for the role being augmented — never a number Tioga picks.</li>
+      <li><strong>Volume is a real count from the governance ledger</strong> every agent action already writes to (the same log used for the audit trail and NIST AI RMF evidence mapping) — not a separate estimate.</li>
+      <li><strong>Hours saved = (baseline minutes − AI processing minutes) × volume ÷ 60.</strong> AI processing time is near-zero at the latencies Tioga's own demo benchmarks show (~1.7s average for invoice-style extraction) — see <a href="/engineering/invoice-processing" style="color:var(--accent)">How We Built the Invoice Processing Demo</a>.</li>
+    </ul>
+  </div>
+
+  <div class="foot">
+    Tioga AI — governed AI automation for enterprise systems. See the live ledger pattern this report extends at
+    tioga.ai/demos/ap-exception-workflow. This document is a sample only.
+  </div>
+</div>
+</body>
+</html>

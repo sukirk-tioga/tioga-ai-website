@@ -27,6 +27,7 @@ const PAGES = [
   { path: "/samples/discovery-sprint-scope.html", title: "Sample: 5-Day Discovery Sprint Scope — Tioga AI" },
   { path: "/samples/governance-evidence-excerpt.html", title: "Sample: Governance Evidence Excerpt — Tioga AI" },
   { path: "/samples/ai-governance-executive-summary.html", title: "Sample: AI Governance Readiness — Executive Summary — Tioga AI" },
+  { path: "/samples/weekly-value-report.html", title: "Sample: Weekly Value Report — Tioga AI" },
   { path: "/articles", title: "Articles — Tioga AI" },
   { path: "/articles/governed-write-path-pattern", title: "How a Governed AI Write-Path Actually Works — Tioga AI" },
   { path: "/articles/framework-mapping-not-three-checklists", title: "NIST AI RMF vs. ISO 42001 vs. EU AI Act: One Mapping, Not Three Checklists — Tioga AI" },
