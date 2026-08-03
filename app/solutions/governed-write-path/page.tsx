@@ -28,9 +28,9 @@ const content: SolutionContent = {
         "The Agent-Ready ERP Diagnostic & Governed Write-Path is scoped specifically around one stalled write path in your environment — chosen because it's the constraint actually blocking you.",
     },
     {
-      label: "Built on real governance infrastructure",
+      label: "Try the actual write-path pattern, live",
       detail:
-        "See the live Governance Ledger demo — real routing data mapped to NIST AI RMF, the same evidence-trail pattern this engagement builds around your write path.",
+        "The Governed AP Exception Workflow demo runs the full loop — propose, policy decision, approval or block, simulated write, audit, and rollback — the same pattern this engagement builds around your write path.",
     },
     {
       label: "Operator experience on both sides",
@@ -66,15 +66,16 @@ const content: SolutionContent = {
     },
     {
       q: "Can we see the audit trail this produces?",
-      a: "Yes — see the live Governance Ledger demo for the pattern this is built on.",
+      a: "Yes — see the live Governed AP Exception Workflow demo: every proposal, decision, approval, execution, rejection, and rollback lands in the ledger with its full policy-check trail.",
     },
   ],
   related: [
     { href: "/solutions/oracle", label: "Governed write-path for Oracle EBS" },
     { href: "/solutions/sap", label: "Governed write-path for SAP" },
+    { href: "/demos/governance-ledger", label: "See the Governance Ledger demo" },
     { href: "/trust", label: "See the Trust Center" },
   ],
-  demoLink: { href: "/demos/governance-ledger", label: "See the Governance Ledger demo" },
+  demoLink: { href: "/demos/ap-exception-workflow", label: "Try the AP Exception Workflow demo" },
 };
 
 export default function GovernedWritePathSolutionPage() {

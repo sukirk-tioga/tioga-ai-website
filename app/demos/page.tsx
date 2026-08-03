@@ -771,6 +771,44 @@ export default function DemosPage() {
           </span>
         </a>
 
+        {/* Featured: AP Exception Workflow */}
+        <a
+          href="/demos/ap-exception-workflow"
+          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
+          style={{
+            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
+            border: "1px solid #00D4FF40",
+            boxShadow: "0 0 30px #00D4FF0A",
+          }}
+        >
+          <span
+            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 mb-1">
+              <p className="font-semibold text-white">Governed AP Exception Workflow</p>
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
+                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+              >
+                Interactive
+              </span>
+            </div>
+            <p className="text-sm text-slate-400">
+              Propose a fix to an invoice that failed three-way match — watch it auto-execute,
+              escalate, get blocked, or roll back through a governed write-path.
+            </p>
+          </div>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
+            Try it live →
+          </span>
+        </a>
+
         {/* Demo selector */}
         <div className="grid grid-cols-3 gap-3 mb-8">
           {DEMOS.map((demo) => (
