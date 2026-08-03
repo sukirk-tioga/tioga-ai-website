@@ -56,7 +56,18 @@ export default function HomePage() {
  See an AP agent run
  </TrackedCTA>
  </div>
- <p className="text-xs text-slate-400">Or click the chat bubble ↘ to talk to our AI assistant right now</p>
+ <p className="text-xs text-slate-400 mb-2">Or click the chat bubble ↘ to talk to our AI assistant right now</p>
+ <TrackedCTA
+ href="/samples/erp-agent-readiness-checklist.html"
+ target="_blank"
+ rel="noopener noreferrer"
+ event="lead_asset_download"
+ data={{ asset: "erp-agent-readiness-checklist", location: "hero" }}
+ className="text-xs underline underline-offset-2 transition-colors hover:text-white"
+ style={{ color: "var(--accent)" }}
+ >
+ Not ready to talk yet? Free ERP Agent-Readiness Checklist →
+ </TrackedCTA>
  </section>
 
  {/* Stats Bar */}

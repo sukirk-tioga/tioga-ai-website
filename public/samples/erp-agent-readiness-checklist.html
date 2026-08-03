@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERP Agent-Readiness Checklist — Tioga AI</title>
+<style>
+  :root{
+    --bg-dark:#0A0F1C; --bg-card:#0D1526; --border:#1E2D4A; --accent:#00D4FF;
+    --accent-dark:#0066CC; --text:#e2e8f0; --text-muted:#94a3b8; --success:#4ADE80; --warning:#F59E0B;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg-dark);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+  .wrap{max-width:760px;margin:0 auto;padding:56px 28px 80px;}
+  .eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  h1{font-size:28px;margin:0 0 6px;color:#fff;}
+  .sub{color:var(--text-muted);margin:0 0 28px;max-width:56ch;}
+  .disclaimer{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.35);border-radius:8px;padding:12px 16px;font-size:13px;color:#fbbf24;margin-bottom:36px;}
+  h2{font-size:17px;color:#fff;margin:34px 0 4px;padding-left:12px;border-left:3px solid var(--accent);}
+  .section-note{color:var(--text-muted);font-size:13px;margin:0 0 14px;padding-left:15px;}
+  .check-list{list-style:none;margin:8px 0;padding:0;color:var(--text-muted);}
+  .check-list li{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;}
+  .check-list input{margin-top:3px;flex:none;width:16px;height:16px;accent-color:var(--accent);}
+  .check-list strong{color:var(--text);}
+  .card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0;}
+  .foot{margin-top:52px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);}
+  @media print{
+    body{background:#fff;color:#111;}
+    .disclaimer{background:#fff8e6;color:#92610a;}
+    .card,.check-list li{background:#fafafa;border-color:#ddd;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">tioga.ai — free readiness checklist</div>
+  <h1>ERP Agent-Readiness Checklist</h1>
+  <p class="sub">22 questions across 6 areas — for a CIO, finance-transformation lead, or ERP owner sizing up whether an environment is actually ready for a governed AI agent, before scoping any engagement.</p>
+  <div class="disclaimer">This is a self-assessment tool, not an audit. Unchecked items aren't disqualifying — they're exactly what a discovery sprint scopes out before any build starts.</div>
+
+  <h2>01 — System &amp; API surface</h2>
+  <p class="section-note">Can an agent actually reach your system through a sanctioned path, or only the database underneath it?</p>
+  <ul class="check-list">
+    <li><input type="checkbox" disabled> <span><strong>Known version and edition</strong> — e.g. Oracle EBS R12.2, SAP ECC vs. S/4HANA — confirmed, not assumed.</span></li>
+    <li><input type="checkbox" disabled> <span><strong>An application-logic API or BAPI layer exists</strong> for the target workflow (not just direct table access).</span></li>
+    <li><input type="checkbox" disabled> <span><strong>A non-production instance</strong> (test/sandbox) is available to build and validate against.</span></li>
+    <li><input type="checkbox" disabled> <span><strong>API rate limits and auth model</strong> for the relevant module are documented somewhere.</span></li>
+  </ul>
+
+  <h2>02 — Approval &amp; control workflows</h2>
+  <p class="section-note">Every governed write needs a policy to enforce — most orgs already have one, just not written down in one place.</p>
+  <ul class="check-list">
+    <li><input type="checkbox" disabled> <span><strong>A delegation-of-authority matrix exists</strong> — who can approve what, up to what dollar amount.</span></li>
+    <li><input type="checkbox" disabled> <span><strong>Escalation paths are defined</strong> for exceptions above the autonomous-approval threshold.</span></li>
+    <li><input type="checkbox" disabled> <span><strong>A named owner</strong> for the workflow's approval policy (not just "finance" in the abstract).</span></li>
+    <li><input type="checkbox" disabled> <span><strong>Current exception volume and type</strong> for the target workflow, from at least the last 90 days.</span></li>
+  </ul>
+
+  <h2>03 — Compliance &amp; audit requirements</h2>
+  <p class="section-note">Whatever framework applies, the agent's decision trail needs to be legible to it from day one.</p>
+  <ul class="check-list">
+    <li><input type="checkbox" disabled> <span><strong>Applicable framework(s) identified</strong> — NIST AI RMF, ISO 42001, EU AI Act, SOX, or internal audit standard.</span></li>
+    <li><input type="checkbox" disabled> <span><strong>Evidence-retention requirements</strong> known (how long, what format, who reviews it).</span></li>
+    <li><input type="checkbox" disabled> <span><strong>Internal audit or compliance has been looped in</strong> before any agent touches a live write path.</span></li>
+    <li><input type="checkbox" disabled> <span><strong>A rollback/reversal requirement</strong> is explicit, not assumed to be "someone will fix it manually."</span></li>
+  </ul>
+
+  <h2>04 — Data quality</h2>
+  <p class="section-note">A governed policy can't save a decision built on bad inputs.</p>
+  <ul class="check-list">
+    <li><input type="checkbox" disabled> <span><strong>Master data</strong> (vendor, customer, chart of accounts) for the target workflow is reasonably current.</span></li>
+    <li><input type="checkbox" disabled> <span><strong>Known data-quality issues</strong> in this workflow are documented, not just "we know it's messy."</span></li>
+    <li><input type="checkbox" disabled> <span><strong>A sample of real (or realistically shaped) records</strong> can be shared for prototype-building under NDA.</span></li>
+  </ul>
+
+  <h2>05 — Integration points</h2>
+  <p class="section-note">Most exception workflows touch more than one system — worth mapping before scoping.</p>
+  <ul class="check-list">
+    <li><input type="checkbox" disabled> <span><strong>Upstream/downstream systems</strong> for this workflow are identified (e.g. OCR/AP capture tool, bank file, CRM).</span></li>
+    <li><input type="checkbox" disabled> <span><strong>Existing middleware or iPaaS</strong> (MuleSoft, Boomi, etc.) that a governed agent would sit alongside is known.</span></li>
+    <li><input type="checkbox" disabled> <span><strong>No conflicting automation</strong> (RPA bots, legacy scripts) already writes to the same path unmonitored.</span></li>
+  </ul>
+
+  <h2>06 — Organizational readiness</h2>
+  <p class="section-note">The best governed write-path in the world doesn't matter if no one owns adopting it.</p>
+  <ul class="check-list">
+    <li><input type="checkbox" disabled> <span><strong>An executive sponsor</strong> is willing to own the pilot's outcome, not just approve budget.</span></li>
+    <li><input type="checkbox" disabled> <span><strong>The team executing this workflow today</strong> has been part of scoping, not just informed after the fact.</span></li>
+    <li><input type="checkbox" disabled> <span><strong>Success criteria</strong> for a pilot are defined before it starts (hours reclaimed, error-rate change, cycle time).</span></li>
+    <li><input type="checkbox" disabled> <span><strong>A realistic decision timeline</strong> exists for moving from pilot to production if it works.</span></li>
+  </ul>
+
+  <div class="card">
+    <strong style="color:#fff">Scoring this yourself:</strong> most orgs check 10–15 of these 22 on a first pass. That's normal — the gaps are exactly what a 5-day discovery sprint is scoped to close before any larger commitment, not a reason to wait. See a real example of the sprint's actual scope: <a href="/samples/discovery-sprint-scope.html" style="color:var(--accent)">sample discovery sprint document</a>, or watch the governed write-path pattern itself run live: <a href="/demos/ap-exception-workflow" style="color:var(--accent)">AP exception workflow demo</a>.
+  </div>
+
+  <div class="foot">
+    Tioga AI — governed AI automation for Oracle EBS, SAP, and other complex enterprise systems. This checklist is a free self-assessment tool, not an audit or a substitute for a scoped engagement.
+  </div>
+</div>
+</body>
+</html>

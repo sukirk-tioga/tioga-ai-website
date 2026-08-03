@@ -113,9 +113,20 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
       {/* Offers */}
       <section className="px-6 pb-16 max-w-4xl mx-auto">
         <h2 className="text-2xl font-bold text-white mb-2">Engagements</h2>
-        <p className="text-sm text-slate-400 mb-6 max-w-2xl">
+        <p className="text-sm text-slate-400 mb-3 max-w-2xl">
           Every engagement starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment — credited toward the price below if you move forward.
         </p>
+        <TrackedCTA
+          href="/samples/erp-agent-readiness-checklist.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          event="lead_asset_download"
+          data={{ asset: "erp-agent-readiness-checklist", location: `solutions_${content.slug}` }}
+          className="inline-block text-sm underline underline-offset-2 mb-6 transition-colors hover:text-white"
+          style={{ color: "var(--accent)" }}
+        >
+          Not ready to scope an engagement? Free ERP Agent-Readiness Checklist →
+        </TrackedCTA>
         <div className="space-y-4">
           {content.offers.map((offer) => (
             <div
