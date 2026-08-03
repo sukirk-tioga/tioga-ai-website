@@ -287,6 +287,21 @@ export default function HomePage() {
  See all services →
  </a>
  </p>
+ <p className="text-center mt-4 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+ See what you actually get:{" "}
+ <a href="/samples/discovery-sprint-scope.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
+ sample discovery sprint scope
+ </a>
+ ,{" "}
+ <a href="/samples/governance-evidence-excerpt.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
+ sample governance evidence excerpt
+ </a>
+ , or{" "}
+ <a href="/samples/ai-governance-executive-summary.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
+ sample readiness assessment summary
+ </a>
+ .
+ </p>
  </section>
 
  {/* Why Tioga */}

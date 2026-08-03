@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample: AI Governance Readiness — Executive Summary — Tioga AI</title>
+<style>
+  :root{
+    --bg-dark:#0A0F1C; --bg-card:#0D1526; --border:#1E2D4A; --accent:#00D4FF;
+    --text:#e2e8f0; --text-muted:#94a3b8; --success:#4ADE80; --error:#F87171; --warning:#FBBF24;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg-dark);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+  .wrap{max-width:780px;margin:0 auto;padding:56px 28px 80px;}
+  .eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  h1{font-size:28px;margin:0 0 6px;color:#fff;}
+  .sub{color:var(--text-muted);margin:0 0 28px;max-width:60ch;}
+  .disclaimer{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.35);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--warning);margin-bottom:36px;}
+  h2{font-size:17px;color:#fff;margin:34px 0 10px;padding-left:12px;border-left:3px solid var(--accent);}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
+  th{font-family:ui-monospace,monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);background:var(--bg-card);}
+  .sev{font-weight:700;font-size:12px;}
+  .s-high{color:var(--error);}
+  .s-med{color:var(--warning);}
+  .s-low{color:var(--success);}
+  .bar-row{display:grid;grid-template-columns:9rem 1fr 3rem;gap:10px;align-items:center;margin:8px 0;font-size:13px;}
+  .bar-track{height:7px;background:var(--border);border-radius:4px;overflow:hidden;}
+  .bar-fill{height:100%;background:var(--accent);border-radius:4px;}
+  .foot{margin-top:52px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);}
+  @media print{
+    body{background:#fff;color:#111;}
+    .disclaimer{background:#fff8e6;color:#92610a;}
+    th{background:#f3f3f3;color:#555;}
+    td,th{border-color:#ddd;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">tioga.ai — sample artifact</div>
+  <h1>AI Governance Readiness Assessment — Executive Summary</h1>
+  <p class="sub">The summary-page format delivered at the end of the 3–4 week AI Governance Readiness Assessment engagement.</p>
+  <div class="disclaimer">SAMPLE — client name and findings below are fictional and illustrative of format only, not a real assessment.</div>
+
+  <h2>01 — Scope</h2>
+  <table>
+    <tr><th>Client</th><td>Cascade Logistics (illustrative)</td></tr>
+    <tr><th>Systems assessed</th><td>3 production AI systems (procurement-matching agent, support-triage classifier, internal copilot)</td></tr>
+    <tr><th>Frameworks</th><td>NIST AI RMF, ISO 42001, EU AI Act (applicability check)</td></tr>
+    <tr><th>Assessment window</th><td>3.5 weeks</td></tr>
+  </table>
+
+  <h2>02 — Readiness by framework function</h2>
+  <div class="bar-row"><span>Govern</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><span>7/10</span></div>
+  <div class="bar-row"><span>Map</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span>5/10</span></div>
+  <div class="bar-row"><span>Measure</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span>3/10</span></div>
+  <div class="bar-row"><span>Manage</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span>4/10</span></div>
+  <p style="color:var(--text-muted);font-size:13px;">Pattern typical of pre-launch AI programs: governance intent exists (Govern), but system inventory and ongoing monitoring lag behind (Map/Measure) — the gap this assessment exists to find.</p>
+
+  <h2>03 — Top findings</h2>
+  <table>
+    <tr><th>Severity</th><th>Finding</th><th>Recommendation</th></tr>
+    <tr><td class="sev s-high">High</td><td>No documented system inventory — 3 production AI systems, 1 undocumented</td><td>Stand up a living system inventory as the Map function's foundation</td></tr>
+    <tr><td class="sev s-high">High</td><td>No post-deployment monitoring for the procurement-matching agent</td><td>Instrument decision logging before next model update</td></tr>
+    <tr><td class="sev s-med">Medium</td><td>EU AI Act applicability not yet assessed for the support-triage classifier</td><td>Run a risk-tier classification against Annex III</td></tr>
+    <tr><td class="sev s-low">Low</td><td>Incident-response runbook exists but hasn't been tested</td><td>Tabletop exercise within the next quarter</td></tr>
+  </table>
+
+  <h2>04 — Remediation roadmap (excerpt)</h2>
+  <table>
+    <tr><th>Phase</th><th>Focus</th><th>Duration</th></tr>
+    <tr><td>1</td><td>System inventory + monitoring instrumentation</td><td>2–3 weeks</td></tr>
+    <tr><td>2</td><td>EU AI Act risk-tier classification + evidence package</td><td>2 weeks</td></tr>
+    <tr><td>3</td><td>Incident-response tabletop + runbook update</td><td>1 week</td></tr>
+  </table>
+
+  <div class="foot">
+    Tioga AI — governed AI automation for enterprise systems. See the live NIST AI RMF ↔ ISO 42001 ↔ EU AI Act mapping at
+    tioga.ai/trust/framework-mapping. This document is a sample only.
+  </div>
+</div>
+</body>
+</html>

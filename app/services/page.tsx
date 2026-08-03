@@ -185,7 +185,32 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="mt-16 p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h2 className="text-lg font-semibold text-white mb-1">Sample artifacts</h2>
+          <p className="text-sm text-slate-400 mb-5 max-w-2xl">
+            Three sanitized samples of what an engagement actually produces — illustrative data, real format.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              { href: "/samples/discovery-sprint-scope.html", label: "Discovery sprint scope" },
+              { href: "/samples/governance-evidence-excerpt.html", label: "Governance evidence excerpt" },
+              { href: "/samples/ai-governance-executive-summary.html", label: "Governance readiness — exec summary" },
+            ].map((s) => (
+              <a
+                key={s.href}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm px-4 py-3 rounded-xl transition-colors hover:text-white"
+                style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--accent)" }}
+              >
+                {s.label} →
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 text-center">
           <a
             href="/#contact"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"

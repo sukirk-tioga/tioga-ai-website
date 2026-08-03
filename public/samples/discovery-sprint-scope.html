@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample: 5-Day Discovery Sprint Scope — Tioga AI</title>
+<style>
+  :root{
+    --bg-dark:#0A0F1C; --bg-card:#0D1526; --border:#1E2D4A; --accent:#00D4FF;
+    --accent-dark:#0066CC; --text:#e2e8f0; --text-muted:#94a3b8; --success:#4ADE80; --warning:#F59E0B;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg-dark);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+  .wrap{max-width:760px;margin:0 auto;padding:56px 28px 80px;}
+  .eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  h1{font-size:28px;margin:0 0 6px;color:#fff;}
+  .sub{color:var(--text-muted);margin:0 0 28px;max-width:56ch;}
+  .disclaimer{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.35);border-radius:8px;padding:12px 16px;font-size:13px;color:#fbbf24;margin-bottom:36px;}
+  h2{font-size:17px;color:#fff;margin:34px 0 10px;padding-left:12px;border-left:3px solid var(--accent);}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  th{font-family:ui-monospace,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);background:var(--bg-card);}
+  ul{margin:8px 0;padding-left:20px;color:var(--text-muted);}
+  li{margin-bottom:6px;}
+  .card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0;}
+  .foot{margin-top:52px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);}
+  @media print{
+    body{background:#fff;color:#111;}
+    .disclaimer{background:#fff8e6;color:#92610a;}
+    .card{background:#fafafa;border-color:#ddd;}
+    th{background:#f3f3f3;color:#555;}
+    td,th{border-color:#ddd;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">tioga.ai — sample artifact</div>
+  <h1>5-Day Discovery Sprint — Scope Document</h1>
+  <p class="sub">What you get for the $5,000 flat discovery sprint, before any larger engagement — credited toward the project price if you move forward.</p>
+  <div class="disclaimer">SAMPLE — illustrative structure and content. Client name, systems, and figures below are fictional; this is not a real engagement record.</div>
+
+  <h2>01 — Engagement summary</h2>
+  <table>
+    <tr><th>Client</th><td>Meridian Steel Supply (illustrative)</td></tr>
+    <tr><th>Systems in scope</th><td>Oracle EBS R12.2 (Purchasing, Payables)</td></tr>
+    <tr><th>Target workflow</th><td>Accounts Payable three-way-match exception handling</td></tr>
+    <tr><th>Duration</th><td>5 business days</td></tr>
+    <tr><th>Price</th><td>$5,000 flat — credited toward the project price</td></tr>
+  </table>
+
+  <h2>02 — What we do each day</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Day 1 — Discovery.</strong> Shadow the current AP exception process, interview the buyer/AP team, pull a sample of real exception volume and type from the last 90 days.</li>
+      <li><strong>Day 2 — Scope the write path.</strong> Identify the one sanctioned application-logic write path (not a database shortcut) an agent would execute through, and the approval/escalation policy that already governs it today.</li>
+      <li><strong>Day 3 — Build a working prototype.</strong> A governed agent that reads an exception, proposes a resolution, and routes it through policy — against a scoped, synthetic dataset shaped like the real one.</li>
+      <li><strong>Day 4 — Governance mapping.</strong> Map every decision point in the prototype to NIST AI RMF (or your applicable framework) so the evidence trail is audit-legible from day one, not bolted on after.</li>
+      <li><strong>Day 5 — Readout.</strong> Live walkthrough of the working prototype, a written ROI estimate (hours reclaimed, error-rate impact), and a production build plan with price and timeline.</li>
+    </ul>
+  </div>
+
+  <h2>03 — What you leave with</h2>
+  <table>
+    <tr><td>1</td><td>A working prototype against your actual workflow shape, not a slideware demo</td></tr>
+    <tr><td>2</td><td>An ROI estimate with the assumptions shown, not just a headline number</td></tr>
+    <tr><td>3</td><td>A production build plan — price, timeline, and what's explicitly out of scope</td></tr>
+    <tr><td>4</td><td>A governance-mapping worksheet for the one write path assessed</td></tr>
+  </table>
+
+  <h2>04 — What this sprint does not include</h2>
+  <ul>
+    <li>Production deployment or a live connection to your real systems</li>
+    <li>A multi-workflow rollout plan (scoped to the one workflow assessed)</li>
+    <li>Security/compliance sign-off — that's a deliverable of the production build, not the sprint</li>
+  </ul>
+
+  <div class="foot">
+    Tioga AI — governed AI automation for enterprise systems. See a live version of this pattern at
+    tioga.ai/demos/ap-exception-workflow. This document is a sample only.
+  </div>
+</div>
+</body>
+</html>

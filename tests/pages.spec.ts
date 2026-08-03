@@ -24,6 +24,9 @@ const PAGES = [
   { path: "/engineering/email-triage", title: "How We Built the Email Triage Demo — Tioga AI" },
   { path: "/engineering/migration-assessment", title: "How We Built the Migration Assessment Demo — Tioga AI" },
   { path: "/changelog", title: "Build Log — Tioga AI" },
+  { path: "/samples/discovery-sprint-scope.html", title: "Sample: 5-Day Discovery Sprint Scope — Tioga AI" },
+  { path: "/samples/governance-evidence-excerpt.html", title: "Sample: Governance Evidence Excerpt — Tioga AI" },
+  { path: "/samples/ai-governance-executive-summary.html", title: "Sample: AI Governance Readiness — Executive Summary — Tioga AI" },
 ];
 
 for (const { path, title } of PAGES) {
