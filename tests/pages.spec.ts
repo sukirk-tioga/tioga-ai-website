@@ -5,7 +5,7 @@ import { test, expect } from "@playwright/test";
 // <title>" SEO regression found during the 2026-07-27 audit.
 
 const PAGES = [
-  { path: "/", title: "Tioga AI — Enterprise AI Implementation" },
+  { path: "/", title: "Tioga AI — Governed AI Agents for Oracle and SAP" },
   { path: "/services", title: "Services — Tioga AI" },
   { path: "/mcp", title: "MCP Integrations — Tioga AI" },
   { path: "/mcp/vs-custom-integration", title: "MCP vs. Custom Integration — Tioga AI" },
@@ -39,6 +39,17 @@ const PAGES = [
 
 for (const { path, title } of PAGES) {
   test(`${path} loads, has correct title, no console errors`, async ({ page }) => {
+    // @vercel/analytics's script only resolves on real Vercel infra (it's
+    // served by the platform, not this app) — every non-Vercel environment
+    // (this CI runner, local `next start`) 404s on it, which the
+    // X-Content-Type-Options: nosniff header then turns into a second
+    // "refused to execute" console error. Stub it so the assertion below
+    // still catches real regressions instead of this permanent false
+    // positive that broke the suite the moment Analytics was added.
+    await page.route("**/_vercel/insights/**", (route) =>
+      route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
+    );
+
     const consoleErrors: string[] = [];
     page.on("console", (msg) => {
       if (msg.type() === "error") consoleErrors.push(msg.text());
