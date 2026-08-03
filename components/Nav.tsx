@@ -19,6 +19,7 @@ export default function Nav() {
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
   const links = [
+    { href: "/solutions", label: "Solutions" },
     { href: "/#services", label: "Services" },
     { href: "/demos", label: "Live Demos" },
     { href: "/mcp", label: "MCP" },

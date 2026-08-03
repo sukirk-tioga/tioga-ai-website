@@ -4,6 +4,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://tioga.ai";
   const routes = [
     { path: "/", priority: 1.0, changeFrequency: "weekly" as const },
+    { path: "/solutions", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/solutions/oracle", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/solutions/sap", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/solutions/ap-automation", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/solutions/governed-write-path", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/solutions/mcp-security", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/solutions/ai-governance", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/solutions/ebs-to-s4hana", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/services", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/mcp", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/mcp/vs-custom-integration", priority: 0.5, changeFrequency: "monthly" as const },
