@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Governance Ledger Demo — Tioga AI",
     description:
-      "Live operational data — not a simulation. Every AI call logged, costed, and mapped to the NIST AI RMF.",
+      "Real operational data, refreshed periodically — not a live-refreshing feed. Every AI call logged, costed, and mapped to the NIST AI RMF.",
   },
 };
 
@@ -51,10 +51,10 @@ const LEDGER: LedgerRow[] = [
 ];
 
 const STATS = [
-  { label: "Spend vs. cap", value: "$0.000958", sub: "of $30.00 · 30-day rolling window" },
+  { label: "Spend vs. cap", value: "$0.000753", sub: "of $30.00 · 30-day rolling window" },
   { label: "Calls logged", value: "17", sub: "unsampled — every call, not a spot check" },
   { label: "Backends in rotation", value: "3", sub: "local free-tier → Google → OpenRouter, by policy" },
-  { label: "Paid vs. free-tier", value: "2 / 17", sub: "88% of calls settled at $0 before touching billed credit" },
+  { label: "Paid vs. free-tier", value: "2 / 17", sub: "71% of calls settled at exactly $0 before touching billed credit" },
 ];
 
 // Pulled live from the gateway's own status tool on Jul 27, 2026 — a
@@ -105,7 +105,7 @@ export default function GovernanceLedgerPage() {
   return (
     <DemoShell
       title="Governance Ledger"
-      badge="Live Operational Data — Not a Simulation"
+      badge="Real Operational Data — Refreshed Periodically"
       description="Every model call our own AI infrastructure makes is logged, costed, budget-capped, and attributed — automatically, as a byproduct of how it routes work. This is a real excerpt from that ledger."
     >
       <p className="text-xs mb-6 -mt-4" style={{ color: "var(--text-muted-3)" }}>
@@ -180,9 +180,9 @@ export default function GovernanceLedgerPage() {
         </div>
       </div>
 
-      {/* Live gateway snapshot */}
+      {/* Gateway snapshot */}
       <div className="mt-8">
-        <h2 className="font-semibold text-white mb-1">Live gateway snapshot</h2>
+        <h2 className="font-semibold text-white mb-1">Gateway snapshot</h2>
         <p className="text-xs text-slate-400 mb-4">
           Checked directly against the gateway&apos;s own status tool on Jul 27,
           2026 — a separate, fresher check than the ledger rows above, not a
