@@ -1,4 +1,4 @@
-import { callClaudeStructured } from "@/app/demos/_lib/anthropic";
+import { callClaude } from "@/app/demos/_lib/anthropic";
 import { sendMigrationAssessmentCopy } from "@/lib/email";
 import { rateLimit } from "@/lib/rate-limit";
 import { NextRequest } from "next/server";
@@ -75,7 +75,8 @@ export async function POST(req: NextRequest) {
 Rules:
 - Be SPECIFIC to the modules selected — name module-level concerns (e.g., open AP/AR item reconciliation, FA depreciation history conversion, GL chart-of-accounts redesign, INV valuation method changes, open PO commitments), not generic migration advice.
 - Be conservative on timelines. Enterprises consistently underestimate data migration and parallel-run phases.
-- ${hasFinancials ? "FI/GL/AP modules are in scope: you MUST explicitly address SOX compliance and audit-trail preservation in the risks or reasoning." : "Note compliance considerations where relevant."}`;
+- ${hasFinancials ? "FI/GL/AP modules are in scope: you MUST explicitly address SOX compliance and audit-trail preservation in the risks or reasoning." : "Note compliance considerations where relevant."}
+- Respond with VALID JSON ONLY. No markdown, no code fences, no commentary outside the JSON object. Every string value must be valid JSON: escape internal double quotes as \\", escape newlines as \\n, and never break out of a string value to use another format (e.g. XML tags) inside it.`;
 
   const prompt = `Assess this Oracle EBS to SAP S/4HANA migration:
 
@@ -84,48 +85,47 @@ Rules:
 - Approximate data volume: ${dataVolume}
 - Target SAP edition: ${target}
 
-Call the submit_assessment tool with your assessment.`;
+Return exactly this JSON structure:
+{
+  "complexityScore": <integer 1-10, where 10 is most complex>,
+  "scoreReasoning": "<2-3 sentences explaining the score, referencing the specific modules and data volume>",
+  "timelineRange": "<conservative range, e.g. '10-16 months'>",
+  "topRisks": [
+    { "title": "<short risk title>", "detail": "<exactly 2 sentences of specific detail>" },
+    { "title": "...", "detail": "..." },
+    { "title": "...", "detail": "..." }
+  ],
+  "recommendedApproach": {
+    "approach": "<one of: greenfield | brownfield | selective>",
+    "reasoning": "<2-3 sentences on why, given this module mix and target edition>"
+  },
+  "nextSteps": ["<concrete step>", "<concrete step>", "<optional third step>"]
+}`;
 
-  // Structured output via tool-use: the model is guided by this schema, not
-  // hard-constrained by it (Anthropic tool-use isn't grammar-enforced the
-  // way e.g. OpenAI's strict JSON mode is) — so malformed shapes are rarer
-  // than free-text JSON.parse() but still possible. Keep the schema to
-  // well-supported keywords (type/properties/required/enum) and pair it
-  // with validation + one bounded retry below, rather than assuming either
-  // layer alone is sufficient.
-  const ASSESSMENT_SCHEMA = {
-    properties: {
-      complexityScore: { type: "integer", minimum: 1, maximum: 10, description: "10 is most complex" },
-      scoreReasoning: { type: "string", description: "2-3 sentences, referencing the specific modules and data volume" },
-      timelineRange: { type: "string", description: "conservative range, e.g. '10-16 months'" },
-      topRisks: {
-        type: "array",
-        description: "exactly 3 risks",
-        items: {
-          type: "object",
-          properties: {
-            title: { type: "string" },
-            detail: { type: "string", description: "exactly 2 sentences of specific detail" },
-          },
-          required: ["title", "detail"],
-        },
-      },
-      recommendedApproach: {
-        type: "object",
-        properties: {
-          approach: { type: "string", enum: ["greenfield", "brownfield", "selective"] },
-          reasoning: { type: "string", description: "2-3 sentences on why, given this module mix and target edition" },
-        },
-        required: ["approach", "reasoning"],
-      },
-      nextSteps: {
-        type: "array",
-        description: "2-3 concrete steps",
-        items: { type: "string" },
-      },
-    },
-    required: ["complexityScore", "scoreReasoning", "timelineRange", "topRisks", "recommendedApproach", "nextSteps"],
-  };
+  // Free-text JSON, not tool-use: tool-use turned out to be LESS reliable
+  // here — testing on 2026-08-06 showed Claude returning correctly-typed
+  // scalar fields but dumping the topRisks/recommendedApproach/nextSteps
+  // content as one XML-tagged string instead of respecting the array/object
+  // schema, on the majority of calls (Anthropic tool-use is schema-guided,
+  // not schema-enforced). Free-text generation had run in production for
+  // over a week with only one real parse failure, so the actual gap was
+  // parsing robustness, not the generation method — addressed below with a
+  // JSON-repair pass and a bounded retry, not a method switch.
+  function extractJson(raw: string): unknown {
+    const cleaned = raw.replace(/```(?:json)?/gi, "").trim();
+    const match = cleaned.match(/\{[\s\S]*\}/);
+    if (!match) throw new Error("no JSON object in model output");
+    try {
+      return JSON.parse(match[0]);
+    } catch {
+      // Common, mechanically-fixable issues: trailing commas before a
+      // closing bracket, and raw control characters inside string values.
+      const repaired = match[0]
+        .replace(/,(\s*[\]}])/g, "$1")
+        .replace(/[\u0000-\u001F]/g, " ");
+      return JSON.parse(repaired);
+    }
+  }
 
   type RawAssessment = {
     complexityScore: unknown;
@@ -166,20 +166,14 @@ Call the submit_assessment tool with your assessment.`;
   }
 
   try {
-    // One retry: tool-use shape mismatches are probabilistic, not
-    // deterministic, so a second attempt is worth it before failing the
-    // request outright (mirrors the client's own one-shot expectation).
+    // One retry: a malformed generation is rare but not impossible, so a
+    // second attempt is worth it before failing the request outright.
     let assessment: ReturnType<typeof shapeAssessment> | undefined;
     let lastErr: unknown;
     for (let attempt = 0; attempt < 2 && !assessment; attempt++) {
       try {
-        const result = await callClaudeStructured<RawAssessment>({
-          system,
-          prompt,
-          toolName: "submit_assessment",
-          toolDescription: "Submit the Oracle EBS to SAP S/4HANA migration readiness assessment.",
-          schema: ASSESSMENT_SCHEMA,
-        });
+        const raw = await callClaude({ system, prompt });
+        const result = extractJson(raw) as RawAssessment;
         assessment = shapeAssessment(result);
       } catch (err) {
         lastErr = err;
