@@ -2,6 +2,7 @@
 
 import { Fragment, useState } from "react";
 import DemoShell from "../_lib/demo-shell";
+import ValueLedgerPanel from "./ValueLedgerPanel";
 import {
   cloneSeed,
   evaluateScope,
@@ -308,6 +309,9 @@ export default function ApExceptionWorkflowPage() {
           <p className="text-xs text-slate-400 mt-1">escalated, awaiting a human</p>
         </div>
       </div>
+
+      {/* Value ledger — live hours/$ rollup of this session's actions */}
+      <ValueLedgerPanel ledger={ledger} />
 
       {/* Propose panel */}
       <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
