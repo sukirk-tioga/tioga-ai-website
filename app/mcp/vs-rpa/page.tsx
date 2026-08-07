@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "MCP vs. RPA",
@@ -50,9 +51,9 @@ export default function McpVsRpaPage() {
   return (
     <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <a href="/mcp" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/mcp" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
           ← MCP Integrations
-        </a>
+        </Link>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
           style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
@@ -108,9 +109,9 @@ export default function McpVsRpaPage() {
               order, so it can handle requests the tool server&apos;s author
               never explicitly scripted, as long as the underlying tools
               exist. See{" "}
-              <a href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+              <Link href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
                 MCP vs. custom integration →
-              </a>{" "}
+              </Link>{" "}
               for how that compares to building the same thing by hand.
             </p>
           </div>
@@ -157,17 +158,17 @@ export default function McpVsRpaPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-slate-400 mb-4">
             See the same tradeoff against building integrations by hand in{" "}
-            <a href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               MCP vs. custom integration →
-            </a>
+            </Link>
           </p>
-          <a
+          <Link
             href="/mcp"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Try the live MCP demo →
-          </a>
+          </Link>
         </div>
       </section>
     </main>

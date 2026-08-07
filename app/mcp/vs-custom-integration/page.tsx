@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "MCP vs. Custom Integration",
@@ -55,9 +56,9 @@ export default function McpVsCustomIntegrationPage() {
   return (
     <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <a href="/mcp" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/mcp" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
           ← MCP Integrations
-        </a>
+        </Link>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
           style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
@@ -100,9 +101,9 @@ export default function McpVsCustomIntegrationPage() {
               <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>get_pipeline</code> — not around any one workflow. Any
               MCP-aware model can call those tools, decide which ones it
               needs for a given question, and chain them. The{" "}
-              <a href="/mcp" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+              <Link href="/mcp" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
                 live MCP demo
-              </a>{" "}
+              </Link>{" "}
               on this site shows the actual tool-server code for SAP,
               Workday, and Salesforce connectors written this way.
             </p>
@@ -148,17 +149,17 @@ export default function McpVsCustomIntegrationPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-slate-400 mb-4">
             See the pattern applied to a real workflow in the{" "}
-            <a href="/engineering/migration-assessment" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/engineering/migration-assessment" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               Migration Assessment writeup →
-            </a>
+            </Link>
           </p>
-          <a
+          <Link
             href="/mcp"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Try the live MCP demo →
-          </a>
+          </Link>
         </div>
       </section>
     </main>

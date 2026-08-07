@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Trust & Governance",
@@ -116,9 +117,9 @@ export default function TrustPage() {
                   <p className="text-sm font-semibold text-white">{f.offer}</p>
                   <p className="text-xs mt-0.5" style={{ color: "var(--accent)" }}>{f.price}</p>
                   {f.href && (
-                    <a href={f.href} className="inline-block text-xs mt-3 hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+                    <Link href={f.href} className="inline-block text-xs mt-3 hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
                       {f.linkText}
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
@@ -156,13 +157,13 @@ export default function TrustPage() {
             the four functions above. Real operational data, refreshed
             periodically — not a live-refreshing feed.
           </p>
-          <a
+          <Link
             href="/demos/governance-ledger"
             className="inline-flex px-6 py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             See the live ledger →
-          </a>
+          </Link>
         </div>
 
         {/* Compliance & certification status */}
@@ -179,7 +180,7 @@ export default function TrustPage() {
                 Our own infrastructure&apos;s security controls — role-based
                 access, audit logging, architecture aligned to SOC 2 Trust
                 Services Criteria — are real and demonstrated live in the{" "}
-                <a href="/demos/governance-ledger" className="underline hover:text-white transition-colors">Governance Ledger demo</a>.
+                <Link href="/demos/governance-ledger" className="underline hover:text-white transition-colors">Governance Ledger demo</Link>.
                 No independent SOC 2 report exists yet.
               </li>
               <li>
@@ -203,7 +204,7 @@ export default function TrustPage() {
             Tioga AI is a solo-run practice — no marketing database, no ad
             tracking, no resale of anything you submit. The full breakdown,
             endpoint by endpoint, is in the{" "}
-            <a href="/privacy" className="underline hover:text-white transition-colors">Privacy Policy</a>.
+            <Link href="/privacy" className="underline hover:text-white transition-colors">Privacy Policy</Link>.
             Exactly three external parties ever touch your data:
           </p>
           <div className="grid sm:grid-cols-3 gap-4">
@@ -273,13 +274,13 @@ export default function TrustPage() {
           <p className="text-sm text-slate-400 mb-4">
             Ten of Tioga AI&apos;s thirteen engagements are governance-focused.
           </p>
-          <a
+          <Link
             href="/services"
             className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white inline-block"
             style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
           >
             See all thirteen offers →
-          </a>
+          </Link>
         </div>
       </section>
     </main>

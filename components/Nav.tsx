@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,7 +41,7 @@ export default function Nav() {
         }}
       >
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2 shrink-0">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image
             src="/logo-icon.png"
             alt="tioga.ai logo"
@@ -49,12 +50,12 @@ export default function Nav() {
             className="w-12 h-12 object-contain"
           />
           <span className="font-semibold text-white text-xl tracking-tight">tioga<span style={{ color: "var(--accent)" }}>.ai</span></span>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8 text-base text-slate-400 font-semibold">
           {links.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               className="hover:text-white transition-colors"
@@ -62,19 +63,19 @@ export default function Nav() {
               aria-current={pathname === l.href ? "page" : undefined}
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* CTA + hamburger */}
         <div className="flex items-center gap-3">
-          <a
+          <Link
             href="/#contact"
             className="hidden md:inline-flex px-5 py-2.5 rounded-lg text-base font-medium text-white transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Get Started
-          </a>
+          </Link>
 
           {/* Hamburger — mobile only */}
           <button
@@ -104,6 +105,7 @@ export default function Nav() {
       <div
         id="mobile-nav-menu"
         className="fixed top-[65px] left-0 right-0 z-40 md:hidden transition-all duration-200 overflow-hidden"
+        aria-hidden={!menuOpen}
         style={{
           maxHeight: menuOpen ? "400px" : "0px",
           background: "rgba(10,15,28,0.98)",
@@ -113,23 +115,25 @@ export default function Nav() {
       >
         <div className="px-6 py-4 flex flex-col gap-1">
           {links.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               onClick={() => setMenuOpen(false)}
+              tabIndex={menuOpen ? undefined : -1}
               className="py-3 text-sm text-slate-300 hover:text-white transition-colors border-b border-slate-800/50 last:border-0"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a
+          <Link
             href="/#contact"
             onClick={() => setMenuOpen(false)}
+            tabIndex={menuOpen ? undefined : -1}
             className="mt-3 py-3 rounded-lg text-sm font-medium text-white text-center transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Get Started
-          </a>
+          </Link>
         </div>
       </div>
     </>

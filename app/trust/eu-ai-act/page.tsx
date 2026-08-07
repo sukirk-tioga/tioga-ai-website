@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "EU AI Act Exposure",
@@ -128,9 +129,9 @@ export default function EUAIActPage() {
             than self-reported — reason enough to build toward it even before
             certification is complete.
           </p>
-          <a href="/trust/framework-mapping" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+          <Link href="/trust/framework-mapping" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
             See how NIST AI RMF, ISO 42001, and the EU AI Act line up →
-          </a>
+          </Link>
         </div>
 
         {/* Calculator CTA */}
@@ -140,13 +141,13 @@ export default function EUAIActPage() {
             A quick, rules-based check — select what your AI system does, get
             the likely risk tier and penalty exposure.
           </p>
-          <a
+          <Link
             href="/trust/eu-ai-act/calculator"
             className="inline-block px-6 py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Run the readiness calculator →
-          </a>
+          </Link>
         </div>
 
         {/* Offer tie-in */}
@@ -155,13 +156,13 @@ export default function EUAIActPage() {
             Tioga AI&apos;s EU AI Act Conformity Program covers Article 50 /
             state-law readiness and full conformity documentation.
           </p>
-          <a
+          <Link
             href="/services"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             See the Conformity Program →
-          </a>
+          </Link>
         </div>
       </section>
     </main>

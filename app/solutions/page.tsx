@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import TrackedCTA from "@/components/TrackedCTA";
 
 export const metadata: Metadata = {
@@ -61,7 +62,7 @@ export default function SolutionsHubPage() {
 
         <div className="grid md:grid-cols-2 gap-4">
           {SOLUTIONS.map((s) => (
-            <a
+            <Link
               key={s.href}
               href={s.href}
               className="group p-6 rounded-2xl transition-all hover:border-slate-500 block"
@@ -72,7 +73,7 @@ export default function SolutionsHubPage() {
               <span className="text-sm font-medium inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
                 Learn more →
               </span>
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -88,9 +89,9 @@ export default function SolutionsHubPage() {
           </TrackedCTA>
           <p className="text-xs text-slate-400 mt-4">
             Not sure which fits?{" "}
-            <a href="/services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               See all 13 engagements →
-            </a>
+            </Link>
           </p>
         </div>
       </section>

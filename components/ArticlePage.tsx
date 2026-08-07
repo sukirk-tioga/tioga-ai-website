@@ -1,3 +1,4 @@
+import Link from "next/link";
 import TrackedCTA from "@/components/TrackedCTA";
 
 interface Section {
@@ -25,7 +26,7 @@ export default function ArticlePage({ content }: { content: ArticleContent }) {
   return (
     <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <article className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <a
+        <Link
           href="/articles"
           className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-8"
         >
@@ -33,7 +34,7 @@ export default function ArticlePage({ content }: { content: ArticleContent }) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
           All articles
-        </a>
+        </Link>
 
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
@@ -84,9 +85,9 @@ export default function ArticlePage({ content }: { content: ArticleContent }) {
         {content.related.length > 0 && (
           <div className="mt-8 flex flex-wrap gap-4 justify-center text-sm">
             {content.related.map((r) => (
-              <a key={r.href} href={r.href} className="hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+              <Link key={r.href} href={r.href} className="hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
                 {r.label} →
-              </a>
+              </Link>
             ))}
           </div>
         )}

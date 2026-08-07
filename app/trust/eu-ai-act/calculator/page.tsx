@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 
 // Deterministic, rules-based classification — not a model call. Real
 // regulatory classification isn't something we're willing to let an LLM
@@ -116,9 +117,9 @@ export default function EUAIActCalculatorPage() {
   return (
     <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
-        <a href="/trust/eu-ai-act" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/trust/eu-ai-act" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
           ← EU AI Act Exposure
-        </a>
+        </Link>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
           style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
@@ -235,13 +236,13 @@ export default function EUAIActCalculatorPage() {
                     of whatever tier applies above.
                   </p>
                 )}
-                <a
+                <Link
                   href={result.cta.href}
                   className="block text-center px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
                   style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
                 >
                   {result.cta.label}
-                </a>
+                </Link>
               </div>
             )}
           </div>

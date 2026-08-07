@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -171,13 +172,13 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="mt-5 pt-5" style={{ borderTop: "1px solid var(--border)" }}>
-                      <a
+                      <Link
                         href="/#contact"
                         className="text-sm font-medium transition-colors hover:text-white"
                         style={{ color: "var(--accent)" }}
                       >
                         Start a conversation about this engagement →
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 ))}
@@ -213,18 +214,18 @@ export default function ServicesPage() {
         </div>
 
         <div className="mt-8 text-center">
-          <a
+          <Link
             href="/#contact"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Start a conversation
-          </a>
+          </Link>
           <p className="text-xs text-slate-400 mt-4">
             Not sure where to start?{" "}
-            <a href="/#services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/#services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               See the three entry-point offers →
-            </a>
+            </Link>
           </p>
         </div>
       </section>

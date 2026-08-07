@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 // ── Animated flow line component ──────────────────────────────────────────────
 
@@ -606,16 +607,16 @@ export default function MCPPage() {
  ))}
  </div>
  <p className="text-center text-xs text-slate-400 mb-16">
- See exactly what&apos;s shipped, in order — <a href="/changelog" className="underline hover:text-slate-400 transition-colors">Build Log →</a>
+ See exactly what&apos;s shipped, in order — <Link href="/changelog" className="underline hover:text-slate-400 transition-colors">Build Log →</Link>
  </p>
 
  <div className="text-center mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
- <a href="/mcp/vs-custom-integration" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+ <Link href="/mcp/vs-custom-integration" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
  MCP vs. custom integration →
- </a>
- <a href="/mcp/vs-rpa" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+ </Link>
+ <Link href="/mcp/vs-rpa" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
  MCP vs. RPA →
- </a>
+ </Link>
  </div>
 
  {/* CTA */}
@@ -628,13 +629,13 @@ export default function MCPPage() {
  We'll scope your integration in a 5-day discovery sprint and have your first
  MCP connector live within 2 weeks.
  </p>
- <a
+ <Link
  href="/#contact"
  className="inline-flex px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
  style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
  >
  Start a Discovery Sprint
- </a>
+ </Link>
  <p className="text-xs text-slate-400 mt-3">$5,000 flat · 5 days · prototype included</p>
  </div>
  </div>

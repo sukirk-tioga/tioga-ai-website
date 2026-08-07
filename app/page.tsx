@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SmartContactForm from "@/components/SmartContactForm";
 import TrackedCTA from "@/components/TrackedCTA";
 
@@ -172,7 +173,7 @@ export default function HomePage() {
  href: "/demos/migration-assessment"
  },
  ].map((demo) => (
- <a
+ <Link
  key={demo.title}
  href={demo.href}
  className="group p-6 rounded-2xl transition-all hover:border-slate-500 cursor-pointer block"
@@ -192,14 +193,14 @@ export default function HomePage() {
  <span className="text-sm font-medium inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
  Try it live →
  </span>
- </a>
+ </Link>
  ))}
  </div>
  </section>
 
  {/* Governance Ledger Callout */}
  <section className="pt-2 pb-4 px-6 max-w-5xl mx-auto">
- <a
+ <Link
  href="/demos/governance-ledger"
  className="block rounded-2xl p-6 transition-all hover:border-slate-500 group"
  style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
@@ -215,7 +216,7 @@ export default function HomePage() {
  View the ledger →
  </div>
  </div>
- </a>
+ </Link>
  </section>
 
  {/* Integrations */}
@@ -294,9 +295,9 @@ export default function HomePage() {
  </div>
  <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
  Plus ten more engagements across two practices — modernizing ERP with an agent layer, and governing enterprise AI end to end.{" "}
- <a href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
+ <Link href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
  See all services →
- </a>
+ </Link>
  </p>
  <p className="text-center mt-4 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
  See what you actually get:{" "}
@@ -396,7 +397,7 @@ export default function HomePage() {
 
  {/* MCP Callout */}
  <section className="px-6 pb-20 max-w-5xl mx-auto">
- <a
+ <Link
  href="/mcp"
  className="block rounded-2xl p-8 transition-all hover:border-slate-500 group"
  style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC12)", border: "1px solid #00D4FF25" }}
@@ -421,7 +422,7 @@ export default function HomePage() {
  Explore MCP →
  </div>
  </div>
- </a>
+ </Link>
  </section>
 
  <div style={{ borderColor: "var(--border)", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />

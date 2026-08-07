@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "How We Built It",
@@ -61,7 +62,7 @@ export default function EngineeringIndexPage() {
 
         <div className="space-y-4">
           {WRITEUPS.map((w) => (
-            <a
+            <Link
               key={w.href}
               href={w.href}
               className="block p-6 rounded-2xl transition-all hover:border-slate-500"
@@ -82,24 +83,24 @@ export default function EngineeringIndexPage() {
                 </div>
                 <span className="text-sm shrink-0" style={{ color: "var(--accent)" }}>Read →</span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
         <div className="mt-16 text-center">
           <p className="text-xs text-slate-400 mb-4">
             Prefer the running history?{" "}
-            <a href="/changelog" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/changelog" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               See the build log →
-            </a>
+            </Link>
           </p>
-          <a
+          <Link
             href="/demos"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Try the live demos
-          </a>
+          </Link>
         </div>
       </section>
     </main>

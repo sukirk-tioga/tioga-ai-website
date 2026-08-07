@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import BenchmarkCard from "@/components/BenchmarkCard";
 
 export const metadata: Metadata = {
@@ -16,9 +17,9 @@ export default function InvoiceProcessingWriteup() {
   return (
     <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <a href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
           ← How We Built It
-        </a>
+        </Link>
         <div className="flex items-center gap-3 mb-6">
           <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}>
             Claude Haiku 4.5
@@ -118,13 +119,13 @@ export default function InvoiceProcessingWriteup() {
         </div>
 
         <div className="mt-16 text-center">
-          <a
+          <Link
             href="/demos"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Try it with your own invoice →
-          </a>
+          </Link>
         </div>
       </section>
     </main>

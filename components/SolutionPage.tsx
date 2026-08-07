@@ -1,3 +1,4 @@
+import Link from "next/link";
 import TrackedCTA from "@/components/TrackedCTA";
 
 interface ProofPoint {
@@ -182,14 +183,14 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
         </TrackedCTA>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-8 text-sm">
           {content.related.map((r) => (
-            <a
+            <Link
               key={r.href}
               href={r.href}
               className="underline underline-offset-2 transition-colors hover:text-white"
               style={{ color: "var(--accent)" }}
             >
               {r.label} →
-            </a>
+            </Link>
           ))}
         </div>
       </section>

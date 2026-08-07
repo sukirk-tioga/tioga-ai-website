@@ -87,7 +87,7 @@ const content: SolutionContent = {
     { href: "/solutions/governed-write-path", label: "Governed write-path deep dive" },
     { href: "/services", label: "See all engagements" },
   ],
-  demoLink: { href: "/demos?tab=invoice", label: "See an AP agent run" },
+  demoLink: { href: "/demos/ap-exception-workflow", label: "See an AP agent run" },
 };
 
 export default function SapSolutionPage() {

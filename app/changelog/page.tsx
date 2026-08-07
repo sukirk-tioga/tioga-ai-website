@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Build Log",
@@ -23,6 +24,30 @@ interface Entry {
 // Curated from git history — collapses the many small commits behind each
 // shipped unit of work into one entry. Dates are the day the unit landed.
 const ENTRIES: Entry[] = [
+  {
+    date: "2026-08-07",
+    kind: "Infra",
+    title: "Client-side routing site-wide, plus an HSTS header",
+    body: "Nav, footer, and every internal CTA/article/solutions link now use next/link instead of raw <a> tags, so internal navigation is a client-side transition instead of a full page reload and full JS re-download on every click. Also added Strict-Transport-Security to the security header set (CSP, X-Frame-Options, etc. were already in place) and closed a focus-trap gap where the mobile nav's links stayed keyboard-reachable while visually collapsed.",
+  },
+  {
+    date: "2026-08-07",
+    kind: "Fix",
+    title: "Governance Ledger badge and stat-strip math corrected",
+    body: "The badge still read \"Live Operational Data — Not a Simulation\" and a section heading said \"Live gateway snapshot,\" contradicting the honest \"refreshed periodically\" copy already sitting right below them. Also fixed two arithmetic errors in the stat strip: the spend-vs-cap figure didn't match what the ledger rows actually sum to, and the free-tier settlement rate was counting the wrong thing (pool assignment instead of which calls actually settled at $0).",
+  },
+  {
+    date: "2026-08-07",
+    kind: "Feature",
+    title: "Live value ledger on the AP Exception Workflow demo",
+    body: "The AP demo now shows a running dollar-value ledger as the agent works through invoices — caught duplicates, fraud holds, early-pay discounts captured — with an exportable HTML report, instead of leaving the business impact implicit.",
+  },
+  {
+    date: "2026-08-07",
+    kind: "Fix",
+    title: "Site audit — chatbot accuracy, SEO canonicals, dead links, a real 404 page",
+    body: "The chatbot's system prompt claimed client work and partnerships that don't exist yet and got the SOC 2 status wrong; rewrote it to match what /trust actually says, with the real 13 offers and all 6 demos. Fixed a canonical-tag bug forcing every page to declare the homepage as canonical instead of itself. Repointed the hero's \"See an AP agent run\" CTA at the actual agent-workflow demo instead of a plain invoice-extraction tab, and did the same for the matching link on the SAP solutions page. Added a styled 404 page (previously the framework default) and a handful of redirects for URLs that don't exist yet (/contact, /pricing, /blog).",
+  },
   {
     date: "2026-07-27",
     kind: "Content",
@@ -202,21 +227,21 @@ export default function ChangelogPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-slate-400 mb-4">
             Curious how something was built?{" "}
-            <a href="/engineering" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/engineering" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               Read the engineering writeups →
-            </a>
+            </Link>
             {" "}or see the{" "}
-            <a href="/trust" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/trust" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
               governance approach →
-            </a>
+            </Link>
           </p>
-          <a
+          <Link
             href="/#contact"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Start a conversation
-          </a>
+          </Link>
         </div>
       </section>
     </main>

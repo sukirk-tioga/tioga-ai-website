@@ -64,7 +64,7 @@ export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) 
           <p className="text-xs text-slate-400 max-w-md">
             Computed live from the actions above. Baseline time and hourly rate are starting points — edit them
             to match your own team's numbers, per Tioga's{" "}
-            <a href="/samples/weekly-value-report.html" className="underline" style={{ color: "var(--accent)" }}>
+            <a href="/samples/weekly-value-report.html" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "var(--accent)" }}>
               value-report methodology
             </a>
             : never an invented industry figure.

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -94,9 +95,9 @@ export default function TermsPage() {
             The Site&apos;s design, copy, and code are Tioga AI&apos;s property
             unless otherwise noted. Content you submit through the contact
             form or demos remains yours; see the{" "}
-            <a href="/privacy" className="underline hover:text-slate-300 transition-colors">
+            <Link href="/privacy" className="underline hover:text-slate-300 transition-colors">
               Privacy Policy
-            </a>{" "}
+            </Link>{" "}
             for how it&apos;s handled.
           </p>
         </Section>
@@ -106,9 +107,9 @@ export default function TermsPage() {
             We may update these terms as the Site changes. Continued use after
             an update means you accept the revised terms. Material changes
             will be reflected in the{" "}
-            <a href="/changelog" className="underline hover:text-slate-300 transition-colors">
+            <Link href="/changelog" className="underline hover:text-slate-300 transition-colors">
               Build Log
-            </a>
+            </Link>
             .
           </p>
         </Section>

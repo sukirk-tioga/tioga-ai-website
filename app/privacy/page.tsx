@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -149,9 +150,9 @@ export default function PrivacyPage() {
             If how this site handles data changes, this page will be updated
             and the date at the top will change. Material changes will be
             reflected in the{" "}
-            <a href="/changelog" className="underline hover:text-slate-300 transition-colors">
+            <Link href="/changelog" className="underline hover:text-slate-300 transition-colors">
               Build Log
-            </a>
+            </Link>
             .
           </p>
         </Section>

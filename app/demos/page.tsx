@@ -2,6 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import FileUpload from "@/components/FileUpload";
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -688,12 +689,12 @@ function DemosPageInner() {
           </p>
           <p className="text-xs text-slate-400 max-w-xl mx-auto">
             Files and text you submit here are sent to Claude to generate the result shown and are not stored by Tioga AI or used to train any model. See our{" "}
-            <a href="/privacy" className="underline hover:text-slate-400 transition-colors">Privacy Policy →</a>
+            <Link href="/privacy" className="underline hover:text-slate-400 transition-colors">Privacy Policy →</Link>
           </p>
         </div>
 
         {/* Featured: Migration Assessment */}
-        <a
+        <Link
           href="/demos/migration-assessment"
           className="group flex items-center gap-5 p-6 rounded-2xl mb-2 transition-all hover:border-slate-500"
           style={{
@@ -730,15 +731,15 @@ function DemosPageInner() {
           <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
             Try it live →
           </span>
-        </a>
+        </Link>
         <div className="text-right mb-8">
-          <a href="/engineering/migration-assessment" className="text-xs hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+          <Link href="/engineering/migration-assessment" className="text-xs hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
             How we built this →
-          </a>
+          </Link>
         </div>
 
         {/* Featured: Governance Ledger */}
-        <a
+        <Link
           href="/demos/governance-ledger"
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
@@ -773,10 +774,10 @@ function DemosPageInner() {
           <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
             View the ledger →
           </span>
-        </a>
+        </Link>
 
         {/* Featured: AP Exception Workflow */}
-        <a
+        <Link
           href="/demos/ap-exception-workflow"
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
@@ -811,7 +812,7 @@ function DemosPageInner() {
           <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
             Try it live →
           </span>
-        </a>
+        </Link>
 
         {/* Demo selector */}
         <div className="grid grid-cols-3 gap-3 mb-8">
@@ -847,9 +848,9 @@ function DemosPageInner() {
             </div>
             <div className="ml-auto flex items-center gap-3">
               {activeDemo.engineeringHref && (
-                <a href={activeDemo.engineeringHref} className="text-xs hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+                <Link href={activeDemo.engineeringHref} className="text-xs hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
                   How we built this →
-                </a>
+                </Link>
               )}
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
@@ -863,13 +864,13 @@ function DemosPageInner() {
         {/* CTA */}
         <div className="mt-10 text-center">
           <p className="text-slate-400 mb-4">Want these capabilities in your enterprise systems?</p>
-          <a
+          <Link
             href="/#contact"
             className="inline-flex px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
             Let&apos;s Build Together
-          </a>
+          </Link>
         </div>
       </div>
     </main>
