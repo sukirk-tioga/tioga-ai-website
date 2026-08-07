@@ -76,7 +76,7 @@ Rules:
 - Be SPECIFIC to the modules selected — name module-level concerns (e.g., open AP/AR item reconciliation, FA depreciation history conversion, GL chart-of-accounts redesign, INV valuation method changes, open PO commitments), not generic migration advice.
 - Be conservative on timelines. Enterprises consistently underestimate data migration and parallel-run phases.
 - ${hasFinancials ? "FI/GL/AP modules are in scope: you MUST explicitly address SOX compliance and audit-trail preservation in the risks or reasoning." : "Note compliance considerations where relevant."}
-- Respond with VALID JSON ONLY. No markdown, no code fences, no commentary outside the JSON object.`;
+- Respond with VALID JSON ONLY. No markdown, no code fences, no commentary outside the JSON object. Every string value must be valid JSON: escape internal double quotes as \\", escape newlines as \\n, and never break out of a string value to use another format (e.g. XML tags) inside it.`;
 
   const prompt = `Assess this Oracle EBS to SAP S/4HANA migration:
 
@@ -102,26 +102,58 @@ Return exactly this JSON structure:
   "nextSteps": ["<concrete step>", "<concrete step>", "<optional third step>"]
 }`;
 
-  try {
-    const raw = await callClaude({ system, prompt });
-
-    // Defensive parse: strip code fences, extract the outermost JSON object
+  // Free-text JSON, not tool-use: tool-use turned out to be LESS reliable
+  // here — testing on 2026-08-06 showed Claude returning correctly-typed
+  // scalar fields but dumping the topRisks/recommendedApproach/nextSteps
+  // content as one XML-tagged string instead of respecting the array/object
+  // schema, on the majority of calls (Anthropic tool-use is schema-guided,
+  // not schema-enforced). Free-text generation had run in production for
+  // over a week with only one real parse failure, so the actual gap was
+  // parsing robustness, not the generation method — addressed below with a
+  // JSON-repair pass and a bounded retry, not a method switch.
+  function extractJson(raw: string): unknown {
     const cleaned = raw.replace(/```(?:json)?/gi, "").trim();
     const match = cleaned.match(/\{[\s\S]*\}/);
     if (!match) throw new Error("no JSON object in model output");
-    const result = JSON.parse(match[0]);
+    try {
+      return JSON.parse(match[0]);
+    } catch {
+      // Common, mechanically-fixable issues: trailing commas before a
+      // closing bracket, and raw control characters inside string values.
+      const repaired = match[0]
+        .replace(/,(\s*[\]}])/g, "$1")
+        .replace(/[\u0000-\u001F]/g, " ");
+      return JSON.parse(repaired);
+    }
+  }
 
+  type RawAssessment = {
+    complexityScore: unknown;
+    scoreReasoning: unknown;
+    timelineRange: unknown;
+    topRisks: unknown;
+    recommendedApproach?: { approach?: unknown; reasoning?: unknown };
+    nextSteps: unknown;
+  };
+
+  function shapeAssessment(result: RawAssessment) {
     const score = Math.min(10, Math.max(1, Math.round(Number(result.complexityScore))));
     if (!Number.isFinite(score)) throw new Error("bad complexityScore");
-    if (!Array.isArray(result.topRisks) || result.topRisks.length === 0) throw new Error("bad topRisks");
+    if (
+      !Array.isArray(result.topRisks) ||
+      result.topRisks.length === 0 ||
+      !result.topRisks.every((r) => r && typeof r === "object" && "title" in r && "detail" in r)
+    ) {
+      throw new Error("bad topRisks");
+    }
     const approach = String(result.recommendedApproach?.approach ?? "").toLowerCase();
     if (!["greenfield", "brownfield", "selective"].includes(approach)) throw new Error("bad approach");
 
-    const assessment = {
+    return {
       complexityScore: score,
       scoreReasoning: String(result.scoreReasoning ?? ""),
       timelineRange: String(result.timelineRange ?? ""),
-      topRisks: result.topRisks.slice(0, 3).map((r: { title?: unknown; detail?: unknown }) => ({
+      topRisks: (result.topRisks as { title?: unknown; detail?: unknown }[]).slice(0, 3).map((r) => ({
         title: String(r.title ?? ""),
         detail: String(r.detail ?? ""),
       })),
@@ -131,6 +163,24 @@ Return exactly this JSON structure:
       },
       nextSteps: Array.isArray(result.nextSteps) ? result.nextSteps.slice(0, 3).map(String) : [],
     };
+  }
+
+  try {
+    // One retry: a malformed generation is rare but not impossible, so a
+    // second attempt is worth it before failing the request outright.
+    let assessment: ReturnType<typeof shapeAssessment> | undefined;
+    let lastErr: unknown;
+    for (let attempt = 0; attempt < 2 && !assessment; attempt++) {
+      try {
+        const raw = await callClaude({ system, prompt });
+        const result = extractJson(raw) as RawAssessment;
+        assessment = shapeAssessment(result);
+      } catch (err) {
+        lastErr = err;
+        console.error(`[migration-assessment] attempt ${attempt + 1} failed:`, err);
+      }
+    }
+    if (!assessment) throw lastErr ?? new Error("assessment generation failed");
 
     let emailed = false;
     if (typeof email === "string" && email) {
