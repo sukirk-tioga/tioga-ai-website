@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "MCP vs. RPA",
   description:
     "MCP and RPA solve different problems — one automates repetitive UI actions, the other gives a reasoning model structured access to your systems. When each is the right tool.",
+  alternates: { canonical: "/mcp/vs-rpa" },
   openGraph: {
     title: "MCP vs. RPA — Tioga AI",
     description:

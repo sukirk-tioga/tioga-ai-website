@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Oracle EBS to SAP S/4HANA Migration Readiness",
   description:
     "A concrete Oracle EBS to SAP S/4HANA migration-readiness assessment — what maps cleanly, what needs rework, what's a real risk.",
+  alternates: { canonical: "/solutions/ebs-to-s4hana" },
   openGraph: {
     title: "Oracle EBS → SAP S/4HANA Migration Readiness — Tioga AI",
     description: "Know what breaks before you migrate, not after.",

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "What a Real AI Cost-Governance Ledger Looks Like",
   description:
     "88% of our own model calls settle at $0 before touching billed credit — real numbers from a live routing gateway, not a projected savings estimate.",
+  alternates: { canonical: "/articles/ai-cost-governance-ledger" },
   openGraph: {
     title: "What a Real AI Cost-Governance Ledger Looks Like — Tioga AI",
     description: "Real numbers from a live AI routing gateway, not a projection.",

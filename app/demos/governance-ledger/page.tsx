@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Governance Ledger Demo — Tioga AI",
   description:
     "A real excerpt from Tioga AI's own AI routing gateway ledger — every model call logged, costed, budget-capped, and mapped to the NIST AI RMF.",
+  alternates: { canonical: "/demos/governance-ledger" },
   openGraph: {
     title: "Governance Ledger Demo — Tioga AI",
     description:
@@ -107,6 +108,10 @@ export default function GovernanceLedgerPage() {
       badge="Live Operational Data — Not a Simulation"
       description="Every model call our own AI infrastructure makes is logged, costed, budget-capped, and attributed — automatically, as a byproduct of how it routes work. This is a real excerpt from that ledger."
     >
+      <p className="text-xs mb-6 -mt-4" style={{ color: "var(--text-muted-3)" }}>
+        Last updated: Jul 27, 2026 — real operational data, refreshed periodically, not a live-refreshing feed.
+      </p>
+
       {/* Stat strip */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         {STATS.map((s) => (

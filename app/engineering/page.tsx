@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "How We Built It",
   description:
     "Engineering writeups behind Tioga AI's live demos — model choices, validation, rate limiting, and the decisions that separate a working prototype from something safe to run in production.",
+  alternates: { canonical: "/engineering" },
   openGraph: {
     title: "How We Built It — Tioga AI",
     description: "Engineering writeups behind the live demos — no black box.",

@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Live AI Demos",
   description:
     "Try Tioga AI's live, interactive demos — document classification, email triage, invoice parsing, MCP enterprise integrations, and more, powered by Claude.",
+  alternates: { canonical: "/demos" },
   openGraph: {
     title: "Live AI Demos — Tioga AI",
     description:

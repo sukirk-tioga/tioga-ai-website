@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "NIST AI RMF ↔ ISO 42001 ↔ EU AI Act Mapping",
   description:
     "How NIST AI RMF's four functions, ISO 42001's management-system controls, and the EU AI Act's legal obligations line up — a conceptual map, not a certification or legal-compliance claim.",
+  alternates: { canonical: "/trust/framework-mapping" },
   openGraph: {
     title: "NIST AI RMF ↔ ISO 42001 ↔ EU AI Act Mapping — Tioga AI",
     description: "How a voluntary framework, a certifiable standard, and a binding regulation line up in practice.",

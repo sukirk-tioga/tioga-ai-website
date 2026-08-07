@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Solutions",
   description:
     "Governed AI solutions for Oracle EBS, SAP, accounts payable, ERP write-paths, MCP security, AI governance, and EBS-to-S4HANA migration.",
+  alternates: { canonical: "/solutions" },
   openGraph: {
     title: "Solutions — Tioga AI",
     description: "Governed AI solutions for enterprise systems, by buyer and problem.",

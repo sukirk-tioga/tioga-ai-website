@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Why 'Auto-Approve Everything Under $X' Is an AP Governance Anti-Pattern",
   description:
     "A single spend threshold isn't a policy — it's a policy with one rule. Real accounts-payable exception handling needs scope, spend tiers, and ERP-level validation as independent layers.",
+  alternates: { canonical: "/articles/ap-exception-auto-approve-antipattern" },
   openGraph: {
     title: "Auto-Approve Everything Under $X Is an Anti-Pattern — Tioga AI",
     description: "What real AP exception-handling policy looks like, with a bug we found building it.",

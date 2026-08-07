@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Terms governing use of the tioga.ai website and its live AI demos.",
+  alternates: { canonical: "/terms" },
   openGraph: {
     title: "Terms of Service — Tioga AI",
     description: "Terms governing use of the tioga.ai website and its live AI demos.",

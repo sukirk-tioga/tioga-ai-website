@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "AI Agents for Oracle EBS",
   description:
     "Governed AI agents for Oracle E-Business Suite — real module integration, a governed write-path, and no rip-and-replace.",
+  alternates: { canonical: "/solutions/oracle" },
   openGraph: {
     title: "AI Agents for Oracle EBS — Tioga AI",
     description: "Governed AI agents that work inside your existing Oracle EBS environment.",

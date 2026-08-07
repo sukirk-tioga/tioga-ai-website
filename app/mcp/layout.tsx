@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   },
   description:
     "See how Claude connects to enterprise systems like SAP, Salesforce, and ServiceNow via the Model Context Protocol — live, interactive demo.",
+  alternates: { canonical: "/mcp" },
   openGraph: {
     title: "MCP Integrations — Tioga AI",
     description:

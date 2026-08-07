@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "How We Built the Email Triage Demo",
   description:
     "Classification, routing, and reply drafting in a single call — and why constraining the model's output to enums matters more than the prompt wording.",
+  alternates: { canonical: "/engineering/email-triage" },
   openGraph: {
     title: "How We Built the Email Triage Demo — Tioga AI",
     description: "Classification, routing, and reply drafting in a single call.",

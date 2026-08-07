@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Governed Write-Path for AI Agents",
   description:
     "How to let an AI agent actually write to your ERP — policy enforcement, approval gates, and a rollback path, not a direct database write.",
+  alternates: { canonical: "/solutions/governed-write-path" },
   openGraph: {
     title: "Governed Write-Path for AI Agents — Tioga AI",
     description: "A working, governed write path from your AI agent into your ERP.",

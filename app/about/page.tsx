@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Tioga AI is built by Sukir Kumaresan — decades in enterprise systems and governance, now building AI agents on the same terrain, with compliance built in from day one.",
+  alternates: { canonical: "/about" },
   openGraph: {
     title: "About — Tioga AI",
     description:
