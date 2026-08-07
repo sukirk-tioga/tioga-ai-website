@@ -86,11 +86,13 @@ Rules:
 
 Call the submit_assessment tool with your assessment.`;
 
-  // Structured output via tool-use: the API enforces this schema at the
-  // model layer, so the result is guaranteed-valid JSON — no free-text
-  // JSON.parse() on the model's raw output, which is what previously
-  // failed intermittently in production (2026-08-06) whenever a risk
-  // detail happened to contain a character that broke naive JSON parsing.
+  // Structured output via tool-use: the model is guided by this schema, not
+  // hard-constrained by it (Anthropic tool-use isn't grammar-enforced the
+  // way e.g. OpenAI's strict JSON mode is) — so malformed shapes are rarer
+  // than free-text JSON.parse() but still possible. Keep the schema to
+  // well-supported keywords (type/properties/required/enum) and pair it
+  // with validation + one bounded retry below, rather than assuming either
+  // layer alone is sufficient.
   const ASSESSMENT_SCHEMA = {
     properties: {
       complexityScore: { type: "integer", minimum: 1, maximum: 10, description: "10 is most complex" },
@@ -98,8 +100,7 @@ Call the submit_assessment tool with your assessment.`;
       timelineRange: { type: "string", description: "conservative range, e.g. '10-16 months'" },
       topRisks: {
         type: "array",
-        minItems: 3,
-        maxItems: 3,
+        description: "exactly 3 risks",
         items: {
           type: "object",
           properties: {
@@ -119,43 +120,40 @@ Call the submit_assessment tool with your assessment.`;
       },
       nextSteps: {
         type: "array",
-        minItems: 2,
-        maxItems: 3,
+        description: "2-3 concrete steps",
         items: { type: "string" },
       },
     },
     required: ["complexityScore", "scoreReasoning", "timelineRange", "topRisks", "recommendedApproach", "nextSteps"],
   };
 
-  try {
-    const result = await callClaudeStructured<{
-      complexityScore: unknown;
-      scoreReasoning: unknown;
-      timelineRange: unknown;
-      topRisks: unknown;
-      recommendedApproach?: { approach?: unknown; reasoning?: unknown };
-      nextSteps: unknown;
-    }>({
-      system,
-      prompt,
-      toolName: "submit_assessment",
-      toolDescription: "Submit the Oracle EBS to SAP S/4HANA migration readiness assessment.",
-      schema: ASSESSMENT_SCHEMA,
-    });
+  type RawAssessment = {
+    complexityScore: unknown;
+    scoreReasoning: unknown;
+    timelineRange: unknown;
+    topRisks: unknown;
+    recommendedApproach?: { approach?: unknown; reasoning?: unknown };
+    nextSteps: unknown;
+  };
 
-    console.error("[migration-assessment] DEBUG raw tool input:", JSON.stringify(result));
-
+  function shapeAssessment(result: RawAssessment) {
     const score = Math.min(10, Math.max(1, Math.round(Number(result.complexityScore))));
     if (!Number.isFinite(score)) throw new Error("bad complexityScore");
-    if (!Array.isArray(result.topRisks) || result.topRisks.length === 0) throw new Error("bad topRisks");
+    if (
+      !Array.isArray(result.topRisks) ||
+      result.topRisks.length === 0 ||
+      !result.topRisks.every((r) => r && typeof r === "object" && "title" in r && "detail" in r)
+    ) {
+      throw new Error("bad topRisks");
+    }
     const approach = String(result.recommendedApproach?.approach ?? "").toLowerCase();
     if (!["greenfield", "brownfield", "selective"].includes(approach)) throw new Error("bad approach");
 
-    const assessment = {
+    return {
       complexityScore: score,
       scoreReasoning: String(result.scoreReasoning ?? ""),
       timelineRange: String(result.timelineRange ?? ""),
-      topRisks: result.topRisks.slice(0, 3).map((r: { title?: unknown; detail?: unknown }) => ({
+      topRisks: (result.topRisks as { title?: unknown; detail?: unknown }[]).slice(0, 3).map((r) => ({
         title: String(r.title ?? ""),
         detail: String(r.detail ?? ""),
       })),
@@ -165,6 +163,30 @@ Call the submit_assessment tool with your assessment.`;
       },
       nextSteps: Array.isArray(result.nextSteps) ? result.nextSteps.slice(0, 3).map(String) : [],
     };
+  }
+
+  try {
+    // One retry: tool-use shape mismatches are probabilistic, not
+    // deterministic, so a second attempt is worth it before failing the
+    // request outright (mirrors the client's own one-shot expectation).
+    let assessment: ReturnType<typeof shapeAssessment> | undefined;
+    let lastErr: unknown;
+    for (let attempt = 0; attempt < 2 && !assessment; attempt++) {
+      try {
+        const result = await callClaudeStructured<RawAssessment>({
+          system,
+          prompt,
+          toolName: "submit_assessment",
+          toolDescription: "Submit the Oracle EBS to SAP S/4HANA migration readiness assessment.",
+          schema: ASSESSMENT_SCHEMA,
+        });
+        assessment = shapeAssessment(result);
+      } catch (err) {
+        lastErr = err;
+        console.error(`[migration-assessment] attempt ${attempt + 1} failed:`, err);
+      }
+    }
+    if (!assessment) throw lastErr ?? new Error("assessment generation failed");
 
     let emailed = false;
     if (typeof email === "string" && email) {
