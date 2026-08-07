@@ -6,11 +6,9 @@ Every color in this site must reference a CSS custom property from
 `app/globals.css`'s `:root` block (`var(--accent)`, `var(--bg-card)`,
 `var(--error)`, etc.) — never a raw hex literal (`#00D4FF`, `#EF4444`, ...).
 
-The current token set: `--bg-dark`, `--bg-card`, `--bg-darker`,
-`--bg-card-alt`, `--border`, `--accent`, `--accent-dark`, `--text`,
-`--text-muted`, `--text-muted-2`, `--text-muted-3`, `--error`,
-`--error-light`, `--warning`, `--warning-light`, `--success`,
-`--success-dark`, `--violet`, `--blue`.
+To see the current token set, don't trust a list here — it will drift.
+Run `grep -A 30 "^:root" app/globals.css` (or open the file directly) to
+get the live set.
 
 If a new color is genuinely needed, add it as a new named token in
 `globals.css`'s `:root` block first, then reference it via `var()` — don't
