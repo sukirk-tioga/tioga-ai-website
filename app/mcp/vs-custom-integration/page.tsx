@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "MCP vs. Custom Integration",
   description:
     "What actually changes when you connect an AI system to SAP, Salesforce, or Workday through MCP instead of a point-to-point custom integration — and where custom integration is still the right call.",
+  alternates: { canonical: "/mcp/vs-custom-integration" },
   openGraph: {
     title: "MCP vs. Custom Integration — Tioga AI",
     description:

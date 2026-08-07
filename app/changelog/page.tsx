@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Build Log",
   description:
     "What's actually shipped on tioga.ai, in order — a running build log in place of case studies we haven't had time to write yet.",
+  alternates: { canonical: "/changelog" },
   openGraph: {
     title: "Build Log — Tioga AI",
     description: "What's actually shipped on tioga.ai, in order, since launch.",

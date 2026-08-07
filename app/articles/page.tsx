@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Articles",
   description:
     "Technical writing on governed AI write-paths, AI governance frameworks, MCP security, ERP migration, and AI cost governance — grounded in Tioga AI's own live demos and infrastructure.",
+  alternates: { canonical: "/articles" },
   openGraph: {
     title: "Articles — Tioga AI",
     description: "Technical articles grounded in real, running systems — not generic AI takes.",

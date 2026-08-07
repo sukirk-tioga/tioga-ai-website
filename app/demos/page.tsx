@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import FileUpload from "@/components/FileUpload";
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -659,8 +660,11 @@ const DEMOS = [
   },
 ];
 
-export default function DemosPage() {
-  const [active, setActive] = useState("invoice");
+function DemosPageInner() {
+  const searchParams = useSearchParams();
+  const tabParam = searchParams.get("tab");
+  const initialTab = DEMOS.some((d) => d.id === tabParam) ? (tabParam as string) : "invoice";
+  const [active, setActive] = useState(initialTab);
 
   const activeDemo = DEMOS.find((d) => d.id === active)!;
 
@@ -869,5 +873,13 @@ export default function DemosPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function DemosPage() {
+  return (
+    <Suspense fallback={null}>
+      <DemosPageInner />
+    </Suspense>
   );
 }

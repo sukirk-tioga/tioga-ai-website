@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "NIST AI RMF vs. ISO 42001 vs. EU AI Act: One Mapping, Not Three Checklists",
   description:
     "How the same underlying control — an audit-grade decision log — satisfies NIST AI RMF, ISO 42001, and EU AI Act evidence requirements at once, instead of three separate compliance projects.",
+  alternates: { canonical: "/articles/framework-mapping-not-three-checklists" },
   openGraph: {
     title: "One Control Mapping, Not Three Checklists — Tioga AI",
     description: "Why NIST AI RMF, ISO 42001, and the EU AI Act converge on the same evidence.",

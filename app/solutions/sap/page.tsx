@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "AI Agents for SAP",
   description:
     "Governed AI agents for SAP — real module integration, audit-ready controls, and no generic RPA that breaks when the UI changes.",
+  alternates: { canonical: "/solutions/sap" },
   openGraph: {
     title: "AI Agents for SAP — Tioga AI",
     description: "Governed AI agents that work inside your existing SAP environment.",

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "What Actually Drives Oracle EBS to S/4HANA Migration Complexity",
   description:
     "A concrete, reproducible way to score EBS-to-S/4HANA migration complexity from module footprint and data volume, instead of a generic readiness slide deck.",
+  alternates: { canonical: "/articles/migration-complexity-scoring" },
   openGraph: {
     title: "What Actually Drives Migration Complexity — Tioga AI",
     description: "A real scoring model for Oracle EBS to S/4HANA migration readiness.",

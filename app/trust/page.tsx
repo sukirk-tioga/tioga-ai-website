@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Trust & Governance",
   description:
     "How Tioga AI builds NIST AI RMF, ISO 42001, and EU AI Act governance into AI agents from the start — not as documentation added after a pilot succeeds.",
+  alternates: { canonical: "/trust" },
   openGraph: {
     title: "Trust & Governance — Tioga AI",
     description:
@@ -152,7 +153,8 @@ export default function TrustPage() {
             The Governance Ledger demo isn&apos;t a mockup. It&apos;s a real,
             unedited excerpt of the AI routing gateway this business runs its
             own infrastructure on — every call logged, costed, and mapped to
-            the four functions above, live.
+            the four functions above. Real operational data, refreshed
+            periodically — not a live-refreshing feed.
           </p>
           <a
             href="/demos/governance-ledger"

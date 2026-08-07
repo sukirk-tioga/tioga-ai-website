@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How Tioga AI handles the data you submit through the contact form and the live demos on this site.",
+  alternates: { canonical: "/privacy" },
   openGraph: {
     title: "Privacy Policy — Tioga AI",
     description:

@@ -35,6 +35,13 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      { source: "/contact", destination: "/#contact", permanent: false },
+      { source: "/pricing", destination: "/services", permanent: false },
+      { source: "/blog", destination: "/articles", permanent: false },
+    ];
+  },
 };
 
 module.exports = nextConfig;

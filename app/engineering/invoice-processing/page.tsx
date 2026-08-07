@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "How We Built the Invoice Processing Demo",
   description:
     "The extraction pipeline behind the invoice processing demo: format-agnostic file parsing, a structured-JSON prompt, and why a small, fast model was the right call.",
+  alternates: { canonical: "/engineering/invoice-processing" },
   openGraph: {
     title: "How We Built the Invoice Processing Demo — Tioga AI",
     description: "Format-agnostic parsing, a structured-JSON prompt, and why a small model was the right call.",

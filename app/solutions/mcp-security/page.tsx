@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "MCP Security",
   description:
     "MCP standardizes how an agent talks to a tool. It doesn't give you scoped permissions, audit logging, or policy enforcement by default — this does.",
+  alternates: { canonical: "/solutions/mcp-security" },
   openGraph: {
     title: "MCP Security — Tioga AI",
     description: "Scoped permissions, call-level audit logging, and policy enforcement for MCP-based agent integrations.",

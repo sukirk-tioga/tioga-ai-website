@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "How We Built the Governance Ledger Demo",
   description:
     "Why the Governance Ledger demo is a dated snapshot instead of a live feed, how the NIST AI RMF mapping falls out of the routing gateway's own design, and what runs with no model call at all.",
+  alternates: { canonical: "/engineering/governance-ledger" },
   openGraph: {
     title: "How We Built the Governance Ledger Demo — Tioga AI",
     description: "A real ledger excerpt, a framework the infra was built against — not retrofitted to — and zero prompt-injection surface.",

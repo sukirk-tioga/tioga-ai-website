@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "How We Built the Migration Assessment Demo",
   description:
     "Why the EBS to S/4HANA migration assessment runs on a reasoning model behind a strict input allowlist, with conditional compliance logic and clamped output.",
+  alternates: { canonical: "/engineering/migration-assessment" },
   openGraph: {
     title: "How We Built the Migration Assessment Demo — Tioga AI",
     description: "A reasoning model behind a strict allowlist, conditional compliance logic, and clamped output.",

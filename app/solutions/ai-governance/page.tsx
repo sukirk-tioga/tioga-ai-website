@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Enterprise AI Governance",
   description:
     "NIST AI RMF, ISO 42001, EU AI Act, and US state-law AI governance programs — built into the architecture, not backfilled after a pilot succeeds.",
+  alternates: { canonical: "/solutions/ai-governance" },
   openGraph: {
     title: "Enterprise AI Governance — Tioga AI",
     description: "AI governance programs built into the architecture from day one.",
