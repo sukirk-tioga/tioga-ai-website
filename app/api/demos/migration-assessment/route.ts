@@ -143,6 +143,8 @@ Call the submit_assessment tool with your assessment.`;
       schema: ASSESSMENT_SCHEMA,
     });
 
+    console.error("[migration-assessment] DEBUG raw tool input:", JSON.stringify(result));
+
     const score = Math.min(10, Math.max(1, Math.round(Number(result.complexityScore))));
     if (!Number.isFinite(score)) throw new Error("bad complexityScore");
     if (!Array.isArray(result.topRisks) || result.topRisks.length === 0) throw new Error("bad topRisks");
