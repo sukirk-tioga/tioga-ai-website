@@ -21,9 +21,12 @@ export async function callClaude(opts: {
 }
 
 // Structured-output variant: forces the model to respond via a single tool
-// call constrained to `schema`, so the result is guaranteed-valid JSON
-// straight from the API — no free-text JSON parsing/repair needed. Use this
-// instead of callClaude() whenever the caller needs a structured object back.
+// call constrained to `schema`. Anthropic tool-use is schema-guided, not
+// schema-enforced (unlike e.g. OpenAI's strict JSON mode), so callers should
+// still validate `toolUse.input` and consider retrying on a bad shape —
+// this is much more reliable than free-text JSON.parse() but not a hard
+// guarantee. Use this instead of callClaude() when the caller needs
+// structured output back.
 export async function callClaudeStructured<T = Record<string, unknown>>(opts: {
   prompt: string;
   system?: string;
@@ -34,7 +37,7 @@ export async function callClaudeStructured<T = Record<string, unknown>>(opts: {
 }): Promise<T> {
   const response = await anthropic.messages.create({
     model: DEMO_MODEL,
-    max_tokens: opts.maxTokens ?? 1500,
+    max_tokens: opts.maxTokens ?? 2500,
     thinking: { type: "disabled" },
     ...(opts.system ? { system: opts.system } : {}),
     messages: [{ role: "user", content: opts.prompt }],
@@ -47,6 +50,8 @@ export async function callClaudeStructured<T = Record<string, unknown>>(opts: {
     ],
     tool_choice: { type: "tool", name: opts.toolName },
   });
+
+  console.error(`[callClaudeStructured] DEBUG stop_reason=${response.stop_reason} usage=${JSON.stringify(response.usage)}`);
 
   const toolUse = response.content.find((block) => block.type === "tool_use");
   if (!toolUse || toolUse.type !== "tool_use") {
