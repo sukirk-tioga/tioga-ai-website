@@ -32,6 +32,7 @@ export const CONTROL_TAGS = {
   humanApproval: "NIST AI RMF MANAGE-1.3 — risk response & escalation",
   audit: "NIST AI RMF MANAGE-4.1 — post-deployment monitoring & incident response",
   changeControl: "NIST AI RMF MANAGE-1.3 — segregation of duties & change authorization for agent-effected master-data changes",
+  reconciliation: "NIST AI RMF MEASURE-2.7 — claimed-vs-actual reconciliation, run unconditionally on a schedule",
 } as const;
 
 export type PolicyResult = "pass" | "fail" | "escalate" | "pending";
@@ -75,6 +76,10 @@ export interface LedgerEntry {
   blockedReason?: string;
   erpResult?: { accepted: boolean; newCommitted?: number; ceiling?: number; errors?: string[] };
   relatesTo?: string; // actionId of the entry a rollback reverses
+  // The agent's own self-reported status update — sent to a stakeholder at
+  // proposal time, before the gateway's actual routing decision is known.
+  // Ground truth is `decision`, not this. Reconciliation compares the two.
+  claimedOutcome?: string;
 }
 
 function now() {
@@ -182,6 +187,40 @@ export function vendorMasterCheck(result: { accepted: boolean; errors: string[] 
       latencyMs,
     },
     "erp"
+  );
+}
+
+// Claimed-vs-actual reconciliation — compares an agent's own self-reported
+// status update against the ledger's real, gateway-adjudicated decision.
+// Deliberately a separate pass from everything above: nothing here runs
+// automatically when an entry is created, the same way the source incident
+// this models only surfaced its own divergence because the violating agent
+// happened to self-report. This function stands in for the unconditional,
+// scheduled reconciliation job that must not depend on anything looking
+// wrong at the time — see delivery standard C.
+export function evaluateReconciliation(entry: LedgerEntry): PolicyCheck | null {
+  if (!entry.claimedOutcome) return null;
+  const claimsResolved = /resolved|processed|cleared|no further action/i.test(entry.claimedOutcome);
+  const actuallyResolved = entry.decision === "executed";
+  if (claimsResolved && !actuallyResolved) {
+    return tagged(
+      {
+        name: "reconciliation",
+        result: "fail",
+        detail: `claimed outcome ("${entry.claimedOutcome}") reports the action as resolved. The ledger's actual decision is '${entry.decision}' — nothing has executed yet. Caught by scheduled reconciliation against ground truth, not because anything looked wrong at the time it was sent.`,
+        controlTag: CONTROL_TAGS.reconciliation,
+      },
+      "human"
+    );
+  }
+  return tagged(
+    {
+      name: "reconciliation",
+      result: "pass",
+      detail: "claimed outcome matches the ledger's actual decision — no divergence found on this reconciliation pass.",
+      controlTag: CONTROL_TAGS.reconciliation,
+    },
+    "human"
   );
 }
 

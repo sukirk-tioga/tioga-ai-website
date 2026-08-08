@@ -27,6 +27,12 @@ const ENTRIES: Entry[] = [
   {
     date: "2026-08-08",
     kind: "Feature",
+    title: "AP demo's 7th scenario: a claimed-vs-actual gap, caught by reconciliation",
+    body: "A new scenario and a new 'Run reconciliation pass' control on the AP Exception Workflow demo. The agent sends its own status update the moment it drafts a fix, before the gateway's routing decision is back — the update says 'resolved,' but the real decision is escalation to a human. Nothing looks wrong until reconciliation actually runs, which is deliberate: it models a directly-observed governance incident where independent verification against ground truth was the only control that held, and it only fired because the violating agent happened to self-report. The reconciliation pass compares every self-reported claim against the ledger's real decision on demand, re-evaluates from scratch each run (so approving a flagged action and re-running clears it), and is framed explicitly as something that runs on a fixed schedule in production, not only when something already looks suspicious.",
+  },
+  {
+    date: "2026-08-08",
+    kind: "Feature",
     title: "AP demo's 6th scenario: a change-control catch, not a spend catch",
     body: "A new scenario on the AP Exception Workflow demo — a supplier bank-detail change proposed from a routine-looking invoice summary. Every existing layer (authorized scope, ERP validation) passes it; there's no dollar amount to cap. It's caught by a new change-control check instead: master-data changes to supplier remittance details always require a documented, matching authorized-change record, independent of amount. Same deterministic policy-engine pattern as the other five scenarios, new control added to the audit ledger rather than a variation on the existing spend-cap logic.",
   },
