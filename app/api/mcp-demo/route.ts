@@ -1,5 +1,5 @@
 import { anthropic } from "@/lib/anthropic";
-import { rateLimit } from "@/lib/rate-limit";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
@@ -34,7 +34,7 @@ const MOCK_MCP_DATA = {
 };
 
 export async function POST(req: NextRequest) {
- const ip = req.headers.get("x-forwarded-for") ?? "unknown";
+ const ip = getClientIp(req);
  const { allowed } = rateLimit(`mcp-demo:${ip}`, 20);
  if (!allowed) {
  return new Response(JSON.stringify({ error: "Rate limit exceeded." }), { status: 429 });

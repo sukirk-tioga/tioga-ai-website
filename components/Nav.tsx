@@ -30,6 +30,9 @@ export default function Nav() {
     { href: "/#contact", label: "Contact" },
   ];
 
+  const isActive = (href: string) =>
+    pathname === href || (href !== "/" && pathname.startsWith(href + "/"));
+
   return (
     <>
       <nav
@@ -59,8 +62,8 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               className="hover:text-white transition-colors"
-              style={pathname === l.href ? { color: "white" } : {}}
-              aria-current={pathname === l.href ? "page" : undefined}
+              style={isActive(l.href) ? { color: "white" } : {}}
+              aria-current={isActive(l.href) ? "page" : undefined}
             >
               {l.label}
             </Link>
@@ -121,6 +124,8 @@ export default function Nav() {
               onClick={() => setMenuOpen(false)}
               tabIndex={menuOpen ? undefined : -1}
               className="py-3 text-sm text-slate-300 hover:text-white transition-colors border-b border-slate-800/50 last:border-0"
+              style={isActive(l.href) ? { color: "white" } : {}}
+              aria-current={isActive(l.href) ? "page" : undefined}
             >
               {l.label}
             </Link>

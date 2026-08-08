@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     "A single spend threshold isn't a policy — it's a policy with one rule. Real accounts-payable exception handling needs scope, spend tiers, and ERP-level validation as independent layers.",
   alternates: { canonical: "/articles/ap-exception-auto-approve-antipattern" },
   openGraph: {
+    type: "article",
+    publishedTime: "2026-08-03",
     title: "Auto-Approve Everything Under $X Is an Anti-Pattern — Tioga AI",
     description: "What real AP exception-handling policy looks like, with a bug we found building it.",
   },
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
 const content: ArticleContent = {
   slug: "ap-exception-auto-approve-antipattern",
   query: "accounts payable exception handling automation policy",
+  date: "2026-08-03",
   title: "Why \"auto-approve everything under $X\" is an AP governance anti-pattern",
   dek: "A single spend threshold is a policy with exactly one rule. Real accounts-payable exception handling needs independent layers — and the layer everyone skips is what happens after something executes.",
   evidenceLabel: "Evidence: the actual three-tier policy from our live Governed AP Exception Workflow demo, plus a rollback bug we caught and fixed while building it.",

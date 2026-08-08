@@ -92,7 +92,7 @@ export default function SmartContactForm() {
           </div>
           <div>
             <p className="font-semibold text-white">Inquiry Received & Classified</p>
-            <p className="text-sm text-slate-400">We'll be in touch {classification.responseTime}</p>
+            <p className="text-sm text-slate-400">I'll be in touch {classification.responseTime}</p>
           </div>
         </div>
 
@@ -197,7 +197,7 @@ export default function SmartContactForm() {
               onChange={handleChange}
               placeholder="Jane Smith"
               required
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:ring-1"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)]"
               style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
             />
           </div>
@@ -209,7 +209,7 @@ export default function SmartContactForm() {
               value={form.company}
               onChange={handleChange}
               placeholder="Acme Corp"
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none"
+              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)]"
               style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
             />
           </div>
@@ -225,7 +225,7 @@ export default function SmartContactForm() {
             onChange={handleChange}
             placeholder="jane@acme.com"
             required
-            className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none"
+            className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)]"
             style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
           />
         </div>
@@ -242,10 +242,10 @@ export default function SmartContactForm() {
             name="description"
             value={form.description}
             onChange={handleChange}
-            placeholder="Tell us what you're trying to build or automate. What systems are involved? What's the business problem?"
+            placeholder="Tell me what you're trying to build or automate. What systems are involved? What's the business problem?"
             rows={4}
             required
-            className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none resize-none"
+            className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none resize-none focus:ring-2 focus:ring-[var(--accent)]"
             style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
           />
         </div>
@@ -272,7 +272,7 @@ export default function SmartContactForm() {
               Privacy Policy
             </a>
             . I understand my submission is sent to Claude to classify this
-            inquiry and emailed to the Tioga AI team, where it&apos;s kept in
+            inquiry and emailed to Tioga AI, where it&apos;s kept in
             the founder&apos;s inbox to respond to and follow up on my
             inquiry — not used to train any model, not sold, not stored in
             any database.

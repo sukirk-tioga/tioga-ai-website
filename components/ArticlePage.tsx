@@ -16,6 +16,7 @@ export interface ArticleContent {
   query: string;
   title: string;
   dek: string;
+  date: string;
   evidenceLabel: string;
   sections: Section[];
   relatedService: RelatedLink;
@@ -23,8 +24,27 @@ export interface ArticleContent {
 }
 
 export default function ArticlePage({ content }: { content: ArticleContent }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: content.title,
+    datePublished: content.date,
+    author: {
+      "@type": "Person",
+      name: "Sukir Kumaresan",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Tioga AI",
+    },
+  };
+
   return (
     <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <article className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link
           href="/articles"
@@ -45,7 +65,18 @@ export default function ArticlePage({ content }: { content: ArticleContent }) {
         </div>
 
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">{content.title}</h1>
-        <p className="text-lg text-slate-400 leading-relaxed mb-4">{content.dek}</p>
+        <p className="text-lg text-slate-400 leading-relaxed mb-2">{content.dek}</p>
+        <p className="text-sm text-slate-500 mb-4">
+          Published{" "}
+          <time dateTime={content.date}>
+            {new Date(content.date + "T00:00:00Z").toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              timeZone: "UTC",
+            })}
+          </time>
+        </p>
 
         <div
           className="text-xs px-3 py-2 rounded-lg mb-12 inline-block"

@@ -1,6 +1,6 @@
 import { callClaude } from "@/app/demos/_lib/anthropic";
 import { sendMigrationAssessmentCopy } from "@/lib/email";
-import { rateLimit } from "@/lib/rate-limit";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
@@ -31,7 +31,7 @@ function bad(message: string, status = 400) {
 }
 
 export async function POST(req: NextRequest) {
-  const ip = (req.headers.get("x-forwarded-for") ?? "unknown").split(",")[0].trim();
+  const ip = getClientIp(req);
   const { allowed } = rateLimit(`migration:${ip}`, 5, 10 * 60 * 1000); // 5 requests / 10 min
   if (!allowed) {
     return bad("You've reached the demo limit. Try again in a few minutes — or book a call for the real thing.", 429);

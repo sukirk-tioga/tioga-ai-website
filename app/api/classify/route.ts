@@ -1,12 +1,12 @@
 import { anthropic } from "@/lib/anthropic";
-import { rateLimit } from "@/lib/rate-limit";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { sendInquiryEmail } from "@/lib/email";
 import { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
- const ip = req.headers.get("x-forwarded-for") ?? "unknown";
+ const ip = getClientIp(req);
  const { allowed } = rateLimit(`classify:${ip}`, 20);
  if (!allowed) {
  return new Response(JSON.stringify({ error: "Rate limit exceeded." }), {
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
  });
  }
 
- const prompt = `You are an AI classifier for Tioga AI, an enterprise AI implementation company. Analyze this inbound inquiry and classify it.
+ const prompt = `You are an AI classifier for Tioga AI, a solo-founder AI implementation practice run by Sukir Kumaresan. Analyze this inbound inquiry and classify it.
 
 Inquiry details:
 - Name: ${name}
@@ -32,19 +32,18 @@ Inquiry details:
 - Email: ${email}
 - Project Description: ${description}
 
-Tioga AI's services:
-1. Custom AI Agents - automating workflows, intelligent agents, process automation
-2. MCP Integrations - connecting LLMs to SAP, Salesforce, ServiceNow via Model Context Protocol
-3. AI Strategy Consulting - discovery workshops, POC development, ROI analysis, roadmapping
-4. AI Training & Enablement - team training, prompt engineering, AI governance
+Tioga AI runs three practices, thirteen priced engagements underneath them:
+1. Automate finance and operations - AI Operations Assessment, AI Agent Pilot
+2. Modernize ERP with an agent layer - Agent-Ready ERP Diagnostic & Governed Write-Path, Legacy System AI Augmentation, ERP Modernization Advisory
+3. Govern enterprise AI - AI Governance Readiness Assessment, AI Cost & Model Governance Assessment, AI Governance Evidence Package for Insurance Underwriting, Agentic AI Governance Framework, Multi-State AI Compliance Program, ISO 42001 Implementation Sprint, EU AI Act Conformity Program, Fractional AI Governance Officer
 
 Respond ONLY with a JSON object in this exact format:
 {
- "service": "one of: Custom AI Agents | MCP Integrations | AI Strategy Consulting | AI Training & Enablement",
+ "service": "one of: Automate finance and operations | Modernize ERP with an agent layer | Govern enterprise AI",
  "urgency": "one of: low | medium | high | critical",
  "complexity": "one of: small | medium | large | enterprise",
  "summary": "one sentence summarizing what they need",
- "nextStep": "one concrete recommended next action for the Tioga AI team",
+ "nextStep": "one concrete recommended next action for Sukir",
  "responseTime": "one of: within 4 hours | within 1 business day | within 2 business days",
  "fitScore": "a number 1-10 indicating how well this fits Tioga AI's services"
 }

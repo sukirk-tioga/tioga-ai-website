@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     "Model Context Protocol makes the interface standard, but it doesn't grant scope enforcement, rate limiting, or an audit trail for free — those still have to be built in.",
   alternates: { canonical: "/articles/mcp-scoped-permissions" },
   openGraph: {
+    type: "article",
+    publishedTime: "2026-08-03",
     title: "MCP Integration Still Needs Approval Gates — Tioga AI",
     description: "What MCP standardizes, and what it doesn't — with real code.",
   },
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
 const content: ArticleContent = {
   slug: "mcp-scoped-permissions",
   query: "MCP security scoped permissions enterprise",
+  date: "2026-08-03",
   title: "An MCP integration still needs the same approval gates a custom API integration needs",
   dek: "\"We're using MCP\" answers what interface an agent talks to. It doesn't answer what the agent is allowed to do, how fast, or what gets logged — those are still separate design decisions.",
   evidenceLabel: "Evidence: real rate-limiting and tool-attribution code from our live MCP integration demo.",

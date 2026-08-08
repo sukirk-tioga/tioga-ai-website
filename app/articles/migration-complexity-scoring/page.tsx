@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     "A concrete, reproducible way to score EBS-to-S/4HANA migration complexity from module footprint and data volume, instead of a generic readiness slide deck.",
   alternates: { canonical: "/articles/migration-complexity-scoring" },
   openGraph: {
+    type: "article",
+    publishedTime: "2026-08-03",
     title: "What Actually Drives Migration Complexity — Tioga AI",
     description: "A real scoring model for Oracle EBS to S/4HANA migration readiness.",
   },
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
 const content: ArticleContent = {
   slug: "migration-complexity-scoring",
   query: "Oracle EBS S/4HANA migration complexity assessment",
+  date: "2026-08-03",
   title: "What actually drives Oracle EBS → S/4HANA migration complexity",
   dek: "Not every migration is equally hard, and the difference is measurable before you start — from which modules are in scope and how much data moves, not from a generic readiness questionnaire.",
   evidenceLabel: "Evidence: the actual scoring model behind our live Migration Assessment demo.",

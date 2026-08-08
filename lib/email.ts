@@ -1,5 +1,18 @@
 import nodemailer from "nodemailer";
 
+// User-submitted form fields and model-generated text are interpolated
+// directly into these HTML email bodies — escape before interpolation so a
+// crafted name/company/description can't inject markup or links into a
+// trusted-looking internal notification.
+function escapeHtml(value: string): string {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
@@ -49,14 +62,14 @@ export async function sendInquiryEmail({
 
       <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
         <h2 style="font-size: 14px; text-transform: uppercase; color: #64748b; margin: 0 0 12px;">Contact Details</h2>
-        <p style="margin: 4px 0;"><strong>Name:</strong> ${name}</p>
-        <p style="margin: 4px 0;"><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-        <p style="margin: 4px 0;"><strong>Company:</strong> ${company || "Not provided"}</p>
+        <p style="margin: 4px 0;"><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p style="margin: 4px 0;"><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>
+        <p style="margin: 4px 0;"><strong>Company:</strong> ${company ? escapeHtml(company) : "Not provided"}</p>
       </div>
 
       <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
         <h2 style="font-size: 14px; text-transform: uppercase; color: #64748b; margin: 0 0 12px;">Project Description</h2>
-        <p style="margin: 0; color: #334155; line-height: 1.6;">${description}</p>
+        <p style="margin: 0; color: #334155; line-height: 1.6;">${escapeHtml(description)}</p>
       </div>
 
       <div style="background: #0f172a; border-radius: 8px; padding: 20px; margin-bottom: 16px;">
@@ -64,15 +77,15 @@ export async function sendInquiryEmail({
         <table style="width: 100%; border-collapse: collapse;">
           <tr>
             <td style="padding: 6px 0; color: #94a3b8; font-size: 13px; width: 40%;">Service Match</td>
-            <td style="padding: 6px 0; color: white; font-size: 13px; font-weight: 600;">${classification.service}</td>
+            <td style="padding: 6px 0; color: white; font-size: 13px; font-weight: 600;">${escapeHtml(classification.service)}</td>
           </tr>
           <tr>
             <td style="padding: 6px 0; color: #94a3b8; font-size: 13px;">Urgency</td>
-            <td style="padding: 6px 0; color: white; font-size: 13px;">${urgencyEmoji} ${classification.urgency.charAt(0).toUpperCase() + classification.urgency.slice(1)}</td>
+            <td style="padding: 6px 0; color: white; font-size: 13px;">${urgencyEmoji} ${escapeHtml(classification.urgency.charAt(0).toUpperCase() + classification.urgency.slice(1))}</td>
           </tr>
           <tr>
             <td style="padding: 6px 0; color: #94a3b8; font-size: 13px;">Project Size</td>
-            <td style="padding: 6px 0; color: white; font-size: 13px;">${classification.complexity}</td>
+            <td style="padding: 6px 0; color: white; font-size: 13px;">${escapeHtml(classification.complexity)}</td>
           </tr>
           <tr>
             <td style="padding: 6px 0; color: #94a3b8; font-size: 13px;">Fit Score</td>
@@ -80,12 +93,12 @@ export async function sendInquiryEmail({
           </tr>
           <tr>
             <td style="padding: 6px 0; color: #94a3b8; font-size: 13px;">Summary</td>
-            <td style="padding: 6px 0; color: white; font-size: 13px;">${classification.summary}</td>
+            <td style="padding: 6px 0; color: white; font-size: 13px;">${escapeHtml(classification.summary)}</td>
           </tr>
         </table>
         <div style="margin-top: 16px; padding: 12px; background: #00D4FF15; border-radius: 6px; border: 1px solid #00D4FF30;">
           <p style="margin: 0; font-size: 13px; color: #00D4FF; font-weight: 600;">Recommended Next Step</p>
-          <p style="margin: 4px 0 0; font-size: 13px; color: #cbd5e1;">${classification.nextStep}</p>
+          <p style="margin: 4px 0 0; font-size: 13px; color: #cbd5e1;">${escapeHtml(classification.nextStep)}</p>
         </div>
       </div>
 
@@ -130,27 +143,27 @@ export async function sendMigrationAssessmentCopy({
     .map(
       (r) => `
       <div style="padding: 12px 0; border-top: 1px solid #e2e8f0;">
-        <p style="margin: 0 0 4px; font-weight: 600; color: #b45309;">${r.title}</p>
-        <p style="margin: 0; font-size: 13px; color: #334155;">${r.detail}</p>
+        <p style="margin: 0 0 4px; font-weight: 600; color: #b45309;">${escapeHtml(r.title)}</p>
+        <p style="margin: 0; font-size: 13px; color: #334155;">${escapeHtml(r.detail)}</p>
       </div>`
     )
     .join("");
 
-  const nextSteps = assessment.nextSteps.map((s) => `<li style="margin-bottom: 4px;">${s}</li>`).join("");
+  const nextSteps = assessment.nextSteps.map((s) => `<li style="margin-bottom: 4px;">${escapeHtml(s)}</li>`).join("");
 
   const html = `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #f8fafc; padding: 24px; border-radius: 12px;">
       <div style="background: linear-gradient(135deg, #00D4FF, #0066CC); padding: 20px 24px; border-radius: 8px; margin-bottom: 24px;">
         <h1 style="color: white; margin: 0; font-size: 20px;">Your Migration Readiness Assessment</h1>
-        <p style="color: rgba(255,255,255,0.8); margin: 4px 0 0; font-size: 14px;">${version} → ${target}</p>
+        <p style="color: rgba(255,255,255,0.8); margin: 4px 0 0; font-size: 14px;">${escapeHtml(version)} → ${escapeHtml(target)}</p>
       </div>
 
       <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
-        <p style="margin: 0 0 8px;"><strong>Modules in scope:</strong> ${modules}</p>
-        <p style="margin: 0 0 8px;"><strong>Data volume:</strong> ${dataVolume}</p>
+        <p style="margin: 0 0 8px;"><strong>Modules in scope:</strong> ${escapeHtml(modules)}</p>
+        <p style="margin: 0 0 8px;"><strong>Data volume:</strong> ${escapeHtml(dataVolume)}</p>
         <p style="margin: 0 0 8px;"><strong>Complexity score:</strong> ${assessment.complexityScore}/10</p>
-        <p style="margin: 0 0 8px;"><strong>Estimated timeline:</strong> ${assessment.timelineRange}</p>
-        <p style="margin: 0; color: #334155;">${assessment.scoreReasoning}</p>
+        <p style="margin: 0 0 8px;"><strong>Estimated timeline:</strong> ${escapeHtml(assessment.timelineRange)}</p>
+        <p style="margin: 0; color: #334155;">${escapeHtml(assessment.scoreReasoning)}</p>
       </div>
 
       <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
@@ -159,8 +172,8 @@ export async function sendMigrationAssessmentCopy({
       </div>
 
       <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
-        <h2 style="font-size: 14px; text-transform: uppercase; color: #64748b; margin: 0 0 8px;">Recommended Approach: ${assessment.recommendedApproach.approach}</h2>
-        <p style="margin: 0 0 12px; color: #334155;">${assessment.recommendedApproach.reasoning}</p>
+        <h2 style="font-size: 14px; text-transform: uppercase; color: #64748b; margin: 0 0 8px;">Recommended Approach: ${escapeHtml(assessment.recommendedApproach.approach)}</h2>
+        <p style="margin: 0 0 12px; color: #334155;">${escapeHtml(assessment.recommendedApproach.reasoning)}</p>
         <h2 style="font-size: 14px; text-transform: uppercase; color: #64748b; margin: 0 0 8px;">Next Steps</h2>
         <ul style="margin: 0; padding-left: 18px; color: #334155;">${nextSteps}</ul>
       </div>

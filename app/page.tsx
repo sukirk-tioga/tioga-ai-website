@@ -120,7 +120,7 @@ export default function HomePage() {
  <div className="flex-1">
  <h3 className="text-lg font-semibold text-white mb-2">The Tioga difference</h3>
  <p className="text-sm text-slate-400 leading-relaxed">
- We build MCP-native AI systems that speak your enterprise stack&apos;s language from day one. Your pilot runs on your real data, in your real environment — so the path to production is already built by the time we present results.
+ I build MCP-native AI systems that speak your enterprise stack&apos;s language from day one. Your pilot runs on your real data, in your real environment — so the path to production is already built by the time I present results.
  </p>
  </div>
  </div>
@@ -130,7 +130,7 @@ export default function HomePage() {
  <section className="py-4 px-6 max-w-5xl mx-auto">
  <div className="text-center mb-8">
  <p className="text-xs mb-3" style={{ color: "var(--text-muted-3)" }}>
- We don&apos;t have client logos to show you yet — as a new practice, that&apos;s the truth. Try the product instead.
+ I don&apos;t have client logos to show you yet — as a new practice, that&apos;s the truth. Try the product instead.
  </p>
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
@@ -207,7 +207,7 @@ export default function HomePage() {
  >
  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
  <div>
- <h3 className="text-base font-semibold text-white mb-1">See how we govern our own AI</h3>
+ <h3 className="text-base font-semibold text-white mb-1">See how I govern my own AI</h3>
  <p className="text-xs leading-relaxed max-w-lg" style={{ color: "var(--text-muted)" }}>
  The Governance Ledger is real operational data from Tioga&apos;s own AI routing gateway, mapped to NIST AI RMF — not a mockup. Refreshed periodically, not a live-refreshing feed.
  </p>
@@ -221,7 +221,7 @@ export default function HomePage() {
 
  {/* Integrations */}
  <section className="py-16 px-6 max-w-5xl mx-auto">
- <p className="text-center text-xs text-slate-400 uppercase tracking-widest mb-8">We integrate with your existing enterprise stack</p>
+ <p className="text-center text-xs text-slate-400 uppercase tracking-widest mb-8">I integrate with your existing enterprise stack</p>
  <div className="flex flex-wrap justify-center items-center gap-3">
  {["SAP", "Salesforce", "ServiceNow", "Oracle", "Workday", "SharePoint", "Slack", "Microsoft 365"].map((name) => (
  <div
@@ -330,12 +330,12 @@ export default function HomePage() {
  </div>
  <div className="grid md:grid-cols-3 gap-6">
  {[
- { icon: "⚡", title: "Speed to value", desc: "Our 5-day discovery sprint gives you a working prototype and a delivery plan before most firms finish scoping." },
+ { icon: "⚡", title: "Speed to value", desc: "My 5-day discovery sprint gives you a working prototype and a delivery plan before most firms finish scoping." },
  { icon: "🔐", title: "Enterprise-grade security", desc: "Security controls — role-based access, audit logging, and architecture aligned to SOC 2 Trust Services Criteria — so your systems of record stay under your control. No independent SOC 2 report exists yet." },
- { icon: "🎯", title: "Integration-first approach", desc: "We build for your stack from day one. No rip-and-replace. Your existing systems become more powerful." },
+ { icon: "🎯", title: "Integration-first approach", desc: "I build for your stack from day one. No rip-and-replace. Your existing systems become more powerful." },
  { icon: "🧪", title: "No toy demos", desc: "Every pilot runs against your real data and real systems, built to carry into production, not thrown away after the demo." },
- { icon: "📐", title: "MCP-native builds", desc: "We specialize in Model Context Protocol — the emerging standard for connecting AI to enterprise systems at scale." },
- { icon: "📈", title: "Measurable ROI", desc: "We define success metrics before we start. You see ROI calculations in the pilot, not after a 6-month engagement." },
+ { icon: "📐", title: "MCP-native builds", desc: "I specialize in Model Context Protocol — the emerging standard for connecting AI to enterprise systems at scale." },
+ { icon: "📈", title: "Measurable ROI", desc: "I define success metrics up front. You see ROI calculations in the pilot, not after a 6-month engagement." },
  ].map((item) => (
  <div key={item.title} className="flex gap-3">
  <span className="text-xl shrink-0 mt-0.5">{item.icon}</span>
@@ -354,24 +354,24 @@ export default function HomePage() {
  {/* Process */}
  <section id="process" className="py-20 px-6 max-w-4xl mx-auto">
  <div className="text-center mb-12">
- <h2 className="text-3xl font-bold text-white mb-3">Our Process</h2>
+ <h2 className="text-3xl font-bold text-white mb-3">My Process</h2>
  <p className="text-slate-400 text-sm">From first conversation to production deployment — with no ambiguity about what happens next.</p>
  </div>
  <div className="space-y-4">
  {[
  {
  step: "01", title: "Discovery Sprint", duration: "5 days · $5,000 flat",
- desc: "We map your systems, identify the highest-ROI AI opportunities and define a clear scope with your team. You get a working prototype and a detailed delivery plan — before any large commitment.",
+ desc: "I map your systems, identify the highest-ROI AI opportunities and define a clear scope with your team. You get a working prototype and a detailed delivery plan — before any large commitment.",
  detail: "System audit · Use-case prioritization · Prototype · Delivery plan"
  },
  {
  step: "02", title: "Pilot Build", duration: "2–8 weeks · scope-dependent",
- desc: "We build a production-ready proof of concept integrated with your real systems. No toy demos — this runs against live data and real integrations. You see exactly what the full system will do.",
+ desc: "I build a production-ready proof of concept integrated with your real systems. No toy demos — this runs against live data and real integrations. You see exactly what the full system will do.",
  detail: "Full integration · Real data · Stakeholder review · Go/no-go decision"
  },
  {
  step: "03", title: "Deploy & Scale", duration: "Ongoing",
- desc: "Full production deployment with monitoring, SLAs, ongoing support retainers and continuous improvement as your AI needs grow. We stay partners, not vendors.",
+ desc: "Full production deployment with monitoring, SLAs, ongoing support retainers and continuous improvement as your AI needs grow. I stay a partner, not a vendor.",
  detail: "Production deploy · Monitoring · Support SLA · Continuous improvement"
  },
  ].map((p) => (
@@ -412,7 +412,7 @@ export default function HomePage() {
  </div>
  <h3 className="text-xl font-bold text-white mb-2">Model Context Protocol (MCP)</h3>
  <p className="text-sm text-slate-400 max-w-lg">
- MCP is how frontier AI connects to enterprise systems. Tioga AI is built MCP-native from day one, with working connectors for SAP and Salesforce you can try below. See the architecture, explore live demos and understand why your next AI project should be MCP-native.
+ MCP is how frontier AI connects to enterprise systems. Tioga AI is built MCP-native from day one, with working connectors for SAP and Salesforce you can try on the MCP page. See the architecture, explore live demos and understand why your next AI project should be MCP-native.
  </p>
  </div>
  <div
@@ -431,7 +431,7 @@ export default function HomePage() {
  <section id="contact" className="py-20 px-6 max-w-2xl mx-auto text-center">
  <h2 className="text-3xl font-bold text-white mb-3">Ready to Build?</h2>
  <p className="text-slate-400 mb-2 text-sm max-w-md mx-auto">
- Tell us about your project. Our AI instantly classifies your inquiry so it reaches me with the right context. Response within one business day — or email{" "}
+ Tell me about your project. My AI instantly classifies your inquiry so it reaches me with the right context. Response within one business day — or email{" "}
  <a href="mailto:hello@tioga.ai" className="underline hover:text-white transition-colors">hello@tioga.ai</a> directly.
  </p>
  <p className="text-sm mb-6">

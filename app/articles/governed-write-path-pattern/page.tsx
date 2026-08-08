@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     "Read, decide, approve, execute, audit, rollback — the seven-stage pattern that lets an AI agent write to a production ERP without a direct database write.",
   alternates: { canonical: "/articles/governed-write-path-pattern" },
   openGraph: {
+    type: "article",
+    publishedTime: "2026-08-03",
     title: "How a Governed AI Write-Path Actually Works — Tioga AI",
     description: "The seven-stage pattern for letting an AI agent write to your ERP safely.",
   },
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
 const content: ArticleContent = {
   slug: "governed-write-path-pattern",
   query: "governed AI write path ERP",
+  date: "2026-08-03",
   title: "How a governed AI write-path actually works",
   dek: "Most \"AI for ERP\" pitches stop at read-only. Here's the seven-stage pattern — read, decide, approve, execute, audit, reject, rollback — implemented as actual running code, not a slide.",
   evidenceLabel: "Evidence: real policy code and a real bug caught during testing, both from our live Governed AP Exception Workflow demo.",

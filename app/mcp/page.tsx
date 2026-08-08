@@ -218,12 +218,11 @@ function CodeBlock() {
  return (
  <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)" }}>
  {/* Tabs */}
- <div role="tablist" aria-label="Connector examples" className="flex" style={{ borderBottom: "1px solid var(--border)" }}>
+ <div className="flex" style={{ borderBottom: "1px solid var(--border)" }}>
  {CODE_EXAMPLES.map((ex, i) => (
  <button
  key={ex.label}
- role="tab"
- aria-selected={active === i}
+ aria-pressed={active === i}
  onClick={() => setActive(i)}
  className="px-4 py-2.5 text-xs font-medium transition-all"
  style={{

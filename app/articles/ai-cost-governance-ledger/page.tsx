@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     "88% of our own model calls settle at $0 before touching billed credit — real numbers from a live routing gateway, not a projected savings estimate.",
   alternates: { canonical: "/articles/ai-cost-governance-ledger" },
   openGraph: {
+    type: "article",
+    publishedTime: "2026-08-03",
     title: "What a Real AI Cost-Governance Ledger Looks Like — Tioga AI",
     description: "Real numbers from a live AI routing gateway, not a projection.",
   },
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
 const content: ArticleContent = {
   slug: "ai-cost-governance-ledger",
   query: "AI cost governance model routing enterprise",
+  date: "2026-08-03",
   title: "What a real AI cost-governance ledger looks like",
   dek: "Cost governance for AI usually gets pitched as a future dashboard. Here's a live one, running on our own infrastructure, with the actual numbers.",
   evidenceLabel: "Evidence: a real, unsampled excerpt from our own AI routing gateway's ledger — not a projection.",

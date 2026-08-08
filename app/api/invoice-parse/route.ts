@@ -1,11 +1,11 @@
 import { anthropic } from "@/lib/anthropic";
-import { rateLimit } from "@/lib/rate-limit";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get("x-forwarded-for") ?? "unknown";
+  const ip = getClientIp(req);
   const { allowed } = rateLimit(`invoice:${ip}`, 30);
   if (!allowed) {
     return new Response(JSON.stringify({ error: "Rate limit exceeded." }), { status: 429 });

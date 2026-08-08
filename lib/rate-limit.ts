@@ -1,5 +1,18 @@
-// Simple in-memory rate limiter (for production, replace with Upstash Redis)
+// Simple in-memory rate limiter (for production, replace with Upstash Redis —
+// this Map resets on every serverless cold start and isn't shared across
+// instances, so these caps are a speed bump against casual abuse, not a hard
+// enforcement boundary against a deliberate one)
 const ipMap = new Map<string, { count: number; resetAt: number }>();
+
+// x-forwarded-for can carry a client-supplied chain of proxy hops
+// (client, proxy1, proxy2, ...) — only the first hop closest to Vercel's own
+// edge is trustworthy; keying on the full raw header lets a caller rotate
+// its own claimed IP by varying hops it controls further down the chain.
+export function getClientIp(req: { headers: { get(name: string): string | null } }): string {
+  const raw = req.headers.get("x-forwarded-for");
+  if (!raw) return "unknown";
+  return raw.split(",")[0].trim() || "unknown";
+}
 
 export function rateLimit(
   ip: string,
