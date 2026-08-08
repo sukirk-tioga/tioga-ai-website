@@ -7,13 +7,17 @@ import {
   cloneSeed,
   evaluateScope,
   evaluateSpend,
+  evaluateChangeControl,
   validateErpChange,
   erpCheck,
+  validateVendorMasterChange,
+  vendorMasterCheck,
   rollbackChange,
   rollbackCheck,
   estimateModelCost,
   AUTO_APPROVE_CEILING,
   HUMAN_APPROVAL_CEILING,
+  MASTER_DATA_ACTION_TYPES,
   type LedgerEntry,
   type PolicyCheck,
   type PurchaseOrder,
@@ -63,6 +67,14 @@ const SCENARIOS: { id: string; label: string; poId: string; amount: number; acti
     actionType: "po_adjustment",
     note: "Invoice INV-2233 for PO-4502 — policy would allow it, but its vendor (Northline Fabrication) is on credit hold and the ERP's own validation catches it.",
   },
+  {
+    id: "clean-hands",
+    label: "6 — Clean-hands: caught by change control, not spend",
+    poId: "PO-4488",
+    amount: 0,
+    actionType: "vendor_bank_detail_change",
+    note: "Invoice INV-2247 (Cascade Logistics) carries an embedded instruction inside its own text. The triage step summarizes it as routine, and the agent proposes a supplier bank-detail change based on that summary. Scope allows it — vendor bank-detail changes are an authorized action type. There's no dollar amount to cap. Every layer of agent security passes. Change control is the only thing that catches it: no authorized-change record exists for this vendor.",
+  },
 ];
 
 // ── Presentation helpers ─────────────────────────────────────────────────────
@@ -96,6 +108,10 @@ function Badge({ decision }: { decision: LedgerEntry["decision"] }) {
 
 function fmtUsd(n: number) {
   return `$${n.toLocaleString()}`;
+}
+
+function fmtAmount(actionType: string, amount: number) {
+  return MASTER_DATA_ACTION_TYPES.has(actionType) ? "Master data — no $ threshold" : fmtUsd(amount);
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────
@@ -173,6 +189,15 @@ export default function ApExceptionWorkflowPage() {
       return;
     }
 
+    if (MASTER_DATA_ACTION_TYPES.has(actionType)) {
+      const po = pos[poId];
+      const vendorId = po?.vendorId ?? "";
+      const changeControlCheck = evaluateChangeControl(vendorId);
+      entry = { ...entry, policyChecks: [...entry.policyChecks, changeControlCheck], decision: "pending_approval" };
+      await settle(entry);
+      return;
+    }
+
     const spendCheck = evaluateSpend(entry.amount);
     entry = { ...entry, policyChecks: [...entry.policyChecks, spendCheck] };
 
@@ -215,7 +240,21 @@ export default function ApExceptionWorkflowPage() {
       ],
       actor: `${entry.actor} + ${approver}`,
     };
-    updated = executeAgainstErp(updated, pos, vendors);
+    if (MASTER_DATA_ACTION_TYPES.has(entry.actionType)) {
+      const po = pos[entry.poId];
+      const vendor = po ? vendors[po.vendorId] : undefined;
+      const result = validateVendorMasterChange(vendor);
+      const latency = 160 + Math.round(Math.random() * 200);
+      const check = vendorMasterCheck(result, latency);
+      updated = {
+        ...updated,
+        policyChecks: [...updated.policyChecks, check],
+        decision: result.accepted ? "executed" : "blocked",
+        blockedReason: result.accepted ? undefined : "erp_validation_failed",
+      };
+    } else {
+      updated = executeAgainstErp(updated, pos, vendors);
+    }
     setLedger((prev) => prev.map((e) => (e.actionId === actionId ? updated : e)));
     setBusy(null);
     setExpanded(actionId);
@@ -386,7 +425,7 @@ export default function ApExceptionWorkflowPage() {
             {pendingApprovals.map((e) => (
               <div key={e.actionId} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
                 <div>
-                  <p className="text-sm text-white font-medium">{e.poId} — {fmtUsd(e.amount)}</p>
+                  <p className="text-sm text-white font-medium">{e.poId} — {fmtAmount(e.actionType, e.amount)}</p>
                   <p className="text-xs text-slate-400">{e.policyChecks[e.policyChecks.length - 1]?.detail}</p>
                 </div>
                 <div className="flex gap-2 flex-none">
@@ -449,7 +488,7 @@ export default function ApExceptionWorkflowPage() {
                     <tr style={{ borderBottom: expanded === e.actionId ? "none" : i === ledger.length - 1 ? "none" : "1px solid var(--border)" }}>
                       <td className="px-4 py-2.5 font-mono text-xs text-slate-400 whitespace-nowrap">{new Date(e.timestamp).toLocaleTimeString()}</td>
                       <td className="px-4 py-2.5 text-white whitespace-nowrap">{e.poId}{e.relatesTo && <span className="text-slate-400 text-xs"> (reversal)</span>}</td>
-                      <td className="px-4 py-2.5 font-mono text-xs text-slate-300 whitespace-nowrap">{fmtUsd(e.amount)}</td>
+                      <td className="px-4 py-2.5 font-mono text-xs text-slate-300 whitespace-nowrap">{fmtAmount(e.actionType, e.amount)}</td>
                       <td className="px-4 py-2.5"><Badge decision={e.decision} /></td>
                       <td className="px-4 py-2.5 whitespace-nowrap">
                         <button
@@ -459,7 +498,7 @@ export default function ApExceptionWorkflowPage() {
                         >
                           {expanded === e.actionId ? "Hide trail" : "Decision trail"}
                         </button>
-                        {e.decision === "executed" && !rolledBackIds.has(e.actionId) && (
+                        {e.decision === "executed" && !rolledBackIds.has(e.actionId) && !MASTER_DATA_ACTION_TYPES.has(e.actionType) && (
                           <button
                             disabled={busy !== null}
                             onClick={() => rollback(e.actionId)}
@@ -496,7 +535,7 @@ export default function ApExceptionWorkflowPage() {
       </div>
 
       <p className="text-xs text-slate-500">
-        Policy: actions under {fmtUsd(AUTO_APPROVE_CEILING)} execute autonomously; up to {fmtUsd(HUMAN_APPROVAL_CEILING)} require human approval; above that, blocked entirely — no override exists at this layer, on purpose. Everything on this page runs in your browser; nothing is sent to a server.
+        Policy: actions under {fmtUsd(AUTO_APPROVE_CEILING)} execute autonomously; up to {fmtUsd(HUMAN_APPROVAL_CEILING)} require human approval; above that, blocked entirely — no override exists at this layer, on purpose. Master-data changes (scenario 6) skip the dollar ladder entirely and are gated on a documented authorized-change record instead — every other layer of agent security can pass, and change control is still what catches it. Everything on this page runs in your browser; nothing is sent to a server.
       </p>
     </DemoShell>
   );

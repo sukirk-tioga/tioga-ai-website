@@ -25,6 +25,12 @@ interface Entry {
 // shipped unit of work into one entry. Dates are the day the unit landed.
 const ENTRIES: Entry[] = [
   {
+    date: "2026-08-08",
+    kind: "Feature",
+    title: "AP demo's 6th scenario: a change-control catch, not a spend catch",
+    body: "A new scenario on the AP Exception Workflow demo — a supplier bank-detail change proposed from a routine-looking invoice summary. Every existing layer (authorized scope, ERP validation) passes it; there's no dollar amount to cap. It's caught by a new change-control check instead: master-data changes to supplier remittance details always require a documented, matching authorized-change record, independent of amount. Same deterministic policy-engine pattern as the other five scenarios, new control added to the audit ledger rather than a variation on the existing spend-cap logic.",
+  },
+  {
     date: "2026-08-07",
     kind: "Infra",
     title: "Client-side routing site-wide, plus an HSTS header",
