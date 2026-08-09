@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SmartContactForm from "@/components/SmartContactForm";
 import TrackedCTA from "@/components/TrackedCTA";
+import HeroDemo from "@/components/HeroDemo";
 
 const CAL_LINK = "https://cal.com/sukir-kumaresan-rfgb7k/introduction-chat";
 
@@ -47,6 +48,7 @@ export default function HomePage() {
  See an AP agent run
  </TrackedCTA>
  </div>
+ <HeroDemo />
  </section>
 
  {/* Stats Bar */}
