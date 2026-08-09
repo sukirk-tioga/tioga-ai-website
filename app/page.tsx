@@ -14,28 +14,18 @@ export default function HomePage() {
  className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full opacity-10 pointer-events-none"
  style={{ background: "radial-gradient(ellipse, var(--accent), transparent 70%)", filter: "blur(60px)" }}
  />
- <div
- className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
- style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
- >
- <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
- Governed AI Automation for Enterprise Systems
- </div>
- <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight">
- Put AI to work in{" "}
- <span style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
- Oracle and SAP
- </span>
- <br />
- without replacing the systems or weakening your controls.
+ <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight text-balance">
+ AI agents for the{" "}
+ <span style={{ color: "var(--accent)" }}>ERP</span>{" "}
+ you already have.
  </h1>
  <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed">
- Tioga AI builds governed agents for finance, procurement and operations. Start with a five-day sprint and leave with a working prototype, ROI estimate and production plan.
+ Governed agents for finance, procurement and operations on Oracle EBS and SAP — running inside your identity, approvals and audit trail. No migration required.
  </p>
  <p className="text-sm text-slate-400 max-w-xl mx-auto mb-10">
  Five-day discovery sprint, $5,000 flat — credited toward your project if you move forward.
  </p>
- <div className="flex flex-col items-center sm:flex-row gap-4 justify-center mb-4">
+ <div className="flex flex-col items-center sm:flex-row gap-4 justify-center">
  <TrackedCTA
  href={CAL_LINK}
  target="_blank"
@@ -43,7 +33,7 @@ export default function HomePage() {
  event="cta_book_call"
  data={{ location: "hero" }}
  className="px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
- style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
+ style={{ background: "var(--accent-dark)" }}
  >
  Book a 20-minute fit call
  </TrackedCTA>
@@ -57,18 +47,6 @@ export default function HomePage() {
  See an AP agent run
  </TrackedCTA>
  </div>
- <p className="text-xs text-slate-400 mb-2">Or click the chat bubble ↘ to talk to our AI assistant right now</p>
- <TrackedCTA
- href="/samples/erp-agent-readiness-checklist.html"
- target="_blank"
- rel="noopener noreferrer"
- event="lead_asset_download"
- data={{ asset: "erp-agent-readiness-checklist", location: "hero" }}
- className="text-xs underline underline-offset-2 transition-colors hover:text-white"
- style={{ color: "var(--accent)" }}
- >
- Not ready to talk yet? Free ERP Agent-Readiness Checklist →
- </TrackedCTA>
  </section>
 
  {/* Stats Bar */}
@@ -88,15 +66,18 @@ export default function HomePage() {
  </div>
  </section>
 
- {/* Frameworks strip — de-emphasized per positioning review */}
+ {/* Frameworks strip — still intentionally secondary to the systems-led hero
+ (per the 2026-08-04 positioning decision), just legible now: was
+ rendered smaller and dimmer than any other element on the page,
+ which read as an oversight rather than a deliberate design choice. */}
  <section className="px-6 pb-16 max-w-5xl mx-auto">
- <div className="flex flex-wrap items-center justify-center gap-2 text-xs">
- <span style={{ color: "var(--text-muted-3)" }}>Governed to:</span>
+ <div className="flex flex-wrap items-center justify-center gap-2 text-sm">
+ <span style={{ color: "var(--text-muted-2)" }}>Governed to:</span>
  {["NIST AI RMF", "ISO 42001", "EU AI Act"].map((std) => (
  <span
  key={std}
  className="px-3 py-1 rounded-full font-medium"
- style={{ background: "var(--bg-card)", border: "1px solid var(--border)", color: "var(--text-muted)" }}
+ style={{ background: "var(--bg-card)", border: "1px solid var(--border)", color: "var(--text)" }}
  >
  {std}
  </span>
@@ -129,9 +110,23 @@ export default function HomePage() {
  {/* Try It Live */}
  <section className="py-4 px-6 max-w-5xl mx-auto">
  <div className="text-center mb-8">
- <p className="text-xs mb-3" style={{ color: "var(--text-muted-3)" }}>
- I don&apos;t have client logos to show you yet — as a new practice, that&apos;s the truth. Try the product instead.
+ <p
+ className="text-lg italic max-w-xl mx-auto mb-2 leading-relaxed"
+ style={{ color: "var(--text)", borderLeft: "2px solid var(--accent)", paddingLeft: "1rem" }}
+ >
+ &ldquo;I don&apos;t have client logos to show you yet — as a new practice, that&apos;s the truth. Try the product instead.&rdquo;
  </p>
+ <TrackedCTA
+ href="/samples/erp-agent-readiness-checklist.html"
+ target="_blank"
+ rel="noopener noreferrer"
+ event="lead_asset_download"
+ data={{ asset: "erp-agent-readiness-checklist", location: "mid_page" }}
+ className="text-xs underline underline-offset-2 transition-colors hover:text-white inline-block mb-6"
+ style={{ color: "var(--accent)" }}
+ >
+ Not ready to try the demos? Free ERP Agent-Readiness Checklist →
+ </TrackedCTA>
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
  style={{ background: "#00D4FF10", border: "1px solid #00D4FF25", color: "var(--accent)" }}
@@ -248,6 +243,28 @@ export default function HomePage() {
  Pricing published up front, not gated behind a sales call. The $5,000 discovery sprint is credited toward whichever offer you move forward with.
  </p>
  </div>
+ <div
+ className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl mb-6"
+ style={{ background: "linear-gradient(135deg, #00D4FF10, #0066CC10)", border: "1px solid #00D4FF25" }}
+ >
+ <div>
+ <p className="text-white font-semibold mb-1">Not sure where to start?</p>
+ <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+ Five-day Discovery Sprint, $5,000 flat — credited in full toward whichever offer below you move forward with.
+ </p>
+ </div>
+ <TrackedCTA
+ href={CAL_LINK}
+ target="_blank"
+ rel="noopener noreferrer"
+ event="cta_book_call"
+ data={{ location: "services_sprint_banner" }}
+ className="shrink-0 px-6 py-3 rounded-xl text-white font-semibold text-sm whitespace-nowrap transition-all hover:opacity-90"
+ style={{ background: "var(--accent-dark)" }}
+ >
+ Book the sprint
+ </TrackedCTA>
+ </div>
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
  {[
  {
@@ -255,51 +272,68 @@ export default function HomePage() {
  valueProp: "Find the workflows AI can take off your plate",
  desc: "2–3 weeks. Map manual workflows across finance, HR, procurement, and operations. Rank automation opportunities by ROI and feasibility. Concrete plan in your hands.",
  investment: "$10–15K",
+ ctaLabel: "Scope an assessment",
+ recommended: true,
  },
  {
  name: "AI Governance Readiness Assessment",
  valueProp: "Get audit-ready before regulators or customers ask",
  desc: "3–4 weeks. NIST AI RMF, ISO 42001, EU AI Act, and US state law gap analysis with a prioritized remediation roadmap. Sample executive summary included.",
  investment: "$20–35K",
+ ctaLabel: "Check my readiness",
+ recommended: false,
  },
  {
  name: "AI Agent Pilot",
  valueProp: "Build one working agent against your highest-value workflow",
  desc: "4–8 weeks. Production-ready agent. Governance built in from day one. Working pilot you can extend or hand off.",
  investment: "$25–50K",
+ ctaLabel: "Plan a pilot",
+ recommended: false,
  },
  ].map((offer) => (
  <div
  key={offer.name}
  className="flex flex-col rounded-2xl overflow-hidden"
- style={{ background: "var(--bg-card)", border: "1px solid rgba(255,255,255,0.08)" }}
+ style={{
+ background: "var(--bg-card)",
+ border: offer.recommended ? "1px solid var(--accent)" : "1px solid rgba(255,255,255,0.08)",
+ }}
  >
  <div className="h-px w-full" style={{ background: "linear-gradient(90deg, var(--accent), var(--accent-dark))" }} />
  <div className="flex flex-col flex-1 p-8">
- <h3 className="text-2xl font-semibold text-white mb-3 leading-snug lg:min-h-[6.25rem]">{offer.name}</h3>
- <p className="text-lg font-medium text-slate-400 mb-5 leading-snug lg:min-h-[5.25rem]">{offer.valueProp}</p>
- <p className="text-base leading-relaxed flex-1 mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>{offer.desc}</p>
+ {offer.recommended && (
+ <span
+ className="inline-block self-start mb-4 px-3 py-1 rounded-full text-xs font-semibold"
+ style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+ >
+ Start here
+ </span>
+ )}
+ <h3 className="text-2xl font-semibold text-white mb-3 leading-snug">{offer.name}</h3>
+ <p className="text-lg font-medium text-slate-400 mb-5 leading-snug">{offer.valueProp}</p>
+ <p className="text-base leading-relaxed flex-1 mb-8" style={{ color: "var(--text-body)" }}>{offer.desc}</p>
  <div className="space-y-4">
- <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{offer.investment}</p>
+ <p className="text-2xl font-semibold text-white">{offer.investment}</p>
  <a
  href="#contact"
  className="block text-center w-full px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
- style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
+ style={{ background: "var(--accent-dark)" }}
  >
- Start a conversation
+ {offer.ctaLabel}
  </a>
  </div>
  </div>
  </div>
  ))}
  </div>
- <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
+ <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "var(--text-faint)" }}>
  Plus ten more engagements across two practices — modernizing ERP with an agent layer, and governing enterprise AI end to end.{" "}
  <Link href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
  See all services →
  </Link>
  </p>
- <p className="text-center mt-4 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+ <p className="text-center mt-4 text-sm leading-relaxed" style={{ color: "var(--text-muted-2)" }}>
  See what you actually get:{" "}
  <a href="/samples/discovery-sprint-scope.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
  sample discovery sprint scope
@@ -324,7 +358,7 @@ export default function HomePage() {
  <p className="text-slate-400 text-sm max-w-lg mx-auto">Not a generic AI consultancy. One founder who specializes in one thing: getting AI into production inside complex enterprise environments.</p>
  </div>
  <div className="mb-10 pb-8 text-center" style={{ borderBottom: "1px solid var(--border)" }}>
- <p className="text-sm max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
+ <p className="text-sm max-w-2xl mx-auto leading-relaxed" style={{ color: "var(--text-body)" }}>
  Tioga AI is built by <span className="text-white font-medium">Sukir Kumaresan</span>, who spent decades on the operating side of enterprise systems — Oracle EBS, SAP, finance, HR, procurement — and the governance work that keeps those systems audit-ready. Every demo on this site, including the Governance Ledger above, is code Sukir wrote and infrastructure Sukir runs. No outsourced build, no slide deck.
  </p>
  </div>
@@ -417,7 +451,7 @@ export default function HomePage() {
  </div>
  <div
  className="shrink-0 px-6 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all group-hover:opacity-90"
- style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))", color: "white" }}
+ style={{ background: "var(--accent-dark)", color: "white" }}
  >
  Explore MCP →
  </div>

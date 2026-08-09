@@ -19,14 +19,15 @@ export default function Nav() {
   // Close mobile menu on route change
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
+  // Trimmed 2026-08-08 from 8 items to 5: MCP and Engineering are jargon a
+  // CFO/CIO buyer won't recognize from a nav bar and were already duplicated
+  // in the footer; Process is homepage content, reachable via the #process
+  // anchor. Solutions/Services/Live Demos kept as the core buyer funnel.
   const links = [
     { href: "/solutions", label: "Solutions" },
     { href: "/#services", label: "Services" },
     { href: "/demos", label: "Live Demos" },
-    { href: "/mcp", label: "MCP" },
-    { href: "/engineering", label: "Engineering" },
     { href: "/about", label: "About" },
-    { href: "/#process", label: "Process" },
     { href: "/#contact", label: "Contact" },
   ];
 
@@ -75,7 +76,7 @@ export default function Nav() {
           <Link
             href="/#contact"
             className="hidden md:inline-flex px-5 py-2.5 rounded-lg text-base font-medium text-white transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
+            style={{ background: "var(--accent-dark)" }}
           >
             Get Started
           </Link>
@@ -135,7 +136,7 @@ export default function Nav() {
             onClick={() => setMenuOpen(false)}
             tabIndex={menuOpen ? undefined : -1}
             className="mt-3 py-3 rounded-lg text-sm font-medium text-white text-center transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
+            style={{ background: "var(--accent-dark)" }}
           >
             Get Started
           </Link>
