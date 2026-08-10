@@ -49,6 +49,11 @@ const SOLUTIONS = [
     name: "Oracle EBS → S/4HANA",
     desc: "Know what breaks before you migrate, not after — a real readiness assessment, not a slide deck.",
   },
+  {
+    href: "/solutions/standing-watch",
+    name: "Standing Watch",
+    desc: "Cross-system AI agent governance across SAP, Workday, Databricks, and ServiceNow — governed as one estate, not four panes of glass.",
+  },
 ];
 
 export default function SolutionsHubPage() {
