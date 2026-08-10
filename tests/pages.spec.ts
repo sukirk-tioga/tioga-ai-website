@@ -39,14 +39,19 @@ const PAGES = [
 
 for (const { path, title } of PAGES) {
   test(`${path} loads, has correct title, no console errors`, async ({ page }) => {
-    // @vercel/analytics's script only resolves on real Vercel infra (it's
-    // served by the platform, not this app) — every non-Vercel environment
-    // (this CI runner, local `next start`) 404s on it, which the
-    // X-Content-Type-Options: nosniff header then turns into a second
-    // "refused to execute" console error. Stub it so the assertion below
-    // still catches real regressions instead of this permanent false
-    // positive that broke the suite the moment Analytics was added.
+    // @vercel/analytics's and @vercel/speed-insights's scripts only resolve
+    // on real Vercel infra (they're served by the platform, not this app) —
+    // every non-Vercel environment (this CI runner, local `next start`)
+    // 404s on them, which the X-Content-Type-Options: nosniff header then
+    // turns into a second "refused to execute" console error. Stub both so
+    // the assertion below still catches real regressions instead of this
+    // permanent false positive (confirmed 2026-08-09: broke the suite the
+    // moment Analytics was added, then again the moment Speed Insights was
+    // added — same root cause, different package).
     await page.route("**/_vercel/insights/**", (route) =>
+      route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
+    );
+    await page.route("**/_vercel/speed-insights/**", (route) =>
       route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
     );
 
