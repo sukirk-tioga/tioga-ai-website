@@ -34,3 +34,9 @@ conventions, card/button/badge component shapes, and a real gotcha about
 `tailwind.config.ts`'s unused `brand.*` colors), see `design.md` —
 reverse-engineered from actual component usage, same "verify against live
 code, don't trust a stale list" discipline as this section.
+
+**Before adding or generating any new UI component, read `design.md`
+first** — not optional background reading. It's short and prevents the
+most likely mistake: reaching for `tailwind.config.ts`'s `bg-brand-*`
+classes (dead, unused) or guessing a border-radius/component shape that
+doesn't match what's already shipped.
