@@ -10,12 +10,23 @@ import { test, expect } from "@playwright/test";
 // Both would have been caught immediately by the tests below.
 
 test("migration assessment demo returns a real assessment", async ({ page }) => {
+  // The demo's own copy tells users to expect "about 60 seconds" — the
+  // previous 30s assertion timeout (and Playwright's 30s default overall
+  // test timeout) was tighter than that from the day this test was
+  // written, so any run where the live model genuinely took 30-60s (normal,
+  // expected latency, not a bug) failed here. Confirmed live 2026-08-09:
+  // manually exercised the demo, got a real result in ~20-25s, then this
+  // exact test failed once and passed once on immediate re-runs with zero
+  // code changes -- a timing flake, not a regression. Give both the overall
+  // test and the assertion real headroom above the documented 60s.
+  test.setTimeout(90_000);
+
   await page.goto("/demos/migration-assessment");
   await page.getByRole("button", { name: /generate readiness assessment/i }).click();
 
   // Give the model time to respond — this is a live API call, not a mock.
   const complexityHeading = page.getByText("Migration Complexity");
-  await expect(complexityHeading).toBeVisible({ timeout: 30_000 });
+  await expect(complexityHeading).toBeVisible({ timeout: 75_000 });
 
   // The score circle, risks, and next steps should all render — if the
   // API call fails, the button just reverts with no result section at all.
