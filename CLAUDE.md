@@ -28,3 +28,9 @@ rule.
 2026-07-31, making every rebrand or color-scheme tweak a find-and-replace
 across dozens of files instead of a one-line token edit. Don't reintroduce
 that.
+
+For everything this section doesn't cover (typography scale, border-radius
+conventions, card/button/badge component shapes, and a real gotcha about
+`tailwind.config.ts`'s unused `brand.*` colors), see `design.md` —
+reverse-engineered from actual component usage, same "verify against live
+code, don't trust a stale list" discipline as this section.
