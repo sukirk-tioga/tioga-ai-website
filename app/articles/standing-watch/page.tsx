@@ -46,11 +46,12 @@ const content: ArticleContent = {
           remembering to look. On our most recent run, that exact class of
           gap showed up again on schedule (the gateway&apos;s
           authentication was found open), and was fixed and re-verified the
-          same day. 8 of 9 flagged findings that run were fixed and
-          confirmed closed; the one that wasn&apos;t — full-disk encryption
-          — was correctly left for a human, because enabling it needs
-          physical console access nothing the automation runs with can
-          reach.
+          same day. 8 of 10 flagged findings that run were fixed and
+          verified live; 2 were correctly left for a human — full-disk
+          encryption, because enabling it needs physical console access
+          nothing the automation runs with can reach, and a home-router
+          firewall rule, because it needs the router&apos;s own admin UI,
+          not anything scriptable from either machine.
         </p>
       ),
     },
