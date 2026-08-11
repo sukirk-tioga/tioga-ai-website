@@ -35,6 +35,7 @@ export interface SolutionContent {
   faq: FAQItem[];
   related: RelatedLink[];
   demoLink?: { href: string; label: string };
+  visual?: React.ReactNode;
 }
 
 export default function SolutionPage({ content }: { content: SolutionContent }) {
@@ -93,6 +94,11 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
           </div>
         </div>
       </section>
+
+      {/* Optional visual (e.g. an estate diagram) */}
+      {content.visual && (
+        <section className="px-6 pb-16 max-w-4xl mx-auto">{content.visual}</section>
+      )}
 
       {/* Proof */}
       <section className="px-6 pb-16 max-w-4xl mx-auto">

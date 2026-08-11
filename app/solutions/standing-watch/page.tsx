@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SolutionPage, { SolutionContent } from "@/components/SolutionPage";
+import StandingWatchEstateDiagram from "@/components/StandingWatchEstateDiagram";
 
 export const metadata: Metadata = {
   title: "Standing Watch — Cross-System AI Agent Governance",
@@ -89,6 +90,7 @@ const content: SolutionContent = {
     { href: "/services", label: "See all engagements" },
   ],
   demoLink: { href: "/demos/standing-watch", label: "See it in action" },
+  visual: <StandingWatchEstateDiagram />,
 };
 
 export default function StandingWatchSolutionPage() {

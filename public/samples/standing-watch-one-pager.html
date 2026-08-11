@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standing Watch — Cross-System AI Agent Governance — Tioga AI</title>
+<style>
+  :root{
+    --bg-dark:#0A0F1C; --bg-card:#0D1526; --border:#1E2D4A; --accent:#00D4FF;
+    --accent-dark:#0066CC; --text:#e2e8f0; --text-muted:#94a3b8; --success:#4ADE80; --warning:#FBBF24;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg-dark);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+  .wrap{max-width:820px;margin:0 auto;padding:56px 28px 80px;}
+  .eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  h1{font-size:28px;margin:0 0 6px;color:#fff;}
+  .sub{color:var(--text-muted);margin:0 0 28px;max-width:64ch;}
+  h2{font-size:17px;color:#fff;margin:34px 0 10px;padding-left:12px;border-left:3px solid var(--accent);}
+  .panes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+  .band{background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.35);border-radius:10px;padding:12px 14px;margin-bottom:6px;text-align:center;}
+  .band .label{font-family:ui-monospace,monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:8px;}
+  .pill{display:inline-block;font-family:ui-monospace,monospace;font-size:11px;color:var(--accent);background:var(--bg-dark);border:1px solid rgba(0,212,255,0.35);border-radius:999px;padding:3px 9px;margin:2px;}
+  .pane{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px;font-size:12.5px;}
+  .pane .vendor{color:#fff;font-weight:700;font-size:13px;}
+  .pane .product{color:var(--text-muted);font-size:10.5px;margin-bottom:6px;}
+  .pane .quote{font-style:italic;color:var(--text);margin:4px 0;min-height:48px;}
+  .pane .source{color:var(--text-muted);font-size:9.5px;border-top:1px solid var(--border);padding-top:6px;margin-top:6px;}
+  .diagram-note{color:var(--text-muted);font-size:11.5px;text-align:center;margin-top:10px;}
+  .disc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+  .disc{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+  .disc .name{color:var(--accent);font-weight:700;font-size:13px;margin-bottom:3px;}
+  .disc .desc{color:var(--text-muted);font-size:12.5px;}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+  .stat{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+  .stat .num{color:var(--accent);font-size:26px;font-weight:700;}
+  .stat .cap{color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-top:4px;}
+  .stat .src{color:var(--text-muted);font-size:10.5px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
+  th{font-family:ui-monospace,monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);background:var(--bg-card);}
+  .ladder{display:grid;gap:10px;margin:14px 0;}
+  .rung{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .rung .name{color:#fff;font-weight:700;font-size:14px;}
+  .rung .desc{color:var(--text-muted);font-size:12.5px;margin-top:3px;max-width:56ch;}
+  .rung .price{color:var(--accent);font-weight:700;font-size:14px;white-space:nowrap;}
+  .rung .dur{color:var(--text-muted);font-size:11px;white-space:nowrap;}
+  .foot{margin-top:52px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);}
+  .print-btn{display:inline-block;margin-top:18px;padding:9px 16px;border-radius:8px;background:var(--accent-dark);color:#fff;font-size:13px;font-weight:600;border:none;cursor:pointer;}
+  @media print{
+    body{background:#fff;color:#111;}
+    .pane,.disc,.stat,.rung{background:#fafafa;border-color:#ddd;}
+    .band{background:#eef9fc;border-color:#9fdcec;}
+    .pill{background:#fff;border-color:#9fdcec;color:#0077a0;}
+    th{background:#f3f3f3;color:#555;}
+    td,th{border-color:#ddd;}
+    .print-btn{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">tioga.ai — Standing Watch</div>
+  <h1>Standing Watch — Cross-System AI Agent Governance</h1>
+  <p class="sub">Every platform ships its own governance pane. Standing Watch is the discipline that governs across them — built and run on Tioga's own multi-vendor infrastructure. This is a static positioning document, not a live data feed; every quote and stat below is sourced inline.</p>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+
+  <h2>01 — The estate today: four self-claimed &ldquo;layers of record&rdquo;</h2>
+  <div class="band">
+    <div class="label">Standing Watch — six disciplines, cross-cutting</div>
+    <span class="pill">Qualify</span><span class="pill">Arbitrate</span><span class="pill">Gate</span><span class="pill">Probe</span><span class="pill">Track</span><span class="pill">Review</span>
+  </div>
+  <div class="panes">
+    <div class="pane">
+      <div class="vendor">SAP</div>
+      <div class="product">AI Agent Hub</div>
+      <div class="quote">&ldquo;governance layer of record for the enterprise agent ecosystem&rdquo;</div>
+      <div class="source">SAP CTO Philipp Herzig, SAP News, Aug 2026</div>
+    </div>
+    <div class="pane">
+      <div class="vendor">Workday</div>
+      <div class="product">Agent System of Record</div>
+      <div class="quote">&ldquo;the single source of truth for all of an enterprise's AI agents&rdquo;</div>
+      <div class="source">Workday ASOR GA blog, blog.workday.com</div>
+    </div>
+    <div class="pane">
+      <div class="vendor">Databricks</div>
+      <div class="product">Unity AI Gateway</div>
+      <div class="quote">&ldquo;a unified governance layer for both AI assets and AI interactions&rdquo;</div>
+      <div class="source">Databricks blog, Data + AI Summit 2026 (Jun 2026)</div>
+    </div>
+    <div class="pane">
+      <div class="vendor">ServiceNow</div>
+      <div class="product">AI Control Tower</div>
+      <div class="quote">&ldquo;we manage them where technically possible&rdquo;</div>
+      <div class="source">ServiceNow product leadership, per Techzine Global reporting, May 2026</div>
+    </div>
+  </div>
+  <p class="diagram-note">Each quote is the vendor's own verified language, not Tioga's characterization — verified 2026-08-10.</p>
+
+  <h2>02 — The six disciplines</h2>
+  <div class="disc-grid">
+    <div class="disc"><div class="name">Qualify</div><div class="desc">Capability floors enforced at routing time — no agent absorbs a task class it hasn't been measured competent for.</div></div>
+    <div class="disc"><div class="name">Arbitrate</div><div class="desc">Cross-vendor AI spend compared on one defensible cost basis, even across non-fungible budget types.</div></div>
+    <div class="disc"><div class="name">Gate</div><div class="desc">Tiered autonomy with a hard human ceiling — propose-and-approve, never auto-applied to live configuration.</div></div>
+    <div class="disc"><div class="name">Probe</div><div class="desc">The same behavioral check run identically across every system in scope — live calls, not trusted dashboards.</div></div>
+    <div class="disc"><div class="name">Track</div><div class="desc">Findings live in an aging ledger — nothing clears without machine re-verification or explicit human resolve.</div></div>
+    <div class="disc"><div class="name">Review</div><div class="desc">The vendor/model estate is re-evaluated on a fixed cadence against pre-committed criteria.</div></div>
+  </div>
+
+  <h2>03 — Mapping: running mechanism → enterprise capability</h2>
+  <table>
+    <tr><th>Discipline</th><th>Tioga's running mechanism</th><th>Enterprise capability</th></tr>
+    <tr><td>Qualify</td><td>Capability floors enforced at task-assignment time</td><td>A cheap or bundled agent can't silently absorb a quality-sensitive task</td></tr>
+    <tr><td>Arbitrate</td><td>One cost basis across non-fungible budget types</td><td>Cross-vendor AI spend becomes an auditable decision, not a per-silo default</td></tr>
+    <tr><td>Gate</td><td>Tiered autonomy, propose-and-approve only</td><td>Highest-blast-radius actions are structurally unreachable by automation</td></tr>
+    <tr><td>Probe</td><td>The same behavioral check run identically everywhere</td><td>Closes the gap vendors admit exists across each other's closed platforms</td></tr>
+    <tr><td>Track / Review</td><td>Aging findings ledger + fixed-cadence vendor reappraisal</td><td>Nothing clears silently; the estate stays current with a dated paper trail</td></tr>
+  </table>
+
+  <h2>04 — The pain point, in citable numbers</h2>
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="num">13%</div>
+      <div class="cap">believe their governance is adequate</div>
+      <div class="src">Gartner research, cited by SAP's Aug 2026 agent-sprawl announcement</div>
+    </div>
+    <div class="stat">
+      <div class="num">94% / 12%</div>
+      <div class="cap">concerned about agent sprawl / have centralized governance</div>
+      <div class="src">OutSystems, ~1,900 IT leaders surveyed, Apr 2026</div>
+    </div>
+  </div>
+
+  <h2>05 — Engagement ladder</h2>
+  <div class="ladder">
+    <div class="rung">
+      <div><div class="name">Standing Watch Assessment</div><div class="desc">Agent inventory, qualification register, spend arbitration baseline, first behavioral probe run, and a seeded findings ledger you keep.</div></div>
+      <div><div class="price">$15–35K</div><div class="dur">3–4 weeks</div></div>
+    </div>
+    <div class="rung">
+      <div><div class="name">Standing Watch Build</div><div class="desc">Implements the propose-and-approve gating layer and behavioral probe harness in your environment, on your credentials.</div></div>
+      <div><div class="price">$60–150K</div><div class="dur">8–16 weeks</div></div>
+    </div>
+    <div class="rung">
+      <div><div class="name">Standing Watch Retainer</div><div class="desc">Router-watch and security-watch as a service, generalized to your estate — weekly watch runs, monthly ledger review, quarterly evidence packs.</div></div>
+      <div><div class="price">$5–15K/month</div><div class="dur">Ongoing</div></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    Tioga AI — Standing Watch is a single-operator, personal-infrastructure-scale implementation of these disciplines, run on Tioga's own multi-vendor estate — not a claim of Fortune 500-scale deployment. See the live pages: tioga.ai/solutions/standing-watch, tioga.ai/demos/standing-watch, tioga.ai/engineering/standing-watch.
+  </div>
+</div>
+</body>
+</html>
