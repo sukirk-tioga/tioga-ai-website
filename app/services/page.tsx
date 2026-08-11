@@ -4,12 +4,12 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Three practices, fourteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance built for Oracle and SAP environments.",
+    "Three practices, sixteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance built for Oracle and SAP environments.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Services — Tioga AI",
     description:
-      "Three practices, fourteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance for Oracle and SAP.",
+      "Three practices, sixteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance for Oracle and SAP.",
   },
 };
 
@@ -80,7 +80,7 @@ const PRACTICES: Practice[] = [
     key: "govern",
     name: "Govern enterprise AI",
     blurb:
-      "NIST AI RMF, ISO 42001, EU AI Act, and US state-law programs — plus fractional leadership — for organizations that need AI risk management built into the architecture, not backfilled after a pilot succeeds. This is the deepest bench of the three practices: nine engagements, from a one-time gap analysis to ongoing governance leadership.",
+      "NIST AI RMF, ISO 42001, EU AI Act, and US state-law programs — plus fractional leadership — for organizations that need AI risk management built into the architecture, not backfilled after a pilot succeeds. This is the deepest bench of the three practices: eleven engagements, from a one-time gap analysis to ongoing governance leadership.",
     offers: [
       {
         name: "AI Governance Readiness Assessment",
@@ -131,12 +131,28 @@ const PRACTICES: Practice[] = [
         duration: "6–12 months",
       },
       {
-        name: "Standing Watch — Cross-System AI Agent Governance",
-        desc: "Agent inventory, a cross-vendor spend arbitration baseline, and autonomy-tier mapping across your SAP, Workday, Databricks, or ServiceNow estate — consuming what you already run as sources, not sunk mistakes, and adding the cross-vendor governance layer none of them ship alone. Standing Watch Assessment is the entry point; Standing Watch Build ($60–150K) and a weekly Standing Watch Retainer ($5–15K/month) follow if it's a fit.",
+        name: "Standing Watch Assessment",
+        desc: "Agent inventory across your estate — consuming your existing SAP Agent Hub, Workday ASOR, Control Tower, or Unity AI Gateway data as sources, not sunk mistakes. Delivers a qualification register, a cross-vendor spend arbitration baseline, a first behavioral probe run, and a seeded findings ledger you keep regardless of what you decide next.",
         price: "$15–35K",
         duration: "3–4 weeks",
         href: "/solutions/standing-watch",
-        ctaLabel: "See the Standing Watch solution and full pricing ladder →",
+        ctaLabel: "See the full Standing Watch ladder →",
+      },
+      {
+        name: "Standing Watch Build",
+        desc: "Implements the propose-and-approve gating layer and the behavioral probe harness in your environment, on your credentials and repositories — modeled directly on router-watch and security-watch's architecture. Tioga will not be a required runtime dependency.",
+        price: "$60–150K",
+        duration: "8–16 weeks, scoped to estate breadth",
+        href: "/solutions/standing-watch",
+        ctaLabel: "See the full Standing Watch ladder →",
+      },
+      {
+        name: "Standing Watch Retainer",
+        desc: "Router-watch and security-watch as a service, generalized to your estate: a weekly automated watch run, a monthly human review of the findings ledger, and quarterly evidence packs mapped to NIST AI RMF, ISO 42001, and the EU AI Act.",
+        price: "$5–15K/month",
+        duration: "Ongoing",
+        href: "/solutions/standing-watch",
+        ctaLabel: "See the full Standing Watch ladder →",
       },
     ],
   },
@@ -148,7 +164,7 @@ export default function ServicesPage() {
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <h1 className="text-4xl font-bold text-white mb-6">Services</h1>
         <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-4">
-          Tioga AI runs three practices — automating finance and operations, modernizing ERP with an agent layer, and governing enterprise AI. Fourteen engagements sit underneath them, each scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
+          Tioga AI runs three practices — automating finance and operations, modernizing ERP with an agent layer, and governing enterprise AI. Sixteen engagements sit underneath them, each scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
         </p>
         <p className="text-slate-400 text-sm max-w-2xl leading-relaxed mb-16">
           Every engagement below starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment. If you move forward, the $5,000 is credited toward the price of the engagement below.
