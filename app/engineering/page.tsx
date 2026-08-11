@@ -37,6 +37,12 @@ const WRITEUPS = [
     model: "Claude Sonnet 5",
     summary: "Why this demo runs on a reasoning model behind a strict allowlist, with conditional compliance logic and clamped, validated output — the most defensive route on the site.",
   },
+  {
+    href: "/engineering/standing-watch",
+    title: "Standing Watch",
+    model: "No model call",
+    summary: "The real 12-day cross-machine auth gap that motivated security-watch, why every automation here only proposes, and the POOL_WEIGHT / NEVER_COMPARE mechanisms behind it — volunteered scale caveat included.",
+  },
 ];
 
 export default function EngineeringIndexPage() {

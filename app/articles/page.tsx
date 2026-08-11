@@ -43,6 +43,11 @@ const ARTICLES = [
     title: "Why \"auto-approve everything under $X\" is an AP governance anti-pattern",
     summary: "Scope, spend tiers, and ERP validation as independent layers — plus a rollback bug we found.",
   },
+  {
+    href: "/articles/standing-watch",
+    title: "Why every automation we run only proposes — never applies",
+    summary: "The real 12-day cross-machine auth gap that motivated security-watch, and why propose-and-approve is the whole point.",
+  },
 ];
 
 export default function ArticlesIndexPage() {
