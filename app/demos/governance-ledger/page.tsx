@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import DemoShell from "../_lib/demo-shell";
+import { LEDGER, STATS, LIVE_STATS, FUNCTIONS } from "../../../lib/governance-ledger";
 
 export const metadata: Metadata = {
   title: "Governance Ledger Demo — Tioga AI",
@@ -17,78 +19,9 @@ export const metadata: Metadata = {
 // 2026-07-26. Not synthetic — this is what the governed-write-path and
 // insurance-readiness offers are built on: every model call logged, costed,
 // budget-capped, and attributed as a byproduct of routing, not bolted on.
-
-interface LedgerRow {
-  ts: string;
-  requested: string;
-  served: string;
-  in: number;
-  out: number;
-  cost: string;
-  pool: "free" | "paid";
-  quality?: string;
-  tags: Array<"MAP" | "MEASURE" | "MANAGE">;
-}
-
-const LEDGER: LedgerRow[] = [
-  { ts: "Jul 17 16:54:27", requested: "gemini-flash", served: "gemini-3-flash-preview", in: 29, out: 6, cost: "$0.000002", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 17 16:54:37", requested: "glm-5.2", served: "z-ai/glm-5.2", in: 43, out: 150, cost: "$0.000490", pool: "paid", tags: ["MAP", "MANAGE"] },
-  { ts: "Jul 17 17:20:09", requested: "glm-flash", served: "qwen/qwen3-8b", in: 14, out: 30, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 17 17:20:46", requested: "glm-flash", served: "qwen/qwen3-8b", in: 14, out: 400, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 17 17:20:49", requested: "gemini-flash", served: "gemini-3-flash-preview", in: 8, out: 20, cost: "$0.000003", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 17 17:21:18", requested: "glm-flash", served: "qwen/qwen3-8b", in: 14, out: 400, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 17 17:21:20", requested: "gemini-flash", served: "gemini-3-flash-preview", in: 8, out: 20, cost: "$0.000003", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 17 17:21:45", requested: "glm-flash", served: "qwen/qwen3-8b", in: 18, out: 13, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 17 17:21:48", requested: "gemini-flash", served: "gemini-3-flash-preview", in: 8, out: 1, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 17 17:21:52", requested: "glm-5.2", served: "z-ai/glm-5.2", in: 19, out: 79, cost: "$0.000255", pool: "paid", tags: ["MAP", "MANAGE"] },
-  { ts: "Jul 17 17:54:32", requested: "glm-flash", served: "qwen/qwen3-8b", in: 17, out: 12, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 22 22:39:58", requested: "glm-flash", served: "qwen/qwen3-8b", in: 19, out: 6, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 24 12:57:27", requested: "glm-flash", served: "qwen/qwen3-8b", in: 21, out: 7, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 25 11:15:59", requested: "glm-flash", served: "qwen/qwen3-8b", in: 17, out: 12, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 25 14:07:30", requested: "glm-flash", served: "qwen/qwen3-8b", in: 18, out: 7, cost: "$0.000000", pool: "free", quality: "0.90", tags: ["MAP", "MEASURE"] },
-  { ts: "Jul 25 15:14:39", requested: "glm-flash", served: "qwen/qwen3-8b", in: 19, out: 8, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-  { ts: "Jul 25 15:34:07", requested: "glm-flash", served: "qwen/qwen3-8b", in: 19, out: 6, cost: "$0.000000", pool: "free", tags: ["MAP"] },
-];
-
-const STATS = [
-  { label: "Spend vs. cap", value: "$0.000753", sub: "of $30.00 · 30-day rolling window" },
-  { label: "Calls logged", value: "17", sub: "unsampled — every call, not a spot check" },
-  { label: "Backends in rotation", value: "3", sub: "local free-tier → Google → OpenRouter, by policy" },
-  { label: "Paid vs. free-tier", value: "2 / 17", sub: "71% of calls settled at exactly $0 before touching billed credit" },
-];
-
-// Pulled live from the gateway's own status tool on Jul 27, 2026 — a
-// separate check from the ledger rows above (captured Jul 17-25). Refreshed
-// manually when this page is updated, not a real-time ticker.
-const LIVE_STATS = [
-  { label: "Monthly budget cap", value: "$30.00", sub: "hard ceiling, shared across every machine running this infrastructure" },
-  { label: "Spent this window", value: "$0.0007", sub: "0.002% of cap — window opened Jul 17, 2026" },
-  { label: "Per-request ceiling", value: "$1.00", sub: "reserved and checked before any single call goes out" },
-  { label: "Backend health", value: "3 / 3", sub: "local T0, Google, and OpenRouter all reachable at last check" },
-];
-
-const FUNCTIONS = [
-  {
-    name: "GOVERN",
-    body: "A spend policy — $30 per 30-day window, shared across every machine running this infrastructure — set once and enforced automatically on every call.",
-    field: "policy: budget.json",
-  },
-  {
-    name: "MAP",
-    body: "Every call records what was requested and what actually served it. No AI action happens without a named model and a named route.",
-    field: "field: model → served_model",
-  },
-  {
-    name: "MEASURE",
-    body: "Token volume and cost are recorded on every call; response quality is scored and attached where evaluated.",
-    field: "field: in / out / cost / quality",
-  },
-  {
-    name: "MANAGE",
-    body: "Spend against paid credit is checked and reserved before the call goes out — the system can't overspend the cap, because it never sends a request that would.",
-    field: "function: budget reserve-and-charge",
-  },
-];
+//
+// Data lives in lib/governance-ledger.ts, shared with the /showcase 3D
+// scene, so the two views can never drift from each other.
 
 const poolStyle = {
   free: { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" },
@@ -214,6 +147,24 @@ export default function GovernanceLedgerPage() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Showcase tie-in */}
+      <div className="mt-8 p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        <div>
+          <p className="text-sm font-semibold text-white mb-1">Same 17 rows, as a 3D control-plane scene</p>
+          <p className="text-xs text-slate-400 leading-relaxed max-w-md">
+            The Oversight Plane renders this exact ledger as an interactive scene — the budget
+            aperture, the free-pool bypass, and the requested→served execution nodes.
+          </p>
+        </div>
+        <Link
+          href="/showcase"
+          className="shrink-0 text-xs font-mono px-3 py-1.5 rounded-full transition-colors hover:border-slate-500"
+          style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+        >
+          View the scene →
+        </Link>
       </div>
 
       {/* Offer tie-in */}
