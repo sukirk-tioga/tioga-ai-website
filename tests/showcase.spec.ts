@@ -46,7 +46,7 @@ test("DOM legend and provenance strip show the real, corrected figures", async (
   // and the same $0.000753 / $30.00 spend-vs-cap figure as the table page.
   await expect(page.getByText("12", { exact: false }).first()).toBeVisible();
   await expect(page.locator("text=/12.*of those.*71%.*settle at exactly \\$0/")).toBeVisible();
-  await expect(page.locator("text=/\\$0\\.000753/")).toBeVisible();
+  await expect(page.locator("text=/\\$0\\.000753/").first()).toBeVisible();
   await expect(page.locator("text=/\\$30\\.00/").first()).toBeVisible();
 });
 
@@ -57,7 +57,6 @@ test("no-WebGL fallback renders the real table", async ({ page }) => {
     // @ts-expect-error - intentionally narrowing the real signature for the test stub
     HTMLCanvasElement.prototype.getContext = function (type: string, ...args: unknown[]) {
       if (type === "webgl" || type === "experimental-webgl" || type === "webgl2") return null;
-      // @ts-expect-error - forwarding to the original implementation
       return original.call(this, type, ...args);
     };
   });

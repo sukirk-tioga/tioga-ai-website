@@ -100,6 +100,12 @@ export default function EngineeringIndexPage() {
               See the build log →
             </Link>
           </p>
+          <p className="text-xs text-slate-400 mb-8">
+            Or see the governance ledger rendered as a 3D control plane —{" "}
+            <Link href="/showcase" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+              The Oversight Plane →
+            </Link>
+          </p>
           <Link
             href="/demos"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
