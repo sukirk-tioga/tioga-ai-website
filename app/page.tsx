@@ -138,9 +138,9 @@ export default function HomePage() {
  Live in our environment — demo data
  </div>
  <h2 className="text-3xl font-bold text-white mb-3">Try It Right Now</h2>
- <p className="text-slate-400 max-w-lg mx-auto text-sm">Three real AI workflows. No signup. No mockups. The same Claude models built into every Tioga AI engagement.</p>
+ <p className="text-slate-400 max-w-lg mx-auto text-sm">Four real AI workflows. No signup. No mockups. The same Claude models built into every Tioga AI engagement.</p>
  </div>
- <div className="grid md:grid-cols-3 gap-4">
+ <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
  {[
  {
  icon: "📄",
@@ -169,6 +169,13 @@ export default function HomePage() {
  desc: "Get a sample EBS → SAP migration readiness assessment in 60 seconds.",
  tag: "Oracle EBS → S/4HANA",
  href: "/demos/migration-assessment"
+ },
+ {
+ icon: "🛡️",
+ title: "Standing Watch",
+ desc: "Real, dated findings from Tioga's own governance automations — what got auto-fixed, and what it correctly left for a human.",
+ tag: "AI Governance",
+ href: "/demos/standing-watch"
  },
  ].map((demo) => (
  <Link
