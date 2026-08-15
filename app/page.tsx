@@ -2,6 +2,7 @@ import Link from "next/link";
 import SmartContactForm from "@/components/SmartContactForm";
 import TrackedCTA from "@/components/TrackedCTA";
 import HeroDemo from "@/components/HeroDemo";
+import GovernanceLedgerPreview from "@/components/GovernanceLedgerPreview";
 
 const CAL_LINK = "https://cal.com/sukir-kumaresan-rfgb7k/introduction-chat";
 
@@ -197,23 +198,27 @@ export default function HomePage() {
 
  {/* Governance Ledger Callout */}
  <section className="pt-2 pb-4 px-6 max-w-5xl mx-auto">
- <Link
- href="/demos/governance-ledger"
- className="block rounded-2xl p-6 transition-all hover:border-slate-500 group"
+ <div
+ className="rounded-2xl p-6 md:p-8"
  style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
  >
- <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+ <div className="grid md:grid-cols-2 gap-6 items-center">
  <div>
  <h3 className="text-base font-semibold text-white mb-1">See how I govern my own AI</h3>
- <p className="text-xs leading-relaxed max-w-lg" style={{ color: "var(--text-muted)" }}>
- The Governance Ledger is real operational data from Tioga&apos;s own AI routing gateway, mapped to NIST AI RMF — not a mockup. Refreshed periodically, not a live-refreshing feed.
+ <p className="text-xs leading-relaxed max-w-md mb-4" style={{ color: "var(--text-muted)" }}>
+ The Governance Ledger is real operational data from Tioga&apos;s own AI routing gateway, mapped to NIST AI RMF — not a mockup. Every call logged, costed, and attributed as a byproduct of routing, not bolted on.
  </p>
- </div>
- <div className="shrink-0 text-sm font-medium transition-all group-hover:opacity-80" style={{ color: "var(--accent)" }}>
- View the ledger →
- </div>
- </div>
+ <Link
+ href="/demos/governance-ledger"
+ className="text-sm font-medium transition-colors hover:text-white inline-flex items-center gap-1.5"
+ style={{ color: "var(--accent)" }}
+ >
+ View the full ledger →
  </Link>
+ </div>
+ <GovernanceLedgerPreview />
+ </div>
+ </div>
  </section>
 
  {/* Integrations */}
