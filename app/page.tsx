@@ -22,7 +22,7 @@ export default function HomePage() {
  you already have.
  </h1>
  <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed">
- Governed agents for finance, procurement and operations on Oracle EBS and SAP — running inside your identity, approvals and audit trail. No migration required.
+ Governed agents for finance, procurement and operations on Oracle EBS and SAP — running inside your identity, approvals and audit trail, every action visible before it executes. No migration required.
  </p>
  <p className="text-sm text-slate-400 max-w-xl mx-auto mb-10">
  Five-day discovery sprint, $5,000 flat — credited toward your project if you move forward.
