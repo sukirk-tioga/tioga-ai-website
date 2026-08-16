@@ -103,7 +103,10 @@ export default function AboutPage() {
             HRIS — are not the problem. They&apos;re the asset. Tioga AI builds
             AI agents that connect to them as they are, with governance
             controls designed in from the start, instead of asking you to
-            replace what already works.
+            replace what already works. Those controls persist, too — every
+            agent retains your approval chains and policy context run over
+            run, instead of re-learning your environment from a blank slate
+            every session, the way a generic chatbot tool does.
           </p>
         </div>
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import SmartContactForm from "@/components/SmartContactForm";
 import TrackedCTA from "@/components/TrackedCTA";
 import HeroDemo from "@/components/HeroDemo";
+import GovernanceLedgerPreview from "@/components/GovernanceLedgerPreview";
 
 const CAL_LINK = "https://cal.com/sukir-kumaresan-rfgb7k/introduction-chat";
 
@@ -21,7 +22,7 @@ export default function HomePage() {
  you already have.
  </h1>
  <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed">
- Governed agents for finance, procurement and operations on Oracle EBS and SAP — running inside your identity, approvals and audit trail. No migration required.
+ Governed agents for finance, procurement and operations on Oracle EBS and SAP — running inside your identity, approvals and audit trail, every action visible before it executes. No migration required.
  </p>
  <p className="text-sm text-slate-400 max-w-xl mx-auto mb-10">
  Five-day discovery sprint, $5,000 flat — credited toward your project if you move forward.
@@ -137,9 +138,9 @@ export default function HomePage() {
  Live in our environment — demo data
  </div>
  <h2 className="text-3xl font-bold text-white mb-3">Try It Right Now</h2>
- <p className="text-slate-400 max-w-lg mx-auto text-sm">Three real AI workflows. No signup. No mockups. The same Claude models built into every Tioga AI engagement.</p>
+ <p className="text-slate-400 max-w-lg mx-auto text-sm">Four real AI workflows. No signup. No mockups. The same Claude models built into every Tioga AI engagement.</p>
  </div>
- <div className="grid md:grid-cols-3 gap-4">
+ <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
  {[
  {
  icon: "📄",
@@ -169,6 +170,13 @@ export default function HomePage() {
  tag: "Oracle EBS → S/4HANA",
  href: "/demos/migration-assessment"
  },
+ {
+ icon: "🛡️",
+ title: "Standing Watch",
+ desc: "Real, dated findings from Tioga's own governance automations — what got auto-fixed, and what it correctly left for a human.",
+ tag: "AI Governance",
+ href: "/demos/standing-watch"
+ },
  ].map((demo) => (
  <Link
  key={demo.title}
@@ -197,23 +205,27 @@ export default function HomePage() {
 
  {/* Governance Ledger Callout */}
  <section className="pt-2 pb-4 px-6 max-w-5xl mx-auto">
- <Link
- href="/demos/governance-ledger"
- className="block rounded-2xl p-6 transition-all hover:border-slate-500 group"
+ <div
+ className="rounded-2xl p-6 md:p-8"
  style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
  >
- <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+ <div className="grid md:grid-cols-2 gap-6 items-center">
  <div>
  <h3 className="text-base font-semibold text-white mb-1">See how I govern my own AI</h3>
- <p className="text-xs leading-relaxed max-w-lg" style={{ color: "var(--text-muted)" }}>
- The Governance Ledger is real operational data from Tioga&apos;s own AI routing gateway, mapped to NIST AI RMF — not a mockup. Refreshed periodically, not a live-refreshing feed.
+ <p className="text-xs leading-relaxed max-w-md mb-4" style={{ color: "var(--text-muted)" }}>
+ The Governance Ledger is real operational data from Tioga&apos;s own AI routing gateway, mapped to NIST AI RMF — not a mockup. Every call logged, costed, and attributed as a byproduct of routing, not bolted on.
  </p>
- </div>
- <div className="shrink-0 text-sm font-medium transition-all group-hover:opacity-80" style={{ color: "var(--accent)" }}>
- View the ledger →
- </div>
- </div>
+ <Link
+ href="/demos/governance-ledger"
+ className="text-sm font-medium transition-colors hover:text-white inline-flex items-center gap-1.5"
+ style={{ color: "var(--accent)" }}
+ >
+ View the full ledger →
  </Link>
+ </div>
+ <GovernanceLedgerPreview />
+ </div>
+ </div>
  </section>
 
  {/* Integrations */}
