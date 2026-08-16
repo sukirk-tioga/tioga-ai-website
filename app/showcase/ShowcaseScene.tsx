@@ -11,6 +11,7 @@ import {
   REPLAY_TRAVEL_DURATION,
   REPLAY_TOTAL_DURATION,
 } from "../../lib/governance-ledger";
+import { readCssToken } from "../../lib/site-config";
 import ShowcaseEffects from "./ShowcaseEffects";
 
 // The Gateway Corridor — full rebuild, 2026-08-15 (round 3).
@@ -42,11 +43,6 @@ import ShowcaseEffects from "./ShowcaseEffects";
 // Colors are read from CSS custom properties at runtime via
 // getComputedStyle — this repo forbids hex literals in TSX. No hex
 // literal appears in this file.
-function readToken(name: string): string {
-  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  return value || "white";
-}
-
 interface Tokens {
   bgDarker: string;
   border: string;
@@ -548,11 +544,11 @@ export default function ShowcaseScene({
 
   useEffect(() => {
     setTokens({
-      bgDarker: readToken("--bg-darker"),
-      border: readToken("--border"),
-      accent: readToken("--accent"),
-      accentDark: readToken("--accent-dark"),
-      success: readToken("--success"),
+      bgDarker: readCssToken("--bg-darker"),
+      border: readCssToken("--border"),
+      accent: readCssToken("--accent"),
+      accentDark: readCssToken("--accent-dark"),
+      success: readCssToken("--success"),
     });
     setIsMobile(window.innerWidth < 768);
   }, []);

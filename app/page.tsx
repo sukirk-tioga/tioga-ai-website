@@ -2,6 +2,7 @@ import Link from "next/link";
 import SmartContactForm from "@/components/SmartContactForm";
 import TrackedCTA from "@/components/TrackedCTA";
 import HeroDemo from "@/components/HeroDemo";
+import HeroFieldLoader from "@/components/HeroFieldLoader";
 import GovernanceLedgerPreview from "@/components/GovernanceLedgerPreview";
 import { CAL_LINK } from "@/lib/site-config";
 
@@ -10,11 +11,8 @@ export default function HomePage() {
  <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
 
  {/* Hero */}
- <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative overflow-hidden">
- <div
- className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full opacity-10 pointer-events-none"
- style={{ background: "radial-gradient(ellipse, var(--accent), transparent 70%)", filter: "blur(60px)" }}
- />
+ <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative z-0 overflow-hidden">
+ <HeroFieldLoader />
  <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight text-balance">
  AI agents for the{" "}
  <span style={{ color: "var(--accent)" }}>ERP</span>{" "}
