@@ -4,6 +4,7 @@ import Link from "next/link";
 import TrackedCTA from "../../components/TrackedCTA";
 import ShowcaseCanvasLoader from "./ShowcaseCanvasLoader";
 import ShowcaseLegend from "./ShowcaseLegend";
+import { CAL_LINK } from "../../lib/site-config";
 import {
   TOTAL_CALLS,
   TOTAL_SPEND,
@@ -53,7 +54,7 @@ export default function ShowcasePage() {
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
               style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
             >
-              <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
+              <span className="w-1.5 h-1.5 bg-current rounded-full" />
               Interactive 3D — Real Governance Data
             </div>
             <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-balance text-white mb-4">
@@ -216,7 +217,9 @@ export default function ShowcasePage() {
             governed write-paths — not a form, a conversation.
           </p>
           <TrackedCTA
-            href="/#contact"
+            href={CAL_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
             event="showcase_cta_click"
             className="inline-flex px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}

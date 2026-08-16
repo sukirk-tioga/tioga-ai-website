@@ -3,8 +3,7 @@ import SmartContactForm from "@/components/SmartContactForm";
 import TrackedCTA from "@/components/TrackedCTA";
 import HeroDemo from "@/components/HeroDemo";
 import GovernanceLedgerPreview from "@/components/GovernanceLedgerPreview";
-
-const CAL_LINK = "https://cal.com/sukir-kumaresan-rfgb7k/introduction-chat";
+import { CAL_LINK } from "@/lib/site-config";
 
 export default function HomePage() {
  return (
@@ -247,7 +246,7 @@ export default function HomePage() {
  <div style={{ borderColor: "var(--border)", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
 
  {/* Services */}
- <section id="services" className="py-20 px-6 max-w-5xl mx-auto">
+ <section id="services" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-24">
  <div className="text-center mb-12">
  <h2 className="text-3xl font-bold text-white mb-3">Where to start</h2>
  <p className="text-slate-400 text-sm max-w-lg mx-auto">
@@ -400,7 +399,7 @@ export default function HomePage() {
  <div style={{ borderColor: "var(--border)", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
 
  {/* Process */}
- <section id="process" className="py-20 px-6 max-w-4xl mx-auto">
+ <section id="process" className="py-20 px-6 max-w-4xl mx-auto scroll-mt-24">
  <div className="text-center mb-12">
  <h2 className="text-3xl font-bold text-white mb-3">My Process</h2>
  <p className="text-slate-400 text-sm">From first conversation to production deployment — with no ambiguity about what happens next.</p>
@@ -476,7 +475,7 @@ export default function HomePage() {
  <div style={{ borderColor: "var(--border)", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
 
  {/* Contact */}
- <section id="contact" className="py-20 px-6 max-w-2xl mx-auto text-center">
+ <section id="contact" className="py-20 px-6 max-w-2xl mx-auto text-center scroll-mt-24">
  <h2 className="text-3xl font-bold text-white mb-3">Ready to Build?</h2>
  <p className="text-slate-400 mb-2 text-sm max-w-md mx-auto">
  Tell me about your project. My AI instantly classifies your inquiry so it reaches me with the right context. Response within one business day — or email{" "}

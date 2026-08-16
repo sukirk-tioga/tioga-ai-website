@@ -73,6 +73,32 @@ test("no-WebGL fallback renders the real table", async ({ page }) => {
   await expect(fallback.locator("text=/\\$0\\.000002/")).toBeVisible();
 });
 
+test("canvas keeps changing over time — catches the autoRotate freeze-at-boundary bug", async ({ page }) => {
+  // Regression test for the documented "camera-freeze trap"
+  // (docs/design/3d-design-standard.md §4.2): OrbitControls.autoRotate only
+  // advances azimuth in one direction, so a clamped min/maxAzimuthAngle range
+  // drifts to its boundary once and then sits frozen forever. Every static
+  // check (build, tsc, no-console-errors) passes anyway — only a
+  // time-separated pixel comparison of the actual canvas catches it. The doc
+  // itself calls this bug "real, will recur," and until now nothing asserted
+  // it hadn't.
+  await page.goto("/showcase");
+  const canvas = page.locator('[data-testid="showcase-canvas"]');
+  await expect(canvas).toBeVisible({ timeout: 15_000 });
+
+  const shot1 = await canvas.screenshot();
+  await page.waitForTimeout(2500);
+  const shot2 = await canvas.screenshot();
+  await page.waitForTimeout(6000);
+  const shot3 = await canvas.screenshot();
+
+  // Two frames ~2.5s apart, then a third ~6s after that — three-way
+  // comparison so a one-time transition (which would make shot1≠shot2 but
+  // shot2===shot3) can't masquerade as continuous motion.
+  expect(shot1.equals(shot2), "canvas identical after 2.5s — motion stalled immediately").toBe(false);
+  expect(shot2.equals(shot3), "canvas identical after a further 6s — motion froze partway through").toBe(false);
+});
+
 test("prefers-reduced-motion falls back to the table and the hero stays a static image", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/showcase");

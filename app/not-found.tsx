@@ -1,3 +1,5 @@
+import { CAL_LINK } from "@/lib/site-config";
+
 export default function NotFound() {
   return (
     <main className="min-h-screen flex items-center justify-center text-slate-200 px-6" style={{ background: "var(--bg-dark)" }}>
@@ -28,7 +30,9 @@ export default function NotFound() {
             <p className="text-sm font-semibold text-white">Services &amp; Pricing →</p>
           </a>
           <a
-            href="/#contact"
+            href={CAL_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
             className="p-4 rounded-xl transition-all hover:border-slate-500"
             style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
           >
