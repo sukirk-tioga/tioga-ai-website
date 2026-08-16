@@ -6,43 +6,41 @@ import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import {
   LEDGER,
-  TOTAL_SPEND,
-  BUDGET_CAP,
   BACKEND_ROUTES,
   REPLAY_START_OFFSETS,
   REPLAY_TRAVEL_DURATION,
   REPLAY_TOTAL_DURATION,
 } from "../../lib/governance-ledger";
 
-// The Oversight Plane — Phase 1 MVP, craft pass 2026-08-15.
+// The Gateway Corridor — full rebuild, 2026-08-15 (round 3).
 //
-// Three stacked planes (request / policy / execution), an InstancedMesh of
-// exactly LEDGER.length (17) particles — one per real ledger row, no
-// decorative filler. Free-pool rows bypass the budget aperture in a side
-// lane; paid rows pass through its center. On landing, each particle
-// converges toward the execution node matching its real `served` backend.
-// No approval-gate mechanic (see plan §1 correction — the data has no
-// write/read-path field, so nothing here should look like one).
+// Two prior rounds (a vertical three-plane stack, then the same stack with
+// added flight-path lines and comet trails) both shipped clean and
+// verified, and both got the same verdict from Sukirk after actually
+// looking: no wow factor, not quickly understood. Fable 5's round-3
+// critique (reading real screenshots, not code) concluded the *concept*
+// was the ceiling, not the execution: vertical stacking carries no
+// semantics — nothing about "up vs down" says request -> governance ->
+// model -- and a scene with no focal object and a bilaterally symmetric,
+// hero-less composition cannot read as premium no matter how it's lit.
 //
-// 2026-08-15 revision: replaced the original continuous 7-second ambient
-// loop with a rest/replay model (Sukirk feedback: "looks generic," Fable
-// 5's research flagged continuous ambient particle flow as reading like a
-// cyber-threat-map — "pure eye candy... more cinema than science," the
-// exact aesthetic Norse's viral (and now-defunct) attack map became known
-// for). Default state: every particle sits at its real landed position —
-// the ledger, already written, read as evidence rather than motion. A
-// "Replay" control (see ShowcaseCanvasLoader) plays the real, compressed
-// Jul 17-25 timeline once, using REPLAY_START_OFFSETS/REPLAY_TRAVEL_DURATION
-// from lib/governance-ledger.ts (real inter-call gaps, not even spacing),
-// then returns to rest. Nothing here is a synthetic loop pretending to be
-// live activity.
+// This scene replaces the stack entirely with a horizontal corridor: 17
+// real rows enter as tiles on the left, converge through a single bright
+// "gate" (the hero object, the one thing designed to be seen first) at
+// the center, and fan out to 3 real backend pools on the right. Each row
+// is a ribbon whose WIDTH is its real token count and whose brightness
+// reflects its real pool (free vs paid) -- the data drives the geometry,
+// not just the color. On Replay, a pulse travels each ribbon on its real,
+// compressed timing (same REPLAY_START_OFFSETS/REPLAY_TRAVEL_DURATION
+// derivation as before) and flashes green -- the one reserved use of
+// --success in this scene -- exactly as it crosses the gate, then
+// continues to its pool. At rest (no replay running), the static ribbons
+// alone carry the "17 real rows, real variation" density story, since
+// most visitors never click Replay.
 //
 // Colors are read from CSS custom properties at runtime via
-// getComputedStyle — this repo forbids hex literals in TSX, and Three.js
-// needs numeric/string colors, so this hook (plan §4's sanctioned pattern)
-// is the bridge. No hex literal ever appears in this file. Translucency
-// uses THREE.js material `opacity`, not embedded alpha-hex, since
-// THREE.Color itself has no alpha channel.
+// getComputedStyle — this repo forbids hex literals in TSX. No hex
+// literal appears in this file.
 function readToken(name: string): string {
   const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   return value || "white";
@@ -56,257 +54,247 @@ interface Tokens {
   success: string;
 }
 
-const PLANE_Y = { request: 3, policy: 0, execution: -3 } as const;
+// --- Corridor layout ----------------------------------------------------
+//
+// Left column: 17 row tiles, ordered chronologically top-to-bottom (index
+// order in LEDGER is already chronological). Center: the gate, at the
+// exact midpoint every ribbon's curve passes through -- a true visual
+// chokepoint, not an approximation. Right column: the 3 real backend
+// pools (BACKEND_ROUTES).
+const CORRIDOR_X = { tiles: -4.4, gate: 0, pools: 4.4 };
+const TILE_Y_RANGE: [number, number] = [2.6, -2.6];
+const POOL_Y_RANGE: [number, number] = [1.5, -1.5];
 
-// Scripted intro camera dolly (craft pass): eases from a wider, higher
-// establishing shot down into the constrained 3/4 working view over
-// INTRO_SECONDS, then hands off to OrbitControls (which mounts for the
-// first time only once the intro finishes, so it captures its baseline
-// spherical state from the final position — no fighting between a manual
-// lerp and OrbitControls' own per-frame update in the same window).
-const CAMERA_FROM: [number, number, number] = [0, 5.6, 15.4];
-const CAMERA_TO: [number, number, number] = [0, 1.4, 11];
+function tileY(index: number): number {
+  if (LEDGER.length <= 1) return 0;
+  const [top, bottom] = TILE_Y_RANGE;
+  return top - (top - bottom) * (index / (LEDGER.length - 1));
+}
+
+function tileZ(index: number): number {
+  // Small alternating depth stagger -- purely a composition aid so the
+  // tile column reads as a real 3D cluster instead of a flat line; the
+  // curve still converges every ribbon to the exact same gate point
+  // regardless, so this never implies anything about the data.
+  return index % 2 === 0 ? 0.35 : -0.35;
+}
+
+function poolY(index: number, total: number): number {
+  if (total <= 1) return 0;
+  const [top, bottom] = POOL_Y_RANGE;
+  return top - (top - bottom) * (index / (total - 1));
+}
+
+// Scripted intro camera dolly: eases from a wider establishing shot into
+// the working view, then hands off to OrbitControls only once it
+// completes (so OrbitControls captures its baseline spherical state from
+// the final position, not the intro's -- avoids fighting a manual lerp
+// running the same frame as OrbitControls' own update).
+const CAMERA_FROM: [number, number, number] = [2.2, 5.5, 15.5];
+const CAMERA_TO: [number, number, number] = [1.6, 2.4, 10.5];
 const INTRO_SECONDS = 1.8;
 
-// Deterministic per-row lane assignment — free-pool rows bypass the
-// aperture in a side lane (never crossing x=0 on the policy plane); paid
-// rows pass straight through its center. This is what makes the bypass
-// visible: it's a real property of `pool`, not a random scatter.
-function laneX(index: number, pool: "free" | "paid"): number {
-  if (pool === "paid") return 0;
-  const side = index % 2 === 0 ? -1 : 1;
-  const jitter = ((index % 3) - 1) * 0.25;
-  return side * 3.1 + jitter;
+const GATE_CROSS_WINDOW = 0.06; // phase +/- this counts as "crossing the gate"
+
+interface RowGeom {
+  row: (typeof LEDGER)[number];
+  curve: THREE.CatmullRomCurve3;
+  radius: number;
+  startOffset: number;
 }
 
-// Execution-node x position for a row, derived from BACKEND_ROUTES (the
-// distinct `served` values that actually appear in the data) — not
-// hand-placed. 3 backends -> 3 evenly spaced nodes.
-function nodeX(servedIndex: number, total: number): number {
-  const spread = 2.6;
-  if (total <= 1) return 0;
-  return -spread + (spread * 2 * servedIndex) / (total - 1);
+function buildRowGeometry(): RowGeom[] {
+  const tokenSums = LEDGER.map((r) => r.in + r.out);
+  const minTokens = Math.min(...tokenSums);
+  const maxTokens = Math.max(...tokenSums);
+  const spread = Math.max(maxTokens - minTokens, 1);
+
+  return LEDGER.map((row, i) => {
+    const poolIndex = BACKEND_ROUTES.indexOf(row.served);
+    const tile = new THREE.Vector3(CORRIDOR_X.tiles, tileY(i), tileZ(i));
+    const gate = new THREE.Vector3(CORRIDOR_X.gate, 0, 0);
+    const pool = new THREE.Vector3(CORRIDOR_X.pools, poolY(poolIndex, BACKEND_ROUTES.length), 0);
+    const curve = new THREE.CatmullRomCurve3([tile, gate, pool]);
+    const norm = (tokenSums[i] - minTokens) / spread;
+    const radius = 0.028 + norm * 0.07;
+    return { row, curve, radius, startOffset: REPLAY_START_OFFSETS[i] ?? 0 };
+  });
 }
 
-// Craft pass: fill planes moved from meshBasicMaterial (flat, unlit — reads
-// as a colored square regardless of lighting) to meshStandardMaterial with
-// a slight emissive base, so the two point lights actually create visible
-// falloff and highlight across each plane's surface instead of a flat
-// tint. Each plane also gets a faint emissive bias toward its role (warmer/
-// brighter for request, neutral for policy, cooler for execution) — a
-// static, honest visual cue (data still drives every particle/aperture/
-// node value; this only shades the backdrop), not a new claim about the
-// data itself.
-// 2026-08-15: values roughly doubled — screenshot confirmed the original
-// bias (0.02-0.05) plus 0.045 fill opacity made the planes nearly
-// imperceptible against the dark background.
-const PLANE_EMISSIVE_BIAS: Record<keyof typeof PLANE_Y, number> = {
-  request: 0.11,
-  policy: 0.08,
-  execution: 0.05,
-};
-
-function Planes({ tokens }: { tokens: Tokens }) {
-  const fillColor = tokens.accent;
-  const wireColor = tokens.border;
-
-  const planeProps = { args: [9, 5.4] as [number, number] };
-
+function RowTiles({ tokens }: { tokens: Tokens }) {
   return (
     <>
-      {(Object.entries(PLANE_Y) as [keyof typeof PLANE_Y, number][]).map(([name, y]) => (
-        <group key={name} position={[0, y, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <mesh>
-            <planeGeometry {...planeProps} />
-            <meshStandardMaterial
-              color={fillColor}
-              emissive={fillColor}
-              emissiveIntensity={PLANE_EMISSIVE_BIAS[name]}
-              roughness={0.85}
-              metalness={0.1}
-              transparent
-              opacity={0.1}
-              side={THREE.DoubleSide}
-            />
-          </mesh>
-          <mesh>
-            <planeGeometry {...planeProps} />
-            <meshBasicMaterial color={wireColor} wireframe transparent opacity={0.7} side={THREE.DoubleSide} />
-          </mesh>
-        </group>
+      {LEDGER.map((row, i) => (
+        <mesh key={i} position={[CORRIDOR_X.tiles, tileY(i), tileZ(i)]}>
+          <boxGeometry args={[0.16, 0.16, 0.16]} />
+          <meshStandardMaterial
+            color={row.pool === "paid" ? tokens.accentDark : tokens.accent}
+            emissive={row.pool === "paid" ? tokens.accentDark : tokens.accent}
+            emissiveIntensity={0.5}
+            roughness={0.4}
+          />
+        </mesh>
       ))}
     </>
   );
 }
 
-// The budget aperture — GOVERN made physical. It lights on the policy
-// plane itself (a slow independent pulse), not on any particle's
-// completion: no row in the ledger carries a GOVERN tag, matching how
-// /demos/governance-ledger already treats GOVERN as the policy layer
-// (`policy: budget.json`), not a per-call attribute.
-function BudgetAperture({ tokens }: { tokens: Tokens }) {
-  const ringRef = useRef<THREE.Mesh>(null);
-  const meterRef = useRef<THREE.Mesh>(null);
-  const ringMaterial = useRef<THREE.MeshStandardMaterial>(null);
-
-  // Real ratio: $0.000753 / $30.00 ~= 0.000025 -- genuinely, deliberately
-  // almost invisible (that's the point the plan makes: "the meter barely
-  // moves"). A small render-floor keeps the bar from being literally zero
-  // pixels tall so it reads as a meter at all; the exact number is spelled
-  // out in the DOM legend/provenance strip, not fabricated by this floor.
-  const ratio = TOTAL_SPEND / BUDGET_CAP;
-  const meterHeight = Math.max(ratio * 2.2, 0.025);
+// The gate — the hero object every ribbon visually converges through.
+// Softly breathes at rest (ambient sine pulse); briefly brightens when a
+// replay pulse is actively crossing it (gateActivity, written by Pulses
+// every frame, read here — same cross-component ref pattern the old
+// ExecutionNodes/Particles heat glow used).
+function Gate({ tokens, gateActivity }: { tokens: Tokens; gateActivity: React.MutableRefObject<number> }) {
+  const frameMaterials = useRef<THREE.MeshStandardMaterial[]>([]);
+  const haloMaterial = useRef<THREE.MeshBasicMaterial>(null);
 
   useFrame(({ clock }) => {
-    // 2026-08-15: baseline raised from 0.35 to 0.6 -- confirmed via
-    // screenshot the original pulse (0.35 +/- 0.25) was invisible against
-    // the policy plane's own near-coplanar fill mesh.
-    const pulse = 0.6 + 0.3 * Math.sin(clock.elapsedTime * 0.6);
-    if (ringMaterial.current) ringMaterial.current.emissiveIntensity = pulse;
-    if (ringRef.current) ringRef.current.rotation.z = clock.elapsedTime * 0.05;
+    const breathe = 0.55 + 0.2 * Math.sin(clock.elapsedTime * 0.7);
+    const boost = gateActivity.current * 1.4;
+    frameMaterials.current.forEach((mat) => {
+      if (mat) mat.emissiveIntensity = breathe + boost;
+    });
+    if (haloMaterial.current) haloMaterial.current.opacity = 0.16 + gateActivity.current * 0.3;
   });
 
+  const frameWidth = 1.0;
+  const frameHeight = 1.7;
+  const bar = 0.09;
+
   return (
-    // 2026-08-15 visibility fix: lifted 0.08 units above the policy plane.
-    // The aperture's own child meshes were sitting at effectively the same
-    // world Y as the policy plane's fill+wireframe meshes (both groups
-    // positioned at PLANE_Y.policy) -- genuine z-fighting/coplanar overlap,
-    // confirmed via screenshot: the aperture was completely invisible.
-    <group position={[0, PLANE_Y.policy + 0.08, 0]}>
-      {/* Craft pass: additive-blended glow halo behind the ring — cheap
-          "fake bloom" that doesn't need @react-three/postprocessing (whose
-          current majors track fiber v9; this repo is pinned to v8, see
-          plan §3). depthWrite={false} so it never occludes the particles
-          passing through. Radius/opacity raised 2026-08-15 (screenshot
-          showed it wasn't visible at the original 1.7/0.1). */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.001, 0]}>
-        <circleGeometry args={[2.3, 40]} />
+    <group position={[CORRIDOR_X.gate, 0, 0]}>
+      {/* Additive-blended glow halo -- cheap fake bloom, no
+          @react-three/postprocessing dependency (that package tracks
+          fiber v9; this repo is pinned to v8). */}
+      <mesh position={[0, 0, -0.05]}>
+        <circleGeometry args={[1.5, 40]} />
         <meshBasicMaterial
+          ref={haloMaterial}
           color={tokens.accent}
           transparent
-          opacity={0.22}
+          opacity={0.16}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
-          side={THREE.DoubleSide}
         />
       </mesh>
-      <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[1.0, 1.22, 48]} />
-        <meshStandardMaterial
-          ref={ringMaterial}
-          color={tokens.accentDark}
-          emissive={tokens.accent}
-          emissiveIntensity={0.6}
-          transparent
-          opacity={0.95}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-      {/* Spend meter — a thin bar rising from the aperture's base. */}
-      <mesh ref={meterRef} position={[0, meterHeight / 2 - 0.4, 0]}>
-        <boxGeometry args={[0.08, meterHeight, 0.08]} />
-        <meshStandardMaterial color={tokens.accent} emissive={tokens.accent} emissiveIntensity={0.8} />
-      </mesh>
-    </group>
-  );
-}
-
-function ExecutionNodes({ tokens, heatRefsOut }: { tokens: Tokens; heatRefsOut: React.MutableRefObject<THREE.Mesh[]> }) {
-  return (
-    <group position={[0, PLANE_Y.execution, 0]}>
-      {BACKEND_ROUTES.map((served, i) => (
-        <mesh
-          key={served}
-          position={[nodeX(i, BACKEND_ROUTES.length), 0.15, 0]}
-          ref={(m) => {
-            if (m) heatRefsOut.current[i] = m;
-          }}
-        >
-          <boxGeometry args={[0.5, 0.3, 0.5]} />
-          <meshStandardMaterial color={tokens.border} emissive={tokens.success} emissiveIntensity={0.15} />
+      {/* Upright rectangular portal frame -- default box orientation
+          already stands facing the camera along Z, so no rotation math
+          is needed; every ribbon's curve passes through (0,0,0) at its
+          exact midpoint, inside this frame's opening. */}
+      {[
+        { pos: [-frameWidth / 2, 0, 0], size: [bar, frameHeight, bar] },
+        { pos: [frameWidth / 2, 0, 0], size: [bar, frameHeight, bar] },
+        { pos: [0, frameHeight / 2, 0], size: [frameWidth, bar, bar] },
+        { pos: [0, -frameHeight / 2, 0], size: [frameWidth, bar, bar] },
+      ].map((piece, i) => (
+        <mesh key={i} position={piece.pos as [number, number, number]}>
+          <boxGeometry args={piece.size as [number, number, number]} />
+          <meshStandardMaterial
+            ref={(m) => {
+              if (m) frameMaterials.current[i] = m;
+            }}
+            color={tokens.accentDark}
+            emissive={tokens.accent}
+            emissiveIntensity={0.55}
+            roughness={0.3}
+          />
         </mesh>
       ))}
     </group>
   );
 }
 
-// Static flight-path lines — one real, dated audit trail per row,
-// permanently visible (2026-08-15, added after Fable 5's grounded
-// screenshot critique: the rest state alone reads as too sparse, since
-// most visitors never click Replay; the scene needs density without
-// requiring motion). Each line traces the exact path that row's particle
-// takes during replay — held in its lane for the first 30% of the drop,
-// then diagonal to its real execution node — built once from
-// lane/node, not per frame; it's geometry, not an animation. Free-pool
-// rows' lines visibly miss the budget aperture (their real bypass); paid
-// rows' lines pass through/near it (lane=0) — the same honest distinction
-// the plan's "free-pool bypass" argument makes, now visible even before
-// anything moves.
-function FlightPaths({ tokens }: { tokens: Tokens }) {
-  const geometry = useMemo(() => {
-    const positions: number[] = [];
-    const colors: number[] = [];
-    const free = new THREE.Color(tokens.accent);
-    const paid = new THREE.Color(tokens.accentDark);
+function PoolTerminals({ tokens, poolHeat }: { tokens: Tokens; poolHeat: React.MutableRefObject<number[]> }) {
+  const meshRefs = useRef<THREE.Mesh[]>([]);
 
-    LEDGER.forEach((row, i) => {
-      const lane = laneX(i, row.pool);
-      const node = nodeX(BACKEND_ROUTES.indexOf(row.served), BACKEND_ROUTES.length);
-      const bendY = PLANE_Y.request - (PLANE_Y.request - PLANE_Y.execution) * 0.3;
-      const c = row.pool === "paid" ? paid : free;
-      const points = [
-        [lane, PLANE_Y.request, 0],
-        [lane, bendY, 0],
-        [node, PLANE_Y.execution, 0],
-      ];
-      for (let p = 0; p < points.length - 1; p++) {
-        positions.push(...points[p], ...points[p + 1]);
-        colors.push(c.r, c.g, c.b, c.r, c.g, c.b);
-      }
+  useFrame(() => {
+    meshRefs.current.forEach((m, i) => {
+      if (!m) return;
+      const mat = m.material as THREE.MeshStandardMaterial;
+      mat.emissiveIntensity = 0.15 + (poolHeat.current[i] ?? 0) * 1.6;
     });
-
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-    geo.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
-    return geo;
-  }, [tokens]);
+  });
 
   return (
-    <lineSegments geometry={geometry}>
-      <lineBasicMaterial vertexColors transparent opacity={0.3} />
-    </lineSegments>
+    <>
+      {BACKEND_ROUTES.map((served, i) => (
+        <mesh
+          key={served}
+          position={[CORRIDOR_X.pools, poolY(i, BACKEND_ROUTES.length), 0]}
+          ref={(m) => {
+            if (m) meshRefs.current[i] = m;
+          }}
+        >
+          <boxGeometry args={[0.5, 0.32, 0.5]} />
+          <meshStandardMaterial color={tokens.border} emissive={tokens.success} emissiveIntensity={0.15} />
+        </mesh>
+      ))}
+    </>
   );
 }
 
-// Rest/replay model (2026-08-15, replaces the original continuous 7s
-// loop). Default: every row's phase is permanently 1 (landed) — the
-// ledger, already written. A "Replay" click (playSignal increments)
-// starts a single real, compressed playthrough using
-// REPLAY_START_OFFSETS/REPLAY_TRAVEL_DURATION, then returns to rest.
-// isPlaying/playStart live in refs, not React state, since they're read
-// every frame inside useFrame — only the play/pause *edges* notify the
-// parent (onPlayStateChange), not every frame.
-function Particles({
+// Static ribbons — one real, dated flow path per row, permanently visible
+// (most visitors never click Replay, so the rest state has to carry the
+// "17 real rows" density story on its own). Width = real token count;
+// brightness/color = real pool. Built once from LEDGER, not per frame.
+function Ribbons({ tokens, rows }: { tokens: Tokens; rows: RowGeom[] }) {
+  const freeColor = tokens.accent;
+  const paidColor = tokens.accentDark;
+
+  return (
+    <>
+      {rows.map(({ row, curve, radius }, i) => (
+        <mesh key={i}>
+          <tubeGeometry args={[curve, 32, radius, 6, false]} />
+          <meshStandardMaterial
+            color={row.pool === "paid" ? paidColor : freeColor}
+            emissive={row.pool === "paid" ? paidColor : freeColor}
+            emissiveIntensity={row.pool === "paid" ? 0.6 : 0.32}
+            transparent
+            opacity={0.55}
+            roughness={0.5}
+          />
+        </mesh>
+      ))}
+    </>
+  );
+}
+
+// Replay pulses — one instanced sphere per row, hidden (scale 0) unless
+// actively in transit; travels its row's real curve via
+// curve.getPointAt(phase), timed by REPLAY_START_OFFSETS (derived from
+// the real gaps between LEDGER timestamps, not even spacing — see
+// lib/governance-ledger.ts). Flashes --success green for the one moment
+// it's inside GATE_CROSS_WINDOW of the gate, then continues to its pool
+// in its normal pool color. isPlaying/playStart live in refs since
+// they're read every frame; only the play/pause *edges* notify the
+// parent.
+function Pulses({
   tokens,
+  rows,
   playSignal,
   onPlayStateChange,
+  gateActivity,
+  poolHeat,
 }: {
   tokens: Tokens;
+  rows: RowGeom[];
   playSignal: number;
   onPlayStateChange: (playing: boolean) => void;
+  gateActivity: React.MutableRefObject<number>;
+  poolHeat: React.MutableRefObject<number[]>;
 }) {
   const meshRef = useRef<THREE.InstancedMesh>(null);
-  const trailRef = useRef<THREE.InstancedMesh>(null);
-  const heatRefs = useRef<THREE.Mesh[]>([]);
   const isPlaying = useRef(false);
   const playStart = useRef(0);
   const lastPlaySignal = useRef(playSignal);
+  const dummy = useMemo(() => new THREE.Object3D(), []);
 
   useEffect(() => {
     if (playSignal === lastPlaySignal.current) return;
     lastPlaySignal.current = playSignal;
     isPlaying.current = true;
-    playStart.current = -1; // sentinel: set from clock.elapsedTime on the next frame
+    playStart.current = -1;
     onPlayStateChange(true);
   }, [playSignal, onPlayStateChange]);
 
@@ -314,113 +302,54 @@ function Particles({
     () => ({
       free: new THREE.Color(tokens.accent),
       paid: new THREE.Color(tokens.accentDark),
-      landed: new THREE.Color(tokens.success),
+      crossing: new THREE.Color(tokens.success),
     }),
     [tokens]
   );
 
-  const dummy = useMemo(() => new THREE.Object3D(), []);
-  const trailDummy = useMemo(() => new THREE.Object3D(), []);
-
-  const rows = useMemo(
-    () =>
-      LEDGER.map((row, i) => ({
-        row,
-        lane: laneX(i, row.pool),
-        node: nodeX(BACKEND_ROUTES.indexOf(row.served), BACKEND_ROUTES.length),
-        startOffset: REPLAY_START_OFFSETS[i] ?? 0,
-      })),
-    []
-  );
-
   useFrame(({ clock }) => {
     const mesh = meshRef.current;
-    const trail = trailRef.current;
-    if (!mesh || !trail) return;
+    if (!mesh) return;
 
     if (isPlaying.current && playStart.current === -1) {
       playStart.current = clock.elapsedTime;
     }
     const elapsedSincePlay = isPlaying.current ? clock.elapsedTime - playStart.current : Infinity;
 
-    const nodeHeat = new Array(BACKEND_ROUTES.length).fill(0);
+    let activity = 0;
+    const heat = new Array(BACKEND_ROUTES.length).fill(0);
 
-    rows.forEach(({ row, lane, node, startOffset }, i) => {
+    rows.forEach(({ row, curve, startOffset }, i) => {
       const localElapsed = elapsedSincePlay - startOffset;
-      // Hold at the lane position (bypass/center) for the first 30% of this
-      // row's travel window, then ease toward its real execution node for
-      // the remaining 70% — reads better than an even 50/50 split at the
-      // ~1.1s per-row travel duration used during replay (vs. the original
-      // 7s ambient cycle).
       const phase = THREE.MathUtils.clamp(localElapsed / REPLAY_TRAVEL_DURATION, 0, 1);
-      const y = PLANE_Y.request - (PLANE_Y.request - PLANE_Y.execution) * phase;
-      const x = phase < 0.3 ? lane : THREE.MathUtils.lerp(lane, node, (phase - 0.3) / 0.7);
+      const moving = phase > 0 && phase < 1;
 
-      dummy.position.set(x, y, 0);
-      // 2026-08-15 visibility fix: the original 0.08-0.11 scale was
-      // confirmed (via screenshot) to be nearly invisible at this camera
-      // distance against the dark background.
-      const scale = row.pool === "paid" ? 0.19 : 0.15;
-      dummy.scale.setScalar(scale);
+      if (moving) {
+        const point = curve.getPointAt(phase);
+        dummy.position.copy(point);
+        dummy.scale.setScalar(row.pool === "paid" ? 0.13 : 0.1);
+      } else {
+        dummy.scale.setScalar(0);
+      }
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
 
-      const nearLanding = phase > 0.86;
-      const color = nearLanding ? poolColor.landed : poolColor[row.pool];
+      const crossingGate = Math.abs(phase - 0.5) < GATE_CROSS_WINDOW;
+      if (crossingGate) activity += 1;
+      const color = crossingGate ? poolColor.crossing : poolColor[row.pool];
       mesh.setColorAt(i, color);
 
-      // 2026-08-15: comet-tail trail behind each in-flight particle — Fable
-      // 5's grounded critique (from real screenshots) found transit was
-      // literally zero pixels: "the entire journey between planes... the
-      // whole story, occupies zero pixels." Direction is analytic, not a
-      // frame-to-frame lookback: dy/dphase is constant (y is linear in
-      // phase across the whole 0-1 range); dx/dphase is 0 while held in
-      // the lane (phase<0.3), (node-lane)/0.7 while moving.
-      const isMoving = phase > 0 && phase < 1;
-      if (isMoving) {
-        const dyDir = -(PLANE_Y.request - PLANE_Y.execution);
-        const dxDir = phase < 0.3 ? 0 : (node - lane) / 0.7;
-        // Box's local +Y axis, after rotating by `angle` around Z, points
-        // toward world direction (-sin(angle), cos(angle)); with
-        // angle=atan2(-dxDir,dyDir) that resolves to unit(dxDir,dyDir) —
-        // the actual travel direction. So the leading (+Y) tip sits at
-        // center + (length/2)*unit(dxDir,dyDir); to put that tip AT the
-        // particle and let the tail trail behind, center = particlePos -
-        // (length/2)*unit(dxDir,dyDir).
-        const angle = Math.atan2(-dxDir, dyDir);
-        const trailLength = 0.6;
-        const mag = Math.hypot(dxDir, dyDir) || 1;
-        trailDummy.position.set(
-          x - (trailLength / 2) * (dxDir / mag),
-          y - (trailLength / 2) * (dyDir / mag),
-          0
-        );
-        trailDummy.rotation.set(0, 0, angle);
-        trailDummy.scale.set(0.045, trailLength, 0.045);
-      } else {
-        trailDummy.position.set(x, y, 0);
-        trailDummy.scale.set(0, 0, 0);
-      }
-      trailDummy.updateMatrix();
-      trail.setMatrixAt(i, trailDummy.matrix);
-      trail.setColorAt(i, nearLanding ? poolColor.landed : poolColor[row.pool]);
-
-      if (nearLanding) {
-        const heat = 1 - (1 - phase) / 0.14;
-        const nodeIndex = BACKEND_ROUTES.indexOf(row.served);
-        nodeHeat[nodeIndex] = Math.max(nodeHeat[nodeIndex], heat);
+      if (phase > 0.9) {
+        const poolIndex = BACKEND_ROUTES.indexOf(row.served);
+        const arriveHeat = 1 - (1 - phase) / 0.1;
+        heat[poolIndex] = Math.max(heat[poolIndex], arriveHeat);
       }
     });
 
     mesh.instanceMatrix.needsUpdate = true;
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
-    trail.instanceMatrix.needsUpdate = true;
-    if (trail.instanceColor) trail.instanceColor.needsUpdate = true;
-
-    heatRefs.current.forEach((nodeMesh, i) => {
-      const mat = nodeMesh.material as THREE.MeshStandardMaterial;
-      mat.emissiveIntensity = 0.15 + (nodeHeat[i] ?? 0) * 1.6;
-    });
+    gateActivity.current = Math.min(activity / 3, 1);
+    poolHeat.current = heat;
 
     if (isPlaying.current && elapsedSincePlay > REPLAY_TOTAL_DURATION + 0.3) {
       isPlaying.current = false;
@@ -429,46 +358,13 @@ function Particles({
   });
 
   return (
-    <>
-      <instancedMesh ref={meshRef} args={[undefined, undefined, LEDGER.length]}>
-        <sphereGeometry args={[1, 12, 12]} />
-        {/* 2026-08-15 visibility fix: this had NO color/emissive config at
-            all — a bare white PBR material lit only by two modest point
-            lights, on tiny instances against a near-black background,
-            confirmed via screenshot to render as effectively invisible.
-            Per-instance color (set via setColorAt in useFrame) drives the
-            diffuse channel as before; a flat emissive floor here (uniform
-            across instances, Three.js instance color doesn't reach the
-            emissive channel) guarantees every particle stays visible
-            regardless of external lighting, while the per-instance hue
-            still dominates on top of it. */}
-        <meshStandardMaterial emissive={tokens.accent} emissiveIntensity={0.55} roughness={0.4} />
-      </instancedMesh>
-      {/* 2026-08-15: comet-tail trails, additive-blended so overlapping
-          streaks glow rather than clip. Scaled to zero (in useFrame) for
-          any row that isn't actively in transit, so this only ever shows
-          real motion, never a fabricated one. */}
-      <instancedMesh ref={trailRef} args={[undefined, undefined, LEDGER.length]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshBasicMaterial transparent opacity={0.55} blending={THREE.AdditiveBlending} depthWrite={false} />
-      </instancedMesh>
-      <ExecutionNodes tokens={tokens} heatRefsOut={heatRefs} />
-    </>
+    <instancedMesh ref={meshRef} args={[undefined, undefined, LEDGER.length]}>
+      <sphereGeometry args={[1, 12, 12]} />
+      <meshStandardMaterial emissive={tokens.accent} emissiveIntensity={0.7} roughness={0.35} />
+    </instancedMesh>
   );
 }
 
-// Constrained camera: a scripted intro dolly (craft pass — camera
-// choreography instead of snapping straight to the working view), then a
-// damped orbit inside a limited azimuth/polar range plus slow auto-drift.
-// No free-fly, no zoom. Mobile gets a fixed 3/4 view with drag disabled
-// (touch-drag on a small canvas fights page scroll) but keeps the same
-// slow auto-drift.
-//
-// OrbitControls only mounts once the intro finishes, so it captures its
-// baseline spherical state from the final resting position — a manual
-// camera.position lerp running in the same frame OrbitControls.update()
-// runs would fight it, since OrbitControls recomputes position from its
-// own internal spherical state, not from external mutations.
 function Rig({ isMobile }: { isMobile: boolean }) {
   const { camera } = useThree();
   const [introDone, setIntroDone] = useState(false);
@@ -484,7 +380,7 @@ function Rig({ isMobile }: { isMobile: boolean }) {
     if (introDone) return;
     if (introStart.current === null) introStart.current = clock.elapsedTime;
     const t = THREE.MathUtils.clamp((clock.elapsedTime - introStart.current) / INTRO_SECONDS, 0, 1);
-    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+    const eased = 1 - Math.pow(1 - t, 3);
     camera.position.lerpVectors(from, to, eased);
     camera.lookAt(0, 0, 0);
     if (t >= 1) setIntroDone(true);
@@ -498,11 +394,11 @@ function Rig({ isMobile }: { isMobile: boolean }) {
       enablePan={false}
       enableRotate={!isMobile}
       autoRotate
-      autoRotateSpeed={0.35}
-      minPolarAngle={Math.PI / 2 - 0.32}
-      maxPolarAngle={Math.PI / 2 + 0.1}
-      minAzimuthAngle={-0.55}
-      maxAzimuthAngle={0.55}
+      autoRotateSpeed={0.3}
+      minPolarAngle={Math.PI / 2 - 0.3}
+      maxPolarAngle={Math.PI / 2 + 0.15}
+      minAzimuthAngle={-0.5}
+      maxAzimuthAngle={0.35}
       dampingFactor={0.08}
       enableDamping
     />
@@ -520,6 +416,8 @@ export default function ShowcaseScene({
 }) {
   const [tokens, setTokens] = useState<Tokens | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const gateActivity = useRef(0);
+  const poolHeat = useRef<number[]>([]);
 
   useEffect(() => {
     setTokens({
@@ -531,6 +429,8 @@ export default function ShowcaseScene({
     });
     setIsMobile(window.innerWidth < 768);
   }, []);
+
+  const rows = useMemo(() => (tokens ? buildRowGeometry() : []), [tokens]);
 
   if (!tokens) return null;
 
@@ -549,22 +449,23 @@ export default function ShowcaseScene({
       }}
     >
       <color attach="background" args={[tokens.bgDarker]} />
-      {/* Craft pass: subtle atmospheric falloff toward the scene edges —
-          a small depth/atmosphere cue on top of the lighting changes
-          above; the camera's near-perpendicular framing of the plane
-          stack means fog alone was never going to carry depth grading by
-          itself, so this is deliberately subtle, not the primary effect. */}
-      <fog attach="fog" args={[tokens.bgDarker, 9, 24]} />
-      {/* 2026-08-15: raised across the board — screenshot confirmed the
-          original levels left the scene reading as near-empty/black. */}
-      <ambientLight intensity={0.85} />
-      <pointLight position={[6, 6, 6]} intensity={1.8} />
-      <pointLight position={[-6, -3, 4]} intensity={0.9} color={tokens.accent} />
-      <pointLight position={[0, 0, 6]} intensity={0.6} color={tokens.accent} />
-      <Planes tokens={tokens} />
-      <FlightPaths tokens={tokens} />
-      <BudgetAperture tokens={tokens} />
-      <Particles tokens={tokens} playSignal={playSignal} onPlayStateChange={onPlayStateChange} />
+      <fog attach="fog" args={[tokens.bgDarker, 10, 26]} />
+      <ambientLight intensity={0.75} />
+      <pointLight position={[-5, 3, 6]} intensity={1.1} />
+      <pointLight position={[5, -2, 6]} intensity={1.1} />
+      <pointLight position={[0, 0, 5]} intensity={1.4} color={tokens.accent} />
+      <RowTiles tokens={tokens} />
+      <Ribbons tokens={tokens} rows={rows} />
+      <Gate tokens={tokens} gateActivity={gateActivity} />
+      <PoolTerminals tokens={tokens} poolHeat={poolHeat} />
+      <Pulses
+        tokens={tokens}
+        rows={rows}
+        playSignal={playSignal}
+        onPlayStateChange={onPlayStateChange}
+        gateActivity={gateActivity}
+        poolHeat={poolHeat}
+      />
       <Rig isMobile={isMobile} />
     </Canvas>
   );

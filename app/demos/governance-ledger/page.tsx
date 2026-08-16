@@ -152,10 +152,10 @@ export default function GovernanceLedgerPage() {
       {/* Showcase tie-in */}
       <div className="mt-8 p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div>
-          <p className="text-sm font-semibold text-white mb-1">Same 17 rows, as a 3D control-plane scene</p>
+          <p className="text-sm font-semibold text-white mb-1">Same 17 rows, as an interactive 3D scene</p>
           <p className="text-xs text-slate-400 leading-relaxed max-w-md">
-            The Oversight Plane renders this exact ledger as an interactive scene — the budget
-            aperture, the free-pool bypass, and the requested→served execution nodes.
+            The Gateway Corridor renders this exact ledger as a scene every call passes through —
+            one governed checkpoint, three real backend destinations.
           </p>
         </div>
         <Link

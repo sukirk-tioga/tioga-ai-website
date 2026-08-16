@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-// /showcase — "The Oversight Plane" 3D scene. Covers the four things the
+// /showcase — "The Gateway Corridor" 3D scene. Covers the four things the
 // Phase 1 plan calls out explicitly: the canvas mounts without throwing,
 // there are no console errors, the deterministic no-WebGL fallback renders
 // the real table, and prefers-reduced-motion is honored (canvas AND the
@@ -86,7 +86,7 @@ test("prefers-reduced-motion falls back to the table and the hero stays a static
   // for reduced-motion to suppress; assert that's actually true rather
   // than assuming it, and that the still image is present and non-empty.
   await expect(page.locator("video")).toHaveCount(0);
-  const heroImg = page.locator('img[alt*="Oversight Plane"]');
+  const heroImg = page.locator('img[alt*="Gateway Corridor"]');
   await expect(heroImg).toBeVisible();
   await expect(heroImg).toHaveAttribute("src", /.+/);
 });

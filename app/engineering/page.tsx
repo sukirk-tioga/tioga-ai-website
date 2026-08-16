@@ -101,9 +101,9 @@ export default function EngineeringIndexPage() {
             </Link>
           </p>
           <p className="text-xs text-slate-400 mb-8">
-            Or see the governance ledger rendered as a 3D control plane —{" "}
+            Or see the governance ledger rendered as an interactive 3D scene —{" "}
             <Link href="/showcase" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
-              The Oversight Plane →
+              The Gateway Corridor →
             </Link>
           </p>
           <Link

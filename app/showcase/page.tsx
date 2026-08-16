@@ -23,15 +23,15 @@ import {
 // app/showcase/layout.tsx), so root layout.tsx's title.template applies
 // here, same convention as other root-level pages (/about, /services).
 export const metadata: Metadata = {
-  title: "The Oversight Plane",
+  title: "The Gateway Corridor",
   description:
-    "An interactive 3D control-plane scene rendering the same real governance-ledger excerpt as the /demos/governance-ledger table — the budget aperture, free-pool bypass, and requested→served execution nodes.",
+    "An interactive 3D scene rendering the same real governance-ledger excerpt as the /demos/governance-ledger table — 17 real calls, one governed checkpoint, three real backend destinations.",
   robots: { index: false, follow: false },
   alternates: { canonical: "/showcase" },
   openGraph: {
-    title: "The Oversight Plane — Tioga AI",
+    title: "The Gateway Corridor — Tioga AI",
     description:
-      "The same real governance-ledger excerpt, rendered spatially: budget aperture, free-pool bypass, requested→served execution nodes. Not a live feed — a dated, verifiable excerpt.",
+      "The same real governance-ledger excerpt, rendered as a corridor every call passes through one checkpoint to reach. Not a live feed — a dated, verifiable excerpt.",
   },
 };
 
@@ -57,12 +57,12 @@ export default function ShowcasePage() {
               Interactive 3D — Real Governance Data
             </div>
             <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-balance text-white mb-4">
-              The Oversight Plane
+              The Gateway Corridor
             </h1>
             <p className="text-xl text-slate-400 max-w-xl mb-8">
-              The same {TOTAL_CALLS}-row governance ledger, rendered as a control plane instead
-              of a table — a budget aperture, a free-pool bypass, and real backends lighting up
-              as calls land.
+              The same {TOTAL_CALLS}-row governance ledger, rendered as a corridor instead of a
+              table — every real call converges through one governed checkpoint on its way to a
+              real backend.
             </p>
             <div className="flex flex-wrap gap-3">
               <TrackedCTA
@@ -97,9 +97,9 @@ export default function ShowcasePage() {
           >
             <Image
               src="/showcase/hero-poster.png"
-              alt="A captured still of the Oversight Plane 3D scene — the request, policy, and execution planes rendering Tioga AI's real governance ledger"
-              width={974}
-              height={558}
+              alt="A captured still of the Gateway Corridor 3D scene — 17 real calls converging through one governed checkpoint to three real backend destinations"
+              width={976}
+              height={560}
               priority
               className="w-full h-auto"
             />
@@ -112,22 +112,24 @@ export default function ShowcasePage() {
         <h2 className="text-lg font-bold text-white mb-4">What you&apos;re looking at</h2>
         <div className="space-y-4 text-sm text-slate-400 leading-relaxed">
           <p>
-            Three stacked planes — request, policy, execution — carrying the same {TOTAL_CALLS}{" "}
-            real rows already live at{" "}
+            17 tiles on the left, one per real row already live at{" "}
             <Link href="/demos/governance-ledger" style={{ color: "var(--accent)" }}>
               /demos/governance-ledger
             </Link>
-            . Every particle in the scene is one real call from Tioga&apos;s own AI routing
-            gateway, captured Jul 17–25, 2026 — nothing here was written for this page.
+            , converge through a single gate and fan out to three real backend destinations on
+            the right. Every ribbon is one real call from Tioga&apos;s own AI routing gateway,
+            captured Jul 17–25, 2026 — nothing here was written for this page. Ribbon width is
+            each row&apos;s real token count, not a decoration.
           </p>
           <p>
-            The policy plane is the governance layer made physical: a budget aperture reserves
-            against the real ${BUDGET_CAP.toFixed(2)} / 30-day cap, and free-pool calls bypass it
-            in a side lane while paid calls pass through its center. There is deliberately no
-            approval-gate mechanic — the ledger has no write/read-path field and no approval
-            events in these {TOTAL_CALLS} rows, so animating a gate none of them ever passed
-            through would contradict the whole point of this page: flip to the table and verify
-            every particle.
+            The gate is the governance layer made physical: every ribbon — free-pool and paid
+            alike — passes through the same budget-reservation checkpoint against the real $
+            {BUDGET_CAP.toFixed(2)} / 30-day cap. That&apos;s a more honest picture than making
+            free-tier calls visibly dodge it: they&apos;re checked the same as any other call, they
+            just settle at $0. There is deliberately no approval-gate mechanic layered on top —
+            the ledger has no write/read-path field and no approval events in these {TOTAL_CALLS}{" "}
+            rows, so animating one none of them ever passed through would contradict the whole
+            point of this page: flip to the table and verify every ribbon.
           </p>
           <p className="text-xs" style={{ color: "var(--text-muted-3)" }}>
             Honesty note: this is a dated excerpt, refreshed periodically — not a live-refreshing
@@ -189,13 +191,14 @@ export default function ShowcasePage() {
         <p className="text-sm text-slate-400 leading-relaxed">
           React Three Fiber (pinned to the v8 line — v9 requires React 19, which this site
           doesn&apos;t run yet) over the same typed <code className="font-mono text-xs">lib/governance-ledger.ts</code>{" "}
-          module the table page imports, so the two views can never drift. The scene, budget
-          aperture, and execution nodes are real WebGL, generated from that data. The hero image
-          above is a captured still of this actual scene — not an AI-generated mockup; a full
-          motion loop is planned for a later phase. No 3D text: every label on this page is DOM,
-          not canvas. The scene rests at its completed state by default rather than looping
-          continuously — Replay plays the real, compressed timeline once, using the actual gaps
-          between these calls&apos; timestamps, not an even cadence.
+          module the table page imports, so the two views can never drift. Every tile, ribbon,
+          and pool node is real WebGL, generated from that data — ribbon width is each row&apos;s
+          real token count, ribbon color is its real pool. The hero image above is a captured
+          still of this actual scene — not an AI-generated mockup. No 3D text: every label on
+          this page is DOM, not canvas. The scene rests at its completed state by default rather
+          than looping continuously — Replay plays the real, compressed timeline once, using the
+          actual gaps between these calls&apos; timestamps, not an even cadence, and flashes green
+          for the moment each one actually crosses the gate.
         </p>
       </section>
 
