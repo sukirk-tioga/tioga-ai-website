@@ -42,6 +42,7 @@ const FRAGMENT_SHADER = /* glsl */ `
   precision highp float;
   varying vec2 vUv;
   uniform float uTime;
+  uniform float uFlowAngle;
   uniform vec2 uResolution;
   uniform vec3 uColor;
   uniform vec3 uColorDark;
@@ -88,7 +89,14 @@ const FRAGMENT_SHADER = /* glsl */ `
 
   void main() {
     vec2 p = (vUv - 0.5) * vec2(uResolution.x / max(uResolution.y, 1.0), 1.0) * 1.4;
-    vec2 flow = vec2(uTime * 0.02, uTime * 0.012);
+    // Base drift direction, rotated by uFlowAngle -- driven by homepage
+    // scroll position (Phase 4), not by any real value. Purely chrome: the
+    // rotation says "you scrolled," never "this represents an event."
+    vec2 baseDir = vec2(0.02, 0.012);
+    float ca = cos(uFlowAngle);
+    float sa = sin(uFlowAngle);
+    vec2 rotatedDir = vec2(baseDir.x * ca - baseDir.y * sa, baseDir.x * sa + baseDir.y * ca);
+    vec2 flow = rotatedDir * uTime;
     float n = fbm(p * 1.1 + flow);
 
     // Soft banded glow directly from the drifting noise field -- more
@@ -106,13 +114,14 @@ const FRAGMENT_SHADER = /* glsl */ `
   }
 `;
 
-function Field() {
+function Field({ flowAngleRef }: { flowAngleRef?: React.MutableRefObject<number> }) {
   const { size } = useThree();
 
   const material = useMemo(() => {
     return new THREE.ShaderMaterial({
       uniforms: {
         uTime: { value: 0 },
+        uFlowAngle: { value: 0 },
         uResolution: { value: new THREE.Vector2(1, 1) },
         uColor: { value: new THREE.Color(readCssToken("--accent")) },
         uColorDark: { value: new THREE.Color(readCssToken("--accent-dark")) },
@@ -135,6 +144,12 @@ function Field() {
   useFrame(({ clock }) => {
     if (document.hidden) return;
     material.uniforms.uTime.value = clock.elapsedTime;
+    // Read the ref every frame -- driven by a GSAP ScrollTrigger scrub on
+    // the homepage (Phase 4), never by React state (see design standard's
+    // "never drive React state from scroll" rule). Optional: /showcase and
+    // any other consumer of this component simply never pass it, so
+    // uFlowAngle stays 0 and the field's original fixed drift is unchanged.
+    if (flowAngleRef) material.uniforms.uFlowAngle.value = flowAngleRef.current;
   });
 
   return (
@@ -145,7 +160,13 @@ function Field() {
   );
 }
 
-export default function HeroFieldScene({ onContextLost }: { onContextLost: () => void }) {
+export default function HeroFieldScene({
+  onContextLost,
+  flowAngleRef,
+}: {
+  onContextLost: () => void;
+  flowAngleRef?: React.MutableRefObject<number>;
+}) {
   return (
     <Canvas
       dpr={[1, 1.5]}
@@ -161,7 +182,7 @@ export default function HeroFieldScene({ onContextLost }: { onContextLost: () =>
         );
       }}
     >
-      <Field />
+      <Field flowAngleRef={flowAngleRef} />
     </Canvas>
   );
 }
