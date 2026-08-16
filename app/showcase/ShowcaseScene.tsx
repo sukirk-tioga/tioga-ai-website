@@ -230,6 +230,54 @@ function ExecutionNodes({ tokens, heatRefsOut }: { tokens: Tokens; heatRefsOut: 
   );
 }
 
+// Static flight-path lines — one real, dated audit trail per row,
+// permanently visible (2026-08-15, added after Fable 5's grounded
+// screenshot critique: the rest state alone reads as too sparse, since
+// most visitors never click Replay; the scene needs density without
+// requiring motion). Each line traces the exact path that row's particle
+// takes during replay — held in its lane for the first 30% of the drop,
+// then diagonal to its real execution node — built once from
+// lane/node, not per frame; it's geometry, not an animation. Free-pool
+// rows' lines visibly miss the budget aperture (their real bypass); paid
+// rows' lines pass through/near it (lane=0) — the same honest distinction
+// the plan's "free-pool bypass" argument makes, now visible even before
+// anything moves.
+function FlightPaths({ tokens }: { tokens: Tokens }) {
+  const geometry = useMemo(() => {
+    const positions: number[] = [];
+    const colors: number[] = [];
+    const free = new THREE.Color(tokens.accent);
+    const paid = new THREE.Color(tokens.accentDark);
+
+    LEDGER.forEach((row, i) => {
+      const lane = laneX(i, row.pool);
+      const node = nodeX(BACKEND_ROUTES.indexOf(row.served), BACKEND_ROUTES.length);
+      const bendY = PLANE_Y.request - (PLANE_Y.request - PLANE_Y.execution) * 0.3;
+      const c = row.pool === "paid" ? paid : free;
+      const points = [
+        [lane, PLANE_Y.request, 0],
+        [lane, bendY, 0],
+        [node, PLANE_Y.execution, 0],
+      ];
+      for (let p = 0; p < points.length - 1; p++) {
+        positions.push(...points[p], ...points[p + 1]);
+        colors.push(c.r, c.g, c.b, c.r, c.g, c.b);
+      }
+    });
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+    geo.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+    return geo;
+  }, [tokens]);
+
+  return (
+    <lineSegments geometry={geometry}>
+      <lineBasicMaterial vertexColors transparent opacity={0.3} />
+    </lineSegments>
+  );
+}
+
 // Rest/replay model (2026-08-15, replaces the original continuous 7s
 // loop). Default: every row's phase is permanently 1 (landed) — the
 // ledger, already written. A "Replay" click (playSignal increments)
@@ -248,6 +296,7 @@ function Particles({
   onPlayStateChange: (playing: boolean) => void;
 }) {
   const meshRef = useRef<THREE.InstancedMesh>(null);
+  const trailRef = useRef<THREE.InstancedMesh>(null);
   const heatRefs = useRef<THREE.Mesh[]>([]);
   const isPlaying = useRef(false);
   const playStart = useRef(0);
@@ -271,6 +320,7 @@ function Particles({
   );
 
   const dummy = useMemo(() => new THREE.Object3D(), []);
+  const trailDummy = useMemo(() => new THREE.Object3D(), []);
 
   const rows = useMemo(
     () =>
@@ -285,7 +335,8 @@ function Particles({
 
   useFrame(({ clock }) => {
     const mesh = meshRef.current;
-    if (!mesh) return;
+    const trail = trailRef.current;
+    if (!mesh || !trail) return;
 
     if (isPlaying.current && playStart.current === -1) {
       playStart.current = clock.elapsedTime;
@@ -318,6 +369,42 @@ function Particles({
       const color = nearLanding ? poolColor.landed : poolColor[row.pool];
       mesh.setColorAt(i, color);
 
+      // 2026-08-15: comet-tail trail behind each in-flight particle — Fable
+      // 5's grounded critique (from real screenshots) found transit was
+      // literally zero pixels: "the entire journey between planes... the
+      // whole story, occupies zero pixels." Direction is analytic, not a
+      // frame-to-frame lookback: dy/dphase is constant (y is linear in
+      // phase across the whole 0-1 range); dx/dphase is 0 while held in
+      // the lane (phase<0.3), (node-lane)/0.7 while moving.
+      const isMoving = phase > 0 && phase < 1;
+      if (isMoving) {
+        const dyDir = -(PLANE_Y.request - PLANE_Y.execution);
+        const dxDir = phase < 0.3 ? 0 : (node - lane) / 0.7;
+        // Box's local +Y axis, after rotating by `angle` around Z, points
+        // toward world direction (-sin(angle), cos(angle)); with
+        // angle=atan2(-dxDir,dyDir) that resolves to unit(dxDir,dyDir) —
+        // the actual travel direction. So the leading (+Y) tip sits at
+        // center + (length/2)*unit(dxDir,dyDir); to put that tip AT the
+        // particle and let the tail trail behind, center = particlePos -
+        // (length/2)*unit(dxDir,dyDir).
+        const angle = Math.atan2(-dxDir, dyDir);
+        const trailLength = 0.6;
+        const mag = Math.hypot(dxDir, dyDir) || 1;
+        trailDummy.position.set(
+          x - (trailLength / 2) * (dxDir / mag),
+          y - (trailLength / 2) * (dyDir / mag),
+          0
+        );
+        trailDummy.rotation.set(0, 0, angle);
+        trailDummy.scale.set(0.045, trailLength, 0.045);
+      } else {
+        trailDummy.position.set(x, y, 0);
+        trailDummy.scale.set(0, 0, 0);
+      }
+      trailDummy.updateMatrix();
+      trail.setMatrixAt(i, trailDummy.matrix);
+      trail.setColorAt(i, nearLanding ? poolColor.landed : poolColor[row.pool]);
+
       if (nearLanding) {
         const heat = 1 - (1 - phase) / 0.14;
         const nodeIndex = BACKEND_ROUTES.indexOf(row.served);
@@ -327,6 +414,8 @@ function Particles({
 
     mesh.instanceMatrix.needsUpdate = true;
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    trail.instanceMatrix.needsUpdate = true;
+    if (trail.instanceColor) trail.instanceColor.needsUpdate = true;
 
     heatRefs.current.forEach((nodeMesh, i) => {
       const mat = nodeMesh.material as THREE.MeshStandardMaterial;
@@ -354,6 +443,14 @@ function Particles({
             regardless of external lighting, while the per-instance hue
             still dominates on top of it. */}
         <meshStandardMaterial emissive={tokens.accent} emissiveIntensity={0.55} roughness={0.4} />
+      </instancedMesh>
+      {/* 2026-08-15: comet-tail trails, additive-blended so overlapping
+          streaks glow rather than clip. Scaled to zero (in useFrame) for
+          any row that isn't actively in transit, so this only ever shows
+          real motion, never a fabricated one. */}
+      <instancedMesh ref={trailRef} args={[undefined, undefined, LEDGER.length]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshBasicMaterial transparent opacity={0.55} blending={THREE.AdditiveBlending} depthWrite={false} />
       </instancedMesh>
       <ExecutionNodes tokens={tokens} heatRefsOut={heatRefs} />
     </>
@@ -465,6 +562,7 @@ export default function ShowcaseScene({
       <pointLight position={[-6, -3, 4]} intensity={0.9} color={tokens.accent} />
       <pointLight position={[0, 0, 6]} intensity={0.6} color={tokens.accent} />
       <Planes tokens={tokens} />
+      <FlightPaths tokens={tokens} />
       <BudgetAperture tokens={tokens} />
       <Particles tokens={tokens} playSignal={playSignal} onPlayStateChange={onPlayStateChange} />
       <Rig isMobile={isMobile} />
