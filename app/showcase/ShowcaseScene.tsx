@@ -147,7 +147,18 @@ function RowTiles({ tokens }: { tokens: Tokens }) {
 function Gate({ tokens, gateActivity }: { tokens: Tokens; gateActivity: React.MutableRefObject<number> }) {
   const frameMaterials = useRef<THREE.MeshStandardMaterial[]>([]);
   const haloMaterial = useRef<THREE.MeshBasicMaterial>(null);
+  const scanRingRef = useRef<THREE.Mesh>(null);
+  const scanRingMaterial = useRef<THREE.MeshBasicMaterial>(null);
+  const discMaterial = useRef<THREE.MeshBasicMaterial>(null);
 
+  // 2026-08-15 round 4: Sukirk — "still not moving much... not
+  // eye-pleasing." Adds continuous, honest ambient motion (chrome, not a
+  // claim about specific data — same distinction that keeps this
+  // different from the banned continuous-particle-loop): a slowly
+  // rotating scan ring (a decorative device, not a data value) and a
+  // breathing glow disc, both always running so the gate never reads as
+  // a frozen frame, and both readable as "structure," not "these are the
+  // real events happening right now."
   useFrame(({ clock }) => {
     const breathe = 0.55 + 0.2 * Math.sin(clock.elapsedTime * 0.7);
     const boost = gateActivity.current * 1.4;
@@ -155,6 +166,13 @@ function Gate({ tokens, gateActivity }: { tokens: Tokens; gateActivity: React.Mu
       if (mat) mat.emissiveIntensity = breathe + boost;
     });
     if (haloMaterial.current) haloMaterial.current.opacity = 0.16 + gateActivity.current * 0.3;
+    if (scanRingRef.current) scanRingRef.current.rotation.z = clock.elapsedTime * 0.9;
+    if (scanRingMaterial.current) {
+      scanRingMaterial.current.opacity = 0.35 + 0.25 * Math.sin(clock.elapsedTime * 1.1);
+    }
+    if (discMaterial.current) {
+      discMaterial.current.opacity = 0.1 + 0.06 * Math.sin(clock.elapsedTime * 0.9) + gateActivity.current * 0.15;
+    }
   });
 
   const frameWidth = 1.0;
@@ -173,6 +191,34 @@ function Gate({ tokens, gateActivity }: { tokens: Tokens; gateActivity: React.Mu
           color={tokens.accent}
           transparent
           opacity={0.16}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+      {/* Breathing glow disc inside the frame -- gives the portal an
+          actual surface instead of empty space bounded by an outline. */}
+      <mesh position={[0, 0, -0.02]}>
+        <circleGeometry args={[0.62, 32]} />
+        <meshBasicMaterial
+          ref={discMaterial}
+          color={tokens.accent}
+          transparent
+          opacity={0.12}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+      {/* Slowly rotating scan ring -- decorative chrome (not tied to any
+          real value), the one thing in this scene guaranteed to always
+          be visibly moving. */}
+      <mesh ref={scanRingRef} position={[0, 0, -0.01]}>
+        <ringGeometry args={[0.68, 0.74, 6, 1, 0, Math.PI * 1.3]} />
+        <meshBasicMaterial
+          ref={scanRingMaterial}
+          color={tokens.accent}
+          transparent
+          opacity={0.4}
+          side={THREE.DoubleSide}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
         />
@@ -237,9 +283,29 @@ function PoolTerminals({ tokens, poolHeat }: { tokens: Tokens; poolHeat: React.M
 // (most visitors never click Replay, so the rest state has to carry the
 // "17 real rows" density story on its own). Width = real token count;
 // brightness/color = real pool. Built once from LEDGER, not per frame.
+// 2026-08-15 round 4: each ribbon gets a slow, staggered emissive
+// breathe (a different phase offset per row, from a fixed hash of its
+// index -- not synchronized, so it reads as ambient shimmer on real
+// material, not as "these rows are firing right now"). This is
+// deliberately NOT a traveling particle or anything shaped like an
+// event -- that's what the banned continuous-loop design did, and
+// Fable's critique of it stands. A soft brightness variation on a
+// static, already-real path is closer to light catching a physical
+// surface than to a fabricated activity feed.
 function Ribbons({ tokens, rows }: { tokens: Tokens; rows: RowGeom[] }) {
   const freeColor = tokens.accent;
   const paidColor = tokens.accentDark;
+  const materials = useRef<THREE.MeshStandardMaterial[]>([]);
+  const phaseOffsets = useMemo(() => rows.map((_, i) => (i * 0.6180339887) % (Math.PI * 2)), [rows]);
+
+  useFrame(({ clock }) => {
+    materials.current.forEach((mat, i) => {
+      if (!mat) return;
+      const base = rows[i]?.row.pool === "paid" ? 0.6 : 0.32;
+      const shimmer = 0.14 * Math.sin(clock.elapsedTime * 0.5 + phaseOffsets[i]);
+      mat.emissiveIntensity = Math.max(base + shimmer, 0.1);
+    });
+  });
 
   return (
     <>
@@ -247,6 +313,9 @@ function Ribbons({ tokens, rows }: { tokens: Tokens; rows: RowGeom[] }) {
         <mesh key={i}>
           <tubeGeometry args={[curve, 32, radius, 6, false]} />
           <meshStandardMaterial
+            ref={(m) => {
+              if (m) materials.current[i] = m;
+            }}
             color={row.pool === "paid" ? paidColor : freeColor}
             emissive={row.pool === "paid" ? paidColor : freeColor}
             emissiveIntensity={row.pool === "paid" ? 0.6 : 0.32}
@@ -371,30 +440,52 @@ function Rig({ isMobile }: { isMobile: boolean }) {
   const introStart = useRef<number | null>(null);
   const from = useMemo(() => new THREE.Vector3(...CAMERA_FROM), []);
   const to = useMemo(() => new THREE.Vector3(...CAMERA_TO), []);
+  // Loosely typed (any): only .getAzimuthalAngle()/.autoRotateSpeed are
+  // used here, and depending on three-stdlib's exact exported OrbitControls
+  // type (drei's transitive dependency, not a direct one of this repo) is
+  // fragile -- JSX's ref prop is otherwise strictly typed to that class.
+  const controlsRef = useRef<any>(null);
+  const direction = useRef(1);
 
   useEffect(() => {
     camera.lookAt(0, 0, 0);
   }, [camera]);
 
   useFrame(({ clock }) => {
-    if (introDone) return;
-    if (introStart.current === null) introStart.current = clock.elapsedTime;
-    const t = THREE.MathUtils.clamp((clock.elapsedTime - introStart.current) / INTRO_SECONDS, 0, 1);
-    const eased = 1 - Math.pow(1 - t, 3);
-    camera.position.lerpVectors(from, to, eased);
-    camera.lookAt(0, 0, 0);
-    if (t >= 1) setIntroDone(true);
+    if (!introDone) {
+      if (introStart.current === null) introStart.current = clock.elapsedTime;
+      const t = THREE.MathUtils.clamp((clock.elapsedTime - introStart.current) / INTRO_SECONDS, 0, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      camera.position.lerpVectors(from, to, eased);
+      camera.lookAt(0, 0, 0);
+      if (t >= 1) setIntroDone(true);
+      return;
+    }
+    // 2026-08-15 round 4: OrbitControls' own autoRotate always advances
+    // the azimuth in one direction; combined with a clamped
+    // min/maxAzimuthAngle (kept deliberately narrow so the composition
+    // never drifts to an unflattering angle), it drifts to the boundary
+    // once and then sits frozen forever -- confirmed by reading the
+    // actual behavior, not assumed. Ping-ponging the direction at each
+    // boundary keeps it perpetually, visibly drifting instead.
+    const controls = controlsRef.current;
+    if (!controls) return;
+    const angle = controls.getAzimuthalAngle();
+    if (angle >= 0.34) direction.current = -1;
+    if (angle <= -0.49) direction.current = 1;
+    controls.autoRotateSpeed = 3.5 * direction.current;
   });
 
   if (!introDone) return null;
 
   return (
     <OrbitControls
+      ref={controlsRef}
       enableZoom={false}
       enablePan={false}
       enableRotate={!isMobile}
       autoRotate
-      autoRotateSpeed={0.3}
+      autoRotateSpeed={3.5}
       minPolarAngle={Math.PI / 2 - 0.3}
       maxPolarAngle={Math.PI / 2 + 0.15}
       minAzimuthAngle={-0.5}
