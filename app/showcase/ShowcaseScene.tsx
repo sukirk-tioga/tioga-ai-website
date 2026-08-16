@@ -11,6 +11,7 @@ import {
   REPLAY_TRAVEL_DURATION,
   REPLAY_TOTAL_DURATION,
 } from "../../lib/governance-ledger";
+import ShowcaseEffects from "./ShowcaseEffects";
 
 // The Gateway Corridor — full rebuild, 2026-08-15 (round 3).
 //
@@ -150,6 +151,16 @@ function Gate({ tokens, gateActivity }: { tokens: Tokens; gateActivity: React.Mu
   const scanRingRef = useRef<THREE.Mesh>(null);
   const scanRingMaterial = useRef<THREE.MeshBasicMaterial>(null);
   const discMaterial = useRef<THREE.MeshBasicMaterial>(null);
+  // Smoothed follower for gateActivity (raw activity snaps as pulses enter/
+  // exit the GATE_CROSS_WINDOW). A real event -- a ledger row actually
+  // crossing the gate -- deserves a felt "kick," which a hard snap to a
+  // target value doesn't give; a fast attack / slower decay envelope
+  // (an audio-compressor shape) reads as physical impact and settle
+  // instead of a value teleporting. This is still driven entirely by
+  // gateActivity, which Pulses only sets nonzero while a real pulse is
+  // actually inside the crossing window -- honest per §3.1, just with a
+  // more organic response curve on top of a real event.
+  const displayedActivity = useRef(0);
 
   // 2026-08-15 round 4: Sukirk — "still not moving much... not
   // eye-pleasing." Adds continuous, honest ambient motion (chrome, not a
@@ -159,19 +170,26 @@ function Gate({ tokens, gateActivity }: { tokens: Tokens; gateActivity: React.Mu
   // breathing glow disc, both always running so the gate never reads as
   // a frozen frame, and both readable as "structure," not "these are the
   // real events happening right now."
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, delta) => {
+    // Fast attack toward a rising target, slower decay toward a falling
+    // one -- an envelope follower, not a direct assignment.
+    const target = gateActivity.current;
+    const rate = target > displayedActivity.current ? 14 : 3.2;
+    displayedActivity.current += (target - displayedActivity.current) * Math.min(delta * rate, 1);
+    const activity = displayedActivity.current;
+
     const breathe = 0.55 + 0.2 * Math.sin(clock.elapsedTime * 0.7);
-    const boost = gateActivity.current * 1.4;
+    const boost = activity * 1.4;
     frameMaterials.current.forEach((mat) => {
       if (mat) mat.emissiveIntensity = breathe + boost;
     });
-    if (haloMaterial.current) haloMaterial.current.opacity = 0.16 + gateActivity.current * 0.3;
+    if (haloMaterial.current) haloMaterial.current.opacity = 0.16 + activity * 0.3;
     if (scanRingRef.current) scanRingRef.current.rotation.z = clock.elapsedTime * 0.9;
     if (scanRingMaterial.current) {
       scanRingMaterial.current.opacity = 0.35 + 0.25 * Math.sin(clock.elapsedTime * 1.1);
     }
     if (discMaterial.current) {
-      discMaterial.current.opacity = 0.1 + 0.06 * Math.sin(clock.elapsedTime * 0.9) + gateActivity.current * 0.15;
+      discMaterial.current.opacity = 0.1 + 0.06 * Math.sin(clock.elapsedTime * 0.9) + activity * 0.15;
     }
   });
 
@@ -181,9 +199,12 @@ function Gate({ tokens, gateActivity }: { tokens: Tokens; gateActivity: React.Mu
 
   return (
     <group position={[CORRIDOR_X.gate, 0, 0]}>
-      {/* Additive-blended glow halo -- cheap fake bloom, no
-          @react-three/postprocessing dependency (that package tracks
-          fiber v9; this repo is pinned to v8). */}
+      {/* Additive-blended glow halo -- kept as a structural glow disc
+          even now that real Bloom runs (ShowcaseEffects.tsx): Bloom only
+          blooms pixels already above the luminance threshold, it doesn't
+          conjure geometry, so this still does the work of giving the
+          portal an actual lit surface: Bloom then makes it read as a real
+          light source instead of a bright decal. */}
       <mesh position={[0, 0, -0.05]}>
         <circleGeometry args={[1.5, 40]} />
         <meshBasicMaterial
@@ -468,12 +489,27 @@ function Rig({ isMobile }: { isMobile: boolean }) {
     // once and then sits frozen forever -- confirmed by reading the
     // actual behavior, not assumed. Ping-ponging the direction at each
     // boundary keeps it perpetually, visibly drifting instead.
+    //
+    // 2026-08-15 round 5 (external review: "constant angular velocity is
+    // the single strongest 'this is a WebGL demo' tell"): the flip logic
+    // above is unchanged -- it's proven and now regression-tested -- but
+    // the SPEED is no longer a flat magnitude. It's shaped by how close
+    // the camera is to a boundary: fast through the middle, slowing into
+    // each turn, like a pendulum easing into the top of its swing rather
+    // than an object hitting a wall and instantly reversing. A floor
+    // (MIN_SPEED_FRACTION) keeps it always nonzero so it can never
+    // read as fully stopped.
     const controls = controlsRef.current;
     if (!controls) return;
     const angle = controls.getAzimuthalAngle();
     if (angle >= 0.34) direction.current = -1;
     if (angle <= -0.49) direction.current = 1;
-    controls.autoRotateSpeed = 3.5 * direction.current;
+    const range = 0.34 - -0.49;
+    const posInRange = THREE.MathUtils.clamp((angle - -0.49) / range, 0, 1);
+    const MIN_SPEED_FRACTION = 0.18;
+    const easeToward = Math.sin(Math.PI * posInRange); // 0 at both edges, 1 at center
+    const speedMag = 3.5 * (MIN_SPEED_FRACTION + (1 - MIN_SPEED_FRACTION) * easeToward);
+    controls.autoRotateSpeed = speedMag * direction.current;
   });
 
   if (!introDone) return null;
@@ -541,10 +577,18 @@ export default function ShowcaseScene({
     >
       <color attach="background" args={[tokens.bgDarker]} />
       <fog attach="fog" args={[tokens.bgDarker, 10, 26]} />
-      <ambientLight intensity={0.75} />
-      <pointLight position={[-5, 3, 6]} intensity={1.1} />
-      <pointLight position={[5, -2, 6]} intensity={1.1} />
-      <pointLight position={[0, 0, 5]} intensity={1.4} color={tokens.accent} />
+      {/* Three-point lighting, replacing the prior flat symmetric fill
+          (ambient 0.75 + three evenly-weighted point lights, the passport-
+          photo lighting that external review flagged as the actual reason
+          the scene read as a demo rather than a shot). Ambient dropped to
+          near-black so darkness reads as deliberate; one hard key lights
+          the gate from camera-left, one dim cool rim separates the ribbons
+          from the fog behind them, and a low fill keeps the far tile/pool
+          columns legible instead of crushing to black. */}
+      <ambientLight intensity={0.14} />
+      <pointLight position={[-6, 6.5, 8.5]} intensity={2.6} color={tokens.accent} decay={1.4} />
+      <pointLight position={[6, -1, -7]} intensity={0.4} color="white" decay={1.6} />
+      <pointLight position={[0, 1.5, 6]} intensity={0.4} decay={1.8} />
       <RowTiles tokens={tokens} />
       <Ribbons tokens={tokens} rows={rows} />
       <Gate tokens={tokens} gateActivity={gateActivity} />
@@ -558,6 +602,7 @@ export default function ShowcaseScene({
         poolHeat={poolHeat}
       />
       <Rig isMobile={isMobile} />
+      <ShowcaseEffects isMobile={isMobile} />
     </Canvas>
   );
 }
