@@ -1,6 +1,8 @@
 import { anthropic } from "@/lib/anthropic";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { sendInquiryEmail } from "@/lib/email";
+import { appendContactLog } from "@/lib/contact-log";
+import { validateClassification } from "@/lib/classification";
 import { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
@@ -62,14 +64,26 @@ Base complexity on: scope, number of systems mentioned, enterprise vs SMB signal
 
  const jsonMatch = text.match(/\{[\s\S]*\}/);
  if (!jsonMatch) throw new Error("No JSON in response");
- const classification = JSON.parse(jsonMatch[0]);
+ const classification = validateClassification(JSON.parse(jsonMatch[0]));
 
  // Send email — must be awaited or serverless fn shuts down before it sends
+ let notificationSent = true;
  try {
  await sendInquiryEmail({ name, email, company, description, classification });
  } catch (emailErr) {
+ notificationSent = false;
  console.error("Email send failed:", emailErr);
  }
+
+ // Best-effort, non-blocking — see lib/contact-log.ts for the two logging
+ // channels (console.log is the one that actually persists in production).
+ void appendContactLog({
+ timestamp: new Date().toISOString(),
+ ip,
+ request: { descriptionLength: description.length, hasCompany: Boolean(company) },
+ classification,
+ notificationSent,
+ });
 
  return new Response(JSON.stringify({ classification }), {
  status: 200,
