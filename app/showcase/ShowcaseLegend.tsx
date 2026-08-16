@@ -21,8 +21,9 @@ export default function ShowcaseLegend() {
           Request plane
         </p>
         <p className="text-xs text-slate-400 leading-relaxed">
-          {TOTAL_CALLS} real calls enter on a compressed timeline, each carrying its real
-          requested model, token counts, and cost.
+          {TOTAL_CALLS} real calls rest at their landed position by default. Press Replay to watch
+          them enter on the real, compressed Jul 17–25 timeline — each carrying its real requested
+          model, token counts, and cost.
         </p>
       </div>
       <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>

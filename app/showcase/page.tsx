@@ -193,7 +193,9 @@ export default function ShowcasePage() {
           aperture, and execution nodes are real WebGL, generated from that data. The hero image
           above is a captured still of this actual scene — not an AI-generated mockup; a full
           motion loop is planned for a later phase. No 3D text: every label on this page is DOM,
-          not canvas.
+          not canvas. The scene rests at its completed state by default rather than looping
+          continuously — Replay plays the real, compressed timeline once, using the actual gaps
+          between these calls&apos; timestamps, not an even cadence.
         </p>
       </section>
 

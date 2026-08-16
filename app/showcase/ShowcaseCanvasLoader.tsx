@@ -22,6 +22,14 @@ function detectWebGL(): boolean {
 
 export default function ShowcaseCanvasLoader() {
   const [mode, setMode] = useState<Mode>("loading");
+  // 2026-08-15: the scene defaults to rest (every particle already landed)
+  // instead of an always-running ambient loop — see ShowcaseScene.tsx for
+  // why. This button is the only way to trigger the real, compressed
+  // Jul 17-25 replay; playSignal increments on each click, isPlaying tracks
+  // the scene's own play/pause edges so the button can't be double-clicked
+  // into a second overlapping playthrough.
+  const [playSignal, setPlaySignal] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     // Deterministic fallbacks (plan §3): no WebGL, prefers-reduced-motion,
@@ -48,12 +56,33 @@ export default function ShowcaseCanvasLoader() {
   }
 
   return (
-    <div
-      className="rounded-2xl overflow-hidden"
-      style={{ background: "var(--bg-card)", border: "1px solid var(--border)", height: "560px" }}
-      data-testid="showcase-canvas"
-    >
-      <ShowcaseScene onContextLost={() => setMode("fallback")} />
+    <div>
+      <div
+        className="rounded-2xl overflow-hidden"
+        style={{ background: "var(--bg-card)", border: "1px solid var(--border)", height: "560px" }}
+        data-testid="showcase-canvas"
+      >
+        <ShowcaseScene
+          onContextLost={() => setMode("fallback")}
+          playSignal={playSignal}
+          onPlayStateChange={setIsPlaying}
+        />
+      </div>
+      <div className="flex items-center justify-between mt-3">
+        <p className="text-xs" style={{ color: "var(--text-muted-3)" }}>
+          Resting at the completed ledger — press Replay to watch the real Jul 17–25 sequence.
+        </p>
+        <button
+          type="button"
+          onClick={() => setPlaySignal((n) => n + 1)}
+          disabled={isPlaying}
+          data-testid="showcase-replay-button"
+          className="shrink-0 text-xs font-mono px-3 py-1.5 rounded-full transition-colors disabled:opacity-50"
+          style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+        >
+          {isPlaying ? "Replaying…" : "▶ Replay Jul 17–25"}
+        </button>
+      </div>
     </div>
   );
 }

@@ -4,18 +4,38 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
-import { LEDGER, TOTAL_SPEND, BUDGET_CAP, BACKEND_ROUTES } from "../../lib/governance-ledger";
+import {
+  LEDGER,
+  TOTAL_SPEND,
+  BUDGET_CAP,
+  BACKEND_ROUTES,
+  REPLAY_START_OFFSETS,
+  REPLAY_TRAVEL_DURATION,
+  REPLAY_TOTAL_DURATION,
+} from "../../lib/governance-ledger";
 
-// The Oversight Plane — Phase 1 MVP.
+// The Oversight Plane — Phase 1 MVP, craft pass 2026-08-15.
 //
 // Three stacked planes (request / policy / execution), an InstancedMesh of
 // exactly LEDGER.length (17) particles — one per real ledger row, no
-// decorative filler — flowing top to bottom. Free-pool rows bypass the
-// budget aperture in a side lane; paid rows pass through its center. On
-// landing, each particle converges toward the execution node matching its
-// real `served` backend. No approval-gate mechanic (see plan §1 correction
-// — the data has no write/read-path field, so nothing here should look
-// like one).
+// decorative filler. Free-pool rows bypass the budget aperture in a side
+// lane; paid rows pass through its center. On landing, each particle
+// converges toward the execution node matching its real `served` backend.
+// No approval-gate mechanic (see plan §1 correction — the data has no
+// write/read-path field, so nothing here should look like one).
+//
+// 2026-08-15 revision: replaced the original continuous 7-second ambient
+// loop with a rest/replay model (Sukirk feedback: "looks generic," Fable
+// 5's research flagged continuous ambient particle flow as reading like a
+// cyber-threat-map — "pure eye candy... more cinema than science," the
+// exact aesthetic Norse's viral (and now-defunct) attack map became known
+// for). Default state: every particle sits at its real landed position —
+// the ledger, already written, read as evidence rather than motion. A
+// "Replay" control (see ShowcaseCanvasLoader) plays the real, compressed
+// Jul 17-25 timeline once, using REPLAY_START_OFFSETS/REPLAY_TRAVEL_DURATION
+// from lib/governance-ledger.ts (real inter-call gaps, not even spacing),
+// then returns to rest. Nothing here is a synthetic loop pretending to be
+// live activity.
 //
 // Colors are read from CSS custom properties at runtime via
 // getComputedStyle — this repo forbids hex literals in TSX, and Three.js
@@ -37,7 +57,16 @@ interface Tokens {
 }
 
 const PLANE_Y = { request: 3, policy: 0, execution: -3 } as const;
-const CYCLE_SECONDS = 7;
+
+// Scripted intro camera dolly (craft pass): eases from a wider, higher
+// establishing shot down into the constrained 3/4 working view over
+// INTRO_SECONDS, then hands off to OrbitControls (which mounts for the
+// first time only once the intro finishes, so it captures its baseline
+// spherical state from the final position — no fighting between a manual
+// lerp and OrbitControls' own per-frame update in the same window).
+const CAMERA_FROM: [number, number, number] = [0, 5.6, 15.4];
+const CAMERA_TO: [number, number, number] = [0, 1.4, 11];
+const INTRO_SECONDS = 1.8;
 
 // Deterministic per-row lane assignment — free-pool rows bypass the
 // aperture in a side lane (never crossing x=0 on the policy plane); paid
@@ -59,6 +88,21 @@ function nodeX(servedIndex: number, total: number): number {
   return -spread + (spread * 2 * servedIndex) / (total - 1);
 }
 
+// Craft pass: fill planes moved from meshBasicMaterial (flat, unlit — reads
+// as a colored square regardless of lighting) to meshStandardMaterial with
+// a slight emissive base, so the two point lights actually create visible
+// falloff and highlight across each plane's surface instead of a flat
+// tint. Each plane also gets a faint emissive bias toward its role (warmer/
+// brighter for request, neutral for policy, cooler for execution) — a
+// static, honest visual cue (data still drives every particle/aperture/
+// node value; this only shades the backdrop), not a new claim about the
+// data itself.
+const PLANE_EMISSIVE_BIAS: Record<keyof typeof PLANE_Y, number> = {
+  request: 0.05,
+  policy: 0.035,
+  execution: 0.02,
+};
+
 function Planes({ tokens }: { tokens: Tokens }) {
   const fillColor = tokens.accent;
   const wireColor = tokens.border;
@@ -67,11 +111,20 @@ function Planes({ tokens }: { tokens: Tokens }) {
 
   return (
     <>
-      {Object.entries(PLANE_Y).map(([name, y]) => (
+      {(Object.entries(PLANE_Y) as [keyof typeof PLANE_Y, number][]).map(([name, y]) => (
         <group key={name} position={[0, y, 0]} rotation={[-Math.PI / 2, 0, 0]}>
           <mesh>
             <planeGeometry {...planeProps} />
-            <meshBasicMaterial color={fillColor} transparent opacity={0.045} side={THREE.DoubleSide} />
+            <meshStandardMaterial
+              color={fillColor}
+              emissive={fillColor}
+              emissiveIntensity={PLANE_EMISSIVE_BIAS[name]}
+              roughness={0.85}
+              metalness={0.1}
+              transparent
+              opacity={0.05}
+              side={THREE.DoubleSide}
+            />
           </mesh>
           <mesh>
             <planeGeometry {...planeProps} />
@@ -109,6 +162,22 @@ function BudgetAperture({ tokens }: { tokens: Tokens }) {
 
   return (
     <group position={[0, PLANE_Y.policy, 0]}>
+      {/* Craft pass: additive-blended glow halo behind the ring — cheap
+          "fake bloom" that doesn't need @react-three/postprocessing (whose
+          current majors track fiber v9; this repo is pinned to v8, see
+          plan §3). depthWrite={false} so it never occludes the particles
+          passing through. */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.001, 0]}>
+        <circleGeometry args={[1.7, 40]} />
+        <meshBasicMaterial
+          color={tokens.accent}
+          transparent
+          opacity={0.1}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
       <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[0.75, 0.92, 48]} />
         <meshStandardMaterial
@@ -149,9 +218,36 @@ function ExecutionNodes({ tokens, heatRefsOut }: { tokens: Tokens; heatRefsOut: 
   );
 }
 
-function Particles({ tokens }: { tokens: Tokens }) {
+// Rest/replay model (2026-08-15, replaces the original continuous 7s
+// loop). Default: every row's phase is permanently 1 (landed) — the
+// ledger, already written. A "Replay" click (playSignal increments)
+// starts a single real, compressed playthrough using
+// REPLAY_START_OFFSETS/REPLAY_TRAVEL_DURATION, then returns to rest.
+// isPlaying/playStart live in refs, not React state, since they're read
+// every frame inside useFrame — only the play/pause *edges* notify the
+// parent (onPlayStateChange), not every frame.
+function Particles({
+  tokens,
+  playSignal,
+  onPlayStateChange,
+}: {
+  tokens: Tokens;
+  playSignal: number;
+  onPlayStateChange: (playing: boolean) => void;
+}) {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const heatRefs = useRef<THREE.Mesh[]>([]);
+  const isPlaying = useRef(false);
+  const playStart = useRef(0);
+  const lastPlaySignal = useRef(playSignal);
+
+  useEffect(() => {
+    if (playSignal === lastPlaySignal.current) return;
+    lastPlaySignal.current = playSignal;
+    isPlaying.current = true;
+    playStart.current = -1; // sentinel: set from clock.elapsedTime on the next frame
+    onPlayStateChange(true);
+  }, [playSignal, onPlayStateChange]);
 
   const poolColor = useMemo(
     () => ({
@@ -170,7 +266,7 @@ function Particles({ tokens }: { tokens: Tokens }) {
         row,
         lane: laneX(i, row.pool),
         node: nodeX(BACKEND_ROUTES.indexOf(row.served), BACKEND_ROUTES.length),
-        phaseOffset: i / LEDGER.length,
+        startOffset: REPLAY_START_OFFSETS[i] ?? 0,
       })),
     []
   );
@@ -179,16 +275,23 @@ function Particles({ tokens }: { tokens: Tokens }) {
     const mesh = meshRef.current;
     if (!mesh) return;
 
+    if (isPlaying.current && playStart.current === -1) {
+      playStart.current = clock.elapsedTime;
+    }
+    const elapsedSincePlay = isPlaying.current ? clock.elapsedTime - playStart.current : Infinity;
+
     const nodeHeat = new Array(BACKEND_ROUTES.length).fill(0);
 
-    rows.forEach(({ row, lane, node, phaseOffset }, i) => {
-      const phase = ((clock.elapsedTime / CYCLE_SECONDS + phaseOffset) % 1 + 1) % 1;
-
+    rows.forEach(({ row, lane, node, startOffset }, i) => {
+      const localElapsed = elapsedSincePlay - startOffset;
+      // Hold at the lane position (bypass/center) for the first 30% of this
+      // row's travel window, then ease toward its real execution node for
+      // the remaining 70% — reads better than an even 50/50 split at the
+      // ~1.1s per-row travel duration used during replay (vs. the original
+      // 7s ambient cycle).
+      const phase = THREE.MathUtils.clamp(localElapsed / REPLAY_TRAVEL_DURATION, 0, 1);
       const y = PLANE_Y.request - (PLANE_Y.request - PLANE_Y.execution) * phase;
-      // First half of the trip: hold the lane position (bypass or center).
-      // Second half: ease from the lane toward this row's real execution
-      // node, matching the `served` backend it actually landed on.
-      const x = phase < 0.5 ? lane : THREE.MathUtils.lerp(lane, node, (phase - 0.5) / 0.5);
+      const x = phase < 0.3 ? lane : THREE.MathUtils.lerp(lane, node, (phase - 0.3) / 0.7);
 
       dummy.position.set(x, y, 0);
       const scale = row.pool === "paid" ? 0.11 : 0.08;
@@ -214,6 +317,11 @@ function Particles({ tokens }: { tokens: Tokens }) {
       const mat = nodeMesh.material as THREE.MeshStandardMaterial;
       mat.emissiveIntensity = 0.15 + (nodeHeat[i] ?? 0) * 1.6;
     });
+
+    if (isPlaying.current && elapsedSincePlay > REPLAY_TOTAL_DURATION + 0.3) {
+      isPlaying.current = false;
+      onPlayStateChange(false);
+    }
   });
 
   return (
@@ -227,16 +335,40 @@ function Particles({ tokens }: { tokens: Tokens }) {
   );
 }
 
-// Constrained camera: damped orbit inside a limited azimuth/polar range
-// plus slow auto-drift. No free-fly, no zoom. Mobile gets a fixed 3/4
-// view with drag disabled (touch-drag on a small canvas fights page
-// scroll) but keeps the same slow auto-drift.
+// Constrained camera: a scripted intro dolly (craft pass — camera
+// choreography instead of snapping straight to the working view), then a
+// damped orbit inside a limited azimuth/polar range plus slow auto-drift.
+// No free-fly, no zoom. Mobile gets a fixed 3/4 view with drag disabled
+// (touch-drag on a small canvas fights page scroll) but keeps the same
+// slow auto-drift.
+//
+// OrbitControls only mounts once the intro finishes, so it captures its
+// baseline spherical state from the final resting position — a manual
+// camera.position lerp running in the same frame OrbitControls.update()
+// runs would fight it, since OrbitControls recomputes position from its
+// own internal spherical state, not from external mutations.
 function Rig({ isMobile }: { isMobile: boolean }) {
   const { camera } = useThree();
+  const [introDone, setIntroDone] = useState(false);
+  const introStart = useRef<number | null>(null);
+  const from = useMemo(() => new THREE.Vector3(...CAMERA_FROM), []);
+  const to = useMemo(() => new THREE.Vector3(...CAMERA_TO), []);
+
   useEffect(() => {
-    camera.position.set(0, 1.4, 11);
     camera.lookAt(0, 0, 0);
   }, [camera]);
+
+  useFrame(({ clock }) => {
+    if (introDone) return;
+    if (introStart.current === null) introStart.current = clock.elapsedTime;
+    const t = THREE.MathUtils.clamp((clock.elapsedTime - introStart.current) / INTRO_SECONDS, 0, 1);
+    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+    camera.position.lerpVectors(from, to, eased);
+    camera.lookAt(0, 0, 0);
+    if (t >= 1) setIntroDone(true);
+  });
+
+  if (!introDone) return null;
 
   return (
     <OrbitControls
@@ -255,7 +387,15 @@ function Rig({ isMobile }: { isMobile: boolean }) {
   );
 }
 
-export default function ShowcaseScene({ onContextLost }: { onContextLost: () => void }) {
+export default function ShowcaseScene({
+  onContextLost,
+  playSignal,
+  onPlayStateChange,
+}: {
+  onContextLost: () => void;
+  playSignal: number;
+  onPlayStateChange: (playing: boolean) => void;
+}) {
   const [tokens, setTokens] = useState<Tokens | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -274,7 +414,7 @@ export default function ShowcaseScene({ onContextLost }: { onContextLost: () => 
 
   return (
     <Canvas
-      camera={{ position: [0, 1.4, 11], fov: 42 }}
+      camera={{ position: CAMERA_FROM, fov: 42 }}
       onCreated={({ gl }) => {
         gl.domElement.addEventListener(
           "webglcontextlost",
@@ -287,12 +427,18 @@ export default function ShowcaseScene({ onContextLost }: { onContextLost: () => 
       }}
     >
       <color attach="background" args={[tokens.bgDarker]} />
+      {/* Craft pass: subtle atmospheric falloff toward the scene edges —
+          a small depth/atmosphere cue on top of the lighting changes
+          above; the camera's near-perpendicular framing of the plane
+          stack means fog alone was never going to carry depth grading by
+          itself, so this is deliberately subtle, not the primary effect. */}
+      <fog attach="fog" args={[tokens.bgDarker, 9, 24]} />
       <ambientLight intensity={0.55} />
       <pointLight position={[6, 6, 6]} intensity={1.1} />
       <pointLight position={[-6, -3, 4]} intensity={0.4} color={tokens.accent} />
       <Planes tokens={tokens} />
       <BudgetAperture tokens={tokens} />
-      <Particles tokens={tokens} />
+      <Particles tokens={tokens} playSignal={playSignal} onPlayStateChange={onPlayStateChange} />
       <Rig isMobile={isMobile} />
     </Canvas>
   );

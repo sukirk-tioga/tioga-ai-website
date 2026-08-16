@@ -116,3 +116,50 @@ export const BACKEND_COUNT = 3;
 // hand-placed labels: if the ledger ever routes to a fourth backend, this
 // list grows with it.
 export const BACKEND_ROUTES = Array.from(new Set(LEDGER.map((r) => r.served)));
+
+// --- Replay timeline -------------------------------------------------
+//
+// A compressed-but-order-preserving playback schedule for the /showcase 3D
+// scene, derived from the real gaps between LEDGER timestamps — not an
+// evenly-spaced index loop. Calls that really happened seconds apart stay
+// visually close together; the real multi-day gaps (Jul 17 -> Jul 22 -> Jul
+// 24 -> Jul 25) compress to a bounded but still-visible pause via a
+// fractional-power curve, so a replay shows the real clustering rhythm in
+// the data instead of pretending every call arrived at an even cadence.
+//
+// Date.UTC with numeric arguments, not Date-string parsing, so this is
+// identical across every JS engine this site runs on (Node build, Vercel,
+// every browser) — no locale/engine string-parsing ambiguity.
+
+const MONTHS: Record<string, number> = {
+  Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+  Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
+};
+
+function tsToEpochSeconds(ts: string): number {
+  const m = ts.match(/^(\w{3}) (\d{1,2}) (\d{2}):(\d{2}):(\d{2})$/);
+  if (!m) return 0;
+  const [, mon, day, hh, mm, ss] = m;
+  return Date.UTC(2026, MONTHS[mon] ?? 0, Number(day), Number(hh), Number(mm), Number(ss)) / 1000;
+}
+
+const REPLAY_WINDOW_SECONDS = 8;
+export const REPLAY_TRAVEL_DURATION = 1.1;
+const GAP_COMPRESSION_EXPONENT = 0.32;
+
+const rawGapSeconds = LEDGER.map((row, i) =>
+  i === 0 ? 0 : Math.max(tsToEpochSeconds(row.ts) - tsToEpochSeconds(LEDGER[i - 1].ts), 0)
+);
+const compressedGaps = rawGapSeconds.map((s) => Math.pow(s, GAP_COMPRESSION_EXPONENT));
+const compressedGapSum = compressedGaps.reduce((a, b) => a + b, 0) || 1;
+const gapScale = Math.max(REPLAY_WINDOW_SECONDS - REPLAY_TRAVEL_DURATION, 1) / compressedGapSum;
+
+let replayCursor = 0;
+// REPLAY_START_OFFSETS[i] = seconds into the replay when row i departs the
+// request plane. Index-aligned with LEDGER.
+export const REPLAY_START_OFFSETS: number[] = compressedGaps.map((g) => {
+  replayCursor += g * gapScale;
+  return replayCursor;
+});
+export const REPLAY_TOTAL_DURATION =
+  (REPLAY_START_OFFSETS[REPLAY_START_OFFSETS.length - 1] ?? 0) + REPLAY_TRAVEL_DURATION;
