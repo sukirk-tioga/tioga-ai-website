@@ -97,10 +97,13 @@ function nodeX(servedIndex: number, total: number): number {
 // static, honest visual cue (data still drives every particle/aperture/
 // node value; this only shades the backdrop), not a new claim about the
 // data itself.
+// 2026-08-15: values roughly doubled — screenshot confirmed the original
+// bias (0.02-0.05) plus 0.045 fill opacity made the planes nearly
+// imperceptible against the dark background.
 const PLANE_EMISSIVE_BIAS: Record<keyof typeof PLANE_Y, number> = {
-  request: 0.05,
-  policy: 0.035,
-  execution: 0.02,
+  request: 0.11,
+  policy: 0.08,
+  execution: 0.05,
 };
 
 function Planes({ tokens }: { tokens: Tokens }) {
@@ -122,13 +125,13 @@ function Planes({ tokens }: { tokens: Tokens }) {
               roughness={0.85}
               metalness={0.1}
               transparent
-              opacity={0.05}
+              opacity={0.1}
               side={THREE.DoubleSide}
             />
           </mesh>
           <mesh>
             <planeGeometry {...planeProps} />
-            <meshBasicMaterial color={wireColor} wireframe transparent opacity={0.5} side={THREE.DoubleSide} />
+            <meshBasicMaterial color={wireColor} wireframe transparent opacity={0.7} side={THREE.DoubleSide} />
           </mesh>
         </group>
       ))}
@@ -155,38 +158,47 @@ function BudgetAperture({ tokens }: { tokens: Tokens }) {
   const meterHeight = Math.max(ratio * 2.2, 0.025);
 
   useFrame(({ clock }) => {
-    const pulse = 0.35 + 0.25 * Math.sin(clock.elapsedTime * 0.6);
+    // 2026-08-15: baseline raised from 0.35 to 0.6 -- confirmed via
+    // screenshot the original pulse (0.35 +/- 0.25) was invisible against
+    // the policy plane's own near-coplanar fill mesh.
+    const pulse = 0.6 + 0.3 * Math.sin(clock.elapsedTime * 0.6);
     if (ringMaterial.current) ringMaterial.current.emissiveIntensity = pulse;
     if (ringRef.current) ringRef.current.rotation.z = clock.elapsedTime * 0.05;
   });
 
   return (
-    <group position={[0, PLANE_Y.policy, 0]}>
+    // 2026-08-15 visibility fix: lifted 0.08 units above the policy plane.
+    // The aperture's own child meshes were sitting at effectively the same
+    // world Y as the policy plane's fill+wireframe meshes (both groups
+    // positioned at PLANE_Y.policy) -- genuine z-fighting/coplanar overlap,
+    // confirmed via screenshot: the aperture was completely invisible.
+    <group position={[0, PLANE_Y.policy + 0.08, 0]}>
       {/* Craft pass: additive-blended glow halo behind the ring — cheap
           "fake bloom" that doesn't need @react-three/postprocessing (whose
           current majors track fiber v9; this repo is pinned to v8, see
           plan §3). depthWrite={false} so it never occludes the particles
-          passing through. */}
+          passing through. Radius/opacity raised 2026-08-15 (screenshot
+          showed it wasn't visible at the original 1.7/0.1). */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.001, 0]}>
-        <circleGeometry args={[1.7, 40]} />
+        <circleGeometry args={[2.3, 40]} />
         <meshBasicMaterial
           color={tokens.accent}
           transparent
-          opacity={0.1}
+          opacity={0.22}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
           side={THREE.DoubleSide}
         />
       </mesh>
       <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[0.75, 0.92, 48]} />
+        <ringGeometry args={[1.0, 1.22, 48]} />
         <meshStandardMaterial
           ref={ringMaterial}
           color={tokens.accentDark}
           emissive={tokens.accent}
-          emissiveIntensity={0.35}
+          emissiveIntensity={0.6}
           transparent
-          opacity={0.9}
+          opacity={0.95}
           side={THREE.DoubleSide}
         />
       </mesh>
@@ -294,7 +306,10 @@ function Particles({
       const x = phase < 0.3 ? lane : THREE.MathUtils.lerp(lane, node, (phase - 0.3) / 0.7);
 
       dummy.position.set(x, y, 0);
-      const scale = row.pool === "paid" ? 0.11 : 0.08;
+      // 2026-08-15 visibility fix: the original 0.08-0.11 scale was
+      // confirmed (via screenshot) to be nearly invisible at this camera
+      // distance against the dark background.
+      const scale = row.pool === "paid" ? 0.19 : 0.15;
       dummy.scale.setScalar(scale);
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
@@ -328,7 +343,17 @@ function Particles({
     <>
       <instancedMesh ref={meshRef} args={[undefined, undefined, LEDGER.length]}>
         <sphereGeometry args={[1, 12, 12]} />
-        <meshStandardMaterial />
+        {/* 2026-08-15 visibility fix: this had NO color/emissive config at
+            all — a bare white PBR material lit only by two modest point
+            lights, on tiny instances against a near-black background,
+            confirmed via screenshot to render as effectively invisible.
+            Per-instance color (set via setColorAt in useFrame) drives the
+            diffuse channel as before; a flat emissive floor here (uniform
+            across instances, Three.js instance color doesn't reach the
+            emissive channel) guarantees every particle stays visible
+            regardless of external lighting, while the per-instance hue
+            still dominates on top of it. */}
+        <meshStandardMaterial emissive={tokens.accent} emissiveIntensity={0.55} roughness={0.4} />
       </instancedMesh>
       <ExecutionNodes tokens={tokens} heatRefsOut={heatRefs} />
     </>
@@ -433,9 +458,12 @@ export default function ShowcaseScene({
           stack means fog alone was never going to carry depth grading by
           itself, so this is deliberately subtle, not the primary effect. */}
       <fog attach="fog" args={[tokens.bgDarker, 9, 24]} />
-      <ambientLight intensity={0.55} />
-      <pointLight position={[6, 6, 6]} intensity={1.1} />
-      <pointLight position={[-6, -3, 4]} intensity={0.4} color={tokens.accent} />
+      {/* 2026-08-15: raised across the board — screenshot confirmed the
+          original levels left the scene reading as near-empty/black. */}
+      <ambientLight intensity={0.85} />
+      <pointLight position={[6, 6, 6]} intensity={1.8} />
+      <pointLight position={[-6, -3, 4]} intensity={0.9} color={tokens.accent} />
+      <pointLight position={[0, 0, 6]} intensity={0.6} color={tokens.accent} />
       <Planes tokens={tokens} />
       <BudgetAperture tokens={tokens} />
       <Particles tokens={tokens} playSignal={playSignal} onPlayStateChange={onPlayStateChange} />
