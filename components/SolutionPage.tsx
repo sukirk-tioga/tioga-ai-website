@@ -56,7 +56,7 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
         <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed">{content.problem}</p>
         <div className="flex flex-col items-center sm:flex-row gap-4 justify-center">
           <TrackedCTA
-            href="/#contact"
+            href="/contact"
             event="cta_book_call"
             data={{ location: `solutions_${content.slug}` }}
             className="px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
@@ -179,7 +179,7 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
       {/* Related + CTA */}
       <section className="px-6 pb-24 max-w-4xl mx-auto text-center">
         <TrackedCTA
-          href="/#contact"
+          href="/contact"
           event="cta_book_call"
           data={{ location: `solutions_${content.slug}_footer` }}
           className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"

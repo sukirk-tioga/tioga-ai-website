@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/demos/ap-exception-workflow", priority: 0.6, changeFrequency: "monthly" as const, lastModified: "2026-08-07" },
     { path: "/demos/migration-assessment", priority: 0.6, changeFrequency: "monthly" as const, lastModified: "2026-08-02" },
     { path: "/about", priority: 0.7, changeFrequency: "monthly" as const, lastModified: "2026-08-07" },
+    { path: "/contact", priority: 0.7, changeFrequency: "monthly" as const, lastModified: "2026-08-16" },
     { path: "/trust", priority: 0.7, changeFrequency: "monthly" as const, lastModified: "2026-08-07" },
     { path: "/trust/eu-ai-act", priority: 0.6, changeFrequency: "monthly" as const, lastModified: "2026-08-07" },
     { path: "/trust/eu-ai-act/calculator", priority: 0.6, changeFrequency: "monthly" as const, lastModified: "2026-08-07" },

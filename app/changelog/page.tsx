@@ -260,7 +260,7 @@ export default function ChangelogPage() {
             </Link>
           </p>
           <Link
-            href="/#contact"
+            href="/contact"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
