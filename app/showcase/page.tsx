@@ -190,8 +190,8 @@ export default function ShowcasePage() {
       <section className="px-6 max-w-3xl mx-auto pb-16">
         <h2 className="text-lg font-bold text-white mb-4">How this was built</h2>
         <p className="text-sm text-slate-400 leading-relaxed">
-          React Three Fiber (pinned to the v8 line — v9 requires React 19, which this site
-          doesn&apos;t run yet) over the same typed <code className="font-mono text-xs">lib/governance-ledger.ts</code>{" "}
+          React Three Fiber v9 (React 19 / Next 15) over the same typed{" "}
+          <code className="font-mono text-xs">lib/governance-ledger.ts</code>{" "}
           module the table page imports, so the two views can never drift. Every tile, ribbon,
           and pool node is real WebGL, generated from that data — ribbon width is each row&apos;s
           real token count, ribbon color is its real pool. The hero image above is a captured
