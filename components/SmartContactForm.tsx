@@ -186,6 +186,15 @@ export default function SmartContactForm() {
       className="p-8 rounded-2xl text-left"
       style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
     >
+      <p className="text-xs text-slate-400 leading-relaxed mb-5">
+        This form is processed by an AI system (Claude) that classifies your
+        inquiry to route it — you&apos;ll see the classification below
+        immediately, and a human reviews it before following up. See{" "}
+        <a href="/trust#ai-use" className="underline hover:text-slate-300 transition-colors">
+          how we use AI on this site
+        </a>
+        .
+      </p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>

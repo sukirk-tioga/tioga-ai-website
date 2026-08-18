@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LEDGER } from "@/app/demos/_lib/governance-ledger-data";
+import { LEDGER } from "@/lib/governance-ledger";
 
 // A compact preview of the real Governance Ledger (see
-// /demos/governance-ledger and app/demos/_lib/governance-ledger-data.ts —
-// same array, imported, not re-typed, so this can't drift from the real
-// data). Rows reveal on mount the same way HeroDemo's fields do, purely as
+// /demos/governance-ledger and lib/governance-ledger.ts — same array,
+// imported, not re-typed, so this can't drift from the real data, and
+// shared with the /showcase 3D scene too). Rows reveal on mount the same
+// way HeroDemo's fields do, purely as
 // a read pace, not a simulated live tick — the badge and caption say so
 // explicitly, matching this site's existing "refreshed periodically, not
 // live-refreshing" convention on the full ledger page and homepage callout.

@@ -4,6 +4,8 @@ import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import FileUpload from "@/components/FileUpload";
+import { DemoActivityProvider, useSetDemoActivity } from "./_lib/demo-activity-context";
+import DemoParticleCanvasLoader from "./_lib/DemoParticleCanvasLoader";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -259,10 +261,12 @@ function InvoiceDemo() {
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [data, setData] = useState<InvoiceData | null>(null);
   const [error, setError] = useState("");
+  const setDemoActivity = useSetDemoActivity();
 
   const analyze = async () => {
     setState("loading");
     setError("");
+    setDemoActivity({ status: "pending", confidence: null });
     try {
       const res = await fetch("/api/invoice-parse", {
         method: "POST",
@@ -273,9 +277,11 @@ function InvoiceDemo() {
       if (!res.ok) throw new Error(json.error);
       setData(json.result);
       setState("done");
+      setDemoActivity({ status: "done", confidence: json.result?.confidence ?? null });
     } catch (e: unknown) {
       setError((e as Error).message ?? "Analysis failed.");
       setState("error");
+      setDemoActivity({ status: "error", confidence: null });
     }
   };
 
@@ -377,12 +383,14 @@ function EmailTriageDemo() {
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [result, setResult] = useState<EmailResult | null>(null);
   const [error, setError] = useState("");
+  const setDemoActivity = useSetDemoActivity();
 
   const analyze = async (text: string) => {
     setInput(text);
     setState("loading");
     setResult(null);
     setError("");
+    setDemoActivity({ status: "pending", confidence: null });
     try {
       const res = await fetch("/api/demo-email", {
         method: "POST",
@@ -393,9 +401,13 @@ function EmailTriageDemo() {
       if (!res.ok) throw new Error(json.error);
       setResult(json.result);
       setState("done");
+      // EmailResult carries no confidence field -- pass null, not a
+      // guessed number, per demo-activity-context.tsx's honesty rule.
+      setDemoActivity({ status: "done", confidence: null });
     } catch (e: unknown) {
       setError((e as Error).message ?? "Failed");
       setState("error");
+      setDemoActivity({ status: "error", confidence: null });
     }
   };
 
@@ -499,12 +511,14 @@ function DocumentDemo() {
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [result, setResult] = useState<DocResult | null>(null);
   const [error, setError] = useState("");
+  const setDemoActivity = useSetDemoActivity();
 
   const analyze = async (text: string) => {
     setInput(text);
     setState("loading");
     setResult(null);
     setError("");
+    setDemoActivity({ status: "pending", confidence: null });
     try {
       const res = await fetch("/api/demo-document", {
         method: "POST",
@@ -515,9 +529,11 @@ function DocumentDemo() {
       if (!res.ok) throw new Error(json.error);
       setResult(json.result);
       setState("done");
+      setDemoActivity({ status: "done", confidence: json.result?.confidence ?? null });
     } catch (e: unknown) {
       setError((e as Error).message ?? "Failed");
       setState("error");
+      setDemoActivity({ status: "error", confidence: null });
     }
   };
 
@@ -901,11 +917,21 @@ function DemosPageInner() {
           {activeDemo.component}
         </div>
 
+        {/* Live particle field -- reacts only to the real fetch state of
+            whichever demo above is in flight/resolved; see
+            _lib/demo-activity-context.tsx and _lib/DemoParticleField.tsx.
+            Persistent across tab switches (mounted here, outside
+            activeDemo.component), hidden on mobile/no-WebGL/reduced-motion
+            -- the 2D result cards above already carry the same real data. */}
+        <div className="mt-6">
+          <DemoParticleCanvasLoader />
+        </div>
+
         {/* CTA */}
         <div className="mt-10 text-center">
           <p className="text-slate-400 mb-4">Want these capabilities in your enterprise systems?</p>
           <Link
-            href="/#contact"
+            href="/contact"
             className="inline-flex px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
@@ -920,7 +946,9 @@ function DemosPageInner() {
 export default function DemosPage() {
   return (
     <Suspense fallback={null}>
-      <DemosPageInner />
+      <DemoActivityProvider>
+        <DemosPageInner />
+      </DemoActivityProvider>
     </Suspense>
   );
 }

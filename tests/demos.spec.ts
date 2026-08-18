@@ -1,5 +1,19 @@
 import { test, expect } from "@playwright/test";
 
+// @vercel/analytics and @vercel/speed-insights only resolve their script
+// paths on real Vercel infra — every other environment (local, CI) 404s,
+// which strict MIME-type checking turns into a console error. Same stub as
+// tests/pages.spec.ts; this file never had it (pre-existing gap, found
+// 2026-08-15 while verifying an unrelated /showcase change).
+test.beforeEach(async ({ page }) => {
+  await page.route("**/_vercel/insights/**", (route) =>
+    route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
+  );
+  await page.route("**/_vercel/speed-insights/**", (route) =>
+    route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
+  );
+});
+
 // Functional tests — these actually invoke Claude and cost real (small)
 // money. Run on a schedule against production, not on every push. This
 // suite exists because of two real bugs found in production on 2026-07-27:

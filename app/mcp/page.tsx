@@ -629,7 +629,7 @@ export default function MCPPage() {
  MCP connector live within 2 weeks.
  </p>
  <Link
- href="/#contact"
+ href="/contact"
  className="inline-flex px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
  style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
  >

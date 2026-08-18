@@ -100,13 +100,28 @@ export default function EngineeringIndexPage() {
               See the build log →
             </Link>
           </p>
-          <Link
-            href="/demos"
-            className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
-          >
-            Try the live demos
-          </Link>
+          <p className="text-xs text-slate-400 mb-8">
+            Or see the governance ledger rendered as an interactive 3D scene —{" "}
+            <Link href="/showcase" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+              The Gateway Corridor →
+            </Link>
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/demos"
+              className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
+              style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
+            >
+              Try the live demos
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
+              style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
+            >
+              Talk to Tioga AI
+            </Link>
+          </div>
         </div>
       </section>
     </main>

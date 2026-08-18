@@ -1,5 +1,19 @@
 import { test, expect } from "@playwright/test";
 
+// @vercel/analytics and @vercel/speed-insights only resolve their script
+// paths on real Vercel infra — every other environment 404s, which strict
+// MIME-type checking turns into a console error. Same stub as
+// tests/pages.spec.ts; this file never had it (pre-existing gap, found
+// 2026-08-15 while verifying an unrelated /showcase change).
+test.beforeEach(async ({ page }) => {
+  await page.route("**/_vercel/insights/**", (route) =>
+    route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
+  );
+  await page.route("**/_vercel/speed-insights/**", (route) =>
+    route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
+  );
+});
+
 // Structural + interaction checks for the live value-ledger panel on the
 // AP Exception Workflow demo — no AI calls, no cost, runs on every push/PR.
 // Verifies the panel computes live from real session actions, the baseline

@@ -25,7 +25,7 @@ export default function Footer() {
           <Link href="/about" className="hover:text-slate-400 transition-colors">About</Link>
           <Link href="/trust" className="hover:text-slate-400 transition-colors">Trust</Link>
           <Link href="/changelog" className="hover:text-slate-400 transition-colors">Build Log</Link>
-          <Link href="/#contact" className="hover:text-slate-400 transition-colors">Contact</Link>
+          <Link href="/contact" className="hover:text-slate-400 transition-colors">Contact</Link>
           <a href="mailto:hello@tioga.ai" className="hover:text-slate-400 transition-colors">hello@tioga.ai</a>
         </div>
         <div className="flex flex-col items-center gap-1">

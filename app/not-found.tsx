@@ -28,7 +28,7 @@ export default function NotFound() {
             <p className="text-sm font-semibold text-white">Services &amp; Pricing →</p>
           </a>
           <a
-            href="/#contact"
+            href="/contact"
             className="p-4 rounded-xl transition-all hover:border-slate-500"
             style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
           >

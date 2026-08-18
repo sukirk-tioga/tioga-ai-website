@@ -14,7 +14,7 @@ const WELCOME_MESSAGE: Message = {
   id: "welcome",
   role: "assistant",
   content:
-    "Hi! I'm Tioga AI's assistant. Most AI projects fail at integration — we specialize in delivery. Want to see a live demo? Learn about MCP integrations? Or tell me about your challenge.",
+    "Hi! I'm an AI assistant (Claude) for Tioga AI, not a human — replies here are generated live, unreviewed. Most AI projects fail at integration — we specialize in delivery. Want to see a live demo? Learn about MCP integrations? Or tell me about your challenge. Prefer a human? Email hello@tioga.ai.",
 };
 
 export default function ChatWidget() {
@@ -191,7 +191,7 @@ export default function ChatWidget() {
               <p className="text-sm font-semibold text-white">Tioga AI Assistant</p>
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
-                <span className="text-xs text-slate-400">Online</span>
+                <span className="text-xs text-slate-400">AI · Online</span>
               </div>
             </div>
             <button

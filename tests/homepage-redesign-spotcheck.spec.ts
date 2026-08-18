@@ -1,5 +1,19 @@
 import { test, expect } from "@playwright/test";
 
+// @vercel/analytics and @vercel/speed-insights only resolve their script
+// paths on real Vercel infra — every other environment 404s, which strict
+// MIME-type checking turns into a console error. Same stub as
+// tests/pages.spec.ts; this file never had it (pre-existing gap, found
+// 2026-08-15 while verifying an unrelated /showcase change).
+test.beforeEach(async ({ page }) => {
+  await page.route("**/_vercel/insights/**", (route) =>
+    route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
+  );
+  await page.route("**/_vercel/speed-insights/**", (route) =>
+    route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
+  );
+});
+
 test.describe("2026-08-08 homepage design review changes", () => {
   test("hero headline, subhead, and reduced CTAs render correctly (desktop)", async ({ page }) => {
     const errors: string[] = [];
@@ -30,8 +44,12 @@ test.describe("2026-08-08 homepage design review changes", () => {
   });
 
   test("pricing section: sprint banner + recommended flag + distinct CTA labels", async ({ page }) => {
-    await page.goto("/");
-    await page.getByRole("link", { name: "Services" }).first().click();
+    // Navigates straight to the homepage's #services anchor rather than
+    // clicking the Nav's "Services" link — as of the 2026-08-16 Nav/Footer
+    // consistency fix, Nav "Services" now points to the dedicated /services
+    // page (matching the Footer), not this homepage section. This test is
+    // about the homepage pricing section's own content, which is unchanged.
+    await page.goto("/#services");
     await expect(page.getByText("Not sure where to start?")).toBeVisible();
     await expect(page.getByText("Start here")).toBeVisible();
     await expect(page.getByRole("link", { name: "Scope an assessment" })).toBeVisible();

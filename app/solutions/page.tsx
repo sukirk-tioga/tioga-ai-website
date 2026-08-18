@@ -84,7 +84,7 @@ export default function SolutionsHubPage() {
 
         <div className="mt-16 text-center">
           <TrackedCTA
-            href="/#contact"
+            href="/contact"
             event="cta_book_call"
             data={{ location: "solutions_hub" }}
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"

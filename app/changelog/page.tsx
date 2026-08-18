@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ChangelogBeat from "@/components/ChangelogBeat";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Build Log",
@@ -241,8 +243,10 @@ export default function ChangelogPage() {
                     {e.kind}
                   </span>
                 </div>
-                <h2 className="text-white font-semibold mb-1.5">{e.title}</h2>
-                <p className="text-sm text-slate-400 leading-relaxed max-w-xl">{e.body}</p>
+                <ChangelogBeat className="text-white font-semibold mb-1.5">{e.title}</ChangelogBeat>
+                <ScrollReveal>
+                  <p className="text-sm text-slate-400 leading-relaxed max-w-xl">{e.body}</p>
+                </ScrollReveal>
               </div>
             ))}
           </div>
@@ -260,7 +264,7 @@ export default function ChangelogPage() {
             </Link>
           </p>
           <Link
-            href="/#contact"
+            href="/contact"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >

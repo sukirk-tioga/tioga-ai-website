@@ -25,10 +25,10 @@ export default function Nav() {
   // anchor. Solutions/Services/Live Demos kept as the core buyer funnel.
   const links = [
     { href: "/solutions", label: "Solutions" },
-    { href: "/#services", label: "Services" },
+    { href: "/services", label: "Services" },
     { href: "/demos", label: "Live Demos" },
     { href: "/about", label: "About" },
-    { href: "/#contact", label: "Contact" },
+    { href: "/contact", label: "Contact" },
   ];
 
   const isActive = (href: string) =>
@@ -74,7 +74,7 @@ export default function Nav() {
         {/* CTA + hamburger */}
         <div className="flex items-center gap-3">
           <Link
-            href="/#contact"
+            href="/contact"
             className="hidden md:inline-flex px-5 py-2.5 rounded-lg text-base font-medium text-white transition-all hover:opacity-90"
             style={{ background: "var(--accent-dark)" }}
           >
@@ -132,7 +132,7 @@ export default function Nav() {
             </Link>
           ))}
           <Link
-            href="/#contact"
+            href="/contact"
             onClick={() => setMenuOpen(false)}
             tabIndex={menuOpen ? undefined : -1}
             className="mt-3 py-3 rounded-lg text-sm font-medium text-white text-center transition-all hover:opacity-90"

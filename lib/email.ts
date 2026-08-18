@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import type { Classification } from "./classification";
 
 // User-submitted form fields and model-generated text are interpolated
 // directly into these HTML email bodies — escape before interpolation so a
@@ -22,16 +23,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.SMTP_PASS,
   },
 });
-
-interface Classification {
-  service: string;
-  urgency: string;
-  complexity: string;
-  summary: string;
-  nextStep: string;
-  responseTime: string;
-  fitScore: number;
-}
 
 export async function sendInquiryEmail({
   name,
