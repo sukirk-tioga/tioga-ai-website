@@ -238,7 +238,7 @@ export default function TrustPage() {
             human at any point? Email{" "}
             <a href="mailto:hello@tioga.ai" className="underline hover:text-white transition-colors">hello@tioga.ai</a>{" "}
             or{" "}
-            <Link href="/#contact" className="underline hover:text-white transition-colors">book a call</Link>.
+            <Link href="/contact" className="underline hover:text-white transition-colors">book a call</Link>.
           </p>
         </div>
 

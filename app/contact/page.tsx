@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SmartContactForm from "@/components/SmartContactForm";
 import TrackedCTA from "@/components/TrackedCTA";
+import { CAL_LINK } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -14,7 +15,6 @@ export const metadata: Metadata = {
   },
 };
 
-const CAL_LINK = "https://cal.com/sukir-kumaresan-rfgb7k/introduction-chat";
 
 export default function ContactPage() {
   return (
