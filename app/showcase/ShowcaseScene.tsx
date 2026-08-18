@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, MeshTransmissionMaterial } from "@react-three/drei";
 import * as THREE from "three";
 import {
   LEDGER,
@@ -10,9 +10,12 @@ import {
   REPLAY_START_OFFSETS,
   REPLAY_TRAVEL_DURATION,
   REPLAY_TOTAL_DURATION,
+  type LedgerRow,
 } from "../../lib/governance-ledger";
 import { readCssToken } from "../../lib/site-config";
 import ShowcaseEffects from "./ShowcaseEffects";
+import LedgerParticleField from "./gpgpu/LedgerParticleField";
+import { CORRIDOR_X, TILE_Y_RANGE, POOL_Y_RANGE, tileY, tileZ, poolY } from "./corridorLayout";
 
 // The Gateway Corridor — full rebuild, 2026-08-15 (round 3).
 //
@@ -53,35 +56,10 @@ interface Tokens {
 
 // --- Corridor layout ----------------------------------------------------
 //
-// Left column: 17 row tiles, ordered chronologically top-to-bottom (index
-// order in LEDGER is already chronological). Center: the gate, at the
-// exact midpoint every ribbon's curve passes through -- a true visual
-// chokepoint, not an approximation. Right column: the 3 real backend
-// pools (BACKEND_ROUTES).
-const CORRIDOR_X = { tiles: -4.4, gate: 0, pools: 4.4 };
-const TILE_Y_RANGE: [number, number] = [2.6, -2.6];
-const POOL_Y_RANGE: [number, number] = [1.5, -1.5];
-
-function tileY(index: number): number {
-  if (LEDGER.length <= 1) return 0;
-  const [top, bottom] = TILE_Y_RANGE;
-  return top - (top - bottom) * (index / (LEDGER.length - 1));
-}
-
-function tileZ(index: number): number {
-  // Small alternating depth stagger -- purely a composition aid so the
-  // tile column reads as a real 3D cluster instead of a flat line; the
-  // curve still converges every ribbon to the exact same gate point
-  // regardless, so this never implies anything about the data.
-  return index % 2 === 0 ? 0.35 : -0.35;
-}
-
-function poolY(index: number, total: number): number {
-  if (total <= 1) return 0;
-  const [top, bottom] = POOL_Y_RANGE;
-  return top - (top - bottom) * (index / (total - 1));
-}
-
+// CORRIDOR_X / TILE_Y_RANGE / POOL_Y_RANGE / tileY / tileZ / poolY now live
+// in ./corridorLayout.ts (extracted 2026-08-18 so LedgerParticleField.tsx
+// can compute the same positions without a second, driftable copy).
+//
 // Scripted intro camera dolly: eases from a wider establishing shot into
 // the working view, then hands off to OrbitControls only once it
 // completes (so OrbitControls captures its baseline spherical state from
@@ -118,24 +96,6 @@ function buildRowGeometry(): RowGeom[] {
   });
 }
 
-function RowTiles({ tokens }: { tokens: Tokens }) {
-  return (
-    <>
-      {LEDGER.map((row, i) => (
-        <mesh key={i} position={[CORRIDOR_X.tiles, tileY(i), tileZ(i)]}>
-          <boxGeometry args={[0.16, 0.16, 0.16]} />
-          <meshStandardMaterial
-            color={row.pool === "paid" ? tokens.accentDark : tokens.accent}
-            emissive={row.pool === "paid" ? tokens.accentDark : tokens.accent}
-            emissiveIntensity={0.5}
-            roughness={0.4}
-          />
-        </mesh>
-      ))}
-    </>
-  );
-}
-
 // The gate — the hero object every ribbon visually converges through.
 // Softly breathes at rest (ambient sine pulse); briefly brightens when a
 // replay pulse is actively crossing it (gateActivity, written by Pulses
@@ -146,7 +106,7 @@ function Gate({ tokens, gateActivity }: { tokens: Tokens; gateActivity: React.Mu
   const haloMaterial = useRef<THREE.MeshBasicMaterial>(null);
   const scanRingRef = useRef<THREE.Mesh>(null);
   const scanRingMaterial = useRef<THREE.MeshBasicMaterial>(null);
-  const discMaterial = useRef<THREE.MeshBasicMaterial>(null);
+  const glassPaneRef = useRef<THREE.Mesh>(null);
   // Smoothed follower for gateActivity (raw activity snaps as pulses enter/
   // exit the GATE_CROSS_WINDOW). A real event -- a ledger row actually
   // crossing the gate -- deserves a felt "kick," which a hard snap to a
@@ -184,8 +144,13 @@ function Gate({ tokens, gateActivity }: { tokens: Tokens; gateActivity: React.Mu
     if (scanRingMaterial.current) {
       scanRingMaterial.current.opacity = 0.35 + 0.25 * Math.sin(clock.elapsedTime * 1.1);
     }
-    if (discMaterial.current) {
-      discMaterial.current.opacity = 0.1 + 0.06 * Math.sin(clock.elapsedTime * 0.9) + activity * 0.15;
+    if (glassPaneRef.current) {
+      // MeshTransmissionMaterial doesn't take an emissive/opacity uniform
+      // the way the old flat disc did -- breathing here is a transform-
+      // level pulse (subtle scale) instead, still driven by the same real
+      // gateActivity signal, still honest chrome otherwise.
+      const s = 1 + 0.015 * Math.sin(clock.elapsedTime * 0.9) + activity * 0.06;
+      glassPaneRef.current.scale.setScalar(s);
     }
   });
 
@@ -212,17 +177,34 @@ function Gate({ tokens, gateActivity }: { tokens: Tokens; gateActivity: React.Mu
           depthWrite={false}
         />
       </mesh>
-      {/* Breathing glow disc inside the frame -- gives the portal an
-          actual surface instead of empty space bounded by an outline. */}
-      <mesh position={[0, 0, -0.02]}>
-        <circleGeometry args={[0.62, 32]} />
-        <meshBasicMaterial
-          ref={discMaterial}
+      {/* Phase 6 (boundary-push plan): the portal's glass pane -- replaces
+          the old flat-emissive breathing disc with drei's
+          MeshTransmissionMaterial (roughness 0, full transmission,
+          iridescence so the edge shifts hue with camera angle). This
+          renders whatever's actually behind it -- the 17 ribbons -- with
+          real refraction, so they visibly bend as they cross the gate
+          rather than passing behind a flat glow. Pure chrome, no data
+          claim: nothing about the glass itself represents a real value,
+          same honesty framing as the scan ring/halo it sits alongside.
+          One transmissive object in this scene, per the plan's own cost
+          note (each one is a separate render pass) -- don't add a second
+          without re-checking the frame budget. */}
+      <mesh ref={glassPaneRef} position={[0, 0, -0.02]}>
+        <circleGeometry args={[0.62, 48]} />
+        <MeshTransmissionMaterial
           color={tokens.accent}
-          transparent
-          opacity={0.12}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
+          roughness={0}
+          transmission={1}
+          thickness={2}
+          ior={1.4}
+          chromaticAberration={0.04}
+          iridescence={1}
+          iridescenceIOR={1.3}
+          iridescenceThicknessRange={[100, 400]}
+          distortion={0.15}
+          distortionScale={0.3}
+          temporalDistortion={0.08}
+          backside
         />
       </mesh>
       {/* Slowly rotating scan ring -- decorative chrome (not tied to any
@@ -362,6 +344,7 @@ function Pulses({
   onPlayStateChange,
   gateActivity,
   poolHeat,
+  onGateCross,
 }: {
   tokens: Tokens;
   rows: RowGeom[];
@@ -369,20 +352,27 @@ function Pulses({
   onPlayStateChange: (playing: boolean) => void;
   gateActivity: React.MutableRefObject<number>;
   poolHeat: React.MutableRefObject<number[]>;
+  onGateCross?: (row: RowGeom["row"]) => void;
 }) {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const isPlaying = useRef(false);
   const playStart = useRef(0);
   const lastPlaySignal = useRef(playSignal);
   const dummy = useMemo(() => new THREE.Object3D(), []);
+  // Phase 8 (boundary-push plan, Web Audio sonification): one-shot latch
+  // per row per playthrough, so onGateCross fires exactly once as each
+  // row's pulse crosses the gate, not every frame it's inside
+  // GATE_CROSS_WINDOW. Reset whenever a fresh Replay starts.
+  const firedThisPlay = useRef<boolean[]>([]);
 
   useEffect(() => {
     if (playSignal === lastPlaySignal.current) return;
     lastPlaySignal.current = playSignal;
     isPlaying.current = true;
     playStart.current = -1;
+    firedThisPlay.current = new Array(rows.length).fill(false);
     onPlayStateChange(true);
-  }, [playSignal, onPlayStateChange]);
+  }, [playSignal, onPlayStateChange, rows.length]);
 
   const poolColor = useMemo(
     () => ({
@@ -421,7 +411,13 @@ function Pulses({
       mesh.setMatrixAt(i, dummy.matrix);
 
       const crossingGate = Math.abs(phase - 0.5) < GATE_CROSS_WINDOW;
-      if (crossingGate) activity += 1;
+      if (crossingGate) {
+        activity += 1;
+        if (onGateCross && !firedThisPlay.current[i]) {
+          firedThisPlay.current[i] = true;
+          onGateCross(row);
+        }
+      }
       const color = crossingGate ? poolColor.crossing : poolColor[row.pool];
       mesh.setColorAt(i, color);
 
@@ -532,10 +528,12 @@ export default function ShowcaseScene({
   onContextLost,
   playSignal,
   onPlayStateChange,
+  onGateCross,
 }: {
   onContextLost: () => void;
   playSignal: number;
   onPlayStateChange: (playing: boolean) => void;
+  onGateCross?: (row: LedgerRow) => void;
 }) {
   const [tokens, setTokens] = useState<Tokens | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -585,7 +583,7 @@ export default function ShowcaseScene({
       <pointLight position={[-6, 6.5, 8.5]} intensity={2.6} color={tokens.accent} decay={1.4} />
       <pointLight position={[6, -1, -7]} intensity={0.4} color="white" decay={1.6} />
       <pointLight position={[0, 1.5, 6]} intensity={0.4} decay={1.8} />
-      <RowTiles tokens={tokens} />
+      <LedgerParticleField tokens={tokens} playSignal={playSignal} isMobile={isMobile} />
       <Ribbons tokens={tokens} rows={rows} />
       <Gate tokens={tokens} gateActivity={gateActivity} />
       <PoolTerminals tokens={tokens} poolHeat={poolHeat} />
@@ -596,6 +594,7 @@ export default function ShowcaseScene({
         onPlayStateChange={onPlayStateChange}
         gateActivity={gateActivity}
         poolHeat={poolHeat}
+        onGateCross={onGateCross}
       />
       <Rig isMobile={isMobile} />
       <ShowcaseEffects isMobile={isMobile} />

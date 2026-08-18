@@ -113,14 +113,14 @@ export default function ShowcasePage() {
         <h2 className="text-lg font-bold text-white mb-4">What you&apos;re looking at</h2>
         <div className="space-y-4 text-sm text-slate-400 leading-relaxed">
           <p>
-            17 tiles on the left, one per real row already live at{" "}
+A GPU particle field on the left renders the same 17 real rows already live at{" "}
             <Link href="/demos/governance-ledger" style={{ color: "var(--accent)" }}>
               /demos/governance-ledger
             </Link>
-            , converge through a single gate and fan out to three real backend destinations on
-            the right. Every ribbon is one real call from Tioga&apos;s own AI routing gateway,
-            captured Jul 17–25, 2026 — nothing here was written for this page. Ribbon width is
-            each row&apos;s real token count, not a decoration.
+            , converging through a single glass gate and fanning out to three real backend
+            destinations on the right. Every ribbon is one real call from Tioga&apos;s own AI
+            routing gateway, captured Jul 17–25, 2026 — nothing here was written for this page.
+            Ribbon width is each row&apos;s real token count, not a decoration.
           </p>
           <p>
             The gate is the governance layer made physical: every ribbon — free-pool and paid
@@ -192,14 +192,25 @@ export default function ShowcasePage() {
         <p className="text-sm text-slate-400 leading-relaxed">
           React Three Fiber (pinned to the v8 line — v9 requires React 19, which this site
           doesn&apos;t run yet) over the same typed <code className="font-mono text-xs">lib/governance-ledger.ts</code>{" "}
-          module the table page imports, so the two views can never drift. Every tile, ribbon,
-          and pool node is real WebGL, generated from that data — ribbon width is each row&apos;s
-          real token count, ribbon color is its real pool. The hero image above is a captured
-          still of this actual scene — not an AI-generated mockup. No 3D text: every label on
-          this page is DOM, not canvas. The scene rests at its completed state by default rather
-          than looping continuously — Replay plays the real, compressed timeline once, using the
-          actual gaps between these calls&apos; timestamps, not an even cadence, and flashes green
-          for the moment each one actually crosses the gate.
+          module the table page imports, so the two views can never drift. The 17-row table on
+          the left is a real GPU particle field — the same rows rasterized to a texture and
+          simulated with a compute shader (GPUComputationRenderer), not an image or a decoration.
+          At the resolution this renders at, individual characters aren&apos;t crisply legible —
+          the field&apos;s shape and internal texture are genuinely built from the real row text,
+          it just doesn&apos;t read as typography from a normal viewing distance. Every ribbon and
+          pool node is real WebGL, generated from that data — ribbon width is each row&apos;s real
+          token count, ribbon color is its real pool. The gate is real glass (drei&apos;s{" "}
+          <code className="font-mono text-xs">MeshTransmissionMaterial</code>) — the ribbons
+          visibly refract passing through it, not a flat glow standing in for one. The hero image
+          above is a captured still of this actual scene — not an AI-generated mockup. No 3D
+          text: every label on this page is DOM, not canvas. The scene rests at its completed
+          state by default rather than looping continuously — Replay plays the real, compressed
+          timeline once, using the actual gaps between these calls&apos; timestamps, not an even
+          cadence: each row&apos;s own particles detach from the field and stream the corridor
+          alongside its pulse, flashing green for the moment it actually crosses the gate. An
+          optional sound toggle (off by default) plays a short synthesized tick per crossing,
+          pitched by that row&apos;s real token count — 17 real rows, 17 real notes, never
+          autoplayed.
         </p>
       </section>
 
