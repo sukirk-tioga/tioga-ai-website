@@ -31,7 +31,10 @@ for (const { name, size } of VIEWPORTS) {
     });
     page.on("pageerror", (err) => consoleErrors.push(err.message));
 
-    await page.goto("/#contact");
+    // Updated 2026-08-18: the contact form moved from the homepage's inline
+    // #contact section to its own /contact page (contact-page-build) --
+    // SmartContactForm (and this disclosure) moved with it, unchanged.
+    await page.goto("/contact");
 
     const disclosure = page.getByText(
       /This form is processed by an AI system \(Claude\) that classifies your inquiry/

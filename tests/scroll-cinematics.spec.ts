@@ -101,7 +101,7 @@ test("Lenis and the ScrollTrigger pin are active under normal motion", async ({ 
   await expect(page.locator(".pin-spacer")).toHaveCount(1);
 });
 
-test("/#contact deep link lands on the actual Contact section, not short by one pinned hero", async ({ page }) => {
+test("/#services deep link lands on the actual Services section, not short by one pinned hero", async ({ page }) => {
   // Regression test: the hero's pin-spacer adds ~1 viewport height to the
   // document after the browser's native fragment-scroll-on-load already
   // ran against the pre-pin layout, so the first shipped version of this
@@ -109,11 +109,17 @@ test("/#contact deep link lands on the actual Contact section, not short by one 
   // second bug once the re-scroll was added: Lenis clamps scrollTo's
   // target against a scroll limit cached before the spacer existed,
   // silently landing short again, until lenis.resize() was called first.
-  await page.goto("/#contact");
+  //
+  // Updated 2026-08-18: retargeted from #contact to #services -- the
+  // homepage's inline #contact section moved to its own /contact page
+  // (contact-page-build), so #contact no longer exists here. #services
+  // exercises the identical pinned-hero-scroll-offset bug class this test
+  // exists to guard against.
+  await page.goto("/#services");
   await page.waitForTimeout(1200);
-  const rect = await page.evaluate(() => document.getElementById("contact")?.getBoundingClientRect().top);
-  expect(rect, "distance from viewport top to #contact after landing").toBeLessThan(150);
-  await expect(page.locator("#contact").getByRole("heading", { name: "Ready to Build?" })).toBeVisible();
+  const rect = await page.evaluate(() => document.getElementById("services")?.getBoundingClientRect().top);
+  expect(rect, "distance from viewport top to #services after landing").toBeLessThan(150);
+  await expect(page.locator("#services").getByRole("heading", { name: "Where to start" })).toBeVisible();
 });
 
 test("prefers-reduced-motion fully bypasses Lenis and the pin — normal scrolling document", async ({ page }) => {
