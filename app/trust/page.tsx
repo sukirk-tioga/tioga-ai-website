@@ -197,6 +197,51 @@ export default function TrustPage() {
           </div>
         </div>
 
+        {/* AI use & disclosure */}
+        <div id="ai-use" className="mb-16 scroll-mt-24">
+          <h2 className="text-xl font-bold text-white mb-2">AI use &amp; disclosure</h2>
+          <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mb-6">
+            Required reading under the EU AI Act&apos;s Article 50 transparency
+            obligations, and good practice regardless of where you&apos;re
+            reading from: here&apos;s exactly where AI touches this site, and
+            what it does.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-4">
+            <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+              <p className="text-sm font-semibold text-white mb-1.5">Contact form classifier</p>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                When you submit the contact form, Anthropic&apos;s Claude reads
+                your message and classifies it (service match, urgency,
+                complexity, fit) to help route it. You see that
+                classification immediately on screen, and it&apos;s emailed to
+                the founder — a human reviews it before anyone follows up
+                with you. It doesn&apos;t talk back to you and it&apos;s not a
+                chatbot.
+              </p>
+            </div>
+            <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+              <p className="text-sm font-semibold text-white mb-1.5">Chat widget</p>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                The chat bubble in the corner of the site is Anthropic&apos;s
+                Claude, streaming replies to you live. Nobody reviews its
+                messages before you see them — that&apos;s the nature of a
+                real-time chat. It says so at the start of every
+                conversation, not just here.
+              </p>
+            </div>
+          </div>
+          <p className="text-slate-400 text-sm leading-relaxed max-w-2xl">
+            Nothing on this site publishes AI-generated content to anyone else
+            or takes an action on your behalf without a human in the loop.
+            Both surfaces run on Anthropic&apos;s Claude — see the
+            sub-processor table below for what happens to your data. Prefer a
+            human at any point? Email{" "}
+            <a href="mailto:hello@tioga.ai" className="underline hover:text-white transition-colors">hello@tioga.ai</a>{" "}
+            or{" "}
+            <Link href="/#contact" className="underline hover:text-white transition-colors">book a call</Link>.
+          </p>
+        </div>
+
         {/* Data handling & sub-processors */}
         <div className="mb-16">
           <h2 className="text-xl font-bold text-white mb-2">Data handling &amp; sub-processors</h2>

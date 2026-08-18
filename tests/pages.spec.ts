@@ -23,6 +23,7 @@ const PAGES = [
   { path: "/engineering/invoice-processing", title: "How We Built the Invoice Processing Demo — Tioga AI" },
   { path: "/engineering/email-triage", title: "How We Built the Email Triage Demo — Tioga AI" },
   { path: "/engineering/migration-assessment", title: "How We Built the Migration Assessment Demo — Tioga AI" },
+  { path: "/showcase", title: "The Gateway Corridor — Tioga AI" },
   { path: "/changelog", title: "Build Log — Tioga AI" },
   { path: "/samples/discovery-sprint-scope.html", title: "Sample: 5-Day Discovery Sprint Scope — Tioga AI" },
   { path: "/samples/governance-evidence-excerpt.html", title: "Sample: Governance Evidence Excerpt — Tioga AI" },
