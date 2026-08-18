@@ -1,5 +1,4 @@
 import Link from "next/link";
-import SmartContactForm from "@/components/SmartContactForm";
 import TrackedCTA from "@/components/TrackedCTA";
 import HeroDemo from "@/components/HeroDemo";
 import HeroFieldLoader from "@/components/HeroFieldLoader";
@@ -327,7 +326,7 @@ export default function HomePage() {
  <div className="space-y-4">
  <p className="text-2xl font-semibold text-white">{offer.investment}</p>
  <a
- href="#contact"
+ href="/contact"
  className="block text-center w-full px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
  style={{ background: "var(--accent-dark)" }}
  >
@@ -468,38 +467,6 @@ export default function HomePage() {
  </div>
  </div>
  </Link>
- </section>
-
- <div style={{ borderColor: "var(--border)", margin: "0 auto", maxWidth: "80%", borderTop: "1px solid" }} />
-
- {/* Contact */}
- <section id="contact" className="py-20 px-6 max-w-2xl mx-auto text-center scroll-mt-24">
- <h2 className="text-3xl font-bold text-white mb-3">Ready to Build?</h2>
- <p className="text-slate-400 mb-2 text-sm max-w-md mx-auto">
- Tell me about your project. My AI instantly classifies your inquiry so it reaches me with the right context. Response within one business day — or email{" "}
- <a href="mailto:hello@tioga.ai" className="underline hover:text-white transition-colors">hello@tioga.ai</a> directly.
- </p>
- <p className="text-sm mb-6">
- <TrackedCTA
- href={CAL_LINK}
- target="_blank"
- rel="noopener noreferrer"
- event="cta_book_call"
- data={{ location: "contact_section" }}
- className="underline hover:text-white transition-colors"
- style={{ color: "var(--accent)" }}
- >
- Or skip the form and book a 20-minute call directly →
- </TrackedCTA>
- </p>
- <div
- className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8"
- style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
- >
- <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
- AI-powered routing — live demo of our email triage service
- </div>
- <SmartContactForm />
  </section>
  </main>
  );

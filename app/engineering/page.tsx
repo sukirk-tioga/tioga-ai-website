@@ -106,13 +106,22 @@ export default function EngineeringIndexPage() {
               The Gateway Corridor →
             </Link>
           </p>
-          <Link
-            href="/demos"
-            className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
-          >
-            Try the live demos
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/demos"
+              className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
+              style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
+            >
+              Try the live demos
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
+              style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
+            >
+              Talk to Tioga AI
+            </Link>
+          </div>
         </div>
       </section>
     </main>

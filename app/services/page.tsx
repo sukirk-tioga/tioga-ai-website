@@ -199,7 +199,7 @@ export default function ServicesPage() {
                     </div>
                     <div className="mt-5 pt-5" style={{ borderTop: "1px solid var(--border)" }}>
                       <Link
-                        href={offer.href ?? "/#contact"}
+                        href={offer.href ?? "/contact"}
                         className="text-sm font-medium transition-colors hover:text-white"
                         style={{ color: "var(--accent)" }}
                       >
@@ -241,7 +241,7 @@ export default function ServicesPage() {
 
         <div className="mt-8 text-center">
           <Link
-            href="/#contact"
+            href="/contact"
             className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >

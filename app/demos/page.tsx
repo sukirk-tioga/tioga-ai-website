@@ -905,7 +905,7 @@ function DemosPageInner() {
         <div className="mt-10 text-center">
           <p className="text-slate-400 mb-4">Want these capabilities in your enterprise systems?</p>
           <Link
-            href="/#contact"
+            href="/contact"
             className="inline-flex px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >

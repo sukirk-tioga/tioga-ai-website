@@ -53,7 +53,7 @@ export default function DemoShell({
             migrations — not a form, a conversation.
           </p>
           <a
-            href="/#contact"
+            href="/contact"
             className="inline-flex px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >

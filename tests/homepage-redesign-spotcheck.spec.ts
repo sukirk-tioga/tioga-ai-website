@@ -44,8 +44,12 @@ test.describe("2026-08-08 homepage design review changes", () => {
   });
 
   test("pricing section: sprint banner + recommended flag + distinct CTA labels", async ({ page }) => {
-    await page.goto("/");
-    await page.getByRole("link", { name: "Services" }).first().click();
+    // Navigates straight to the homepage's #services anchor rather than
+    // clicking the Nav's "Services" link — as of the 2026-08-16 Nav/Footer
+    // consistency fix, Nav "Services" now points to the dedicated /services
+    // page (matching the Footer), not this homepage section. This test is
+    // about the homepage pricing section's own content, which is unchanged.
+    await page.goto("/#services");
     await expect(page.getByText("Not sure where to start?")).toBeVisible();
     await expect(page.getByText("Start here")).toBeVisible();
     await expect(page.getByRole("link", { name: "Scope an assessment" })).toBeVisible();
