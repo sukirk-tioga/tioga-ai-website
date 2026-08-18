@@ -40,8 +40,12 @@ export interface SolutionContent {
 
 export default function SolutionPage({ content }: { content: SolutionContent }) {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
-      {/* Hero */}
+    <main className="min-h-screen text-slate-200">
+      {/* Hero -- deliberately no opaque background here (Phase 4): this
+          band is transparent so the persistent, mood-tweened
+          <SolutionsFieldLoader> mounted in app/solutions/layout.tsx shows
+          through as the "shared abstract space" backdrop. Everything from
+          Buyer+Outcome down sits in its own opaque wrapper below. */}
       <section className="pt-36 pb-16 px-6 max-w-4xl mx-auto text-center">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
@@ -78,6 +82,9 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
         </div>
       </section>
 
+      {/* Opaque wrapper -- everything below the transparent hero band gets
+          the normal solid page background back. */}
+      <div style={{ background: "var(--bg-dark)" }}>
       {/* Buyer + Outcome */}
       <section className="px-6 pb-16 max-w-4xl mx-auto">
         <div
@@ -200,6 +207,7 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
           ))}
         </div>
       </section>
+      </div>
     </main>
   );
 }

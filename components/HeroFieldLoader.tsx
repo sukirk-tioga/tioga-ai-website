@@ -32,7 +32,14 @@ function StaticGlow() {
   );
 }
 
-export default function HeroFieldLoader() {
+export default function HeroFieldLoader({
+  flowAngleRef,
+}: {
+  // Optional: the homepage's pinned-hero scroll cinematic (Phase 4) passes
+  // this in to rotate the field's flow direction on scrub. Every other
+  // caller omits it and gets the original fixed-direction field.
+  flowAngleRef?: React.MutableRefObject<number>;
+}) {
   const [showField, setShowField] = useState(false);
 
   useEffect(() => {
@@ -44,7 +51,7 @@ export default function HeroFieldLoader() {
 
   return (
     <div className="absolute -z-10 inset-0 pointer-events-none" data-testid="hero-field-canvas">
-      <HeroFieldScene onContextLost={() => setShowField(false)} />
+      <HeroFieldScene onContextLost={() => setShowField(false)} flowAngleRef={flowAngleRef} />
     </div>
   );
 }
