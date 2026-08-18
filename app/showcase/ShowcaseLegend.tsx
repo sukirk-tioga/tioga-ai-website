@@ -26,12 +26,14 @@ export default function ShowcaseLegend() {
     <div className="grid sm:grid-cols-3 gap-3 mt-4">
       <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <p className="text-xs uppercase tracking-wide font-semibold mb-2" style={{ color: "var(--accent)" }}>
-          Row tiles
+          The ledger field
         </p>
         <p className="text-xs text-slate-400 leading-relaxed">
-          {TOTAL_CALLS} real calls, one tile each, ordered chronologically. Ribbon width is each
-          row&apos;s real token count — wider ribbons carried more tokens, not a decoration. Press
-          Replay to watch them travel the real, compressed Jul 17–25 timeline.
+          {TOTAL_CALLS} real rows, rasterized into a GPU particle field — the same table as{" "}
+          <span className="font-mono">/demos/governance-ledger</span>, made of light instead of
+          HTML. Ribbon width is each row&apos;s real token count — wider ribbons carried more
+          tokens, not a decoration. Press Replay to watch each row&apos;s own particles detach and
+          travel the real, compressed Jul 17–25 timeline.
         </p>
       </div>
       <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
@@ -42,7 +44,8 @@ export default function ShowcaseLegend() {
           Every ribbon passes through the same checkpoint — the budget reservation against the
           real ${BUDGET_CAP.toFixed(2)} / 30-day cap. Spend sits at ${TOTAL_SPEND.toFixed(6)}.{" "}
           {FREE_COUNT} of {TOTAL_CALLS} calls are free-pool; {FREE_ZERO_COST_COUNT} of those (
-          {FREE_ZERO_COST_PCT}%) settle at exactly $0. {PAID_COUNT} paid calls don&apos;t.
+          {FREE_ZERO_COST_PCT}%) settle at exactly $0. {PAID_COUNT} paid calls don&apos;t. Real
+          glass (refraction, not a flat glow) — the ribbons visibly bend passing through it.
         </p>
       </div>
       <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
