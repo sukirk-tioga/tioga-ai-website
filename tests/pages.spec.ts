@@ -15,6 +15,7 @@ const PAGES = [
   { path: "/demos/ap-exception-workflow", title: "Governed AP Exception Workflow Demo — Tioga AI" },
   { path: "/demos/capital-equipment-order", title: "Governed Capital Equipment Order Booking Demo — Tioga AI" },
   { path: "/demos/migration-assessment", title: "Migration Assessment Demo — Tioga AI" },
+  { path: "/demos/agent-autonomy-mapper", title: "Agent Autonomy Tier Mapper — Tioga AI" },
   { path: "/about", title: "About — Tioga AI" },
   { path: "/contact", title: "Contact — Tioga AI" },
   { path: "/trust", title: "Trust & Governance — Tioga AI" },
