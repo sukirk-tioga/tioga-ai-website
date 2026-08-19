@@ -908,6 +908,46 @@ function DemosPageInner() {
           </span>
         </Link>
 
+        {/* Featured: Composed Evidence */}
+        <Link
+          href="/demos/composed-evidence"
+          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
+          style={{
+            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
+            border: "1px solid #00D4FF40",
+            boxShadow: "0 0 30px #00D4FF0A",
+          }}
+        >
+          <span
+            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 12h1m16 0h1" />
+            </svg>
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 mb-1">
+              <p className="font-semibold text-white">Composed Evidence</p>
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
+                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+              >
+                Interactive
+              </span>
+            </div>
+            <p className="text-sm text-slate-400">
+              A universal AI assistant logs the conversation, an ERP&apos;s own execution agent logs the
+              transaction — neither composes the other&apos;s half. Try answering a real audit question from
+              each log alone, then see what only a composed record can prove.
+            </p>
+          </div>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
+            Try it live →
+          </span>
+        </Link>
+
         {/* Demo selector */}
         <div className="grid grid-cols-3 gap-3 mb-8">
           {DEMOS.map((demo) => (
