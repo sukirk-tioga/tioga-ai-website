@@ -16,6 +16,7 @@ const PAGES = [
   { path: "/demos/capital-equipment-order", title: "Governed Capital Equipment Order Booking Demo — Tioga AI" },
   { path: "/demos/field-service-classification", title: "Governed Field Service Billable Classification Demo — Tioga AI" },
   { path: "/demos/migration-assessment", title: "Migration Assessment Demo — Tioga AI" },
+  { path: "/demos/agent-autonomy-mapper", title: "Agent Autonomy Tier Mapper — Tioga AI" },
   { path: "/about", title: "About — Tioga AI" },
   { path: "/contact", title: "Contact — Tioga AI" },
   { path: "/trust", title: "Trust & Governance — Tioga AI" },
