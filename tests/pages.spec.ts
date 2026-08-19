@@ -13,6 +13,7 @@ const PAGES = [
   { path: "/demos", title: "Live AI Demos — Tioga AI" },
   { path: "/demos/governance-ledger", title: "Governance Ledger Demo — Tioga AI" },
   { path: "/demos/ap-exception-workflow", title: "Governed AP Exception Workflow Demo — Tioga AI" },
+  { path: "/demos/capital-equipment-order", title: "Governed Capital Equipment Order Booking Demo — Tioga AI" },
   { path: "/demos/migration-assessment", title: "Migration Assessment Demo — Tioga AI" },
   { path: "/about", title: "About — Tioga AI" },
   { path: "/contact", title: "Contact — Tioga AI" },
