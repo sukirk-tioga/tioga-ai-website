@@ -75,9 +75,15 @@ Base complexity on: scope, number of systems mentioned, enterprise vs SMB signal
  console.error("Email send failed:", emailErr);
  }
 
- // Best-effort, non-blocking — see lib/contact-log.ts for the two logging
- // channels (console.log is the one that actually persists in production).
- void appendContactLog({
+ // Must be awaited, same reason as sendInquiryEmail above: Vercel can freeze
+ // the serverless execution context the instant this handler returns, which
+ // would cut off channel 3's SMTP send mid-flight if this were fire-and-
+ // forget (confirmed live 2026-08-21 — a `void` version here silently
+ // dropped the audit email every time despite returning 200). Each channel
+ // inside appendContactLog is still its own try/catch, so a channel 3
+ // failure still can't break the actual classify response — see
+ // lib/contact-log.ts for all three channels.
+ await appendContactLog({
  timestamp: new Date().toISOString(),
  ip,
  request: { descriptionLength: description.length, hasCompany: Boolean(company) },
