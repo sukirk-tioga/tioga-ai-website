@@ -106,6 +106,37 @@ export async function sendInquiryEmail({
   });
 }
 
+// Durable home for the contact-classifier's audit log — see lib/contact-log.ts
+// for why this channel exists (Vercel Runtime Logs retain 1hr/1day, too short
+// for the record's own liability-defense purpose; see
+// strategy/agentic-operating-model-2026-08-19.md §5.7). Carries exactly the
+// same shape-only fields as the console.log channel — no raw name/email/
+// description text — so the PII boundary /trust's retention claim depends on
+// stays intact. Best-effort: a failure here must never break the classify
+// request, same discipline as sendInquiryEmail's own caller.
+export async function sendContactLogEmail(entry: {
+  timestamp: string;
+  ip: string;
+  request: { descriptionLength: number; hasCompany: boolean };
+  classification: Classification;
+  notificationSent: boolean;
+}) {
+  const html = `
+    <div style="font-family: monospace; max-width: 600px; margin: 0 auto; background: #f8fafc; padding: 20px; border-radius: 8px; font-size: 13px;">
+      <h2 style="font-size: 14px; color: #64748b; margin: 0 0 12px;">Contact-classifier audit record</h2>
+      <pre style="white-space: pre-wrap; word-break: break-word; background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; margin: 0; color: #334155;">${escapeHtml(JSON.stringify(entry, null, 2))}</pre>
+      <p style="font-size: 11px; color: #94a3b8; margin: 12px 0 0;">Durable copy of the same shape-only record written to Vercel Runtime Logs (which expire in 1hr/1day) — see lib/contact-log.ts.</p>
+    </div>
+  `;
+
+  await transporter.sendMail({
+    from: `"Tioga AI Audit Log" <${process.env.SMTP_USER}>`,
+    to: "sukir.kumaresan@tioga.ai",
+    subject: `[contact-log] ${entry.timestamp}`,
+    html,
+  });
+}
+
 interface MigrationAssessment {
   complexityScore: number;
   scoreReasoning: string;
