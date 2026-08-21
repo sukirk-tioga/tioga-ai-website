@@ -1025,6 +1025,45 @@ function DemosPageInner() {
           </span>
         </Link>
 
+        {/* Featured: SAP Joule Capability Gate Map */}
+        <Link
+          href="/demos/joule-capability-gate-map"
+          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
+          style={{
+            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
+            border: "1px solid #00D4FF40",
+            boxShadow: "0 0 30px #00D4FF0A",
+          }}
+        >
+          <span
+            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+            </svg>
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 mb-1">
+              <p className="font-semibold text-white">SAP Joule Capability Gate Map</p>
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
+                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+              >
+                Interactive
+              </span>
+            </div>
+            <p className="text-sm text-slate-400">
+              SAP says 200+ agents automate your business. See what&apos;s actually
+              documented to write versus view-and-hand-off, by area — plus one real
+              worked example of the gates a capability sits behind.
+            </p>
+          </div>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
+            Try it live →
+          </span>
+        </Link>
+
         {/* Featured: Composed Evidence */}
         <Link
           href="/demos/composed-evidence"
