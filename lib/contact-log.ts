@@ -7,23 +7,29 @@
 // already discloses as "the record" for contact-form submissions) and
 // exactly what the schema-validated classifier returned.
 //
-// Two channels, both best-effort/non-blocking — a logging failure here must
+// Three channels, all best-effort/non-blocking — a logging failure here must
 // never break the contact-form request:
 //
-// 1. console.log — the channel that actually works in production. Vercel
-//    captures stdout/stderr from every serverless invocation into its
-//    Runtime Logs (dashboard + `vercel logs`, drainable to a real log sink
-//    later) — the standard structured-logging pattern for a stateless
-//    Vercel function, and matches this repo's existing
+// 1. console.log — Vercel captures stdout/stderr from every serverless
+//    invocation into its Runtime Logs (dashboard + `vercel logs`) — but
+//    those retain only 1hr (Hobby) / 1day (Pro), too short for this
+//    record's actual purpose (see 3). Matches this repo's existing
 //    `console.error("[tag]", ...)` convention (see app/api/*/route.ts).
 // 2. A local-only JSONL append to ./logs/ (gitignored) — a convenience for
 //    reading recent entries during local dev without scrolling terminal
 //    output. Vercel's serverless filesystem is ephemeral and, depending on
 //    runtime, may be read-only — this write is expected to no-op or fail
-//    silently in production. It is NOT the production audit trail; (1) is.
+//    silently in production.
+// 3. sendContactLogEmail (lib/email.ts) — the actual durable home, added
+//    2026-08-20 per strategy/agentic-operating-model-2026-08-19.md §5.7:
+//    "give the contact-classifier's audit log a durable home." Reuses the
+//    same proven Gmail SMTP transport as sendInquiryEmail — no new signup,
+//    no new credential. Carries the exact same shape-only fields as (1),
+//    preserving the PII boundary /trust's retention claim depends on.
 import { promises as fs } from "fs";
 import path from "path";
 import type { Classification } from "./classification";
+import { sendContactLogEmail } from "./email";
 
 export interface ContactLogEntry {
   timestamp: string;
@@ -40,7 +46,7 @@ const LOG_DIR = path.join(process.cwd(), "logs");
 const LOG_FILE = path.join(LOG_DIR, "contact-submissions.jsonl");
 
 export async function appendContactLog(entry: ContactLogEntry): Promise<void> {
-  // Channel 1 — always runs; this is what's actually visible in production.
+  // Channel 1 — always runs, but ephemeral (see file header).
   console.log("[contact-log]", JSON.stringify(entry));
 
   // Channel 2 — local-dev convenience only, see file header.
@@ -52,5 +58,12 @@ export async function appendContactLog(entry: ContactLogEntry): Promise<void> {
     // fire on Vercel's read-only/ephemeral fs — that's fine, channel 1
     // already captured this entry.
     console.error("[contact-log] local-file write failed (expected on Vercel):", err);
+  }
+
+  // Channel 3 — the actual durable record, see file header.
+  try {
+    await sendContactLogEmail(entry);
+  } catch (err) {
+    console.error("[contact-log] durable email channel failed:", err);
   }
 }
