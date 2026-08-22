@@ -8,7 +8,7 @@ import {
   TOTAL_WRITE_CAPABILITIES,
   MARKETING_FIGURE,
   TRANSACTIONAL_DEFINITION_QUOTE,
-  PRODUCTION_PLANNING_GATE,
+  GATE_EXAMPLES,
   SOURCE_NOTE,
   type S4Area,
 } from "./lib/capabilities";
@@ -51,7 +51,7 @@ export default function JouleCapabilityGateMapPage() {
     <DemoShell
       title="SAP Joule Capability Gate Map"
       badge="Data Explorer — Sourced from SAP's Own Documentation, Not a Model Call"
-      description="SAP says 200+ agents automate your business. Here's what's actually documented to write to your ERP versus view-and-hand-off — and one real example of the gates a capability sits behind, straight from SAP's own Joule Capabilities Guide."
+      description="SAP says 200+ agents automate your business. Here's what's actually documented to write to your ERP versus view-and-hand-off — and real examples of the gates a capability sits behind, straight from SAP's own documentation across S/4HANA and Concur."
     >
       {/* Stat comparison */}
       <div
@@ -122,44 +122,55 @@ export default function JouleCapabilityGateMapPage() {
         </div>
       </div>
 
-      {/* Worked gate example */}
-      <div className="p-6 rounded-2xl mb-8" style={{ background: "var(--bg-card)", border: `1px solid #FBBF2440` }}>
-        <div className="flex items-center gap-2.5 mb-1">
-          <h2 className="font-semibold text-white">One real worked example: what a gate actually looks like</h2>
-        </div>
+      {/* Worked gate examples */}
+      <div className="mb-2">
+        <h2 className="font-semibold text-white mb-1">Real worked examples: what a gate actually looks like</h2>
         <p className="text-sm text-slate-400 mb-5">
-          This is SAP&apos;s own flagship &ldquo;autonomous&rdquo; example — the only capability
-          checked this deeply for this demo. It shows the shape of the real question:
-          not &ldquo;can Joule do this,&rdquo; but &ldquo;is it configured to, here.&rdquo;
+          These are the capabilities checked this deeply for this demo — one from SAP&apos;s own
+          flagship &ldquo;autonomous&rdquo; manufacturing pitch, one from Concur&apos;s expense-report
+          Joule agent. Each shows the shape of the real question: not &ldquo;can Joule do this,&rdquo;
+          but &ldquo;is it configured to, here.&rdquo;
         </p>
-
-        <div className="p-4 rounded-xl mb-4" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-          <p className="text-xs text-slate-400 uppercase tracking-wide mb-1">{PRODUCTION_PLANNING_GATE.capability}</p>
-          <p className="text-sm text-slate-300 italic">
-            The pitch: {PRODUCTION_PLANNING_GATE.claim}
-          </p>
-          <p className="text-xs text-slate-500 mt-1">— {PRODUCTION_PLANNING_GATE.claimSource}</p>
-        </div>
-
-        <p className="text-xs text-slate-400 uppercase tracking-wide mb-2">What SAP&apos;s own docs actually require</p>
-        <div className="grid sm:grid-cols-3 gap-3 mb-4">
-          {PRODUCTION_PLANNING_GATE.gates.map((g) => (
-            <div key={g.label} className="p-3.5 rounded-xl min-w-0" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-              <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "var(--warning-light)" }}>
-                {g.label}
-              </p>
-              <p className="text-xs text-slate-300 leading-relaxed break-words">{g.detail}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="p-3.5 rounded-xl" style={{ background: "#4ADE8010", border: "1px solid #4ADE8040" }}>
-          <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "var(--success)" }}>
-            Human checkpoint
-          </p>
-          <p className="text-xs text-slate-300 leading-relaxed">{PRODUCTION_PLANNING_GATE.humanCheckpoint}</p>
-        </div>
       </div>
+
+      {GATE_EXAMPLES.map((example) => (
+        <div
+          key={example.capability}
+          className="p-6 rounded-2xl mb-8"
+          style={{ background: "var(--bg-card)", border: `1px solid #FBBF2440` }}
+        >
+          <p className="text-[11px] uppercase tracking-wide mb-3" style={{ color: "var(--accent)" }}>
+            {AREAS.find((a) => a.id === example.area)?.label}
+          </p>
+
+          <div className="p-4 rounded-xl mb-4" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
+            <p className="text-xs text-slate-400 uppercase tracking-wide mb-1">{example.capability}</p>
+            <p className="text-sm text-slate-300 italic">
+              The pitch: {example.claim}
+            </p>
+            <p className="text-xs text-slate-500 mt-1">— {example.claimSource}</p>
+          </div>
+
+          <p className="text-xs text-slate-400 uppercase tracking-wide mb-2">What SAP&apos;s own docs actually require</p>
+          <div className="grid sm:grid-cols-3 gap-3 mb-4">
+            {example.gates.map((g) => (
+              <div key={g.label} className="p-3.5 rounded-xl min-w-0" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
+                <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "var(--warning-light)" }}>
+                  {g.label}
+                </p>
+                <p className="text-xs text-slate-300 leading-relaxed break-words">{g.detail}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="p-3.5 rounded-xl" style={{ background: "#4ADE8010", border: "1px solid #4ADE8040" }}>
+            <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "var(--success)" }}>
+              Human checkpoint
+            </p>
+            <p className="text-xs text-slate-300 leading-relaxed">{example.humanCheckpoint}</p>
+          </div>
+        </div>
+      ))}
 
       <div
         className="p-5 rounded-xl mb-8 text-sm text-slate-300 leading-relaxed"
