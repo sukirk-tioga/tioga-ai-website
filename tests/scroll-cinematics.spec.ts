@@ -61,7 +61,7 @@ test("headline text survives the SplitText character reveal", async ({ page }) =
   const h1 = page.getByRole("heading", { level: 1 });
   await expect(h1).toBeVisible();
   await page.waitForTimeout(1200); // let the one-time SplitText reveal finish
-  await expect(h1).toContainText("AI agents for the ERP you already have.");
+  await expect(h1).toContainText("AI agents for the systems you already have.");
 });
 
 test("stat-strip shows the real governance-ledger numbers at rest, and after scrolling past the pin", async ({ page }) => {
@@ -147,5 +147,5 @@ test("prefers-reduced-motion fully bypasses Lenis and the pin — normal scrolli
   expect(after).toBeGreaterThan(before);
 
   const h1 = page.getByRole("heading", { level: 1 });
-  await expect(h1).toContainText("AI agents for the ERP you already have.");
+  await expect(h1).toContainText("AI agents for the systems you already have.");
 });

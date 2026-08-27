@@ -171,11 +171,11 @@ export default function HomeHeroPinned() {
         <HeroFieldLoader flowAngleRef={flowAngleRef} />
         <h1 ref={headlineRef} className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight text-balance">
           AI agents for the{" "}
-          <span style={{ color: "var(--accent)" }}>ERP</span>{" "}
+          <span style={{ color: "var(--accent)" }}>systems</span>{" "}
           you already have.
         </h1>
         <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed">
-          Governed agents for finance, procurement and operations on Oracle EBS and SAP — running inside your identity, approvals and audit trail, every action visible before it executes. No migration required.
+          Governed agents for finance, procurement and operations on Oracle EBS and SAP — now extending to Salesforce, ServiceNow and the data platforms they sit beside — running inside your identity, approvals and audit trail, every action visible before it executes. No migration required.
         </p>
         <p className="text-sm text-slate-400 max-w-xl mx-auto mb-10">
           Five-day discovery sprint, $5,000 flat — credited toward your project if you move forward.
