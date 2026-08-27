@@ -14,6 +14,11 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    href: "/articles/who-runs-your-ai",
+    title: "Who's really running your AI?",
+    summary: "Seven of nine enterprise systems we track each signed their own LLM-vendor deal in the last year — a system-by-system look at who anchored to which lab.",
+  },
+  {
     href: "/articles/governed-write-path-pattern",
     title: "How a governed AI write-path actually works",
     summary: "Read, decide, approve, execute, audit, reject, rollback — with a real bug we caught building it.",
