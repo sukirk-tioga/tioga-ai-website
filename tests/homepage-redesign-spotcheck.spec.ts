@@ -24,7 +24,7 @@ test.describe("2026-08-08 homepage design review changes", () => {
     await page.goto("/");
 
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "AI agents for the ERP you already have."
+      "AI agents for the systems you already have."
     );
     await expect(page.getByText(/No migration required/)).toBeVisible();
     await expect(page.getByText(/click the chat bubble/)).toHaveCount(0);
