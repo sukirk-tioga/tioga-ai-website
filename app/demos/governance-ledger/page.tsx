@@ -174,6 +174,13 @@ export default function GovernanceLedgerPage() {
           and attributable — applied to a governed write-path into your ERP, or packaged as
           evidence for an insurance renewal, instead of a general-purpose AI gateway.
         </p>
+        <p className="text-xs text-slate-500 mt-3">
+          This is spend-level detail. For how findings across the whole automation estate get
+          reviewed and approved, see{" "}
+          <Link href="/demos/automation-oversight" className="hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+            Automation Oversight →
+          </Link>
+        </p>
         <div className="flex flex-wrap gap-2 mt-4">
           {[
             "Agent-Ready ERP Diagnostic & Governed Write-Path — $60–120K",

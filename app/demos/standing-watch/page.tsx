@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import DemoShell from "../_lib/demo-shell";
 
 export const metadata: Metadata = {
@@ -277,6 +278,13 @@ export default function StandingWatchDemoPage() {
           This propose-and-approve discipline — findings that age instead of disappearing, fixes a
           human reviews and applies, and a system that knows the edge of its own authority — is
           what Standing Watch generalizes to a multi-vendor enterprise estate.
+        </p>
+        <p className="text-xs text-slate-500 mt-3">
+          This is one incident, in full detail. For the ongoing, aggregate record across the whole
+          estate, see{" "}
+          <Link href="/demos/automation-oversight" className="hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+            Automation Oversight →
+          </Link>
         </p>
         <div className="flex flex-wrap gap-2 mt-4">
           {[

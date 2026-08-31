@@ -832,6 +832,46 @@ function DemosPageInner() {
           </span>
         </Link>
 
+        {/* Featured: Automation Oversight */}
+        <Link
+          href="/demos/automation-oversight"
+          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
+          style={{
+            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
+            border: "1px solid #00D4FF40",
+            boxShadow: "0 0 30px #00D4FF0A",
+          }}
+        >
+          <span
+            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5a2 2 0 012-2h2a2 2 0 012 2v0H9v0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
+            </svg>
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 mb-1">
+              <p className="font-semibold text-white">Automation Oversight</p>
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
+                style={{ background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" }}
+              >
+                Real Data
+              </span>
+            </div>
+            <p className="text-sm text-slate-400">
+              The ongoing propose-and-approve record across Tioga&apos;s whole automation estate —
+              what a daily review found, and what a human approved before anything changed.
+            </p>
+          </div>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
+            View the record →
+          </span>
+        </Link>
+
         {/* Featured: AP Exception Workflow */}
         <Link
           href="/demos/ap-exception-workflow"
