@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/mcp/vs-rpa", priority: 0.5, changeFrequency: "monthly" as const, lastModified: "2026-08-07" },
     { path: "/demos", priority: 0.8, changeFrequency: "weekly" as const, lastModified: "2026-08-07" },
     { path: "/demos/governance-ledger", priority: 0.6, changeFrequency: "monthly" as const, lastModified: "2026-08-07" },
+    { path: "/demos/automation-oversight", priority: 0.6, changeFrequency: "monthly" as const, lastModified: "2026-08-30" },
     { path: "/demos/ap-exception-workflow", priority: 0.6, changeFrequency: "monthly" as const, lastModified: "2026-08-07" },
     { path: "/demos/migration-assessment", priority: 0.6, changeFrequency: "monthly" as const, lastModified: "2026-08-02" },
     { path: "/about", priority: 0.7, changeFrequency: "monthly" as const, lastModified: "2026-08-07" },
