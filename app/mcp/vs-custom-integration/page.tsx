@@ -54,21 +54,21 @@ const ROWS: Row[] = [
 
 export default function McpVsCustomIntegrationPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <Link href="/mcp" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/mcp" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← MCP Integrations
         </Link>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           Comparison
         </div>
-        <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           MCP vs. custom integration: what actually changes
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed mb-12">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           Both approaches get an AI system reading and writing data in SAP,
           Salesforce, Workday, or whatever else runs the business. The
           difference isn&apos;t whether it works the first time — a
@@ -79,8 +79,8 @@ export default function McpVsCustomIntegrationPage() {
 
         <div className="space-y-10">
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">The custom integration path</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>The custom integration path</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               This is a point-to-point job: pick the fields a specific
               workflow needs, write the auth and query logic against that
               system&apos;s API, and wire the result into that one prompt or
@@ -93,15 +93,15 @@ export default function McpVsCustomIntegrationPage() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">What MCP changes</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>What MCP changes</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               MCP (Model Context Protocol) inverts the shape of the work: you
               build a tool server for the system — <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>get_pending_invoices</code>,{" "}
               <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>get_employee_data</code>,{" "}
               <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>get_pipeline</code> — not around any one workflow. Any
               MCP-aware model can call those tools, decide which ones it
               needs for a given question, and chain them. The{" "}
-              <Link href="/mcp" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+              <Link href="/mcp" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
                 live MCP demo
               </Link>{" "}
               on this site shows the actual tool-server code for SAP,
@@ -110,22 +110,22 @@ export default function McpVsCustomIntegrationPage() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-4">Side by side</h2>
+            <h2 className="text-xl font-bold mb-4" style={{ color: "var(--text)" }}>Side by side</h2>
             <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid var(--border)" }}>
               <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: "var(--bg-card)" }}>
-                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-slate-400">Dimension</th>
-                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-slate-400">Custom integration</th>
+                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">Dimension</th>
+                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">Custom integration</th>
                     <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--accent)" }}>MCP</th>
                   </tr>
                 </thead>
                 <tbody>
                   {ROWS.map((r, i) => (
                     <tr key={r.dimension} style={{ borderTop: "1px solid var(--border)", background: i % 2 === 1 ? "var(--bg-dark)" : "transparent" }}>
-                      <td className="p-4 text-white font-medium align-top whitespace-nowrap">{r.dimension}</td>
-                      <td className="p-4 text-slate-400 leading-relaxed align-top">{r.custom}</td>
-                      <td className="p-4 text-slate-300 leading-relaxed align-top">{r.mcp}</td>
+                      <td className="p-4 font-medium align-top whitespace-nowrap" style={{ color: "var(--text)" }}>{r.dimension}</td>
+                      <td className="p-4 text-[var(--text-muted)] leading-relaxed align-top">{r.custom}</td>
+                      <td className="p-4 text-[var(--text-muted)] leading-relaxed align-top">{r.mcp}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -133,9 +133,9 @@ export default function McpVsCustomIntegrationPage() {
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
-            <h2 className="text-lg font-bold text-white mb-3">Where custom integration is still the right call</h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340630" }}>
+            <h2 className="text-lg font-bold mb-3" style={{ color: "var(--text)" }}>Where custom integration is still the right call</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               A protocol layer is only worth its overhead if something is
               actually going to reuse it. If there&apos;s exactly one AI use
               case against a given system, with no second one on the
@@ -147,9 +147,9 @@ export default function McpVsCustomIntegrationPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-xs text-slate-400 mb-4">
+          <p className="text-xs text-[var(--text-muted)] mb-4">
             See the pattern applied to a real workflow in the{" "}
-            <Link href="/engineering/migration-assessment" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/engineering/migration-assessment" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               Migration Assessment writeup →
             </Link>
           </p>

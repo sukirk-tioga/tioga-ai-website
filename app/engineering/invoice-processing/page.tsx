@@ -15,20 +15,20 @@ export const metadata: Metadata = {
 
 export default function InvoiceProcessingWriteup() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← How We Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>
             Claude Haiku 4.5
           </span>
         </div>
-        <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           How we built the Invoice Processing demo
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed mb-12">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           Pull structured data — vendor, line items, totals, due date — out of
           an invoice in any format a finance team actually receives one in.
           Not a formatted sample PDF; whatever gets forwarded to AP.
@@ -36,8 +36,8 @@ export default function InvoiceProcessingWriteup() {
 
         <div className="space-y-10">
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">The problem</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>The problem</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Invoices arrive as PDFs, scanned images saved as PDFs, Word
               docs, or plain email text pasted into a form. Most invoice-AI
               demos quietly assume the first case. Real AP inboxes get all of
@@ -47,8 +47,8 @@ export default function InvoiceProcessingWriteup() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">The pipeline</h2>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>The pipeline</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               File upload hits a shared <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>/api/extract-text</code> route
               before the invoice-specific logic ever runs:
             </p>
@@ -60,7 +60,7 @@ export default function InvoiceProcessingWriteup() {
                 "TXT/MD/CSV → read directly, no parsing needed.",
                 "Text truncated to a 10,000-character ceiling before it ever reaches a model call.",
               ].map((step, i) => (
-                <li key={i} className="flex gap-3 text-sm text-slate-400 leading-relaxed">
+                <li key={i} className="flex gap-3 text-sm text-[var(--text-muted)] leading-relaxed">
                   <span className="font-mono text-xs shrink-0 pt-0.5" style={{ color: "var(--accent)" }}>{String(i + 1).padStart(2, "0")}</span>
                   {step}
                 </li>
@@ -69,8 +69,8 @@ export default function InvoiceProcessingWriteup() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">The extraction call</h2>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>The extraction call</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               The prompt asks for one JSON object — vendor, invoice number,
               dates, PO number, line items, subtotal, tax, total, payment
               instructions, and a self-reported confidence score — and
@@ -82,9 +82,9 @@ export default function InvoiceProcessingWriteup() {
           </div>
 
           {/* Design decisions callout */}
-          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
-            <h2 className="text-lg font-bold text-white mb-3">Why Haiku, not Sonnet</h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340630" }}>
+            <h2 className="text-lg font-bold mb-3" style={{ color: "var(--text)" }}>Why Haiku, not Sonnet</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               This is field extraction against text that&apos;s already been
               parsed out of the source file — there&apos;s no multi-step
               reasoning, no judgment call, no ambiguity to weigh. Claude

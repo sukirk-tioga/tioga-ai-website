@@ -15,20 +15,20 @@ export const metadata: Metadata = {
 
 export default function GovernanceLedgerWriteup() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← How We Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>
             No model call
           </span>
         </div>
-        <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           How we built the Governance Ledger demo
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed mb-12">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           The other three demos on this site take an input and run it through
           a model live. This one doesn&apos;t take an input at all — it&apos;s a
           real, dated excerpt from the routing ledger that Tioga&apos;s own AI
@@ -40,8 +40,8 @@ export default function GovernanceLedgerWriteup() {
 
         <div className="space-y-10">
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">A snapshot, not a ticker — on purpose</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>A snapshot, not a ticker — on purpose</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               The 17-row ledger and the &quot;live gateway snapshot&quot; stats above
               it are hardcoded, dated, and captured at two different times
               (the ledger rows span Jul 17–25, the snapshot is Jul 27) rather
@@ -59,8 +59,8 @@ export default function GovernanceLedgerWriteup() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">The NIST mapping falls out of the schema, not the copy</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>The NIST mapping falls out of the schema, not the copy</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               GOVERN / MAP / MEASURE / MANAGE aren&apos;t a label applied to this
               page after the fact — they&apos;re fields the gateway already
               records on every call: <code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>policy: budget.json</code> for
@@ -77,8 +77,8 @@ export default function GovernanceLedgerWriteup() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">What &quot;requested → served&quot; is actually showing</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>What &quot;requested → served&quot; is actually showing</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Most rows show a cheap model name requested (<code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>glm-flash</code>)
               resolving to a different model actually serving it
               (<code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>qwen/qwen3-8b</code>) at $0.000000 —
@@ -93,9 +93,9 @@ export default function GovernanceLedgerWriteup() {
           </div>
 
           {/* Design decisions callout */}
-          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
-            <h2 className="text-lg font-bold text-white mb-3">Why this is the one demo with no prompt-injection surface</h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340630" }}>
+            <h2 className="text-lg font-bold mb-3" style={{ color: "var(--text)" }}>Why this is the one demo with no prompt-injection surface</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Every other demo on this site accepts either a constrained form
               or a file upload, and the corresponding writeup spends real
               space on how untrusted input is validated before it reaches a

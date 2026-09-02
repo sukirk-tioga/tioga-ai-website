@@ -88,26 +88,26 @@ export default function AutomationOversightPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden mb-8" style={{ background: "var(--border)" }}>
         <div className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
           <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>28</div>
-          <div className="text-xs text-slate-400 uppercase tracking-wide">Scheduled automations</div>
+          <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">Scheduled automations</div>
         </div>
         <div className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
           <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>11</div>
-          <div className="text-xs text-slate-400 uppercase tracking-wide">Findings, last review</div>
+          <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">Findings, last review</div>
         </div>
         <div className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
           <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>10</div>
-          <div className="text-xs text-slate-400 uppercase tracking-wide">Required human review before applying</div>
+          <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">Required human review before applying</div>
         </div>
         <div className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
           <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>1</div>
-          <div className="text-xs text-slate-400 uppercase tracking-wide">Auto-implemented under a pre-approved rule</div>
+          <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">Auto-implemented under a pre-approved rule</div>
         </div>
       </div>
 
       {/* How it works */}
       <div className="rounded-2xl p-6 mb-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold text-white mb-2">How this works</h2>
-        <p className="text-sm text-slate-400 leading-relaxed">
+        <h2 className="font-semibold mb-2" style={{ color: "var(--text)" }}>How this works</h2>
+        <p className="text-sm text-[var(--text-muted)] leading-relaxed">
           A background pass reads the estate&apos;s own logs and cost data daily and drafts findings —
           bugs, cost drift, hardening gaps. It never applies anything on its own authority. A small,
           hard-coded set of change types (a pure addition, syntax-checked afterward) may be applied
@@ -119,8 +119,8 @@ export default function AutomationOversightPage() {
       {/* Recent dispositions */}
       <div className="rounded-2xl overflow-hidden mb-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div className="px-5 pt-5 pb-3">
-          <h2 className="font-semibold text-white">Recent dispositions</h2>
-          <p className="text-xs text-slate-400 mt-1">
+          <h2 className="font-semibold" style={{ color: "var(--text)" }}>Recent dispositions</h2>
+          <p className="text-xs text-[var(--text-muted)] mt-1">
             What the review found and what happened to it. Nothing here was written for this page.
           </p>
         </div>
@@ -141,13 +141,13 @@ export default function AutomationOversightPage() {
                   style={
                     r.disposition === "approved"
                       ? { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" }
-                      : { background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }
+                      : { background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }
                   }
                 >
                   {r.disposition === "approved" ? "human-approved" : "auto-implemented, bounded"}
                 </span>
               </div>
-              <p className="text-sm text-slate-200 leading-snug mb-1">{r.finding}</p>
+              <p className="text-sm text-[var(--text)] leading-snug mb-1">{r.finding}</p>
               <p className="text-[11px] text-slate-500">{r.category}</p>
             </div>
           ))}
@@ -156,8 +156,8 @@ export default function AutomationOversightPage() {
 
       {/* Honesty note — the estate catching its own mistakes */}
       <div className="rounded-2xl p-6 mb-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold text-white mb-2">Including when the estate is wrong</h2>
-        <p className="text-sm text-slate-400 leading-relaxed">
+        <h2 className="font-semibold mb-2" style={{ color: "var(--text)" }}>Including when the estate is wrong</h2>
+        <p className="text-sm text-[var(--text-muted)] leading-relaxed">
           The Aug 29 entry above isn&apos;t a hardening find against a third party — it&apos;s Tioga&apos;s own
           pre-deploy safety gate incorrectly flagging its own working code as broken, every morning,
           until the review caught why. A review process that only ever finds things elsewhere isn&apos;t
@@ -172,8 +172,8 @@ export default function AutomationOversightPage() {
           className="group p-5 rounded-2xl transition-all hover:border-slate-500"
           style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
         >
-          <p className="text-sm font-semibold text-white mb-1 group-hover:opacity-80">One incident, in full detail →</p>
-          <p className="text-xs text-slate-400">
+          <p className="text-sm font-semibold mb-1 group-hover:opacity-80" style={{ color: "var(--text)" }}>One incident, in full detail →</p>
+          <p className="text-xs text-[var(--text-muted)]">
             Standing Watch walks a single real security finding end to end — what was found, what was
             fixed, what still needed a human.
           </p>
@@ -183,8 +183,8 @@ export default function AutomationOversightPage() {
           className="group p-5 rounded-2xl transition-all hover:border-slate-500"
           style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
         >
-          <p className="text-sm font-semibold text-white mb-1 group-hover:opacity-80">Spend-level detail →</p>
-          <p className="text-xs text-slate-400">
+          <p className="text-sm font-semibold mb-1 group-hover:opacity-80" style={{ color: "var(--text)" }}>Spend-level detail →</p>
+          <p className="text-xs text-[var(--text-muted)]">
             The Governance Ledger shows every individual AI model call — cost, tokens, and routing
             decision, row by row.
           </p>

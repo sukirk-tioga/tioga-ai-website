@@ -40,7 +40,7 @@ const inputStyle = {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-slate-300 mb-2">{label}</label>
+      <label className="block text-sm font-medium text-[var(--text-muted)] mb-2">{label}</label>
       {children}
     </div>
   );
@@ -61,8 +61,8 @@ function ScoreRing({ score }: { score: number }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-2xl font-bold text-white leading-none">{score}</span>
-        <span className="text-[10px] text-slate-400 mt-0.5">/ 10</span>
+        <span className="text-2xl font-bold leading-none" style={{ color: "var(--text)" }}>{score}</span>
+        <span className="text-[10px] text-[var(--text-muted)] mt-0.5">/ 10</span>
       </div>
     </div>
   );
@@ -121,14 +121,14 @@ export default function MigrationAssessmentPage() {
     >
       {/* Form */}
       <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold text-white mb-5">Tell us about your Oracle EBS environment</h2>
+        <h2 className="font-semibold mb-5" style={{ color: "var(--text)" }}>Tell us about your Oracle EBS environment</h2>
         <div className="space-y-5">
           <div className="grid sm:grid-cols-2 gap-5">
             <Field label="Oracle EBS version">
               <select
                 value={version}
                 onChange={(e) => setVersion(e.target.value)}
-                className="w-full rounded-lg px-3 py-2.5 text-sm text-slate-200 outline-none focus:border-slate-500"
+                className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500"
                 style={inputStyle}
               >
                 {VERSIONS.map((v) => <option key={v} value={v}>{v}</option>)}
@@ -138,7 +138,7 @@ export default function MigrationAssessmentPage() {
               <select
                 value={dataVolume}
                 onChange={(e) => setDataVolume(e.target.value)}
-                className="w-full rounded-lg px-3 py-2.5 text-sm text-slate-200 outline-none focus:border-slate-500"
+                className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500"
                 style={inputStyle}
               >
                 {VOLUMES.map((v) => <option key={v} value={v}>{v.replace("-", "–")}</option>)}
@@ -157,8 +157,8 @@ export default function MigrationAssessmentPage() {
                     onClick={() => toggleModule(m.id)}
                     className="px-3 py-1.5 rounded-full text-xs font-medium transition-all"
                     style={{
-                      background: on ? "#EC6D3D15" : "transparent",
-                      border: `1px solid ${on ? "#EC6D3D50" : "var(--border)"}`,
+                      background: on ? "#C8340615" : "transparent",
+                      border: `1px solid ${on ? "#C8340650" : "var(--border)"}`,
                       color: on ? "var(--accent)" : "var(--text-muted)",
                     }}
                   >
@@ -174,7 +174,7 @@ export default function MigrationAssessmentPage() {
               <select
                 value={target}
                 onChange={(e) => setTarget(e.target.value)}
-                className="w-full rounded-lg px-3 py-2.5 text-sm text-slate-200 outline-none focus:border-slate-500"
+                className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500"
                 style={inputStyle}
               >
                 {TARGETS.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -186,7 +186,7 @@ export default function MigrationAssessmentPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="w-full rounded-lg px-3 py-2.5 text-sm text-slate-200 outline-none focus:border-slate-500 placeholder:text-slate-400"
+                className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500 placeholder:text-[var(--text-muted)]"
                 style={inputStyle}
               />
             </Field>
@@ -211,7 +211,7 @@ export default function MigrationAssessmentPage() {
             )}
           </button>
           {modules.length === 0 && (
-            <p className="text-xs text-slate-400 text-center -mt-2">Select at least one module.</p>
+            <p className="text-xs text-[var(--text-muted)] text-center -mt-2">Select at least one module.</p>
           )}
           {state === "error" && (
             <p className="text-sm text-center" style={{ color: "var(--error-light)" }}>{error}</p>
@@ -222,35 +222,35 @@ export default function MigrationAssessmentPage() {
       {/* Results */}
       {state === "done" && result && (
         <div className="mt-8">
-          <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid #EC6D3D30" }}>
+          <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid #C8340630" }}>
             {/* Score + timeline */}
             <div className="flex flex-col sm:flex-row items-start gap-6 pb-6 mb-6" style={{ borderBottom: "1px solid var(--border)" }}>
               <ScoreRing score={result.complexityScore} />
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-3 mb-2">
-                  <h3 className="text-lg font-semibold text-white">Migration Complexity</h3>
+                  <h3 className="text-lg font-semibold" style={{ color: "var(--text)" }}>Migration Complexity</h3>
                   <span
                     className="text-xs px-2.5 py-1 rounded-full font-medium uppercase tracking-wide"
-                    style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
+                    style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
                   >
                     {result.recommendedApproach.approach}
                   </span>
                 </div>
-                <p className="text-sm text-slate-400 leading-relaxed mb-3">{result.scoreReasoning}</p>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-3">{result.scoreReasoning}</p>
                 <p className="text-sm">
-                  <span className="text-slate-400">Estimated timeline: </span>
-                  <span className="text-white font-semibold font-mono">{result.timelineRange}</span>
+                  <span className="text-[var(--text-muted)]">Estimated timeline: </span>
+                  <span className="font-semibold font-mono" style={{ color: "var(--text)" }}>{result.timelineRange}</span>
                 </p>
               </div>
             </div>
 
             {/* Risks */}
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wide mb-3">Top Risks</h4>
+            <h4 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "var(--text)" }}>Top Risks</h4>
             <div className="grid sm:grid-cols-3 gap-3 mb-6">
               {result.topRisks.map((r, i) => (
                 <div key={i} className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
                   <p className="text-sm font-semibold mb-1.5" style={{ color: "var(--warning-light)" }}>{r.title}</p>
-                  <p className="text-xs text-slate-400 leading-relaxed">{r.detail}</p>
+                  <p className="text-xs text-[var(--text-muted)] leading-relaxed">{r.detail}</p>
                 </div>
               ))}
             </div>
@@ -258,14 +258,14 @@ export default function MigrationAssessmentPage() {
             {/* Approach + next steps */}
             <div className="grid sm:grid-cols-2 gap-3">
               <div className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-                <p className="text-xs text-slate-400 uppercase tracking-wide mb-1.5">Recommended approach</p>
-                <p className="text-sm text-slate-300 leading-relaxed">{result.recommendedApproach.reasoning}</p>
+                <p className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Recommended approach</p>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed">{result.recommendedApproach.reasoning}</p>
               </div>
               <div className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-                <p className="text-xs text-slate-400 uppercase tracking-wide mb-1.5">Next steps</p>
+                <p className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Next steps</p>
                 <ul className="space-y-1.5">
                   {result.nextSteps.map((s, i) => (
-                    <li key={i} className="text-sm text-slate-300 flex gap-2">
+                    <li key={i} className="text-sm text-[var(--text-muted)] flex gap-2">
                       <span style={{ color: "var(--accent)" }}>→</span>
                       <span>{s}</span>
                     </li>
@@ -275,7 +275,7 @@ export default function MigrationAssessmentPage() {
             </div>
           </div>
 
-          <p className="text-xs text-slate-400 text-center mt-4 max-w-lg mx-auto">
+          <p className="text-xs text-[var(--text-muted)] text-center mt-4 max-w-lg mx-auto">
             This is a sample assessment. A full assessment includes data profiling, code analysis,
             and a module-by-module roadmap.
           </p>
@@ -285,7 +285,7 @@ export default function MigrationAssessmentPage() {
             </p>
           )}
           {email && !emailed && (
-            <p className="text-xs text-slate-400 text-center mt-2">
+            <p className="text-xs text-[var(--text-muted)] text-center mt-2">
               We couldn&apos;t email a copy just now — you can still copy this page&apos;s results manually.
             </p>
           )}

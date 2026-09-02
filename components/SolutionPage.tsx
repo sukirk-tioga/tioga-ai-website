@@ -40,7 +40,7 @@ export interface SolutionContent {
 
 export default function SolutionPage({ content }: { content: SolutionContent }) {
   return (
-    <main className="min-h-screen text-slate-200">
+    <main className="min-h-screen text-[var(--text)]">
       {/* Hero -- deliberately no opaque background here (Phase 4): this
           band is transparent so the persistent, mood-tweened
           <SolutionsFieldLoader> mounted in app/solutions/layout.tsx shows
@@ -49,15 +49,15 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
       <section className="pt-36 pb-16 px-6 max-w-4xl mx-auto text-center">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           {content.eyebrow}
         </div>
-        <h1 className="text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 tracking-tight">
+        <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6 tracking-tight" style={{ color: "var(--text)" }}>
           {content.title}
         </h1>
-        <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed">{content.problem}</p>
+        <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto mb-8 leading-relaxed">{content.problem}</p>
         <div className="flex flex-col items-center sm:flex-row gap-4 justify-center">
           <TrackedCTA
             href="/contact"
@@ -73,7 +73,7 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
               href={content.demoLink.href}
               event="cta_view_demo"
               data={{ location: `solutions_${content.slug}` }}
-              className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
+              className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-[var(--text)]"
               style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
             >
               {content.demoLink.label}
@@ -93,11 +93,11 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
         >
           <div>
             <p className="text-xs uppercase tracking-wide mb-2" style={{ color: "var(--accent)" }}>Who this is for</p>
-            <p className="text-sm text-slate-300 leading-relaxed">{content.buyer}</p>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">{content.buyer}</p>
           </div>
           <div className="md:pl-8" style={{ borderLeft: "1px solid var(--border)" }}>
             <p className="text-xs uppercase tracking-wide mb-2" style={{ color: "var(--accent)" }}>What you get</p>
-            <p className="text-sm text-slate-300 leading-relaxed">{content.outcome}</p>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">{content.outcome}</p>
           </div>
         </div>
       </section>
@@ -109,7 +109,7 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
 
       {/* Proof */}
       <section className="px-6 pb-16 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold text-white mb-6">Why this is real, not a pitch deck</h2>
+        <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Why this is real, not a pitch deck</h2>
         <div className="grid md:grid-cols-2 gap-4">
           {content.proof.map((p) => (
             <div
@@ -117,8 +117,8 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
               className="p-5 rounded-xl"
               style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
-              <p className="text-sm font-semibold text-white mb-1.5">{p.label}</p>
-              <p className="text-sm text-slate-400 leading-relaxed">{p.detail}</p>
+              <p className="text-sm font-semibold mb-1.5" style={{ color: "var(--text)" }}>{p.label}</p>
+              <p className="text-sm text-[var(--text-muted)] leading-relaxed">{p.detail}</p>
             </div>
           ))}
         </div>
@@ -126,8 +126,8 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
 
       {/* Offers */}
       <section className="px-6 pb-16 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold text-white mb-2">Engagements</h2>
-        <p className="text-sm text-slate-400 mb-3 max-w-2xl">
+        <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Engagements</h2>
+        <p className="text-sm text-[var(--text-muted)] mb-3 max-w-2xl">
           Every engagement starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment — credited toward the price below if you move forward.
         </p>
         <TrackedCTA
@@ -136,7 +136,7 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
           rel="noopener noreferrer"
           event="lead_asset_download"
           data={{ asset: "erp-agent-readiness-checklist", location: `solutions_${content.slug}` }}
-          className="inline-block text-sm underline underline-offset-2 mb-6 transition-colors hover:text-white"
+          className="inline-block text-sm underline underline-offset-2 mb-6 transition-colors hover:text-[var(--text)]"
           style={{ color: "var(--accent)" }}
         >
           Not ready to scope an engagement? Free ERP Agent-Readiness Checklist →
@@ -150,12 +150,12 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-white mb-1.5">{offer.name}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{offer.desc}</p>
+                  <h3 className="text-base font-semibold mb-1.5" style={{ color: "var(--text)" }}>{offer.name}</h3>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">{offer.desc}</p>
                 </div>
                 <div className="shrink-0 text-right md:pl-6">
-                  <p className="text-sm font-semibold text-white">{offer.price}</p>
-                  <p className="text-xs text-slate-400 mt-0.5">{offer.duration}</p>
+                  <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>{offer.price}</p>
+                  <p className="text-xs text-[var(--text-muted)] mt-0.5">{offer.duration}</p>
                 </div>
               </div>
             </div>
@@ -165,7 +165,7 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
 
       {/* FAQ */}
       <section className="px-6 pb-16 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold text-white mb-6">Questions</h2>
+        <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Questions</h2>
         <div className="space-y-3">
           {content.faq.map((item) => (
             <details
@@ -173,11 +173,11 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
               className="rounded-xl overflow-hidden"
               style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
-              <summary className="px-5 py-4 text-sm font-medium text-white cursor-pointer list-none flex items-center justify-between gap-3">
+              <summary className="px-5 py-4 text-sm font-medium cursor-pointer list-none flex items-center justify-between gap-3" style={{ color: "var(--text)" }}>
                 {item.q}
-                <span className="text-slate-400 shrink-0">+</span>
+                <span className="text-[var(--text-muted)] shrink-0">+</span>
               </summary>
-              <p className="px-5 pb-4 text-sm text-slate-400 leading-relaxed">{item.a}</p>
+              <p className="px-5 pb-4 text-sm text-[var(--text-muted)] leading-relaxed">{item.a}</p>
             </details>
           ))}
         </div>
@@ -199,7 +199,7 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
             <Link
               key={r.href}
               href={r.href}
-              className="underline underline-offset-2 transition-colors hover:text-white"
+              className="underline underline-offset-2 transition-colors hover:text-[var(--text)]"
               style={{ color: "var(--accent)" }}
             >
               {r.label} →

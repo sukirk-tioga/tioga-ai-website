@@ -1,34 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
-/* Audit-ledger / operations-console redesign, 2026-09-01 — see
-   ~/SecondBrain/TiogaAI/... four-axis review + design canvas for the
-   creative brief. Every value below is still a token per this file's own
+/* Audit-ledger / "printed report" redesign, 2026-09-02 — corrected to the
+   design canvas's LIGHT/paper mode (its actual default state, and what was
+   reviewed and approved) after the first port shipped the dark "operations
+   console" half instead, which read as a much darker site than the
+   approved preview. Every value below is still a token per this file's own
    CLAUDE.md rule; only the values changed, not the architecture. Kept the
    codebase's existing radius/component-shape system (design.md) — this
-   pass is colors + type, not a shape rewrite. */
+   pass is colors + type, not a shape rewrite. Variable NAMES (--bg-dark
+   etc.) are unchanged from the prior dark pass to avoid touching ~1000
+   call sites across 98 files -- "dark" in a name no longer describes the
+   value it holds, only its historical origin. */
 :root {
-  --bg-dark: #0E100C;
-  --bg-card: #171914;
-  --border: #363933;
-  --accent: #EC6D3D;
-  --accent-dark: #C83406;
-  --bg-darker: #080906;
-  --bg-card-alt: #1E211A;
-  --text: #E5E5DE;
-  --text-muted: #91948A;
-  --text-muted-2: #7A7D73;
-  --text-muted-3: #64665F;
-  --text-body: rgba(229, 229, 222, 0.75);
-  --text-faint: rgba(229, 229, 222, 0.35);
-  --error: #E07A5F;
-  --error-light: #EC9A85;
-  --warning: #D9A24E;
-  --warning-light: #E8BD7C;
-  --success: #8FB389;
-  --success-dark: #6C9366;
-  --violet: #A68BC2;
-  --blue: #6FA8A8;
+  --bg-dark: #F5F3EF;
+  --bg-card: #FCFCF9;
+  --border: #CDCAC2;
+  --accent: #C83406;
+  --accent-dark: #A50000;
+  --bg-darker: #E6E4DF;
+  --bg-card-alt: #F6F5F1;
+  --text: #221F19;
+  --text-muted: #625D54;
+  --text-muted-2: #7F7971;
+  --text-muted-3: #979188;
+  --text-body: rgba(34, 31, 25, 0.75);
+  --text-faint: rgba(34, 31, 25, 0.4);
+  --error: #C6402B;
+  --error-light: #E8917C;
+  --warning: #A8681E;
+  --warning-light: #D9A868;
+  --success: #4B7A45;
+  --success-dark: #375C33;
+  --violet: #7A5CA3;
+  --blue: #3D7373;
 }
 
 * {

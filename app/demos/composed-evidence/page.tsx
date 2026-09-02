@@ -32,8 +32,8 @@ type PanelKey = "assistant" | "erp" | "composed";
 function Field({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[11px] text-slate-400 uppercase tracking-wide mb-0.5">{label}</p>
-      <p className="text-sm text-white font-mono break-words">{value}</p>
+      <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide mb-0.5">{label}</p>
+      <p className="text-sm font-mono break-words" style={{ color: "var(--text)" }}>{value}</p>
     </div>
   );
 }
@@ -47,8 +47,8 @@ function AuditChecklist({ items }: { items: AuditCheckItem[] }) {
             {it.answerable ? "✓" : "✗"}
           </span>
           <div>
-            <p className="text-slate-200 font-medium">{it.question}</p>
-            <p className="text-slate-400 mt-0.5">{it.detail}</p>
+            <p className="text-[var(--text)] font-medium">{it.question}</p>
+            <p className="text-[var(--text-muted)] mt-0.5">{it.detail}</p>
           </div>
         </div>
       ))}
@@ -113,16 +113,16 @@ export default function ComposedEvidencePage() {
     >
       {/* Scenario intro / chat bubble */}
       <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold text-white mb-1">The request</h2>
-        <p className="text-xs text-slate-400 mb-4">
+        <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>The request</h2>
+        <p className="text-xs text-[var(--text-muted)] mb-4">
           {SCENARIO.humanIdentity.name}, a {SCENARIO.humanIdentity.role.toLowerCase()}, sends this to a universal AI assistant in an ordinary chat session.
         </p>
         <div
           className="rounded-xl px-4 py-3 mb-5 max-w-lg"
           style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
         >
-          <p className="text-[11px] text-slate-400 uppercase tracking-wide mb-1">Priya R. — chat-88231</p>
-          <p className="text-sm text-slate-200">&ldquo;{SCENARIO.requestText}&rdquo;</p>
+          <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide mb-1">Priya R. — chat-88231</p>
+          <p className="text-sm text-[var(--text)]">&ldquo;{SCENARIO.requestText}&rdquo;</p>
         </div>
         <button
           onClick={play}
@@ -139,8 +139,8 @@ export default function ComposedEvidencePage() {
         <p className="text-[11px] uppercase tracking-wide mb-1.5" style={{ color: "var(--warning-light)" }}>
           The real audit question
         </p>
-        <p className="text-sm text-white font-medium">&ldquo;{AUDIT_QUESTION}&rdquo;</p>
-        <p className="text-xs text-slate-400 mt-2">
+        <p className="text-sm font-medium" style={{ color: "var(--text)" }}>&ldquo;{AUDIT_QUESTION}&rdquo;</p>
+        <p className="text-xs text-[var(--text-muted)] mt-2">
           Send the request above, then use each panel&apos;s &ldquo;Try answering from here alone&rdquo; button below to test it against that vendor&apos;s log — before looking at the composed record.
         </p>
       </div>
@@ -152,13 +152,13 @@ export default function ComposedEvidencePage() {
           <div className="mb-3">
             <span
               className="text-[11px] font-mono px-2 py-0.5 rounded-full"
-              style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D40" }}
+              style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340640" }}
             >
               Panel 1
             </span>
           </div>
-          <h3 className="font-semibold text-white mb-1">Assistant vendor&apos;s own log</h3>
-          <p className="text-xs text-slate-400 mb-4">Conversation and intent only — no transaction detail, no proof it actually happened correctly in SAP.</p>
+          <h3 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Assistant vendor&apos;s own log</h3>
+          <p className="text-xs text-[var(--text-muted)] mb-4">Conversation and intent only — no transaction detail, no proof it actually happened correctly in SAP.</p>
 
           {!assistantLog ? (
             <p className="text-xs text-slate-500 italic flex-1">Send the request to populate this panel.</p>
@@ -196,8 +196,8 @@ export default function ComposedEvidencePage() {
               Panel 2
             </span>
           </div>
-          <h3 className="font-semibold text-white mb-1">ERP&apos;s own log</h3>
-          <p className="text-xs text-slate-400 mb-4">Transaction record only — no proof of who asked or why, no natural-language context.</p>
+          <h3 className="font-semibold mb-1" style={{ color: "var(--text)" }}>ERP&apos;s own log</h3>
+          <p className="text-xs text-[var(--text-muted)] mb-4">Transaction record only — no proof of who asked or why, no natural-language context.</p>
 
           {!erpLog ? (
             <p className="text-xs text-slate-500 italic flex-1">Populates once the ERP executes the write.</p>
@@ -238,8 +238,8 @@ export default function ComposedEvidencePage() {
               Panel 3
             </span>
           </div>
-          <h3 className="font-semibold text-white mb-1">Tioga&apos;s composed record</h3>
-          <p className="text-xs text-slate-400 mb-4">Both halves stitched into one attributable, queryable record — who asked, what was asked, what policy tier, what the ERP actually did.</p>
+          <h3 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Tioga&apos;s composed record</h3>
+          <p className="text-xs text-[var(--text-muted)] mb-4">Both halves stitched into one attributable, queryable record — who asked, what was asked, what policy tier, what the ERP actually did.</p>
 
           {!composed ? (
             <p className="text-xs text-slate-500 italic flex-1">Composes once both vendor logs exist.</p>
@@ -277,19 +277,19 @@ export default function ComposedEvidencePage() {
             <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>
               {checked.has("assistant") ? `${scoreOf(assistantAudit)} / 5` : "—"}
             </div>
-            <div className="text-xs text-slate-400 uppercase tracking-wide">Panel 1 alone answerable</div>
+            <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">Panel 1 alone answerable</div>
           </div>
           <div className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
             <div className="text-2xl font-bold mb-1" style={{ color: "var(--violet)" }}>
               {checked.has("erp") ? `${scoreOf(erpAudit)} / 5` : "—"}
             </div>
-            <div className="text-xs text-slate-400 uppercase tracking-wide">Panel 2 alone answerable</div>
+            <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">Panel 2 alone answerable</div>
           </div>
           <div className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
             <div className="text-2xl font-bold mb-1" style={{ color: "var(--success)" }}>
               {checked.has("composed") ? `${scoreOf(composedAudit)} / 5` : "—"}
             </div>
-            <div className="text-xs text-slate-400 uppercase tracking-wide">Composed record answerable</div>
+            <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">Composed record answerable</div>
           </div>
         </div>
       )}
@@ -297,7 +297,7 @@ export default function ComposedEvidencePage() {
       <div className="flex justify-end mb-4">
         <button
           onClick={reset}
-          className="text-xs px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors"
+          className="text-xs px-3 py-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
           style={{ border: "1px solid var(--border)" }}
         >
           Reset demo

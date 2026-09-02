@@ -45,10 +45,10 @@ export default function StandingWatchEstateDiagram() {
       <p className="text-xs uppercase tracking-wide mb-1" style={{ color: "var(--accent)" }}>
         The estate today
       </p>
-      <h2 className="text-lg font-bold text-white mb-1">
+      <h2 className="text-lg font-bold mb-1" style={{ color: "var(--text)" }}>
         Four vendors, four self-claimed &ldquo;layers of record&rdquo;
       </h2>
-      <p className="text-sm text-slate-400 mb-6 max-w-2xl">
+      <p className="text-sm text-[var(--text-muted)] mb-6 max-w-2xl">
         Each pane below is the vendor&apos;s own verified language about its own product —
         not Tioga&apos;s characterization. Standing Watch&apos;s six disciplines sit above and
         across all four, as the cross-cutting layer none of them ship.
@@ -57,7 +57,7 @@ export default function StandingWatchEstateDiagram() {
       {/* Cross-cutting Standing Watch band */}
       <div
         className="rounded-xl p-4 relative z-10"
-        style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40" }}
+        style={{ background: "#C8340615", border: "1px solid #C8340640" }}
       >
         <p className="text-xs uppercase tracking-wide mb-2 text-center" style={{ color: "var(--accent)" }}>
           Standing Watch — six disciplines, cross-cutting
@@ -67,7 +67,7 @@ export default function StandingWatchEstateDiagram() {
             <span
               key={d}
               className="text-xs font-mono px-2.5 py-1 rounded-full"
-              style={{ color: "var(--accent)", background: "var(--bg-dark)", border: "1px solid #EC6D3D40" }}
+              style={{ color: "var(--accent)", background: "var(--bg-dark)", border: "1px solid #C8340640" }}
             >
               {d}
             </span>
@@ -79,7 +79,7 @@ export default function StandingWatchEstateDiagram() {
       <div className="grid grid-cols-2 md:grid-cols-4">
         {PANES.map((p) => (
           <div key={p.vendor} className="flex justify-center">
-            <div className="w-px h-3" style={{ background: "#EC6D3D40" }} />
+            <div className="w-px h-3" style={{ background: "#C8340640" }} />
           </div>
         ))}
       </div>
@@ -92,11 +92,11 @@ export default function StandingWatchEstateDiagram() {
             className="p-4 rounded-xl flex flex-col"
             style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
           >
-            <p className="text-sm font-semibold text-white">{p.vendor}</p>
-            <p className="text-[11px] text-slate-400 mb-2">{p.product}</p>
-            <p className="text-sm italic text-slate-200 flex-1 leading-snug">&ldquo;{p.quote}&rdquo;</p>
+            <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>{p.vendor}</p>
+            <p className="text-[11px] text-[var(--text-muted)] mb-2">{p.product}</p>
+            <p className="text-sm italic text-[var(--text)] flex-1 leading-snug">&ldquo;{p.quote}&rdquo;</p>
             <p
-              className="text-[10px] text-slate-400 mt-3 pt-2"
+              className="text-[10px] text-[var(--text-muted)] mt-3 pt-2"
               style={{ borderTop: "1px solid var(--border)" }}
             >
               {p.source}
@@ -105,7 +105,7 @@ export default function StandingWatchEstateDiagram() {
         ))}
       </div>
 
-      <p className="text-xs text-slate-400 mt-5 text-center leading-relaxed">
+      <p className="text-xs text-[var(--text-muted)] mt-5 text-center leading-relaxed">
         A static positioning graphic, not a live data feed — quotes verified 2026-08-10 against
         each vendor&apos;s own material or on-record statements; see source line under each pane.
       </p>
@@ -117,7 +117,7 @@ export default function StandingWatchEstateDiagram() {
           rel="noopener noreferrer"
           event="lead_asset_download"
           data={{ asset: "standing-watch-one-pager", location: "solutions_standing-watch" }}
-          className="inline-block text-sm underline underline-offset-2 transition-colors hover:text-white"
+          className="inline-block text-sm underline underline-offset-2 transition-colors hover:text-[var(--text)]"
           style={{ color: "var(--accent)" }}
         >
           Download the one-pager (print/save as PDF) →

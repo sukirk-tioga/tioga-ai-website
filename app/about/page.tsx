@@ -29,22 +29,22 @@ const PILLARS = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Who&apos;s behind Tioga AI
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           Built by one person.<br />
           <span style={{ color: "var(--accent)" }}>Run against real systems.</span>
         </h1>
 
-        <div className="space-y-5 text-lg text-slate-300 leading-relaxed max-w-2xl mb-14">
+        <div className="space-y-5 text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-14">
           <p>
             I&apos;m Sukir Kumaresan, founder of Tioga AI. I spent decades on the
             operating side of enterprise systems — Oracle EBS, SAP, finance,
@@ -86,8 +86,8 @@ export default function AboutPage() {
 
         {/* Pillars */}
         <div className="mb-14">
-          <h2 className="text-xl font-bold text-white mb-2">Dual fluency, not one or the other</h2>
-          <p className="text-slate-400 text-sm mb-6 max-w-2xl">
+          <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Dual fluency, not one or the other</h2>
+          <p className="text-[var(--text-muted)] text-sm mb-6 max-w-2xl">
             Most consultancies bring one of these three. Tioga AI is built on
             the premise that enterprise AI only works in production when all
             three are held by the same team.
@@ -99,8 +99,8 @@ export default function AboutPage() {
                 className="p-5 rounded-2xl"
                 style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
               >
-                <h3 className="font-semibold text-white mb-2">{p.label}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{p.body}</p>
+                <h3 className="font-semibold mb-2" style={{ color: "var(--text)" }}>{p.label}</h3>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>
@@ -109,12 +109,12 @@ export default function AboutPage() {
         {/* Wedge */}
         <div
           className="rounded-2xl p-8 mb-14"
-          style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}
+          style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340630" }}
         >
-          <p className="text-lg text-white font-semibold mb-2">
+          <p className="text-lg font-semibold mb-2" style={{ color: "var(--text)" }}>
             &ldquo;Without ripping out what works.&rdquo;
           </p>
-          <p className="text-sm text-slate-400 leading-relaxed max-w-2xl">
+          <p className="text-sm text-[var(--text-muted)] leading-relaxed max-w-2xl">
             The systems your business runs on today — the ERP, the CRM, the
             HRIS — are not the problem. They&apos;re the asset. Tioga AI builds
             AI agents that connect to them as they are, with governance
@@ -128,31 +128,31 @@ export default function AboutPage() {
 
         {/* Proof links */}
         <div className="mb-4">
-          <h2 className="text-xl font-bold text-white mb-4">See it, don&apos;t take my word for it</h2>
+          <h2 className="text-xl font-bold mb-4" style={{ color: "var(--text)" }}>See it, don&apos;t take my word for it</h2>
           <div className="grid sm:grid-cols-3 gap-3">
             <a
               href="/demos/migration-assessment"
               className="p-4 rounded-xl transition-all hover:border-slate-500"
               style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
-              <p className="text-sm font-semibold text-white mb-1">Migration Assessment →</p>
-              <p className="text-xs text-slate-400">A live EBS → S/4HANA readiness agent, running against real assessment logic.</p>
+              <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Migration Assessment →</p>
+              <p className="text-xs text-[var(--text-muted)]">A live EBS → S/4HANA readiness agent, running against real assessment logic.</p>
             </a>
             <a
               href="/demos/governance-ledger"
               className="p-4 rounded-xl transition-all hover:border-slate-500"
               style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
-              <p className="text-sm font-semibold text-white mb-1">Governance Ledger →</p>
-              <p className="text-xs text-slate-400">Real operational data from the AI routing gateway this business runs on.</p>
+              <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Governance Ledger →</p>
+              <p className="text-xs text-[var(--text-muted)]">Real operational data from the AI routing gateway this business runs on.</p>
             </a>
             <a
               href="/changelog"
               className="p-4 rounded-xl transition-all hover:border-slate-500"
               style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
-              <p className="text-sm font-semibold text-white mb-1">Build Log →</p>
-              <p className="text-xs text-slate-400">What&apos;s actually shipped on this site, in order, since launch.</p>
+              <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Build Log →</p>
+              <p className="text-xs text-[var(--text-muted)]">What&apos;s actually shipped on this site, in order, since launch.</p>
             </a>
           </div>
         </div>

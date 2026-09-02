@@ -40,20 +40,20 @@ const MAPPING = [
 
 export default function FrameworkMappingPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Framework Mapping
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           NIST, ISO 42001, and the EU AI Act<br />
           <span style={{ color: "var(--accent)" }}>aren&apos;t three separate homeworks</span>
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mb-6">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-6">
           NIST AI RMF is a voluntary US risk-management framework organized
           around four functions. ISO 42001 is an international, certifiable
           AI management system standard built on the same functions,
@@ -63,7 +63,7 @@ export default function FrameworkMappingPage() {
           the same four functions from the other direction: as legal
           requirements rather than best practices.
         </p>
-        <p className="text-sm text-slate-400 leading-relaxed max-w-2xl mb-16">
+        <p className="text-sm text-[var(--text-muted)] leading-relaxed max-w-2xl mb-16">
           This is a conceptual alignment, not a claim of ISO 42001
           certification, a control-by-control audit mapping, or legal advice
           — Tioga AI is not yet ISO 42001 certified, and the EU AI Act
@@ -79,16 +79,16 @@ export default function FrameworkMappingPage() {
               <p className="text-xs font-bold tracking-wide mb-3" style={{ color: "var(--accent)" }}>{m.function}</p>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
-                  <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5">NIST AI RMF</p>
-                  <p className="text-sm text-slate-400 leading-relaxed">{m.nist}</p>
+                  <p className="text-[11px] uppercase tracking-wide text-[var(--text-muted)] mb-1.5">NIST AI RMF</p>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">{m.nist}</p>
                 </div>
                 <div className="md:pl-6" style={{ borderLeft: "1px solid var(--border)" }}>
-                  <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5">ISO 42001</p>
-                  <p className="text-sm text-slate-400 leading-relaxed">{m.iso}</p>
+                  <p className="text-[11px] uppercase tracking-wide text-[var(--text-muted)] mb-1.5">ISO 42001</p>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">{m.iso}</p>
                 </div>
                 <div className="md:pl-6" style={{ borderLeft: "1px solid var(--border)" }}>
-                  <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5">EU AI Act</p>
-                  <p className="text-sm text-slate-400 leading-relaxed">{m.euAiAct}</p>
+                  <p className="text-[11px] uppercase tracking-wide text-[var(--text-muted)] mb-1.5">EU AI Act</p>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">{m.euAiAct}</p>
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function FrameworkMappingPage() {
           </a>
           <a
             href="/trust/eu-ai-act/calculator"
-            className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
+            className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-[var(--text)]"
             style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
           >
             Check your EU AI Act risk tier →

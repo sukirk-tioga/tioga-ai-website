@@ -177,7 +177,7 @@ Python, PyTorch, TensorFlow, Kubernetes, AWS, LLM fine-tuning, RAG, MLOps`,
 // ── Shared UI ────────────────────────────────────────────────────────────────
 
 const urgencyColors: Record<string, { bg: string; border: string; text: string }> = {
-  low: { bg: "#EC6D3D10", border: "#EC6D3D40", text: "var(--accent)" },
+  low: { bg: "#C8340610", border: "#C8340640", text: "var(--accent)" },
   medium: { bg: "#F59E0B10", border: "#F59E0B40", text: "var(--warning)" },
   high: { bg: "#EF444410", border: "#EF444440", text: "var(--error)" },
   critical: { bg: "#EF444420", border: "var(--error)", text: "var(--error-light)" },
@@ -207,7 +207,7 @@ function ResultCard({ children }: { children: React.ReactNode }) {
 
 function Spinner() {
   return (
-    <div className="flex items-center justify-center gap-3 py-8 text-slate-400">
+    <div className="flex items-center justify-center gap-3 py-8 text-[var(--text-muted)]">
       <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
@@ -287,16 +287,16 @@ function InvoiceDemo() {
 
   return (
     <div>
-      <p className="text-sm text-slate-400 mb-4">
+      <p className="text-sm text-[var(--text-muted)] mb-4">
         Upload an invoice file or paste text below. Claude will extract all structured fields instantly.
       </p>
       <FileUpload onTextExtracted={(text, name) => { setInput(text); setState("idle"); setData(null); console.log("Loaded:", name); }} />
-      <p className="text-xs text-slate-400 text-center mb-2">— or paste text directly —</p>
+      <p className="text-xs text-[var(--text-muted)] text-center mb-2">— or paste text directly —</p>
       <textarea
         value={input}
         onChange={(e) => { setInput(e.target.value); setState("idle"); setData(null); }}
         rows={10}
-        className="w-full px-4 py-3 rounded-xl text-sm text-slate-300 placeholder-slate-600 outline-none resize-none font-mono"
+        className="w-full px-4 py-3 rounded-xl text-sm text-[var(--text-muted)] placeholder-slate-600 outline-none resize-none font-mono"
         style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
         placeholder="Paste invoice text here..."
       />
@@ -322,7 +322,7 @@ function InvoiceDemo() {
       {state === "done" && data && (
         <ResultCard>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-xs text-slate-400 uppercase tracking-wider">Extracted Data</p>
+            <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider">Extracted Data</p>
             <div className="flex items-center gap-2">
               <div className="h-1.5 w-24 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
                 <div
@@ -330,7 +330,7 @@ function InvoiceDemo() {
                   style={{ width: `${data.confidence}%`, background: "linear-gradient(90deg, var(--accent), var(--accent-dark))" }}
                 />
               </div>
-              <span className="text-xs text-slate-400">{data.confidence}% confidence</span>
+              <span className="text-xs text-[var(--text-muted)]">{data.confidence}% confidence</span>
             </div>
           </div>
 
@@ -344,31 +344,31 @@ function InvoiceDemo() {
               { label: "Total Due", value: data.total },
             ].map((f) => (
               <div key={f.label}>
-                <p className="text-xs text-slate-400 mb-0.5">{f.label}</p>
-                <p className="text-sm font-medium text-white">{f.value}</p>
+                <p className="text-xs text-[var(--text-muted)] mb-0.5">{f.label}</p>
+                <p className="text-sm font-medium" style={{ color: "var(--text)" }}>{f.value}</p>
               </div>
             ))}
           </div>
 
           <div className="border-t pt-3 mb-3" style={{ borderColor: "var(--border)" }}>
-            <p className="text-xs text-slate-400 mb-2">Line Items</p>
+            <p className="text-xs text-[var(--text-muted)] mb-2">Line Items</p>
             <div className="space-y-1">
               {data.lineItems.map((item, i) => (
                 <div key={i} className="flex justify-between text-sm">
-                  <span className="text-slate-300">{item.description}</span>
-                  <span className="text-white font-medium font-mono">{item.amount}</span>
+                  <span className="text-[var(--text-muted)]">{item.description}</span>
+                  <span className="font-medium font-mono" style={{ color: "var(--text)" }}>{item.amount}</span>
                 </div>
               ))}
               <div className="border-t mt-2 pt-2 flex justify-between text-sm font-semibold" style={{ borderColor: "var(--border)" }}>
                 <span style={{ color: "var(--accent)" }}>Total Due</span>
-                <span className="text-white font-mono">{data.total}</span>
+                <span className="font-mono" style={{ color: "var(--text)" }}>{data.total}</span>
               </div>
             </div>
           </div>
 
-          <div style={{ background: "#EC6D3D08", border: "1px solid #EC6D3D20", borderRadius: 8, padding: "10px 12px" }}>
+          <div style={{ background: "#C8340608", border: "1px solid #C8340620", borderRadius: 8, padding: "10px 12px" }}>
             <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>→ Ready to route to AP team</p>
-            <p className="text-xs text-slate-400">{data.paymentInstructions}</p>
+            <p className="text-xs text-[var(--text-muted)]">{data.paymentInstructions}</p>
           </div>
         </ResultCard>
       )}
@@ -415,11 +415,11 @@ function EmailTriageDemo() {
 
   return (
     <div>
-      <p className="text-sm text-slate-400 mb-3">
+      <p className="text-sm text-[var(--text-muted)] mb-3">
         Upload an email file, pick a sample, or paste your own. Claude will classify, route, and draft a reply.
       </p>
       <FileUpload onTextExtracted={(text) => analyze(text)} />
-      <p className="text-xs text-slate-400 text-center mb-2">— or pick a sample —</p>
+      <p className="text-xs text-[var(--text-muted)] text-center mb-2">— or pick a sample —</p>
 
       <div className="flex flex-wrap gap-2 mb-3">
         {SAMPLE_EMAILS.map((s) => (
@@ -438,7 +438,7 @@ function EmailTriageDemo() {
         value={input}
         onChange={(e) => { setInput(e.target.value); setState("idle"); setResult(null); }}
         rows={8}
-        className="w-full px-4 py-3 rounded-xl text-sm text-slate-300 placeholder-slate-600 outline-none resize-none"
+        className="w-full px-4 py-3 rounded-xl text-sm text-[var(--text-muted)] placeholder-slate-600 outline-none resize-none"
         style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
         placeholder="Or paste an email here..."
       />
@@ -461,31 +461,31 @@ function EmailTriageDemo() {
         <ResultCard>
           <div className="grid grid-cols-2 gap-3 mb-4">
             <div>
-              <p className="text-xs text-slate-400 mb-1">Category</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">Category</p>
               <Badge label={result.category} />
             </div>
             <div>
-              <p className="text-xs text-slate-400 mb-1">Urgency</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">Urgency</p>
               <Badge label={result.urgency.toUpperCase()} color={colors.text} />
             </div>
             <div>
-              <p className="text-xs text-slate-400 mb-1">Sentiment</p>
-              <p className="text-sm text-white capitalize">{result.sentiment}</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">Sentiment</p>
+              <p className="text-sm capitalize" style={{ color: "var(--text)" }}>{result.sentiment}</p>
             </div>
             <div>
-              <p className="text-xs text-slate-400 mb-1">Route To</p>
-              <p className="text-sm text-white font-medium">{result.routeTo}</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">Route To</p>
+              <p className="text-sm font-medium" style={{ color: "var(--text)" }}>{result.routeTo}</p>
             </div>
           </div>
 
           <div className="border-t pt-3 mb-3" style={{ borderColor: "var(--border)" }}>
-            <p className="text-xs text-slate-400 mb-1">Summary</p>
-            <p className="text-sm text-slate-300">{result.summary}</p>
+            <p className="text-xs text-[var(--text-muted)] mb-1">Summary</p>
+            <p className="text-sm text-[var(--text-muted)]">{result.summary}</p>
           </div>
 
           {result.keyEntities.length > 0 && (
             <div className="mb-3">
-              <p className="text-xs text-slate-400 mb-2">Key Entities</p>
+              <p className="text-xs text-[var(--text-muted)] mb-2">Key Entities</p>
               <div className="flex flex-wrap gap-1.5">
                 {result.keyEntities.map((e) => (
                   <span key={e} className="text-xs px-2 py-0.5 rounded-md" style={{ background: "var(--border)", color: "var(--text-muted)" }}>{e}</span>
@@ -496,7 +496,7 @@ function EmailTriageDemo() {
 
           <div className="border-t pt-3" style={{ borderColor: "var(--border)" }}>
             <p className="text-xs font-medium mb-2" style={{ color: "var(--accent)" }}>✦ Draft Reply</p>
-            <p className="text-sm text-slate-300 leading-relaxed italic">&ldquo;{result.suggestedReply}&rdquo;</p>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed italic">&ldquo;{result.suggestedReply}&rdquo;</p>
           </div>
         </ResultCard>
       )}
@@ -539,11 +539,11 @@ function DocumentDemo() {
 
   return (
     <div>
-      <p className="text-sm text-slate-400 mb-3">
+      <p className="text-sm text-[var(--text-muted)] mb-3">
         Upload a document, pick a sample, or paste text. Claude will classify, extract entities, and recommend actions.
       </p>
       <FileUpload onTextExtracted={(text) => analyze(text)} />
-      <p className="text-xs text-slate-400 text-center mb-2">— or pick a sample —</p>
+      <p className="text-xs text-[var(--text-muted)] text-center mb-2">— or pick a sample —</p>
 
       <div className="flex flex-wrap gap-2 mb-3">
         {SAMPLE_DOCS.map((s) => (
@@ -562,7 +562,7 @@ function DocumentDemo() {
         value={input}
         onChange={(e) => { setInput(e.target.value); setState("idle"); setResult(null); }}
         rows={8}
-        className="w-full px-4 py-3 rounded-xl text-sm text-slate-300 placeholder-slate-600 outline-none resize-none"
+        className="w-full px-4 py-3 rounded-xl text-sm text-[var(--text-muted)] placeholder-slate-600 outline-none resize-none"
         style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
         placeholder="Or paste document text here..."
       />
@@ -585,30 +585,30 @@ function DocumentDemo() {
         <ResultCard>
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="text-xs text-slate-400 mb-1">Document Type</p>
-              <p className="text-lg font-bold text-white">{result.documentType}</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">Document Type</p>
+              <p className="text-lg font-bold" style={{ color: "var(--text)" }}>{result.documentType}</p>
             </div>
             <div className="text-right">
-              <p className="text-xs text-slate-400 mb-1">Confidence</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">Confidence</p>
               <div className="flex items-center gap-2">
                 <div className="h-1.5 w-20 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
                   <div className="h-full rounded-full" style={{ width: `${result.confidence}%`, background: "linear-gradient(90deg, var(--accent), var(--accent-dark))" }} />
                 </div>
-                <span className="text-sm font-mono text-white">{result.confidence}%</span>
+                <span className="text-sm font-mono" style={{ color: "var(--text)" }}>{result.confidence}%</span>
               </div>
             </div>
           </div>
 
           <div className="mb-3">
-            <p className="text-xs text-slate-400 mb-1">Summary</p>
-            <p className="text-sm text-slate-300">{result.summary}</p>
+            <p className="text-xs text-[var(--text-muted)] mb-1">Summary</p>
+            <p className="text-sm text-[var(--text-muted)]">{result.summary}</p>
           </div>
 
           <div className="grid grid-cols-2 gap-3 mb-3">
             {Object.entries(result.keyEntities).map(([type, items]) =>
               items.length > 0 ? (
                 <div key={type}>
-                  <p className="text-xs text-slate-400 mb-1 capitalize">{type}</p>
+                  <p className="text-xs text-[var(--text-muted)] mb-1 capitalize">{type}</p>
                   <div className="flex flex-wrap gap-1">
                     {items.map((item: string) => (
                       <span key={item} className="text-xs px-2 py-0.5 rounded-md" style={{ background: "var(--border)", color: "var(--text-muted)" }}>{item}</span>
@@ -623,7 +623,7 @@ function DocumentDemo() {
             <p className="text-xs font-medium mb-2" style={{ color: "var(--accent)" }}>Suggested Actions</p>
             <ul className="space-y-1">
               {result.suggestedActions.map((a, i) => (
-                <li key={i} className="text-sm text-slate-300 flex gap-2">
+                <li key={i} className="text-sm text-[var(--text-muted)] flex gap-2">
                   <span style={{ color: "var(--accent)" }}>→</span> {a}
                 </li>
               ))}
@@ -640,7 +640,7 @@ function DocumentDemo() {
           )}
 
           <div className="mt-3 flex items-center justify-between">
-            <span className="text-xs text-slate-400">Owner Department</span>
+            <span className="text-xs text-[var(--text-muted)]">Owner Department</span>
             <Badge label={result.department} />
           </div>
         </ResultCard>
@@ -686,26 +686,26 @@ function DemosPageInner() {
   const activeDemo = DEMOS.find((d) => d.id === active)!;
 
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
 
       <div className="pt-28 pb-20 px-6 max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
           >
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
             Live AI Demos — Powered by Claude
           </div>
-          <h1 className="text-4xl font-bold text-white mb-3">See Our AI In Action</h1>
-          <p className="text-slate-400 max-w-xl mx-auto mb-3">
+          <h1 className="text-4xl font-bold mb-3" style={{ color: "var(--text)" }}>See Our AI In Action</h1>
+          <p className="text-[var(--text-muted)] max-w-xl mx-auto mb-3">
             These run on real infrastructure — the same governance controls we deploy for clients, not a sandbox.
             Try them with your own data.
           </p>
-          <p className="text-xs text-slate-400 max-w-xl mx-auto">
+          <p className="text-xs text-[var(--text-muted)] max-w-xl mx-auto">
             Files and text you submit here are sent to Claude to generate the result shown and are not stored by Tioga AI or used to train any model. See our{" "}
-            <Link href="/privacy" className="underline hover:text-slate-400 transition-colors">Privacy Policy →</Link>
+            <Link href="/privacy" className="underline hover:text-[var(--text)] transition-colors">Privacy Policy →</Link>
           </p>
         </div>
 
@@ -715,13 +715,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-2 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <ellipse cx="7" cy="6" rx="4" ry="2" />
@@ -732,15 +732,15 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">Migration Assessment</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Migration Assessment</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
               >
                 Flagship
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               Get a sample EBS → SAP migration readiness assessment in 60 seconds.
             </p>
           </div>
@@ -749,7 +749,7 @@ function DemosPageInner() {
           </span>
         </Link>
         <div className="text-right mb-8">
-          <Link href="/engineering/migration-assessment" className="text-xs hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+          <Link href="/engineering/migration-assessment" className="text-xs hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
             How we built this →
           </Link>
         </div>
@@ -760,13 +760,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
@@ -774,7 +774,7 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">Governance Ledger</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Governance Ledger</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
                 style={{ background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" }}
@@ -782,7 +782,7 @@ function DemosPageInner() {
                 Real Data
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               Every AI call our own infrastructure makes — logged, costed, budget-capped, and
               mapped to NIST AI RMF. Not a mockup.
             </p>
@@ -798,13 +798,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z" />
@@ -813,7 +813,7 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">Standing Watch</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Standing Watch</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
                 style={{ background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" }}
@@ -821,7 +821,7 @@ function DemosPageInner() {
                 Real Data
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               Real, dated excerpts from Tioga&apos;s own router-watch and security-watch
               automations — a propose-only finding, and a same-day fix sequence that knows what
               it can&apos;t safely do itself.
@@ -838,13 +838,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
@@ -854,7 +854,7 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">Automation Oversight</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Automation Oversight</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
                 style={{ background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" }}
@@ -862,7 +862,7 @@ function DemosPageInner() {
                 Real Data
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               The ongoing propose-and-approve record across Tioga&apos;s whole automation estate —
               what a daily review found, and what a human approved before anything changed.
             </p>
@@ -878,13 +878,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -892,15 +892,15 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">Governed AP Exception Workflow</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Governed AP Exception Workflow</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
               >
                 Interactive
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               Propose a fix to an invoice that failed three-way match — watch it auto-execute,
               escalate, get blocked, or roll back through a governed write-path.
             </p>
@@ -916,13 +916,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -930,15 +930,15 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">Governed Capital Equipment Order Booking</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Governed Capital Equipment Order Booking</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
               >
                 Interactive
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               Book a sales order against a placeholder material before the final configuration is
               known — a real SAP fit-gap pattern from configure-to-order capital equipment sales.
             </p>
@@ -954,13 +954,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5" />
@@ -969,15 +969,15 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">Governed Field Service Billable Classification</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Governed Field Service Billable Classification</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
               >
                 Interactive
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               Classify a completed field-service call as contract-covered or billable T&amp;M — a
               governance shape about interpretation risk, not a dollar threshold.
             </p>
@@ -993,13 +993,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M11 19a8 8 0 100-16 8 8 0 000 16zm8 2l-4.35-4.35" />
@@ -1007,15 +1007,15 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">ERP Reporting Copilot</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>ERP Reporting Copilot</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
               >
                 Interactive
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               Ask a plain-English question about expiring quotes, pricing changes, or aging
               quotations — watch it decompose into SAP-style tables and reporting gaps standard
               SAP leaves to a custom query.
@@ -1032,13 +1032,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v18M3 9h6m0 0l7-6m-7 6l7 6M15 3v18m0-6h6m-6 0l-6-6m6 6l-6 6" />
@@ -1046,15 +1046,15 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">Agent Autonomy Tier Mapper</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Agent Autonomy Tier Mapper</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
               >
                 Interactive
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               Map an AI-agent use case to Gartner&apos;s four-tier autonomy framework and see how it lines
               up with Tioga&apos;s own Safe/Ask-first/Never governance tiers — independently arrived at,
               not copied from each other.
@@ -1071,13 +1071,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" />
@@ -1085,15 +1085,15 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">SAP Joule Capability Gate Map</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>SAP Joule Capability Gate Map</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
               >
                 Interactive
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               SAP says 200+ agents automate your business. See what&apos;s actually
               documented to write versus view-and-hand-off, by area — plus one real
               worked example of the gates a capability sits behind.
@@ -1110,13 +1110,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
@@ -1125,15 +1125,15 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">Composed Evidence</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Composed Evidence</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
               >
                 Interactive
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               A universal AI assistant logs the conversation, an ERP&apos;s own execution agent logs the
               transaction — neither composes the other&apos;s half. Try answering a real audit question from
               each log alone, then see what only a composed record can prove.
@@ -1150,13 +1150,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #EC6D3D40",
-            boxShadow: "0 0 30px #EC6D3D0A",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
@@ -1165,15 +1165,15 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold text-white">Marble World-Generation Audit</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Marble World-Generation Audit</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
               >
                 Real Trial Data
               </span>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               A vendor claims their AI-generated 3D world is commercially usable and dimensionally
               accurate. We ran the actual trial — real generations, a byte-level provenance scan, a real
               physical measurement — and found a real 19% scale error.
@@ -1194,13 +1194,13 @@ function DemosPageInner() {
               className="p-4 rounded-xl text-left transition-all"
               style={{
                 background: active === demo.id ? "var(--bg-card)" : "transparent",
-                border: `1px solid ${active === demo.id ? "#EC6D3D40" : "var(--border)"}`,
-                boxShadow: active === demo.id ? "0 0 20px #EC6D3D10" : "none",
+                border: `1px solid ${active === demo.id ? "#C8340640" : "var(--border)"}`,
+                boxShadow: active === demo.id ? "0 0 20px #C8340610" : "none",
               }}
             >
               <div className="text-2xl mb-2">{demo.icon}</div>
-              <p className="text-sm font-semibold text-white">{demo.title}</p>
-              <p className="text-xs text-slate-400 mt-0.5">{demo.subtitle}</p>
+              <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>{demo.title}</p>
+              <p className="text-xs text-[var(--text-muted)] mt-0.5">{demo.subtitle}</p>
             </button>
           ))}
         </div>
@@ -1213,18 +1213,18 @@ function DemosPageInner() {
           <div className="flex items-center gap-3 mb-5">
             <span className="text-2xl">{activeDemo.icon}</span>
             <div>
-              <h2 className="font-semibold text-white">{activeDemo.title}</h2>
-              <p className="text-sm text-slate-400">{activeDemo.subtitle}</p>
+              <h2 className="font-semibold" style={{ color: "var(--text)" }}>{activeDemo.title}</h2>
+              <p className="text-sm text-[var(--text-muted)]">{activeDemo.subtitle}</p>
             </div>
             <div className="ml-auto flex items-center gap-3">
               {activeDemo.engineeringHref && (
-                <Link href={activeDemo.engineeringHref} className="text-xs hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+                <Link href={activeDemo.engineeringHref} className="text-xs hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
                   How we built this →
                 </Link>
               )}
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                <span className="text-xs text-slate-400">Live</span>
+                <span className="text-xs text-[var(--text-muted)]">Live</span>
               </div>
             </div>
           </div>
@@ -1243,7 +1243,7 @@ function DemosPageInner() {
 
         {/* CTA */}
         <div className="mt-10 text-center">
-          <p className="text-slate-400 mb-4">Want these capabilities in your enterprise systems?</p>
+          <p className="text-[var(--text-muted)] mb-4">Want these capabilities in your enterprise systems?</p>
           <Link
             href="/contact"
             className="inline-flex px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"

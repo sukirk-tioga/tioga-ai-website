@@ -15,20 +15,20 @@ export const metadata: Metadata = {
 
 export default function EmailTriageWriteup() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← How We Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>
             Claude Haiku 4.5
           </span>
         </div>
-        <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           How we built the Email Triage demo
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed mb-12">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           Read an inbound email once, and come out the other side with a
           category, an urgency level, who should own it, and a draft reply —
           the four decisions a human triaging a shared inbox actually makes.
@@ -36,8 +36,8 @@ export default function EmailTriageWriteup() {
 
         <div className="space-y-10">
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">The problem</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>The problem</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               A shared inbox mixes sales inquiries, support tickets,
               complaints, spam, and the occasional legal notice. Triage isn&apos;t
               one decision — it&apos;s classify, prioritize, route, and often
@@ -47,8 +47,8 @@ export default function EmailTriageWriteup() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">One call, five decisions</h2>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>One call, five decisions</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               Rather than chain separate classify → route → draft calls, the
               route asks for one JSON object with all five fields at once:
               category, urgency, sentiment, routing destination, a one-line
@@ -57,8 +57,8 @@ export default function EmailTriageWriteup() {
               since one call reasons about all of them together.
             </p>
             <div className="p-5 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-              <p className="text-xs text-slate-400 mb-3 uppercase tracking-wide">Every field is a closed enum, not free text</p>
-              <div className="grid sm:grid-cols-2 gap-2 text-xs font-mono text-slate-400">
+              <p className="text-xs text-[var(--text-muted)] mb-3 uppercase tracking-wide">Every field is a closed enum, not free text</p>
+              <div className="grid sm:grid-cols-2 gap-2 text-xs font-mono text-[var(--text-muted)]">
                 <p><span style={{ color: "var(--accent)" }}>category</span>: Sales | Support | Complaint | Partnership | Spam | Internal | Invoice | Legal</p>
                 <p><span style={{ color: "var(--accent)" }}>urgency</span>: low | medium | high | critical</p>
                 <p><span style={{ color: "var(--accent)" }}>sentiment</span>: positive | neutral | negative | frustrated | urgent</p>
@@ -68,9 +68,9 @@ export default function EmailTriageWriteup() {
           </div>
 
           {/* Design decisions callout */}
-          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
-            <h2 className="text-lg font-bold text-white mb-3">Why enums, not open categories</h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340630" }}>
+            <h2 className="text-lg font-bold mb-3" style={{ color: "var(--text)" }}>Why enums, not open categories</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               An open-ended <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-dark)", color: "var(--accent)" }}>&quot;category&quot;: string</code> field
               looks more flexible, but it pushes the hard part downstream: whatever
               consumes this output — a routing rule, a dashboard filter, a

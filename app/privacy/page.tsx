@@ -16,25 +16,25 @@ export const metadata: Metadata = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-10">
-      <h2 className="text-xl font-bold text-white mb-3">{title}</h2>
-      <div className="space-y-3 text-sm text-slate-400 leading-relaxed">{children}</div>
+      <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>{title}</h2>
+      <div className="space-y-3 text-sm text-[var(--text-muted)] leading-relaxed">{children}</div>
     </div>
   );
 }
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Privacy Policy
         </div>
-        <h1 className="text-4xl font-bold text-white mb-4">Privacy Policy</h1>
-        <p className="text-sm text-slate-400 mb-14">Last updated: 2026-07-27</p>
+        <h1 className="text-4xl font-bold mb-4" style={{ color: "var(--text)" }}>Privacy Policy</h1>
+        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-07-27</p>
 
         <Section title="The short version">
           <p>
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
 
         <Section title="What we collect and why">
           <p>
-            <strong className="text-white">Contact form.</strong> When you
+            <strong style={{ color: "var(--text)" }}>Contact form.</strong> When you
             submit the form on the homepage (name, company, email, project
             description), that text is sent to Anthropic&apos;s Claude API to
             classify the inquiry (urgency, service fit, suggested next step),
@@ -57,7 +57,7 @@ export default function PrivacyPage() {
             database on our side — the email inbox is the record.
           </p>
           <p>
-            <strong className="text-white">Live demos.</strong> Text or files
+            <strong style={{ color: "var(--text)" }}>Live demos.</strong> Text or files
             you paste or upload into the invoice processing, email triage,
             document classification, or migration assessment demos are sent
             to Claude to generate the result shown on screen, and are not
@@ -66,7 +66,7 @@ export default function PrivacyPage() {
             have no further copy of what you submitted.
           </p>
           <p>
-            <strong className="text-white">
+            <strong style={{ color: "var(--text)" }}>
               &ldquo;Send me a copy&rdquo; on the migration assessment.
             </strong>{" "}
             If you optionally enter an email address on that demo, it is used
@@ -75,12 +75,12 @@ export default function PrivacyPage() {
             Parties below for the mail provider that transmits it.
           </p>
           <p>
-            <strong className="text-white">Chat widget.</strong> Messages you
+            <strong style={{ color: "var(--text)" }}>Chat widget.</strong> Messages you
             send to the chat assistant are sent to Claude to generate a reply
             and are not stored after your browser session ends.
           </p>
           <p>
-            <strong className="text-white">Basic request metadata.</strong> To
+            <strong style={{ color: "var(--text)" }}>Basic request metadata.</strong> To
             prevent abuse of the contact form and demo endpoints, we
             rate-limit by IP address. That count is held in server memory
             temporarily and is not linked to your name or email.
@@ -99,27 +99,27 @@ export default function PrivacyPage() {
         <Section title="Third parties who process your data">
           <ul className="list-disc pl-5 space-y-1.5">
             <li>
-              <strong className="text-white">Anthropic</strong> (Claude API) —
+              <strong style={{ color: "var(--text)" }}>Anthropic</strong> (Claude API) —
               processes the text you submit to generate classifications, demo
               outputs, and chat replies, per{" "}
               <a
                 href="https://www.anthropic.com/legal/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-slate-300 transition-colors"
+                className="underline hover:text-[var(--text)] transition-colors"
               >
                 Anthropic&apos;s own privacy policy
               </a>
               .
             </li>
             <li>
-              <strong className="text-white">Google (Gmail SMTP)</strong> —
+              <strong style={{ color: "var(--text)" }}>Google (Gmail SMTP)</strong> —
               delivers the contact-form notification email to Tioga AI&apos;s
               inbox, and delivers your copy of the migration assessment
               directly to you if you request one.
             </li>
             <li>
-              <strong className="text-white">Vercel</strong> — hosts this
+              <strong style={{ color: "var(--text)" }}>Vercel</strong> — hosts this
               site and its serverless functions.
             </li>
           </ul>
@@ -137,7 +137,7 @@ export default function PrivacyPage() {
           <p>
             You can ask us what we hold about you, or ask us to delete a
             contact-form submission from our inbox, at any time by emailing{" "}
-            <a href="mailto:hello@tioga.ai" className="underline hover:text-slate-300 transition-colors">
+            <a href="mailto:hello@tioga.ai" className="underline hover:text-[var(--text)] transition-colors">
               hello@tioga.ai
             </a>
             . Since demo submissions aren&apos;t retained, there&apos;s nothing
@@ -150,7 +150,7 @@ export default function PrivacyPage() {
             If how this site handles data changes, this page will be updated
             and the date at the top will change. Material changes will be
             reflected in the{" "}
-            <Link href="/changelog" className="underline hover:text-slate-300 transition-colors">
+            <Link href="/changelog" className="underline hover:text-[var(--text)] transition-colors">
               Build Log
             </Link>
             .
@@ -160,7 +160,7 @@ export default function PrivacyPage() {
         <Section title="Questions">
           <p>
             Email{" "}
-            <a href="mailto:hello@tioga.ai" className="underline hover:text-slate-300 transition-colors">
+            <a href="mailto:hello@tioga.ai" className="underline hover:text-[var(--text)] transition-colors">
               hello@tioga.ai
             </a>{" "}
             with anything not covered here.

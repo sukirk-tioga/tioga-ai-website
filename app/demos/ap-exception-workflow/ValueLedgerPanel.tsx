@@ -60,8 +60,8 @@ export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) 
     >
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
         <div>
-          <h2 className="font-semibold text-white mb-1">Value ledger — this session</h2>
-          <p className="text-xs text-slate-400 max-w-md">
+          <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Value ledger — this session</h2>
+          <p className="text-xs text-[var(--text-muted)] max-w-md">
             Computed live from the actions above. Baseline time and hourly rate are starting points — edit them
             to match your own team's numbers, per Tioga's{" "}
             <a href="/samples/weekly-value-report.html" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "var(--accent)" }}>
@@ -82,28 +82,28 @@ export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) 
       {/* Editable assumptions */}
       <div className="flex flex-col sm:flex-row gap-3 mb-5">
         <label className="flex-1 flex flex-col gap-1">
-          <span className="text-[11px] text-slate-400 uppercase tracking-wide">Baseline minutes per exception</span>
+          <span className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide">Baseline minutes per exception</span>
           <input
             type="number"
             min={0}
             step={1}
             value={baselineMinutes}
             onChange={(e) => setBaselineMinutes(e.target.valueAsNumber)}
-            className="px-3 py-2 rounded-lg text-sm text-white"
-            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+            className="px-3 py-2 rounded-lg text-sm"
+            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
           />
           <span className="text-[11px] text-slate-500">Your team's own estimate — not an industry average.</span>
         </label>
         <label className="flex-1 flex flex-col gap-1">
-          <span className="text-[11px] text-slate-400 uppercase tracking-wide">Loaded hourly rate (USD)</span>
+          <span className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide">Loaded hourly rate (USD)</span>
           <input
             type="number"
             min={0}
             step={1}
             value={hourlyRate}
             onChange={(e) => setHourlyRate(e.target.valueAsNumber)}
-            className="px-3 py-2 rounded-lg text-sm text-white"
-            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+            className="px-3 py-2 rounded-lg text-sm"
+            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
           />
           <span className="text-[11px] text-slate-500">Your own fully-loaded labor cost for this role.</span>
         </label>
@@ -112,28 +112,28 @@ export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) 
       {/* Live totals */}
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-4">
         <div className="p-3 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-          <p className="text-lg font-bold text-white font-mono">{totals.actionsProcessed}</p>
-          <p className="text-[11px] text-slate-400 mt-0.5">Actions processed</p>
+          <p className="text-lg font-bold font-mono" style={{ color: "var(--text)" }}>{totals.actionsProcessed}</p>
+          <p className="text-[11px] text-[var(--text-muted)] mt-0.5">Actions processed</p>
         </div>
         <div className="p-3 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-          <p className="text-lg font-bold text-white font-mono">{totals.escalatedToHuman}</p>
-          <p className="text-[11px] text-slate-400 mt-0.5">Escalated to human</p>
+          <p className="text-lg font-bold font-mono" style={{ color: "var(--text)" }}>{totals.escalatedToHuman}</p>
+          <p className="text-[11px] text-[var(--text-muted)] mt-0.5">Escalated to human</p>
         </div>
         <div className="p-3 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-          <p className="text-lg font-bold text-white font-mono">{totals.blocked}</p>
-          <p className="text-[11px] text-slate-400 mt-0.5">Blocked by policy</p>
+          <p className="text-lg font-bold font-mono" style={{ color: "var(--text)" }}>{totals.blocked}</p>
+          <p className="text-[11px] text-[var(--text-muted)] mt-0.5">Blocked by policy</p>
         </div>
         <div className="p-3 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--accent)" }}>
           <p className="text-lg font-bold font-mono" style={{ color: "var(--accent)" }}>
             {fmtHours(totals.hoursSaved)}
           </p>
-          <p className="text-[11px] text-slate-400 mt-0.5">Hours saved</p>
+          <p className="text-[11px] text-[var(--text-muted)] mt-0.5">Hours saved</p>
         </div>
         <div className="p-3 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--accent)" }}>
           <p className="text-lg font-bold font-mono" style={{ color: "var(--accent)" }}>
             {fmtUsd(totals.dollarValue)}
           </p>
-          <p className="text-[11px] text-slate-400 mt-0.5">Value this session</p>
+          <p className="text-[11px] text-[var(--text-muted)] mt-0.5">Value this session</p>
         </div>
       </div>
 

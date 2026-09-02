@@ -15,20 +15,20 @@ export const metadata: Metadata = {
 
 export default function MigrationAssessmentWriteup() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← How We Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>
             Claude Sonnet 5
           </span>
         </div>
-        <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           How we built the Migration Assessment demo
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed mb-12">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           Given an Oracle EBS footprint — version, modules, data volume,
           target SAP edition — produce a complexity score, a conservative
           timeline, named risks, and a recommended approach. This is the
@@ -39,8 +39,8 @@ export default function MigrationAssessmentWriteup() {
 
         <div className="space-y-10">
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">Nothing but enums reaches the prompt</h2>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>Nothing but enums reaches the prompt</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               Every input — EBS version, modules, data volume, target
               edition — is validated against a fixed allowlist before
               anything is assembled into a prompt:
@@ -52,7 +52,7 @@ const VOLUMES  = ["1-10GB", "10-100GB", "100GB-1TB", "1TB+"] as const;
 const TARGETS  = ["S/4HANA Cloud", "S/4HANA Private Cloud",
                    "S/4HANA On-Premise"] as const;`}
             </pre>
-            <p className="text-sm text-slate-400 leading-relaxed mt-4">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mt-4">
               There&apos;s no free-text field anywhere in this form. A public demo
               endpoint that accepts arbitrary text and feeds it to a system
               prompt is a prompt-injection surface; a form that only accepts
@@ -62,8 +62,8 @@ const TARGETS  = ["S/4HANA Cloud", "S/4HANA Private Cloud",
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">The prompt reasons about the specific selection</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>The prompt reasons about the specific selection</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               The system prompt frames Claude as a senior migration architect
               and explicitly instructs it to reference the modules actually
               selected — open AP/AR reconciliation, FA depreciation history
@@ -80,8 +80,8 @@ const TARGETS  = ["S/4HANA Cloud", "S/4HANA Private Cloud",
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">The response is validated, not trusted</h2>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>The response is validated, not trusted</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               Structured output from a model is still a string until proven
               otherwise. Before anything reaches the client:
             </p>
@@ -92,7 +92,7 @@ const TARGETS  = ["S/4HANA Cloud", "S/4HANA Private Cloud",
                 "recommendedApproach.approach is lowercased and checked against exactly three allowed values (greenfield / brownfield / selective) — anything else fails the request rather than silently passing through.",
                 "topRisks and nextSteps are truncated to 3 items regardless of how many the model returns, keeping the response shape predictable for the UI.",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm text-slate-400 leading-relaxed">
+                <li key={i} className="flex gap-3 text-sm text-[var(--text-muted)] leading-relaxed">
                   <span style={{ color: "var(--accent)" }}>✓</span>
                   {item}
                 </li>
@@ -101,9 +101,9 @@ const TARGETS  = ["S/4HANA Cloud", "S/4HANA Private Cloud",
           </div>
 
           {/* Design decisions callout */}
-          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
-            <h2 className="text-lg font-bold text-white mb-3">Why Sonnet, and why 5 requests per 10 minutes</h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340630" }}>
+            <h2 className="text-lg font-bold mb-3" style={{ color: "var(--text)" }}>Why Sonnet, and why 5 requests per 10 minutes</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               This is the one demo on the site running Claude Sonnet 5 with
               extended thinking explicitly disabled — the reasoning load
               (weighing module mix against data volume against target

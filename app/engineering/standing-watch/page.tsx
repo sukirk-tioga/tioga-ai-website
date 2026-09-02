@@ -16,20 +16,20 @@ export const metadata: Metadata = {
 
 export default function StandingWatchWriteup() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← How We Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>
             No model call
           </span>
         </div>
-        <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           How we built Standing Watch
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed mb-12">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           Standing Watch isn&apos;t a new system — it&apos;s a name for six
           governance disciplines we already run in production, on our own
           multi-vendor AI estate, as router-watch and security-watch. This
@@ -43,10 +43,10 @@ export default function StandingWatchWriteup() {
 
         <div className="space-y-10">
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>
               The incident: a fix that was real on one machine and silently absent on the other for 12+ days
             </h2>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               Our AI estate runs across two machines — a MacBook and a Mac
               Mini — talking to five different backends. Security-watch
               exists because of a specific, real failure mode we hit before
@@ -58,7 +58,7 @@ export default function StandingWatchWriteup() {
               it — because nothing was checking both machines identically
               on a schedule.
             </p>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               That&apos;s the exact class of gap security-watch is built to
               catch: the same behavioral probe — make the real
               unauthenticated call, read the real HTTP status, don&apos;t
@@ -74,10 +74,10 @@ export default function StandingWatchWriteup() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>
               Every automation here only proposes. None of them apply their own fixes.
             </h2>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               Router-watch and security-watch both produce a dated report
               and stop. Nothing in either pipeline has write access to the
               router registry, the SSH config, or the firewall rules it
@@ -90,7 +90,7 @@ export default function StandingWatchWriteup() {
 To adopt a swap, hand-edit the router config, run the test suite,
 and restart the gateway.`}
             </pre>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Security-watch works the same way: on the Aug 10 run, 8 of 10
               flagged findings were fixed — but each fix was a person
               reading the finding, applying the change by hand, and then
@@ -103,10 +103,10 @@ and restart the gateway.`}
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>
               POOL_WEIGHT: pricing budgets that aren&apos;t the same currency
             </h2>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               Our router spans a free local model, a Google-billed tier, an
               OpenRouter credit pool, and a flat-fee Claude subscription —
               four backends, three genuinely different kinds of money.
@@ -126,7 +126,7 @@ and restart the gateway.`}
     "claude_max": 1.0,    # flat subscription, but scarce + rate-limited
 }`}
             </pre>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Selection compares <code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>cost * POOL_WEIGHT</code>;
               budgets and logs always record true dollars, never the
               weighted number. An earlier version of this router faked the
@@ -147,10 +147,10 @@ and restart the gateway.`}
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>
               NEVER_COMPARE: the policy checks its own scope, every run
             </h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               The router&apos;s premium, subscription-billed models
               (Claude Haiku, Sonnet, Opus, Fable) are marked
               <code className="text-xs px-1 py-0.5 rounded mx-1" style={{ background: "var(--bg-card)" }}>forced_only</code>
@@ -177,11 +177,11 @@ and restart the gateway.`}
           </div>
 
           {/* Design decisions callout */}
-          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
-            <h2 className="text-lg font-bold text-white mb-3">
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340630" }}>
+            <h2 className="text-lg font-bold mb-3" style={{ color: "var(--text)" }}>
               What we deliberately didn&apos;t automate — and why that&apos;s the point
             </h2>
-            <p className="text-sm text-slate-300 leading-relaxed mb-3">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-3">
               The human-apply step isn&apos;t a gap we haven&apos;t gotten to
               yet. It&apos;s the design. Router-watch could technically
               hand-edit the registry itself and restart the gateway;
@@ -204,7 +204,7 @@ and restart the gateway.`}
               Knowing the edge of its own authority, and saying so, is part
               of the discipline, not a limitation of it.
             </p>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               <strong>The scale caveat, stated plainly:</strong> this is
               real, running code — not slideware — but it&apos;s
               personal-scale infrastructure: one operator, two machines,

@@ -49,21 +49,21 @@ const ROWS: Row[] = [
 
 export default function McpVsRpaPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
-        <Link href="/mcp" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/mcp" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← MCP Integrations
         </Link>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           Comparison
         </div>
-        <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           MCP vs. RPA: not actually competing tools
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed mb-12">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           These get lumped together because both showed up in the same
           &quot;automate the business&quot; conversation, but they solve
           different problems. RPA replays a recorded action against a UI. MCP
@@ -74,8 +74,8 @@ export default function McpVsRpaPage() {
 
         <div className="space-y-10">
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">What RPA does well</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>What RPA does well</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Robotic process automation records a human&apos;s clicks and
               keystrokes against an application&apos;s UI and replays them —
               log in, open this screen, copy this field, paste it there,
@@ -88,8 +88,8 @@ export default function McpVsRpaPage() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">Where it runs into trouble</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>Where it runs into trouble</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               An RPA script has no model of what it&apos;s doing — it knows
               coordinates and field names, not intent. Move a button, rename
               a field, add a confirmation dialog, and the script breaks until
@@ -100,8 +100,8 @@ export default function McpVsRpaPage() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">What MCP does instead</h2>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>What MCP does instead</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               MCP doesn&apos;t touch the UI at all. It exposes a system&apos;s
               actual capabilities — <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>get_pending_invoices</code>,{" "}
               <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>get_employee_data</code> — as tools a model can call. The
@@ -109,7 +109,7 @@ export default function McpVsRpaPage() {
               order, so it can handle requests the tool server&apos;s author
               never explicitly scripted, as long as the underlying tools
               exist. See{" "}
-              <Link href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+              <Link href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
                 MCP vs. custom integration →
               </Link>{" "}
               for how that compares to building the same thing by hand.
@@ -117,22 +117,22 @@ export default function McpVsRpaPage() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-4">Side by side</h2>
+            <h2 className="text-xl font-bold mb-4" style={{ color: "var(--text)" }}>Side by side</h2>
             <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid var(--border)" }}>
               <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: "var(--bg-card)" }}>
-                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-slate-400">Dimension</th>
-                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-slate-400">RPA</th>
+                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">Dimension</th>
+                    <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">RPA</th>
                     <th className="text-left p-4 text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--accent)" }}>MCP</th>
                   </tr>
                 </thead>
                 <tbody>
                   {ROWS.map((r, i) => (
                     <tr key={r.dimension} style={{ borderTop: "1px solid var(--border)", background: i % 2 === 1 ? "var(--bg-dark)" : "transparent" }}>
-                      <td className="p-4 text-white font-medium align-top whitespace-nowrap">{r.dimension}</td>
-                      <td className="p-4 text-slate-400 leading-relaxed align-top">{r.rpa}</td>
-                      <td className="p-4 text-slate-300 leading-relaxed align-top">{r.mcp}</td>
+                      <td className="p-4 font-medium align-top whitespace-nowrap" style={{ color: "var(--text)" }}>{r.dimension}</td>
+                      <td className="p-4 text-[var(--text-muted)] leading-relaxed align-top">{r.rpa}</td>
+                      <td className="p-4 text-[var(--text-muted)] leading-relaxed align-top">{r.mcp}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -140,9 +140,9 @@ export default function McpVsRpaPage() {
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
-            <h2 className="text-lg font-bold text-white mb-3">They&apos;re often used together</h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340630" }}>
+            <h2 className="text-lg font-bold mb-3" style={{ color: "var(--text)" }}>They&apos;re often used together</h2>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               A lot of real enterprise environments have both problems at
               once: bulk, repetitive data entry into a system with no API
               (RPA&apos;s job), and a request that needs to reason across
@@ -156,9 +156,9 @@ export default function McpVsRpaPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-xs text-slate-400 mb-4">
+          <p className="text-xs text-[var(--text-muted)] mb-4">
             See the same tradeoff against building integrations by hand in{" "}
-            <Link href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               MCP vs. custom integration →
             </Link>
           </p>

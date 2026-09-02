@@ -16,7 +16,7 @@ export default async function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "80px",
-          background: "#0A0F1C",
+          background: "#F5F3EF",
           fontFamily: "sans-serif",
         }}
       >
@@ -26,7 +26,7 @@ export default async function OpengraphImage() {
               width: "12px",
               height: "12px",
               borderRadius: "9999px",
-              background: "#EC6D3D",
+              background: "#C83406",
             }}
           />
           <div
@@ -34,7 +34,7 @@ export default async function OpengraphImage() {
               fontSize: "28px",
               fontWeight: 700,
               letterSpacing: "0.08em",
-              color: "#EC6D3D",
+              color: "#C83406",
               textTransform: "uppercase",
             }}
           >
@@ -47,7 +47,7 @@ export default async function OpengraphImage() {
             style={{
               fontSize: "64px",
               fontWeight: 700,
-              color: "#FFFFFF",
+              color: "#221F19",
               lineHeight: 1.15,
               maxWidth: "980px",
             }}
@@ -57,7 +57,7 @@ export default async function OpengraphImage() {
           <div
             style={{
               fontSize: "28px",
-              color: "#94A3B8",
+              color: "#625D54",
               maxWidth: "900px",
               lineHeight: 1.5,
             }}
@@ -72,7 +72,7 @@ export default async function OpengraphImage() {
             width: "100%",
             height: "6px",
             borderRadius: "9999px",
-            background: "linear-gradient(90deg, #EC6D3D, #C83406)",
+            background: "linear-gradient(90deg, #C83406, #A50000)",
           }}
         />
       </div>

@@ -197,7 +197,7 @@ const ENTRIES: Entry[] = [
 ];
 
 const KIND_STYLE: Record<Kind, { color: string; bg: string }> = {
-  Feature: { color: "var(--accent)", bg: "#EC6D3D15" },
+  Feature: { color: "var(--accent)", bg: "#C8340615" },
   Fix: { color: "var(--warning)", bg: "#F59E0B15" },
   Infra: { color: "var(--violet)", bg: "#8B5CF615" },
   Content: { color: "var(--success)", bg: "#4ADE8015" },
@@ -205,19 +205,19 @@ const KIND_STYLE: Record<Kind, { color: string; bg: string }> = {
 
 export default function ChangelogPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Build Log
         </div>
-        <h1 className="text-4xl font-bold text-white mb-5 leading-tight">
+        <h1 className="text-4xl font-bold mb-5 leading-tight" style={{ color: "var(--text)" }}>
           What actually shipped
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mb-16">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-16">
           Tioga AI is a solo practice, pre-launch — there are no client case
           studies yet. This is the substitute: a running log of what&apos;s
           actually built and live on this site, in order, sourced directly
@@ -235,7 +235,7 @@ export default function ChangelogPage() {
                   style={{ background: "var(--bg-dark)", border: `2px solid ${KIND_STYLE[e.kind].color}` }}
                 />
                 <div className="flex items-center gap-3 mb-1.5">
-                  <span className="text-xs font-mono text-slate-400">{e.date}</span>
+                  <span className="text-xs font-mono text-[var(--text-muted)]">{e.date}</span>
                   <span
                     className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
                     style={{ color: KIND_STYLE[e.kind].color, background: KIND_STYLE[e.kind].bg }}
@@ -243,9 +243,9 @@ export default function ChangelogPage() {
                     {e.kind}
                   </span>
                 </div>
-                <ChangelogBeat className="text-white font-semibold mb-1.5">{e.title}</ChangelogBeat>
+                <ChangelogBeat className="text-[var(--text)] font-semibold mb-1.5">{e.title}</ChangelogBeat>
                 <ScrollReveal>
-                  <p className="text-sm text-slate-400 leading-relaxed max-w-xl">{e.body}</p>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed max-w-xl">{e.body}</p>
                 </ScrollReveal>
               </div>
             ))}
@@ -253,13 +253,13 @@ export default function ChangelogPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-xs text-slate-400 mb-4">
+          <p className="text-xs text-[var(--text-muted)] mb-4">
             Curious how something was built?{" "}
-            <Link href="/engineering" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/engineering" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               Read the engineering writeups →
             </Link>
             {" "}or see the{" "}
-            <Link href="/trust" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/trust" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               governance approach →
             </Link>
           </p>
