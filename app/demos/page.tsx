@@ -177,7 +177,7 @@ Python, PyTorch, TensorFlow, Kubernetes, AWS, LLM fine-tuning, RAG, MLOps`,
 // ── Shared UI ────────────────────────────────────────────────────────────────
 
 const urgencyColors: Record<string, { bg: string; border: string; text: string }> = {
-  low: { bg: "#00D4FF10", border: "#00D4FF40", text: "var(--accent)" },
+  low: { bg: "#EC6D3D10", border: "#EC6D3D40", text: "var(--accent)" },
   medium: { bg: "#F59E0B10", border: "#F59E0B40", text: "var(--warning)" },
   high: { bg: "#EF444410", border: "#EF444440", text: "var(--error)" },
   critical: { bg: "#EF444420", border: "var(--error)", text: "var(--error-light)" },
@@ -366,7 +366,7 @@ function InvoiceDemo() {
             </div>
           </div>
 
-          <div style={{ background: "#00D4FF08", border: "1px solid #00D4FF20", borderRadius: 8, padding: "10px 12px" }}>
+          <div style={{ background: "#EC6D3D08", border: "1px solid #EC6D3D20", borderRadius: 8, padding: "10px 12px" }}>
             <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>→ Ready to route to AP team</p>
             <p className="text-xs text-slate-400">{data.paymentInstructions}</p>
           </div>
@@ -693,14 +693,14 @@ function DemosPageInner() {
         <div className="text-center mb-12">
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
           >
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
             Live AI Demos — Powered by Claude
           </div>
           <h1 className="text-4xl font-bold text-white mb-3">See Our AI In Action</h1>
           <p className="text-slate-400 max-w-xl mx-auto mb-3">
-            These are real AI features — the same capabilities we build into enterprise systems.
+            These run on real infrastructure — the same governance controls we deploy for clients, not a sandbox.
             Try them with your own data.
           </p>
           <p className="text-xs text-slate-400 max-w-xl mx-auto">
@@ -715,13 +715,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-2 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <ellipse cx="7" cy="6" rx="4" ry="2" />
@@ -735,7 +735,7 @@ function DemosPageInner() {
               <p className="font-semibold text-white">Migration Assessment</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
               >
                 Flagship
               </span>
@@ -760,13 +760,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
@@ -798,13 +798,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z" />
@@ -838,13 +838,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
@@ -878,13 +878,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -895,7 +895,7 @@ function DemosPageInner() {
               <p className="font-semibold text-white">Governed AP Exception Workflow</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
               >
                 Interactive
               </span>
@@ -916,13 +916,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -933,7 +933,7 @@ function DemosPageInner() {
               <p className="font-semibold text-white">Governed Capital Equipment Order Booking</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
               >
                 Interactive
               </span>
@@ -954,13 +954,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5" />
@@ -972,7 +972,7 @@ function DemosPageInner() {
               <p className="font-semibold text-white">Governed Field Service Billable Classification</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
               >
                 Interactive
               </span>
@@ -993,13 +993,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M11 19a8 8 0 100-16 8 8 0 000 16zm8 2l-4.35-4.35" />
@@ -1010,7 +1010,7 @@ function DemosPageInner() {
               <p className="font-semibold text-white">ERP Reporting Copilot</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
               >
                 Interactive
               </span>
@@ -1032,13 +1032,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v18M3 9h6m0 0l7-6m-7 6l7 6M15 3v18m0-6h6m-6 0l-6-6m6 6l-6 6" />
@@ -1049,7 +1049,7 @@ function DemosPageInner() {
               <p className="font-semibold text-white">Agent Autonomy Tier Mapper</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
               >
                 Interactive
               </span>
@@ -1071,13 +1071,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" />
@@ -1088,7 +1088,7 @@ function DemosPageInner() {
               <p className="font-semibold text-white">SAP Joule Capability Gate Map</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
               >
                 Interactive
               </span>
@@ -1110,13 +1110,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
@@ -1128,7 +1128,7 @@ function DemosPageInner() {
               <p className="font-semibold text-white">Composed Evidence</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
               >
                 Interactive
               </span>
@@ -1150,13 +1150,13 @@ function DemosPageInner() {
           className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #00D4FF40",
-            boxShadow: "0 0 30px #00D4FF0A",
+            border: "1px solid #EC6D3D40",
+            boxShadow: "0 0 30px #EC6D3D0A",
           }}
         >
           <span
             className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
@@ -1168,7 +1168,7 @@ function DemosPageInner() {
               <p className="font-semibold text-white">Marble World-Generation Audit</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+                style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
               >
                 Real Trial Data
               </span>
@@ -1194,8 +1194,8 @@ function DemosPageInner() {
               className="p-4 rounded-xl text-left transition-all"
               style={{
                 background: active === demo.id ? "var(--bg-card)" : "transparent",
-                border: `1px solid ${active === demo.id ? "#00D4FF40" : "var(--border)"}`,
-                boxShadow: active === demo.id ? "0 0 20px #00D4FF10" : "none",
+                border: `1px solid ${active === demo.id ? "#EC6D3D40" : "var(--border)"}`,
+                boxShadow: active === demo.id ? "0 0 20px #EC6D3D10" : "none",
               }}
             >
               <div className="text-2xl mb-2">{demo.icon}</div>

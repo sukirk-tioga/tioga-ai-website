@@ -32,7 +32,7 @@ const SOLUTIONS = [
   {
     href: "/solutions/governed-write-path",
     name: "Governed Write-Path",
-    desc: "How to let an AI agent actually write to your ERP — policy enforcement, approval gates, rollback.",
+    desc: "AI that writes to your ERP with policy enforcement, approval gates, and rollback built into the path — not bolted on after.",
   },
   {
     href: "/solutions/mcp-security",
@@ -95,7 +95,7 @@ export default function SolutionsHubPage() {
           <p className="text-xs text-slate-400 mt-4">
             Not sure which fits?{" "}
             <Link href="/services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
-              See all 13 engagements →
+              See all 15 engagements →
             </Link>
           </p>
         </div>

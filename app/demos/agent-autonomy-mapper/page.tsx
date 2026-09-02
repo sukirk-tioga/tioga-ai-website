@@ -57,8 +57,8 @@ function SelectButton({
       onClick={onClick}
       className="w-full text-left p-3.5 rounded-xl transition-all"
       style={{
-        background: selected ? "#00D4FF15" : "var(--bg-dark)",
-        border: `1px solid ${selected ? "#00D4FF50" : "var(--border)"}`,
+        background: selected ? "#EC6D3D15" : "var(--bg-dark)",
+        border: `1px solid ${selected ? "#EC6D3D50" : "var(--border)"}`,
         color: selected ? "var(--accent)" : "var(--text-muted)",
       }}
     >
@@ -120,7 +120,7 @@ export default function AgentAutonomyMapperPage() {
   const gartnerTierInfo = activeTier ? GARTNER_TIERS[activeTier] : null;
   const tiogaTierInfo = result ? TIOGA_TIERS[result.tiogaTier] : null;
   const tiogaColor = result ? TIOGA_TIER_COLOR[result.tiogaTier] : "var(--accent)";
-  const tiogaHex = result ? TIOGA_TIER_HEX[result.tiogaTier] : "#00D4FF";
+  const tiogaHex = result ? TIOGA_TIER_HEX[result.tiogaTier] : "#EC6D3D";
 
   return (
     <DemoShell

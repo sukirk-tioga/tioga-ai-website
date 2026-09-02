@@ -60,7 +60,7 @@ export default function FileUpload({ onTextExtracted, accept = ".pdf,.docx,.doc,
         className="w-full rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-2 py-5 cursor-pointer transition-all"
         style={{
           borderColor: dragOver ? "var(--accent)" : "var(--border)",
-          background: dragOver ? "#00D4FF08" : "transparent",
+          background: dragOver ? "#EC6D3D08" : "transparent",
         }}
       >
         {state === "loading" ? (

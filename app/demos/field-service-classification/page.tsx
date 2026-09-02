@@ -49,7 +49,7 @@ const checkResultStyle: Record<PolicyCheck["result"], string> = {
 };
 
 const callStatusStyle: Record<ServiceCall["status"], { color: string; background: string }> = {
-  open: { color: "var(--accent)", background: "#00D4FF15" },
+  open: { color: "var(--accent)", background: "#EC6D3D15" },
   classified_no_charge: { color: "var(--success)", background: "#4ADE8015" },
   classified_billable: { color: "var(--warning-light)", background: "#F59E0B15" },
   split: { color: "var(--violet)", background: "#8B5CF615" },

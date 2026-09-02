@@ -33,7 +33,7 @@ export default function AboutPage() {
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Who&apos;s behind Tioga AI
@@ -68,6 +68,22 @@ export default function AboutPage() {
           </p>
         </div>
 
+        {/* Disclosure: names the missing-credentials gap directly instead of
+            leaving it silently empty — same honesty mechanic as the
+            homepage's demo band and the Trust page's compliance-status
+            block. Added 2026-09-01 per the design canvas. */}
+        <div
+          className="rounded-2xl p-6 mb-14 flex flex-col sm:flex-row gap-4"
+          style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+        >
+          <p className="text-xs font-mono uppercase tracking-wide shrink-0 sm:w-40" style={{ color: "var(--text-muted)" }}>
+            On verification
+          </p>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+            You&apos;ll notice what&apos;s missing from this page: a dated career timeline, a LinkedIn link, referenceable client names. I&apos;m still assembling the version of that record I&apos;m willing to publish — one where every line can be checked. Until it&apos;s verifiable, it doesn&apos;t go on the site. In the meantime, the demos and the Governance Ledger are the credentials I can prove today, and a Discovery Sprint is the fastest way to test the rest.
+          </p>
+        </div>
+
         {/* Pillars */}
         <div className="mb-14">
           <h2 className="text-xl font-bold text-white mb-2">Dual fluency, not one or the other</h2>
@@ -93,7 +109,7 @@ export default function AboutPage() {
         {/* Wedge */}
         <div
           className="rounded-2xl p-8 mb-14"
-          style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}
+          style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}
         >
           <p className="text-lg text-white font-semibold mb-2">
             &ldquo;Without ripping out what works.&rdquo;

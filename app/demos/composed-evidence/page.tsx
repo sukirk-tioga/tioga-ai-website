@@ -152,7 +152,7 @@ export default function ComposedEvidencePage() {
           <div className="mb-3">
             <span
               className="text-[11px] font-mono px-2 py-0.5 rounded-full"
-              style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF40" }}
+              style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D40" }}
             >
               Panel 1
             </span>

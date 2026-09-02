@@ -61,7 +61,7 @@ export default function McpVsCustomIntegrationPage() {
         </Link>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
         >
           Comparison
         </div>
@@ -133,7 +133,7 @@ export default function McpVsCustomIntegrationPage() {
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}>
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
             <h2 className="text-lg font-bold text-white mb-3">Where custom integration is still the right call</h2>
             <p className="text-sm text-slate-300 leading-relaxed">
               A protocol layer is only worth its overhead if something is

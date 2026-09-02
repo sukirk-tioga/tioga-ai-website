@@ -197,7 +197,7 @@ const ENTRIES: Entry[] = [
 ];
 
 const KIND_STYLE: Record<Kind, { color: string; bg: string }> = {
-  Feature: { color: "var(--accent)", bg: "#00D4FF15" },
+  Feature: { color: "var(--accent)", bg: "#EC6D3D15" },
   Fix: { color: "var(--warning)", bg: "#F59E0B15" },
   Infra: { color: "var(--violet)", bg: "#8B5CF615" },
   Content: { color: "var(--success)", bg: "#4ADE8015" },
@@ -209,7 +209,7 @@ export default function ChangelogPage() {
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Build Log

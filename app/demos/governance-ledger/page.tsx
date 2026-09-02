@@ -161,7 +161,7 @@ export default function GovernanceLedgerPage() {
         <Link
           href="/showcase"
           className="shrink-0 text-xs font-mono px-3 py-1.5 rounded-full transition-colors hover:border-slate-500"
-          style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+          style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
         >
           View the scene →
         </Link>
@@ -184,7 +184,6 @@ export default function GovernanceLedgerPage() {
         <div className="flex flex-wrap gap-2 mt-4">
           {[
             "Agent-Ready ERP Diagnostic & Governed Write-Path — $60–120K",
-            "AI Governance Evidence Package for Insurance Underwriting — $15–25K",
             "AI Cost & Model Governance Assessment — $10–20K",
           ].map((o) => (
             <a

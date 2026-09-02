@@ -39,7 +39,7 @@ export default function Nav() {
       <nav
         className="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between transition-all duration-200"
         style={{
-          background: scrolled ? "rgba(10,15,28,0.97)" : "rgba(10,15,28,0.92)",
+          background: scrolled ? "rgba(14,16,12,0.97)" : "rgba(14,16,12,0.92)",
           backdropFilter: "blur(16px)",
           borderBottom: "1px solid var(--border)",
         }}
@@ -112,7 +112,7 @@ export default function Nav() {
         aria-hidden={!menuOpen}
         style={{
           maxHeight: menuOpen ? "400px" : "0px",
-          background: "rgba(10,15,28,0.98)",
+          background: "rgba(14,16,12,0.98)",
           borderBottom: menuOpen ? "1px solid var(--border)" : "none",
           backdropFilter: "blur(16px)",
         }}

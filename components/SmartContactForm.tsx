@@ -14,7 +14,7 @@ interface Classification {
 }
 
 const urgencyColors = {
-  low: { bg: "#00D4FF10", border: "#00D4FF30", text: "var(--accent)" },
+  low: { bg: "#EC6D3D10", border: "#EC6D3D30", text: "var(--accent)" },
   medium: { bg: "#F59E0B10", border: "#F59E0B30", text: "var(--warning)" },
   high: { bg: "#EF444410", border: "#EF444430", text: "var(--error)" },
   critical: { bg: "#EF444420", border: "var(--error)", text: "var(--error)" },
@@ -159,7 +159,7 @@ export default function SmartContactForm() {
         {/* What happens next */}
         <div
           className="p-4 rounded-xl"
-          style={{ background: "#00D4FF08", border: "1px solid #00D4FF20" }}
+          style={{ background: "#EC6D3D08", border: "1px solid #EC6D3D20" }}
         >
           <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>What happens next</p>
           <p className="text-sm text-slate-300">{classification.nextStep}</p>

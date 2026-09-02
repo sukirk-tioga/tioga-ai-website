@@ -58,6 +58,11 @@ export default function HomeHeroPinned() {
       // no ScrollTrigger pin, no SplitText split, no flow rotation. The
       // section renders as a normal, already-fully-visible part of the
       // document; stats already show their real SSR'd values (see JSX).
+      // The headline ships opacity-0 in its static className (fixes a
+      // first-paint double-render flash in the animated path below) --
+      // this bypass must explicitly reveal it since it never reaches the
+      // gsap.set() call that does that on the animated path.
+      if (headlineRef.current) gsap.set(headlineRef.current, { opacity: 1 });
       return;
     }
 
@@ -84,6 +89,12 @@ export default function HomeHeroPinned() {
     let split: SplitText | null = null;
     if (headlineRef.current) {
       split = new SplitText(headlineRef.current, { type: "words, chars" });
+      // Same synchronous block as the split, no frame gap: reveal the
+      // headline (shipped opacity-0 in its static className) at the exact
+      // moment its characters are ready to animate, instead of relying on
+      // the browser's first paint -- that gap is what produced the
+      // double-render flash this fixes.
+      gsap.set(headlineRef.current, { opacity: 1 });
       gsap.from(split.chars, {
         yPercent: 110,
         opacity: 0,
@@ -169,13 +180,13 @@ export default function HomeHeroPinned() {
       {/* Hero */}
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative z-0 overflow-hidden">
         <HeroFieldLoader flowAngleRef={flowAngleRef} />
-        <h1 ref={headlineRef} className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight text-balance">
-          AI agents for the{" "}
-          <span style={{ color: "var(--accent)" }}>systems</span>{" "}
-          you already have.
+        <h1 ref={headlineRef} className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight text-balance opacity-0">
+          Every action your{" "}
+          <span style={{ color: "var(--accent)" }}>AI</span>{" "}
+          takes, on the record.
         </h1>
         <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed">
-          Governed agents for finance, procurement and operations on Oracle EBS and SAP — now extending to Salesforce, ServiceNow and the data platforms they sit beside — running inside your identity, approvals and audit trail, every action visible before it executes. No migration required.
+          Tioga builds governed AI agents that work inside your existing enterprise systems — Oracle, SAP, Workday, ServiceNow, and more — under your existing identity, approvals, and audit trail. No migration. Nothing executes unseen.
         </p>
         <p className="text-sm text-slate-400 max-w-xl mx-auto mb-10">
           Five-day discovery sprint, $5,000 flat — credited toward your project if you move forward.

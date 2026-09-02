@@ -157,8 +157,8 @@ export default function MigrationAssessmentPage() {
                     onClick={() => toggleModule(m.id)}
                     className="px-3 py-1.5 rounded-full text-xs font-medium transition-all"
                     style={{
-                      background: on ? "#00D4FF15" : "transparent",
-                      border: `1px solid ${on ? "#00D4FF50" : "var(--border)"}`,
+                      background: on ? "#EC6D3D15" : "transparent",
+                      border: `1px solid ${on ? "#EC6D3D50" : "var(--border)"}`,
                       color: on ? "var(--accent)" : "var(--text-muted)",
                     }}
                   >
@@ -222,7 +222,7 @@ export default function MigrationAssessmentPage() {
       {/* Results */}
       {state === "done" && result && (
         <div className="mt-8">
-          <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid #00D4FF30" }}>
+          <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid #EC6D3D30" }}>
             {/* Score + timeline */}
             <div className="flex flex-col sm:flex-row items-start gap-6 pb-6 mb-6" style={{ borderBottom: "1px solid var(--border)" }}>
               <ScoreRing score={result.complexityScore} />
@@ -231,7 +231,7 @@ export default function MigrationAssessmentPage() {
                   <h3 className="text-lg font-semibold text-white">Migration Complexity</h3>
                   <span
                     className="text-xs px-2.5 py-1 rounded-full font-medium uppercase tracking-wide"
-                    style={{ background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" }}
+                    style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" }}
                   >
                     {result.recommendedApproach.approach}
                   </span>

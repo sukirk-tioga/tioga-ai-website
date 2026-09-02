@@ -17,7 +17,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+        mono: ["Martian Mono", "JetBrains Mono", "monospace"],
       },
     },
   },

@@ -122,7 +122,7 @@ export default function HeroDemo() {
           <span className="text-xs font-mono" style={{ color: "var(--text-muted-2)" }}>{scenario.tag}</span>
           <span
             className="ml-auto text-xs px-2 py-0.5 rounded-full font-mono"
-            style={{ background: "#00D4FF10", color: "var(--accent)", border: "1px solid #00D4FF25" }}
+            style={{ background: "#EC6D3D10", color: "var(--accent)", border: "1px solid #EC6D3D25" }}
           >
             sample run
           </span>

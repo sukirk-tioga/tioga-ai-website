@@ -144,8 +144,8 @@ export function buildValueReportHtml(result: ValueLedgerResult, inputs: ValueLed
 <title>Live Session Value Report — Tioga AI</title>
 <style>
   :root{
-    --bg-dark:#0A0F1C; --bg-card:#0D1526; --border:#1E2D4A; --accent:#00D4FF;
-    --accent-dark:#0066CC; --text:#e2e8f0; --text-muted:#94a3b8; --success:#4ADE80; --warning:#F59E0B;
+    --bg-dark:#0A0F1C; --bg-card:#0D1526; --border:#1E2D4A; --accent:#EC6D3D;
+    --accent-dark:#C83406; --text:#e2e8f0; --text-muted:#94a3b8; --success:#4ADE80; --warning:#F59E0B;
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--bg-dark);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}

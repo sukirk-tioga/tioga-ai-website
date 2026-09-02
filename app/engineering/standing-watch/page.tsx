@@ -22,7 +22,7 @@ export default function StandingWatchWriteup() {
           ← How We Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}>
             No model call
           </span>
         </div>
@@ -177,7 +177,7 @@ and restart the gateway.`}
           </div>
 
           {/* Design decisions callout */}
-          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}>
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
             <h2 className="text-lg font-bold text-white mb-3">
               What we deliberately didn&apos;t automate — and why that&apos;s the point
             </h2>

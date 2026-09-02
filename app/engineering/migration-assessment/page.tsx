@@ -21,7 +21,7 @@ export default function MigrationAssessmentWriteup() {
           ← How We Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}>
             Claude Sonnet 5
           </span>
         </div>
@@ -101,7 +101,7 @@ const TARGETS  = ["S/4HANA Cloud", "S/4HANA Private Cloud",
           </div>
 
           {/* Design decisions callout */}
-          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}>
+          <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
             <h2 className="text-lg font-bold text-white mb-3">Why Sonnet, and why 5 requests per 10 minutes</h2>
             <p className="text-sm text-slate-300 leading-relaxed">
               This is the one demo on the site running Claude Sonnet 5 with

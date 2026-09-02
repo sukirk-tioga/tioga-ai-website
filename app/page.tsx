@@ -42,7 +42,7 @@ export default function HomePage() {
  <section className="px-6 pb-16 max-w-5xl mx-auto">
  <div
  className="p-8 rounded-2xl flex flex-col md:flex-row gap-8 items-start"
- style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF20" }}
+ style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D20" }}
  >
  <div className="flex-1">
  <h3 className="text-lg font-semibold text-white mb-2">The integration problem</h3>
@@ -69,7 +69,7 @@ export default function HomePage() {
  className="text-lg italic max-w-xl mx-auto mb-2 leading-relaxed"
  style={{ color: "var(--text)", borderLeft: "2px solid var(--accent)", paddingLeft: "1rem" }}
  >
- &ldquo;I don&apos;t have client logos to show you yet — as a new practice, that&apos;s the truth. Try the product instead.&rdquo;
+ &ldquo;See it running, not a slide about it. Every demo below executes against real agent infrastructure — the same governance controls, the same routing gateway, the same audit trail built for every engagement.&rdquo;
  </p>
  <TrackedCTA
  href="/samples/erp-agent-readiness-checklist.html"
@@ -84,7 +84,7 @@ export default function HomePage() {
  </TrackedCTA>
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
- style={{ background: "#00D4FF10", border: "1px solid #00D4FF25", color: "var(--accent)" }}
+ style={{ background: "#EC6D3D10", border: "1px solid #EC6D3D25", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  Live in our environment — demo data
@@ -140,7 +140,7 @@ export default function HomePage() {
  <span className="text-3xl">{demo.icon}</span>
  <span
  className="text-xs px-2 py-0.5 rounded-full"
- style={{ background: "#00D4FF10", color: "var(--accent)", border: "1px solid #00D4FF25" }}
+ style={{ background: "#EC6D3D10", color: "var(--accent)", border: "1px solid #EC6D3D25" }}
  >
  {demo.tag}
  </span>
@@ -217,7 +217,7 @@ export default function HomePage() {
  </div>
  <div
  className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl mb-6"
- style={{ background: "linear-gradient(135deg, #00D4FF10, #0066CC10)", border: "1px solid #00D4FF25" }}
+ style={{ background: "linear-gradient(135deg, #EC6D3D10, #C8340610)", border: "1px solid #EC6D3D25" }}
  >
  <div>
  <p className="text-white font-semibold mb-1">Not sure where to start?</p>
@@ -277,7 +277,7 @@ export default function HomePage() {
  {offer.recommended && (
  <span
  className="inline-block self-start mb-4 px-3 py-1 rounded-full text-xs font-semibold"
- style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+ style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
  >
  Start here
  </span>
@@ -300,7 +300,7 @@ export default function HomePage() {
  ))}
  </div>
  <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "var(--text-faint)" }}>
- Plus ten more engagements across two practices — modernizing ERP with an agent layer, and governing enterprise AI end to end.{" "}
+ Plus twelve more engagements across two practices — modernizing ERP with an agent layer, and governing enterprise AI end to end.{" "}
  <Link href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
  See all services →
  </Link>
@@ -392,7 +392,7 @@ export default function HomePage() {
  <h3 className="font-semibold text-white">{p.title}</h3>
  <span
  className="text-xs px-2 py-0.5 rounded-full"
- style={{ background: "#00D4FF15", color: "var(--accent)", border: "1px solid #00D4FF30" }}
+ style={{ background: "#EC6D3D15", color: "var(--accent)", border: "1px solid #EC6D3D30" }}
  >
  {p.duration}
  </span>
@@ -412,13 +412,13 @@ export default function HomePage() {
  <Link
  href="/mcp"
  className="block rounded-2xl p-8 transition-all hover:border-slate-500 group"
- style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC12)", border: "1px solid #00D4FF25" }}
+ style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340612)", border: "1px solid #EC6D3D25" }}
  >
  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
  <div>
  <div
  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-3"
- style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+ style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
  >
  New Standard
  </div>

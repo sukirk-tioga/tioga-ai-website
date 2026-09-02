@@ -89,7 +89,7 @@ export default function ShowcaseCanvasLoader() {
             className="shrink-0 text-xs font-mono px-3 py-1.5 rounded-full transition-colors"
             style={
               audioEnabled
-                ? { color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }
+                ? { color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }
                 : { color: "var(--text-muted-3)", background: "var(--bg-dark)", border: "1px solid var(--border)" }
             }
           >
@@ -101,7 +101,7 @@ export default function ShowcaseCanvasLoader() {
             disabled={isPlaying}
             data-testid="showcase-replay-button"
             className="shrink-0 text-xs font-mono px-3 py-1.5 rounded-full transition-colors disabled:opacity-50"
-            style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+            style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
           >
             {isPlaying ? "Replaying…" : "▶ Replay Jul 17–25"}
           </button>

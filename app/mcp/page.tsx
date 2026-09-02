@@ -50,8 +50,8 @@ function ArchDiagram() {
  100% { top: calc(100% - 6px); opacity: 0; }
  }
  @keyframes pulse-glow {
- 0%, 100% { box-shadow: 0 0 10px #00D4FF30; }
- 50% { box-shadow: 0 0 25px #00D4FF60; }
+ 0%, 100% { box-shadow: 0 0 10px #EC6D3D30; }
+ 50% { box-shadow: 0 0 25px #EC6D3D60; }
  }
  @keyframes fadeInUp {
  from { opacity: 0; transform: translateY(16px); }
@@ -361,7 +361,7 @@ function LiveDemo() {
  className="rounded-xl px-4 py-2.5 text-sm leading-relaxed"
  style={
  msg.role === "user"
- ? { background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--text)" }
+ ? { background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--text)" }
  : { background: "var(--bg-card)", border: "1px solid var(--border)", color: "var(--text)" }
  }
  >
@@ -374,7 +374,7 @@ function LiveDemo() {
  <span
  key={tool}
  className="text-xs px-2 py-0.5 rounded-md font-mono"
- style={{ background: "#00D4FF08", color: "#00D4FF80", border: "1px solid #00D4FF20" }}
+ style={{ background: "#EC6D3D08", color: "#EC6D3D80", border: "1px solid #EC6D3D20" }}
  >
  ⚡ {tool}
  </span>
@@ -474,11 +474,11 @@ function Comparison() {
  </div>
 
  {/* After */}
- <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #00D4FF30" }}>
- <div className="px-4 py-3 text-sm font-semibold" style={{ color: "var(--accent)", background: "#00D4FF08", borderBottom: "1px solid #00D4FF30" }}>
+ <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #EC6D3D30" }}>
+ <div className="px-4 py-3 text-sm font-semibold" style={{ color: "var(--accent)", background: "#EC6D3D08", borderBottom: "1px solid #EC6D3D30" }}>
  ✓ After MCP
  </div>
- <div className="divide-y" style={{ borderColor: "#00D4FF15" }}>
+ <div className="divide-y" style={{ borderColor: "#EC6D3D15" }}>
  {rows.map((r) => (
  <div key={r.topic} className="px-4 py-3">
  <p className="text-xs text-slate-400 mb-0.5">{r.topic}</p>
@@ -513,7 +513,7 @@ export default function MCPPage() {
  <div className="text-center mb-16 fade-in">
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-5 font-mono"
- style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+ style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  Model Context Protocol
@@ -621,7 +621,7 @@ export default function MCPPage() {
  {/* CTA */}
  <div
  className="rounded-2xl p-10 text-center"
- style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}
+ style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}
  >
  <h2 className="text-2xl font-bold text-white mb-3">Ready to connect your enterprise?</h2>
  <p className="text-slate-400 mb-6 max-w-lg mx-auto">
