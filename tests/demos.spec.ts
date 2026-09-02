@@ -63,16 +63,24 @@ test("chat widget renders markdown, not raw asterisks", async ({ page }) => {
   // welcome message or the just-sent user question.
   const lastAssistantReply = page.locator(".chat-scroll > div.justify-start").last();
 
-  // Wait for real streamed content (not just the empty bubble + bouncing
-  // typing-indicator dots).
-  await expect(async () => {
-    const text = await lastAssistantReply.innerText();
-    expect(text.length).toBeGreaterThan(60);
-  }).toPass({ timeout: 20_000 });
+  // Wait for the stream to actually finish, not just for *some* content to
+  // show up. ChatWidget.tsx disables the input (isLoading) for the whole
+  // duration of the fetch stream and only re-enables it in the reader loop's
+  // `finally`. A length-only check (">60 chars") resolves as soon as the
+  // intro sentence streams in, long before the rest of the reply -- flaky by
+  // design, since ReactMarkdown can't close an odd/in-flight "**" pair until
+  // its matching closer actually arrives, so a mid-stream snapshot legitimately
+  // contains a stray "**". Confirmed 2026-09-02: re-running this exact test
+  // against production passed immediately with no code changes, and the
+  // failing run's captured text ended mid-word ("**1. Auto") -- a snapshot
+  // timing race, not the 2026-07-27 no-renderer regression this test guards
+  // against (ReactMarkdown is already wired up in ChatWidget.tsx).
+  await expect(input).toBeEnabled({ timeout: 20_000 });
 
   // The regression this guards against: literal "**" characters leaking
   // into the rendered chat bubble because markdown wasn't being parsed.
   const replyText = await lastAssistantReply.innerText();
+  expect(replyText.length).toBeGreaterThan(60);
   expect(replyText, "raw markdown syntax should not appear in chat output").not.toMatch(/\*\*\S/);
 });
 
