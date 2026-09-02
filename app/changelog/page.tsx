@@ -27,6 +27,102 @@ interface Entry {
 // shipped unit of work into one entry. Dates are the day the unit landed.
 const ENTRIES: Entry[] = [
   {
+    date: "2026-08-30",
+    kind: "Feature",
+    title: "A real propose-and-approve record for the whole automation estate — /demos/automation-oversight",
+    body: "The narrow v1 of a page proposed in the 2026-08-15 business-ops master plan (§8.4), built from data that already exists today rather than the full designed ops-ledger backend (hash-chained per-machine files, HMAC-signed decision records) — that stays a future upgrade path. Deliberately positioned against, not duplicative of, the two existing self-proof pages: Governance Ledger shows spend-level, per-call rows; Standing Watch walks one incident end-to-end; this page is the aggregate, ongoing record — what a daily automated review found, and what a human approved before anything changed. Shows event-level dispositions, never bare counts or raw logs. Content is real and dated: 11 findings from that day's review, 10 requiring and getting human approval before applying, 1 auto-implemented under a narrow pre-approved bounded-change rule — shown as its own disposition, not folded into a misleading \"0 applied without review.\" Includes one honest example of the review process catching its own mistake (a pre-deploy safety gate flagging its own working code as broken every morning until the review caught why), matching Standing Watch's own precedent of showing failures, not only clean days. Positioning cross-checked with Opus 5 (draft) and Fable 5 (adversarial review) before shipping. Reciprocal cross-links added to Governance Ledger and Standing Watch.",
+  },
+  {
+    date: "2026-08-26",
+    kind: "Content",
+    title: "Landscape article: \"Who's really running your AI?\"",
+    body: "A public, stripped-to-verified-primary-facts version of a nine-system LLM-vendor comparison (SAP/Sapphire, Oracle's OCI catalog, Salesforce/Claudeforce, ServiceNow's dual OpenAI + Anthropic deals, Snowflake's symmetric $200M partnerships, Databricks' host-everyone posture, Workday/Gemini, Microsoft's subprocessor status, Palantir's government-channel-only relationship). Only high-confidence, primary-sourced claims made the cut — a litigation reference and a sharper competitive framing were deliberately left out as brand-risk calls reserved for Sukir, not defaults to assume for public content.",
+  },
+  {
+    date: "2026-08-26",
+    kind: "Content",
+    title: "Hero headline widened from ERP-only to \"systems you already have\"",
+    body: "The homepage headline named only Oracle EBS and SAP — accurate as of the 2026-08-08 redesign, stale after a market-strategy correction that Salesforce and ServiceNow should be an additional Tioga service line, not left off the site. Single-word swap (\"ERP\" → \"systems\") keeping the same sentence shape and the SplitText character-reveal animation intact; the subhead gained an appended clause (\"now extending to Salesforce, ServiceNow and the data platforms they sit beside\") rather than losing its existing Oracle EBS/SAP anchor. The 2026-08-08 changelog entry describing the old headline was deliberately left unchanged — it's a record of what shipped that day, not live copy.",
+  },
+  {
+    date: "2026-08-22",
+    kind: "Feature",
+    title: "/lp/standing-watch — a narrower campaign landing page for outbound traffic",
+    body: "Separate from the full /solutions/standing-watch page (FAQ, all pricing tiers, related links): a scroll-driven one-pager for ad/outbound traffic specifically — problem → proof → mechanism → a single CTA (the Assessment) — reusing real copy and pricing already live on the solutions page plus the site's existing design tokens and scroll-reveal components. noindex'd so it doesn't compete with the full solutions page for search.",
+  },
+  {
+    date: "2026-08-21",
+    kind: "Feature",
+    title: "Joule Capability Gate Map: a second real worked gate, sourced from SAP Concur's public FAQ",
+    body: "Extended the existing demo with a Concur expense-management gate example (9 write-capable capabilities: create/edit/submit/recall expense report, attendees, itemizations, allocations), sourced from SAP Concur's own public Joule FAQ rather than S/4HANA's Transactional Capabilities pages, with independent adversarial review re-fetching primary sources from scratch. Leads with a population gate — \"Joule is only available for end users,\" no delegate/proxy access, despite expense delegation being standard mid-market practice — a different shape of gate than manufacturing's batch-cap pattern. Total tracked write-capable count updates 46 → 55.",
+  },
+  {
+    date: "2026-08-21",
+    kind: "Feature",
+    title: "Marble World-Generation Audit demo",
+    body: "Grounded in a real World Labs Marble API trial (2 generations, ~$2.40), not a simulated scenario: a byte-level provenance scan across 14 exported files (0 real markers, 1 false positive caught and resolved), a ToS/rights comparison, and a real physical measurement showing a +19.1% metric-scale error on a single-image reconstruction.",
+  },
+  {
+    date: "2026-08-21",
+    kind: "Infra",
+    title: "CI fix: package-lock.json drift was blocking every merge",
+    body: "package.json and package-lock.json had fallen out of sync — a peer dependency missing from the lock file entirely broke npm ci immediately on every CI run, independent of any specific feature PR. Fixed by resyncing the lock file; verified npm ci and tsc --noEmit both clean afterward.",
+  },
+  {
+    date: "2026-08-20",
+    kind: "Fix",
+    title: "The contact-classifier's audit log wasn't actually surviving — given a durable home, then a real bug in that fix caught and closed same day",
+    body: "Vercel Runtime Logs retain 1 hour (Hobby) / 1 day (Pro) — the classifier's audit trail, console.log-only until now, expired before any real dispute could use it, despite the whole point of the record being to show what the AI classifier did over time. Added a third channel: emails the same shape-only record (no raw name/email/description, matching the existing PII boundary) through the site's already-proven Gmail SMTP transport to a distinct thread — no new signup, no new credential. A live functional test the same day found the new email silently never arrived despite a 200 response: appendContactLog() was called fire-and-forget (void) in the API route, the exact pattern the neighboring sendInquiryEmail() call explicitly avoids two lines above with a comment explaining why — Vercel can freeze the serverless execution context the instant the handler returns, cutting off un-awaited async work mid-flight. The slow real SMTP send was reliably long enough to get cut off; the two faster channels before it never showed the bug. Fixed by awaiting the call, matching the established pattern next to it; verified live against production, not just a clean build — a test POST before the fix produced no email despite 200, confirmed arriving after.",
+  },
+  {
+    date: "2026-08-20",
+    kind: "Feature",
+    title: "SAP Joule Capability Gate Map demo",
+    body: "Interactive demo grounded in real, documented SAP source material: the actual write-capable Joule capability list by S/4HANA area (46 total, verbatim from SAP's own Transactional Capabilities table of contents) set against SAP's own marketed \"200+ agents\" figure, plus one real worked gate example (the Production Planning and Operations Agent's scope item, business catalog, batch cap, and human-confirmation requirements). Deliberately does not fabricate gate detail for any capability beyond that one verified example — an explicit honesty boundary in the demo's own data file, not a limitation discovered later.",
+  },
+  {
+    date: "2026-08-18",
+    kind: "Feature",
+    title: "Five new governed-write-path demos in one push",
+    body: "Composed Evidence (a real, vendor-acknowledged gap: neither a universal AI assistant nor an ERP vendor's own execution agent composes the other half of an audit trail — this demo does), ERP Reporting Copilot (a read-side natural-language query demo against composite SAP quote/order data — historical lookups and pricing-change history standard reporting doesn't cover), Agent Autonomy Tier Mapper (maps a use case to Gartner's Observe/Advise/Act-with-Approval/Act-Autonomously framework against Tioga's own Safe/Ask-first/Never tiers), Governed Field Service Billable Classification (a completed service call classified contract-covered vs. billable — an interpretation-risk gate, not a dollar threshold, with an independent ERP-layer check), and Governed Capital Equipment Order Booking.",
+  },
+  {
+    date: "2026-08-18",
+    kind: "Feature",
+    title: "/showcase — an interactive 3D scene visualizing the Governance Ledger",
+    body: "A new page rendering the site's real routing-gateway ledger data as a 3D scene rather than a table, following a Phase 0 spike a week earlier. Shipped alongside the effects, legend, and graceful-fallback components a scene like this needs.",
+  },
+  {
+    date: "2026-08-18",
+    kind: "Feature",
+    title: "/showcase pushed further: real GPU particle simulation, glass refraction, a framework migration — ahead of the plan's own stated gate",
+    body: "Sukir's explicit go-ahead to override the original plan's \"don't push further until Phase 1 has been seen by a prospect\" gate. Replaced the scene's box-tile column with a real GPGPU particle field (~40k desktop / ~8k mobile particles, GPUComputationRenderer) rasterized from the real 17-row ledger, scattering on pointer proximity and streaming during Replay; swapped the gate's flat glow for real refractive glass (drei's MeshTransmissionMaterial); migrated React 18→19, Next 14→15, and the underlying 3D libraries two major versions each, sized in advance as \"days not weeks\" against this repo's actual blast radius and confirmed live at zero code changes beyond the dependency bumps; added optional Web Audio sonification on Replay, default off and explicitly opt-in, built defensively even though the general gate was overridden, per the plan's own audio-specific hold recommendation. Verified at every stage: clean build, full Playwright suite passing (5 pre-existing API-key-gap failures confirmed identical before/after, not a regression), live in-browser checks for idle motion, refraction, and particle structure. Honestly scoped in the page's own visitor-facing copy: individual characters in the particle field aren't crisply legible at this particle budget — the documented fallback, not the higher-risk reach goal the plan had flagged.",
+  },
+  {
+    date: "2026-08-18",
+    kind: "Feature",
+    title: "Contact form moved off the homepage to its own /contact page",
+    body: "The inline homepage contact section was removed in favor of a dedicated page; the 404 page, engineering page, and other CTAs across the site were repointed accordingly.",
+  },
+  {
+    date: "2026-08-18",
+    kind: "Fix",
+    title: "AI-disclosure line added, and the contact-form classifier hardened",
+    body: "Verified structurally that the contact-form classifier has no path sending its output back to the submitter — it's only rendered client-side as labeled \"AI Classification\" data and emailed to the founder. Hardened the real gap: classifier JSON output was being parsed and trusted unchecked. Added an enum/range-constrained runtime validator that rejects malformed model output outright rather than passing it through. Hardened the classifier's audit log so it actually persists in production: added a console.log channel Vercel's serverless runtime actually captures into Runtime Logs, since the existing filesystem-based write is local-dev-only and silently no-ops on Vercel's ephemeral filesystem. Separately, added a disclosure line directly on the contact form, visible before the interaction starts, confirming AI classification with human review before follow-up — closing the gap between /trust's claim that disclosure happens \"at the start of every conversation\" and it not actually being true on the contact form specifically.",
+  },
+  {
+    date: "2026-08-10/11",
+    kind: "Feature",
+    title: "Standing Watch launched — solution page, real-ledger demo, three-tier services split, downloadable one-pager",
+    body: "A new cross-vendor AI governance offering shipped across several linked pieces: a solutions page and a real-ledger demo page, then a three-tier split on /services (previously one row), then a downloadable one-pager with an estate diagram, sample PDF, and a LinkedIn carousel.",
+  },
+  {
+    date: "2026-08-09",
+    kind: "Infra",
+    title: "Vercel Speed Insights installed",
+    body: "Added the Speed Insights package and script component so real page-load performance data starts collecting in the Vercel dashboard.",
+  },
+  {
     date: "2026-08-08",
     kind: "Feature",
     title: "A looping sample-run widget in the hero — the highest-ceiling item from the design review, scoped honestly",
