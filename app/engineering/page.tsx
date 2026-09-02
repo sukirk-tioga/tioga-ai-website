@@ -47,19 +47,19 @@ const WRITEUPS = [
 
 export default function EngineeringIndexPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           How We Built It
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           No black box.
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mb-16">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-16">
           Every demo on this site is a real, deployed route — not a mockup. Here&apos;s
           the actual engineering behind each one: which model it runs on and
           why, how untrusted input is constrained before it reaches a prompt,
@@ -77,15 +77,15 @@ export default function EngineeringIndexPage() {
               <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-1.5">
-                    <h2 className="text-lg font-semibold text-white">{w.title}</h2>
+                    <h2 className="text-lg font-semibold" style={{ color: "var(--text)" }}>{w.title}</h2>
                     <span
                       className="text-[11px] font-mono px-2 py-0.5 rounded-full"
-                      style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
+                      style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}
                     >
                       {w.model}
                     </span>
                   </div>
-                  <p className="text-sm text-slate-400 leading-relaxed max-w-xl">{w.summary}</p>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed max-w-xl">{w.summary}</p>
                 </div>
                 <span className="text-sm shrink-0" style={{ color: "var(--accent)" }}>Read →</span>
               </div>
@@ -94,15 +94,15 @@ export default function EngineeringIndexPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-xs text-slate-400 mb-4">
+          <p className="text-xs text-[var(--text-muted)] mb-4">
             Prefer the running history?{" "}
-            <Link href="/changelog" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/changelog" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               See the build log →
             </Link>
           </p>
-          <p className="text-xs text-slate-400 mb-8">
+          <p className="text-xs text-[var(--text-muted)] mb-8">
             Or see the governance ledger rendered as an interactive 3D scene —{" "}
-            <Link href="/showcase" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/showcase" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               The Gateway Corridor →
             </Link>
           </p>
@@ -116,7 +116,7 @@ export default function EngineeringIndexPage() {
             </Link>
             <Link
               href="/contact"
-              className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
+              className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-[var(--text)]"
               style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
             >
               Talk to Tioga AI

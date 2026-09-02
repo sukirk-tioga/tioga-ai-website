@@ -122,7 +122,7 @@ export default function HeroDemo() {
           <span className="text-xs font-mono" style={{ color: "var(--text-muted-2)" }}>{scenario.tag}</span>
           <span
             className="ml-auto text-xs px-2 py-0.5 rounded-full font-mono"
-            style={{ background: "#EC6D3D10", color: "var(--accent)", border: "1px solid #EC6D3D25" }}
+            style={{ background: "#C8340610", color: "var(--accent)", border: "1px solid #C8340625" }}
           >
             sample run
           </span>
@@ -172,7 +172,7 @@ export default function HeroDemo() {
         href={scenario.demoHref}
         event="cta_hero_demo_widget"
         data={{ location: "hero_demo_widget", scenario: scenario.tag }}
-        className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:text-white"
+        className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:text-[var(--text)]"
         style={{ color: "var(--accent)" }}
       >
         Run this yourself, with your own file or email →

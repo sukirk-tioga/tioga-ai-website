@@ -45,22 +45,22 @@ const PROVENANCE = [
 
 export default function ShowcasePage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       {/* Hero */}
       <section className="pt-28 pb-16 px-6 max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-              style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+              style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
             >
               <span className="w-1.5 h-1.5 bg-current rounded-full" />
               Interactive 3D — Real Governance Data
             </div>
-            <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-balance text-white mb-4">
+            <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-balance mb-4" style={{ color: "var(--text)" }}>
               The Gateway Corridor
             </h1>
-            <p className="text-xl text-slate-400 max-w-xl mb-8">
+            <p className="text-xl text-[var(--text-muted)] max-w-xl mb-8">
               The same {TOTAL_CALLS}-row governance ledger, rendered as a corridor instead of a
               table — every real call converges through one governed checkpoint on its way to a
               real backend.
@@ -110,8 +110,8 @@ export default function ShowcasePage() {
 
       {/* What you're looking at */}
       <section className="px-6 max-w-3xl mx-auto pb-16">
-        <h2 className="text-lg font-bold text-white mb-4">What you&apos;re looking at</h2>
-        <div className="space-y-4 text-sm text-slate-400 leading-relaxed">
+        <h2 className="text-lg font-bold mb-4" style={{ color: "var(--text)" }}>What you&apos;re looking at</h2>
+        <div className="space-y-4 text-sm text-[var(--text-muted)] leading-relaxed">
           <p>
 A GPU particle field on the left renders the same 17 real rows already live at{" "}
             <Link href="/demos/governance-ledger" style={{ color: "var(--accent)" }}>
@@ -141,7 +141,7 @@ A GPU particle field on the left renders the same 17 real rows already live at{"
 
       {/* The interactive scene */}
       <section id="scene" className="px-6 max-w-5xl mx-auto pb-6 scroll-mt-24">
-        <h2 className="text-lg font-bold text-white mb-4">The scene</h2>
+        <h2 className="text-lg font-bold mb-4" style={{ color: "var(--text)" }}>The scene</h2>
         <ShowcaseCanvasLoader />
         <ShowcaseLegend />
       </section>
@@ -157,7 +157,7 @@ A GPU particle field on the left renders the same 17 real rows already live at{"
               <div className="text-2xl font-bold mb-1 font-mono" style={{ color: "var(--accent)" }}>
                 {s.value}
               </div>
-              <div className="text-xs text-slate-400 uppercase tracking-wide">{s.label}</div>
+              <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">{s.label}</div>
               <div className="text-[11px] text-slate-500 mt-1">{s.sub}</div>
             </div>
           ))}
@@ -171,8 +171,8 @@ A GPU particle field on the left renders the same 17 real rows already live at{"
           style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
         >
           <div>
-            <h2 className="text-lg font-bold text-white mb-1">Same data, table view</h2>
-            <p className="text-sm text-slate-400">
+            <h2 className="text-lg font-bold mb-1" style={{ color: "var(--text)" }}>Same data, table view</h2>
+            <p className="text-sm text-[var(--text-muted)]">
               Every row in the scene above, as the same HTML table it&apos;s built from.
             </p>
           </div>
@@ -188,8 +188,8 @@ A GPU particle field on the left renders the same 17 real rows already live at{"
 
       {/* How this was built */}
       <section className="px-6 max-w-3xl mx-auto pb-16">
-        <h2 className="text-lg font-bold text-white mb-4">How this was built</h2>
-        <p className="text-sm text-slate-400 leading-relaxed">
+        <h2 className="text-lg font-bold mb-4" style={{ color: "var(--text)" }}>How this was built</h2>
+        <p className="text-sm text-[var(--text-muted)] leading-relaxed">
           React Three Fiber v9 (React 19 / Next 15) over the same typed{" "}
           <code className="font-mono text-xs">lib/governance-ledger.ts</code>{" "}
           module the table page imports, so the two views can never drift. The 17-row table on
@@ -220,10 +220,10 @@ A GPU particle field on the left renders the same 17 real rows already live at{"
           className="p-8 rounded-2xl text-center"
           style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
         >
-          <h2 className="text-xl font-semibold text-white mb-2">
+          <h2 className="text-xl font-semibold mb-2" style={{ color: "var(--text)" }}>
             Want this pattern built into your systems?
           </h2>
-          <p className="text-sm text-slate-400 mb-6 max-w-md mx-auto">
+          <p className="text-sm text-[var(--text-muted)] mb-6 max-w-md mx-auto">
             A discovery call gets you a scoped assessment from the team that builds these
             governed write-paths — not a form, a conversation.
           </p>

@@ -51,9 +51,9 @@ const content: ArticleContent = {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr style={{ borderBottom: "1px solid var(--border)" }}>
-                <th className="text-left py-3 pr-4 font-semibold text-white whitespace-nowrap">System</th>
-                <th className="text-left py-3 pr-4 font-semibold text-white">LLM posture</th>
-                <th className="text-left py-3 font-semibold text-white">What changed</th>
+                <th className="text-left py-3 pr-4 font-semibold whitespace-nowrap" style={{ color: "var(--text)" }}>System</th>
+                <th className="text-left py-3 pr-4 font-semibold" style={{ color: "var(--text)" }}>LLM posture</th>
+                <th className="text-left py-3 font-semibold" style={{ color: "var(--text)" }}>What changed</th>
               </tr>
             </thead>
             <tbody className="align-top">
@@ -69,9 +69,9 @@ const content: ArticleContent = {
                 ["Palantir", "No lab partnership (by design)", "Stays strictly multi-model on its own platform. Its Anthropic relationship is a government-cloud distribution deal, not a product anchor."],
               ].map(([system, posture, change]) => (
                 <tr key={system} style={{ borderBottom: "1px solid var(--border)" }}>
-                  <td className="py-3 pr-4 font-medium text-white whitespace-nowrap">{system}</td>
-                  <td className="py-3 pr-4 text-slate-300 whitespace-nowrap">{posture}</td>
-                  <td className="py-3 text-slate-400 leading-relaxed">{change}</td>
+                  <td className="py-3 pr-4 font-medium whitespace-nowrap" style={{ color: "var(--text)" }}>{system}</td>
+                  <td className="py-3 pr-4 text-[var(--text-muted)] whitespace-nowrap">{posture}</td>
+                  <td className="py-3 text-[var(--text-muted)] leading-relaxed">{change}</td>
                 </tr>
               ))}
             </tbody>

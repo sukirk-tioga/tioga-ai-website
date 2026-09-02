@@ -159,13 +159,13 @@ const PRACTICES: Practice[] = [
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold text-white mb-6">Services</h1>
-        <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-4">
+        <h1 className="text-4xl font-bold mb-6" style={{ color: "var(--text)" }}>Services</h1>
+        <p className="text-[var(--text-muted)] text-lg max-w-2xl leading-relaxed mb-4">
           Tioga AI runs three practices — automating finance and operations, modernizing ERP with an agent layer, and governing enterprise AI. Fifteen engagements sit underneath them, each scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
         </p>
-        <p className="text-slate-400 text-sm max-w-2xl leading-relaxed mb-16">
+        <p className="text-[var(--text-muted)] text-sm max-w-2xl leading-relaxed mb-16">
           Every engagement below starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment. If you move forward, the $5,000 is credited toward the price of the engagement below.
         </p>
 
@@ -176,9 +176,9 @@ export default function ServicesPage() {
                 <span className="text-sm font-mono" style={{ color: "var(--accent)" }}>
                   {String(pi + 1).padStart(2, "0")}
                 </span>
-                <h2 className="text-2xl font-bold text-white">{practice.name}</h2>
+                <h2 className="text-2xl font-bold" style={{ color: "var(--text)" }}>{practice.name}</h2>
               </div>
-              <p className="text-sm text-slate-400 max-w-2xl leading-relaxed mb-6">{practice.blurb}</p>
+              <p className="text-sm text-[var(--text-muted)] max-w-2xl leading-relaxed mb-6">{practice.blurb}</p>
               <div className="space-y-4">
                 {practice.offers.map((offer) => (
                   <div
@@ -188,18 +188,18 @@ export default function ServicesPage() {
                   >
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-white mb-2">{offer.name}</h3>
-                        <p className="text-sm text-slate-400 leading-relaxed">{offer.desc}</p>
+                        <h3 className="text-lg font-semibold mb-2" style={{ color: "var(--text)" }}>{offer.name}</h3>
+                        <p className="text-sm text-[var(--text-muted)] leading-relaxed">{offer.desc}</p>
                       </div>
                       <div className="shrink-0 text-right md:pl-8">
-                        <p className="text-sm font-semibold text-white">{offer.price}</p>
-                        <p className="text-xs text-slate-400 mt-0.5">{offer.duration}</p>
+                        <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>{offer.price}</p>
+                        <p className="text-xs text-[var(--text-muted)] mt-0.5">{offer.duration}</p>
                       </div>
                     </div>
                     <div className="mt-5 pt-5" style={{ borderTop: "1px solid var(--border)" }}>
                       <Link
                         href={offer.href ?? "/contact"}
-                        className="text-sm font-medium transition-colors hover:text-white"
+                        className="text-sm font-medium transition-colors hover:text-[var(--text)]"
                         style={{ color: "var(--accent)" }}
                       >
                         {offer.ctaLabel ?? "Start a conversation about this engagement →"}
@@ -213,8 +213,8 @@ export default function ServicesPage() {
         </div>
 
         <div className="mt-16 p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-          <h2 className="text-lg font-semibold text-white mb-1">Sample artifacts</h2>
-          <p className="text-sm text-slate-400 mb-5 max-w-2xl">
+          <h2 className="text-lg font-semibold mb-1" style={{ color: "var(--text)" }}>Sample artifacts</h2>
+          <p className="text-sm text-[var(--text-muted)] mb-5 max-w-2xl">
             Four sanitized samples of what an engagement actually produces — illustrative data, real format.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -229,7 +229,7 @@ export default function ServicesPage() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm px-4 py-3 rounded-xl transition-colors hover:text-white"
+                className="text-sm px-4 py-3 rounded-xl transition-colors hover:text-[var(--text)]"
                 style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--accent)" }}
               >
                 {s.label} →
@@ -246,9 +246,9 @@ export default function ServicesPage() {
           >
             Start a conversation
           </Link>
-          <p className="text-xs text-slate-400 mt-4">
+          <p className="text-xs text-[var(--text-muted)] mt-4">
             Not sure where to start?{" "}
-            <Link href="/#services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/#services" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               See the three entry-point offers →
             </Link>
           </p>

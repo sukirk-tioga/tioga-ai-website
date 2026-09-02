@@ -28,7 +28,7 @@ export default function ShowcaseLegend() {
         <p className="text-xs uppercase tracking-wide font-semibold mb-2" style={{ color: "var(--accent)" }}>
           The ledger field
         </p>
-        <p className="text-xs text-slate-400 leading-relaxed">
+        <p className="text-xs text-[var(--text-muted)] leading-relaxed">
           {TOTAL_CALLS} real rows, rasterized into a GPU particle field — the same table as{" "}
           <span className="font-mono">/demos/governance-ledger</span>, made of light instead of
           HTML. Ribbon width is each row&apos;s real token count — wider ribbons carried more
@@ -40,7 +40,7 @@ export default function ShowcaseLegend() {
         <p className="text-xs uppercase tracking-wide font-semibold mb-2" style={{ color: "var(--accent)" }}>
           The gate
         </p>
-        <p className="text-xs text-slate-400 leading-relaxed">
+        <p className="text-xs text-[var(--text-muted)] leading-relaxed">
           Every ribbon passes through the same checkpoint — the budget reservation against the
           real ${BUDGET_CAP.toFixed(2)} / 30-day cap. Spend sits at ${TOTAL_SPEND.toFixed(6)}.{" "}
           {FREE_COUNT} of {TOTAL_CALLS} calls are free-pool; {FREE_ZERO_COST_COUNT} of those (
@@ -52,7 +52,7 @@ export default function ShowcaseLegend() {
         <p className="text-xs uppercase tracking-wide font-semibold mb-2" style={{ color: "var(--accent)" }}>
           Pool terminals
         </p>
-        <p className="text-xs text-slate-400 leading-relaxed">
+        <p className="text-xs text-[var(--text-muted)] leading-relaxed">
           {BACKEND_ROUTES.length} backend pools light up as calls arrive — requested→served is
           real: e.g. <span className="font-mono">glm-flash</span> served by{" "}
           <span className="font-mono">qwen/qwen3-8b</span>.
@@ -66,7 +66,7 @@ export default function ShowcaseLegend() {
         <LegendSwatch color="var(--accent)" label="Free-pool call" />
         <LegendSwatch color="var(--accent-dark)" label="Paid call" />
         <LegendSwatch color="var(--success)" label="Crossing the gate" />
-        <span className="text-xs text-slate-400 ml-auto">
+        <span className="text-xs text-[var(--text-muted)] ml-auto">
           NIST AI RMF: <NistChip label="MAP" color="var(--accent)" /> <NistChip label="MEASURE" color="var(--violet)" />{" "}
           <NistChip label="MANAGE" color="var(--blue)" /> <NistChip label="GOVERN (the gate)" color="var(--accent-dark)" />
         </span>
@@ -77,7 +77,7 @@ export default function ShowcaseLegend() {
 
 function LegendSwatch({ color, label }: { color: string; label: string }) {
   return (
-    <span className="inline-flex items-center gap-2 text-xs text-slate-300">
+    <span className="inline-flex items-center gap-2 text-xs text-[var(--text-muted)]">
       <span className="w-2.5 h-2.5 rounded-full" style={{ background: color }} />
       {label}
     </span>

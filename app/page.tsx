@@ -7,7 +7,7 @@ import { CAL_LINK } from "@/lib/site-config";
 
 export default function HomePage() {
  return (
- <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+ <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
 
  {/* Hero + Stats Bar — pinned scroll cinematic, see HomeHeroPinned.tsx
  (Phase 4 of the boundary-push plan). Stats now source real numbers
@@ -42,18 +42,18 @@ export default function HomePage() {
  <section className="px-6 pb-16 max-w-5xl mx-auto">
  <div
  className="p-8 rounded-2xl flex flex-col md:flex-row gap-8 items-start"
- style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D20" }}
+ style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340620" }}
  >
  <div className="flex-1">
- <h3 className="text-lg font-semibold text-white mb-2">The integration problem</h3>
- <p className="text-sm text-slate-400 leading-relaxed">
+ <h3 className="text-lg font-semibold mb-2" style={{ color: "var(--text)" }}>The integration problem</h3>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed">
  Enterprise AI projects stall because generic consultants build demos that can&apos;t connect to real systems. Your ERP, CRM and HRIS are locked behind custom APIs, legacy auth and security layers that require deep enterprise expertise to navigate.
  </p>
  </div>
  <div className="hidden md:block w-px self-stretch" style={{ background: "var(--border)" }} />
  <div className="flex-1">
- <h3 className="text-lg font-semibold text-white mb-2">The Tioga difference</h3>
- <p className="text-sm text-slate-400 leading-relaxed">
+ <h3 className="text-lg font-semibold mb-2" style={{ color: "var(--text)" }}>The Tioga difference</h3>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed">
  I build MCP-native AI systems that speak your enterprise stack&apos;s language from day one. Your pilot runs on your real data, in your real environment — so the path to production is already built by the time I present results.
  </p>
  </div>
@@ -77,20 +77,20 @@ export default function HomePage() {
  rel="noopener noreferrer"
  event="lead_asset_download"
  data={{ asset: "erp-agent-readiness-checklist", location: "mid_page" }}
- className="text-xs underline underline-offset-2 transition-colors hover:text-white inline-block mb-6"
+ className="text-xs underline underline-offset-2 transition-colors hover:text-[var(--text)] inline-block mb-6"
  style={{ color: "var(--accent)" }}
  >
  Not ready to try the demos? Free ERP Agent-Readiness Checklist →
  </TrackedCTA>
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
- style={{ background: "#EC6D3D10", border: "1px solid #EC6D3D25", color: "var(--accent)" }}
+ style={{ background: "#C8340610", border: "1px solid #C8340625", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  Live in our environment — demo data
  </div>
- <h2 className="text-3xl font-bold text-white mb-3">Try It Right Now</h2>
- <p className="text-slate-400 max-w-lg mx-auto text-sm">Four real AI workflows. No signup. No mockups. The same Claude models built into every Tioga AI engagement.</p>
+ <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>Try It Right Now</h2>
+ <p className="text-[var(--text-muted)] max-w-lg mx-auto text-sm">Four real AI workflows. No signup. No mockups. The same Claude models built into every Tioga AI engagement.</p>
  </div>
  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
  {[
@@ -140,13 +140,13 @@ export default function HomePage() {
  <span className="text-3xl">{demo.icon}</span>
  <span
  className="text-xs px-2 py-0.5 rounded-full"
- style={{ background: "#EC6D3D10", color: "var(--accent)", border: "1px solid #EC6D3D25" }}
+ style={{ background: "#C8340610", color: "var(--accent)", border: "1px solid #C8340625" }}
  >
  {demo.tag}
  </span>
  </div>
- <h3 className="text-base font-semibold text-white mb-2">{demo.title}</h3>
- <p className="text-xs text-slate-400 leading-relaxed mb-4">{demo.desc}</p>
+ <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{demo.title}</h3>
+ <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-4">{demo.desc}</p>
  <span className="text-sm font-medium inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
  Try it live →
  </span>
@@ -165,13 +165,13 @@ export default function HomePage() {
  >
  <div className="grid md:grid-cols-2 gap-6 items-center">
  <div>
- <h3 className="text-base font-semibold text-white mb-1">See how I govern my own AI</h3>
+ <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>See how I govern my own AI</h3>
  <p className="text-xs leading-relaxed max-w-md mb-4" style={{ color: "var(--text-muted)" }}>
  The Governance Ledger is real operational data from Tioga&apos;s own AI routing gateway, mapped to NIST AI RMF — not a mockup. Every call logged, costed, and attributed as a byproduct of routing, not bolted on.
  </p>
  <Link
  href="/demos/governance-ledger"
- className="text-sm font-medium transition-colors hover:text-white inline-flex items-center gap-1.5"
+ className="text-sm font-medium transition-colors hover:text-[var(--text)] inline-flex items-center gap-1.5"
  style={{ color: "var(--accent)" }}
  >
  View the full ledger →
@@ -186,12 +186,12 @@ export default function HomePage() {
  {/* Integrations */}
  <ScrollReveal>
  <section className="py-16 px-6 max-w-5xl mx-auto">
- <p className="text-center text-xs text-slate-400 uppercase tracking-widest mb-8">I integrate with your existing enterprise stack</p>
+ <p className="text-center text-xs text-[var(--text-muted)] uppercase tracking-widest mb-8">I integrate with your existing enterprise stack</p>
  <div className="flex flex-wrap justify-center items-center gap-3">
  {["SAP", "Salesforce", "ServiceNow", "Oracle", "Workday", "SharePoint", "Slack", "Microsoft 365"].map((name) => (
  <div
  key={name}
- className="px-5 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white transition-colors"
+ className="px-5 py-2.5 rounded-xl text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
  style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
  >
  {name}
@@ -207,8 +207,8 @@ export default function HomePage() {
  <ScrollReveal>
  <section id="services" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-24">
  <div className="text-center mb-12">
- <h2 className="text-3xl font-bold text-white mb-3">Where to start</h2>
- <p className="text-slate-400 text-sm max-w-lg mx-auto">
+ <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>Where to start</h2>
+ <p className="text-[var(--text-muted)] text-sm max-w-lg mx-auto">
  Three entry-point offers — each delivers a concrete, reviewable output in weeks, not quarters.
  </p>
  <p className="text-xs max-w-lg mx-auto mt-2" style={{ color: "var(--text-muted-3)" }}>
@@ -217,10 +217,10 @@ export default function HomePage() {
  </div>
  <div
  className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl mb-6"
- style={{ background: "linear-gradient(135deg, #EC6D3D10, #C8340610)", border: "1px solid #EC6D3D25" }}
+ style={{ background: "linear-gradient(135deg, #C8340610, #A5000010)", border: "1px solid #C8340625" }}
  >
  <div>
- <p className="text-white font-semibold mb-1">Not sure where to start?</p>
+ <p className="font-semibold mb-1" style={{ color: "var(--text)" }}>Not sure where to start?</p>
  <p className="text-sm" style={{ color: "var(--text-muted)" }}>
  Five-day Discovery Sprint, $5,000 flat — credited in full toward whichever offer below you move forward with.
  </p>
@@ -277,16 +277,16 @@ export default function HomePage() {
  {offer.recommended && (
  <span
  className="inline-block self-start mb-4 px-3 py-1 rounded-full text-xs font-semibold"
- style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+ style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
  >
  Start here
  </span>
  )}
- <h3 className="text-2xl font-semibold text-white mb-3 leading-snug">{offer.name}</h3>
- <p className="text-lg font-medium text-slate-400 mb-5 leading-snug">{offer.valueProp}</p>
+ <h3 className="text-2xl font-semibold mb-3 leading-snug" style={{ color: "var(--text)" }}>{offer.name}</h3>
+ <p className="text-lg font-medium text-[var(--text-muted)] mb-5 leading-snug">{offer.valueProp}</p>
  <p className="text-base leading-relaxed flex-1 mb-8" style={{ color: "var(--text-body)" }}>{offer.desc}</p>
  <div className="space-y-4">
- <p className="text-2xl font-semibold text-white">{offer.investment}</p>
+ <p className="text-2xl font-semibold" style={{ color: "var(--text)" }}>{offer.investment}</p>
  <a
  href="/contact"
  className="block text-center w-full px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
@@ -301,21 +301,21 @@ export default function HomePage() {
  </div>
  <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "var(--text-faint)" }}>
  Plus twelve more engagements across two practices — modernizing ERP with an agent layer, and governing enterprise AI end to end.{" "}
- <Link href="/services" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
+ <Link href="/services" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
  See all services →
  </Link>
  </p>
  <p className="text-center mt-4 text-sm leading-relaxed" style={{ color: "var(--text-muted-2)" }}>
  See what you actually get:{" "}
- <a href="/samples/discovery-sprint-scope.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
+ <a href="/samples/discovery-sprint-scope.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
  sample discovery sprint scope
  </a>
  ,{" "}
- <a href="/samples/governance-evidence-excerpt.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
+ <a href="/samples/governance-evidence-excerpt.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
  sample governance evidence excerpt
  </a>
  , or{" "}
- <a href="/samples/ai-governance-executive-summary.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-white" style={{ color: "var(--accent)" }}>
+ <a href="/samples/ai-governance-executive-summary.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
  sample readiness assessment summary
  </a>
  .
@@ -328,12 +328,12 @@ export default function HomePage() {
  <section className="px-6 pb-20 max-w-5xl mx-auto">
  <div className="rounded-2xl p-8 md:p-10" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
  <div className="text-center mb-10">
- <h2 className="text-3xl font-bold text-white mb-3">What working with Tioga AI looks like</h2>
- <p className="text-slate-400 text-sm max-w-lg mx-auto">Not a generic AI consultancy. One founder who specializes in one thing: getting AI into production inside complex enterprise environments.</p>
+ <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>What working with Tioga AI looks like</h2>
+ <p className="text-[var(--text-muted)] text-sm max-w-lg mx-auto">Not a generic AI consultancy. One founder who specializes in one thing: getting AI into production inside complex enterprise environments.</p>
  </div>
  <div className="mb-10 pb-8 text-center" style={{ borderBottom: "1px solid var(--border)" }}>
  <p className="text-sm max-w-2xl mx-auto leading-relaxed" style={{ color: "var(--text-body)" }}>
- Tioga AI is built by <span className="text-white font-medium">Sukir Kumaresan</span>, who spent decades on the operating side of enterprise systems — Oracle EBS, SAP, finance, HR, procurement — and the governance work that keeps those systems audit-ready. Every demo on this site, including the Governance Ledger above, is code Sukir wrote and infrastructure Sukir runs. No outsourced build, no slide deck.
+ Tioga AI is built by <span className="font-medium" style={{ color: "var(--text)" }}>Sukir Kumaresan</span>, who spent decades on the operating side of enterprise systems — Oracle EBS, SAP, finance, HR, procurement — and the governance work that keeps those systems audit-ready. Every demo on this site, including the Governance Ledger above, is code Sukir wrote and infrastructure Sukir runs. No outsourced build, no slide deck.
  </p>
  </div>
  <div className="grid md:grid-cols-3 gap-6">
@@ -348,8 +348,8 @@ export default function HomePage() {
  <div key={item.title} className="flex gap-3">
  <span className="text-xl shrink-0 mt-0.5">{item.icon}</span>
  <div>
- <h4 className="text-sm font-semibold text-white mb-1">{item.title}</h4>
- <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+ <h4 className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>{item.title}</h4>
+ <p className="text-xs text-[var(--text-muted)] leading-relaxed">{item.desc}</p>
  </div>
  </div>
  ))}
@@ -364,8 +364,8 @@ export default function HomePage() {
  <ScrollReveal>
  <section id="process" className="py-20 px-6 max-w-4xl mx-auto scroll-mt-24">
  <div className="text-center mb-12">
- <h2 className="text-3xl font-bold text-white mb-3">My Process</h2>
- <p className="text-slate-400 text-sm">From first conversation to production deployment — with no ambiguity about what happens next.</p>
+ <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>My Process</h2>
+ <p className="text-[var(--text-muted)] text-sm">From first conversation to production deployment — with no ambiguity about what happens next.</p>
  </div>
  <div className="space-y-4">
  {[
@@ -389,16 +389,16 @@ export default function HomePage() {
  <div className="text-2xl font-bold font-mono shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>{p.step}</div>
  <div className="flex-1">
  <div className="flex flex-wrap items-center gap-3 mb-2">
- <h3 className="font-semibold text-white">{p.title}</h3>
+ <h3 className="font-semibold" style={{ color: "var(--text)" }}>{p.title}</h3>
  <span
  className="text-xs px-2 py-0.5 rounded-full"
- style={{ background: "#EC6D3D15", color: "var(--accent)", border: "1px solid #EC6D3D30" }}
+ style={{ background: "#C8340615", color: "var(--accent)", border: "1px solid #C8340630" }}
  >
  {p.duration}
  </span>
  </div>
- <p className="text-sm text-slate-400 leading-relaxed mb-2">{p.desc}</p>
- <p className="text-xs text-slate-400">{p.detail}</p>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-2">{p.desc}</p>
+ <p className="text-xs text-[var(--text-muted)]">{p.detail}</p>
  </div>
  </div>
  ))}
@@ -412,18 +412,18 @@ export default function HomePage() {
  <Link
  href="/mcp"
  className="block rounded-2xl p-8 transition-all hover:border-slate-500 group"
- style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340612)", border: "1px solid #EC6D3D25" }}
+ style={{ background: "linear-gradient(135deg, #C8340608, #A5000012)", border: "1px solid #C8340625" }}
  >
  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
  <div>
  <div
  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-3"
- style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+ style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
  >
  New Standard
  </div>
- <h3 className="text-xl font-bold text-white mb-2">Model Context Protocol (MCP)</h3>
- <p className="text-sm text-slate-400 max-w-lg">
+ <h3 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Model Context Protocol (MCP)</h3>
+ <p className="text-sm text-[var(--text-muted)] max-w-lg">
  MCP is how frontier AI connects to enterprise systems. Tioga AI is built MCP-native from day one, with working connectors for SAP and Salesforce you can try on the MCP page. See the architecture, explore live demos and understand why your next AI project should be MCP-native.
  </p>
  </div>

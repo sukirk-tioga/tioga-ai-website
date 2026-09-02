@@ -32,8 +32,8 @@ function AreaButton({
       onClick={onClick}
       className="text-left px-3.5 py-2.5 rounded-xl transition-all text-sm font-medium"
       style={{
-        background: selected ? "#EC6D3D15" : "var(--bg-dark)",
-        border: `1px solid ${selected ? "#EC6D3D50" : "var(--border)"}`,
+        background: selected ? "#C8340615" : "var(--bg-dark)",
+        border: `1px solid ${selected ? "#C8340650" : "var(--border)"}`,
         color: selected ? "var(--accent)" : "var(--text-muted)",
       }}
     >
@@ -62,7 +62,7 @@ export default function JouleCapabilityGateMapPage() {
           <div className="text-3xl font-bold mb-1" style={{ color: "var(--text)" }}>
             {MARKETING_FIGURE.agents}
           </div>
-          <div className="text-xs text-slate-400 uppercase tracking-wide mb-1">
+          <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-1">
             Joule agents, marketed
           </div>
           <div className="text-xs text-slate-500">{MARKETING_FIGURE.scope}</div>
@@ -71,7 +71,7 @@ export default function JouleCapabilityGateMapPage() {
           <div className="text-3xl font-bold mb-1" style={{ color: "var(--accent)" }}>
             {TOTAL_WRITE_CAPABILITIES}
           </div>
-          <div className="text-xs text-slate-400 uppercase tracking-wide mb-1">
+          <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-1">
             Write-capable capabilities, documented
           </div>
           <div className="text-xs text-slate-500">Across all 8 S/4HANA areas below</div>
@@ -79,21 +79,21 @@ export default function JouleCapabilityGateMapPage() {
       </div>
 
       <div
-        className="p-5 rounded-xl mb-8 text-sm text-slate-300 leading-relaxed"
+        className="p-5 rounded-xl mb-8 text-sm text-[var(--text-muted)] leading-relaxed"
         style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
       >
         SAP&apos;s own Joule Capabilities Guide splits every capability into three
         tiers: Navigational, Informational, and Transactional. Read SAP&apos;s own
         definition of &ldquo;Transactional&rdquo; closely:
-        <span className="italic text-slate-400"> &ldquo;{TRANSACTIONAL_DEFINITION_QUOTE}&rdquo;</span>{" "}
+        <span className="italic text-[var(--text-muted)]"> &ldquo;{TRANSACTIONAL_DEFINITION_QUOTE}&rdquo;</span>{" "}
         A large share of what gets marketed as &ldquo;agents that act&rdquo; is, in SAP&apos;s
         own documentation, view-and-hand-off to a Fiori app for a human to finish.
       </div>
 
       {/* Area picker */}
       <div className="p-6 rounded-2xl mb-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold text-white mb-1">What actually writes, by area</h2>
-        <p className="text-sm text-slate-400 mb-5">
+        <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>What actually writes, by area</h2>
+        <p className="text-sm text-[var(--text-muted)] mb-5">
           Pick an S/4HANA area to see the real, documented write-capable capability list —
           verbatim from SAP&apos;s own Transactional Capabilities pages.
         </p>
@@ -108,12 +108,12 @@ export default function JouleCapabilityGateMapPage() {
         </div>
 
         <div className="pt-4" style={{ borderTop: "1px solid var(--border)" }}>
-          <p className="text-xs text-slate-400 uppercase tracking-wide mb-3">
+          <p className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-3">
             {areaLabel} — {capabilities.length} write-capable {capabilities.length === 1 ? "capability" : "capabilities"}
           </p>
           <ul className="space-y-1.5">
             {capabilities.map((c) => (
-              <li key={c} className="flex items-start gap-2 text-sm text-slate-300">
+              <li key={c} className="flex items-start gap-2 text-sm text-[var(--text-muted)]">
                 <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-none" style={{ background: "var(--accent)" }} />
                 {c}
               </li>
@@ -124,8 +124,8 @@ export default function JouleCapabilityGateMapPage() {
 
       {/* Worked gate examples */}
       <div className="mb-2">
-        <h2 className="font-semibold text-white mb-1">Real worked examples: what a gate actually looks like</h2>
-        <p className="text-sm text-slate-400 mb-5">
+        <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Real worked examples: what a gate actually looks like</h2>
+        <p className="text-sm text-[var(--text-muted)] mb-5">
           These are the capabilities checked this deeply for this demo — one from SAP&apos;s own
           flagship &ldquo;autonomous&rdquo; manufacturing pitch, one from Concur&apos;s expense-report
           Joule agent. Each shows the shape of the real question: not &ldquo;can Joule do this,&rdquo;
@@ -144,21 +144,21 @@ export default function JouleCapabilityGateMapPage() {
           </p>
 
           <div className="p-4 rounded-xl mb-4" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-            <p className="text-xs text-slate-400 uppercase tracking-wide mb-1">{example.capability}</p>
-            <p className="text-sm text-slate-300 italic">
+            <p className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-1">{example.capability}</p>
+            <p className="text-sm text-[var(--text-muted)] italic">
               The pitch: {example.claim}
             </p>
             <p className="text-xs text-slate-500 mt-1">— {example.claimSource}</p>
           </div>
 
-          <p className="text-xs text-slate-400 uppercase tracking-wide mb-2">What SAP&apos;s own docs actually require</p>
+          <p className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-2">What SAP&apos;s own docs actually require</p>
           <div className="grid sm:grid-cols-3 gap-3 mb-4">
             {example.gates.map((g) => (
               <div key={g.label} className="p-3.5 rounded-xl min-w-0" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
                 <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "var(--warning-light)" }}>
                   {g.label}
                 </p>
-                <p className="text-xs text-slate-300 leading-relaxed break-words">{g.detail}</p>
+                <p className="text-xs text-[var(--text-muted)] leading-relaxed break-words">{g.detail}</p>
               </div>
             ))}
           </div>
@@ -167,13 +167,13 @@ export default function JouleCapabilityGateMapPage() {
             <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "var(--success)" }}>
               Human checkpoint
             </p>
-            <p className="text-xs text-slate-300 leading-relaxed">{example.humanCheckpoint}</p>
+            <p className="text-xs text-[var(--text-muted)] leading-relaxed">{example.humanCheckpoint}</p>
           </div>
         </div>
       ))}
 
       <div
-        className="p-5 rounded-xl mb-8 text-sm text-slate-300 leading-relaxed"
+        className="p-5 rounded-xl mb-8 text-sm text-[var(--text-muted)] leading-relaxed"
         style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
       >
         None of this is a secret — it&apos;s all in SAP&apos;s own help documentation. What&apos;s
@@ -190,10 +190,10 @@ export default function JouleCapabilityGateMapPage() {
         <p className="text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: "var(--accent)" }}>
           Source &amp; scope
         </p>
-        <p className="text-xs text-slate-400 leading-relaxed">{SOURCE_NOTE}</p>
+        <p className="text-xs text-[var(--text-muted)] leading-relaxed">{SOURCE_NOTE}</p>
       </div>
 
-      <p className="text-xs text-slate-400 text-center mt-4 max-w-lg mx-auto">
+      <p className="text-xs text-[var(--text-muted)] text-center mt-4 max-w-lg mx-auto">
         The capability list above is a real inventory extracted from SAP&apos;s own
         documentation. The gate detail is verified this deeply for one capability —
         mapping the rest against your real configuration is exactly the work a

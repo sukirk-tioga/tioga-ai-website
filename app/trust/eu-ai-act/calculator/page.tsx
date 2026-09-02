@@ -76,7 +76,7 @@ function CheckItem({ checked, onChange, label }: { checked: boolean; onChange: (
     <button
       onClick={onChange}
       className="w-full flex items-start gap-3 p-3 rounded-xl text-left transition-all"
-      style={{ background: checked ? "#EC6D3D10" : "transparent", border: `1px solid ${checked ? "#EC6D3D40" : "var(--border)"}` }}
+      style={{ background: checked ? "#C8340610" : "transparent", border: `1px solid ${checked ? "#C8340640" : "var(--border)"}` }}
     >
       <span
         className="mt-0.5 w-4 h-4 rounded shrink-0 flex items-center justify-center text-[10px]"
@@ -84,7 +84,7 @@ function CheckItem({ checked, onChange, label }: { checked: boolean; onChange: (
       >
         {checked && <span style={{ color: "var(--bg-dark)" }}>✓</span>}
       </span>
-      <span className="text-sm text-slate-300 leading-snug">{label}</span>
+      <span className="text-sm text-[var(--text-muted)] leading-snug">{label}</span>
     </button>
   );
 }
@@ -115,27 +115,27 @@ export default function EUAIActCalculatorPage() {
   const result = RESULTS[tier];
 
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
-        <Link href="/trust/eu-ai-act" className="text-xs mb-6 inline-block hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+        <Link href="/trust/eu-ai-act" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← EU AI Act Exposure
         </Link>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Readiness Calculator
         </div>
-        <h1 className="text-4xl font-bold text-white mb-4 leading-tight">
+        <h1 className="text-4xl font-bold mb-4 leading-tight" style={{ color: "var(--text)" }}>
           Which risk tier does your AI system fall into?
         </h1>
-        <p className="text-slate-400 leading-relaxed max-w-2xl mb-4">
+        <p className="text-[var(--text-muted)] leading-relaxed max-w-2xl mb-4">
           A quick, rules-based check against the Act&apos;s published risk
           categories — not a model-generated guess. Select everything that
           applies; nothing here is saved or sent anywhere.
         </p>
-        <p className="text-xs text-slate-400 mb-12">
+        <p className="text-xs text-[var(--text-muted)] mb-12">
           This is a directional check, not legal advice — a real classification
           depends on facts a form can&apos;t capture. Talk to counsel for anything
           consequential.
@@ -145,21 +145,21 @@ export default function EUAIActCalculatorPage() {
           <div>
             {/* Q1 */}
             <div className="mb-8">
-              <p className="text-sm font-semibold text-white mb-3">
+              <p className="text-sm font-semibold mb-3" style={{ color: "var(--text)" }}>
                 Does your organization deploy or provide AI systems used by people in the EU?
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setEuExposure(true)}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === true ? "#EC6D3D15" : "var(--bg-card)", border: `1px solid ${euExposure === true ? "var(--accent)" : "var(--border)"}`, color: euExposure === true ? "var(--accent)" : "var(--text-muted)" }}
+                  style={{ background: euExposure === true ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === true ? "var(--accent)" : "var(--border)"}`, color: euExposure === true ? "var(--accent)" : "var(--text-muted)" }}
                 >
                   Yes
                 </button>
                 <button
                   onClick={() => setEuExposure(false)}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === false ? "#EC6D3D15" : "var(--bg-card)", border: `1px solid ${euExposure === false ? "var(--accent)" : "var(--border)"}`, color: euExposure === false ? "var(--accent)" : "var(--text-muted)" }}
+                  style={{ background: euExposure === false ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === false ? "var(--accent)" : "var(--border)"}`, color: euExposure === false ? "var(--accent)" : "var(--text-muted)" }}
                 >
                   No / not sure
                 </button>
@@ -169,7 +169,7 @@ export default function EUAIActCalculatorPage() {
             {showQuestions && (
               <>
                 <div className="mb-8">
-                  <p className="text-sm font-semibold text-white mb-1">Does your AI system do any of the following?</p>
+                  <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Does your AI system do any of the following?</p>
                   <p className="text-xs text-red-400 mb-3">These are prohibited practices under Article 5 — select if any apply.</p>
                   <div className="space-y-2">
                     {PROHIBITED_ITEMS.map((i) => (
@@ -179,8 +179,8 @@ export default function EUAIActCalculatorPage() {
                 </div>
 
                 <div className="mb-8">
-                  <p className="text-sm font-semibold text-white mb-1">Is your AI system used for any of these?</p>
-                  <p className="text-xs text-slate-400 mb-3">Annex III high-risk categories.</p>
+                  <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Is your AI system used for any of these?</p>
+                  <p className="text-xs text-[var(--text-muted)] mb-3">Annex III high-risk categories.</p>
                   <div className="space-y-2">
                     {HIGH_RISK_ITEMS.map((i) => (
                       <CheckItem key={i.id} checked={selected.has(i.id)} onChange={() => toggle(i.id)} label={i.label} />
@@ -189,8 +189,8 @@ export default function EUAIActCalculatorPage() {
                 </div>
 
                 <div className="mb-8">
-                  <p className="text-sm font-semibold text-white mb-1">Does your AI system do any of these?</p>
-                  <p className="text-xs text-slate-400 mb-3">Limited-risk — Article 50 transparency obligations.</p>
+                  <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Does your AI system do any of these?</p>
+                  <p className="text-xs text-[var(--text-muted)] mb-3">Limited-risk — Article 50 transparency obligations.</p>
                   <div className="space-y-2">
                     {LIMITED_RISK_ITEMS.map((i) => (
                       <CheckItem key={i.id} checked={selected.has(i.id)} onChange={() => toggle(i.id)} label={i.label} />
@@ -199,7 +199,7 @@ export default function EUAIActCalculatorPage() {
                 </div>
 
                 <div className="mb-8">
-                  <p className="text-sm font-semibold text-white mb-3">One more thing</p>
+                  <p className="text-sm font-semibold mb-3" style={{ color: "var(--text)" }}>One more thing</p>
                   <CheckItem
                     checked={gpai}
                     onChange={() => setGpai(!gpai)}
@@ -214,22 +214,22 @@ export default function EUAIActCalculatorPage() {
           <div className="lg:sticky lg:top-28 h-fit">
             {euExposure === null ? (
               <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-                <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-2">Result</p>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <p className="text-[11px] uppercase tracking-wide text-[var(--text-muted)] mb-2">Result</p>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed">
                   Answer the question above to see your likely risk tier.
                 </p>
               </div>
             ) : (
               <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: `1px solid ${result.color}40` }}>
-                <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-2">Result</p>
+                <p className="text-[11px] uppercase tracking-wide text-[var(--text-muted)] mb-2">Result</p>
                 <h2 className="text-lg font-bold mb-3" style={{ color: result.color }}>{result.title}</h2>
                 <div className="mb-4 pb-4" style={{ borderBottom: "1px solid var(--border)" }}>
-                  <p className="text-[11px] uppercase tracking-wide text-slate-400 mb-1">Penalty exposure</p>
-                  <p className="text-sm font-semibold text-white">{result.penalty}</p>
+                  <p className="text-[11px] uppercase tracking-wide text-[var(--text-muted)] mb-1">Penalty exposure</p>
+                  <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>{result.penalty}</p>
                 </div>
-                <p className="text-sm text-slate-400 leading-relaxed mb-5">{result.body}</p>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-5">{result.body}</p>
                 {gpai && euExposure && (
-                  <p className="text-xs text-slate-400 leading-relaxed mb-5 p-3 rounded-lg" style={{ background: "var(--bg-dark)" }}>
+                  <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-5 p-3 rounded-lg" style={{ background: "var(--bg-dark)" }}>
                     You also flagged building your own model — that adds GPAI
                     provider obligations (documentation, copyright policy, and
                     systemic-risk assessment for the most capable models) on top

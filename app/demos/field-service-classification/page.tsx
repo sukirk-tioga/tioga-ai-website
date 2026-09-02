@@ -49,7 +49,7 @@ const checkResultStyle: Record<PolicyCheck["result"], string> = {
 };
 
 const callStatusStyle: Record<ServiceCall["status"], { color: string; background: string }> = {
-  open: { color: "var(--accent)", background: "#EC6D3D15" },
+  open: { color: "var(--accent)", background: "#C8340615" },
   classified_no_charge: { color: "var(--success)", background: "#4ADE8015" },
   classified_billable: { color: "var(--warning-light)", background: "#F59E0B15" },
   split: { color: "var(--violet)", background: "#8B5CF615" },
@@ -305,32 +305,32 @@ export default function FieldServiceClassificationPage() {
       {/* Stats */}
       <div className="grid grid-cols-3 gap-3 mb-6">
         <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-          <p className="text-[11px] text-slate-400 uppercase tracking-wide mb-1.5">Model spend</p>
-          <p className="text-xl font-bold text-white font-mono">{fmtUsd(Number(spentUsd.toFixed(4)))}</p>
-          <p className="text-xs text-slate-400 mt-1">of ${budgetCap} cap</p>
+          <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Model spend</p>
+          <p className="text-xl font-bold font-mono" style={{ color: "var(--text)" }}>{fmtUsd(Number(spentUsd.toFixed(4)))}</p>
+          <p className="text-xs text-[var(--text-muted)] mt-1">of ${budgetCap} cap</p>
         </div>
         <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-          <p className="text-[11px] text-slate-400 uppercase tracking-wide mb-1.5">Ledger entries</p>
-          <p className="text-xl font-bold text-white font-mono">{ledger.length}</p>
-          <p className="text-xs text-slate-400 mt-1">every decision, not just successes</p>
+          <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Ledger entries</p>
+          <p className="text-xl font-bold font-mono" style={{ color: "var(--text)" }}>{ledger.length}</p>
+          <p className="text-xs text-[var(--text-muted)] mt-1">every decision, not just successes</p>
         </div>
         <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-          <p className="text-[11px] text-slate-400 uppercase tracking-wide mb-1.5">Pending approvals</p>
-          <p className="text-xl font-bold text-white font-mono">{pendingApprovals.length}</p>
-          <p className="text-xs text-slate-400 mt-1">escalated, awaiting a human</p>
+          <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Pending approvals</p>
+          <p className="text-xl font-bold font-mono" style={{ color: "var(--text)" }}>{pendingApprovals.length}</p>
+          <p className="text-xs text-[var(--text-muted)] mt-1">escalated, awaiting a human</p>
         </div>
       </div>
 
       {/* Service call queue snapshot */}
       <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold text-white mb-1">Service call queue</h2>
-        <p className="text-xs text-slate-400 mb-4">The seed calls each canned scenario targets — watch this update as scenarios execute.</p>
+        <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Service call queue</h2>
+        <p className="text-xs text-[var(--text-muted)] mb-4">The seed calls each canned scenario targets — watch this update as scenarios execute.</p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm" style={{ minWidth: 640 }}>
             <thead>
               <tr style={{ borderBottom: "1px solid var(--border)" }}>
                 {["Call", "Customer", "Service type", "Contract", "Status", "Est. value"].map((h) => (
-                  <th key={h} className="text-left text-[11px] text-slate-400 uppercase tracking-wide font-medium px-3 py-2 whitespace-nowrap">
+                  <th key={h} className="text-left text-[11px] text-[var(--text-muted)] uppercase tracking-wide font-medium px-3 py-2 whitespace-nowrap">
                     {h}
                   </th>
                 ))}
@@ -343,16 +343,16 @@ export default function FieldServiceClassificationPage() {
                   const s = callStatusStyle[c.status];
                   return (
                     <tr key={c.id} style={{ borderBottom: "1px solid var(--border)" }}>
-                      <td className="px-3 py-2 text-white whitespace-nowrap">{c.id}</td>
-                      <td className="px-3 py-2 text-slate-300 whitespace-nowrap">{c.customer}</td>
-                      <td className="px-3 py-2 text-slate-300 whitespace-nowrap">{c.serviceTypeLabel}</td>
-                      <td className="px-3 py-2 font-mono text-xs text-slate-400 whitespace-nowrap">{c.contractId}</td>
+                      <td className="px-3 py-2 whitespace-nowrap" style={{ color: "var(--text)" }}>{c.id}</td>
+                      <td className="px-3 py-2 text-[var(--text-muted)] whitespace-nowrap">{c.customer}</td>
+                      <td className="px-3 py-2 text-[var(--text-muted)] whitespace-nowrap">{c.serviceTypeLabel}</td>
+                      <td className="px-3 py-2 font-mono text-xs text-[var(--text-muted)] whitespace-nowrap">{c.contractId}</td>
                       <td className="px-3 py-2 whitespace-nowrap">
                         <span className="text-[11px] px-2 py-0.5 rounded-full font-medium" style={{ color: s.color, background: s.background }}>
                           {c.status.replace(/_/g, " ")}
                         </span>
                       </td>
-                      <td className="px-3 py-2 font-mono text-xs text-slate-300 whitespace-nowrap">{fmtUsd(estValue(c))}</td>
+                      <td className="px-3 py-2 font-mono text-xs text-[var(--text-muted)] whitespace-nowrap">{fmtUsd(estValue(c))}</td>
                     </tr>
                   );
                 })}
@@ -363,8 +363,8 @@ export default function FieldServiceClassificationPage() {
 
       {/* Propose panel */}
       <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold text-white mb-1">Propose a classification</h2>
-        <p className="text-xs text-slate-400 mb-4">Click a scenario, or classify any open call yourself.</p>
+        <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Propose a classification</h2>
+        <p className="text-xs text-[var(--text-muted)] mb-4">Click a scenario, or classify any open call yourself.</p>
         <div className="flex flex-col gap-2 mb-5">
           {SCENARIOS.map((s) => (
             <button
@@ -374,20 +374,20 @@ export default function FieldServiceClassificationPage() {
               className="text-left px-4 py-3 rounded-xl transition-colors disabled:opacity-50"
               style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
             >
-              <p className="text-sm font-medium text-white">{s.label}</p>
-              <p className="text-xs text-slate-400 mt-0.5">{s.note}</p>
+              <p className="text-sm font-medium" style={{ color: "var(--text)" }}>{s.label}</p>
+              <p className="text-xs text-[var(--text-muted)] mt-0.5">{s.note}</p>
             </button>
           ))}
         </div>
 
         <div className="pt-4" style={{ borderTop: "1px solid var(--border)" }}>
-          <p className="text-xs text-slate-400 mb-3">Or classify an open call yourself — pick one and a classification:</p>
+          <p className="text-xs text-[var(--text-muted)] mb-3">Or classify an open call yourself — pick one and a classification:</p>
           <div className="flex flex-col sm:flex-row gap-3">
             <select
               value={freeformCallId}
               onChange={(e) => setFreeformCallId(e.target.value)}
-              className="px-3 py-2.5 rounded-lg text-sm text-white"
-              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+              className="px-3 py-2.5 rounded-lg text-sm"
+              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
             >
               {Object.values(calls)
                 .filter((c) => c.status === "open")
@@ -400,8 +400,8 @@ export default function FieldServiceClassificationPage() {
             <select
               value={freeformAction}
               onChange={(e) => setFreeformAction(e.target.value as "classify_no_charge" | "classify_billable")}
-              className="px-3 py-2.5 rounded-lg text-sm text-white"
-              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+              className="px-3 py-2.5 rounded-lg text-sm"
+              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
             >
               <option value="classify_no_charge">No-charge (contract-covered)</option>
               <option value="classify_billable">Billable (T&amp;M)</option>
@@ -421,8 +421,8 @@ export default function FieldServiceClassificationPage() {
       {/* Pending approvals panel */}
       {pendingApprovals.length > 0 && (
         <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--warning-light)" }}>
-          <h2 className="font-semibold text-white mb-1">Pending human approvals</h2>
-          <p className="text-xs text-slate-400 mb-4">
+          <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Pending human approvals</h2>
+          <p className="text-xs text-[var(--text-muted)] mb-4">
             Approver name (optional — defaults to &quot;Service Contract Manager&quot;):
           </p>
           <input
@@ -430,15 +430,15 @@ export default function FieldServiceClassificationPage() {
             placeholder="Your name"
             value={approverName}
             onChange={(e) => setApproverName(e.target.value)}
-            className="px-3 py-2 rounded-lg text-sm text-white mb-4 w-full sm:w-64"
-            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+            className="px-3 py-2 rounded-lg text-sm mb-4 w-full sm:w-64"
+            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
           />
           <div className="flex flex-col gap-3">
             {pendingApprovals.map((e) => (
               <div key={e.actionId} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
                 <div>
-                  <p className="text-sm text-white font-medium">{e.callId} — {e.actionType}</p>
-                  <p className="text-xs text-slate-400">{e.policyChecks[e.policyChecks.length - 1]?.detail}</p>
+                  <p className="text-sm font-medium" style={{ color: "var(--text)" }}>{e.callId} — {e.actionType}</p>
+                  <p className="text-xs text-[var(--text-muted)]">{e.policyChecks[e.policyChecks.length - 1]?.detail}</p>
                 </div>
                 <div className="flex gap-2 flex-none">
                   <button
@@ -468,12 +468,12 @@ export default function FieldServiceClassificationPage() {
       <div className="rounded-2xl overflow-hidden mb-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div className="px-5 pt-5 pb-3 flex items-center justify-between">
           <div>
-            <h2 className="font-semibold text-white">Audit ledger</h2>
-            <p className="text-xs text-slate-400 mt-1">Blocked and escalated actions are logged with the same fidelity as executed ones.</p>
+            <h2 className="font-semibold" style={{ color: "var(--text)" }}>Audit ledger</h2>
+            <p className="text-xs text-[var(--text-muted)] mt-1">Blocked and escalated actions are logged with the same fidelity as executed ones.</p>
           </div>
           <button
             onClick={reset}
-            className="text-xs px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-colors flex-none"
+            className="text-xs px-3 py-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex-none"
             style={{ border: "1px solid var(--border)" }}
           >
             Reset demo
@@ -481,14 +481,14 @@ export default function FieldServiceClassificationPage() {
         </div>
 
         {ledger.length === 0 ? (
-          <p className="text-sm text-slate-400 px-5 pb-6">No classifications proposed yet — try a scenario above.</p>
+          <p className="text-sm text-[var(--text-muted)] px-5 pb-6">No classifications proposed yet — try a scenario above.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm" style={{ minWidth: 640 }}>
               <thead>
                 <tr style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
                   {["Time", "Call", "Action", "Decision", ""].map((h) => (
-                    <th key={h} className="text-left text-[11px] text-slate-400 uppercase tracking-wide font-medium px-4 py-2.5 whitespace-nowrap">
+                    <th key={h} className="text-left text-[11px] text-[var(--text-muted)] uppercase tracking-wide font-medium px-4 py-2.5 whitespace-nowrap">
                       {h}
                     </th>
                   ))}
@@ -498,9 +498,9 @@ export default function FieldServiceClassificationPage() {
                 {ledger.map((e, i) => (
                   <Fragment key={e.actionId}>
                     <tr style={{ borderBottom: expanded === e.actionId ? "none" : i === ledger.length - 1 ? "none" : "1px solid var(--border)" }}>
-                      <td className="px-4 py-2.5 font-mono text-xs text-slate-400 whitespace-nowrap">{new Date(e.timestamp).toLocaleTimeString()}</td>
-                      <td className="px-4 py-2.5 text-white whitespace-nowrap">{e.callId}</td>
-                      <td className="px-4 py-2.5 font-mono text-xs text-slate-300 whitespace-nowrap">{e.actionType}</td>
+                      <td className="px-4 py-2.5 font-mono text-xs text-[var(--text-muted)] whitespace-nowrap">{new Date(e.timestamp).toLocaleTimeString()}</td>
+                      <td className="px-4 py-2.5 whitespace-nowrap" style={{ color: "var(--text)" }}>{e.callId}</td>
+                      <td className="px-4 py-2.5 font-mono text-xs text-[var(--text-muted)] whitespace-nowrap">{e.actionType}</td>
                       <td className="px-4 py-2.5"><Badge decision={e.decision} /></td>
                       <td className="px-4 py-2.5 whitespace-nowrap">
                         <button
@@ -518,12 +518,12 @@ export default function FieldServiceClassificationPage() {
                           <div className="rounded-lg p-3 flex flex-col gap-2" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
                             <div className="text-xs pb-2 mb-1" style={{ borderBottom: "1px solid var(--border)" }}>
                               <span className="text-slate-500">action: </span>
-                              <span className="text-slate-300">{e.detail}</span>
+                              <span className="text-[var(--text-muted)]">{e.detail}</span>
                             </div>
                             {e.policyChecks.map((c, ci) => (
                               <div key={ci} className="flex items-start gap-3 text-xs">
                                 <span className="font-mono flex-none w-32" style={{ color: checkResultStyle[c.result] }}>{c.name}</span>
-                                <span className="flex-1 text-slate-400">{c.detail}</span>
+                                <span className="flex-1 text-[var(--text-muted)]">{c.detail}</span>
                                 <span className="flex-none text-slate-500 hidden sm:inline">{c.controlTag}</span>
                               </div>
                             ))}

@@ -57,8 +57,8 @@ function SelectButton({
       onClick={onClick}
       className="w-full text-left p-3.5 rounded-xl transition-all"
       style={{
-        background: selected ? "#EC6D3D15" : "var(--bg-dark)",
-        border: `1px solid ${selected ? "#EC6D3D50" : "var(--border)"}`,
+        background: selected ? "#C8340615" : "var(--bg-dark)",
+        border: `1px solid ${selected ? "#C8340650" : "var(--border)"}`,
         color: selected ? "var(--accent)" : "var(--text-muted)",
       }}
     >
@@ -120,7 +120,7 @@ export default function AgentAutonomyMapperPage() {
   const gartnerTierInfo = activeTier ? GARTNER_TIERS[activeTier] : null;
   const tiogaTierInfo = result ? TIOGA_TIERS[result.tiogaTier] : null;
   const tiogaColor = result ? TIOGA_TIER_COLOR[result.tiogaTier] : "var(--accent)";
-  const tiogaHex = result ? TIOGA_TIER_HEX[result.tiogaTier] : "#EC6D3D";
+  const tiogaHex = result ? TIOGA_TIER_HEX[result.tiogaTier] : "#C83406";
 
   return (
     <DemoShell
@@ -130,22 +130,22 @@ export default function AgentAutonomyMapperPage() {
     >
       {/* Step 1: pick a use case */}
       <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold text-white mb-1">What's the use case?</h2>
-        <p className="text-sm text-slate-400 mb-5">
+        <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>What's the use case?</h2>
+        <p className="text-sm text-[var(--text-muted)] mb-5">
           Pick one of these SAP/Oracle-relevant examples, or describe your own agent.
         </p>
 
         <div className="space-y-2 mb-4">
           {PRESETS.map((p) => (
             <SelectButton key={p.id} selected={mode === "preset" && presetId === p.id} onClick={() => selectPreset(p.id)}>
-              <p className="text-sm font-medium mb-0.5" style={{ color: mode === "preset" && presetId === p.id ? "var(--accent)" : "white" }}>
+              <p className="text-sm font-medium mb-0.5" style={{ color: mode === "preset" && presetId === p.id ? "var(--accent)" : "var(--text)" }}>
                 {p.label}
               </p>
-              <p className="text-xs text-slate-400 leading-relaxed">{p.description}</p>
+              <p className="text-xs text-[var(--text-muted)] leading-relaxed">{p.description}</p>
             </SelectButton>
           ))}
           <SelectButton selected={mode === "custom"} onClick={selectCustom}>
-            <p className="text-sm font-medium" style={{ color: mode === "custom" ? "var(--accent)" : "white" }}>
+            <p className="text-sm font-medium" style={{ color: mode === "custom" ? "var(--accent)" : "var(--text)" }}>
               Describe my own agent
             </p>
           </SelectButton>
@@ -154,7 +154,7 @@ export default function AgentAutonomyMapperPage() {
         {mode === "custom" && (
           <div className="pt-4 space-y-5" style={{ borderTop: "1px solid var(--border)" }}>
             <div>
-              <p className="text-sm font-semibold text-white mb-3">What does the agent actually do?</p>
+              <p className="text-sm font-semibold mb-3" style={{ color: "var(--text)" }}>What does the agent actually do?</p>
               <div className="space-y-2">
                 {GARTNER_QUESTION_OPTIONS.map((o) => (
                   <SelectButton key={o.id} selected={customTier === o.id} onClick={() => setCustomGartnerTier(o.id)}>
@@ -167,10 +167,10 @@ export default function AgentAutonomyMapperPage() {
             {needsFollowUps && (
               <>
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">
+                  <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>
                     Can this agent identity also approve or release its own action — no separate approver, ever?
                   </p>
-                  <p className="text-xs text-slate-400 mb-3">
+                  <p className="text-xs text-[var(--text-muted)] mb-3">
                     e.g. the same agent that proposes a payment can also release it, with nobody else in the loop.
                   </p>
                   <div className="flex gap-3">
@@ -184,7 +184,7 @@ export default function AgentAutonomyMapperPage() {
                 </div>
 
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">If this action went wrong, how bad would it be?</p>
+                  <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>If this action went wrong, how bad would it be?</p>
                   <div className="flex gap-3">
                     <SelectButton selected={customStakes === "low"} onClick={() => setCustomStakes("low")}>
                       <span className="text-sm">Low stakes, easy to reverse</span>
@@ -206,13 +206,13 @@ export default function AgentAutonomyMapperPage() {
           <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: `1px solid ${tiogaHex}40` }}>
             <div className="grid sm:grid-cols-2 gap-4 pb-6 mb-6" style={{ borderBottom: "1px solid var(--border)" }}>
               <div>
-                <p className="text-xs text-slate-400 uppercase tracking-wide mb-2">Gartner autonomy tier</p>
-                <p className="text-lg font-bold text-white mb-1">{gartnerTierInfo.label}</p>
+                <p className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-2">Gartner autonomy tier</p>
+                <p className="text-lg font-bold mb-1" style={{ color: "var(--text)" }}>{gartnerTierInfo.label}</p>
                 <p className="text-xs mb-2" style={{ color: "var(--accent)" }}>{gartnerTierInfo.short}</p>
-                <p className="text-sm text-slate-400 leading-relaxed">{gartnerTierInfo.description}</p>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed">{gartnerTierInfo.description}</p>
               </div>
               <div>
-                <p className="text-xs text-slate-400 uppercase tracking-wide mb-2">Tioga governance tier</p>
+                <p className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-2">Tioga governance tier</p>
                 <div className="flex flex-wrap items-center gap-2 mb-1">
                   <p className="text-lg font-bold whitespace-nowrap" style={{ color: tiogaColor }}>{tiogaTierInfo.label}</p>
                   <span
@@ -222,11 +222,11 @@ export default function AgentAutonomyMapperPage() {
                     {tiogaTierInfo.short}
                   </span>
                 </div>
-                <p className="text-sm text-slate-400 leading-relaxed mt-2">{result.why}</p>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed mt-2">{result.why}</p>
               </div>
             </div>
 
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               This is a near-exact structural match: Gartner's four-tier scale (Observe → Advise → Act with
               Approval → Act Autonomously) and Tioga's own three-tier policy (Safe → Ask-first → Never) are
               measuring the same thing — how much unsupervised authority an agent has over a given action — from
@@ -241,11 +241,11 @@ export default function AgentAutonomyMapperPage() {
             <p className="text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: "var(--accent)" }}>
               Source &amp; hedge
             </p>
-            <p className="text-xs text-slate-400 leading-relaxed mb-3">{GARTNER_SOURCE_NOTE}</p>
-            <p className="text-xs text-slate-400 leading-relaxed">{GARTNER_STAT_NOTE}</p>
+            <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-3">{GARTNER_SOURCE_NOTE}</p>
+            <p className="text-xs text-[var(--text-muted)] leading-relaxed">{GARTNER_STAT_NOTE}</p>
           </div>
 
-          <p className="text-xs text-slate-400 text-center mt-4 max-w-lg mx-auto">
+          <p className="text-xs text-[var(--text-muted)] text-center mt-4 max-w-lg mx-auto">
             This is a directional self-assessment against a public analyst framework, not a governance audit —
             a real classification depends on facts a short quiz can&apos;t capture. Nothing you select here is
             saved or sent anywhere; the mapping runs entirely in your browser.

@@ -39,7 +39,7 @@ export default function Nav() {
       <nav
         className="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between transition-all duration-200"
         style={{
-          background: scrolled ? "rgba(14,16,12,0.97)" : "rgba(14,16,12,0.92)",
+          background: scrolled ? "rgba(245,243,239,0.97)" : "rgba(245,243,239,0.92)",
           backdropFilter: "blur(16px)",
           borderBottom: "1px solid var(--border)",
         }}
@@ -53,17 +53,17 @@ export default function Nav() {
             height={52}
             className="w-12 h-12 object-contain"
           />
-          <span className="font-semibold text-white text-xl tracking-tight">tioga<span style={{ color: "var(--accent)" }}>.ai</span></span>
+          <span className="font-semibold text-xl tracking-tight" style={{ color: "var(--text)" }}>tioga<span style={{ color: "var(--accent)" }}>.ai</span></span>
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8 text-base text-slate-400 font-semibold">
+        <div className="hidden md:flex items-center gap-8 text-base text-[var(--text-muted)] font-semibold">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="hover:text-white transition-colors"
-              style={isActive(l.href) ? { color: "white" } : {}}
+              className="hover:text-[var(--text)] transition-colors"
+              style={isActive(l.href) ? { color: "var(--text)" } : {}}
               aria-current={isActive(l.href) ? "page" : undefined}
             >
               {l.label}
@@ -84,7 +84,7 @@ export default function Nav() {
           {/* Hamburger — mobile only */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg transition-colors hover:bg-white/5"
+            className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg transition-colors hover:bg-black/5"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             aria-controls="mobile-nav-menu"
@@ -112,7 +112,7 @@ export default function Nav() {
         aria-hidden={!menuOpen}
         style={{
           maxHeight: menuOpen ? "400px" : "0px",
-          background: "rgba(14,16,12,0.98)",
+          background: "rgba(245,243,239,0.98)",
           borderBottom: menuOpen ? "1px solid var(--border)" : "none",
           backdropFilter: "blur(16px)",
         }}
@@ -124,8 +124,8 @@ export default function Nav() {
               href={l.href}
               onClick={() => setMenuOpen(false)}
               tabIndex={menuOpen ? undefined : -1}
-              className="py-3 text-sm text-slate-300 hover:text-white transition-colors border-b border-slate-800/50 last:border-0"
-              style={isActive(l.href) ? { color: "white" } : {}}
+              className="py-3 text-sm text-slate-500 hover:text-[var(--text)] transition-colors border-b border-slate-300/60 last:border-0"
+              style={isActive(l.href) ? { color: "var(--text)" } : {}}
               aria-current={isActive(l.href) ? "page" : undefined}
             >
               {l.label}

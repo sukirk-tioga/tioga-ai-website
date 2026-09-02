@@ -14,25 +14,25 @@ export const metadata: Metadata = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-10">
-      <h2 className="text-xl font-bold text-white mb-3">{title}</h2>
-      <div className="space-y-3 text-sm text-slate-400 leading-relaxed">{children}</div>
+      <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>{title}</h2>
+      <div className="space-y-3 text-sm text-[var(--text-muted)] leading-relaxed">{children}</div>
     </div>
   );
 }
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Terms of Service
         </div>
-        <h1 className="text-4xl font-bold text-white mb-4">Terms of Service</h1>
-        <p className="text-sm text-slate-400 mb-14">Last updated: 2026-07-27</p>
+        <h1 className="text-4xl font-bold mb-4" style={{ color: "var(--text)" }}>Terms of Service</h1>
+        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-07-27</p>
 
         <Section title="Agreement">
           <p>
@@ -95,7 +95,7 @@ export default function TermsPage() {
             The Site&apos;s design, copy, and code are Tioga AI&apos;s property
             unless otherwise noted. Content you submit through the contact
             form or demos remains yours; see the{" "}
-            <Link href="/privacy" className="underline hover:text-slate-300 transition-colors">
+            <Link href="/privacy" className="underline hover:text-[var(--text)] transition-colors">
               Privacy Policy
             </Link>{" "}
             for how it&apos;s handled.
@@ -107,7 +107,7 @@ export default function TermsPage() {
             We may update these terms as the Site changes. Continued use after
             an update means you accept the revised terms. Material changes
             will be reflected in the{" "}
-            <Link href="/changelog" className="underline hover:text-slate-300 transition-colors">
+            <Link href="/changelog" className="underline hover:text-[var(--text)] transition-colors">
               Build Log
             </Link>
             .
@@ -117,7 +117,7 @@ export default function TermsPage() {
         <Section title="Contact">
           <p>
             Questions about these terms:{" "}
-            <a href="mailto:hello@tioga.ai" className="underline hover:text-slate-300 transition-colors">
+            <a href="mailto:hello@tioga.ai" className="underline hover:text-[var(--text)] transition-colors">
               hello@tioga.ai
             </a>
             .

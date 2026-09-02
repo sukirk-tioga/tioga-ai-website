@@ -14,7 +14,7 @@ interface Classification {
 }
 
 const urgencyColors = {
-  low: { bg: "#EC6D3D10", border: "#EC6D3D30", text: "var(--accent)" },
+  low: { bg: "#C8340610", border: "#C8340630", text: "var(--accent)" },
   medium: { bg: "#F59E0B10", border: "#F59E0B30", text: "var(--warning)" },
   high: { bg: "#EF444410", border: "#EF444430", text: "var(--error)" },
   critical: { bg: "#EF444420", border: "var(--error)", text: "var(--error)" },
@@ -91,8 +91,8 @@ export default function SmartContactForm() {
             ✓
           </div>
           <div>
-            <p className="font-semibold text-white">Inquiry Received & Classified</p>
-            <p className="text-sm text-slate-400">I'll be in touch {classification.responseTime}</p>
+            <p className="font-semibold" style={{ color: "var(--text)" }}>Inquiry Received & Classified</p>
+            <p className="text-sm text-[var(--text-muted)]">I'll be in touch {classification.responseTime}</p>
           </div>
         </div>
 
@@ -101,18 +101,18 @@ export default function SmartContactForm() {
           className="p-5 rounded-xl mb-5"
           style={{ background: "var(--bg-dark)", border: `1px solid ${colors.border}` }}
         >
-          <p className="text-xs text-slate-400 uppercase tracking-wider mb-3">AI Classification</p>
+          <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-3">AI Classification</p>
 
           <div className="grid grid-cols-2 gap-3 mb-4">
             {/* Service */}
             <div>
-              <p className="text-xs text-slate-400 mb-1">Service Match</p>
-              <p className="text-sm font-medium text-white">{classification.service}</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">Service Match</p>
+              <p className="text-sm font-medium" style={{ color: "var(--text)" }}>{classification.service}</p>
             </div>
 
             {/* Urgency */}
             <div>
-              <p className="text-xs text-slate-400 mb-1">Urgency</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">Urgency</p>
               <span
                 className="text-xs px-2 py-1 rounded-full font-medium capitalize"
                 style={{ background: colors.bg, color: colors.text, border: `1px solid ${colors.border}` }}
@@ -123,15 +123,15 @@ export default function SmartContactForm() {
 
             {/* Complexity */}
             <div>
-              <p className="text-xs text-slate-400 mb-1">Project Size</p>
-              <p className="text-sm font-medium text-white">
+              <p className="text-xs text-[var(--text-muted)] mb-1">Project Size</p>
+              <p className="text-sm font-medium" style={{ color: "var(--text)" }}>
                 {complexityLabel[classification.complexity as keyof typeof complexityLabel] || classification.complexity}
               </p>
             </div>
 
             {/* Fit Score */}
             <div>
-              <p className="text-xs text-slate-400 mb-1">Fit Score</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">Fit Score</p>
               <div className="flex items-center gap-2">
                 <div className="flex gap-0.5">
                   {Array.from({ length: 10 }).map((_, i) => (
@@ -144,25 +144,25 @@ export default function SmartContactForm() {
                     />
                   ))}
                 </div>
-                <span className="text-xs text-slate-400">{classification.fitScore}/10</span>
+                <span className="text-xs text-[var(--text-muted)]">{classification.fitScore}/10</span>
               </div>
             </div>
           </div>
 
           {/* Summary */}
           <div className="border-t pt-3" style={{ borderColor: "var(--border)" }}>
-            <p className="text-xs text-slate-400 mb-1">Summary</p>
-            <p className="text-sm text-slate-300">{classification.summary}</p>
+            <p className="text-xs text-[var(--text-muted)] mb-1">Summary</p>
+            <p className="text-sm text-[var(--text-muted)]">{classification.summary}</p>
           </div>
         </div>
 
         {/* What happens next */}
         <div
           className="p-4 rounded-xl"
-          style={{ background: "#EC6D3D08", border: "1px solid #EC6D3D20" }}
+          style={{ background: "#C8340608", border: "1px solid #C8340620" }}
         >
           <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>What happens next</p>
-          <p className="text-sm text-slate-300">{classification.nextStep}</p>
+          <p className="text-sm text-[var(--text-muted)]">{classification.nextStep}</p>
         </div>
 
         {/* Submit another */}
@@ -173,7 +173,7 @@ export default function SmartContactForm() {
             setConsent(false);
             setState("idle");
           }}
-          className="mt-4 text-sm text-slate-400 hover:text-slate-300 transition-colors"
+          className="mt-4 text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
         >
           ← Submit another inquiry
         </button>
@@ -186,11 +186,11 @@ export default function SmartContactForm() {
       className="p-8 rounded-2xl text-left"
       style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
     >
-      <p className="text-xs text-slate-400 leading-relaxed mb-5">
+      <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-5">
         This form is processed by an AI system (Claude) that classifies your
         inquiry to route it — you&apos;ll see the classification below
         immediately, and a human reviews it before following up. See{" "}
-        <a href="/trust#ai-use" className="underline hover:text-slate-300 transition-colors">
+        <a href="/trust#ai-use" className="underline hover:text-[var(--text)] transition-colors">
           how we use AI on this site
         </a>
         .
@@ -198,7 +198,7 @@ export default function SmartContactForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="contact-name" className="text-xs text-slate-400 mb-1.5 block">Name *</label>
+            <label htmlFor="contact-name" className="text-xs text-[var(--text-muted)] mb-1.5 block">Name *</label>
             <input
               id="contact-name"
               name="name"
@@ -206,26 +206,26 @@ export default function SmartContactForm() {
               onChange={handleChange}
               placeholder="Jane Smith"
               required
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)]"
-              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+              className="w-full px-3 py-2.5 rounded-lg text-sm placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)]"
+              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
             />
           </div>
           <div>
-            <label htmlFor="contact-company" className="text-xs text-slate-400 mb-1.5 block">Company</label>
+            <label htmlFor="contact-company" className="text-xs text-[var(--text-muted)] mb-1.5 block">Company</label>
             <input
               id="contact-company"
               name="company"
               value={form.company}
               onChange={handleChange}
               placeholder="Acme Corp"
-              className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)]"
-              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+              className="w-full px-3 py-2.5 rounded-lg text-sm placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)]"
+              style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="contact-email" className="text-xs text-slate-400 mb-1.5 block">Email *</label>
+          <label htmlFor="contact-email" className="text-xs text-[var(--text-muted)] mb-1.5 block">Email *</label>
           <input
             id="contact-email"
             name="email"
@@ -234,15 +234,15 @@ export default function SmartContactForm() {
             onChange={handleChange}
             placeholder="jane@acme.com"
             required
-            className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)]"
-            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+            className="w-full px-3 py-2.5 rounded-lg text-sm placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)]"
+            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
           />
         </div>
 
         <div>
-          <label htmlFor="contact-description" className="text-xs text-slate-400 mb-1.5 block">
+          <label htmlFor="contact-description" className="text-xs text-[var(--text-muted)] mb-1.5 block">
             Project Description *
-            <span className="ml-2 text-slate-400 normal-case font-normal">
+            <span className="ml-2 text-[var(--text-muted)] normal-case font-normal">
               — the more detail, the better the classification
             </span>
           </label>
@@ -254,8 +254,8 @@ export default function SmartContactForm() {
             placeholder="Tell me what you're trying to build or automate. What systems are involved? What's the business problem?"
             rows={4}
             required
-            className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none resize-none focus:ring-2 focus:ring-[var(--accent)]"
-            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+            className="w-full px-3 py-2.5 rounded-lg text-sm placeholder-slate-600 outline-none resize-none focus:ring-2 focus:ring-[var(--accent)]"
+            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
           />
         </div>
 
@@ -266,7 +266,7 @@ export default function SmartContactForm() {
           {state === "classifying" ? "Classifying your inquiry…" : ""}
         </p>
 
-        <label className="flex items-start gap-2.5 text-xs text-slate-400 leading-relaxed cursor-pointer">
+        <label className="flex items-start gap-2.5 text-xs text-[var(--text-muted)] leading-relaxed cursor-pointer">
           <input
             type="checkbox"
             checked={consent}
@@ -277,7 +277,7 @@ export default function SmartContactForm() {
           />
           <span>
             I agree to the{" "}
-            <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-300 transition-colors">
+            <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-[var(--text)] transition-colors">
               Privacy Policy
             </a>
             . I understand my submission is sent to Claude to classify this
@@ -307,7 +307,7 @@ export default function SmartContactForm() {
           )}
         </button>
 
-        <p className="text-xs text-center text-slate-400">
+        <p className="text-xs text-center text-[var(--text-muted)]">
           Powered by <span style={{ color: "var(--accent)" }}>Claude</span> — your inquiry will be instantly classified and routed
         </p>
       </form>

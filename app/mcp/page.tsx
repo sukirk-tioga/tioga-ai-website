@@ -50,8 +50,8 @@ function ArchDiagram() {
  100% { top: calc(100% - 6px); opacity: 0; }
  }
  @keyframes pulse-glow {
- 0%, 100% { box-shadow: 0 0 10px #EC6D3D30; }
- 50% { box-shadow: 0 0 25px #EC6D3D60; }
+ 0%, 100% { box-shadow: 0 0 10px #C8340630; }
+ 50% { box-shadow: 0 0 25px #C8340660; }
  }
  @keyframes fadeInUp {
  from { opacity: 0; transform: translateY(16px); }
@@ -79,8 +79,8 @@ function ArchDiagram() {
  >
  {node.icon}
  </div>
- <p className="text-xs font-semibold text-white">{node.label}</p>
- <p className="text-xs text-slate-400">{node.sub}</p>
+ <p className="text-xs font-semibold" style={{ color: "var(--text)" }}>{node.label}</p>
+ <p className="text-xs text-[var(--text-muted)]">{node.sub}</p>
  </div>
 
  {/* Connector arrow */}
@@ -88,9 +88,9 @@ function ArchDiagram() {
  <div className="flex-1 mx-3 relative h-0.5 flex items-center" style={{ background: "var(--border)" }}>
  <FlowDot delay={i * 0.7} />
  <FlowDot delay={i * 0.7 + 0.5} />
- <span className="absolute right-0 text-slate-400 text-xs">▶</span>
+ <span className="absolute right-0 text-[var(--text-muted)] text-xs">▶</span>
  {/* Label */}
- <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-xs text-slate-400 whitespace-nowrap font-mono">
+ <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-xs text-[var(--text-muted)] whitespace-nowrap font-mono">
  {i === 0 ? "query" : "tool_call()"}
  </span>
  </div>
@@ -126,8 +126,8 @@ function ArchDiagram() {
  }}
  >
  <div className="text-lg mb-1">{sys.icon}</div>
- <p className="text-xs font-semibold text-white">{sys.label}</p>
- <p className="text-xs text-slate-400">{sys.sub}</p>
+ <p className="text-xs font-semibold" style={{ color: "var(--text)" }}>{sys.label}</p>
+ <p className="text-xs text-[var(--text-muted)]">{sys.sub}</p>
  </div>
  ))}
  </div>
@@ -136,11 +136,11 @@ function ArchDiagram() {
  <div className="mt-4 flex items-center gap-4 justify-center">
  <div className="flex items-center gap-1.5">
  <div className="w-3 h-0.5 rounded" style={{ background: "var(--accent)" }} />
- <span className="text-xs text-slate-400">MCP protocol</span>
+ <span className="text-xs text-[var(--text-muted)]">MCP protocol</span>
  </div>
  <div className="flex items-center gap-1.5">
  <div className="w-2 h-2 rounded-full" style={{ background: "var(--accent)", boxShadow: "0 0 6px var(--accent)" }} />
- <span className="text-xs text-slate-400">live data flow</span>
+ <span className="text-xs text-[var(--text-muted)]">live data flow</span>
  </div>
  </div>
  </div>
@@ -328,10 +328,10 @@ function LiveDemo() {
  <div className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--warning)" }} />
  <div className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--success-dark)" }} />
  </div>
- <span className="text-xs font-mono text-slate-400">claude + mcp-server → enterprise</span>
+ <span className="text-xs font-mono text-[var(--text-muted)]">claude + mcp-server → enterprise</span>
  <div className="ml-auto flex items-center gap-1.5">
  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
- <span className="text-xs text-slate-400">3 systems connected</span>
+ <span className="text-xs text-[var(--text-muted)]">3 systems connected</span>
  </div>
  </div>
 
@@ -361,7 +361,7 @@ function LiveDemo() {
  className="rounded-xl px-4 py-2.5 text-sm leading-relaxed"
  style={
  msg.role === "user"
- ? { background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--text)" }
+ ? { background: "#C8340615", border: "1px solid #C8340630", color: "var(--text)" }
  : { background: "var(--bg-card)", border: "1px solid var(--border)", color: "var(--text)" }
  }
  >
@@ -374,7 +374,7 @@ function LiveDemo() {
  <span
  key={tool}
  className="text-xs px-2 py-0.5 rounded-md font-mono"
- style={{ background: "#EC6D3D08", color: "#EC6D3D80", border: "1px solid #EC6D3D20" }}
+ style={{ background: "#C8340608", color: "#C8340680", border: "1px solid #C8340620" }}
  >
  ⚡ {tool}
  </span>
@@ -388,7 +388,7 @@ function LiveDemo() {
  <div className="flex justify-start">
  <div className="rounded-xl px-4 py-3" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
  <div className="flex gap-1 items-center">
- <span className="text-xs text-slate-400 font-mono mr-2">querying systems</span>
+ <span className="text-xs text-[var(--text-muted)] font-mono mr-2">querying systems</span>
  {[0, 1, 2].map((i) => (
  <span
  key={i}
@@ -426,8 +426,8 @@ function LiveDemo() {
  onKeyDown={(e) => e.key === "Enter" && send(input)}
  placeholder="Ask anything about your enterprise data..."
  disabled={loading}
- className="flex-1 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-600 outline-none font-mono"
- style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+ className="flex-1 rounded-lg px-3 py-2 text-sm placeholder-slate-600 outline-none font-mono"
+ style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
  />
  <button
  onClick={() => send(input)}
@@ -466,23 +466,23 @@ function Comparison() {
  <div className="divide-y" style={{ borderColor: "#EF444420" }}>
  {rows.map((r) => (
  <div key={r.topic} className="px-4 py-3">
- <p className="text-xs text-slate-400 mb-0.5">{r.topic}</p>
- <p className="text-sm text-slate-300">{r.before}</p>
+ <p className="text-xs text-[var(--text-muted)] mb-0.5">{r.topic}</p>
+ <p className="text-sm text-[var(--text-muted)]">{r.before}</p>
  </div>
  ))}
  </div>
  </div>
 
  {/* After */}
- <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #EC6D3D30" }}>
- <div className="px-4 py-3 text-sm font-semibold" style={{ color: "var(--accent)", background: "#EC6D3D08", borderBottom: "1px solid #EC6D3D30" }}>
+ <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #C8340630" }}>
+ <div className="px-4 py-3 text-sm font-semibold" style={{ color: "var(--accent)", background: "#C8340608", borderBottom: "1px solid #C8340630" }}>
  ✓ After MCP
  </div>
- <div className="divide-y" style={{ borderColor: "#EC6D3D15" }}>
+ <div className="divide-y" style={{ borderColor: "#C8340615" }}>
  {rows.map((r) => (
  <div key={r.topic} className="px-4 py-3">
- <p className="text-xs text-slate-400 mb-0.5">{r.topic}</p>
- <p className="text-sm text-slate-300">{r.after}</p>
+ <p className="text-xs text-[var(--text-muted)] mb-0.5">{r.topic}</p>
+ <p className="text-sm text-[var(--text-muted)]">{r.after}</p>
  </div>
  ))}
  </div>
@@ -495,7 +495,7 @@ function Comparison() {
 
 export default function MCPPage() {
  return (
- <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+ <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
  <style>{`
  @keyframes fadeInUp {
  from { opacity: 0; transform: translateY(20px); }
@@ -513,21 +513,21 @@ export default function MCPPage() {
  <div className="text-center mb-16 fade-in">
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-5 font-mono"
- style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+ style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  Model Context Protocol
  </div>
- <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+ <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight" style={{ color: "var(--text)" }}>
  Let Claude talk to your<br />
  <span style={{ color: "var(--accent)" }}>enterprise systems</span>
  </h1>
- <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-6">
+ <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto mb-6">
  MCP is the open protocol that connects AI to your real business data.
  Instead of building custom integrations for every system, you build once —
  and Claude can query SAP, Salesforce and more in plain English.
  </p>
- <div className="flex flex-wrap gap-3 justify-center text-sm text-slate-400">
+ <div className="flex flex-wrap gap-3 justify-center text-sm text-[var(--text-muted)]">
  {["Open standard by Anthropic", "Works with any MCP-capable client", "Enterprise-grade security", "Built on Anthropic's MCP spec"].map((f) => (
  <span key={f} className="flex items-center gap-1.5">
  <span style={{ color: "var(--accent)" }}>✓</span> {f}
@@ -538,8 +538,8 @@ export default function MCPPage() {
 
  {/* Architecture diagram */}
  <div className="mb-16 fade-in fade-in-1">
- <h2 className="text-xl font-bold text-white mb-2">How MCP Works</h2>
- <p className="text-slate-400 text-sm mb-5">
+ <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>How MCP Works</h2>
+ <p className="text-[var(--text-muted)] text-sm mb-5">
  Each enterprise system gets its own MCP tool server. Claude calls tools,
  MCP handles auth and routing, your systems return data — and once a
  tool server exists, every use case and every MCP-aware client can reuse it.
@@ -551,8 +551,8 @@ export default function MCPPage() {
  <div className="mb-16 fade-in fade-in-2">
  <div className="flex items-center justify-between mb-5">
  <div>
- <h2 className="text-xl font-bold text-white mb-1">Live Demo</h2>
- <p className="text-slate-400 text-sm">
+ <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Live Demo</h2>
+ <p className="text-[var(--text-muted)] text-sm">
  Claude is connected to mock SAP and Salesforce instances.
  Ask it anything — watch it call the right system automatically.
  </p>
@@ -569,8 +569,8 @@ export default function MCPPage() {
 
  {/* Before / After */}
  <div className="mb-16 fade-in fade-in-3">
- <h2 className="text-xl font-bold text-white mb-2">Before & After</h2>
- <p className="text-slate-400 text-sm mb-5">
+ <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Before & After</h2>
+ <p className="text-[var(--text-muted)] text-sm mb-5">
  Traditional enterprise integrations require custom code per system.
  MCP standardizes the interface layer — Tioga still builds the authentication,
  business rules, controls and error handling underneath it for each system.
@@ -580,8 +580,8 @@ export default function MCPPage() {
 
  {/* Code examples */}
  <div className="mb-16">
- <h2 className="text-xl font-bold text-white mb-2">What We Build</h2>
- <p className="text-slate-400 text-sm mb-5">
+ <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>What We Build</h2>
+ <p className="text-[var(--text-muted)] text-sm mb-5">
  Tioga AI builds and maintains your MCP servers. Here's what our connectors look like —
  each tool is a typed function Claude can call by name.
  </p>
@@ -601,19 +601,19 @@ export default function MCPPage() {
  style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
  >
  <p className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>{s.stat}</p>
- <p className="text-sm text-slate-400">{s.label}</p>
+ <p className="text-sm text-[var(--text-muted)]">{s.label}</p>
  </div>
  ))}
  </div>
- <p className="text-center text-xs text-slate-400 mb-16">
- See exactly what&apos;s shipped, in order — <Link href="/changelog" className="underline hover:text-slate-400 transition-colors">Build Log →</Link>
+ <p className="text-center text-xs text-[var(--text-muted)] mb-16">
+ See exactly what&apos;s shipped, in order — <Link href="/changelog" className="underline hover:text-[var(--text)] transition-colors">Build Log →</Link>
  </p>
 
  <div className="text-center mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
- <Link href="/mcp/vs-custom-integration" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+ <Link href="/mcp/vs-custom-integration" className="text-sm hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
  MCP vs. custom integration →
  </Link>
- <Link href="/mcp/vs-rpa" className="text-sm hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+ <Link href="/mcp/vs-rpa" className="text-sm hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
  MCP vs. RPA →
  </Link>
  </div>
@@ -621,10 +621,10 @@ export default function MCPPage() {
  {/* CTA */}
  <div
  className="rounded-2xl p-10 text-center"
- style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}
+ style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340630" }}
  >
- <h2 className="text-2xl font-bold text-white mb-3">Ready to connect your enterprise?</h2>
- <p className="text-slate-400 mb-6 max-w-lg mx-auto">
+ <h2 className="text-2xl font-bold mb-3" style={{ color: "var(--text)" }}>Ready to connect your enterprise?</h2>
+ <p className="text-[var(--text-muted)] mb-6 max-w-lg mx-auto">
  We'll scope your integration in a 5-day discovery sprint and have your first
  MCP connector live within 2 weeks.
  </p>
@@ -635,7 +635,7 @@ export default function MCPPage() {
  >
  Start a Discovery Sprint
  </Link>
- <p className="text-xs text-slate-400 mt-3">$5,000 flat · 5 days · prototype included</p>
+ <p className="text-xs text-[var(--text-muted)] mt-3">$5,000 flat · 5 days · prototype included</p>
  </div>
  </div>
  </main>

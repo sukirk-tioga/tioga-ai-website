@@ -144,17 +144,17 @@ export function buildValueReportHtml(result: ValueLedgerResult, inputs: ValueLed
 <title>Live Session Value Report — Tioga AI</title>
 <style>
   :root{
-    --bg-dark:#0A0F1C; --bg-card:#0D1526; --border:#1E2D4A; --accent:#EC6D3D;
-    --accent-dark:#C83406; --text:#e2e8f0; --text-muted:#94a3b8; --success:#4ADE80; --warning:#F59E0B;
+    --bg-dark:#F5F3EF; --bg-card:#FCFCF9; --border:#CDCAC2; --accent:#C83406;
+    --accent-dark:#A50000; --text:#221F19; --text-muted:#625D54; --success:#4B7A45; --warning:#A8681E;
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--bg-dark);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
   .wrap{max-width:760px;margin:0 auto;padding:56px 28px 80px;}
   .eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
-  h1{font-size:28px;margin:0 0 6px;color:#fff;}
+  h1{font-size:28px;margin:0 0 6px;color:var(--text);}
   .sub{color:var(--text-muted);margin:0 0 28px;max-width:56ch;}
-  .disclaimer{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.35);border-radius:8px;padding:12px 16px;font-size:13px;color:#fbbf24;margin-bottom:36px;}
-  h2{font-size:17px;color:#fff;margin:34px 0 10px;padding-left:12px;border-left:3px solid var(--accent);}
+  .disclaimer{background:rgba(168,104,30,0.08);border:1px solid rgba(168,104,30,0.35);border-radius:8px;padding:12px 16px;font-size:13px;color:#7A4A15;margin-bottom:36px;}
+  h2{font-size:17px;color:var(--text);margin:34px 0 10px;padding-left:12px;border-left:3px solid var(--accent);}
   table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
   th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
   th{font-family:ui-monospace,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);background:var(--bg-card);}
@@ -163,7 +163,7 @@ export function buildValueReportHtml(result: ValueLedgerResult, inputs: ValueLed
   .card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0;}
   .stat-row{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;}
   .stat{flex:1;min-width:140px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
-  .stat .n{font-family:ui-monospace,monospace;font-size:22px;color:#fff;font-weight:600;}
+  .stat .n{font-family:ui-monospace,monospace;font-size:22px;color:var(--text);font-weight:600;}
   .stat .l{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);margin-top:2px;}
   .assump{font-size:13px;color:var(--text-muted);}
   .foot{margin-top:52px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);}

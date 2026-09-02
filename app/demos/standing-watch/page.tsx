@@ -110,7 +110,7 @@ const severityStyle: Record<string, { background: string; border: string; color:
 
 const statusStyle: Record<string, { background: string; border: string; color: string }> = {
   fixed: { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" },
-  human: { background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" },
+  human: { background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" },
 };
 
 export default function StandingWatchDemoPage() {
@@ -131,8 +131,8 @@ export default function StandingWatchDemoPage() {
       <div className="rounded-2xl overflow-hidden mb-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div className="px-5 pt-5 pb-3 flex items-start justify-between gap-4">
           <div>
-            <h2 className="font-semibold text-white">Router-watch — Aug 10, 2026</h2>
-            <p className="text-xs text-slate-400 mt-1">
+            <h2 className="font-semibold" style={{ color: "var(--text)" }}>Router-watch — Aug 10, 2026</h2>
+            <p className="text-xs text-[var(--text-muted)] mt-1">
               Weekly scan of the model catalog for cheaper or better-fit swaps, and for registry
               pricing that&apos;s gone stale against what vendors actually charge.
             </p>
@@ -148,14 +148,14 @@ export default function StandingWatchDemoPage() {
         <div className="px-5 pb-5">
           <div className="grid grid-cols-2 gap-3 mb-4">
             <div className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-              <p className="text-[11px] text-slate-400 uppercase tracking-wide mb-1.5">Catalog scanned</p>
-              <p className="text-xl font-bold text-white font-mono">399 models</p>
-              <p className="text-xs text-slate-400 mt-1">OpenRouter — none cleared Stage 1 this run</p>
+              <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Catalog scanned</p>
+              <p className="text-xl font-bold font-mono" style={{ color: "var(--text)" }}>399 models</p>
+              <p className="text-xs text-[var(--text-muted)] mt-1">OpenRouter — none cleared Stage 1 this run</p>
             </div>
             <div className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
-              <p className="text-[11px] text-slate-400 uppercase tracking-wide mb-1.5">Stage 2 threshold</p>
-              <p className="text-xl font-bold text-white font-mono">$0.1500</p>
-              <p className="text-xs text-slate-400 mt-1">gemini-flash&apos;s pool-weighted price</p>
+              <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Stage 2 threshold</p>
+              <p className="text-xl font-bold font-mono" style={{ color: "var(--text)" }}>$0.1500</p>
+              <p className="text-xs text-[var(--text-muted)] mt-1">gemini-flash&apos;s pool-weighted price</p>
             </div>
           </div>
 
@@ -165,9 +165,9 @@ export default function StandingWatchDemoPage() {
             <p>gpt-terra: REGISTRY out_price $15.00 vs live $6.00 <span style={{ color: "var(--success)" }}>(-60%)</span></p>
           </div>
 
-          <div className="rounded-xl p-4" style={{ background: "#EC6D3D08", border: "1px solid #EC6D3D20" }}>
+          <div className="rounded-xl p-4" style={{ background: "#C8340608", border: "1px solid #C8340620" }}>
             <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>→ Propose-only. No config auto-changed.</p>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-[var(--text-muted)] leading-relaxed">
               The report&apos;s own footer: &ldquo;This report is a PROPOSAL. No file was modified by
               this job. To adopt a swap, hand-edit the router config, run the test suite, and
               restart the gateway.&rdquo; A human reviewed this exact finding and applied the pricing
@@ -181,8 +181,8 @@ export default function StandingWatchDemoPage() {
       <div className="rounded-2xl overflow-hidden mb-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div className="px-5 pt-5 pb-3 flex items-start justify-between gap-4">
           <div>
-            <h2 className="font-semibold text-white">Security-watch — Aug 10, 2026</h2>
-            <p className="text-xs text-slate-400 mt-1">
+            <h2 className="font-semibold" style={{ color: "var(--text)" }}>Security-watch — Aug 10, 2026</h2>
+            <p className="text-xs text-[var(--text-muted)] mt-1">
               Weekly findings sweep across both machines in scope — auth gaps, exposed listeners,
               disk encryption, and package CVEs.
             </p>
@@ -196,7 +196,7 @@ export default function StandingWatchDemoPage() {
         </div>
 
         <div className="px-5 pb-2">
-          <p className="text-xs text-slate-400 mb-3">
+          <p className="text-xs text-[var(--text-muted)] mb-3">
             Full raw ledger from this run, by severity — the 9 rows below are the subset flagged
             for action that same day, not the whole ledger.
           </p>
@@ -204,7 +204,7 @@ export default function StandingWatchDemoPage() {
             {RAW_COUNTS.map((c) => (
               <div key={c.label} className="p-3 rounded-xl text-center" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
                 <p className="text-lg font-bold font-mono" style={{ color: c.color }}>{c.value}</p>
-                <p className="text-[11px] text-slate-400 uppercase tracking-wide mt-0.5">{c.label}</p>
+                <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide mt-0.5">{c.label}</p>
               </div>
             ))}
           </div>
@@ -222,7 +222,7 @@ export default function StandingWatchDemoPage() {
               <thead>
                 <tr style={{ borderBottom: "1px solid var(--border)" }}>
                   {["Sev", "Host", "Finding", "Outcome"].map((h) => (
-                    <th key={h} className="text-left text-[11px] text-slate-400 uppercase tracking-wide font-medium px-3 py-2 whitespace-nowrap">
+                    <th key={h} className="text-left text-[11px] text-[var(--text-muted)] uppercase tracking-wide font-medium px-3 py-2 whitespace-nowrap">
                       {h}
                     </th>
                   ))}
@@ -236,10 +236,10 @@ export default function StandingWatchDemoPage() {
                         {row.severity}
                       </span>
                     </td>
-                    <td className="px-3 py-2.5 align-top font-mono text-xs text-slate-400 whitespace-nowrap">{row.host}</td>
-                    <td className="px-3 py-2.5 align-top text-slate-300">
+                    <td className="px-3 py-2.5 align-top font-mono text-xs text-[var(--text-muted)] whitespace-nowrap">{row.host}</td>
+                    <td className="px-3 py-2.5 align-top text-[var(--text-muted)]">
                       <p>{row.finding}</p>
-                      <p className="text-xs text-slate-400 mt-1">{row.note}</p>
+                      <p className="text-xs text-[var(--text-muted)] mt-1">{row.note}</p>
                     </td>
                     <td className="px-3 py-2.5 align-top whitespace-nowrap">
                       <span className="text-[10px] px-2 py-0.5 rounded-full font-medium" style={statusStyle[row.status]}>
@@ -254,11 +254,11 @@ export default function StandingWatchDemoPage() {
         </div>
 
         {/* Why the 2 human-only items matter */}
-        <div className="mx-5 mb-5 rounded-xl p-4" style={{ background: "#EC6D3D08", border: "1px solid #EC6D3D20" }}>
+        <div className="mx-5 mb-5 rounded-xl p-4" style={{ background: "#C8340608", border: "1px solid #C8340620" }}>
           <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>
             → 8 of 10 flagged items fixed and verified live. 2 correctly left for a human.
           </p>
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <p className="text-xs text-[var(--text-muted)] leading-relaxed">
             FileVault wasn&apos;t skipped by accident — enabling disk encryption needs Recovery Mode
             / physical console access, which nothing the automation runs with can reach. The same
             day, a separate item — tightening the home router&apos;s own firewall rules to match the
@@ -274,7 +274,7 @@ export default function StandingWatchDemoPage() {
 
       {/* Offer tie-in */}
       <div className="mt-6 p-5 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <p className="text-sm text-slate-300 leading-relaxed">
+        <p className="text-sm text-[var(--text-muted)] leading-relaxed">
           This propose-and-approve discipline — findings that age instead of disappearing, fixes a
           human reviews and applies, and a system that knows the edge of its own authority — is
           what Standing Watch generalizes to a multi-vendor enterprise estate.
@@ -282,7 +282,7 @@ export default function StandingWatchDemoPage() {
         <p className="text-xs text-slate-500 mt-3">
           This is one incident, in full detail. For the ongoing, aggregate record across the whole
           estate, see{" "}
-          <Link href="/demos/automation-oversight" className="hover:text-white transition-colors" style={{ color: "var(--accent)" }}>
+          <Link href="/demos/automation-oversight" className="hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
             Automation Oversight →
           </Link>
         </p>

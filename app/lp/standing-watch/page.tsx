@@ -44,22 +44,22 @@ const proof = [
 
 export default function StandingWatchLandingPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       {/* Hero / Problem */}
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <ScrollReveal>
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-            style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
           >
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
             Standing Watch
           </div>
-          <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight text-balance">
+          <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight text-balance" style={{ color: "var(--text)" }}>
             Every platform ships its own governance pane.{" "}
             <span style={{ color: "var(--accent)" }}>None of them govern the aggregate.</span>
           </h1>
-          <p className="text-lg text-slate-300 max-w-2xl leading-relaxed">
+          <p className="text-lg text-[var(--text-muted)] max-w-2xl leading-relaxed">
             SAP, Workday, Databricks, and ServiceNow each anchor their AI agent governance to their own estate.
             Run three or four of these platforms and you own three or four single panes of glass — and still
             have no neutral layer that governs across them, which is exactly where the EU AI Act&apos;s deployer
@@ -71,14 +71,14 @@ export default function StandingWatchLandingPage() {
           <ScrollReveal>
             <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
               <p className="text-3xl font-bold" style={{ color: "var(--accent)" }}>13%</p>
-              <p className="text-sm text-slate-300 mt-1">of enterprises believe their agent governance is adequate</p>
+              <p className="text-sm text-[var(--text-muted)] mt-1">of enterprises believe their agent governance is adequate</p>
               <p className="text-xs text-slate-500 mt-2">Gartner, cited in SAP&apos;s Aug 2026 agent-sprawl analysis</p>
             </div>
           </ScrollReveal>
           <ScrollReveal>
             <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
               <p className="text-3xl font-bold" style={{ color: "var(--accent)" }}>94% / 12%</p>
-              <p className="text-sm text-slate-300 mt-1">of IT leaders report agent-sprawl concern; only 12% run centralized governance</p>
+              <p className="text-sm text-[var(--text-muted)] mt-1">of IT leaders report agent-sprawl concern; only 12% run centralized governance</p>
               <p className="text-xs text-slate-500 mt-2">OutSystems, 1,900 IT leaders surveyed</p>
             </div>
           </ScrollReveal>
@@ -88,8 +88,8 @@ export default function StandingWatchLandingPage() {
       {/* Proof */}
       <section className="px-6 pb-20 max-w-4xl mx-auto">
         <ScrollReveal>
-          <h2 className="text-2xl font-bold text-white mb-2">This isn&apos;t a framework on paper</h2>
-          <p className="text-slate-400 mb-6 max-w-2xl">
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>This isn&apos;t a framework on paper</h2>
+          <p className="text-[var(--text-muted)] mb-6 max-w-2xl">
             Six disciplines generalized from automations Tioga actually operates in production — across a
             genuinely heterogeneous, multi-vendor stack.
           </p>
@@ -98,8 +98,8 @@ export default function StandingWatchLandingPage() {
           {proof.map((p) => (
             <ScrollReveal key={p.label}>
               <div className="p-5 rounded-xl h-full" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-                <p className="text-sm font-semibold text-white mb-1.5">{p.label}</p>
-                <p className="text-sm text-slate-400 leading-relaxed">{p.detail}</p>
+                <p className="text-sm font-semibold mb-1.5" style={{ color: "var(--text)" }}>{p.label}</p>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed">{p.detail}</p>
               </div>
             </ScrollReveal>
           ))}
@@ -109,8 +109,8 @@ export default function StandingWatchLandingPage() {
       {/* Mechanism */}
       <section className="px-6 pb-20 max-w-4xl mx-auto">
         <ScrollReveal>
-          <h2 className="text-2xl font-bold text-white mb-2">Six disciplines, one running mechanism each</h2>
-          <p className="text-slate-400 mb-6 max-w-2xl">
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Six disciplines, one running mechanism each</h2>
+          <p className="text-[var(--text-muted)] mb-6 max-w-2xl">
             Not a checklist — each discipline maps to something that actually runs on a schedule.
           </p>
         </ScrollReveal>
@@ -119,7 +119,7 @@ export default function StandingWatchLandingPage() {
             <ScrollReveal key={d.n}>
               <div className="pl-4" style={{ borderLeft: "2px solid var(--accent)" }}>
                 <p className="text-xs uppercase tracking-wide text-slate-500">{d.n} — {d.name}</p>
-                <p className="text-sm text-slate-300 mt-1">{d.desc}</p>
+                <p className="text-sm text-[var(--text-muted)] mt-1">{d.desc}</p>
               </div>
             </ScrollReveal>
           ))}
@@ -129,8 +129,8 @@ export default function StandingWatchLandingPage() {
       {/* CTA */}
       <section className="px-6 pb-28 max-w-2xl mx-auto text-center">
         <ScrollReveal>
-          <h2 className="text-2xl font-bold text-white mb-3">Start with the Assessment</h2>
-          <p className="text-slate-400 mb-8">
+          <h2 className="text-2xl font-bold mb-3" style={{ color: "var(--text)" }}>Start with the Assessment</h2>
+          <p className="text-[var(--text-muted)] mb-8">
             A fixed-fee diagnostic that seeds a real findings ledger you keep — regardless of what you decide next.
           </p>
         </ScrollReveal>
@@ -139,7 +139,7 @@ export default function StandingWatchLandingPage() {
             <p className="text-xs uppercase tracking-wide text-slate-500 text-center">Standing Watch Assessment</p>
             <p className="text-4xl font-bold text-center my-2" style={{ color: "var(--accent)" }}>$15–35K</p>
             <p className="text-sm text-slate-500 text-center mb-6">3–4 weeks</p>
-            <p className="text-sm text-slate-300 leading-relaxed mb-8">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-8">
               Agent inventory across your estate — consuming your existing SAP Agent Hub, Workday ASOR, Control
               Tower, or Unity AI Gateway data as sources. Delivers a qualification register and autonomy-tier
               map, a cross-vendor spend arbitration baseline, a first behavioral probe run across two or more
@@ -159,7 +159,7 @@ export default function StandingWatchLandingPage() {
                 href="/demos/standing-watch"
                 event="cta_view_demo"
                 data={{ location: "lp_standing_watch" }}
-                className="px-8 py-3.5 rounded-xl font-semibold text-center transition-all hover:border-slate-500 hover:text-white"
+                className="px-8 py-3.5 rounded-xl font-semibold text-center transition-all hover:border-slate-500 hover:text-[var(--text)]"
                 style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
               >
                 See the real ledger

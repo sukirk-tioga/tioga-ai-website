@@ -180,15 +180,15 @@ export default function HomeHeroPinned() {
       {/* Hero */}
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative z-0 overflow-hidden">
         <HeroFieldLoader flowAngleRef={flowAngleRef} />
-        <h1 ref={headlineRef} className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight text-balance opacity-0">
+        <h1 ref={headlineRef} className="text-4xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight text-balance opacity-0" style={{ color: "var(--text)" }}>
           Every action your{" "}
           <span style={{ color: "var(--accent)" }}>AI</span>{" "}
           takes, on the record.
         </h1>
-        <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed">
+        <p className="text-xl text-[var(--text-muted)] max-w-2xl mx-auto mb-3 leading-relaxed">
           Tioga builds governed AI agents that work inside your existing enterprise systems — Oracle, SAP, Workday, ServiceNow, and more — under your existing identity, approvals, and audit trail. No migration. Nothing executes unseen.
         </p>
-        <p className="text-sm text-slate-400 max-w-xl mx-auto mb-10">
+        <p className="text-sm text-[var(--text-muted)] max-w-xl mx-auto mb-10">
           Five-day discovery sprint, $5,000 flat — credited toward your project if you move forward.
         </p>
         <div className="flex flex-col items-center sm:flex-row gap-4 justify-center">
@@ -207,7 +207,7 @@ export default function HomeHeroPinned() {
             href="/demos/ap-exception-workflow"
             event="cta_view_demo"
             data={{ location: "hero" }}
-            className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
+            className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-[var(--text)]"
             style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
           >
             See an AP agent run
@@ -237,7 +237,7 @@ export default function HomeHeroPinned() {
               >
                 {stat.value}
               </div>
-              <div className="text-xs text-slate-400 uppercase tracking-wide">{stat.label}</div>
+              <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">{stat.label}</div>
             </div>
           ))}
         </div>

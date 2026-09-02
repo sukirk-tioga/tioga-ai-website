@@ -57,19 +57,19 @@ const ARTICLES = [
 
 export default function ArticlesIndexPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Articles
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           Grounded in running systems, not takes.
         </h1>
-        <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mb-16">
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-16">
           Every article here links back to a live demo, a real policy file, or
           a real bug we found and fixed — not generic advice. Pre-launch, no
           client case studies exist yet; what follows is the actual
@@ -86,8 +86,8 @@ export default function ArticlesIndexPage() {
             >
               <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
                 <div className="flex-1">
-                  <h2 className="text-lg font-semibold text-white mb-1.5">{a.title}</h2>
-                  <p className="text-sm text-slate-400 leading-relaxed max-w-xl">{a.summary}</p>
+                  <h2 className="text-lg font-semibold mb-1.5" style={{ color: "var(--text)" }}>{a.title}</h2>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed max-w-xl">{a.summary}</p>
                 </div>
                 <span className="text-sm shrink-0" style={{ color: "var(--accent)" }}>Read →</span>
               </div>
@@ -96,9 +96,9 @@ export default function ArticlesIndexPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-xs text-slate-400 mb-4">
+          <p className="text-xs text-[var(--text-muted)] mb-4">
             Prefer how the demos themselves were built?{" "}
-            <Link href="/engineering" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/engineering" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               See the engineering writeups →
             </Link>
           </p>
@@ -112,7 +112,7 @@ export default function ArticlesIndexPage() {
             </Link>
             <Link
               href="/contact"
-              className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white"
+              className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-[var(--text)]"
               style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
             >
               Talk to Tioga AI

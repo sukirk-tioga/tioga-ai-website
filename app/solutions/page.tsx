@@ -58,10 +58,10 @@ const SOLUTIONS = [
 
 export default function SolutionsHubPage() {
   return (
-    <main className="min-h-screen text-slate-200" style={{ background: "var(--bg-dark)" }}>
+    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-16 px-6 max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold text-white mb-6">Solutions</h1>
-        <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-16">
+        <h1 className="text-4xl font-bold mb-6" style={{ color: "var(--text)" }}>Solutions</h1>
+        <p className="text-[var(--text-muted)] text-lg max-w-2xl leading-relaxed mb-16">
           Governed AI automation for the enterprise systems you already run — organized by buyer and problem, not by generic AI capability. Every page links to a live demo and the specific engagement that fits.
         </p>
 
@@ -73,8 +73,8 @@ export default function SolutionsHubPage() {
               className="group p-6 rounded-2xl transition-all hover:border-slate-500 block"
               style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
-              <h2 className="text-lg font-semibold text-white mb-2">{s.name}</h2>
-              <p className="text-sm text-slate-400 leading-relaxed mb-3">{s.desc}</p>
+              <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--text)" }}>{s.name}</h2>
+              <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-3">{s.desc}</p>
               <span className="text-sm font-medium inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
                 Learn more →
               </span>
@@ -92,9 +92,9 @@ export default function SolutionsHubPage() {
           >
             Start a conversation
           </TrackedCTA>
-          <p className="text-xs text-slate-400 mt-4">
+          <p className="text-xs text-[var(--text-muted)] mt-4">
             Not sure which fits?{" "}
-            <Link href="/services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
+            <Link href="/services" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               See all 15 engagements →
             </Link>
           </p>

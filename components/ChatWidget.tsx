@@ -188,16 +188,16 @@ export default function ChatWidget() {
               <img src="/logo-icon.png" alt="Tioga AI" className="w-full h-full object-contain object-bottom" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-white">Tioga AI Assistant</p>
+              <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>Tioga AI Assistant</p>
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
-                <span className="text-xs text-slate-400">AI · Online</span>
+                <span className="text-xs text-[var(--text-muted)]">AI · Online</span>
               </div>
             </div>
             <button
               onClick={close}
               aria-label="Close chat"
-              className="ml-auto text-slate-400 hover:text-slate-300 transition-colors"
+              className="ml-auto text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -222,11 +222,11 @@ export default function ChatWidget() {
                   className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                     message.role === "user"
                       ? "text-white rounded-br-sm"
-                      : "text-slate-200 rounded-bl-sm"
+                      : "text-[var(--text)] rounded-bl-sm"
                   }`}
                   style={
                     message.role === "user"
-                      ? { background: "linear-gradient(135deg, #EC6D3D20, #C8340640)", border: "1px solid #EC6D3D40" }
+                      ? { background: "linear-gradient(135deg, #C8340620, #A5000040)", border: "1px solid #C8340640" }
                       : { background: "var(--bg-card-alt)", border: "1px solid var(--border)" }
                   }
                 >
@@ -235,7 +235,7 @@ export default function ChatWidget() {
                       <ReactMarkdown
                         components={{
                           p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-                          strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+                          strong: ({ children }) => <strong className="font-semibold" style={{ color: "var(--text)" }}>{children}</strong>,
                           ul: ({ children }) => <ul className="list-disc pl-4 mb-2 last:mb-0 space-y-1">{children}</ul>,
                           ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 last:mb-0 space-y-1">{children}</ol>,
                           li: ({ children }) => <li className="leading-relaxed">{children}</li>,
@@ -288,11 +288,12 @@ export default function ChatWidget() {
               placeholder="Ask about our services..."
               aria-label="Chat message"
               disabled={isLoading}
-              className="flex-1 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:ring-1 disabled:opacity-50"
+              className="flex-1 rounded-xl px-4 py-2.5 text-sm placeholder-slate-500 outline-none focus:ring-1 disabled:opacity-50"
               style={{
                 background: "var(--bg-dark)",
                 border: "1px solid var(--border)",
-                "--tw-ring-color": "#EC6D3D40",
+                color: "var(--text)",
+                "--tw-ring-color": "#C8340640",
               } as React.CSSProperties}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
@@ -316,7 +317,7 @@ export default function ChatWidget() {
 
           {/* Powered by */}
           <div className="px-4 pb-3 text-center">
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-[var(--text-muted)]">
               Powered by{" "}
               <span style={{ color: "var(--accent)" }}>Claude</span> · Tioga AI
             </p>
