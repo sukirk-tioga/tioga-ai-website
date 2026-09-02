@@ -4,12 +4,12 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Three practices, sixteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance built for Oracle and SAP environments.",
+    "Three practices, fifteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance built for Oracle and SAP environments.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Services — Tioga AI",
     description:
-      "Three practices, sixteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance for Oracle and SAP.",
+      "Three practices, fifteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance for Oracle and SAP.",
   },
 };
 
@@ -80,7 +80,7 @@ const PRACTICES: Practice[] = [
     key: "govern",
     name: "Govern enterprise AI",
     blurb:
-      "NIST AI RMF, ISO 42001, EU AI Act, and US state-law programs — plus fractional leadership — for organizations that need AI risk management built into the architecture, not backfilled after a pilot succeeds. This is the deepest bench of the three practices: eleven engagements, from a one-time gap analysis to ongoing governance leadership.",
+      "NIST AI RMF, ISO 42001, EU AI Act, and US state-law programs — plus fractional leadership — for organizations that need AI risk management built into the architecture, not backfilled after a pilot succeeds. This is the deepest bench of the three practices: ten engagements, from a one-time gap analysis to ongoing governance leadership.",
     offers: [
       {
         name: "AI Governance Readiness Assessment",
@@ -94,12 +94,12 @@ const PRACTICES: Practice[] = [
         price: "$10–20K",
         duration: "2–3 weeks",
       },
-      {
-        name: "AI Governance Evidence Package for Insurance Underwriting",
-        desc: "A written AI Systems Program mapped to NIST AI RMF, built for an insurance renewal or underwriter questionnaire — system inventory, human-oversight documentation, and a one-page summary your broker can hand to the carrier.",
-        price: "$15–25K",
-        duration: "2–3 weeks",
-      },
+      // "AI Governance Evidence Package for Insurance Underwriting" pulled
+      // 2026-09-01: the underlying demand-thesis research failed
+      // independent verification (0 of 3 votes confirmed) and is flagged
+      // "do not send" in the sales offer-data reference. Not deleted, just
+      // not rendered here -- see ~/SecondBrain/TiogaAI/sales/offer-data-reference.md
+      // for the internal flag this responds to.
       {
         name: "Agentic AI Governance Framework",
         desc: "Governance architecture for organizations deploying autonomous AI agents in production — risk registers, oversight controls, and escalation protocols.",
@@ -164,7 +164,7 @@ export default function ServicesPage() {
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <h1 className="text-4xl font-bold text-white mb-6">Services</h1>
         <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-4">
-          Tioga AI runs three practices — automating finance and operations, modernizing ERP with an agent layer, and governing enterprise AI. Sixteen engagements sit underneath them, each scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
+          Tioga AI runs three practices — automating finance and operations, modernizing ERP with an agent layer, and governing enterprise AI. Fifteen engagements sit underneath them, each scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
         </p>
         <p className="text-slate-400 text-sm max-w-2xl leading-relaxed mb-16">
           Every engagement below starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment. If you move forward, the $5,000 is credited toward the price of the engagement below.

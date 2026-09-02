@@ -184,7 +184,8 @@ export default function GovernanceLedgerPage() {
         <div className="flex flex-wrap gap-2 mt-4">
           {[
             "Agent-Ready ERP Diagnostic & Governed Write-Path — $60–120K",
-            "AI Governance Evidence Package for Insurance Underwriting — $15–25K",
+            // "AI Governance Evidence Package for Insurance Underwriting" pulled
+            // 2026-09-01 -- see app/services/page.tsx's PRACTICES array for why.
             "AI Cost & Model Governance Assessment — $10–20K",
           ].map((o) => (
             <a
