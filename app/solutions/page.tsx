@@ -95,7 +95,7 @@ export default function SolutionsHubPage() {
           <p className="text-xs text-slate-400 mt-4">
             Not sure which fits?{" "}
             <Link href="/services" style={{ color: "var(--accent)" }} className="hover:text-white transition-colors">
-              See all 13 engagements →
+              See all 15 engagements →
             </Link>
           </p>
         </div>

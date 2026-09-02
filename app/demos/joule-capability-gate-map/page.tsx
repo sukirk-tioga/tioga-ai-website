@@ -32,8 +32,8 @@ function AreaButton({
       onClick={onClick}
       className="text-left px-3.5 py-2.5 rounded-xl transition-all text-sm font-medium"
       style={{
-        background: selected ? "#00D4FF15" : "var(--bg-dark)",
-        border: `1px solid ${selected ? "#00D4FF50" : "var(--border)"}`,
+        background: selected ? "#EC6D3D15" : "var(--bg-dark)",
+        border: `1px solid ${selected ? "#EC6D3D50" : "var(--border)"}`,
         color: selected ? "var(--accent)" : "var(--text-muted)",
       }}
     >

@@ -397,7 +397,7 @@ export default function CapitalEquipmentOrderPage() {
                         className="text-[11px] px-2 py-0.5 rounded-full font-medium"
                         style={{
                           color: o.status === "configured" ? "var(--success)" : o.status === "rejected" ? "var(--error-light)" : "var(--accent)",
-                          background: o.status === "configured" ? "#4ADE8015" : o.status === "rejected" ? "#EF444415" : "#00D4FF15",
+                          background: o.status === "configured" ? "#4ADE8015" : o.status === "rejected" ? "#EF444415" : "#EC6D3D15",
                         }}
                       >
                         {o.status.replace("_", " ")}

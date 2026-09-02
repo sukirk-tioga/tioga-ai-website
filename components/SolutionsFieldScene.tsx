@@ -111,7 +111,7 @@ function Field({
         uTime: { value: 0 },
         uResolution: { value: new THREE.Vector2(1, 1) },
         uPan: { value: new THREE.Vector2(0, 0) },
-        uColor: { value: new THREE.Color("#00D4FF") },
+        uColor: { value: new THREE.Color("#EC6D3D") },
         uColorDark: { value: new THREE.Color("#0088AA") },
         uBg: { value: new THREE.Color("#05070C") },
       },

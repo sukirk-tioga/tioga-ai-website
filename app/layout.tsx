@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Libre_Franklin, Spectral } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -7,10 +7,19 @@ import ChatWidget from "@/components/ChatWidget";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
-const inter = Inter({
+// Audit-ledger redesign, 2026-09-01: Libre Franklin (headings — document/
+// masthead authority) + Spectral (body — built for on-screen reading, reads
+// as report rather than SaaS landing page). Replaces Inter site-wide.
+const displayFont = Libre_Franklin({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
+  weight: ["600", "700", "800", "900"],
+  variable: "--font-display",
+  display: "swap",
+});
+const bodyFont = Spectral({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -78,7 +87,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
       <body>
         <script
           type="application/ld+json"

@@ -44,7 +44,7 @@ export default function FrameworkMappingPage() {
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Framework Mapping

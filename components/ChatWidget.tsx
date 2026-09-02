@@ -226,7 +226,7 @@ export default function ChatWidget() {
                   }`}
                   style={
                     message.role === "user"
-                      ? { background: "linear-gradient(135deg, #00D4FF20, #0066CC40)", border: "1px solid #00D4FF40" }
+                      ? { background: "linear-gradient(135deg, #EC6D3D20, #C8340640)", border: "1px solid #EC6D3D40" }
                       : { background: "var(--bg-card-alt)", border: "1px solid var(--border)" }
                   }
                 >
@@ -292,7 +292,7 @@ export default function ChatWidget() {
               style={{
                 background: "var(--bg-dark)",
                 border: "1px solid var(--border)",
-                "--tw-ring-color": "#00D4FF40",
+                "--tw-ring-color": "#EC6D3D40",
               } as React.CSSProperties}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {

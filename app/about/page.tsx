@@ -33,7 +33,7 @@ export default function AboutPage() {
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Who&apos;s behind Tioga AI
@@ -93,7 +93,7 @@ export default function AboutPage() {
         {/* Wedge */}
         <div
           className="rounded-2xl p-8 mb-14"
-          style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}
+          style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}
         >
           <p className="text-lg text-white font-semibold mb-2">
             &ldquo;Without ripping out what works.&rdquo;

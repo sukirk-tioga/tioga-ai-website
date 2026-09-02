@@ -110,7 +110,7 @@ const severityStyle: Record<string, { background: string; border: string; color:
 
 const statusStyle: Record<string, { background: string; border: string; color: string }> = {
   fixed: { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" },
-  human: { background: "#00D4FF15", border: "1px solid #00D4FF40", color: "var(--accent)" },
+  human: { background: "#EC6D3D15", border: "1px solid #EC6D3D40", color: "var(--accent)" },
 };
 
 export default function StandingWatchDemoPage() {
@@ -165,7 +165,7 @@ export default function StandingWatchDemoPage() {
             <p>gpt-terra: REGISTRY out_price $15.00 vs live $6.00 <span style={{ color: "var(--success)" }}>(-60%)</span></p>
           </div>
 
-          <div className="rounded-xl p-4" style={{ background: "#00D4FF08", border: "1px solid #00D4FF20" }}>
+          <div className="rounded-xl p-4" style={{ background: "#EC6D3D08", border: "1px solid #EC6D3D20" }}>
             <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>→ Propose-only. No config auto-changed.</p>
             <p className="text-xs text-slate-400 leading-relaxed">
               The report&apos;s own footer: &ldquo;This report is a PROPOSAL. No file was modified by
@@ -254,7 +254,7 @@ export default function StandingWatchDemoPage() {
         </div>
 
         {/* Why the 2 human-only items matter */}
-        <div className="mx-5 mb-5 rounded-xl p-4" style={{ background: "#00D4FF08", border: "1px solid #00D4FF20" }}>
+        <div className="mx-5 mb-5 rounded-xl p-4" style={{ background: "#EC6D3D08", border: "1px solid #EC6D3D20" }}>
           <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>
             → 8 of 10 flagged items fixed and verified live. 2 correctly left for a human.
           </p>

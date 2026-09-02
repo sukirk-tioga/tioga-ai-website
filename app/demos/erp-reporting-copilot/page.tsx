@@ -23,7 +23,7 @@ import { AS_OF_DATE, SEED_QUOTES, fmtDate, fmtUsd } from "./lib/erp-data";
 // client, not connected to a real SAP system.
 
 const statusStyle: Record<string, { color: string; bg: string; label: string }> = {
-  open: { color: "var(--accent)", bg: "#00D4FF15", label: "open" },
+  open: { color: "var(--accent)", bg: "#EC6D3D15", label: "open" },
   converted: { color: "var(--success)", bg: "#4ADE8015", label: "converted" },
   expired: { color: "var(--text-muted)", bg: "#94a3b815", label: "expired" },
 };

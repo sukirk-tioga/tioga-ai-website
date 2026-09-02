@@ -120,7 +120,7 @@ export default function EUAIActPage() {
         </div>
 
         {/* ISO 42001 note */}
-        <div className="mb-16 p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}>
+        <div className="mb-16 p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}>
           <h2 className="text-lg font-bold text-white mb-2">Where ISO 42001 fits in</h2>
           <p className="text-sm text-slate-300 leading-relaxed mb-4">
             ISO 42001 certification isn&apos;t itself an EU AI Act requirement,

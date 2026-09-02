@@ -26,7 +26,7 @@ export default async function OpengraphImage() {
               width: "12px",
               height: "12px",
               borderRadius: "9999px",
-              background: "#00D4FF",
+              background: "#EC6D3D",
             }}
           />
           <div
@@ -34,7 +34,7 @@ export default async function OpengraphImage() {
               fontSize: "28px",
               fontWeight: 700,
               letterSpacing: "0.08em",
-              color: "#00D4FF",
+              color: "#EC6D3D",
               textTransform: "uppercase",
             }}
           >
@@ -72,7 +72,7 @@ export default async function OpengraphImage() {
             width: "100%",
             height: "6px",
             borderRadius: "9999px",
-            background: "linear-gradient(90deg, #00D4FF, #0066CC)",
+            background: "linear-gradient(90deg, #EC6D3D, #C83406)",
           }}
         />
       </div>

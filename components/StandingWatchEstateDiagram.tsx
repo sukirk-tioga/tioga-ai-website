@@ -57,7 +57,7 @@ export default function StandingWatchEstateDiagram() {
       {/* Cross-cutting Standing Watch band */}
       <div
         className="rounded-xl p-4 relative z-10"
-        style={{ background: "#00D4FF15", border: "1px solid #00D4FF40" }}
+        style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D40" }}
       >
         <p className="text-xs uppercase tracking-wide mb-2 text-center" style={{ color: "var(--accent)" }}>
           Standing Watch — six disciplines, cross-cutting
@@ -67,7 +67,7 @@ export default function StandingWatchEstateDiagram() {
             <span
               key={d}
               className="text-xs font-mono px-2.5 py-1 rounded-full"
-              style={{ color: "var(--accent)", background: "var(--bg-dark)", border: "1px solid #00D4FF40" }}
+              style={{ color: "var(--accent)", background: "var(--bg-dark)", border: "1px solid #EC6D3D40" }}
             >
               {d}
             </span>
@@ -79,7 +79,7 @@ export default function StandingWatchEstateDiagram() {
       <div className="grid grid-cols-2 md:grid-cols-4">
         {PANES.map((p) => (
           <div key={p.vendor} className="flex justify-center">
-            <div className="w-px h-3" style={{ background: "#00D4FF40" }} />
+            <div className="w-px h-3" style={{ background: "#EC6D3D40" }} />
           </div>
         ))}
       </div>

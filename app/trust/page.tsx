@@ -82,7 +82,7 @@ export default function TrustPage() {
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Trust &amp; Governance
@@ -147,7 +147,7 @@ export default function TrustPage() {
         {/* Live proof */}
         <div
           className="rounded-2xl p-8 mb-16"
-          style={{ background: "linear-gradient(135deg, #00D4FF08, #0066CC08)", border: "1px solid #00D4FF30" }}
+          style={{ background: "linear-gradient(135deg, #EC6D3D08, #C8340608)", border: "1px solid #EC6D3D30" }}
         >
           <h2 className="text-xl font-bold text-white mb-3">Don&apos;t take this on faith</h2>
           <p className="text-sm text-slate-300 leading-relaxed mb-5 max-w-2xl">
@@ -317,14 +317,14 @@ export default function TrustPage() {
         {/* All offers */}
         <div className="text-center">
           <p className="text-sm text-slate-400 mb-4">
-            Ten of Tioga AI&apos;s thirteen engagements are governance-focused.
+            Ten of Tioga AI&apos;s fifteen engagements are governance-focused.
           </p>
           <Link
             href="/services"
             className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-white inline-block"
             style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
           >
-            See all thirteen offers →
+            See all fifteen offers →
           </Link>
         </div>
       </section>

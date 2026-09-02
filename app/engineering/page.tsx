@@ -51,7 +51,7 @@ export default function EngineeringIndexPage() {
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           How We Built It
@@ -80,7 +80,7 @@ export default function EngineeringIndexPage() {
                     <h2 className="text-lg font-semibold text-white">{w.title}</h2>
                     <span
                       className="text-[11px] font-mono px-2 py-0.5 rounded-full"
-                      style={{ color: "var(--accent)", background: "#00D4FF15", border: "1px solid #00D4FF30" }}
+                      style={{ color: "var(--accent)", background: "#EC6D3D15", border: "1px solid #EC6D3D30" }}
                     >
                       {w.model}
                     </span>

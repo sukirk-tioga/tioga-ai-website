@@ -76,7 +76,7 @@ function CheckItem({ checked, onChange, label }: { checked: boolean; onChange: (
     <button
       onClick={onChange}
       className="w-full flex items-start gap-3 p-3 rounded-xl text-left transition-all"
-      style={{ background: checked ? "#00D4FF10" : "transparent", border: `1px solid ${checked ? "#00D4FF40" : "var(--border)"}` }}
+      style={{ background: checked ? "#EC6D3D10" : "transparent", border: `1px solid ${checked ? "#EC6D3D40" : "var(--border)"}` }}
     >
       <span
         className="mt-0.5 w-4 h-4 rounded shrink-0 flex items-center justify-center text-[10px]"
@@ -122,7 +122,7 @@ export default function EUAIActCalculatorPage() {
         </Link>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#00D4FF15", border: "1px solid #00D4FF30", color: "var(--accent)" }}
+          style={{ background: "#EC6D3D15", border: "1px solid #EC6D3D30", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Readiness Calculator
@@ -152,14 +152,14 @@ export default function EUAIActCalculatorPage() {
                 <button
                   onClick={() => setEuExposure(true)}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === true ? "#00D4FF15" : "var(--bg-card)", border: `1px solid ${euExposure === true ? "var(--accent)" : "var(--border)"}`, color: euExposure === true ? "var(--accent)" : "var(--text-muted)" }}
+                  style={{ background: euExposure === true ? "#EC6D3D15" : "var(--bg-card)", border: `1px solid ${euExposure === true ? "var(--accent)" : "var(--border)"}`, color: euExposure === true ? "var(--accent)" : "var(--text-muted)" }}
                 >
                   Yes
                 </button>
                 <button
                   onClick={() => setEuExposure(false)}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === false ? "#00D4FF15" : "var(--bg-card)", border: `1px solid ${euExposure === false ? "var(--accent)" : "var(--border)"}`, color: euExposure === false ? "var(--accent)" : "var(--text-muted)" }}
+                  style={{ background: euExposure === false ? "#EC6D3D15" : "var(--bg-card)", border: `1px solid ${euExposure === false ? "var(--accent)" : "var(--border)"}`, color: euExposure === false ? "var(--accent)" : "var(--text-muted)" }}
                 >
                   No / not sure
                 </button>

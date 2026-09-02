@@ -1,28 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
+/* Audit-ledger / operations-console redesign, 2026-09-01 — see
+   ~/SecondBrain/TiogaAI/... four-axis review + design canvas for the
+   creative brief. Every value below is still a token per this file's own
+   CLAUDE.md rule; only the values changed, not the architecture. Kept the
+   codebase's existing radius/component-shape system (design.md) — this
+   pass is colors + type, not a shape rewrite. */
 :root {
-  --bg-dark: #0A0F1C;
-  --bg-card: #0D1526;
-  --border: #1E2D4A;
-  --accent: #00D4FF;
-  --accent-dark: #0066CC;
-  --bg-darker: #060B14;
-  --bg-card-alt: #0D1F33;
-  --text: #e2e8f0;
-  --text-muted: #94a3b8;
-  --text-muted-2: #7c8ba2;
-  --text-muted-3: #707f96;
-  --text-body: rgba(255, 255, 255, 0.7);
-  --text-faint: rgba(255, 255, 255, 0.35);
-  --error: #EF4444;
-  --error-light: #F87171;
-  --warning: #F59E0B;
-  --warning-light: #FBBF24;
-  --success: #4ADE80;
-  --success-dark: #10B981;
-  --violet: #8B5CF6;
-  --blue: #3B82F6;
+  --bg-dark: #0E100C;
+  --bg-card: #171914;
+  --border: #363933;
+  --accent: #EC6D3D;
+  --accent-dark: #C83406;
+  --bg-darker: #080906;
+  --bg-card-alt: #1E211A;
+  --text: #E5E5DE;
+  --text-muted: #91948A;
+  --text-muted-2: #7A7D73;
+  --text-muted-3: #64665F;
+  --text-body: rgba(229, 229, 222, 0.75);
+  --text-faint: rgba(229, 229, 222, 0.35);
+  --error: #E07A5F;
+  --error-light: #EC9A85;
+  --warning: #D9A24E;
+  --warning-light: #E8BD7C;
+  --success: #8FB389;
+  --success-dark: #6C9366;
+  --violet: #A68BC2;
+  --blue: #6FA8A8;
 }
 
 * {
@@ -32,7 +38,11 @@
 body {
   background-color: var(--bg-dark);
   color: var(--text);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-body), Georgia, serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), system-ui, sans-serif;
 }
 
 /* Chat widget scrollbar */
