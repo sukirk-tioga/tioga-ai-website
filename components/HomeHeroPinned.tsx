@@ -58,6 +58,11 @@ export default function HomeHeroPinned() {
       // no ScrollTrigger pin, no SplitText split, no flow rotation. The
       // section renders as a normal, already-fully-visible part of the
       // document; stats already show their real SSR'd values (see JSX).
+      // The headline still starts CSS-hidden (opacity-0 in the JSX below,
+      // see the char-reveal comment further down) so it must be forced
+      // back to visible here explicitly -- this is the only path that
+      // reveals it when the char-reveal tween itself never runs.
+      if (headlineRef.current) headlineRef.current.style.opacity = "1";
       return;
     }
 
@@ -81,9 +86,25 @@ export default function HomeHeroPinned() {
     // shipped once as "ERP y| ou already have." mid-word). Splitting words
     // first keeps each word's own wrapper as the line-break unit, then
     // chars animate within it.
+    //
+    // The headline starts CSS-hidden (`opacity-0` in the JSX below), not
+    // just JS-hidden, and is only ever made visible from here (or the
+    // reducedMotion branch above). Real bug this fixes: useEffect always
+    // runs after the browser's first paint, so if the h1 started visible
+    // in the SSR'd markup, that first paint showed the full, correctly
+    // laid-out headline -- then this effect's SplitText + gsap.from()
+    // yanked it back to its animation's from-state a frame later, reading
+    // as the exact double-render/ghost-text glitch reported live on
+    // tioga.ai (clean text, then a faded, mispositioned partial re-render
+    // settling back in). Revealing the container in the same synchronous
+    // block as the split/from-state setup means the first frame the
+    // browser actually paints post-hydration is already the tween's own
+    // start state, so there's only ever the one intentional cascade-in,
+    // never a flash of the finished text first.
     let split: SplitText | null = null;
     if (headlineRef.current) {
       split = new SplitText(headlineRef.current, { type: "words, chars" });
+      gsap.set(headlineRef.current, { opacity: 1 });
       gsap.from(split.chars, {
         yPercent: 110,
         opacity: 0,
@@ -169,7 +190,16 @@ export default function HomeHeroPinned() {
       {/* Hero */}
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative z-0 overflow-hidden">
         <HeroFieldLoader flowAngleRef={flowAngleRef} />
-        <h1 ref={headlineRef} className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight text-balance">
+        <h1
+          ref={headlineRef}
+          className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight text-balance opacity-0"
+        >
+          {/* Starts hidden (opacity-0) so first paint never shows the
+              finished headline before the char-reveal effect runs -- see
+              the reveal effect's comment above for why that ordering
+              caused the reported double-render glitch. Made visible from
+              JS only (both the reveal tween and the reducedMotion bypass
+              above set it back to opacity 1). */}
           AI agents for the{" "}
           <span style={{ color: "var(--accent)" }}>systems</span>{" "}
           you already have.
