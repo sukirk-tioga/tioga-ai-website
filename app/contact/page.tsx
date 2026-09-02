@@ -60,10 +60,18 @@ export default function ContactPage() {
               <a href="mailto:hello@tioga.ai" className="underline hover:text-[var(--text)] transition-colors">hello@tioga.ai</a> directly.
             </p>
             <div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6 mt-2"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6 mt-2 max-w-[260px] sm:max-w-none"
               style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
             >
-              <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
+              <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse shrink-0" />
+              {/* max-w-[260px] on mobile only (sm:max-w-none) keeps this pill
+                  narrow enough that its right edge never reaches the fixed
+                  chat button's column (bottom-6 right-6, 56px), regardless
+                  of where it lands vertically -- shifting spacing instead
+                  would only fix today's exact scroll position, not the next
+                  content change above it. Confirmed empirically: badge was
+                  x:[24,366] y:[776,822] vs. button x:[310,366] y:[764,820]
+                  on a live 390x844 check before this fix. */}
               AI-powered routing — live demo of our email triage service
             </div>
             <SmartContactForm />
