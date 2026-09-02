@@ -68,6 +68,22 @@ export default function AboutPage() {
           </p>
         </div>
 
+        {/* Disclosure: names the missing-credentials gap directly instead of
+            leaving it silently empty — same honesty mechanic as the
+            homepage's demo band and the Trust page's compliance-status
+            block. Added 2026-09-01 per the design canvas. */}
+        <div
+          className="rounded-2xl p-6 mb-14 flex flex-col sm:flex-row gap-4"
+          style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+        >
+          <p className="text-xs font-mono uppercase tracking-wide shrink-0 sm:w-40" style={{ color: "var(--text-muted)" }}>
+            On verification
+          </p>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+            You&apos;ll notice what&apos;s missing from this page: a dated career timeline, a LinkedIn link, referenceable client names. I&apos;m still assembling the version of that record I&apos;m willing to publish — one where every line can be checked. Until it&apos;s verifiable, it doesn&apos;t go on the site. In the meantime, the demos and the Governance Ledger are the credentials I can prove today, and a Discovery Sprint is the fastest way to test the rest.
+          </p>
+        </div>
+
         {/* Pillars */}
         <div className="mb-14">
           <h2 className="text-xl font-bold text-white mb-2">Dual fluency, not one or the other</h2>

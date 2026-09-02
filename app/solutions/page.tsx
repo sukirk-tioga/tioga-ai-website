@@ -32,7 +32,7 @@ const SOLUTIONS = [
   {
     href: "/solutions/governed-write-path",
     name: "Governed Write-Path",
-    desc: "How to let an AI agent actually write to your ERP — policy enforcement, approval gates, rollback.",
+    desc: "AI that writes to your ERP with policy enforcement, approval gates, and rollback built into the path — not bolted on after.",
   },
   {
     href: "/solutions/mcp-security",

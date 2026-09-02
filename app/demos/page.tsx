@@ -700,7 +700,7 @@ function DemosPageInner() {
           </div>
           <h1 className="text-4xl font-bold text-white mb-3">See Our AI In Action</h1>
           <p className="text-slate-400 max-w-xl mx-auto mb-3">
-            These are real AI features — the same capabilities we build into enterprise systems.
+            These run on real infrastructure — the same governance controls we deploy for clients, not a sandbox.
             Try them with your own data.
           </p>
           <p className="text-xs text-slate-400 max-w-xl mx-auto">

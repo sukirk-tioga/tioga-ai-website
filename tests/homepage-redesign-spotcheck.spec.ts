@@ -24,9 +24,9 @@ test.describe("2026-08-08 homepage design review changes", () => {
     await page.goto("/");
 
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "AI agents for the systems you already have."
+      "Every action your AI takes, on the record."
     );
-    await expect(page.getByText(/No migration required/)).toBeVisible();
+    await expect(page.getByText(/No migration\./)).toBeVisible();
     await expect(page.getByText(/click the chat bubble/)).toHaveCount(0);
 
     // Exactly 2 CTAs in the hero now
@@ -40,7 +40,7 @@ test.describe("2026-08-08 homepage design review changes", () => {
   test("relocated checklist link and promoted quote render before Try It Right Now", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByText(/Not ready to try the demos\?/)).toBeVisible();
-    await expect(page.getByText(/I don.t have client logos to show you yet/)).toBeVisible();
+    await expect(page.getByText(/See it running, not a slide about it/)).toBeVisible();
   });
 
   test("pricing section: sprint banner + recommended flag + distinct CTA labels", async ({ page }) => {

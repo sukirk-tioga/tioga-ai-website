@@ -181,12 +181,12 @@ export default function HomeHeroPinned() {
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative z-0 overflow-hidden">
         <HeroFieldLoader flowAngleRef={flowAngleRef} />
         <h1 ref={headlineRef} className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight text-balance opacity-0">
-          AI agents for the{" "}
-          <span style={{ color: "var(--accent)" }}>systems</span>{" "}
-          you already have.
+          Every action your{" "}
+          <span style={{ color: "var(--accent)" }}>AI</span>{" "}
+          takes, on the record.
         </h1>
         <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed">
-          Governed agents for finance, procurement and operations on Oracle EBS and SAP — now extending to Salesforce, ServiceNow and the data platforms they sit beside — running inside your identity, approvals and audit trail, every action visible before it executes. No migration required.
+          Tioga builds governed AI agents that work inside your existing enterprise systems — Oracle, SAP, Workday, ServiceNow, and more — under your existing identity, approvals, and audit trail. No migration. Nothing executes unseen.
         </p>
         <p className="text-sm text-slate-400 max-w-xl mx-auto mb-10">
           Five-day discovery sprint, $5,000 flat — credited toward your project if you move forward.

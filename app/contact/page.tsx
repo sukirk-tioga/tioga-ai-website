@@ -34,7 +34,7 @@ export default function ContactPage() {
           <div className="p-8 rounded-2xl h-fit" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <h2 className="text-lg font-bold text-white mb-2">Book a call</h2>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
-              Skip the form — grab a 20-minute slot on my calendar directly. No pitch deck, just a conversation about what you&apos;re trying to build.
+              Skip the form — grab 20 minutes directly on my calendar. No pitch deck, no discovery script. Bring the problem and I&apos;ll look at it with you.
             </p>
             <TrackedCTA
               href={CAL_LINK}
