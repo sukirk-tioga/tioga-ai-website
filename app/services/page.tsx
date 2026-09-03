@@ -4,12 +4,12 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Three practices, fifteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance built for Oracle and SAP environments.",
+    "Three practices, sixteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance built for Oracle, SAP, and Salesforce environments.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Services — Tioga AI",
     description:
-      "Three practices, fifteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance for Oracle and SAP.",
+      "Three practices, sixteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance for Oracle, SAP, and Salesforce.",
   },
 };
 
@@ -61,6 +61,12 @@ const PRACTICES: Practice[] = [
         desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear.",
         price: "$60–120K",
         duration: "~6 weeks",
+      },
+      {
+        name: "Salesforce Governed Write-Path & Evidence Build",
+        desc: "Closes the gap Salesforce's own architects admit exists — hosted MCP servers on Salesforce are GA and free on Enterprise Edition+ with full user attribution, but the governance layer above that (a value/velocity policy an agent's permission set can't express, a server-side approval gate independent of which AI client is calling, a decision ledger recording policy version, approver, and reason for every evaluated write) is yours to build. Tioga builds that layer for one high-value Salesforce write path.",
+        price: "$50–100K",
+        duration: "5–8 weeks",
       },
       {
         name: "Legacy System AI Augmentation",
@@ -163,7 +169,7 @@ export default function ServicesPage() {
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <h1 className="text-4xl font-bold mb-6" style={{ color: "var(--text)" }}>Services</h1>
         <p className="text-[var(--text-muted)] text-lg max-w-2xl leading-relaxed mb-4">
-          Tioga AI runs three practices — automating finance and operations, modernizing ERP with an agent layer, and governing enterprise AI. Fifteen engagements sit underneath them, each scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
+          Tioga AI runs three practices — automating finance and operations, modernizing ERP with an agent layer, and governing enterprise AI. Sixteen engagements sit underneath them, each scoped to deliver a concrete, reviewable output — not a slide deck — with pricing and timelines defined up front.
         </p>
         <p className="text-[var(--text-muted)] text-sm max-w-2xl leading-relaxed mb-16">
           Every engagement below starts with a 5-day Discovery Sprint ($5,000 flat, prototype included) that scopes the work before any larger commitment. If you move forward, the $5,000 is credited toward the price of the engagement below.

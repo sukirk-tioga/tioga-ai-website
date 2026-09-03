@@ -300,7 +300,7 @@ export default function HomePage() {
  ))}
  </div>
  <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "var(--text-faint)" }}>
- Plus twelve more engagements across two practices — modernizing ERP with an agent layer, and governing enterprise AI end to end.{" "}
+ Plus thirteen more engagements across two practices — modernizing ERP with an agent layer, and governing enterprise AI end to end.{" "}
  <Link href="/services" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
  See all services →
  </Link>
