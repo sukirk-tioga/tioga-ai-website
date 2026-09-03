@@ -1,0 +1,5 @@
+Contact: mailto:hello@tioga.ai?subject=Security
+Expires: 2027-09-02T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://tioga.ai/.well-known/security.txt
+Policy: https://tioga.ai/trust

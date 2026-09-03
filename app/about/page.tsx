@@ -58,6 +58,10 @@ export default function AboutPage() {
             in a compliance review. Tioga AI exists because that gap — between
             AI that looks impressive and AI that survives contact with a real
             enterprise system — is exactly where I&apos;ve spent my career.
+            Before founding Tioga AI, I managed the governance work that
+            keeps ERP, HR, and CRM systems audit-ready across four sister
+            companies — not AI-specific compliance theory, the actual
+            operating discipline this practice is built on.
           </p>
           <p>
             Tioga AI is a solo practice by design, at least for now. Every
