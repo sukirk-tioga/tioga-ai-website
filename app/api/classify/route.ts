@@ -34,9 +34,9 @@ Inquiry details:
 - Email: ${email}
 - Project Description: ${description}
 
-Tioga AI runs three practices, fifteen priced engagements underneath them:
+Tioga AI runs three practices, sixteen priced engagements underneath them:
 1. Automate finance and operations - AI Operations Assessment, AI Agent Pilot
-2. Modernize ERP with an agent layer - Agent-Ready ERP Diagnostic & Governed Write-Path, Legacy System AI Augmentation, ERP Modernization Advisory
+2. Modernize ERP with an agent layer - Agent-Ready ERP Diagnostic & Governed Write-Path, Salesforce Governed Write-Path & Evidence Build, Legacy System AI Augmentation, ERP Modernization Advisory
 3. Govern enterprise AI - AI Governance Readiness Assessment, AI Cost & Model Governance Assessment, AI Governance Evidence Package for Insurance Underwriting, Agentic AI Governance Framework, Multi-State AI Compliance Program, ISO 42001 Implementation Sprint, EU AI Act Conformity Program, Fractional AI Governance Officer
 
 Respond ONLY with a JSON object in this exact format:

@@ -27,6 +27,12 @@ interface Entry {
 // shipped unit of work into one entry. Dates are the day the unit landed.
 const ENTRIES: Entry[] = [
   {
+    date: "2026-09-02",
+    kind: "Content",
+    title: "Salesforce Governed Write-Path & Evidence Build added to /services",
+    body: "A new offer under the ERP-agent-layer practice, sibling to the Agent-Ready ERP Diagnostic & Governed Write-Path: Salesforce's own architects have said the platform's hosted MCP servers are GA and free on Enterprise Edition+ with full user attribution, but the governance layer above that — a value/velocity policy an agent's permission set can't express, a server-side approval gate independent of which AI client is calling, and a decision ledger recording policy version, approver, and reason for every evaluated write — is left for the customer to build. This offer builds that layer for one high-value Salesforce write path. $50-100K total (Phase 1 diagnostic standalone $12-18K, ~1 week; full build 5-8 weeks). Expands /services from fifteen offers to sixteen.",
+  },
+  {
     date: "2026-08-30",
     kind: "Feature",
     title: "A real propose-and-approve record for the whole automation estate — /demos/automation-oversight",
