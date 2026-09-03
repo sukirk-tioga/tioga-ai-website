@@ -424,7 +424,7 @@ export default function HomePage() {
  </div>
  <h3 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Model Context Protocol (MCP)</h3>
  <p className="text-sm text-[var(--text-muted)] max-w-lg">
- MCP is how frontier AI connects to enterprise systems. Tioga AI is built MCP-native from day one, with working connectors for SAP and Salesforce you can try on the MCP page. See the architecture, explore live demos and understand why your next AI project should be MCP-native.
+ MCP is how frontier AI connects to enterprise systems. Tioga AI is built MCP-native from day one, with connector tools you can try against mock SAP and Salesforce instances on the MCP page. See the architecture, explore live demos and understand why your next AI project should be MCP-native.
  </p>
  </div>
  <div

@@ -105,17 +105,23 @@ export default function EUAIActPage() {
               <p className="text-sm text-[var(--text-muted)]">General-purpose AI model provider obligations and governance-authority designations took effect.</p>
             </div>
             <div className="flex gap-4">
-              <span className="text-xs font-mono w-24 shrink-0 pt-0.5" style={{ color: "var(--text)" }}>Aug 2026</span>
-              <p className="text-sm text-[var(--text-muted)]">High-risk system obligations (Annex III — the category most enterprise AI agents in finance, HR, and CRM fall into) and Article 50 transparency requirements (AI-generated content disclosure, chatbot disclosure) phase in — the deadline most mid-market enterprises still have open exposure against.</p>
+              <span className="text-xs font-mono w-24 shrink-0 pt-0.5" style={{ color: "var(--text)" }}>Now</span>
+              <p className="text-sm text-[var(--text-muted)]">Article 50 transparency requirements (AI-generated content disclosure, chatbot disclosure) and Article 4 AI-literacy obligations are already in effect and were <em>not</em> deferred by the Digital Omnibus below — this is the real, current exposure most mid-market enterprises still have open.</p>
             </div>
             <div className="flex gap-4">
-              <span className="text-xs font-mono text-[var(--text-muted)] w-24 shrink-0 pt-0.5">Aug 2027</span>
-              <p className="text-sm text-[var(--text-muted)]">High-risk systems that are safety components of products already regulated under existing EU product-safety law (Annex I — machinery, medical devices, and similar) get a one-year later deadline.</p>
+              <span className="text-xs font-mono text-[var(--text-muted)] w-24 shrink-0 pt-0.5">Dec 2027</span>
+              <p className="text-sm text-[var(--text-muted)]">High-risk system obligations (Annex III — the category most enterprise AI agents in finance, HR, and CRM fall into) phase in. Originally Aug 2026; deferred to 2 December 2027 by Regulation (EU) 2026/1744 (the &quot;Digital Omnibus on AI&quot;), in force since 27 July 2026.</p>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-xs font-mono text-[var(--text-muted)] w-24 shrink-0 pt-0.5">Aug 2028</span>
+              <p className="text-sm text-[var(--text-muted)]">High-risk systems that are safety components of products already regulated under existing EU product-safety law (Annex I — machinery, medical devices, and similar). Originally Aug 2027; deferred one year by the same Digital Omnibus regulation.</p>
             </div>
           </div>
           <p className="text-xs text-[var(--text-muted)] mt-4">
-            Dates per the EU AI Act&apos;s official timeline; not legal advice.
-            Confirm applicability for your specific system with counsel. Reviewed 2026-07-27.
+            Dates per the EU AI Act&apos;s official timeline as amended by
+            Regulation (EU) 2026/1744; not legal advice. Confirm
+            applicability for your specific system with counsel. Reviewed
+            against Reg. (EU) 2026/1744, 2026-09-02.
           </p>
         </div>
 
