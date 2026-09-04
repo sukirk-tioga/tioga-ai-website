@@ -91,13 +91,13 @@ const content: SolutionContent = {
       name: "Standing Watch Assessment",
       price: "$15–35K",
       duration: "3–4 weeks",
-      desc: "Agent inventory across your estate — consuming your existing SAP Agent Hub, Workday ASOR, Control Tower, or Unity AI Gateway data as sources. Delivers a qualification register, a cross-vendor spend arbitration baseline, a first behavioral probe run, and a seeded findings ledger. See the full Standing Watch ladder at /solutions/standing-watch.",
+      desc: "Agent inventory across your estate — consuming your existing SAP Agent Hub, Workday ASOR, Control Tower, or Unity AI Gateway data as sources, not sunk mistakes. Delivers a qualification register and autonomy-tier map, a cross-vendor spend arbitration baseline, a first behavioral probe run across two or more systems, and a seeded findings ledger you keep. See the full Standing Watch ladder at /solutions/standing-watch.",
     },
     {
       name: "Standing Watch Build",
       price: "$60–150K",
       duration: "8–16 weeks, scoped to estate breadth",
-      desc: "Implements the propose-and-approve gating layer and the behavioral probe harness in your environment, on your credentials and repositories. Tioga will not be a required runtime dependency.",
+      desc: "Implements the propose-and-approve gating layer and the behavioral probe harness in your environment, on your credentials and repositories — modeled directly on router-watch and security-watch's architecture. Tioga will not be a required runtime dependency.",
     },
     {
       name: "Standing Watch Retainer",

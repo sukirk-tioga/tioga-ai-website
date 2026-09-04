@@ -4,11 +4,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "EU AI Act Exposure",
   description:
-    "What EU AI Act non-compliance actually costs — the penalty structure, what's already in force, and what phases in through 2026.",
+    "What EU AI Act non-compliance actually costs — the penalty structure, what's already in force, and what phases in through 2028.",
   alternates: { canonical: "/trust/eu-ai-act" },
   openGraph: {
     title: "EU AI Act Exposure — Tioga AI",
-    description: "The penalty structure, what's already in force, and what phases in through 2026.",
+    description: "The penalty structure, what's already in force, and what phases in through 2028.",
   },
 };
 
