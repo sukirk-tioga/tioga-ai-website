@@ -1,8 +1,10 @@
 import { anthropic } from "@/lib/anthropic";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
-import { sendInquiryEmail } from "@/lib/email";
+import { sendInquiryEmail, sendAgentEmail } from "@/lib/email";
 import { appendContactLog } from "@/lib/contact-log";
 import { validateClassification } from "@/lib/classification";
+import { generateAgentReply } from "@/lib/agent-reply";
+import { createThread, generateThreadId } from "@/lib/thread-store";
 import { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
@@ -90,6 +92,46 @@ Base complexity on: scope, number of systems mentioned, enterprise vs SMB signal
  classification,
  notificationSent,
  });
+
+ // Autonomous email agent — generates and sends the prospect's actual
+ // first reply (not just the internal notification above), then creates
+ // the thread record any follow-up reply lands in via
+ // app/api/agent/inbound/route.ts. Fully autonomous by design (no human
+ // review gate before sending — see PR description), but best-effort:
+ // a failure here must not break the classify response the visitor is
+ // waiting on, same discipline as sendInquiryEmail/appendContactLog
+ // above. Must be awaited for the same Vercel-freeze reason as those —
+ // see the comment above appendContactLog.
+ try {
+ const threadId = generateThreadId();
+ const reply = await generateAgentReply({
+ prospectName: name || "",
+ company: company || "",
+ classification,
+ subject: "New inquiry via tioga.ai contact form",
+ messages: [{ role: "prospect", text: description, timestamp: new Date().toISOString() }],
+ });
+
+ await sendAgentEmail({
+ to: email,
+ subject: reply.subject,
+ text: reply.body,
+ threadId,
+ });
+
+ await createThread({
+ threadId,
+ prospectEmail: email,
+ prospectName: name || "",
+ company: company || "",
+ subject: reply.subject,
+ classification,
+ firstInboundMessage: description,
+ firstReply: reply.body,
+ });
+ } catch (agentErr) {
+ console.error("Autonomous agent reply failed:", agentErr);
+ }
 
  return new Response(JSON.stringify({ classification }), {
  status: 200,
