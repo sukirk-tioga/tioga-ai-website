@@ -30,8 +30,8 @@ export default function ArticlePage({ content }: { content: ArticleContent }) {
     headline: content.title,
     datePublished: content.date,
     author: {
-      "@type": "Person",
-      name: "Sukir Kumaresan",
+      "@type": "Organization",
+      name: "Tioga AI",
     },
     publisher: {
       "@type": "Organization",

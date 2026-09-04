@@ -99,7 +99,7 @@ export async function sendInquiryEmail({
 
   await transporter.sendMail({
     from: `"Tioga AI" <${process.env.SMTP_USER}>`,
-    to: "sukir.kumaresan@tioga.ai, sukir.kumaresan@gmail.com",
+    to: "hello@tioga.ai",
     replyTo: email,
     subject: `[${urgencyEmoji} ${classification.urgency.toUpperCase()}] New Inquiry: ${classification.service} — ${name}${company ? ` (${company})` : ""}`,
     html,
@@ -131,7 +131,7 @@ export async function sendContactLogEmail(entry: {
 
   await transporter.sendMail({
     from: `"Tioga AI Audit Log" <${process.env.SMTP_USER}>`,
-    to: "sukir.kumaresan@tioga.ai",
+    to: "hello@tioga.ai",
     subject: `[contact-log] ${entry.timestamp}`,
     html,
   });
@@ -210,7 +210,7 @@ export async function sendMigrationAssessmentCopy({
   await transporter.sendMail({
     from: `"Tioga AI" <${process.env.SMTP_USER}>`,
     to,
-    replyTo: "sukir.kumaresan@tioga.ai",
+    replyTo: "hello@tioga.ai",
     subject: `Your ${version} → ${target} migration readiness assessment`,
     html,
   });
