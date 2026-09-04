@@ -224,7 +224,7 @@ A GPU particle field on the left renders the same 17 real rows already live at{"
             Want this pattern built into your systems?
           </h2>
           <p className="text-sm text-[var(--text-muted)] mb-6 max-w-md mx-auto">
-            A discovery call gets you a scoped assessment from the team that builds these
+            A discovery call gets you a scoped assessment from the person who builds these
             governed write-paths — not a form, a conversation.
           </p>
           <TrackedCTA

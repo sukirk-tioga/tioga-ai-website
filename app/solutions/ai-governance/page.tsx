@@ -26,7 +26,7 @@ const content: SolutionContent = {
     {
       label: "The deepest bench of the three practices",
       detail:
-        "Eight distinct governance engagements exist because this is the actual center of Tioga's business — not a checkbox practice bolted onto an automation shop.",
+        "Ten distinct governance engagements exist because this is the actual center of Tioga's business — not a checkbox practice bolted onto an automation shop.",
     },
     {
       label: "Built on the same infrastructure Tioga runs itself",
@@ -52,10 +52,22 @@ const content: SolutionContent = {
       desc: "NIST AI RMF, ISO 42001, EU AI Act, and US state law gap analysis with a prioritized remediation roadmap and sample executive summary.",
     },
     {
+      name: "AI Cost & Model Governance Assessment",
+      price: "$10–20K",
+      duration: "2–3 weeks",
+      desc: "Model-tiering policy, token/cache optimization, budget guardrails, and model-governance rules — built on the same routing infrastructure behind Tioga's own live Governance Ledger demo.",
+    },
+    {
       name: "Agentic AI Governance Framework",
       price: "$30–75K",
       duration: "4–8 weeks",
       desc: "Governance architecture for organizations deploying autonomous AI agents in production — risk registers, oversight controls, and escalation protocols.",
+    },
+    {
+      name: "Multi-State AI Compliance Program",
+      price: "$40–80K",
+      duration: "6–10 weeks",
+      desc: "Gap analysis and remediation roadmap across US state AI laws for organizations operating in multiple jurisdictions.",
     },
     {
       name: "ISO 42001 Implementation Sprint",
@@ -68,6 +80,30 @@ const content: SolutionContent = {
       price: "$75–200K",
       duration: "4–8 months",
       desc: "Full conformity documentation, technical files, and governance controls for organizations subject to the EU AI Act, structured for audit readiness.",
+    },
+    {
+      name: "Fractional AI Governance Officer",
+      price: "$12–25K/month",
+      duration: "6–12 months",
+      desc: "Ongoing governance leadership for organizations that need AI risk management expertise without a full-time hire — structured as a monthly retainer.",
+    },
+    {
+      name: "Standing Watch Assessment",
+      price: "$15–35K",
+      duration: "3–4 weeks",
+      desc: "Agent inventory across your estate — consuming your existing SAP Agent Hub, Workday ASOR, Control Tower, or Unity AI Gateway data as sources, not sunk mistakes. Delivers a qualification register and autonomy-tier map, a cross-vendor spend arbitration baseline, a first behavioral probe run across two or more systems, and a seeded findings ledger you keep. See the full Standing Watch ladder at /solutions/standing-watch.",
+    },
+    {
+      name: "Standing Watch Build",
+      price: "$60–150K",
+      duration: "8–16 weeks, scoped to estate breadth",
+      desc: "Implements the propose-and-approve gating layer and the behavioral probe harness in your environment, on your credentials and repositories — modeled directly on router-watch and security-watch's architecture. Tioga will not be a required runtime dependency.",
+    },
+    {
+      name: "Standing Watch Retainer",
+      price: "$5–15K/month",
+      duration: "Ongoing",
+      desc: "Router-watch and security-watch as a service, generalized to your estate: a weekly automated watch run, a monthly human review of the findings ledger, and quarterly evidence packs mapped to NIST AI RMF, ISO 42001, and the EU AI Act.",
     },
   ],
   faq: [
@@ -92,7 +128,7 @@ const content: SolutionContent = {
     { href: "/trust", label: "See the Trust Center" },
     { href: "/trust/framework-mapping", label: "NIST / ISO 42001 / EU AI Act mapping" },
     { href: "/articles/framework-mapping-not-three-checklists", label: "Read: one mapping, not three checklists" },
-    { href: "/services", label: "See all 8 governance engagements" },
+    { href: "/services", label: "See all 10 governance engagements" },
   ],
   demoLink: { href: "/demos/governance-ledger", label: "See the Governance Ledger demo" },
 };

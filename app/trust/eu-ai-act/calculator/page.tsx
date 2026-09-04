@@ -52,14 +52,14 @@ const RESULTS: Record<Tier, { title: string; color: string; penalty: string; bod
     title: "This falls under Annex III high-risk",
     color: "var(--warning)",
     penalty: "Up to €15M or 3% of global annual turnover",
-    body: "High-risk systems require a conformity assessment, technical documentation, a risk management system, and human oversight before deployment — obligations phasing in through August 2026. This is exactly what a conformity program is built to produce.",
+    body: "High-risk systems require a conformity assessment, technical documentation, a risk management system, and human oversight before deployment — obligations phasing in through 2 December 2027, per Regulation (EU) 2026/1744 (the \"Digital Omnibus on AI,\" in force since 27 July 2026, deferring the original August 2026 date). This is exactly what a conformity program is built to produce.",
     cta: { label: "See the EU AI Act Conformity Program →", href: "/services" },
   },
   limited: {
     title: "This falls under limited-risk transparency rules",
     color: "var(--accent)",
     penalty: "Same \"other obligations\" tier as high-risk: up to €15M or 3%",
-    body: "Article 50 transparency obligations apply — disclosing that people are interacting with AI, and labeling AI-generated or synthetic content. Lower burden than high-risk, but still a real, enforceable requirement phasing in through August 2026.",
+    body: "Article 50 transparency obligations apply — disclosing that people are interacting with AI, and labeling AI-generated or synthetic content. Lower burden than high-risk, and unlike the high-risk timeline this one was not deferred by the 2026 Digital Omnibus — it's already in force now, not a future phase-in.",
     cta: { label: "See what's already in force →", href: "/trust/eu-ai-act" },
   },
   minimal: {
