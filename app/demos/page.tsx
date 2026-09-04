@@ -16,12 +16,12 @@ import DemosClient from "./DemosClient";
 // parent instead of being the route's own entry point.
 
 export const metadata: Metadata = {
-  title: "Live Demos",
+  title: "Live AI Demos",
   description:
     "Four real AI workflows running against Tioga AI's own agent infrastructure: invoice processing, email triage, an EBS-to-S/4HANA migration assessment, and Standing Watch governance findings. No signup, no mockups.",
   alternates: { canonical: "/demos" },
   openGraph: {
-    title: "Live Demos — Tioga AI",
+    title: "Live AI Demos — Tioga AI",
     description: "Four real AI workflows, no signup, no mockups — the same models built into every Tioga AI engagement.",
   },
 };
@@ -60,7 +60,7 @@ export default function DemosPage() {
           visually redundant with DemosClient's own hero/cards for a real
           browser (which hydrates immediately), so this is kept minimal
           rather than duplicating the full interactive UI. */}
-      <h1 className="sr-only">Live Demos — Tioga AI</h1>
+      <h1 className="sr-only">Live AI Demos — Tioga AI</h1>
       <p className="sr-only">
         Four real AI workflows running against Tioga AI&apos;s own agent infrastructure, no signup and no mockups:
       </p>
