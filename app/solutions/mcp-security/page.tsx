@@ -36,7 +36,7 @@ const content: SolutionContent = {
     {
       label: "Built by an operator, not just a security vendor",
       detail:
-        "Sukir's background managing real ERP/CRM/HR systems means the permission boundaries are scoped around how these systems actually get misused, not a generic checklist.",
+        "The founder's background managing real ERP/CRM/HR systems means the permission boundaries are scoped around how these systems actually get misused, not a generic checklist.",
     },
     {
       label: "No \"trust the vendor\" black box",

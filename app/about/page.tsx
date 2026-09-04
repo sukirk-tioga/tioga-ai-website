@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Tioga AI is built by Sukir Kumaresan — decades in enterprise systems and governance, now building AI agents on the same terrain, with compliance built in from day one.",
+    "Tioga AI is built by its founder — decades in enterprise systems and governance, now building AI agents on the same terrain, with compliance built in from day one.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About — Tioga AI",
@@ -46,7 +46,7 @@ export default function AboutPage() {
 
         <div className="space-y-5 text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-14">
           <p>
-            I&apos;m Sukir Kumaresan, founder of Tioga AI. I spent decades on the
+            I&apos;m the founder of Tioga AI. I spent decades on the
             operating side of enterprise systems — Oracle EBS, SAP, finance,
             HR, procurement, and the governance and compliance work that keeps
             all of it audit-ready. Not consulting from the outside: running it.

@@ -41,7 +41,7 @@ const content: SolutionContent = {
     {
       label: "Operator experience with audit-readiness",
       detail:
-        "Before founding Tioga AI, Sukir managed the governance work that keeps ERP, HR, and CRM systems audit-ready across four sister companies — not just AI-specific compliance theory.",
+        "Before founding Tioga AI, the founder managed the governance work that keeps ERP, HR, and CRM systems audit-ready across four sister companies — not just AI-specific compliance theory.",
     },
   ],
   offers: [

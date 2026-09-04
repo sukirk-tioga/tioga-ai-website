@@ -31,7 +31,7 @@ const content: SolutionContent = {
     {
       label: "Operator experience in both systems",
       detail:
-        "Before founding Tioga AI, Sukir managed both Oracle EBS and SAP environments across four sister companies — most migration consultants specialize in one side of this transition, not both.",
+        "Before founding Tioga AI, the founder managed both Oracle EBS and SAP environments across four sister companies — most migration consultants specialize in one side of this transition, not both.",
     },
     {
       label: "A named engagement, not a bolt-on",

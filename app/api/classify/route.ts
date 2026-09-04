@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
  });
  }
 
- const prompt = `You are an AI classifier for Tioga AI, a solo-founder AI implementation practice run by Sukir Kumaresan. Analyze this inbound inquiry and classify it.
+ const prompt = `You are an AI classifier for Tioga AI, a solo-founder AI implementation practice. Analyze this inbound inquiry and classify it.
 
 Inquiry details:
 - Name: ${name}
@@ -45,7 +45,7 @@ Respond ONLY with a JSON object in this exact format:
  "urgency": "one of: low | medium | high | critical",
  "complexity": "one of: small | medium | large | enterprise",
  "summary": "one sentence summarizing what they need",
- "nextStep": "one concrete recommended next action for Sukir",
+ "nextStep": "one concrete recommended next action for the founder",
  "responseTime": "one of: within 4 hours | within 1 business day | within 2 business days",
  "fitScore": "a number 1-10 indicating how well this fits Tioga AI's services"
 }
