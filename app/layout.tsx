@@ -68,10 +68,6 @@ export default function RootLayout({
     "@type": "ProfessionalService",
     name: "Tioga AI",
     url: "https://tioga.ai",
-    founder: {
-      "@type": "Person",
-      name: "Sukir Kumaresan",
-    },
     description:
       "Tioga AI builds governed AI agents for Oracle and SAP — finance, procurement and operations automation, with NIST AI RMF, ISO 42001, and EU AI Act governance built into the architecture.",
     areaServed: "Global",

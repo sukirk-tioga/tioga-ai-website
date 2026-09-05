@@ -26,7 +26,7 @@ const content: SolutionContent = {
     {
       label: "Built by an EBS operator",
       detail:
-        "Before founding Tioga AI, Sukir managed ERP, HR, CRM, and business-reporting systems — including Oracle EBS — across four sister companies. That's operator-level fluency with how EBS actually gets used, not textbook API knowledge.",
+        "Before founding Tioga AI, the founder managed ERP, HR, CRM, and business-reporting systems — including Oracle EBS — across four sister companies. That's operator-level fluency with how EBS actually gets used, not textbook API knowledge.",
     },
     {
       label: "Live migration-readiness demo",

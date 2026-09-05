@@ -333,7 +333,7 @@ export default function HomePage() {
  </div>
  <div className="mb-10 pb-8 text-center" style={{ borderBottom: "1px solid var(--border)" }}>
  <p className="text-sm max-w-2xl mx-auto leading-relaxed" style={{ color: "var(--text-body)" }}>
- Tioga AI is built by <span className="font-medium" style={{ color: "var(--text)" }}>Sukir Kumaresan</span>, who spent decades on the operating side of enterprise systems — Oracle EBS, SAP, finance, HR, procurement — and the governance work that keeps those systems audit-ready. Every demo on this site, including the Governance Ledger above, is code Sukir wrote and infrastructure Sukir runs. No outsourced build, no slide deck.
+ Tioga AI is built by its founder, who spent decades on the operating side of enterprise systems — Oracle EBS, SAP, finance, HR, procurement — and the governance work that keeps those systems audit-ready. Every demo on this site, including the Governance Ledger above, is code the founder wrote and infrastructure the founder runs. No outsourced build, no slide deck.
  </p>
  </div>
  <div className="grid md:grid-cols-3 gap-6">

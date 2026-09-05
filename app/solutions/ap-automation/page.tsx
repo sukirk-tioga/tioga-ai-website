@@ -31,7 +31,7 @@ const content: SolutionContent = {
     {
       label: "Built by someone who ran AP, not just automated it",
       detail:
-        "Before founding Tioga AI, Sukir managed ERP and business-reporting systems — including AP workflows — across four sister companies.",
+        "Before founding Tioga AI, the founder managed ERP and business-reporting systems — including AP workflows — across four sister companies.",
     },
     {
       label: "Exception-first design",

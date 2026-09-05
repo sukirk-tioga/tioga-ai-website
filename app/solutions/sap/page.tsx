@@ -26,7 +26,7 @@ const content: SolutionContent = {
     {
       label: "Built by an SAP operator",
       detail:
-        "Before founding Tioga AI, Sukir managed ERP, HR, CRM, and business-reporting systems — including SAP — across four sister companies. That's operator-level fluency, not textbook API knowledge.",
+        "Before founding Tioga AI, the founder managed ERP, HR, CRM, and business-reporting systems — including SAP — across four sister companies. That's operator-level fluency, not textbook API knowledge.",
     },
     {
       label: "Governance built in, not bolted on",

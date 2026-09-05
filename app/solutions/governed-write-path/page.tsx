@@ -36,7 +36,7 @@ const content: SolutionContent = {
     {
       label: "Operator experience on both sides",
       detail:
-        "Before founding Tioga AI, Sukir managed ERP systems across four sister companies — including the approval and control workflows a governed write has to respect.",
+        "Before founding Tioga AI, the founder managed ERP systems across four sister companies — including the approval and control workflows a governed write has to respect.",
     },
     {
       label: "Audit-grade evidence, not a screenshot",
