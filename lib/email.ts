@@ -215,3 +215,64 @@ export async function sendMigrationAssessmentCopy({
     html,
   });
 }
+
+// Outbound sends for the autonomous email agent (app/api/classify/route.ts's
+// first reply, app/api/agent/inbound/route.ts's follow-ups). Reuses the
+// same Gmail SMTP transport as every other outbound send in this file — no
+// new outbound provider added alongside Postmark's inbound-only role here
+// (see PR description for that call). Plain text, not HTML: this is meant
+// to read as a real one-to-one email from the practice, not a templated
+// notification.
+//
+// Reply-To is set to reply+{threadId}@agent.tioga.ai so a prospect's reply
+// round-trips through Postmark's Inbound Parse webhook with the thread ID
+// recoverable from the recipient address (see lib/postmark-inbound.ts).
+// Every autonomous send is BCC'd to hello@tioga.ai as a passive audit
+// trail — this does not gate sending (the agent is fully autonomous by
+// design), it mirrors the existing appendContactLog audit discipline.
+export async function sendAgentEmail({
+  to,
+  subject,
+  text,
+  threadId,
+}: {
+  to: string;
+  subject: string;
+  text: string;
+  threadId: string;
+}) {
+  await transporter.sendMail({
+    from: `"Tioga AI" <${process.env.SMTP_USER}>`,
+    to,
+    replyTo: `reply+${threadId}@agent.tioga.ai`,
+    bcc: "hello@tioga.ai",
+    subject,
+    text,
+  });
+}
+
+// A direct, non-BCC notification to hello@tioga.ai used only when a thread
+// needs a founder's attention (the 6-reply safety cap in
+// app/api/agent/inbound/route.ts). A true BCC can't carry a different
+// subject line for the BCC'd recipient than the one the prospect sees, so
+// this is a second, separate send specifically so the flagged subject
+// (`[NEEDS FOUNDER] ...`) is what actually shows up in the inbox, not
+// buried inside an identical-subject BCC copy.
+export async function sendFounderAlertEmail({
+  subject,
+  note,
+  threadId,
+  prospectEmail,
+}: {
+  subject: string;
+  note: string;
+  threadId: string;
+  prospectEmail: string;
+}) {
+  await transporter.sendMail({
+    from: `"Tioga AI Agent" <${process.env.SMTP_USER}>`,
+    to: "hello@tioga.ai",
+    subject: `[NEEDS FOUNDER] ${subject}`,
+    text: `${note}\n\nThread: ${threadId}\nProspect: ${prospectEmail}`,
+  });
+}
