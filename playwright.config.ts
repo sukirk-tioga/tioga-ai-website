@@ -12,6 +12,18 @@ export default defineConfig({
     baseURL: BASE_URL ?? "http://localhost:3000",
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
+    // GitHub Actions' ubuntu-latest runner has no real GPU, so Chromium
+    // falls back to SwiftShader software rendering — under /showcase's
+    // sustained GPGPU particle-field compute shader, that software context
+    // drops mid-test (a real `webglcontextlost` event, not a test bug),
+    // which is what showcase.spec.ts's autoRotate-freeze test was hitting
+    // on every CI run since 2026-08-19. These flags stabilize the software
+    // WebGL path instead of leaving it to fail unpredictably. CI-only:
+    // real GPUs (local dev, Vercel preview builds aren't tested this way)
+    // don't need them.
+    launchOptions: process.env.CI
+      ? { args: ["--use-gl=swiftshader-webgl", "--enable-webgl", "--ignore-gpu-blocklist"] }
+      : undefined,
   },
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
