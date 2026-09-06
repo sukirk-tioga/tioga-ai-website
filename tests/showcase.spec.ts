@@ -82,6 +82,20 @@ test("canvas keeps changing over time — catches the autoRotate freeze-at-bound
   // time-separated pixel comparison of the actual canvas catches it. The doc
   // itself calls this bug "real, will recur," and until now nothing asserted
   // it hadn't.
+  //
+  // Timeout raised to 45s (2026-09-05): this test's own deliberate waits
+  // alone (up to 15s for canvas visibility + 2.5s + 6s = 23.5s worst case)
+  // already ate most of Playwright's default 30s test budget, leaving too
+  // little margin for real page-load/WebGL-init/screenshot-capture time
+  // against a live production URL over a real network — not a local dev
+  // server. Confirmed via 5 straight days of "Production health check" CI
+  // failures (2026-09-01 through 09-05), every one timing out mid-wait
+  // (`page.waitForTimeout` itself exceeding the 30s test timeout, never a
+  // failed pixel-comparison assertion) — a budget-margin problem, not a
+  // real autoRotate regression recurring. Same "raise with headroom, don't
+  // just chase the same wall again" convention as this repo's other
+  // recurring-drift fixes.
+  test.setTimeout(45_000);
   await page.goto("/showcase");
   const canvas = page.locator('[data-testid="showcase-canvas"]');
   await expect(canvas).toBeVisible({ timeout: 15_000 });
