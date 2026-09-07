@@ -14,7 +14,29 @@ export default defineConfig({
     screenshot: "only-on-failure",
   },
   projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    {
+      name: "chromium",
+      use: {
+        ...devices["Desktop Chrome"],
+        // GitHub Actions' ubuntu-latest runner has no real GPU, so Chromium
+        // falls back to SwiftShader software rendering — under /showcase's
+        // sustained GPGPU particle-field compute shader, that software
+        // context drops mid-test (a real `webglcontextlost` event, not a
+        // test bug), which is what showcase.spec.ts's autoRotate-freeze
+        // test was hitting on every CI run since 2026-08-19. These flags
+        // stabilize the software WebGL path instead of leaving it to fail
+        // unpredictably. CI-only: real GPUs (local dev, Vercel preview
+        // builds aren't tested this way) don't need them. Chromium-only
+        // (not the top-level `use` block, which mobile-safari/WebKit also
+        // inherits and doesn't understand these Chromium-specific flags) --
+        // 2026-09-06: an earlier version of this fix put them in the
+        // top-level `use` block and broke every mobile-safari test in CI
+        // (WebKit doesn't recognize --use-gl/--ignore-gpu-blocklist).
+        launchOptions: process.env.CI
+          ? { args: ["--use-gl=swiftshader-webgl", "--enable-webgl", "--ignore-gpu-blocklist"] }
+          : undefined,
+      },
+    },
     { name: "mobile-safari", use: { ...devices["iPhone 14"] }, testMatch: /pages\.spec\.ts/ },
   ],
   // Only spin up a local server when no BASE_URL is given (i.e. not testing
