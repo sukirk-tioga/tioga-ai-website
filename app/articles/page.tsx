@@ -17,12 +17,12 @@ const ARTICLES = [
   {
     href: "/articles/who-runs-your-ai",
     title: "Who's really running your AI?",
-    summary: "Seven of nine enterprise systems we track each signed their own LLM-vendor deal in the last year — a system-by-system look at who anchored to which lab.",
+    summary: "Seven of nine enterprise systems I track each signed their own LLM-vendor deal in the last year — a system-by-system look at who anchored to which lab.",
   },
   {
     href: "/articles/governed-write-path-pattern",
     title: "How a governed AI write-path actually works",
-    summary: "Read, decide, approve, execute, audit, reject, rollback — with a real bug we caught building it.",
+    summary: "Read, decide, approve, execute, audit, reject, rollback — with a real bug I caught building it.",
   },
   {
     href: "/articles/framework-mapping-not-three-checklists",
@@ -42,16 +42,16 @@ const ARTICLES = [
   {
     href: "/articles/ai-cost-governance-ledger",
     title: "What a real AI cost-governance ledger looks like",
-    summary: `${FREE_ZERO_COST_PCT}% of our own model calls settle at exactly $0 before touching billed credit — real numbers.`,
+    summary: `${FREE_ZERO_COST_PCT}% of my own model calls settle at exactly $0 before touching billed credit — real numbers.`,
   },
   {
     href: "/articles/ap-exception-auto-approve-antipattern",
     title: "Why \"auto-approve everything under $X\" is an AP governance anti-pattern",
-    summary: "Scope, spend tiers, and ERP validation as independent layers — plus a rollback bug we found.",
+    summary: "Scope, spend tiers, and ERP validation as independent layers — plus a rollback bug I found.",
   },
   {
     href: "/articles/standing-watch",
-    title: "Why every automation we run only proposes — never applies",
+    title: "Why every automation I run only proposes — never applies",
     summary: "The real 12-day cross-machine auth gap that motivated security-watch, and why propose-and-approve is the whole point.",
   },
 ];
@@ -72,9 +72,9 @@ export default function ArticlesIndexPage() {
         </h1>
         <p className="text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-16">
           Every article here links back to a live demo, a real policy file, or
-          a real bug we found and fixed — not generic advice. Pre-launch, no
+          a real bug I found and fixed — not generic advice. Pre-launch, no
           client case studies exist yet; what follows is the actual
-          engineering and governance reasoning behind what we&apos;ve built.
+          engineering and governance reasoning behind what I&apos;ve built.
         </p>
 
         <div className="space-y-4">

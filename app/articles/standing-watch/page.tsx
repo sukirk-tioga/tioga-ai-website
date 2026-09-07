@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import ArticlePage, { type ArticleContent } from "@/components/ArticlePage";
 
 export const metadata: Metadata = {
-  title: "Why Every Automation We Run Only Proposes — Never Applies",
+  title: "Why Every Automation I Run Only Proposes — Never Applies",
   description:
-    "The real 12-day cross-machine auth gap that motivated our security-watch automation, and why propose-and-approve — never auto-apply — is the whole point of Standing Watch.",
+    "The real 12-day cross-machine auth gap that motivated my security-watch automation, and why propose-and-approve — never auto-apply — is the whole point of Standing Watch.",
   alternates: { canonical: "/articles/standing-watch" },
   openGraph: {
     type: "article",
     publishedTime: "2026-08-10",
-    title: "Why Every Automation We Run Only Proposes — Tioga AI",
-    description: "Propose-and-approve governance, forged on a real incident, run on our own two-machine estate.",
+    title: "Why Every Automation I Run Only Proposes — Tioga AI",
+    description: "Propose-and-approve governance, forged on a real incident, run on my own two-machine estate.",
   },
 };
 
@@ -18,16 +18,16 @@ const content: ArticleContent = {
   slug: "standing-watch",
   query: "AI agent governance propose and approve automation",
   date: "2026-08-10",
-  title: "Why every automation we run only proposes — never applies",
-  dek: "Standing Watch is a name for six governance disciplines we already run in production on our own multi-vendor AI estate. Here's the incident that started it and the rule that hasn't changed since.",
-  evidenceLabel: "Evidence: real, dated excerpts from our own router-watch and security-watch automations — not a projection or a mockup.",
+  title: "Why every automation I run only proposes — never applies",
+  dek: "Standing Watch is a name for six governance disciplines I already run in production on my own multi-vendor AI estate. Here's the incident that started it and the rule that hasn't changed since.",
+  evidenceLabel: "Evidence: real, dated excerpts from my own router-watch and security-watch automations — not a projection or a mockup.",
   sections: [
     {
       heading: "The incident: fixed on one machine, silently absent on the other for 12+ days",
       body: (
         <p>
-          Our AI estate runs across two machines talking to five different
-          backends. Before security-watch existed, we hit the failure mode
+          My AI estate runs across two machines talking to five different
+          backends. Before security-watch existed, I hit the failure mode
           it was built to catch: an authentication fix was applied and
           verified on one machine, and quietly never made it to the second.
           Nobody was lying about the system&apos;s state — nobody was
@@ -43,7 +43,7 @@ const content: ArticleContent = {
           Security-watch runs one behavioral probe — make the real
           unauthenticated call, read the real HTTP status — identically
           against every machine in scope, without relying on anyone
-          remembering to look. On our most recent run, that exact class of
+          remembering to look. On my most recent run, that exact class of
           gap showed up again on schedule (the gateway&apos;s
           authentication was found open), and was fixed and re-verified the
           same day. 8 of 10 flagged findings that run were fixed and
@@ -56,7 +56,7 @@ const content: ArticleContent = {
       ),
     },
     {
-      heading: "Propose-and-approve is the design, not a gap we haven't closed",
+      heading: "Propose-and-approve is the design, not a gap I haven't closed",
       body: (
         <p>
           Neither router-watch nor security-watch has write access to the

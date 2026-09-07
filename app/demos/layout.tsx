@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Live AI Demos — Tioga AI",
     description:
-      "Try our live, interactive AI demos — powered by Claude, not staged screenshots.",
+      "Try my live, interactive AI demos — powered by Claude, not staged screenshots.",
   },
 };
 

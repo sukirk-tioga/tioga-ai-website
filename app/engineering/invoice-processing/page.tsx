@@ -3,12 +3,12 @@ import Link from "next/link";
 import BenchmarkCard from "@/components/BenchmarkCard";
 
 export const metadata: Metadata = {
-  title: "How We Built the Invoice Processing Demo",
+  title: "How I Built the Invoice Processing Demo",
   description:
     "The extraction pipeline behind the invoice processing demo: format-agnostic file parsing, a structured-JSON prompt, and why a small, fast model was the right call.",
   alternates: { canonical: "/engineering/invoice-processing" },
   openGraph: {
-    title: "How We Built the Invoice Processing Demo — Tioga AI",
+    title: "How I Built the Invoice Processing Demo — Tioga AI",
     description: "Format-agnostic parsing, a structured-JSON prompt, and why a small model was the right call.",
   },
 };
@@ -18,7 +18,7 @@ export default function InvoiceProcessingWriteup() {
     <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
-          ← How We Built It
+          ← How I Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
           <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>
@@ -26,7 +26,7 @@ export default function InvoiceProcessingWriteup() {
           </span>
         </div>
         <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
-          How we built the Invoice Processing demo
+          How I built the Invoice Processing demo
         </h1>
         <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           Pull structured data — vendor, line items, totals, due date — out of
@@ -91,7 +91,7 @@ export default function InvoiceProcessingWriteup() {
               Haiku 4.5 handles it at a fraction of the latency and cost of a
               larger model. The Migration Assessment demo, which does
               require judgment, runs on Sonnet 5 instead — matching model
-              size to the actual reasoning load is a cost decision we apply
+              size to the actual reasoning load is a cost decision I apply
               to client work, not just this site.
             </p>
           </div>

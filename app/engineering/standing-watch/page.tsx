@@ -3,14 +3,14 @@ import Link from "next/link";
 import BenchmarkCard from "@/components/BenchmarkCard";
 
 export const metadata: Metadata = {
-  title: "How We Built Standing Watch",
+  title: "How I Built Standing Watch",
   description:
-    "The real 12-day cross-machine auth gap that motivated security-watch, why every automation in this system only proposes and never applies, how POOL_WEIGHT prices non-fungible AI budgets on one basis, and what we deliberately left for a human to do by hand.",
+    "The real 12-day cross-machine auth gap that motivated security-watch, why every automation in this system only proposes and never applies, how POOL_WEIGHT prices non-fungible AI budgets on one basis, and what I deliberately left for a human to do by hand.",
   alternates: { canonical: "/engineering/standing-watch" },
   openGraph: {
-    title: "How We Built Standing Watch — Tioga AI",
+    title: "How I Built Standing Watch — Tioga AI",
     description:
-      "Propose-and-approve governance, run on our own two-machine, five-backend estate — not a claimed enterprise deployment.",
+      "Propose-and-approve governance, run on my own two-machine, five-backend estate — not a claimed enterprise deployment.",
   },
 };
 
@@ -19,7 +19,7 @@ export default function StandingWatchWriteup() {
     <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
-          ← How We Built It
+          ← How I Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
           <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>
@@ -27,17 +27,17 @@ export default function StandingWatchWriteup() {
           </span>
         </div>
         <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
-          How we built Standing Watch
+          How I built Standing Watch
         </h1>
         <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           Standing Watch isn&apos;t a new system — it&apos;s a name for six
-          governance disciplines we already run in production, on our own
+          governance disciplines I already run in production, on my own
           multi-vendor AI estate, as router-watch and security-watch. This
-          page is the case study: the incident that made us build the
+          page is the case study: the incident that made me build the
           cross-machine check in the first place, why nothing here is
           allowed to apply its own fixes, and the two mechanisms
           (<code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>POOL_WEIGHT</code> and
-          the policy self-check we call <code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>NEVER_COMPARE</code>)
+          the policy self-check I call <code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>NEVER_COMPARE</code>)
           that generalize cleanly to an enterprise estate.
         </p>
 
@@ -47,9 +47,9 @@ export default function StandingWatchWriteup() {
               The incident: a fix that was real on one machine and silently absent on the other for 12+ days
             </h2>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
-              Our AI estate runs across two machines — a MacBook and a Mac
+              My AI estate runs across two machines — a MacBook and a Mac
               Mini — talking to five different backends. Security-watch
-              exists because of a specific, real failure mode we hit before
+              exists because of a specific, real failure mode I hit before
               it existed: an authentication fix was applied and verified on
               one machine, and quietly never made it to the second. Nobody
               was lying about the state of the system; nobody was even
@@ -107,7 +107,7 @@ and restart the gateway.`}
               POOL_WEIGHT: pricing budgets that aren&apos;t the same currency
             </h2>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
-              Our router spans a free local model, a Google-billed tier, an
+              My router spans a free local model, a Google-billed tier, an
               OpenRouter credit pool, and a flat-fee Claude subscription —
               four backends, three genuinely different kinds of money.
               Comparing them on raw dollars is meaningless: a $0 local call
@@ -132,7 +132,7 @@ and restart the gateway.`}
               weighted number. An earlier version of this router faked the
               comparison a different way — repricing one backend to 5% of
               its list price to express &quot;this one&apos;s cheap to
-              us&quot; — and that corrupted the registry&apos;s real prices,
+              me&quot; — and that corrupted the registry&apos;s real prices,
               fought the price-refresh job, and silently flipped the tier
               ordering so a premium model auto-won by default. POOL_WEIGHT
               exists to keep that preference explicit and separate from the
@@ -159,7 +159,7 @@ and restart the gateway.`}
               auto-routing shortlist drops every forced_only model before
               cost is ever compared, at any complexity or value setting:
               they simply never enter the contest, and are reachable only
-              by a deliberate, explicit call. Internally we call this
+              by a deliberate, explicit call. Internally I call this
               discipline NEVER_COMPARE — the policy doesn&apos;t just rank
               those models last, it asserts they were never candidates at
               all, and the assertion is checked against the registry&apos;s
@@ -179,10 +179,10 @@ and restart the gateway.`}
           {/* Design decisions callout */}
           <div className="p-6 rounded-2xl" style={{ background: "linear-gradient(135deg, #C8340608, #A5000008)", border: "1px solid #C8340630" }}>
             <h2 className="text-lg font-bold mb-3" style={{ color: "var(--text)" }}>
-              What we deliberately didn&apos;t automate — and why that&apos;s the point
+              What I deliberately didn&apos;t automate — and why that&apos;s the point
             </h2>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-3">
-              The human-apply step isn&apos;t a gap we haven&apos;t gotten to
+              The human-apply step isn&apos;t a gap I haven&apos;t gotten to
               yet. It&apos;s the design. Router-watch could technically
               hand-edit the registry itself and restart the gateway;
               security-watch could technically flip the config flags it
@@ -208,13 +208,13 @@ and restart the gateway.`}
               <strong>The scale caveat, stated plainly:</strong> this is
               real, running code — not slideware — but it&apos;s
               personal-scale infrastructure: one operator, two machines,
-              five backends. It is not a Fortune 500 deployment, and we
-              aren&apos;t claiming it is. What transfers to a client estate
+              five backends. It is not a Fortune 500 deployment, and I&apos;m
+              not claiming it is. What transfers to a client estate
               is the discipline (qualify, arbitrate, gate, probe, track,
               review) and the architecture (report + human-applies,
               modeled directly on router-watch and security-watch) — not a
-              claim that we&apos;ve already run this at enterprise scale.
-              We&apos;d rather volunteer that here than have a prospect find
+              claim that I&apos;ve already run this at enterprise scale.
+              I&apos;d rather volunteer that here than have a prospect find
               it out later.
             </p>
           </div>

@@ -7,7 +7,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Build Log",
   description:
-    "What's actually shipped on tioga.ai, in order — a running build log in place of case studies we haven't had time to write yet.",
+    "What's actually shipped on tioga.ai, in order — a running build log in place of case studies I haven't had time to write yet.",
   alternates: { canonical: "/changelog" },
   openGraph: {
     title: "Build Log — Tioga AI",
@@ -217,7 +217,7 @@ const ENTRIES: Entry[] = [
     date: "2026-07-27",
     kind: "Content",
     title: "Engineering writeups for the live demos",
-    body: "\"How we built it\" pages for the invoice processing, email triage, and migration assessment demos — model choices, input validation, and rate limiting, grounded in the actual route code, not a summary of it.",
+    body: "\"How I built it\" pages for the invoice processing, email triage, and migration assessment demos — model choices, input validation, and rate limiting, grounded in the actual route code, not a summary of it.",
   },
   {
     date: "2026-07-27",

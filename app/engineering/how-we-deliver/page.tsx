@@ -88,7 +88,7 @@ export default function HowWeDeliverPage() {
     <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
-          ← How We Built It
+          ← How I Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
           <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>

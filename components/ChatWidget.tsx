@@ -14,7 +14,7 @@ const WELCOME_MESSAGE: Message = {
   id: "welcome",
   role: "assistant",
   content:
-    "Hi! I'm an AI assistant (Claude) for Tioga AI, not a human — replies here are generated live, unreviewed. Most AI projects fail at integration — we specialize in delivery. Want to see a live demo? Learn about MCP integrations? Or tell me about your challenge. Prefer a human? Email hello@tioga.ai.",
+    "Hi! I'm an AI assistant (Claude) for Tioga AI, not a human — replies here are generated live, unreviewed. Most AI projects fail at integration — the founder specializes in delivery. Want to see a live demo? Learn about MCP integrations? Or tell me about your challenge. Prefer a human? Email hello@tioga.ai.",
 };
 
 export default function ChatWidget() {
@@ -285,7 +285,7 @@ export default function ChatWidget() {
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about our services..."
+              placeholder="Ask about my services..."
               aria-label="Chat message"
               disabled={isLoading}
               className="flex-1 rounded-xl px-4 py-2.5 text-sm placeholder-slate-500 outline-none focus:ring-1 disabled:opacity-50"

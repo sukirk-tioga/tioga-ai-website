@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How We Built It",
+  title: "How I Built It",
   description:
     "Engineering writeups behind Tioga AI's live demos — model choices, validation, rate limiting, and the decisions that separate a working prototype from something safe to run in production.",
   alternates: { canonical: "/engineering" },
   openGraph: {
-    title: "How We Built It — Tioga AI",
+    title: "How I Built It — Tioga AI",
     description: "Engineering writeups behind the live demos — no black box.",
   },
 };
@@ -60,7 +60,7 @@ export default function EngineeringIndexPage() {
           style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
-          How We Built It
+          How I Built It
         </div>
         <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
           No black box.

@@ -206,7 +206,7 @@ Return exactly this JSON structure:
   } catch (err) {
     console.error("[migration-assessment] generation failed:", err);
     return bad(
-      "We couldn't generate the assessment just now — please try again in a moment.",
+      "I couldn't generate the assessment just now — please try again in a moment.",
       502
     );
   }

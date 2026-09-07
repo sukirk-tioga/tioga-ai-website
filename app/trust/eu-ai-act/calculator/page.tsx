@@ -45,7 +45,7 @@ const RESULTS: Record<Tier, { title: string; color: string; penalty: string; bod
     title: "This falls under prohibited practices",
     color: "var(--error)",
     penalty: "Up to €35M or 7% of global annual turnover",
-    body: "Article 5 prohibited practices aren't a compliance gap to document — they're already illegal in the EU, in force since February 2025. This isn't something a governance program brings into compliance; it needs legal review and likely a redesign or discontinuation of this specific use case. If you want an independent technical read on whether this classification is actually right, that's something we can help with.",
+    body: "Article 5 prohibited practices aren't a compliance gap to document — they're already illegal in the EU, in force since February 2025. This isn't something a governance program brings into compliance; it needs legal review and likely a redesign or discontinuation of this specific use case. If you want an independent technical read on whether this classification is actually right, that's something I can help with.",
     cta: { label: "Get a second opinion →", href: "/contact" },
   },
   high: {

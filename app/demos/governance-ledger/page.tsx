@@ -39,7 +39,7 @@ export default function GovernanceLedgerPage() {
     <DemoShell
       title="Governance Ledger"
       badge="Real Operational Data — Refreshed Periodically"
-      description="Every model call our own AI infrastructure makes is logged, costed, budget-capped, and attributed — automatically, as a byproduct of how it routes work. This is a real excerpt from that ledger."
+      description="Every model call my own AI infrastructure makes is logged, costed, budget-capped, and attributed — automatically, as a byproduct of how it routes work. This is a real excerpt from that ledger."
     >
       <p className="text-xs mb-6 -mt-4" style={{ color: "var(--text-muted-3)" }}>
         Last updated: Jul 27, 2026 — real operational data, refreshed periodically, not a live-refreshing feed.
@@ -170,7 +170,7 @@ export default function GovernanceLedgerPage() {
       {/* Offer tie-in */}
       <div className="mt-6 p-5 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-          This is the pattern we build into client systems: every AI action logged, budgeted,
+          This is the pattern I build into client systems: every AI action logged, budgeted,
           and attributable — applied to a governed write-path into your ERP, or packaged as
           evidence for an insurance renewal, instead of a general-purpose AI gateway.
         </p>

@@ -3,12 +3,12 @@ import Link from "next/link";
 import BenchmarkCard from "@/components/BenchmarkCard";
 
 export const metadata: Metadata = {
-  title: "How We Built the Email Triage Demo",
+  title: "How I Built the Email Triage Demo",
   description:
     "Classification, routing, and reply drafting in a single call — and why constraining the model's output to enums matters more than the prompt wording.",
   alternates: { canonical: "/engineering/email-triage" },
   openGraph: {
-    title: "How We Built the Email Triage Demo — Tioga AI",
+    title: "How I Built the Email Triage Demo — Tioga AI",
     description: "Classification, routing, and reply drafting in a single call.",
   },
 };
@@ -18,7 +18,7 @@ export default function EmailTriageWriteup() {
     <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
-          ← How We Built It
+          ← How I Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
           <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>
@@ -26,7 +26,7 @@ export default function EmailTriageWriteup() {
           </span>
         </div>
         <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
-          How we built the Email Triage demo
+          How I built the Email Triage demo
         </h1>
         <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           Read an inbound email once, and come out the other side with a

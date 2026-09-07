@@ -72,7 +72,7 @@ export default function ContactPage() {
                   content change above it. Confirmed empirically: badge was
                   x:[24,366] y:[776,822] vs. button x:[310,366] y:[764,820]
                   on a live 390x844 check before this fix. */}
-              AI-powered routing — live demo of our email triage service
+              AI-powered routing — live demo of my email triage service
             </div>
             <SmartContactForm />
           </div>

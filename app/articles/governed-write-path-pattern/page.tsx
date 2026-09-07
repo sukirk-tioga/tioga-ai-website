@@ -20,14 +20,14 @@ const content: ArticleContent = {
   date: "2026-08-03",
   title: "How a governed AI write-path actually works",
   dek: "Most \"AI for ERP\" pitches stop at read-only. Here's the seven-stage pattern — read, decide, approve, execute, audit, reject, rollback — implemented as actual running code, not a slide.",
-  evidenceLabel: "Evidence: real policy code and a real bug caught during testing, both from our live Governed AP Exception Workflow demo.",
+  evidenceLabel: "Evidence: real policy code and a real bug caught during testing, both from my live Governed AP Exception Workflow demo.",
   sections: [
     {
       heading: "The pattern, concretely",
       body: (
         <>
           <p>
-            Our live demo (linked below) proposes a fix to an invoice that failed
+            My live demo (linked below) proposes a fix to an invoice that failed
             three-way match, then runs it through a policy engine that&apos;s
             under 60 lines of code, on purpose — an internal-audit reviewer
             should be able to read it without an engineer in the room.
@@ -48,9 +48,9 @@ const content: ArticleContent = {
       body: (
         <p>
           The policy engine is one layer. The ERP&apos;s own application logic
-          is a second, independent one — our mock validates vendor status and
+          is a second, independent one — my mock validates vendor status and
           PO ceiling on every write, the same way real Oracle EBS Forms/PL-SQL
-          logic does. In our demo, a scenario can pass every policy check the
+          logic does. In my demo, a scenario can pass every policy check the
           gateway runs and still get blocked because the vendor is on credit
           hold — the governance layer isn&apos;t pretending to replace the
           system&apos;s own business rules, it sits alongside them.
@@ -64,7 +64,7 @@ const content: ArticleContent = {
           <p>
             Approval and rejection are the two outcomes everyone builds.
             Reversing an action that already executed is the one that gets
-            skipped — and it&apos;s where we found a real bug while building
+            skipped — and it&apos;s where I found a real bug while building
             this demo: the first version let you roll back the same executed
             action twice, silently double-reversing the underlying PO amount.
           </p>

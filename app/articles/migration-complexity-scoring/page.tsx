@@ -20,13 +20,13 @@ const content: ArticleContent = {
   date: "2026-08-03",
   title: "What actually drives Oracle EBS → S/4HANA migration complexity",
   dek: "Not every migration is equally hard, and the difference is measurable before you start — from which modules are in scope and how much data moves, not from a generic readiness questionnaire.",
-  evidenceLabel: "Evidence: the actual scoring model behind our live Migration Assessment demo.",
+  evidenceLabel: "Evidence: the actual scoring model behind my live Migration Assessment demo.",
   sections: [
     {
       heading: "The two inputs that matter most",
       body: (
         <p>
-          Our live assessment tool scores complexity on a 1–10 scale from two
+          My live assessment tool scores complexity on a 1–10 scale from two
           concrete inputs: which EBS modules are in scope — FI, AP, AR, GL,
           FA, Inventory, and Purchasing carry very different migration risk
           — and data volume, from under 10GB up to over 1TB. A single-module
@@ -41,7 +41,7 @@ const content: ArticleContent = {
       body: (
         <p>
           A complexity score with no explanation is a guess wearing a number.
-          Our tool requires the reasoning behind every score to reference the
+          My tool requires the reasoning behind every score to reference the
           specific modules and data volume that produced it — so a CIO
           reviewing the output can check whether the assessment actually
           engaged with their environment, rather than returning the same

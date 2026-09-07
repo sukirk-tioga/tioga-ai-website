@@ -121,7 +121,7 @@ export default function MigrationAssessmentPage() {
     >
       {/* Form */}
       <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold mb-5" style={{ color: "var(--text)" }}>Tell us about your Oracle EBS environment</h2>
+        <h2 className="font-semibold mb-5" style={{ color: "var(--text)" }}>Tell me about your Oracle EBS environment</h2>
         <div className="space-y-5">
           <div className="grid sm:grid-cols-2 gap-5">
             <Field label="Oracle EBS version">
@@ -286,7 +286,7 @@ export default function MigrationAssessmentPage() {
           )}
           {email && !emailed && (
             <p className="text-xs text-[var(--text-muted)] text-center mt-2">
-              We couldn&apos;t email a copy just now — you can still copy this page&apos;s results manually.
+              I couldn&apos;t email a copy just now — you can still copy this page&apos;s results manually.
             </p>
           )}
         </div>
