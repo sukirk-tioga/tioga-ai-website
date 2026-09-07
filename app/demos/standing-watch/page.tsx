@@ -118,6 +118,7 @@ export default function StandingWatchDemoPage() {
     <DemoShell
       title="Standing Watch"
       badge="Real Operational Data — Redacted, Dated, Not a Mockup"
+      evidenceTier="internal-operational-excerpt"
       description="Two real excerpts from the automations Tioga runs on its own infrastructure — router-watch and security-watch — captured Aug 10, 2026. Both are propose-only: nothing here writes to live configuration itself."
     >
       <p className="text-xs mb-6 -mt-4" style={{ color: "var(--text-muted-3)" }}>

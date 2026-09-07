@@ -6,6 +6,7 @@ import Link from "next/link";
 import FileUpload from "@/components/FileUpload";
 import { DemoActivityProvider, useSetDemoActivity } from "./_lib/demo-activity-context";
 import DemoParticleCanvasLoader from "./_lib/DemoParticleCanvasLoader";
+import { EvidenceTierTag } from "./_lib/evidence-tier";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -707,6 +708,12 @@ function DemosPageInner() {
             Files and text you submit here are sent to Claude to generate the result shown and are not stored by Tioga AI or used to train any model. See my{" "}
             <Link href="/privacy" className="underline hover:text-[var(--text)] transition-colors">Privacy Policy →</Link>
           </p>
+          <div className="flex justify-center">
+            <EvidenceTierTag
+              tier="model-demonstration"
+              detail="Claude processes the real file or text you submit below; the result is generated live, not pre-scripted."
+            />
+          </div>
         </div>
 
         {/* Featured: Migration Assessment */}

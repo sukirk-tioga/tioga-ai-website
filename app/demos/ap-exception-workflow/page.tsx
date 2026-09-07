@@ -359,6 +359,7 @@ export default function ApExceptionWorkflowPage() {
     <DemoShell
       title="Governed AP Exception Workflow"
       badge="Live Interactive Demo — Governed Write-Path"
+      evidenceTier="browser-simulation"
       description="Every invoice here fails its three-way match against a purchase order. Watch an agent propose a fix, a deterministic policy decide whether it executes alone, escalates to a human, or gets blocked outright — and every decision, including reversals, land in an audit-grade ledger. No chatbot in the decision loop; the policy is under 60 lines and reads like a checklist."
     >
       {/* Budget gauge */}

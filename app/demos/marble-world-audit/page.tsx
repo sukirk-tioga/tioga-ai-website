@@ -66,6 +66,8 @@ export default function MarbleWorldAuditPage() {
     <DemoShell
       title="Marble World-Generation Audit: What I Actually Measured"
       badge="Real Trial Data — Not a Simulated Scenario"
+      evidenceTier="internal-operational-excerpt"
+      evidenceDetail="Dated evidence from a real trial Tioga ran against World Labs' World API (not Tioga's own infrastructure) — 2 real generations, byte-level provenance scan, and a real physical measurement, captured 2026-08."
       description="World Labs' Marble turns a single photo into an explorable 3D world. Vendors make claims about commercial usability and dimensional accuracy — I ran the actual trial: two real generations, a byte-level provenance scan, and a real physical measurement. Here's what held up and what didn't."
     >
       {/* The audit question */}

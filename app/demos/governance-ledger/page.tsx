@@ -39,6 +39,7 @@ export default function GovernanceLedgerPage() {
     <DemoShell
       title="Governance Ledger"
       badge="Real Operational Data — Refreshed Periodically"
+      evidenceTier="internal-operational-excerpt"
       description="Every model call my own AI infrastructure makes is logged, costed, budget-capped, and attributed — automatically, as a byproduct of how it routes work. This is a real excerpt from that ledger."
     >
       <p className="text-xs mb-6 -mt-4" style={{ color: "var(--text-muted-3)" }}>

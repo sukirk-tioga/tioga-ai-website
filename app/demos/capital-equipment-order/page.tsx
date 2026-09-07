@@ -349,6 +349,7 @@ export default function CapitalEquipmentOrderPage() {
     <DemoShell
       title="Governed Capital Equipment Order Booking"
       badge="Live Interactive Demo — Governed Write-Path"
+      evidenceTier="browser-simulation"
       description="A real SAP fit-gap pattern: semiconductor capital equipment is sold configure-to-order, and a sales order sometimes has to be booked against a fab's confirmed capacity slot before the final tool configuration is known. Watch a deterministic policy decide whether booking, finalizing, or rejecting that order executes alone, escalates to a named approver, or gets blocked outright — with an ERP-layer check that catches what the policy alone can't. Illustrative composite scenario, not a real client engagement."
     >
       {/* Stats */}

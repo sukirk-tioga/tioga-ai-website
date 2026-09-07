@@ -51,6 +51,8 @@ export default function JouleCapabilityGateMapPage() {
     <DemoShell
       title="SAP Joule Capability Gate Map"
       badge="Data Explorer — Sourced from SAP's Own Documentation, Not a Model Call"
+      evidenceTier="browser-simulation"
+      evidenceDetail="Interactive data explorer over SAP's own published documentation — local state, no live SAP connection, no model call."
       description="SAP says 200+ agents automate your business. Here's what's actually documented to write to your ERP versus view-and-hand-off — and real examples of the gates a capability sits behind, straight from SAP's own documentation across S/4HANA and Concur."
     >
       {/* Stat comparison */}

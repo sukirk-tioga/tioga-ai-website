@@ -109,6 +109,7 @@ export default function ComposedEvidencePage() {
     <DemoShell
       title="Composed Evidence: Closing the Assistant/ERP Audit Gap"
       badge="Live Interactive Demo — Cross-Vendor Evidence Composition"
+      evidenceTier="browser-simulation"
       description="A business action can span two systems: a universal AI assistant that takes the request, and an ERP vendor's own execution agent that carries it out. Each one logs only its own half. Send the request below, watch each vendor's log populate on its own, then try to answer a real audit question from each — and see what only a composed record can actually prove. Illustrative composite scenario, not a real client engagement."
     >
       {/* Scenario intro / chat bubble */}

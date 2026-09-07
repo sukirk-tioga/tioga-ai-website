@@ -43,6 +43,11 @@ const content: SolutionContent = {
       detail:
         "Every engagement extends your existing Oracle investment. Nothing here asks you to migrate off EBS to get AI capability.",
     },
+    {
+      label: "A real gap in Oracle's own sanctioned agent path",
+      detail:
+        "Oracle's own E-Business Suite Adapter documentation states HTTP Basic Auth is the only supported authentication for REST services — a single shared service account for every call, not per-user or per-agent identity. See the full finding below.",
+    },
   ],
   offers: [
     {
@@ -83,6 +88,7 @@ const content: SolutionContent = {
     },
   ],
   related: [
+    { href: "/articles/oracle-ebs-agent-attribution-gap", label: "Read: the attribution gap in Oracle's own sanctioned agent path" },
     { href: "/solutions/ebs-to-s4hana", label: "Migrating off EBS instead?" },
     { href: "/solutions/governed-write-path", label: "Governed write-path deep dive" },
     { href: "/services", label: "See all engagements" },

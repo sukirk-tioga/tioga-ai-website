@@ -117,6 +117,7 @@ export default function MigrationAssessmentPage() {
   return (
     <DemoShell
       title="Migration Assessment"
+      evidenceTier="model-demonstration"
       description="Answer four questions about your Oracle EBS environment and get a sample S/4HANA migration readiness assessment — generated in about 60 seconds."
     >
       {/* Form */}
