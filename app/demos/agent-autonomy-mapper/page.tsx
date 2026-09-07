@@ -126,6 +126,7 @@ export default function AgentAutonomyMapperPage() {
     <DemoShell
       title="Agent Autonomy Tier Mapper"
       badge="Self-Assessment — Rules-Based, Not a Model Call"
+      evidenceTier="browser-simulation"
       description="Describe an AI-agent use case — or pick a preset — and see where it lands on Gartner's four-tier autonomy framework, and the corresponding Tioga Safe/Ask-first/Never governance tier."
     >
       {/* Step 1: pick a use case */}

@@ -20,8 +20,13 @@ interface Scenario {
 }
 
 // Field values mirror real output shapes from the live /demos tabs
-// (DocResult / EmailResult) so this stays an honest preview, not a
-// fabricated capability — see app/demos/page.tsx.
+// (DocResult) so this stays an honest preview, not a fabricated capability
+// — see app/demos/page.tsx. Narrowed to the single AP-exception scenario
+// 2026-09-07 (Astra + Fable launch-readiness reviews, one-buyer/one-workflow
+// hero narrowing) — this widget previously rotated between an invoice scenario
+// and an unrelated email-triage scenario, diluting the one workflow the hero
+// now leads with. The email-triage demo itself still exists at
+// /demos?tab=email, just no longer cycled through here.
 const SCENARIOS: Scenario[] = [
   {
     tag: "AP Automation",
@@ -32,24 +37,10 @@ const SCENARIOS: Scenario[] = [
       { label: "Amount", value: "$18,450.00" },
       { label: "Document type", value: "Invoice — Net 30" },
       { label: "Confidence", value: "98%" },
-      { label: "Routed to", value: "3-way match queue" },
+      { label: "Routed to", value: "3-way match exception queue" },
     ],
     time: "2.1s",
-    demoHref: "/demos?tab=invoice",
-  },
-  {
-    tag: "Operations",
-    icon: "📧",
-    filename: "RE: Ticket #4821 — production down",
-    fields: [
-      { label: "Category", value: "Complaint" },
-      { label: "Urgency", value: "Critical" },
-      { label: "Sentiment", value: "Frustrated" },
-      { label: "Route to", value: "Support escalation" },
-      { label: "Draft reply", value: "Generated, pending review" },
-    ],
-    time: "1.4s",
-    demoHref: "/demos?tab=email",
+    demoHref: "/demos/ap-exception-workflow",
   },
 ];
 

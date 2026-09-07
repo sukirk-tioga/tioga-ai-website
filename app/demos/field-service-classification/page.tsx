@@ -300,6 +300,7 @@ export default function FieldServiceClassificationPage() {
     <DemoShell
       title="Governed Field Service Billable Classification"
       badge="Live Interactive Demo — Governed Write-Path"
+      evidenceTier="browser-simulation"
       description="A real SAP Plant Maintenance/Customer Service pattern: when a field-service call closes, is it settled at no charge against an existing service contract, or converted to a billable time-and-materials invoice? A genuinely different governance shape from a dollar threshold — the risk here is interpretation, not amount. Watch a deterministic policy decide whether a classification executes alone, escalates to a named service manager, or gets blocked outright — with an ERP-layer check that catches what the policy alone can't. Illustrative composite scenario grounded in real SAP field-service mechanics, not a real client engagement."
     >
       {/* Stats */}

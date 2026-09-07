@@ -54,6 +54,11 @@ const ARTICLES = [
     title: "Why every automation I run only proposes — never applies",
     summary: "The real 12-day cross-machine auth gap that motivated security-watch, and why propose-and-approve is the whole point.",
   },
+  {
+    href: "/articles/oracle-ebs-agent-attribution-gap",
+    title: "Oracle's own sanctioned path into EBS can't tell you which agent did what",
+    summary: "Oracle's own documentation: HTTP Basic Auth only, a single shared service account for every call — verified against Oracle's own docs.",
+  },
 ];
 
 export default function ArticlesIndexPage() {

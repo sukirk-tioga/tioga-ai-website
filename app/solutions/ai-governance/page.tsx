@@ -148,6 +148,7 @@ const content: SolutionContent = {
     { href: "/trust", label: "See the Trust Center" },
     { href: "/trust/framework-mapping", label: "NIST / ISO 42001 / EU AI Act mapping" },
     { href: "/articles/framework-mapping-not-three-checklists", label: "Read: one mapping, not three checklists" },
+    { href: "/articles/oracle-ebs-agent-attribution-gap", label: "Read: the attribution gap in Oracle's own agent path" },
     { href: "/services", label: "See all 10 governance engagements" },
   ],
   demoLink: { href: "/demos/governance-ledger", label: "See the Governance Ledger demo" },

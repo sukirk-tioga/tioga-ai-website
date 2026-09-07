@@ -180,9 +180,24 @@ export default function DiscoverySprintPage() {
                 obligation to continue, and Tioga doesn&apos;t ask for one.
               </li>
             </ul>
-            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               The credit is valid for 60 days from the readout.
             </p>
+            <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+              <div className="text-xs font-mono uppercase tracking-wide mb-1.5" style={{ color: "var(--accent)" }}>
+                Worked example
+              </div>
+              <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+                Say the Sprint recommends an AI Agent Pilot priced at
+                $25,000. Your $5,000 Sprint fee is credited in full against
+                that price — you pay $20,000 more, $25,000 total. If you
+                started with the $1,500 AI Fit Check first, that $1,500 is
+                already netted out of the Sprint&apos;s $5,000 fee, so the
+                same $25,000 pilot still costs $20,000 more from there. On
+                a no-go, none of this applies: no further payment is owed,
+                and you keep the Sprint&apos;s deliverables regardless.
+              </p>
+            </div>
           </div>
         </div>
 

@@ -1,16 +1,24 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { EvidenceTierTag, type EvidenceTier } from "./evidence-tier";
 
 // Shared wrapper for standalone demo pages: title, description, back-link, footer CTA.
 export default function DemoShell({
   title,
   description,
   badge = "Live AI Demo — Powered by Claude",
+  evidenceTier,
+  evidenceDetail,
   children,
 }: {
   title: string;
   description: string;
   badge?: string;
+  // Required: which of the four evidence categories this demo actually is
+  // (browser simulation / model demonstration / internal operational
+  // excerpt / ERP sandbox demonstration) — see evidence-tier.tsx.
+  evidenceTier: EvidenceTier;
+  evidenceDetail?: string;
   children: ReactNode;
 }) {
   return (
@@ -35,7 +43,8 @@ export default function DemoShell({
             {badge}
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-3" style={{ color: "var(--text)" }}>{title}</h1>
-          <p className="text-[var(--text-muted)] max-w-xl">{description}</p>
+          <p className="text-[var(--text-muted)] max-w-xl mb-4">{description}</p>
+          <EvidenceTierTag tier={evidenceTier} detail={evidenceDetail} />
         </div>
 
         {children}

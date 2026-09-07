@@ -78,6 +78,7 @@ export default function AutomationOversightPage() {
     <DemoShell
       title="Automation Oversight"
       badge="Real Operational Data — Refreshed Periodically"
+      evidenceTier="internal-operational-excerpt"
       description="Every day, a background pass reviews Tioga's own automation estate for problems and improvements. Only a narrow, pre-approved class of change can apply itself; everything else waits for a human — this is that review, not a mockup of one."
     >
       <p className="text-xs mb-6 -mt-4" style={{ color: "var(--text-muted-3)" }}>

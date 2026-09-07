@@ -8,8 +8,6 @@ import Lenis from "lenis";
 import HeroFieldLoader from "@/components/HeroFieldLoader";
 import HeroDemo from "@/components/HeroDemo";
 import TrackedCTA from "@/components/TrackedCTA";
-import { STATS } from "@/lib/governance-ledger";
-import { makeCountUpFormatter } from "@/lib/count-up-format";
 import { CAL_LINK } from "@/lib/site-config";
 
 if (typeof window !== "undefined") {
@@ -19,9 +17,20 @@ if (typeof window !== "undefined") {
 // Homepage set piece (Phase 4 of the boundary-push plan): pins the hero for
 // one extra viewport-height of scroll. Over that scrub range the shader
 // field's flow direction rotates (HeroFieldScene's uFlowAngle uniform, pure
-// chrome, see its own comment) and the four governance-ledger stat numbers
-// count up. Everything below this component (the rest of the homepage)
-// scrolls normally underneath once the pin releases.
+// chrome, see its own comment). Everything below this component (the rest
+// of the homepage) scrolls normally underneath once the pin releases.
+//
+// The stat-strip that used to live here (four numbers pulled from
+// lib/governance-ledger.ts's STATS, counting up on scrub) was removed
+// 2026-09-07 per the Astra + Fable adversarial launch-readiness reviews:
+// both independently flagged a small internal-infrastructure metric
+// ("17 calls logged," etc.) sitting in the primary hero/conversion path as
+// evidence of experimentation scale, not customer-facing proof, and noise
+// against the narrower one-buyer/one-workflow hero message below. The same
+// data is still real and still on the site -- see the "Governance Ledger
+// Callout" section further down this page (GovernanceLedgerPreview) and
+// the full /demos/governance-ledger page -- just no longer in the very
+// first thing a visitor sees.
 //
 // Lenis + GSAP's shared clock, and the pin/scrub itself, are the two things
 // this component owns; the rest of the homepage's scrub reveals live in the
@@ -31,23 +40,9 @@ if (typeof window !== "undefined") {
 // unhurried directional shift, not a spin -- "rotates," not "spins."
 const FLOW_ROTATION_RADIANS = Math.PI; // 180°
 
-// Stats count up over only the first slice of the pin's scroll range (a
-// quick "kick" once the visitor starts scrolling) rather than linearly
-// across the whole pin. Two reasons: (1) the design standard's own
-// "design the rest state first" principle -- most visitors land here and
-// the very first frame they see (scrollY = 0, before any interaction) must
-// show the real numbers, never a zeroed stat that reads as broken; (2) once
-// counted up, holding at the true value for the remainder of the pin keeps
-// the "count up on scrub" spec (the numbers are genuinely progress-driven,
-// not time-driven) while avoiding a slow crawl the whole scroll range.
-const COUNT_UP_SCRUB_FRACTION = 0.18;
-
-const statFormatters = STATS.map((s) => makeCountUpFormatter(s.value));
-
 export default function HomeHeroPinned() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const statValueRefs = useRef<Array<HTMLDivElement | null>>([]);
   const flowAngleRef = useRef(0);
 
   useEffect(() => {
@@ -57,8 +52,7 @@ export default function HomeHeroPinned() {
       // Hard bypass, not a softened version of the same effect: no Lenis,
       // no ScrollTrigger pin, no SplitText split, no flow rotation. The
       // section renders as a normal, already-fully-visible part of the
-      // document; stats already show their real SSR'd values (see JSX).
-      // The headline ships opacity-0 in its static className (fixes a
+      // document. The headline ships opacity-0 in its static className (fixes a
       // first-paint double-render flash in the animated path below) --
       // this bypass must explicitly reveal it since it never reaches the
       // gsap.set() call that does that on the animated path.
@@ -105,9 +99,9 @@ export default function HomeHeroPinned() {
       });
     }
 
-    // --- Pin + scrub: flow rotation + stat count-up, both driven off a
-    // mutable ref / direct DOM writes, never React state (design standard's
-    // explicit rule -- scroll-driven state changes are a performance trap).
+    // --- Pin + scrub: flow rotation, driven off a mutable ref / direct DOM
+    // writes, never React state (design standard's explicit rule --
+    // scroll-driven state changes are a performance trap).
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: sectionRef.current,
@@ -117,27 +111,6 @@ export default function HomeHeroPinned() {
         scrub: 0.8,
         onUpdate: (self) => {
           flowAngleRef.current = self.progress * FLOW_ROTATION_RADIANS;
-
-          // Force-restore the real resting values below a small epsilon,
-          // not exactly 0 -- measured in practice, ScrollTrigger's pin
-          // calculation leaves a persistent sub-pixel-rounding progress
-          // around 1e-6 even at true scrollY 0 (the pin-spacer's computed
-          // height isn't bit-identical to the pinned element's), so an
-          // exact `progress <= 0` check is never true at rest and the
-          // count-up formatter would render an always-visible near-zero
-          // value. Restoring (not just skipping) below the epsilon also
-          // makes this self-healing if the visitor scrolls back to the top.
-          const REST_EPSILON = 0.005;
-          if (self.progress <= REST_EPSILON) {
-            statValueRefs.current.forEach((el, i) => {
-              if (el) el.textContent = STATS[i].value;
-            });
-            return;
-          }
-          const countUpProgress = Math.min(1, self.progress / COUNT_UP_SCRUB_FRACTION);
-          statValueRefs.current.forEach((el, i) => {
-            if (el) el.textContent = statFormatters[i](countUpProgress);
-          });
         },
       });
     }, sectionRef);
@@ -181,15 +154,15 @@ export default function HomeHeroPinned() {
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative z-0 overflow-hidden">
         <HeroFieldLoader flowAngleRef={flowAngleRef} />
         <h1 ref={headlineRef} className="text-4xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight text-balance opacity-0" style={{ color: "var(--text)" }}>
-          Every action your{" "}
-          <span style={{ color: "var(--accent)" }}>AI</span>{" "}
-          takes, on the record.
+          Resolve AP exceptions in{" "}
+          <span style={{ color: "var(--accent)" }}>Oracle EBS</span>{" "}
+          with controls your finance team can verify.
         </h1>
         <p className="text-xl text-[var(--text-muted)] max-w-2xl mx-auto mb-3 leading-relaxed">
-          Tioga builds governed AI agents that work inside your existing enterprise systems — Oracle, SAP, Workday, ServiceNow, and more — under your existing identity, approvals, and audit trail. No migration. Nothing executes unseen.
+          I help finance and ERP teams assess and automate one exception workflow, inside the system you already run. I define what&apos;s permitted, who has to approve it, and the evidence you&apos;ll need before anything goes live.
         </p>
         <p className="text-sm text-[var(--text-muted)] max-w-xl mx-auto mb-10">
-          Five-day discovery sprint, $5,000 flat — credited toward your project if you move forward.
+          Five-day discovery sprint, $5,000 flat — scoped to your AP exception workflow, credited toward what comes next.
         </p>
         <div className="flex flex-col items-center sm:flex-row gap-4 justify-center">
           <TrackedCTA
@@ -214,33 +187,6 @@ export default function HomeHeroPinned() {
           </TrackedCTA>
         </div>
         <HeroDemo />
-      </section>
-
-      {/* Stats Bar — real governance-ledger numbers (see
-          lib/governance-ledger.ts's STATS), count up as the pinned hero is
-          scrolled through. Presentation of a static, already-published
-          number, not a claim of live/current data — see the dated label
-          below, which must never say "now" or "live" (design standard §3). */}
-      <section className="px-6 pb-8 max-w-5xl mx-auto">
-        <p className="text-center text-xs uppercase tracking-wide mb-3" style={{ color: "var(--text-muted-3)" }}>
-          From Tioga&apos;s own AI governance ledger · Jul 17–25 2026
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden" style={{ background: "var(--border)" }}>
-          {STATS.map((stat, i) => (
-            <div key={stat.label} className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
-              <div
-                ref={(el) => {
-                  statValueRefs.current[i] = el;
-                }}
-                className="text-2xl font-bold mb-1 font-mono"
-                style={{ color: "var(--accent)" }}
-              >
-                {stat.value}
-              </div>
-              <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">{stat.label}</div>
-            </div>
-          ))}
-        </div>
       </section>
     </div>
   );

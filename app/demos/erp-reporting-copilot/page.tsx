@@ -100,6 +100,7 @@ export default function ErpReportingCopilotPage() {
     <DemoShell
       title="ERP Reporting Copilot"
       badge="Live Interactive Demo — Read-Side Reporting"
+      evidenceTier="browser-simulation"
       description="Historical quotation lookup, quote-to-order conversion tracking, expiring-quotation notifications, pricing-change history — real fit-gap findings named things standard SAP reporting doesn't fully cover on its own, needing a custom query or enhancement. Ask a business question in plain English against a composite semiconductor capital-equipment manufacturer's quote and order data — watch the query get decomposed into SAP-style tables, including where standard reporting falls short, then get a real answer. Illustrative composite scenario, not a real client engagement."
     >
       {/* Governance note — lightweight, distinguishing read-side from the
