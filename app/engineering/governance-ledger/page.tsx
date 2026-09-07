@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BenchmarkCard from "@/components/BenchmarkCard";
+import { TOTAL_CALLS, FREE_ZERO_COST_COUNT, FREE_ZERO_COST_PCT } from "@/lib/governance-ledger";
 
 export const metadata: Metadata = {
   title: "How We Built the Governance Ledger Demo",
@@ -85,10 +86,13 @@ export default function GovernanceLedgerWriteup() {
               that&apos;s the routing policy working: local/free-tier backends
               absorb calls before anything touches billed credit, and the
               ledger records both the request and the resolution so that
-              substitution is auditable rather than invisible. 15 of the 17
-              rows in this excerpt settled at $0 for exactly that reason —
-              consistent with the &quot;88% free-tier&quot; stat in the strip above it,
-              which is computed from the same rows, not asserted separately.
+              substitution is auditable rather than invisible. {FREE_ZERO_COST_COUNT} of the {TOTAL_CALLS}
+              rows in this excerpt settled at exactly $0 for that reason — the
+              other 3 free-pool rows resolved to a Gemini backend that still
+              carries a fraction-of-a-cent cost, so they route free but aren&apos;t
+              zero-cost — consistent with the &quot;{FREE_ZERO_COST_PCT}%&quot; stat in the
+              strip above it, which is computed from the same rows, not
+              asserted separately.
             </p>
           </div>
 
@@ -118,7 +122,7 @@ export default function GovernanceLedgerWriteup() {
               sampleSize: "17 logged calls, unsampled (every call in the captured window, not a spot check)",
               metrics: [
                 { label: "Calls logged", value: "17 (unsampled)" },
-                { label: "Free-tier resolution", value: "15/17 calls (88%) settled at $0 via local/free-tier routing" },
+                { label: "Free-tier resolution", value: `${FREE_ZERO_COST_COUNT}/${TOTAL_CALLS} calls (${FREE_ZERO_COST_PCT}%) settled at exactly $0 via local/free-tier routing` },
                 { label: "Ledger window", value: "Jul 17–25, 2026" },
                 { label: "Snapshot captured", value: "Jul 27, 2026" },
               ],
