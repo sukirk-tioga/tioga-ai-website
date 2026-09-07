@@ -89,7 +89,11 @@ export default function AboutPage() {
             <Link href="/discovery-sprint" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               Discovery Sprint
             </Link>{" "}
-            is the fastest way to test the rest.
+            is the fastest way to test the rest — or the{" "}
+            <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+              AI Fit Check
+            </Link>{" "}
+            if you want a cheaper, lower-commitment first look.
           </p>
         </div>
 

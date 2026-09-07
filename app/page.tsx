@@ -224,7 +224,9 @@ export default function HomePage() {
  <p className="text-sm" style={{ color: "var(--text-muted)" }}>
  Five-day{" "}
  <Link href="/discovery-sprint" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--text)" }}>Discovery Sprint</Link>
- , $5,000 flat — credited in full toward whichever offer below you move forward with.
+ , $5,000 flat — credited in full toward whichever offer below you move forward with. Not sure yet whether you have a real, provisionable use case? Start with the{" "}
+ <Link href="/ai-fit-check" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--text)" }}>AI Fit Check</Link>
+ {" "}instead — one day, $1,500, fully remote.
  </p>
  </div>
  <div className="flex shrink-0 items-center gap-3">

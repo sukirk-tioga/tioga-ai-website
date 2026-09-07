@@ -34,7 +34,7 @@ const DELIVERABLES = [
   },
   {
     title: "If the answer is no-go: an honest, written reason",
-    desc: "The same “a Sprint that ends in 'you don't need what you think you need' is a success, not a failed sale” principle the Discovery Sprint itself runs on, just one rung earlier and at a tenth of the cost.",
+    desc: "The same “a Sprint that ends in 'you don't need what you think you need' is a success, not a failed sale” principle the Discovery Sprint itself runs on, just one rung earlier and at less than a third of the cost.",
   },
 ];
 

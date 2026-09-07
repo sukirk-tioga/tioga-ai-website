@@ -176,7 +176,11 @@ export default function ServicesPage() {
           <Link href="/discovery-sprint" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
             Discovery Sprint
           </Link>{" "}
-          ($5,000 flat, prototype included) that scopes the work before any larger commitment. If you move forward, the $5,000 is credited toward the price of the engagement below.
+          ($5,000 flat, prototype included) that scopes the work before any larger commitment. If you move forward, the $5,000 is credited toward the price of the engagement below. Not sure yet whether you have a real, provisionable use case? Start with the{" "}
+          <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            AI Fit Check
+          </Link>{" "}
+          instead — one day, $1,500, fully remote, credited in full toward the Sprint if you proceed.
         </p>
 
         <div className="space-y-16">
