@@ -1,10 +1,11 @@
 import { anthropic } from "@/lib/anthropic";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
-import { sendInquiryEmail, sendAgentEmail } from "@/lib/email";
+import { sendInquiryEmail, sendAgentReplyApprovalEmail } from "@/lib/email";
 import { appendContactLog } from "@/lib/contact-log";
 import { validateClassification } from "@/lib/classification";
 import { generateAgentReply } from "@/lib/agent-reply";
-import { createThread, generateThreadId } from "@/lib/thread-store";
+import { generateThreadId } from "@/lib/thread-store";
+import { createPendingApproval } from "@/lib/agent-approval";
 import { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
@@ -93,15 +94,16 @@ Base complexity on: scope, number of systems mentioned, enterprise vs SMB signal
  notificationSent,
  });
 
- // Autonomous email agent — generates and sends the prospect's actual
- // first reply (not just the internal notification above), then creates
- // the thread record any follow-up reply lands in via
- // app/api/agent/inbound/route.ts. Fully autonomous by design (no human
- // review gate before sending — see PR description), but best-effort:
- // a failure here must not break the classify response the visitor is
- // waiting on, same discipline as sendInquiryEmail/appendContactLog
- // above. Must be awaited for the same Vercel-freeze reason as those —
- // see the comment above appendContactLog.
+ // Email agent — drafts the prospect's actual first reply (not just the
+ // internal notification above), then holds it for founder approval
+ // instead of sending it directly (human-approval-hold fix — see
+ // lib/agent-approval.ts). The thread record any follow-up reply lands
+ // in via app/api/agent/inbound/route.ts is only created once that
+ // approved reply actually sends, in app/api/agent/approve/route.ts.
+ // Best-effort: a failure here must not break the classify response the
+ // visitor is waiting on, same discipline as sendInquiryEmail/
+ // appendContactLog above. Must be awaited for the same Vercel-freeze
+ // reason as those — see the comment above appendContactLog.
  try {
  const threadId = generateThreadId();
  const reply = await generateAgentReply({
@@ -112,22 +114,26 @@ Base complexity on: scope, number of systems mentioned, enterprise vs SMB signal
  messages: [{ role: "prospect", text: description, timestamp: new Date().toISOString() }],
  });
 
- await sendAgentEmail({
+ const pending = await createPendingApproval({
+ kind: "new_thread",
  to: email,
- subject: reply.subject,
- text: reply.body,
- threadId,
- });
-
- await createThread({
- threadId,
- prospectEmail: email,
  prospectName: name || "",
- company: company || "",
  subject: reply.subject,
+ body: reply.body,
+ newThread: {
+ threadId,
+ company: company || "",
  classification,
  firstInboundMessage: description,
- firstReply: reply.body,
+ },
+ });
+
+ await sendAgentReplyApprovalEmail({
+ approvalId: pending.approvalId,
+ prospectEmail: email,
+ prospectName: name || "",
+ draftSubject: reply.subject,
+ draftBody: reply.body,
  });
  } catch (agentErr) {
  console.error("Autonomous agent reply failed:", agentErr);
