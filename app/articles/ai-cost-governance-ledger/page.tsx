@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import ArticlePage, { type ArticleContent } from "@/components/ArticlePage";
+import { TOTAL_CALLS, PAID_COUNT, FREE_COUNT, FREE_ZERO_COST_COUNT, FREE_ZERO_COST_PCT } from "@/lib/governance-ledger";
 
 export const metadata: Metadata = {
   title: "What a Real AI Cost-Governance Ledger Looks Like",
   description:
-    "88% of our own model calls settle at $0 before touching billed credit — real numbers from a live routing gateway, not a projected savings estimate.",
+    `${FREE_ZERO_COST_PCT}% of our own model calls settle at exactly $0 before touching billed credit — real numbers from a live routing gateway, not a projected savings estimate.`,
   alternates: { canonical: "/articles/ai-cost-governance-ledger" },
   openGraph: {
     type: "article",
@@ -26,12 +27,17 @@ const content: ArticleContent = {
       heading: "The number that matters isn't the total spend",
       body: (
         <p>
-          Our own routing gateway has logged 17 model calls in its current
-          window, spending $0.000958 against a $30 cap. The interesting
-          number isn&apos;t the total — it&apos;s that only 2 of those 17
-          calls ever touched a paid backend. 88% settled at $0 on a local or
-          free tier before any billed credit was at risk, by policy, not by
-          luck.
+          Our own routing gateway has logged {TOTAL_CALLS} model calls in its
+          current window, spending $0.000958 against a $30 cap. The
+          interesting number isn&apos;t the total — it&apos;s that only{" "}
+          {PAID_COUNT} of those {TOTAL_CALLS} calls ever touched a paid
+          backend ({FREE_COUNT} routed to a local or free tier instead, by
+          policy, not by luck). Of those {FREE_COUNT} free-pool calls,{" "}
+          {FREE_ZERO_COST_COUNT} settled at exactly $0 — the remaining few
+          resolved to a Gemini backend that still carries a
+          fraction-of-a-cent cost, so &quot;free-tier&quot; and &quot;$0&quot;
+          aren&apos;t quite the same claim: {FREE_ZERO_COST_PCT}% of all{" "}
+          {TOTAL_CALLS} calls settled at exactly $0.
         </p>
       ),
     },

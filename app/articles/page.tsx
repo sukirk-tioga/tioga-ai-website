@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FREE_ZERO_COST_PCT } from "@/lib/governance-ledger";
 
 export const metadata: Metadata = {
   title: "Articles",
@@ -41,7 +42,7 @@ const ARTICLES = [
   {
     href: "/articles/ai-cost-governance-ledger",
     title: "What a real AI cost-governance ledger looks like",
-    summary: "88% of our own model calls settle at $0 before touching billed credit — real numbers.",
+    summary: `${FREE_ZERO_COST_PCT}% of our own model calls settle at exactly $0 before touching billed credit — real numbers.`,
   },
   {
     href: "/articles/ap-exception-auto-approve-antipattern",
