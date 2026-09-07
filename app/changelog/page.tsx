@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BuildLogSubscribe from "@/components/BuildLogSubscribe";
 import ChangelogBeat from "@/components/ChangelogBeat";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -326,6 +327,10 @@ export default function ChangelogPage() {
           from the commit history. No slide decks, no roadmap items presented
           as done.
         </p>
+
+        <div className="mb-16">
+          <BuildLogSubscribe />
+        </div>
 
         <div className="relative pl-8">
           <div className="absolute left-[7px] top-2 bottom-2 w-px" style={{ background: "var(--border)" }} />
