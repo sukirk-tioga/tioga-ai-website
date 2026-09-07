@@ -282,8 +282,9 @@ export default function HowWeDeliverPage() {
                   <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
                     AI Fit Check
                   </Link>{" "}
-                  answers that question first, for a tenth of the cost,
-                  before either side commits this Sprint&apos;s full week.
+                  answers that question first, for less than a third of the
+                  cost, before either side commits this Sprint&apos;s full
+                  week.
                 </p>
                 <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-3">
                   For a prospect who already has that access lined up, this
