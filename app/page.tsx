@@ -222,20 +222,31 @@ export default function HomePage() {
  <div>
  <p className="font-semibold mb-1" style={{ color: "var(--text)" }}>Not sure where to start?</p>
  <p className="text-sm" style={{ color: "var(--text-muted)" }}>
- Five-day Discovery Sprint, $5,000 flat — credited in full toward whichever offer below you move forward with.
+ Five-day{" "}
+ <Link href="/discovery-sprint" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--text)" }}>Discovery Sprint</Link>
+ , $5,000 flat — credited in full toward whichever offer below you move forward with.
  </p>
  </div>
+ <div className="flex shrink-0 items-center gap-3">
+ <Link
+ href="/discovery-sprint"
+ className="px-6 py-3 rounded-xl font-semibold text-sm whitespace-nowrap transition-all hover:border-slate-500 hover:text-[var(--text)]"
+ style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
+ >
+ Learn more
+ </Link>
  <TrackedCTA
  href={CAL_LINK}
  target="_blank"
  rel="noopener noreferrer"
  event="cta_book_call"
  data={{ location: "services_sprint_banner" }}
- className="shrink-0 px-6 py-3 rounded-xl text-white font-semibold text-sm whitespace-nowrap transition-all hover:opacity-90"
+ className="px-6 py-3 rounded-xl text-white font-semibold text-sm whitespace-nowrap transition-all hover:opacity-90"
  style={{ background: "var(--accent-dark)" }}
  >
  Book the sprint
  </TrackedCTA>
+ </div>
  </div>
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
  {[
@@ -370,7 +381,7 @@ export default function HomePage() {
  <div className="space-y-4">
  {[
  {
- step: "01", title: "Discovery Sprint", duration: "5 days · $5,000 flat",
+ step: "01", title: "Discovery Sprint", href: "/discovery-sprint", duration: "5 days · $5,000 flat",
  desc: "I map your systems, identify the highest-ROI AI opportunities and define a clear scope with your team. You get a working prototype and a detailed delivery plan — before any large commitment.",
  detail: "System audit · Use-case prioritization · Prototype · Delivery plan"
  },
@@ -389,7 +400,13 @@ export default function HomePage() {
  <div className="text-2xl font-bold font-mono shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>{p.step}</div>
  <div className="flex-1">
  <div className="flex flex-wrap items-center gap-3 mb-2">
- <h3 className="font-semibold" style={{ color: "var(--text)" }}>{p.title}</h3>
+ <h3 className="font-semibold" style={{ color: "var(--text)" }}>
+ {p.href ? (
+ <Link href={p.href} className="hover:text-[var(--accent)] transition-colors">{p.title} →</Link>
+ ) : (
+ p.title
+ )}
+ </h3>
  <span
  className="text-xs px-2 py-0.5 rounded-full"
  style={{ background: "#C8340615", color: "var(--accent)", border: "1px solid #C8340630" }}
