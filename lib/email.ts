@@ -216,20 +216,24 @@ export async function sendMigrationAssessmentCopy({
   });
 }
 
-// Outbound sends for the autonomous email agent (app/api/classify/route.ts's
-// first reply, app/api/agent/inbound/route.ts's follow-ups). Reuses the
-// same Gmail SMTP transport as every other outbound send in this file — no
-// new outbound provider added alongside Postmark's inbound-only role here
-// (see PR description for that call). Plain text, not HTML: this is meant
-// to read as a real one-to-one email from the practice, not a templated
+// The actual outbound send for the email agent (app/api/classify/route.ts's
+// first reply, app/api/agent/inbound/route.ts's follow-ups). As of the
+// human-approval-hold fix, neither caller invokes this directly anymore —
+// both draft the reply and route it through lib/agent-approval.ts +
+// sendAgentReplyApprovalEmail() first. This function is now only called
+// from app/api/agent/approve/route.ts, after a founder has approved the
+// specific draft AND AGENT_EMAIL_AUTOSEND_ENABLED="true". Reuses the same
+// Gmail SMTP transport as every other outbound send in this file — no new
+// outbound provider added alongside Postmark's inbound-only role here (see
+// PR description for that call). Plain text, not HTML: this is meant to
+// read as a real one-to-one email from the practice, not a templated
 // notification.
 //
 // Reply-To is set to reply+{threadId}@agent.tioga.ai so a prospect's reply
 // round-trips through Postmark's Inbound Parse webhook with the thread ID
 // recoverable from the recipient address (see lib/postmark-inbound.ts).
-// Every autonomous send is BCC'd to hello@tioga.ai as a passive audit
-// trail — this does not gate sending (the agent is fully autonomous by
-// design), it mirrors the existing appendContactLog audit discipline.
+// Every send is BCC'd to hello@tioga.ai as a passive audit trail, mirroring
+// the existing appendContactLog audit discipline.
 export async function sendAgentEmail({
   to,
   subject,
@@ -248,6 +252,41 @@ export async function sendAgentEmail({
     bcc: "hello@tioga.ai",
     subject,
     text,
+  });
+}
+
+// Human-approval hold for the autonomous email agent: sent to the founder
+// instead of the prospect ever seeing the drafted reply directly (see
+// lib/agent-approval.ts for why). Carries the full drafted subject/body so
+// the founder can actually read what's about to go out, plus two links to
+// app/api/agent/approve/route.ts that resolve the hold — an unguessable
+// approval-id token in the URL is the auth mechanism (same bearer-capability
+// pattern this codebase already uses for reply+{threadId}@agent.tioga.ai
+// thread recovery), not a separate login. Approving still doesn't send
+// anything unless AGENT_EMAIL_AUTOSEND_ENABLED="true" — see that route.
+export async function sendAgentReplyApprovalEmail({
+  approvalId,
+  prospectEmail,
+  prospectName,
+  draftSubject,
+  draftBody,
+  baseUrl = "https://tioga.ai",
+}: {
+  approvalId: string;
+  prospectEmail: string;
+  prospectName: string;
+  draftSubject: string;
+  draftBody: string;
+  baseUrl?: string;
+}) {
+  const approveUrl = `${baseUrl}/api/agent/approve?id=${encodeURIComponent(approvalId)}&action=approve`;
+  const rejectUrl = `${baseUrl}/api/agent/approve?id=${encodeURIComponent(approvalId)}&action=reject`;
+
+  await transporter.sendMail({
+    from: `"Tioga AI Agent" <${process.env.SMTP_USER}>`,
+    to: "hello@tioga.ai",
+    subject: `[APPROVE REPLY] ${draftSubject}`,
+    text: `The email agent drafted a reply to ${prospectName || "(no name)"} <${prospectEmail}> and is holding it for your approval before sending.\n\n--- Draft subject ---\n${draftSubject}\n\n--- Draft body ---\n${draftBody}\n\nApprove and send: ${approveUrl}\n\nReject (do not send): ${rejectUrl}\n\nNote: even after approving, nothing sends unless AGENT_EMAIL_AUTOSEND_ENABLED is set to "true" in the deployment environment.`,
   });
 }
 

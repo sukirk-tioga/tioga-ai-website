@@ -4,7 +4,8 @@ import { rateLimit } from "@/lib/rate-limit";
 import { parseInboundPayload, extractThreadId } from "@/lib/postmark-inbound";
 import { getThread, saveThread, type AgentThread } from "@/lib/thread-store";
 import { generateAgentReply } from "@/lib/agent-reply";
-import { sendAgentEmail, sendFounderAlertEmail } from "@/lib/email";
+import { sendFounderAlertEmail, sendAgentReplyApprovalEmail } from "@/lib/email";
+import { createPendingApproval } from "@/lib/agent-approval";
 import { buildCapReachedMessage } from "@/lib/agent-prompts";
 
 export const runtime = "nodejs";
@@ -218,50 +219,48 @@ export async function POST(req: NextRequest) {
     });
   }
 
+  // Human-approval hold (see lib/agent-approval.ts): the reply is drafted
+  // above, but never sent directly from here anymore. It's parked as a
+  // pending approval and the founder is emailed the draft plus an
+  // approve/reject link; app/api/agent/approve/route.ts is the only place
+  // that actually calls sendAgentEmail for this thread, and only after that
+  // approval AND AGENT_EMAIL_AUTOSEND_ENABLED="true".
+  //
+  // Persist the prospect's inbound message now, before waiting on approval,
+  // so it isn't lost from the thread's audit trail if approval is delayed —
+  // autoReplyCount/cappedAt are updated later, only once the reply actually
+  // sends (see app/api/agent/approve/route.ts).
   try {
-    await sendAgentEmail({
+    await saveThread(thread as AgentThread);
+  } catch (err) {
+    console.error("[agent/inbound] Failed to save thread after inbound message:", err);
+  }
+
+  try {
+    const pending = await createPendingApproval({
+      kind: "inbound_reply",
       to: thread.prospectEmail,
+      prospectName: thread.prospectName,
       subject: replySubject,
-      text: replyBody,
-      threadId,
+      body: replyBody,
+      inboundReply: { threadId, hittingCap },
+    });
+    await sendAgentReplyApprovalEmail({
+      approvalId: pending.approvalId,
+      prospectEmail: thread.prospectEmail,
+      prospectName: thread.prospectName,
+      draftSubject: replySubject,
+      draftBody: replyBody,
     });
   } catch (err) {
-    console.error("[agent/inbound] Send failed:", err);
-    return new Response(JSON.stringify({ error: "Send failed." }), {
+    console.error("[agent/inbound] Failed to queue reply for approval:", err);
+    return new Response(JSON.stringify({ error: "Failed to queue reply for approval." }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });
   }
 
-  thread.messages.push({ role: "agent", text: replyBody, timestamp: new Date().toISOString() });
-  thread.autoReplyCount = nextReplyNumber;
-  if (hittingCap) {
-    thread.cappedAt = new Date().toISOString();
-  }
-
-  try {
-    await saveThread(thread as AgentThread);
-  } catch (err) {
-    // The reply already went out — a save failure here means the next
-    // inbound message won't have this turn in its history, but must not
-    // be reported back to Postmark as a send failure (it isn't one).
-    console.error("[agent/inbound] Failed to save thread after reply:", err);
-  }
-
-  if (hittingCap) {
-    try {
-      await sendFounderAlertEmail({
-        subject: thread.subject,
-        note: `This thread just hit the ${MAX_AUTO_REPLIES}-reply autonomous cap. The final "looping in personally" message was sent to the prospect; no further autonomous replies will go out on this thread.`,
-        threadId,
-        prospectEmail: thread.prospectEmail,
-      });
-    } catch (err) {
-      console.error("[agent/inbound] Founder alert send failed:", err);
-    }
-  }
-
-  return new Response(JSON.stringify({ ok: true }), {
+  return new Response(JSON.stringify({ ok: true, queued: "pending_approval" }), {
     status: 200,
     headers: { "Content-Type": "application/json" },
   });
