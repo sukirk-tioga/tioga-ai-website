@@ -99,7 +99,7 @@ export default function HeroDemo() {
   const effectiveRevealCount = reducedMotion ? scenario.fields.length : revealCount;
 
   return (
-    <div data-testid="hero-demo" className="mx-auto mt-10 mb-2" style={{ maxWidth: "420px" }}>
+    <div data-testid="hero-demo" className="mx-auto md:mx-0 mt-8 mb-2" style={{ maxWidth: "480px" }}>
       <div
         className="rounded-2xl overflow-hidden text-left"
         style={{ background: "var(--bg-darker)", border: "1px solid var(--border)" }}

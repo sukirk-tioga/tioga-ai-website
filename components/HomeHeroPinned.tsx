@@ -151,20 +151,20 @@ export default function HomeHeroPinned() {
   return (
     <div ref={sectionRef}>
       {/* Hero */}
-      <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative z-0 overflow-hidden">
+      <section className="pt-36 pb-12 px-6 max-w-5xl mx-auto text-center md:text-left relative z-0 overflow-hidden">
         <HeroFieldLoader flowAngleRef={flowAngleRef} />
-        <h1 ref={headlineRef} className="text-4xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight text-balance opacity-0" style={{ color: "var(--text)" }}>
+        <h1 ref={headlineRef} className="text-5xl lg:text-7xl font-extrabold leading-[1.05] mb-6 tracking-tight text-balance opacity-0" style={{ color: "var(--text)" }}>
           Resolve AP exceptions in{" "}
           <span style={{ color: "var(--accent)" }}>Oracle EBS</span>{" "}
           with controls your finance team can verify.
         </h1>
-        <p className="text-xl text-[var(--text-muted)] max-w-2xl mx-auto mb-3 leading-relaxed">
+        <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto md:mx-0 mb-3 leading-relaxed">
           I help finance and ERP teams assess and automate one exception workflow, inside the system you already run. I define what&apos;s permitted, who has to approve it, and the evidence you&apos;ll need before anything goes live.
         </p>
-        <p className="text-sm text-[var(--text-muted)] max-w-xl mx-auto mb-10">
+        <p className="text-sm text-[var(--text-muted)] max-w-xl mx-auto md:mx-0 mb-8">
           Five-day discovery sprint, $5,000 flat — scoped to your AP exception workflow, credited toward what comes next.
         </p>
-        <div className="flex flex-col items-center sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col items-center sm:flex-row gap-4 justify-center md:justify-start">
           <TrackedCTA
             href={CAL_LINK}
             target="_blank"
