@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About",
@@ -84,7 +85,15 @@ export default function AboutPage() {
             On verification
           </p>
           <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-            You&apos;ll notice what&apos;s missing from this page: a dated career timeline, a LinkedIn link, referenceable client names. I&apos;m still assembling the version of that record I&apos;m willing to publish — one where every line can be checked. Until it&apos;s verifiable, it doesn&apos;t go on the site. In the meantime, the demos and the Governance Ledger are the credentials I can prove today, and a Discovery Sprint is the fastest way to test the rest.
+            You&apos;ll notice what&apos;s missing from this page: a dated career timeline, a LinkedIn link, referenceable client names. I&apos;m still assembling the version of that record I&apos;m willing to publish — one where every line can be checked. Until it&apos;s verifiable, it doesn&apos;t go on the site. In the meantime, the demos and the Governance Ledger are the credentials I can prove today, and a{" "}
+            <Link href="/discovery-sprint" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+              Discovery Sprint
+            </Link>{" "}
+            is the fastest way to test the rest — or the{" "}
+            <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+              AI Fit Check
+            </Link>{" "}
+            if you want a cheaper, lower-commitment first look.
           </p>
         </div>
 
