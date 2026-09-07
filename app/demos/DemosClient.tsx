@@ -698,13 +698,13 @@ function DemosPageInner() {
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
             Live AI Demos — Powered by Claude
           </div>
-          <h1 className="text-4xl font-bold mb-3" style={{ color: "var(--text)" }}>See Our AI In Action</h1>
+          <h1 className="text-4xl font-bold mb-3" style={{ color: "var(--text)" }}>See My AI In Action</h1>
           <p className="text-[var(--text-muted)] max-w-xl mx-auto mb-3">
-            These run on real infrastructure — the same governance controls we deploy for clients, not a sandbox.
+            These run on real infrastructure — the same governance controls I deploy for clients, not a sandbox.
             Try them with your own data.
           </p>
           <p className="text-xs text-[var(--text-muted)] max-w-xl mx-auto">
-            Files and text you submit here are sent to Claude to generate the result shown and are not stored by Tioga AI or used to train any model. See our{" "}
+            Files and text you submit here are sent to Claude to generate the result shown and are not stored by Tioga AI or used to train any model. See my{" "}
             <Link href="/privacy" className="underline hover:text-[var(--text)] transition-colors">Privacy Policy →</Link>
           </p>
         </div>
@@ -750,7 +750,7 @@ function DemosPageInner() {
         </Link>
         <div className="text-right mb-8">
           <Link href="/engineering/migration-assessment" className="text-xs hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
-            How we built this →
+            How I built this →
           </Link>
         </div>
 
@@ -783,7 +783,7 @@ function DemosPageInner() {
               </span>
             </div>
             <p className="text-sm text-[var(--text-muted)]">
-              Every AI call our own infrastructure makes — logged, costed, budget-capped, and
+              Every AI call my own infrastructure makes — logged, costed, budget-capped, and
               mapped to NIST AI RMF. Not a mockup.
             </p>
           </div>
@@ -1175,7 +1175,7 @@ function DemosPageInner() {
             </div>
             <p className="text-sm text-[var(--text-muted)]">
               A vendor claims their AI-generated 3D world is commercially usable and dimensionally
-              accurate. We ran the actual trial — real generations, a byte-level provenance scan, a real
+              accurate. I ran the actual trial — real generations, a byte-level provenance scan, a real
               physical measurement — and found a real 19% scale error.
             </p>
           </div>
@@ -1219,7 +1219,7 @@ function DemosPageInner() {
             <div className="ml-auto flex items-center gap-3">
               {activeDemo.engineeringHref && (
                 <Link href={activeDemo.engineeringHref} className="text-xs hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
-                  How we built this →
+                  How I built this →
                 </Link>
               )}
               <div className="flex items-center gap-1.5">

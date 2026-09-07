@@ -20,7 +20,7 @@ const content: ArticleContent = {
   date: "2026-08-03",
   title: "NIST AI RMF, ISO 42001, EU AI Act: one mapping, not three checklists",
   dek: "Governance teams often treat these as three separate compliance projects. In practice, the same underlying evidence — a decision log with control tags — satisfies all three, if it's built that way from the start.",
-  evidenceLabel: "Evidence: the actual control-tag structure from our live Governance Ledger and AP Exception Workflow demos.",
+  evidenceLabel: "Evidence: the actual control-tag structure from my live Governance Ledger and AP Exception Workflow demos.",
   sections: [
     {
       heading: "Same evidence, three vocabularies",
@@ -36,7 +36,7 @@ const content: ArticleContent = {
             fact.
           </p>
           <p>
-            Our own live demos tag every policy decision against the NIST
+            My own live demos tag every policy decision against the NIST
             function it maps to — GOVERN-1.5 for documented scope
             enforcement, MEASURE-2.7 for system behavior monitored against
             expectations, MANAGE-1.3 for risk escalation, MANAGE-4.1 for
@@ -66,7 +66,7 @@ const content: ArticleContent = {
       heading: "What this looks like in a real system",
       body: (
         <p>
-          In our Governance Ledger demo, every model call our own routing
+          In my Governance Ledger demo, every model call my own routing
           infrastructure makes is logged automatically — not sampled, not
           added later — as a byproduct of how the router already works. That
           same principle extends to any agent action: the control tag is

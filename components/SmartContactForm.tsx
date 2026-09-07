@@ -191,7 +191,7 @@ export default function SmartContactForm() {
         inquiry to route it — you&apos;ll see the classification below
         immediately, and a human reviews it before following up. See{" "}
         <a href="/trust#ai-use" className="underline hover:text-[var(--text)] transition-colors">
-          how we use AI on this site
+          how I use AI on this site
         </a>
         .
       </p>

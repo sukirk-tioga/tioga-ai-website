@@ -68,7 +68,7 @@ export default function FrameworkMappingPage() {
           certification, a control-by-control audit mapping, or legal advice
           — Tioga AI is not yet ISO 42001 certified, and the EU AI Act
           obligations shown below apply only to systems that fall into the
-          Act&apos;s high-risk tier. It shows where the architecture behind our
+          Act&apos;s high-risk tier. It shows where the architecture behind my
           governance ledger already reflects what these three demand, and
           where a formal engagement would close the remaining gap.
         </p>

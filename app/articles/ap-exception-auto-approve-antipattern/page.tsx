@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     type: "article",
     publishedTime: "2026-08-03",
     title: "Auto-Approve Everything Under $X Is an Anti-Pattern — Tioga AI",
-    description: "What real AP exception-handling policy looks like, with a bug we found building it.",
+    description: "What real AP exception-handling policy looks like, with a bug I found building it.",
   },
 };
 
@@ -20,14 +20,14 @@ const content: ArticleContent = {
   date: "2026-08-03",
   title: "Why \"auto-approve everything under $X\" is an AP governance anti-pattern",
   dek: "A single spend threshold is a policy with exactly one rule. Real accounts-payable exception handling needs independent layers — and the layer everyone skips is what happens after something executes.",
-  evidenceLabel: "Evidence: the actual three-tier policy from our live Governed AP Exception Workflow demo, plus a rollback bug we caught and fixed while building it.",
+  evidenceLabel: "Evidence: the actual three-tier policy from my live Governed AP Exception Workflow demo, plus a rollback bug I caught and fixed while building it.",
   sections: [
     {
       heading: "One threshold isn't a policy",
       body: (
         <p>
           &ldquo;Auto-approve anything under $5,000&rdquo; sounds like
-          governance but is really just one number. Our demo uses that
+          governance but is really just one number. My demo uses that
           number as one tier of three: under $5,000 executes autonomously,
           up to $25,000 escalates to a named human approver, and above that
           there is no execution path at all — not a higher approval tier, a
@@ -42,7 +42,7 @@ const content: ArticleContent = {
       body: (
         <p>
           A spend threshold alone also can&apos;t catch an out-of-scope
-          action — in our demo, an attempt to release a vendor&apos;s credit
+          action — in my demo, an attempt to release a vendor&apos;s credit
           hold directly gets blocked on scope before the dollar amount is
           even evaluated, because that action type was never authorized for
           this agent regardless of size. A policy that only checks amount
@@ -55,7 +55,7 @@ const content: ArticleContent = {
       body: (
         <p>
           Policy passing doesn&apos;t mean the underlying system should
-          accept the change. In our demo, an invoice adjustment can clear
+          accept the change. In my demo, an invoice adjustment can clear
           every policy check and still get rejected because the vendor is on
           credit hold in the ERP itself — a fact the policy engine doesn&apos;t
           and shouldn&apos;t need to know about. Two independent layers catch
@@ -65,10 +65,10 @@ const content: ArticleContent = {
       ),
     },
     {
-      heading: "What we got wrong the first time",
+      heading: "What I got wrong the first time",
       body: (
         <p>
-          Building this demo, our first version of rollback let a single
+          Building this demo, my first version of rollback let a single
           executed action be reversed more than once — click it twice and
           the underlying PO amount silently drifted further than it should.
           The fix was to make an executed action&apos;s reversal path

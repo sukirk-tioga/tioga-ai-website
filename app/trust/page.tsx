@@ -17,7 +17,7 @@ const FRAMEWORKS = [
   {
     name: "NIST AI RMF",
     tag: "US federal framework",
-    body: "The four-function model — Govern, Map, Measure, Manage — that structures how we design every agent's logging, cost controls, and human oversight from day one.",
+    body: "The four-function model — Govern, Map, Measure, Manage — that structures how I design every agent's logging, cost controls, and human oversight from day one.",
     offer: "AI Governance Readiness Assessment",
     price: "$20–35K",
     href: "/trust/framework-mapping",
@@ -93,7 +93,7 @@ export default function TrustPage() {
         </h1>
         <p className="text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-16">
           Most AI vendors treat governance as documentation written after a
-          pilot works. We design the logging, cost controls, and human
+          pilot works. I design the logging, cost controls, and human
           oversight into the architecture first — so the compliance artifact
           is a byproduct of how the system runs, not a separate deliverable
           bolted on afterward.
@@ -101,7 +101,7 @@ export default function TrustPage() {
 
         {/* Framework cards */}
         <div className="mb-16">
-          <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>The three frameworks we build against</h2>
+          <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>The three frameworks I build against</h2>
           <p className="text-[var(--text-muted)] text-sm mb-6 max-w-2xl">
             Each maps to a productized offer — a concrete deliverable and
             timeline, not an open-ended retainer.
@@ -170,28 +170,28 @@ export default function TrustPage() {
         <div className="mb-16">
           <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Compliance &amp; certification status</h2>
           <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-2xl mb-4">
-            The three frameworks above are engagements we build for clients —
+            The three frameworks above are engagements I build for clients —
             not certifications Tioga AI itself currently holds. Said plainly,
             not implied:
           </p>
           <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <ul className="list-disc pl-5 space-y-2 text-sm text-[var(--text-muted)] leading-relaxed">
               <li>
-                Our own infrastructure&apos;s security controls — role-based
+                My own infrastructure&apos;s security controls — role-based
                 access, audit logging, architecture aligned to SOC 2 Trust
                 Services Criteria — are real and demonstrated live in the{" "}
                 <Link href="/demos/governance-ledger" className="underline hover:text-[var(--text)] transition-colors">Governance Ledger demo</Link>.
                 No independent SOC 2 report exists yet.
               </li>
               <li>
-                We are not ISO 42001 certified. The ISO 42001 Implementation
+                I am not ISO 42001 certified. The ISO 42001 Implementation
                 Sprint helps a client&apos;s AI management system reach that
-                bar — it is a delivery engagement, not a badge we display.
+                bar — it is a delivery engagement, not a badge I display.
               </li>
               <li>
                 NIST AI RMF is a voluntary framework with no certification to
                 hold; ISO 42001 and EU AI Act obligations attach to the
-                systems we help build, not to Tioga AI as a vendor.
+                systems I help build, not to Tioga AI as a vendor.
               </li>
             </ul>
           </div>
@@ -287,7 +287,7 @@ export default function TrustPage() {
               solo-founder practice, there is no formal uptime SLA published
               yet — that&apos;s a real gap, not hidden. If tioga.ai is down,
               there is currently no separate status page; check the site
-              directly or email us.
+              directly or email me.
             </p>
           </div>
           <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>

@@ -72,7 +72,7 @@ const content: SolutionContent = {
     },
     {
       q: "Is this actually running somewhere, or is it a framework on paper?",
-      a: "It's running code Tioga operates on its own infrastructure today, and we'll show it in a demo: the router registry, a dated router-watch proposal report, and the security-watch findings ledger. It's honestly personal-scale — a two-machine, five-backend estate, not a Fortune 500 deployment — and we say so before you have to ask.",
+      a: "It's running code Tioga operates on its own infrastructure today, and I'll show it in a demo: the router registry, a dated router-watch proposal report, and the security-watch findings ledger. It's honestly personal-scale — a two-machine, five-backend estate, not a Fortune 500 deployment — and I say so before you have to ask.",
     },
     {
       q: "How is this different from a governance platform we could just buy?",

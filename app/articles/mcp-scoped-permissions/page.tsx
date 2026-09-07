@@ -20,7 +20,7 @@ const content: ArticleContent = {
   date: "2026-08-03",
   title: "An MCP integration still needs the same approval gates a custom API integration needs",
   dek: "\"We're using MCP\" answers what interface an agent talks to. It doesn't answer what the agent is allowed to do, how fast, or what gets logged — those are still separate design decisions.",
-  evidenceLabel: "Evidence: real rate-limiting and tool-attribution code from our live MCP integration demo.",
+  evidenceLabel: "Evidence: real rate-limiting and tool-attribution code from my live MCP integration demo.",
   sections: [
     {
       heading: "What MCP actually standardizes",
@@ -41,7 +41,7 @@ const content: ArticleContent = {
       body: (
         <>
           <p>
-            Our own MCP demo enforces a hard per-IP rate limit (20 requests)
+            My own MCP demo enforces a hard per-IP rate limit (20 requests)
             on the endpoint before a single call reaches the model — a basic
             control an MCP connection doesn&apos;t give you automatically.
             The system prompt also requires the model to return which

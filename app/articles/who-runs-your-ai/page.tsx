@@ -4,7 +4,7 @@ import ArticlePage, { type ArticleContent } from "@/components/ArticlePage";
 export const metadata: Metadata = {
   title: "Who's Really Running Your AI?",
   description:
-    "In the last 12 months, seven of the nine enterprise systems we track each independently signed their own LLM-vendor deals. Here's who anchored to which lab, and what nobody's console shows you.",
+    "In the last 12 months, seven of the nine enterprise systems I track each independently signed their own LLM-vendor deals. Here's who anchored to which lab, and what nobody's console shows you.",
   alternates: { canonical: "/articles/who-runs-your-ai" },
   openGraph: {
     type: "article",
@@ -19,7 +19,7 @@ const content: ArticleContent = {
   query: "which LLM powers my ERP CRM enterprise AI agents",
   date: "2026-08-26",
   title: "Who's really running your AI?",
-  dek: "In the last 12 months, seven of the nine enterprise systems we track each independently signed their own deal with an AI lab. Most companies running two or three of these platforms have never added up what that means.",
+  dek: "In the last 12 months, seven of the nine enterprise systems I track each independently signed their own deal with an AI lab. Most companies running two or three of these platforms have never added up what that means.",
   evidenceLabel: "Evidence: primary vendor announcements and documentation, dated per row — not analyst summaries.",
   sections: [
     {

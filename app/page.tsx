@@ -87,7 +87,7 @@ export default function HomePage() {
  style={{ background: "#C8340610", border: "1px solid #C8340625", color: "var(--accent)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
- Live in our environment — demo data
+ Live in my environment — demo data
  </div>
  <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>Try It Right Now</h2>
  <p className="text-[var(--text-muted)] max-w-lg mx-auto text-sm">Four real AI workflows. No signup. No mockups. The same Claude models built into every Tioga AI engagement.</p>

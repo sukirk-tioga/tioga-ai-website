@@ -64,9 +64,9 @@ export default function MarbleWorldAuditPage() {
 
   return (
     <DemoShell
-      title="Marble World-Generation Audit: What We Actually Measured"
+      title="Marble World-Generation Audit: What I Actually Measured"
       badge="Real Trial Data — Not a Simulated Scenario"
-      description="World Labs' Marble turns a single photo into an explorable 3D world. Vendors make claims about commercial usability and dimensional accuracy — we ran the actual trial: two real generations, a byte-level provenance scan, and a real physical measurement. Here's what held up and what didn't."
+      description="World Labs' Marble turns a single photo into an explorable 3D world. Vendors make claims about commercial usability and dimensional accuracy — I ran the actual trial: two real generations, a byte-level provenance scan, and a real physical measurement. Here's what held up and what didn't."
     >
       {/* The audit question */}
       <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--warning-light)" }}>

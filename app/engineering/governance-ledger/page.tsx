@@ -4,12 +4,12 @@ import BenchmarkCard from "@/components/BenchmarkCard";
 import { TOTAL_CALLS, FREE_ZERO_COST_COUNT, FREE_ZERO_COST_PCT } from "@/lib/governance-ledger";
 
 export const metadata: Metadata = {
-  title: "How We Built the Governance Ledger Demo",
+  title: "How I Built the Governance Ledger Demo",
   description:
     "Why the Governance Ledger demo is a dated snapshot instead of a live feed, how the NIST AI RMF mapping falls out of the routing gateway's own design, and what runs with no model call at all.",
   alternates: { canonical: "/engineering/governance-ledger" },
   openGraph: {
-    title: "How We Built the Governance Ledger Demo — Tioga AI",
+    title: "How I Built the Governance Ledger Demo — Tioga AI",
     description: "A real ledger excerpt, a framework the infra was built against — not retrofitted to — and zero prompt-injection surface.",
   },
 };
@@ -19,7 +19,7 @@ export default function GovernanceLedgerWriteup() {
     <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
-          ← How We Built It
+          ← How I Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
           <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>
@@ -27,7 +27,7 @@ export default function GovernanceLedgerWriteup() {
           </span>
         </div>
         <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
-          How we built the Governance Ledger demo
+          How I built the Governance Ledger demo
         </h1>
         <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           The other three demos on this site take an input and run it through

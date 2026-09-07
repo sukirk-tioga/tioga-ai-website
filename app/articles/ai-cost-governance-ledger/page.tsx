@@ -5,7 +5,7 @@ import { TOTAL_CALLS, PAID_COUNT, FREE_COUNT, FREE_ZERO_COST_COUNT, FREE_ZERO_CO
 export const metadata: Metadata = {
   title: "What a Real AI Cost-Governance Ledger Looks Like",
   description:
-    `${FREE_ZERO_COST_PCT}% of our own model calls settle at exactly $0 before touching billed credit — real numbers from a live routing gateway, not a projected savings estimate.`,
+    `${FREE_ZERO_COST_PCT}% of my own model calls settle at exactly $0 before touching billed credit — real numbers from a live routing gateway, not a projected savings estimate.`,
   alternates: { canonical: "/articles/ai-cost-governance-ledger" },
   openGraph: {
     type: "article",
@@ -20,14 +20,14 @@ const content: ArticleContent = {
   query: "AI cost governance model routing enterprise",
   date: "2026-08-03",
   title: "What a real AI cost-governance ledger looks like",
-  dek: "Cost governance for AI usually gets pitched as a future dashboard. Here's a live one, running on our own infrastructure, with the actual numbers.",
-  evidenceLabel: "Evidence: a real, unsampled excerpt from our own AI routing gateway's ledger — not a projection.",
+  dek: "Cost governance for AI usually gets pitched as a future dashboard. Here's a live one, running on my own infrastructure, with the actual numbers.",
+  evidenceLabel: "Evidence: a real, unsampled excerpt from my own AI routing gateway's ledger — not a projection.",
   sections: [
     {
       heading: "The number that matters isn't the total spend",
       body: (
         <p>
-          Our own routing gateway has logged {TOTAL_CALLS} model calls in its
+          My own routing gateway has logged {TOTAL_CALLS} model calls in its
           current window, spending $0.000958 against a $30 cap. The
           interesting number isn&apos;t the total — it&apos;s that only{" "}
           {PAID_COUNT} of those {TOTAL_CALLS} calls ever touched a paid
