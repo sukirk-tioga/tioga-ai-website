@@ -34,7 +34,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </div>
         <h1 className="text-4xl font-bold mb-4" style={{ color: "var(--text)" }}>Privacy Policy</h1>
-        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-07-27</p>
+        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-09-07</p>
 
         <Section title="The short version">
           <p>
@@ -43,6 +43,26 @@ export default function PrivacyPage() {
             AI is a solo-run practice; there is no marketing database, no ad
             tracking, and no resale of your data to anyone. What we collect,
             we collect to respond to you or to run the demo you asked to see.
+          </p>
+        </Section>
+
+        <Section title="What this page doesn't cover yet">
+          <p>
+            Stated plainly rather than left implicit: this page has not yet
+            been reviewed by an attorney for GDPR- or CCPA-specific
+            requirements — for example, whether Tioga AI needs to designate
+            an EU representative, what data-transfer mechanism applies to
+            submissions from the EEA/UK/Switzerland, or a formal process for
+            California-resident rights requests beyond emailing us directly.
+            We&apos;d rather say that plainly than assert a specific legal
+            position here that hasn&apos;t actually been reviewed. If you&apos;re
+            submitting data from a jurisdiction where that matters — or your
+            organization needs a reviewed DPA before you engage with
+            us — email{" "}
+            <a href="mailto:hello@tioga.ai" className="underline hover:text-[var(--text)] transition-colors">
+              hello@tioga.ai
+            </a>{" "}
+            before submitting anything through this Site.
           </p>
         </Section>
 
