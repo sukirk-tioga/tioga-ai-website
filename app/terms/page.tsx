@@ -32,7 +32,7 @@ export default function TermsPage() {
           Terms of Service
         </div>
         <h1 className="text-4xl font-bold mb-4" style={{ color: "var(--text)" }}>Terms of Service</h1>
-        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-07-27</p>
+        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-09-06</p>
 
         <Section title="Agreement">
           <p>
@@ -40,6 +40,44 @@ export default function TermsPage() {
             chat assistant, and contact form (the &ldquo;Site&rdquo;). By using
             the Site, you agree to them. If you don&apos;t agree, don&apos;t
             use the Site.
+          </p>
+        </Section>
+
+        {/* Added 2026-09-06 per the 2026-09-02 business-readiness audit,
+            G-31: the live page had no legal entity identification, no
+            governing law, and no venue/dispute-resolution clause anywhere.
+            Placeholders follow the exact [BRACKETED PLACEHOLDER] convention
+            used in ~/SecondBrain/TiogaAI/legal/templates/msa-template.md —
+            these are real open decisions for Sukir + counsel, not filled in
+            here, because the underlying facts (exact legal name, state of
+            formation, registered address, litigation vs. arbitration) don't
+            exist anywhere in the vault as confirmed, citable facts. */}
+        <Section title="Entity; Governing Law; Venue">
+          <p>
+            This Site is operated by{" "}
+            <strong style={{ color: "var(--text)" }}>
+              [TIOGA AI, LLC / EXACT LEGAL NAME]
+            </strong>
+            , a{" "}
+            <strong style={{ color: "var(--text)" }}>[STATE OF FORMATION]</strong>{" "}
+            limited liability company with a registered address at{" "}
+            <strong style={{ color: "var(--text)" }}>[REGISTERED ADDRESS]</strong>{" "}
+            (&ldquo;Tioga AI,&rdquo; &ldquo;we,&rdquo; or &ldquo;us&rdquo;).
+          </p>
+          <p>
+            These Terms are governed by the laws of the State of{" "}
+            <strong style={{ color: "var(--text)" }}>[CALIFORNIA — CONFIRM]</strong>
+            , without regard to conflict-of-laws principles.
+          </p>
+          <p>
+            <strong style={{ color: "var(--text)" }}>
+              Dispute resolution has not yet been decided.
+            </strong>{" "}
+            Whether disputes arising from these Terms are resolved through
+            litigation or binding arbitration — and, if litigation, in which
+            venue — is a genuine open decision that belongs with counsel, not
+            a drafting oversight. Until a mechanism is chosen and published
+            here, no venue or arbitration clause is in effect.
           </p>
         </Section>
 

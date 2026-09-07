@@ -23,6 +23,11 @@ interface RelatedLink {
   label: string;
 }
 
+interface WhyNotPlatformContent {
+  heading: string;
+  paragraphs: string[];
+}
+
 export interface SolutionContent {
   slug: string;
   eyebrow: string;
@@ -36,6 +41,13 @@ export interface SolutionContent {
   related: RelatedLink[];
   demoLink?: { href: string; label: string };
   visual?: React.ReactNode;
+  /** Optional "why not just use what you already pay for" section, rendered
+      between Proof and Offers. See G-36 in the 2026-09-02 business-readiness
+      audit — the site had no direct answer to the platform-native-governance
+      objection (ServiceNow Action Fabric / AI Control Tower, SAP Agent Hub,
+      Salesforce hosted MCP servers). Optional so pages that don't need it
+      (most solution pages) are unaffected. */
+  whyNotPlatform?: WhyNotPlatformContent;
 }
 
 export default function SolutionPage({ content }: { content: SolutionContent }) {
@@ -123,6 +135,21 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
           ))}
         </div>
       </section>
+
+      {/* Why not just use what you already pay for (optional) */}
+      {content.whyNotPlatform && (
+        <section className="px-6 pb-16 max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>{content.whyNotPlatform.heading}</h2>
+          <div
+            className="p-8 rounded-2xl space-y-4"
+            style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+          >
+            {content.whyNotPlatform.paragraphs.map((para, i) => (
+              <p key={i} className="text-sm text-[var(--text-muted)] leading-relaxed">{para}</p>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Offers */}
       <section className="px-6 pb-16 max-w-4xl mx-auto">
