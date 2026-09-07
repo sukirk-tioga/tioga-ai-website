@@ -14,6 +14,12 @@ export const metadata: Metadata = {
 
 const WRITEUPS = [
   {
+    href: "/engineering/how-we-deliver",
+    title: "How Tioga AI Delivers",
+    model: "No model call",
+    summary: "The 7-phase delivery lifecycle behind every engagement — a named artifact and a client-owned decision at every gate, from the 5-day Discovery Sprint through handover.",
+  },
+  {
     href: "/engineering/governance-ledger",
     title: "Governance Ledger",
     model: "No model call",
