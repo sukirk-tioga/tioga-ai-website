@@ -32,7 +32,7 @@ export default function TermsPage() {
           Terms of Service
         </div>
         <h1 className="text-4xl font-bold mb-4" style={{ color: "var(--text)" }}>Terms of Service</h1>
-        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-07-27</p>
+        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-09-07</p>
 
         <Section title="Agreement">
           <p>
@@ -40,6 +40,24 @@ export default function TermsPage() {
             chat assistant, and contact form (the &ldquo;Site&rdquo;). By using
             the Site, you agree to them. If you don&apos;t agree, don&apos;t
             use the Site.
+          </p>
+        </Section>
+
+        <Section title="What this page doesn't cover yet">
+          <p>
+            Stated plainly rather than left implicit: this page does not yet
+            name the specific legal entity that operates this Site, specify
+            which state&apos;s law governs a dispute, or specify how a
+            dispute would be resolved. Those are real decisions that belong
+            with an attorney, and we&apos;d rather say so directly than guess
+            at an answer here that hasn&apos;t actually been reviewed. If any
+            of that matters for how you&apos;re using this Site — for
+            example, before referencing these Terms in a signed agreement —
+            email{" "}
+            <a href="mailto:hello@tioga.ai" className="underline hover:text-[var(--text)] transition-colors">
+              hello@tioga.ai
+            </a>{" "}
+            first rather than assuming an answer.
           </p>
         </Section>
 
