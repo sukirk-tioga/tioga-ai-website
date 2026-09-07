@@ -276,3 +276,22 @@ export async function sendFounderAlertEmail({
     text: `${note}\n\nThread: ${threadId}\nProspect: ${prospectEmail}`,
   });
 }
+
+// Durable home for build-log email-capture subscribers — see
+// lib/subscriber-log.ts for why this channel exists (no ESP/CRM is wired
+// up for this site; the founder's inbox is the list until that decision is
+// made). Reuses the same Gmail SMTP transport as every other outbound send
+// in this file — no new provider, no new credential.
+export async function sendBuildLogSubscribeEmail(entry: {
+  timestamp: string;
+  ip: string;
+  email: string;
+}) {
+  await transporter.sendMail({
+    from: `"Tioga AI" <${process.env.SMTP_USER}>`,
+    to: "hello@tioga.ai",
+    replyTo: entry.email,
+    subject: `[build-log subscribe] ${entry.email}`,
+    text: `New build-log subscriber.\n\nEmail: ${entry.email}\nTime: ${entry.timestamp}\nIP: ${entry.ip}`,
+  });
+}

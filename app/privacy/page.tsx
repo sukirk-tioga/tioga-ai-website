@@ -80,6 +80,19 @@ export default function PrivacyPage() {
             and are not stored after your browser session ends.
           </p>
           <p>
+            <strong style={{ color: "var(--text)" }}>Build log email updates.</strong> If
+            you enter your email on the{" "}
+            <a href="/changelog" className="underline" style={{ color: "var(--accent)" }}>
+              build log page
+            </a>{" "}
+            to be notified when it updates, that address is emailed directly
+            to Tioga AI&apos;s founder — the same inbox-as-record approach as
+            the contact form. We don&apos;t use a mailing-list or email-marketing
+            service for this; there is no automated newsletter, and no
+            third party other than our email provider (see Third Parties
+            below) ever receives the address.
+          </p>
+          <p>
             <strong style={{ color: "var(--text)" }}>Basic request metadata.</strong> To
             prevent abuse of the contact form and demo endpoints, we
             rate-limit by IP address. That count is held in server memory
