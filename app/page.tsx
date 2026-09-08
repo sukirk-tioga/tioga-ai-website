@@ -318,21 +318,41 @@ export default function HomePage() {
  See all services →
  </Link>
  </p>
- <p className="text-center mt-4 text-sm leading-relaxed" style={{ color: "var(--text-muted-2)" }}>
- See what you actually get:{" "}
- <a href="/samples/discovery-sprint-scope.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
- sample discovery sprint scope
- </a>
- ,{" "}
- <a href="/samples/governance-evidence-excerpt.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
- sample governance evidence excerpt
- </a>
- , or{" "}
- <a href="/samples/ai-governance-executive-summary.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
- sample readiness assessment summary
- </a>
- .
+ <p className="text-center mt-4 mb-6 text-sm" style={{ color: "var(--text-muted-2)" }}>
+ See what you actually get:
  </p>
+ <div className="grid sm:grid-cols-3 gap-4">
+ {[
+ {
+ title: "Discovery Sprint Scope",
+ caption: "See the exact deliverable format.",
+ href: "/samples/discovery-sprint-scope.html",
+ },
+ {
+ title: "Governance Evidence Excerpt",
+ caption: "See what the audit-trail evidence looks like.",
+ href: "/samples/governance-evidence-excerpt.html",
+ },
+ {
+ title: "Readiness Assessment Summary",
+ caption: "See what the executive summary looks like.",
+ href: "/samples/ai-governance-executive-summary.html",
+ },
+ ].map((sample) => (
+ <a
+ key={sample.href}
+ href={sample.href}
+ target="_blank"
+ rel="noopener noreferrer"
+ className="p-6 rounded-2xl transition-all hover:border-slate-500 block"
+ style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+ >
+ <p className="text-xs uppercase tracking-wide mb-2" style={{ color: "var(--accent)" }}>Sample</p>
+ <h4 className="text-sm font-semibold mb-1.5" style={{ color: "var(--text)" }}>{sample.title}</h4>
+ <p className="text-xs text-[var(--text-muted)] leading-relaxed">{sample.caption}</p>
+ </a>
+ ))}
+ </div>
  </section>
  </ScrollReveal>
 
@@ -421,6 +441,56 @@ export default function HomePage() {
  </div>
  </div>
  ))}
+ </div>
+ </section>
+ </ScrollReveal>
+
+ {/* FAQ */}
+ <ScrollReveal>
+ <section id="faq" className="px-6 pb-20 max-w-4xl mx-auto scroll-mt-24">
+ <div className="text-center mb-12">
+ <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>Frequently asked</h2>
+ <p className="text-[var(--text-muted)] text-sm max-w-lg mx-auto">The questions that come up most before booking a call.</p>
+ </div>
+ <div className="space-y-4">
+ <div className="p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+ <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>What does it cost?</h3>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+ The{" "}
+ <Link href="/discovery-sprint" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>Discovery Sprint</Link>
+ {" "}is $5,000 flat, credited in full toward whatever engagement it recommends. If you&apos;re not sure yet whether you have a real use case, the{" "}
+ <Link href="/ai-fit-check" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>AI Fit Check</Link>
+ {" "}is $1,500, one day, fully remote — and that $1,500 credits forward too.
+ </p>
+ </div>
+ <div className="p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+ <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>What access do you need?</h3>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+ Read-only, scoped, time-boxed sandbox access, provisioned before day one. The prototype never touches production and is never given write access to a real system.
+ </p>
+ </div>
+ <div className="p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+ <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>Who owns what comes out of it?</h3>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+ You keep every deliverable from the five days, on a go, redirect, or no-go. There&apos;s no obligation to continue.
+ </p>
+ </div>
+ <div className="p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+ <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>What support do I get?</h3>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+ I personally review and respond to everything — no ticket queue. As a pre-launch, solo-founder practice there&apos;s no formal uptime SLA published yet; that&apos;s disclosed on the{" "}
+ <Link href="/trust" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>Trust page</Link>
+ , not hidden.
+ </p>
+ </div>
+ <div className="p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+ <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>Not sure this is a fit yet?</h3>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+ Start with the{" "}
+ <Link href="/ai-fit-check" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>AI Fit Check</Link>
+ {" "}instead of the Discovery Sprint — one day, $1,500, fully remote, no system access required, built specifically to answer that question first.
+ </p>
+ </div>
  </div>
  </section>
  </ScrollReveal>

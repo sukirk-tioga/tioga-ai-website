@@ -20,6 +20,7 @@ interface Offer {
   duration: string;
   href?: string;
   ctaLabel?: string;
+  buyer?: string;
 }
 
 interface Practice {
@@ -41,12 +42,14 @@ const PRACTICES: Practice[] = [
         desc: "Map manual workflows across finance, HR, procurement, and operations. Rank automation opportunities by ROI and feasibility. Concrete plan in your hands.",
         price: "$10–15K",
         duration: "2–3 weeks",
+        buyer: "Finance, HR, procurement, or operations leaders who want manual workflows mapped and ranked by ROI before committing to a build.",
       },
       {
         name: "AI Agent Pilot",
         desc: "Production-ready AI agent built against your highest-value workflow, integrated with your real systems, with governance documentation delivered alongside the code.",
         price: "$25–50K",
         duration: "4–8 weeks",
+        buyer: "Teams with a highest-value workflow already identified who are ready for a production-ready agent, not another pilot deck.",
       },
     ],
   },
@@ -61,24 +64,28 @@ const PRACTICES: Practice[] = [
         desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear.",
         price: "$60–120K",
         duration: "~6 weeks",
+        buyer: "Oracle EBS or SAP teams with one stalled agent-to-ERP write path already identified.",
       },
       {
         name: "Salesforce Governed Write-Path & Evidence Build",
         desc: "Closes the gap Salesforce's own architects admit exists — hosted MCP servers on Salesforce are GA and free on Enterprise Edition+ with full user attribution, but the governance layer above that (a value/velocity policy an agent's permission set can't express, a server-side approval gate independent of which AI client is calling, a decision ledger recording policy version, approver, and reason for every evaluated write) is yours to build. Tioga builds that layer for one high-value Salesforce write path.",
         price: "$50–100K",
         duration: "5–8 weeks",
+        buyer: "Salesforce teams who already have hosted MCP servers live and need the governance layer above it for one high-value write path.",
       },
       {
         name: "Legacy System AI Augmentation",
         desc: "Add AI capability to your existing ERP, CRM, or HRIS without replacing the underlying system — extending what works rather than ripping it out.",
         price: "$40–100K",
         duration: "8–16 weeks",
+        buyer: "Organizations with an existing ERP, CRM, or HRIS they want to extend with AI, not replace.",
       },
       {
         name: "ERP Modernization Advisory",
         desc: "Ongoing strategic guidance for organizations modernizing Oracle EBS, SAP legacy, or custom ERP environments — with AI integration as a first-class requirement.",
         price: "$15–25K/month",
         duration: "3–12 months",
+        buyer: "Organizations modernizing Oracle EBS, SAP legacy, or custom ERP environments who need ongoing strategic guidance, not a one-off engagement.",
       },
     ],
   },
@@ -93,12 +100,14 @@ const PRACTICES: Practice[] = [
         desc: "NIST AI RMF, ISO 42001, EU AI Act, and US state law gap analysis with a prioritized remediation roadmap and sample executive summary.",
         price: "$20–35K",
         duration: "3–4 weeks",
+        buyer: "Organizations that need a NIST AI RMF, ISO 42001, EU AI Act, or US state-law gap analysis and a prioritized remediation roadmap.",
       },
       {
         name: "AI Cost & Model Governance Assessment",
         desc: "Model-tiering policy, token/cache optimization, budget guardrails, and model-governance rules — built on the same routing infrastructure behind Tioga's own live Governance Ledger demo.",
         price: "$10–20K",
         duration: "2–3 weeks",
+        buyer: "Organizations that need model-tiering policy, token/cache optimization, and budget guardrails on their AI spend.",
       },
       // "AI Governance Evidence Package for Insurance Underwriting" removed
       // 2026-09-01: its demand thesis failed independent 3-vote adversarial
@@ -110,30 +119,35 @@ const PRACTICES: Practice[] = [
         desc: "Governance architecture for organizations deploying autonomous AI agents in production — risk registers, oversight controls, and escalation protocols.",
         price: "$30–75K",
         duration: "4–8 weeks",
+        buyer: "Organizations deploying autonomous AI agents in production who need risk registers, oversight controls, and escalation protocols.",
       },
       {
         name: "Multi-State AI Compliance Program",
         desc: "Gap analysis and remediation roadmap across US state AI laws for organizations operating in multiple jurisdictions.",
         price: "$40–80K",
         duration: "6–10 weeks",
+        buyer: "Organizations operating across multiple US states that need a gap analysis and remediation roadmap for state AI laws.",
       },
       {
         name: "ISO 42001 Implementation Sprint",
         desc: "Structured implementation of an AI management system aligned to ISO 42001, from readiness assessment to certification-ready documentation.",
         price: "$50–120K",
         duration: "3–6 months",
+        buyer: "Organizations that need AI risk management built into the architecture and are pursuing ISO 42001 certification-ready documentation.",
       },
       {
         name: "EU AI Act Conformity Program",
         desc: "Full conformity documentation, technical files, and governance controls for organizations subject to the EU AI Act, structured for audit readiness.",
         price: "$75–200K",
         duration: "4–8 months",
+        buyer: "Organizations subject to the EU AI Act that need full conformity documentation and technical files, structured for audit readiness.",
       },
       {
         name: "Fractional AI Governance Officer",
         desc: "Ongoing governance leadership for organizations that need AI risk management expertise without a full-time hire — structured as a monthly retainer.",
         price: "$12–25K/month",
         duration: "6–12 months",
+        buyer: "Organizations that need ongoing AI governance leadership but aren't ready for a full-time hire.",
       },
       {
         name: "Standing Watch Assessment",
@@ -142,6 +156,7 @@ const PRACTICES: Practice[] = [
         duration: "3–4 weeks",
         href: "/solutions/standing-watch",
         ctaLabel: "See the full Standing Watch ladder →",
+        buyer: "Organizations with SAP Agent Hub, Workday ASOR, Control Tower, or Unity AI Gateway data who need an agent inventory and findings ledger.",
       },
       {
         name: "Standing Watch Build",
@@ -150,6 +165,7 @@ const PRACTICES: Practice[] = [
         duration: "8–16 weeks, scoped to estate breadth",
         href: "/solutions/standing-watch",
         ctaLabel: "See the full Standing Watch ladder →",
+        buyer: "Organizations ready to implement the propose-and-approve gating layer and behavioral probe harness in their own environment, on their own credentials.",
       },
       {
         name: "Standing Watch Retainer",
@@ -158,6 +174,7 @@ const PRACTICES: Practice[] = [
         duration: "Ongoing",
         href: "/solutions/standing-watch",
         ctaLabel: "See the full Standing Watch ladder →",
+        buyer: "Organizations that want router-watch and security-watch as an ongoing service, with a weekly automated watch run and monthly human review.",
       },
     ],
   },
@@ -204,6 +221,11 @@ export default function ServicesPage() {
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold mb-2" style={{ color: "var(--text)" }}>{offer.name}</h3>
                         <p className="text-sm text-[var(--text-muted)] leading-relaxed">{offer.desc}</p>
+                        {offer.buyer && (
+                          <p className="text-xs mt-2" style={{ color: "var(--text-muted)" }}>
+                            <span className="font-semibold">Best for:</span> {offer.buyer}
+                          </p>
+                        )}
                       </div>
                       <div className="shrink-0 text-right md:pl-8">
                         <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>{offer.price}</p>
