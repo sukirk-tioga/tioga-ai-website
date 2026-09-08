@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { track } from "@vercel/analytics";
 
 interface Classification {
@@ -27,12 +28,19 @@ const complexityLabel = {
   enterprise: "Enterprise Scale",
 };
 
-export default function SmartContactForm() {
+function SmartContactFormInner() {
+  const searchParams = useSearchParams();
+  // Offer/service pages link here with ?offer=<name> instead of a bare
+  // /contact -- pre-fill the description so that context survives the
+  // click instead of the visitor having to retype which engagement they
+  // meant. Still just a starting point in an editable field, not a hidden
+  // value the visitor can't see or change.
+  const offer = searchParams.get("offer");
   const [form, setForm] = useState({
     name: "",
     email: "",
     company: "",
-    description: "",
+    description: offer ? `Interested in: ${offer}\n\n` : "",
   });
   const [consent, setConsent] = useState(false);
   const [state, setState] = useState<"idle" | "classifying" | "done" | "error">("idle");
@@ -312,5 +320,13 @@ export default function SmartContactForm() {
         </p>
       </form>
     </div>
+  );
+}
+
+export default function SmartContactForm() {
+  return (
+    <Suspense fallback={null}>
+      <SmartContactFormInner />
+    </Suspense>
   );
 }

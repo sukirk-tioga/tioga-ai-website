@@ -17,7 +17,8 @@
   .sub{color:var(--text-muted);margin:0 0 28px;max-width:56ch;}
   .disclaimer{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.35);border-radius:8px;padding:12px 16px;font-size:13px;color:#fbbf24;margin-bottom:36px;}
   h2{font-size:17px;color:#fff;margin:34px 0 10px;padding-left:12px;border-left:3px solid var(--accent);}
-  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;}
+  table{width:100%;min-width:560px;border-collapse:collapse;margin:0;font-size:14px;}
   th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
   th{font-family:ui-monospace,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);background:var(--bg-card);}
   ul{margin:8px 0;padding-left:20px;color:var(--text-muted);}
@@ -52,33 +53,35 @@
     <tr><th>Week</th><td>2026-09-08 to 2026-09-12</td></tr>
     <tr><th>Baseline time per exception</th><td>14 min — <span class="assump">client AP team lead's own estimate, captured 2026-09-01</span></td></tr>
     <tr><th>Loaded labor rate</th><td>$42/hr — <span class="assump">client-provided, not an industry figure</span></td></tr>
+    <tr><th>Human review time per escalation</th><td>3 min — <span class="assump">client-provided estimate for reviewing and approving an AI-prepared escalation, not zero</span></td></tr>
   </table>
 
   <h2>02 — This week's actions</h2>
-  <table>
-    <tr><th>Action type</th><th>Volume</th><th>Baseline</th><th>AI time</th><th>Hours saved</th></tr>
-    <tr><td>PO adjustment (auto-approved)</td><td>31</td><td>14 min</td><td>~2s</td><td>7.2 hrs</td></tr>
-    <tr><td>PO adjustment (escalated → approved)</td><td>6</td><td>14 min</td><td>~2s</td><td>1.4 hrs</td></tr>
-  </table>
+  <div class="table-scroll"><table>
+    <tr><th>Action type</th><th>Volume</th><th>Baseline</th><th>AI time</th><th>Human review</th><th>Net hrs saved</th></tr>
+    <tr><td>PO adjustment (auto-approved)</td><td>31</td><td>14 min</td><td>~2s</td><td>— (no review)</td><td>7.2 hrs</td></tr>
+    <tr><td>PO adjustment (escalated → approved)</td><td>6</td><td>14 min</td><td>~2s</td><td>~3 min</td><td>1.1 hrs</td></tr>
+  </table></div>
 
   <h2>03 — Totals</h2>
   <div class="stat-row">
     <div class="stat"><div class="n">37</div><div class="l">Actions processed</div></div>
     <div class="stat"><div class="n">6 (16%)</div><div class="l">Escalated to human</div></div>
     <div class="stat"><div class="n">2</div><div class="l">Blocked by policy</div></div>
-    <div class="stat"><div class="n">8.6 hrs</div><div class="l">Hours saved</div></div>
-    <div class="stat"><div class="n">$361</div><div class="l">Value this week</div></div>
+    <div class="stat"><div class="n">8.6 hrs</div><div class="l">Gross time avoided</div></div>
+    <div class="stat"><div class="n">8.3 hrs</div><div class="l">Net labor saved</div></div>
+    <div class="stat"><div class="n">$349</div><div class="l">Value this week (net)</div></div>
   </div>
-  <p class="assump">Escalated and blocked actions are counted here deliberately — the same "every decision is evidence, not just the successes" principle behind the <a href="/demos/ap-exception-workflow" style="color:var(--accent)">Governed AP Exception Workflow demo</a>'s audit ledger. A report that only shows the wins isn't one a governance-minded buyer should trust.</p>
+  <p class="assump">"Gross time avoided" is baseline minus AI processing time only. "Net labor saved" subtracts the human review time spent on escalated actions — that's the figure the dollar value is based on. Escalated and blocked actions are counted here deliberately — the same "every decision is evidence, not just the successes" principle behind the <a href="/demos/ap-exception-workflow" style="color:var(--accent)">Governed AP Exception Workflow demo</a>'s audit ledger. A report that only shows the wins isn't one a governance-minded buyer should trust.</p>
 
   <h2>04 — Trend (last 4 weeks)</h2>
-  <table>
-    <tr><th>Week of</th><th>Hours saved</th><th>Value</th></tr>
-    <tr><td>2026-08-18</td><td>6.9 hrs</td><td>$290</td></tr>
-    <tr><td>2026-08-25</td><td>7.5 hrs</td><td>$315</td></tr>
-    <tr><td>2026-09-01</td><td>8.1 hrs</td><td>$340</td></tr>
-    <tr><td>2026-09-08</td><td>8.6 hrs</td><td>$361</td></tr>
-  </table>
+  <div class="table-scroll"><table>
+    <tr><th>Week of</th><th>Gross time avoided</th><th>Net labor saved</th><th>Value (net)</th></tr>
+    <tr><td>2026-08-18</td><td>6.9 hrs</td><td>6.7 hrs</td><td>$280</td></tr>
+    <tr><td>2026-08-25</td><td>7.5 hrs</td><td>7.2 hrs</td><td>$304</td></tr>
+    <tr><td>2026-09-01</td><td>8.1 hrs</td><td>7.8 hrs</td><td>$328</td></tr>
+    <tr><td>2026-09-08</td><td>8.6 hrs</td><td>8.3 hrs</td><td>$349</td></tr>
+  </table></div>
 
   <h2>05 — How this is calculated (so you can check it)</h2>
   <div class="card">
@@ -86,7 +89,8 @@
       <li><strong>Baseline time comes from the client, not an industry average.</strong> Captured during the discovery sprint or a follow-up interview, with the source stated on every report.</li>
       <li><strong>Hourly rate comes from the client's own fully-loaded labor cost</strong> for the role being augmented — never a number Tioga picks.</li>
       <li><strong>Volume is a real count from the governance ledger</strong> every agent action already writes to (the same log used for the audit trail and NIST AI RMF evidence mapping) — not a separate estimate.</li>
-      <li><strong>Hours saved = (baseline minutes − AI processing minutes) × volume ÷ 60.</strong> AI processing time is near-zero at the latencies Tioga's own demo benchmarks show (~1.7s average for invoice-style extraction) — see <a href="/engineering/invoice-processing" style="color:var(--accent)">How We Built the Invoice Processing Demo</a>.</li>
+      <li><strong>Gross time avoided = (baseline minutes − AI processing minutes) × volume ÷ 60.</strong> AI processing time is near-zero at the latencies Tioga's own demo benchmarks show (~1.7s average for invoice-style extraction) — see <a href="/engineering/invoice-processing" style="color:var(--accent)">How We Built the Invoice Processing Demo</a>.</li>
+      <li><strong>Net labor saved = gross time avoided − human review time</strong> for any escalated or exception-handled action. Auto-approved actions need no deduction; escalated ones do — the dollar value reported is always based on net, not gross.</li>
     </ul>
   </div>
 
