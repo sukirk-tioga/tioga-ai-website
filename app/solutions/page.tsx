@@ -1,103 +1,83 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TrackedCTA from "@/components/TrackedCTA";
+import SolutionsHub from "./SolutionsHub";
 
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "Governed AI solutions for Oracle EBS, SAP, accounts payable, ERP write-paths, MCP security, AI governance, and EBS-to-S4HANA migration.",
+    "Find the right workflow for your business — governed AI agents for finance and purchasing, service operations, reporting, systems integration, and AI oversight, organized by problem, not by vendor.",
   alternates: { canonical: "/solutions" },
   openGraph: {
     title: "Solutions — Tioga AI",
-    description: "Governed AI solutions for enterprise systems, by buyer and problem.",
+    description: "Find the right workflow for your business, organized by problem, not by vendor.",
   },
 };
 
-const SOLUTIONS = [
-  {
-    href: "/solutions/oracle",
-    name: "Oracle EBS",
-    desc: "AI agents that work inside your existing Oracle E-Business Suite — no rip-and-replace.",
-  },
-  {
-    href: "/solutions/sap",
-    name: "SAP",
-    desc: "Governed AI agents for SAP — real module integration, not generic RPA that breaks on a UI change.",
-  },
-  {
-    href: "/solutions/ap-automation",
-    name: "AP Automation",
-    desc: "Invoice to approval, with an audit trail a finance-controls reviewer will actually approve.",
-  },
-  {
-    href: "/solutions/governed-write-path",
-    name: "Governed Write-Path",
-    desc: "AI that writes to your ERP with policy enforcement, approval gates, and rollback built into the path — not bolted on after.",
-  },
-  {
-    href: "/solutions/mcp-security",
-    name: "MCP Security",
-    desc: "Scoped permissions, call-level audit logging, and policy enforcement for MCP-based agents.",
-  },
-  {
-    href: "/solutions/ai-governance",
-    name: "AI Governance",
-    desc: "NIST AI RMF, ISO 42001, EU AI Act, and US state-law programs — built in, not backfilled.",
-  },
-  {
-    href: "/solutions/ebs-to-s4hana",
-    name: "Oracle EBS → S/4HANA",
-    desc: "Know what breaks before you migrate, not after — a real readiness assessment, not a slide deck.",
-  },
-  {
-    href: "/solutions/standing-watch",
-    name: "Standing Watch",
-    desc: "Cross-system AI agent governance across SAP, Workday, Databricks, and ServiceNow — governed as one estate, not four panes of glass.",
-  },
+// Real solution-detail routes, mapped to the hub's workflow IDs only where
+// the mapping is genuinely 1:1 accurate. Left unmapped (renders as plain
+// text via the component's own honesty behavior):
+//  - "oracle-sap": names two systems (Oracle EBS and SAP) but only one
+//    URL is possible per workflow row — a single href here would
+//    misrepresent which system it points to. Both are still reachable via
+//    the "Browse by system" section below instead.
+//  - "sales-orders", "field-service", "erp-reporting": no live /solutions
+//    detail page exists for these yet.
+//  - "ledger", "oversight", "autonomy": each has a live /demos page but no
+//    dedicated /solutions detail page — mapping to a demo would blur the
+//    "solution page" destination this hub's link affordance implies.
+//  - "hr-procurement", "salesforce": marked not-built; no destination.
+const LINKS: Record<string, string> = {
+  "ap-exceptions": "/solutions/ap-automation",
+  "write-paths": "/solutions/governed-write-path",
+  "mcp": "/solutions/mcp-security",
+  "watch": "/solutions/standing-watch",
+};
+
+// "AI Governance" is a real /solutions page but covers compliance programs
+// (NIST AI RMF, ISO 42001, EU AI Act) broadly rather than any one of the
+// governance family's four named tools — so it's wired as a family-level
+// link rather than force-mapped onto "ledger"/"oversight"/"autonomy".
+const FAMILY_LINKS: Record<string, string> = {
+  governance: "/solutions/ai-governance",
+};
+
+const BY_SYSTEM = [
+  { href: "/solutions/oracle", label: "Oracle EBS" },
+  { href: "/solutions/sap", label: "SAP" },
+  { href: "/solutions/ebs-to-s4hana", label: "EBS → S/4HANA migration" },
 ];
 
 export default function SolutionsHubPage() {
   return (
     <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
-      <section className="pt-36 pb-16 px-6 max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6" style={{ color: "var(--text)" }}>Solutions</h1>
-        <p className="text-[var(--text-muted)] text-lg max-w-2xl leading-relaxed mb-16">
-          Governed AI automation for the enterprise systems you already run — organized by buyer and problem, not by generic AI capability. Every page links to a live demo and the specific engagement that fits.
-        </p>
+      <div className="pt-24">
+        <SolutionsHub variant="editorial" links={LINKS} familyLinks={FAMILY_LINKS} />
+      </div>
 
-        <div className="grid md:grid-cols-2 gap-4">
-          {SOLUTIONS.map((s) => (
+      {/* Preserves vendor-page discoverability: the old hub linked directly
+          to Oracle/SAP/etc. by vendor name. The new problem-led structure
+          above doesn't have an equivalent "by system" section, so this
+          keeps those real pages reachable from /solutions without
+          competing with the problem-led hierarchy above it. */}
+      <section className="max-w-5xl mx-auto px-6 pb-20 pt-2" aria-labelledby="by-system-title">
+        <h2
+          id="by-system-title"
+          className="text-xs font-semibold uppercase tracking-wide mb-3"
+          style={{ color: "var(--text-muted)" }}
+        >
+          Browse by system
+        </h2>
+        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          {BY_SYSTEM.map((s) => (
             <Link
               key={s.href}
               href={s.href}
-              className="group p-6 rounded-2xl transition-all hover:border-slate-500 block"
-              style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+              className="transition-colors hover:text-[var(--text)]"
+              style={{ color: "var(--text-muted)" }}
             >
-              <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--text)" }}>{s.name}</h2>
-              <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-3">{s.desc}</p>
-              <span className="text-sm font-medium inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-                Learn more →
-              </span>
+              {s.label} →
             </Link>
           ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <TrackedCTA
-            href="/contact"
-            event="cta_book_call"
-            data={{ location: "solutions_hub" }}
-            className="inline-block px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
-          >
-            Start a conversation
-          </TrackedCTA>
-          <p className="text-xs text-[var(--text-muted)] mt-4">
-            Not sure which fits?{" "}
-            <Link href="/services" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
-              See all 16 engagements →
-            </Link>
-          </p>
         </div>
       </section>
     </main>

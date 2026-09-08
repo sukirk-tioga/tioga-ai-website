@@ -1,0 +1,99 @@
+/* Solutions hub — adapted from the supplied design kit.
+   All --sh-* custom properties below are aliases onto this repo's REAL
+   design tokens from app/globals.css's :root block (see CLAUDE.md/design.md
+   "always var(--token), never a raw hex literal"). The two exceptions are
+   the translucent "Live" badge tint and the mono font stack, both of which
+   follow this repo's own documented/established patterns (8-digit alpha
+   hex for tints; Tailwind's configured mono stack for small pill/code
+   labels) rather than a new made-up literal.
+
+   This site has a single fixed warm palette — no dark-mode variant exists
+   in globals.css — so the kit's light-dark()/color-scheme machinery has
+   been removed rather than carried over unused. */
+.sh {
+  --sh-canvas: var(--bg-dark);
+  --sh-paper: var(--bg-card);
+  --sh-ink: var(--text);
+  --sh-muted: var(--text-muted);
+  --sh-rule: var(--border);
+  --sh-accent: var(--accent);
+  --sh-accent-dark: var(--accent-dark);
+  --sh-on-accent: #fff;
+  --sh-feature: var(--bg-darker);
+  --sh-live: var(--success-dark);
+  --sh-live-bg: #10B98115;
+  --sh-live-border: #10B98130;
+  --sh-radius: 16px;
+  background: var(--sh-canvas);
+  color: var(--sh-ink);
+  font: 400 16px/1.55 var(--font-body), Georgia, serif;
+  padding: clamp(20px, 4.5vw, 64px);
+  overflow-wrap: anywhere;
+}
+.sh *, .sh *::before, .sh *::after {box-sizing: border-box}
+.sh [hidden] {display: none !important}
+.sh .sh-wrap {max-width: 1200px; margin-inline: auto}
+.sh p, .sh h1, .sh h2, .sh h3 {margin: 0}
+.sh a {color: var(--sh-accent); text-underline-offset: .22em}
+.sh a:hover {text-decoration-thickness: 2px}
+.sh a:focus-visible, .sh summary:focus-visible {outline: 3px solid var(--sh-accent); outline-offset: 4px}
+.sh .sh-eyebrow {color: var(--sh-accent); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase}
+.sh .sh-hero {display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .8fr); gap: 40px; align-items: center; margin: 24px 0 40px}
+.sh h1 {font-size: clamp(32px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -.045em; font-weight: 650; max-width: 17ch}
+.sh .sh-intro {font-size: 20px; line-height: 1.5; color: var(--sh-muted); max-width: 48ch; margin-top: 22px}
+.sh .sh-actions {display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: center; margin-top: 26px}
+.sh .sh-primary {background: var(--sh-accent-dark); color: var(--sh-on-accent); padding: 12px 18px; border-radius: 12px; min-height: 48px; font-size: 15px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center}
+.sh .sh-secondary {font-size: 14px; padding-block: 12px}
+.sh .sh-process {border-top: 2px solid var(--sh-accent); padding: 20px 0 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center}
+.sh .sh-process > p {font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--sh-muted); margin-bottom: 18px}
+.sh .sh-flow {display: grid; gap: 10px; list-style: none; padding: 0; margin: 0}
+.sh .sh-flow li {display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: center; padding: 12px 14px; background: var(--sh-paper); border: 1px solid var(--sh-rule); border-radius: 6px; font-size: 15px}
+.sh .sh-flow span {font: 400 13px/1.5 "Martian Mono", "JetBrains Mono", monospace; color: var(--sh-accent)}
+.sh .sh-feature {background: var(--sh-feature); border-radius: var(--sh-radius); padding: 26px; margin-bottom: 36px}
+.sh .sh-feature-top {display: flex; gap: 16px; align-items: flex-start; justify-content: space-between}
+.sh .sh-feature h2 {font-size: 27px; line-height: 1.16; letter-spacing: -.025em; margin-top: 8px; font-weight: 650}
+.sh .sh-feature p.sh-purpose {color: var(--sh-muted); margin-top: 10px; max-width: 56ch}
+.sh .sh-status {display: inline-block; align-self: flex-start; font-size: 13px; line-height: 1.35; border: 1px solid var(--sh-rule); border-radius: 4px; padding: 4px 8px; color: var(--sh-muted); white-space: nowrap}
+.sh .sh-status-live {color: var(--sh-live); background: var(--sh-live-bg); border-color: var(--sh-live-border)}
+.sh .sh-feature details {margin-top: 16px}
+.sh .sh-family-link {display: inline-block; margin-top: 14px; font-size: 14px; font-weight: 600}
+.sh summary {cursor: pointer; min-height: 44px; padding-block: 10px; color: var(--sh-accent); font-weight: 600; font-size: 15px}
+.sh .sh-index-title {display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 18px}
+.sh .sh-index-title h2 {font-size: 23px; letter-spacing: -.02em; font-weight: 650}
+.sh .sh-index-title p {font-size: 13px; color: var(--sh-muted)}
+.sh .sh-family-grid {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 28px}
+.sh .sh-family {min-width: 0; padding: 20px 0 8px; border-top: 1px solid var(--sh-rule); scroll-margin-top: 20px}
+.sh .sh-family-head {display: flex; flex-direction: column; align-items: flex-start; gap: 8px}
+.sh .sh-family h3 {font-size: 21px; line-height: 1.25; letter-spacing: -.025em; font-weight: 650}
+.sh .sh-meta {font-size: 13px; color: var(--sh-muted)}
+.sh .sh-purpose {font-size: 15px; color: var(--sh-muted); margin-top: 10px; max-width: 60ch}
+.sh .sh-rows {list-style: none; margin: 8px 0 0; padding: 0}
+.sh .sh-row {display: flex; justify-content: space-between; gap: 16px; align-items: center; padding-block: 13px; border-top: 1px solid var(--sh-rule); min-height: 52px; font-size: 15px}
+.sh .sh-row > :first-child {min-width: 0}
+.sh .sh-row a {font-weight: 500}
+.sh .sh-row:has(a):hover {background: var(--sh-feature)}
+.sh .sh-scope {margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--sh-rule)}
+.sh .sh-scope h2 {font-size: 18px; font-weight: 650}
+.sh .sh-scope p {color: var(--sh-muted); font-size: 14px; margin-top: 8px; max-width: 85ch}
+.sh .sh-catalog-layout {display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 36px; margin-top: 30px}
+.sh .sh-family-nav {display: flex; flex-direction: column; align-items: flex-start; gap: 5px; border-top: 1px solid var(--sh-rule); padding-top: 12px}
+.sh .sh-family-nav a {padding: 10px 0; min-height: 44px; font-size: 14px; color: var(--sh-muted)}
+.sh[data-variant="catalog"] h1 {max-width: 24ch; font-size: clamp(30px, 4vw, 44px); margin-top: 22px}
+.sh[data-variant="catalog"] .sh-intro {font-size: 17px; margin-top: 14px}
+.sh[data-variant="catalog"] .sh-family {padding-top: 20px; margin-bottom: 24px}
+.sh[data-variant="catalog"] .sh-family-head {flex-direction: row; justify-content: space-between; gap: 16px}
+.sh[data-variant="catalog"] .sh-family h3 {font-size: 20px}
+@media (max-width: 720px) {
+  .sh .sh-hero {grid-template-columns: 1fr; gap: 28px; margin-bottom: 30px}
+  .sh .sh-process {max-width: none}
+  .sh .sh-family-grid, .sh .sh-catalog-layout {grid-template-columns: 1fr}
+  .sh .sh-catalog-layout {gap: 20px}
+  .sh .sh-family-nav {flex-direction: row; flex-wrap: wrap; gap: 0 20px}
+  .sh .sh-feature {padding: 20px}
+  .sh .sh-feature-top {flex-wrap: wrap}
+  .sh .sh-intro {font-size: 18px}
+  .sh .sh-row {flex-wrap: wrap; gap: 8px}
+  .sh .sh-row > :first-child {flex-basis: 100%}
+  .sh[data-variant="catalog"] .sh-family-head {flex-direction: column; gap: 6px}
+}
+@media print {.sh {padding: 0} .sh details:not([open]) > :not(summary) {display: block} .sh .sh-family, .sh .sh-feature {break-inside: avoid}}
