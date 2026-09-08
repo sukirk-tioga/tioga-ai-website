@@ -32,28 +32,33 @@ export default function TermsPage() {
           Terms of Service
         </div>
         <h1 className="text-4xl font-bold mb-4" style={{ color: "var(--text)" }}>Terms of Service</h1>
-        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-09-07</p>
+        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-09-08</p>
 
         <Section title="Agreement">
           <p>
             These terms govern your use of tioga.ai, including the live demos,
-            chat assistant, and contact form (the &ldquo;Site&rdquo;). By using
-            the Site, you agree to them. If you don&apos;t agree, don&apos;t
-            use the Site.
+            chat assistant, and contact form (the &ldquo;Site&rdquo;), operated
+            by Tioga AI LLC, a California limited liability company
+            (&ldquo;Tioga AI,&rdquo; &ldquo;we,&rdquo; or &ldquo;us&rdquo;). By
+            using the Site, you agree to them. If you don&apos;t agree,
+            don&apos;t use the Site.
+          </p>
+          <p>
+            These terms are governed by the laws of the State of California,
+            without regard to conflict-of-law principles.
           </p>
         </Section>
 
         <Section title="What this page doesn't cover yet">
           <p>
             Stated plainly rather than left implicit: this page does not yet
-            name the specific legal entity that operates this Site, specify
-            which state&apos;s law governs a dispute, or specify how a
-            dispute would be resolved. Those are real decisions that belong
-            with an attorney, and we&apos;d rather say so directly than guess
-            at an answer here that hasn&apos;t actually been reviewed. If any
-            of that matters for how you&apos;re using this Site — for
-            example, before referencing these Terms in a signed agreement —
-            email{" "}
+            specify how a dispute would be resolved — venue, arbitration vs.
+            court, class-action waivers, and similar mechanics. That&apos;s a
+            real decision that belongs with an attorney, and we&apos;d rather
+            say so directly than guess at an answer here that hasn&apos;t
+            actually been reviewed. If that matters for how you&apos;re using
+            this Site — for example, before referencing these Terms in a
+            signed agreement — email{" "}
             <a href="mailto:hello@tioga.ai" className="underline hover:text-[var(--text)] transition-colors">
               hello@tioga.ai
             </a>{" "}
