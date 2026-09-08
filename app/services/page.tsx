@@ -4,12 +4,12 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Three practices, sixteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance built for Oracle, SAP, and Salesforce environments.",
+    "Three practices, sixteen priced engagements — systems-led AI automation, agent layers for your existing systems, and AI governance, for businesses on QuickBooks, NetSuite, Salesforce, Oracle EBS, SAP, or something else.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Services — Tioga AI",
     description:
-      "Three practices, sixteen priced engagements — systems-led AI automation, ERP agent layers, and AI governance for Oracle, SAP, and Salesforce.",
+      "Three practices, sixteen priced engagements — systems-led AI automation, agent layers for your existing systems, and AI governance, whatever system of record you run.",
   },
 };
 
@@ -160,7 +160,7 @@ const PRACTICES: Practice[] = [
       },
       {
         name: "Standing Watch Build",
-        desc: "Implements the propose-and-approve gating layer and the behavioral probe harness in your environment, on your credentials and repositories — modeled directly on router-watch and security-watch's architecture. Tioga will not be a required runtime dependency.",
+        desc: "Implements the propose-and-approve gating layer and the behavioral probe harness in your environment, on your credentials and repositories — modeled directly on router-watch and security-watch's architecture. Tioga will not be a required runtime dependency. Ownership, operating responsibilities, and any ongoing support scope are defined before the build starts.",
         price: "$60–150K",
         duration: "8–16 weeks, scoped to estate breadth",
         href: "/solutions/standing-watch",
