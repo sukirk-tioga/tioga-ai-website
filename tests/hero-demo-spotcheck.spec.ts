@@ -51,6 +51,6 @@ test.describe("2026-08-08 hero demo widget (design review item #10)", () => {
   test("demo widget CTA links to the real live demo, not a dead end", async ({ page }) => {
     await page.goto("/");
     const link = page.getByRole("link", { name: /Run this yourself, with your own file or email/ });
-    await expect(link).toHaveAttribute("href", "/demos?tab=invoice");
+    await expect(link).toHaveAttribute("href", "/demos/ap-exception-workflow");
   });
 });

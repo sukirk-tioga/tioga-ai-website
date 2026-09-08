@@ -24,14 +24,14 @@ test.describe("2026-08-08 homepage design review changes", () => {
     await page.goto("/");
 
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "Every action your AI takes, on the record."
+      "AI agents, built and governed in your real systems."
     );
-    await expect(page.getByText(/No migration\./)).toBeVisible();
+    await expect(page.getByText(/principal responsible for the work/)).toBeVisible();
     await expect(page.getByText(/click the chat bubble/)).toHaveCount(0);
 
     // Exactly 2 CTAs in the hero now
     await expect(page.getByRole("link", { name: "Book a 20-minute fit call" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "See an AP agent run" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Start with the AI Fit Check — $1,500" })).toBeVisible();
 
     await page.screenshot({ path: "/tmp/redesign-hero-desktop.png", fullPage: false });
     expect(errors, `console errors: ${errors.join("; ")}`).toEqual([]);
