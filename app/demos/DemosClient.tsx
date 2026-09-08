@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import FileUpload from "@/components/FileUpload";
@@ -686,6 +686,19 @@ function DemosPageInner() {
 
   const activeDemo = DEMOS.find((d) => d.id === active)!;
 
+  // A ?tab= deep link (e.g. the homepage's "Run it yourself" link into
+  // /demos?tab=invoice) previously landed the visitor at the top of the
+  // page with the selected tool's input ~2,800px down, past several
+  // featured-demo cards. Scroll straight to it on arrival, once, only when
+  // the tab actually came from the URL (not from clicking a tab locally).
+  const activeDemoRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (tabParam && DEMOS.some((d) => d.id === tabParam)) {
+      activeDemoRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
 
@@ -1193,7 +1206,7 @@ function DemosPageInner() {
         </Link>
 
         {/* Demo selector */}
-        <div className="grid grid-cols-3 gap-3 mb-8">
+        <div className="grid grid-cols-3 gap-3 mb-8" style={{ scrollMarginTop: "110px" }} ref={activeDemoRef}>
           {DEMOS.map((demo) => (
             <button
               key={demo.id}

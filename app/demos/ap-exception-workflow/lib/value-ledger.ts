@@ -29,10 +29,15 @@ export const AI_PROCESSING_MINUTES = 0.03;
 // — a starting point to edit, never presented as a real client figure.
 export const DEFAULT_BASELINE_MINUTES = 14;
 export const DEFAULT_HOURLY_RATE_USD = 42;
+// Reviewing and approving an AI-prepared escalation still takes a human a
+// few minutes — not zero, and not the full baseline either. Only applied to
+// escalated actions; auto-approved ones need no human time at all.
+export const DEFAULT_HUMAN_REVIEW_MINUTES = 3;
 
 export interface ValueLedgerInputs {
   baselineMinutesPerAction: number;
   hourlyRateUsd: number;
+  humanReviewMinutesPerEscalation: number;
 }
 
 export interface ValueLedgerRow {
@@ -40,6 +45,11 @@ export interface ValueLedgerRow {
   volume: number;
   baselineMinutesPerAction: number;
   aiProcessingMinutes: number;
+  humanReviewMinutes: number;
+  /** Baseline minus AI time only — what's saved if nothing else is deducted. */
+  grossHoursSaved: number;
+  /** Gross minus human review time for escalated rows. This is the figure
+      the dollar value is based on, not grossHoursSaved. */
   hoursSaved: number;
 }
 
@@ -47,6 +57,7 @@ export interface ValueLedgerTotals {
   actionsProcessed: number;
   escalatedToHuman: number;
   blocked: number;
+  grossHoursSaved: number;
   hoursSaved: number;
   dollarValue: number;
 }
@@ -60,14 +71,17 @@ function isEscalatedRoute(e: LedgerEntry): boolean {
   return e.policyChecks.some((c) => c.name === "spend_cap" && c.route === "human_approval");
 }
 
-function mkRow(label: string, volume: number, inputs: ValueLedgerInputs): ValueLedgerRow {
-  const perActionMinutes = Math.max(0, inputs.baselineMinutesPerAction - AI_PROCESSING_MINUTES);
+function mkRow(label: string, volume: number, humanReviewMinutes: number, inputs: ValueLedgerInputs): ValueLedgerRow {
+  const grossMinutes = Math.max(0, inputs.baselineMinutesPerAction - AI_PROCESSING_MINUTES);
+  const netMinutes = Math.max(0, grossMinutes - humanReviewMinutes);
   return {
     label,
     volume,
     baselineMinutesPerAction: inputs.baselineMinutesPerAction,
     aiProcessingMinutes: AI_PROCESSING_MINUTES,
-    hoursSaved: (perActionMinutes * volume) / 60,
+    humanReviewMinutes,
+    grossHoursSaved: (grossMinutes * volume) / 60,
+    hoursSaved: (netMinutes * volume) / 60,
   };
 }
 
@@ -92,10 +106,11 @@ export function computeValueLedger(ledger: LedgerEntry[], inputs: ValueLedgerInp
   const blocked = proposals.filter((e) => e.decision === "blocked");
 
   const rows = [
-    mkRow("PO adjustment (auto-approved)", autoExecuted.length, inputs),
-    mkRow("PO adjustment (escalated → approved)", escalatedExecuted.length, inputs),
+    mkRow("PO adjustment (auto-approved)", autoExecuted.length, 0, inputs),
+    mkRow("PO adjustment (escalated → approved)", escalatedExecuted.length, inputs.humanReviewMinutesPerEscalation, inputs),
   ].filter((r) => r.volume > 0);
 
+  const grossHoursSaved = rows.reduce((s, r) => s + r.grossHoursSaved, 0);
   const hoursSaved = rows.reduce((s, r) => s + r.hoursSaved, 0);
   const dollarValue = hoursSaved * inputs.hourlyRateUsd;
 
@@ -105,6 +120,7 @@ export function computeValueLedger(ledger: LedgerEntry[], inputs: ValueLedgerInp
       actionsProcessed: proposals.length,
       escalatedToHuman: escalatedToHuman.length,
       blocked: blocked.length,
+      grossHoursSaved,
       hoursSaved,
       dollarValue,
     },
@@ -131,10 +147,10 @@ export function buildValueReportHtml(result: ValueLedgerResult, inputs: ValueLed
   const rowsHtml = rows.length
     ? rows
         .map(
-          (r) => `    <tr><td>${r.label}</td><td>${r.volume}</td><td>${r.baselineMinutesPerAction} min</td><td>~2s</td><td>${fmtHours(r.hoursSaved)}</td></tr>`
+          (r) => `    <tr><td>${r.label}</td><td>${r.volume}</td><td>${r.baselineMinutesPerAction} min</td><td>~2s</td><td>${r.humanReviewMinutes > 0 ? `~${r.humanReviewMinutes} min` : "— (no review)"}</td><td>${fmtHours(r.hoursSaved)}</td></tr>`
         )
         .join("\n")
-    : `    <tr><td colspan="5">No completed actions yet this session.</td></tr>`;
+    : `    <tr><td colspan="6">No completed actions yet this session.</td></tr>`;
 
   return `<!doctype html>
 <html lang="en">
@@ -190,11 +206,12 @@ export function buildValueReportHtml(result: ValueLedgerResult, inputs: ValueLed
     <tr><th>Generated</th><td>${generatedAt.toLocaleString()}</td></tr>
     <tr><th>Baseline time per exception</th><td>${inputs.baselineMinutesPerAction} min — <span class="assump">entered by you in this demo, not an industry average</span></td></tr>
     <tr><th>Loaded labor rate</th><td>${fmtUsd(inputs.hourlyRateUsd)}/hr — <span class="assump">entered by you in this demo, not a Tioga-picked figure</span></td></tr>
+    <tr><th>Human review time per escalation</th><td>${inputs.humanReviewMinutesPerEscalation} min — <span class="assump">entered by you in this demo — reviewing an AI-prepared escalation isn't zero effort</span></td></tr>
   </table>
 
   <h2>02 — This session's actions</h2>
   <table>
-    <tr><th>Action type</th><th>Volume</th><th>Baseline</th><th>AI time</th><th>Hours saved</th></tr>
+    <tr><th>Action type</th><th>Volume</th><th>Baseline</th><th>AI time</th><th>Human review</th><th>Net hrs saved</th></tr>
 ${rowsHtml}
   </table>
 
@@ -203,10 +220,11 @@ ${rowsHtml}
     <div class="stat"><div class="n">${totals.actionsProcessed}</div><div class="l">Actions processed</div></div>
     <div class="stat"><div class="n">${totals.escalatedToHuman} (${escalatedPct}%)</div><div class="l">Escalated to human</div></div>
     <div class="stat"><div class="n">${totals.blocked}</div><div class="l">Blocked by policy</div></div>
-    <div class="stat"><div class="n">${fmtHours(totals.hoursSaved)}</div><div class="l">Hours saved</div></div>
-    <div class="stat"><div class="n">${fmtUsd(totals.dollarValue)}</div><div class="l">Value this session</div></div>
+    <div class="stat"><div class="n">${fmtHours(totals.grossHoursSaved)}</div><div class="l">Gross time avoided</div></div>
+    <div class="stat"><div class="n">${fmtHours(totals.hoursSaved)}</div><div class="l">Net labor saved</div></div>
+    <div class="stat"><div class="n">${fmtUsd(totals.dollarValue)}</div><div class="l">Value this session (net)</div></div>
   </div>
-  <p class="assump">Escalated and blocked actions are counted here deliberately — the same "every decision is evidence, not just the successes" principle behind this demo's audit ledger. A report that only shows the wins isn't one a governance-minded buyer should trust.</p>
+  <p class="assump">"Gross time avoided" is baseline minus AI processing time only. "Net labor saved" subtracts the human review time spent on escalated actions — that's the figure the dollar value is based on. Escalated and blocked actions are counted here deliberately — the same "every decision is evidence, not just the successes" principle behind this demo's audit ledger. A report that only shows the wins isn't one a governance-minded buyer should trust.</p>
 
   <h2>04 — How this is calculated (so you can check it)</h2>
   <div class="card">
@@ -214,7 +232,8 @@ ${rowsHtml}
       <li><strong>Baseline time is whatever you entered above, not an industry average.</strong> In a real engagement this is captured from the client's own historical handle time during the discovery sprint.</li>
       <li><strong>Hourly rate is whatever you entered above.</strong> In a real engagement this is the client's own fully-loaded labor cost for the role being augmented — never a number Tioga picks.</li>
       <li><strong>Volume is a real count from this session's governance ledger</strong> — the same log used for the audit trail on this demo page — not a separate estimate.</li>
-      <li><strong>Hours saved = (baseline minutes − AI processing minutes) × volume ÷ 60.</strong> AI processing time is near-zero (~2s) at the latencies Tioga's own demo benchmarks show.</li>
+      <li><strong>Gross time avoided = (baseline minutes − AI processing minutes) × volume ÷ 60.</strong> AI processing time is near-zero (~2s) at the latencies Tioga's own demo benchmarks show.</li>
+      <li><strong>Net labor saved = gross time avoided − human review time</strong> for escalated actions. Auto-approved actions need no deduction. The dollar value reported is always based on net, not gross.</li>
       <li><strong>Blocked and rolled-back actions are excluded from the hours/value figure</strong> — nothing was completed on them, so no time was saved.</li>
     </ul>
   </div>

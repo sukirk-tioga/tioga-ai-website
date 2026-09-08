@@ -39,9 +39,9 @@ const content: SolutionContent = {
         "Every engagement extends your existing SAP investment, whether you're on ECC or S/4HANA — nothing here requires migrating to get AI capability.",
     },
     {
-      label: "Real systems, not sandboxes",
+      label: "Labeled, not oversold",
       detail:
-        "Every demo on this site runs against real (synthetic, clearly labeled) data through a genuine multi-turn agentic loop — not a scripted click-through.",
+        "Every demo on this site discloses what it actually runs — a live model call, a browser simulation, or a dated operational excerpt — not a scripted click-through dressed up as a live agent.",
     },
   ],
   offers: [

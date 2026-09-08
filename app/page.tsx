@@ -110,7 +110,7 @@ export default function HomePage() {
  className="text-lg italic max-w-xl mx-auto mb-2 leading-relaxed"
  style={{ color: "var(--text)", borderLeft: "2px solid var(--accent)", paddingLeft: "1rem" }}
  >
- &ldquo;See it running, not a slide about it. Every demo below executes against real agent infrastructure — the same governance controls, the same routing gateway, the same audit trail built for every engagement.&rdquo;
+ &ldquo;See it running, not a slide about it. Every demo below runs a real Claude model call on the file or text you provide — the same models built into every Tioga AI engagement. Each demo page discloses its own evidence type and how far it goes.&rdquo;
  </p>
  <TrackedCTA
  href="/samples/erp-agent-readiness-checklist.html"

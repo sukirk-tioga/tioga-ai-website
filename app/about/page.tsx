@@ -73,23 +73,34 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Disclosure: names the missing-credentials gap directly instead of
-            leaving it silently empty — same honesty mechanic as the
-            homepage's demo band and the Trust page's compliance-status
-            block. Added 2026-09-01 per the design canvas. */}
+        {/* Accountability: what verification looks like for a solo,
+            not-yet-named practice — direct engagement and demonstrated work
+            you can check yourself, not a bio you have to take on faith.
+            Replaces a prior block that dwelt on what's missing from this
+            page; the practice is still not naming individuals publicly at
+            this stage, but that's a framing choice, not something to
+            explain or apologize for. */}
         <div
           className="rounded-2xl p-6 mb-14 flex flex-col sm:flex-row gap-4"
           style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
         >
           <p className="text-xs font-mono uppercase tracking-wide shrink-0 sm:w-40" style={{ color: "var(--text-muted)" }}>
-            On verification
+            How this works
           </p>
           <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-            You&apos;ll notice what&apos;s missing from this page: a dated career timeline, a LinkedIn link, referenceable client names. I&apos;m still assembling the version of that record I&apos;m willing to publish — one where every line can be checked. Until it&apos;s verifiable, it doesn&apos;t go on the site. In the meantime, the demos and the Governance Ledger are the credentials I can prove today, and a{" "}
+            Every engagement is scoped, built, and delivered by the same
+            practice that runs the demos below — no handoff to a delivery
+            team, no account manager standing between you and the person
+            doing the work. Accountability runs through one channel:{" "}
+            <Link href="/contact" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+              Contact
+            </Link>
+            . A{" "}
             <Link href="/discovery-sprint" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               Discovery Sprint
             </Link>{" "}
-            is the fastest way to test the rest — or the{" "}
+            is the fastest way to test how this practice actually operates on
+            your own workflow — or the{" "}
             <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
               AI Fit Check
             </Link>{" "}

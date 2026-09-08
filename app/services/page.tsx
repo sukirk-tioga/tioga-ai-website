@@ -234,7 +234,7 @@ export default function ServicesPage() {
                     </div>
                     <div className="mt-5 pt-5" style={{ borderTop: "1px solid var(--border)" }}>
                       <Link
-                        href={offer.href ?? "/contact"}
+                        href={offer.href ?? `/contact?offer=${encodeURIComponent(offer.name)}`}
                         className="text-sm font-medium transition-colors hover:text-[var(--text)]"
                         style={{ color: "var(--accent)" }}
                       >

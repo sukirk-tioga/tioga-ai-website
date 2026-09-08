@@ -35,7 +35,8 @@
   .stat .num{color:var(--accent);font-size:26px;font-weight:700;}
   .stat .cap{color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-top:4px;}
   .stat .src{color:var(--text-muted);font-size:10.5px;margin-top:6px;}
-  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;}
+  table{width:100%;min-width:560px;border-collapse:collapse;margin:0;font-size:13px;}
   th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
   th{font-family:ui-monospace,monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);background:var(--bg-card);}
   .ladder{display:grid;gap:10px;margin:14px 0;}
@@ -108,14 +109,14 @@
   </div>
 
   <h2>03 — Mapping: running mechanism → enterprise capability</h2>
-  <table>
+  <div class="table-scroll"><table>
     <tr><th>Discipline</th><th>Tioga's running mechanism</th><th>Enterprise capability</th></tr>
     <tr><td>Qualify</td><td>Capability floors enforced at task-assignment time</td><td>A cheap or bundled agent can't silently absorb a quality-sensitive task</td></tr>
     <tr><td>Arbitrate</td><td>One cost basis across non-fungible budget types</td><td>Cross-vendor AI spend becomes an auditable decision, not a per-silo default</td></tr>
     <tr><td>Gate</td><td>Tiered autonomy, propose-and-approve only</td><td>Highest-blast-radius actions are structurally unreachable by automation</td></tr>
     <tr><td>Probe</td><td>The same behavioral check run identically everywhere</td><td>Closes the gap vendors admit exists across each other's closed platforms</td></tr>
     <tr><td>Track / Review</td><td>Aging findings ledger + fixed-cadence vendor reappraisal</td><td>Nothing clears silently; the estate stays current with a dated paper trail</td></tr>
-  </table>
+  </table></div>
 
   <h2>04 — The pain point, in citable numbers</h2>
   <div class="stat-grid">

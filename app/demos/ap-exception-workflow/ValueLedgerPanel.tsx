@@ -7,6 +7,7 @@ import {
   buildValueReportHtml,
   DEFAULT_BASELINE_MINUTES,
   DEFAULT_HOURLY_RATE_USD,
+  DEFAULT_HUMAN_REVIEW_MINUTES,
 } from "./lib/value-ledger";
 
 function fmtHours(n: number) {
@@ -24,23 +25,24 @@ function fmtUsd(n: number) {
 export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) {
   const [baselineMinutes, setBaselineMinutes] = useState(DEFAULT_BASELINE_MINUTES);
   const [hourlyRate, setHourlyRate] = useState(DEFAULT_HOURLY_RATE_USD);
+  const [humanReviewMinutes, setHumanReviewMinutes] = useState(DEFAULT_HUMAN_REVIEW_MINUTES);
+
+  const inputs = {
+    baselineMinutesPerAction: Number.isFinite(baselineMinutes) ? baselineMinutes : 0,
+    hourlyRateUsd: Number.isFinite(hourlyRate) ? hourlyRate : 0,
+    humanReviewMinutesPerEscalation: Number.isFinite(humanReviewMinutes) ? humanReviewMinutes : 0,
+  };
 
   const result = useMemo(
-    () =>
-      computeValueLedger(ledger, {
-        baselineMinutesPerAction: Number.isFinite(baselineMinutes) ? baselineMinutes : 0,
-        hourlyRateUsd: Number.isFinite(hourlyRate) ? hourlyRate : 0,
-      }),
-    [ledger, baselineMinutes, hourlyRate]
+    () => computeValueLedger(ledger, inputs),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [ledger, baselineMinutes, hourlyRate, humanReviewMinutes]
   );
 
   const { totals } = result;
 
   function exportReport() {
-    const html = buildValueReportHtml(result, {
-      baselineMinutesPerAction: Number.isFinite(baselineMinutes) ? baselineMinutes : 0,
-      hourlyRateUsd: Number.isFinite(hourlyRate) ? hourlyRate : 0,
-    });
+    const html = buildValueReportHtml(result, inputs);
     const blob = new Blob([html], { type: "text/html" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -107,6 +109,19 @@ export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) 
           />
           <span className="text-[11px] text-slate-500">Your own fully-loaded labor cost for this role.</span>
         </label>
+        <label className="flex-1 flex flex-col gap-1">
+          <span className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide">Human review minutes per escalation</span>
+          <input
+            type="number"
+            min={0}
+            step={1}
+            value={humanReviewMinutes}
+            onChange={(e) => setHumanReviewMinutes(e.target.valueAsNumber)}
+            className="px-3 py-2 rounded-lg text-sm"
+            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
+          />
+          <span className="text-[11px] text-slate-500">Reviewing an escalation isn&apos;t zero effort — only applied to escalated rows.</span>
+        </label>
       </div>
 
       {/* Live totals */}
@@ -127,7 +142,7 @@ export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) 
           <p className="text-lg font-bold font-mono" style={{ color: "var(--accent)" }}>
             {fmtHours(totals.hoursSaved)}
           </p>
-          <p className="text-[11px] text-[var(--text-muted)] mt-0.5">Hours saved</p>
+          <p className="text-[11px] text-[var(--text-muted)] mt-0.5">Net hrs saved</p>
         </div>
         <div className="p-3 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--accent)" }}>
           <p className="text-lg font-bold font-mono" style={{ color: "var(--accent)" }}>
@@ -140,7 +155,8 @@ export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) 
       <p className="text-[11px] text-slate-500">
         Only completed actions (auto-approved or escalated-then-approved) count toward hours/value — escalated and
         blocked actions are tallied above as evidence the governance layer works, not folded into the total. A
-        rolled-back action's hours are removed once reversed.
+        rolled-back action's hours are removed once reversed. Net hours saved already subtracts human review time
+        for escalated actions — see the exported report for the gross-vs-net breakdown per row.
       </p>
     </div>
   );
