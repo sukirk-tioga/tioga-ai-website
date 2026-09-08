@@ -154,15 +154,13 @@ export default function HomeHeroPinned() {
       <section className="pt-36 pb-12 px-6 max-w-5xl mx-auto text-center md:text-left relative z-0 overflow-hidden">
         <HeroFieldLoader flowAngleRef={flowAngleRef} />
         <h1 ref={headlineRef} className="text-5xl lg:text-7xl font-extrabold leading-[1.05] mb-6 tracking-tight text-balance opacity-0" style={{ color: "var(--text)" }}>
-          Resolve AP exceptions in{" "}
-          <span style={{ color: "var(--accent)" }}>Oracle EBS</span>{" "}
-          with controls your finance team can verify.
+          From idea to an AI agent running in your real systems — built, connected, and governed by the principal responsible for the work.
         </h1>
         <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto md:mx-0 mb-3 leading-relaxed">
-          I help finance and ERP teams assess and automate one exception workflow, inside the system you already run. I define what&apos;s permitted, who has to approve it, and the evidence you&apos;ll need before anything goes live.
+          Whether you run QuickBooks or Oracle EBS, an AI agent that touches your system of record needs a safe implementation: the right connection, clear controls, and evidence of what it did — who approved it, what it accessed, what it changed, and why. The depth of that work changes with the system and the risk; the standard doesn&apos;t.
         </p>
         <p className="text-sm text-[var(--text-muted)] max-w-xl mx-auto md:mx-0 mb-8">
-          Five-day discovery sprint, $5,000 flat — scoped to your AP exception workflow, credited toward what comes next.
+          Five-day discovery sprint, $5,000 flat — scoped to your workflow, credited toward what comes next.
         </p>
         <div className="flex flex-col items-center sm:flex-row gap-4 justify-center md:justify-start">
           <TrackedCTA
@@ -177,13 +175,13 @@ export default function HomeHeroPinned() {
             Book a 20-minute fit call
           </TrackedCTA>
           <TrackedCTA
-            href="/demos/ap-exception-workflow"
-            event="cta_view_demo"
+            href="/ai-fit-check"
+            event="cta_ai_fit_check"
             data={{ location: "hero" }}
             className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-[var(--text)]"
             style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
           >
-            See an AP agent run
+            Start with the AI Fit Check — $1,500
           </TrackedCTA>
         </div>
         <HeroDemo />

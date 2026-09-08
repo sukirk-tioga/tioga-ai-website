@@ -61,6 +61,47 @@ export default function HomePage() {
  </section>
  </ScrollReveal>
 
+ {/* Workflow examples — two evidence levels, not one shared "simulation"
+ label. This section exists specifically so a reader can't mistake an
+ illustrative smaller-business sketch for the shipped Oracle EBS demo:
+ each card carries its own explicit evidence-level label instead of a
+ generic badge both would otherwise share. */}
+ <ScrollReveal>
+ <section className="px-6 pb-16 max-w-5xl mx-auto">
+ <div className="text-center mb-8">
+ <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>What this looks like in practice</h2>
+ <p className="text-[var(--text-muted)] text-sm max-w-lg mx-auto">Two examples, two different levels of evidence — labeled as such.</p>
+ </div>
+ <div className="grid md:grid-cols-2 gap-6">
+ <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+ <span
+ className="inline-block mb-3 text-xs font-mono px-2 py-0.5 rounded-full"
+ style={{ color: "var(--text-muted)", background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+ >
+ Illustrative smaller-business workflow — not a shipped demo
+ </span>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+ A QuickBooks invoice workflow could check an invoice against the relevant purchase order and vendor terms, route exceptions to the owner, and record the approval reason before posting.
+ </p>
+ </div>
+ <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+ <span
+ className="inline-block mb-3 text-xs font-mono px-2 py-0.5 rounded-full"
+ style={{ color: "var(--accent)", background: "#C8340610", border: "1px solid #C8340625" }}
+ >
+ Shipped Oracle EBS demo — uses demo data, not a live client environment
+ </span>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+ A real Oracle EBS AP-exception flow: an exception is raised, checked against policy, routed for approval, and the outcome — and the reasoning behind it — is recorded.{" "}
+ <Link href="/demos/ap-exception-workflow" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
+ Run it yourself →
+ </Link>
+ </p>
+ </div>
+ </div>
+ </section>
+ </ScrollReveal>
+
  {/* Try It Live */}
  <ScrollReveal>
  <section className="py-4 px-6 max-w-5xl mx-auto">
@@ -366,7 +407,7 @@ export default function HomePage() {
  </div>
  <div className="mb-10 pb-8 text-center" style={{ borderBottom: "1px solid var(--border)" }}>
  <p className="text-sm max-w-2xl mx-auto leading-relaxed" style={{ color: "var(--text-body)" }}>
- Tioga AI is built by its founder, who spent decades on the operating side of enterprise systems — Oracle EBS, SAP, finance, HR, procurement — and the governance work that keeps those systems audit-ready. Every demo on this site, including the Governance Ledger above, is code the founder wrote and infrastructure the founder runs. No outsourced build, no slide deck.
+ Built by someone who has run finance, HR, and procurement operations from the inside for decades, including at enterprise scale on Oracle EBS and SAP. Every demo on this site, including the Governance Ledger above, is code the founder wrote and infrastructure the founder runs. No outsourced build, no slide deck.
  </p>
  </div>
  <div className="grid md:grid-cols-3 gap-6">
@@ -489,6 +530,12 @@ export default function HomePage() {
  Start with the{" "}
  <Link href="/ai-fit-check" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>AI Fit Check</Link>
  {" "}instead of the Discovery Sprint — one day, $1,500, fully remote, no system access required, built specifically to answer that question first.
+ </p>
+ </div>
+ <div className="p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+ <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>Do you only work with large enterprises?</h3>
+ <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+ No. Company size isn&apos;t the qualifier. The question is whether you have a real system of record that an AI agent would need to read from, write to, or influence — and whether that can be connected and controlled safely. That might be QuickBooks, NetSuite, Salesforce, Oracle EBS, SAP, or something else. Fit depends on the actual workflow, the access involved, and the controls it needs — not the size of the company asking.
  </p>
  </div>
  </div>
