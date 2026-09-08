@@ -701,8 +701,9 @@ function DemosPageInner() {
           </div>
           <h1 className="text-4xl font-bold mb-3" style={{ color: "var(--text)" }}>See My AI In Action</h1>
           <p className="text-[var(--text-muted)] max-w-xl mx-auto mb-3">
-            These run on real infrastructure — the same governance controls I deploy for clients, not a sandbox.
-            Try them with your own data.
+            Each demo below is labeled with its evidence type — a live model call on data you
+            provide, a browser simulation, or a dated operational excerpt. Try the model
+            demonstrations with your own data.
           </p>
           <p className="text-xs text-[var(--text-muted)] max-w-xl mx-auto">
             Files and text you submit here are sent to Claude to generate the result shown and are not stored by Tioga AI or used to train any model. See my{" "}

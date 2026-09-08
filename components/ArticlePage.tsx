@@ -61,7 +61,7 @@ export default function ArticlePage({ content }: { content: ArticleContent }) {
           style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
-          Targets: &ldquo;{content.query}&rdquo;
+          Article
         </div>
 
         <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight" style={{ color: "var(--text)" }}>{content.title}</h1>

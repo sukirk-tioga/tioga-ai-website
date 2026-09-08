@@ -69,7 +69,11 @@ export default function PrivacyPage() {
         <Section title="What we collect and why">
           <p>
             <strong style={{ color: "var(--text)" }}>Contact form.</strong> When you
-            submit the form on the homepage (name, company, email, project
+            submit the form on the{" "}
+            <a href="/contact" className="underline hover:text-[var(--text)] transition-colors">
+              Contact page
+            </a>{" "}
+            (name, company, email, project
             description), that text is sent to Anthropic&apos;s Claude API to
             classify the inquiry (urgency, service fit, suggested next step),
             and the submission plus that classification is emailed to Tioga
@@ -113,6 +117,14 @@ export default function PrivacyPage() {
             below) ever receives the address.
           </p>
           <p>
+            <strong style={{ color: "var(--text)" }}>Booking a call.</strong> "Book a
+            20-minute fit call" links open Cal.com, a third-party scheduling
+            service, in a new tab or embedded widget. Any name, email, and
+            scheduling details you provide there are collected and processed
+            by Cal.com directly, under its own privacy policy — not by this
+            Site. See Third Parties below.
+          </p>
+          <p>
             <strong style={{ color: "var(--text)" }}>Basic request metadata.</strong> To
             prevent abuse of the contact form and demo endpoints, we
             rate-limit by IP address. That count is held in server memory
@@ -154,6 +166,20 @@ export default function PrivacyPage() {
             <li>
               <strong style={{ color: "var(--text)" }}>Vercel</strong> — hosts this
               site and its serverless functions.
+            </li>
+            <li>
+              <strong style={{ color: "var(--text)" }}>Cal.com</strong> — processes
+              the name, email, and scheduling details you provide when you
+              book a fit call, per{" "}
+              <a
+                href="https://cal.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-[var(--text)] transition-colors"
+              >
+                Cal.com&apos;s own privacy policy
+              </a>
+              .
             </li>
           </ul>
         </Section>

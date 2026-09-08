@@ -19,15 +19,23 @@
   h2{font-size:17px;color:#fff;margin:34px 0 4px;padding-left:12px;border-left:3px solid var(--accent);}
   .section-note{color:var(--text-muted);font-size:13px;margin:0 0 14px;padding-left:15px;}
   .check-list{list-style:none;margin:8px 0;padding:0;color:var(--text-muted);}
-  .check-list li{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;}
-  .check-list input{margin-top:3px;flex:none;width:16px;height:16px;accent-color:var(--accent);}
+  .check-list li{padding:0;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;margin-bottom:10px;}
+  .check-list label{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;cursor:pointer;}
+  .check-list input{margin-top:3px;flex:none;width:16px;height:16px;accent-color:var(--accent);cursor:pointer;}
   .check-list strong{color:var(--text);}
+  .check-list li:has(input:checked){border-color:var(--success);}
+  .check-list li:has(input:checked) span{color:var(--text-muted);text-decoration:line-through;text-decoration-color:var(--border);}
   .card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0;}
+  .progress{color:#fff;}
+  .progress .num{color:var(--accent);font-weight:700;}
+  .reset-btn{background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer;margin-left:10px;}
+  .reset-btn:hover{border-color:var(--accent);color:var(--text);}
   .foot{margin-top:52px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);}
   @media print{
     body{background:#fff;color:#111;}
     .disclaimer{background:#fff8e6;color:#92610a;}
     .card,.check-list li{background:#fafafa;border-color:#ddd;}
+    .reset-btn{display:none;}
   }
 </style>
 </head>
@@ -36,61 +44,62 @@
   <div class="eyebrow">tioga.ai — free readiness checklist</div>
   <h1>ERP Agent-Readiness Checklist</h1>
   <p class="sub">22 questions across 6 areas — for a CIO, finance-transformation lead, or ERP owner sizing up whether an environment is actually ready for a governed AI agent, before scoping any engagement.</p>
-  <div class="disclaimer">This is a self-assessment tool, not an audit. Unchecked items aren't disqualifying — they're exactly what a discovery sprint scopes out before any build starts.</div>
+  <div class="disclaimer">This is a self-assessment tool, not an audit. Check off what applies as you go — your answers stay in this browser only, nothing is sent anywhere. Unchecked items aren't disqualifying — they're exactly what a discovery sprint scopes out before any build starts.</div>
 
   <h2>01 — System &amp; API surface</h2>
   <p class="section-note">Can an agent actually reach your system through a sanctioned path, or only the database underneath it?</p>
   <ul class="check-list">
-    <li><input type="checkbox" disabled> <span><strong>Known version and edition</strong> — e.g. Oracle EBS R12.2, SAP ECC vs. S/4HANA — confirmed, not assumed.</span></li>
-    <li><input type="checkbox" disabled> <span><strong>An application-logic API or BAPI layer exists</strong> for the target workflow (not just direct table access).</span></li>
-    <li><input type="checkbox" disabled> <span><strong>A non-production instance</strong> (test/sandbox) is available to build and validate against.</span></li>
-    <li><input type="checkbox" disabled> <span><strong>API rate limits and auth model</strong> for the relevant module are documented somewhere.</span></li>
+    <li><label><input type="checkbox" id="chk-1"> <span><strong>Known version and edition</strong> — e.g. Oracle EBS R12.2, SAP ECC vs. S/4HANA — confirmed, not assumed.</span></label></li>
+    <li><label><input type="checkbox" id="chk-2"> <span><strong>An application-logic API or BAPI layer exists</strong> for the target workflow (not just direct table access).</span></label></li>
+    <li><label><input type="checkbox" id="chk-3"> <span><strong>A non-production instance</strong> (test/sandbox) is available to build and validate against.</span></label></li>
+    <li><label><input type="checkbox" id="chk-4"> <span><strong>API rate limits and auth model</strong> for the relevant module are documented somewhere.</span></label></li>
   </ul>
 
   <h2>02 — Approval &amp; control workflows</h2>
   <p class="section-note">Every governed write needs a policy to enforce — most orgs already have one, just not written down in one place.</p>
   <ul class="check-list">
-    <li><input type="checkbox" disabled> <span><strong>A delegation-of-authority matrix exists</strong> — who can approve what, up to what dollar amount.</span></li>
-    <li><input type="checkbox" disabled> <span><strong>Escalation paths are defined</strong> for exceptions above the autonomous-approval threshold.</span></li>
-    <li><input type="checkbox" disabled> <span><strong>A named owner</strong> for the workflow's approval policy (not just "finance" in the abstract).</span></li>
-    <li><input type="checkbox" disabled> <span><strong>Current exception volume and type</strong> for the target workflow, from at least the last 90 days.</span></li>
+    <li><label><input type="checkbox" id="chk-5"> <span><strong>A delegation-of-authority matrix exists</strong> — who can approve what, up to what dollar amount.</span></label></li>
+    <li><label><input type="checkbox" id="chk-6"> <span><strong>Escalation paths are defined</strong> for exceptions above the autonomous-approval threshold.</span></label></li>
+    <li><label><input type="checkbox" id="chk-7"> <span><strong>A named owner</strong> for the workflow's approval policy (not just "finance" in the abstract).</span></label></li>
+    <li><label><input type="checkbox" id="chk-8"> <span><strong>Current exception volume and type</strong> for the target workflow, from at least the last 90 days.</span></label></li>
   </ul>
 
   <h2>03 — Compliance &amp; audit requirements</h2>
   <p class="section-note">Whatever framework applies, the agent's decision trail needs to be legible to it from day one.</p>
   <ul class="check-list">
-    <li><input type="checkbox" disabled> <span><strong>Applicable framework(s) identified</strong> — NIST AI RMF, ISO 42001, EU AI Act, SOX, or internal audit standard.</span></li>
-    <li><input type="checkbox" disabled> <span><strong>Evidence-retention requirements</strong> known (how long, what format, who reviews it).</span></li>
-    <li><input type="checkbox" disabled> <span><strong>Internal audit or compliance has been looped in</strong> before any agent touches a live write path.</span></li>
-    <li><input type="checkbox" disabled> <span><strong>A rollback/reversal requirement</strong> is explicit, not assumed to be "someone will fix it manually."</span></li>
+    <li><label><input type="checkbox" id="chk-9"> <span><strong>Applicable framework(s) identified</strong> — NIST AI RMF, ISO 42001, EU AI Act, SOX, or internal audit standard.</span></label></li>
+    <li><label><input type="checkbox" id="chk-10"> <span><strong>Evidence-retention requirements</strong> known (how long, what format, who reviews it).</span></label></li>
+    <li><label><input type="checkbox" id="chk-11"> <span><strong>Internal audit or compliance has been looped in</strong> before any agent touches a live write path.</span></label></li>
+    <li><label><input type="checkbox" id="chk-12"> <span><strong>A rollback/reversal requirement</strong> is explicit, not assumed to be "someone will fix it manually."</span></label></li>
   </ul>
 
   <h2>04 — Data quality</h2>
   <p class="section-note">A governed policy can't save a decision built on bad inputs.</p>
   <ul class="check-list">
-    <li><input type="checkbox" disabled> <span><strong>Master data</strong> (vendor, customer, chart of accounts) for the target workflow is reasonably current.</span></li>
-    <li><input type="checkbox" disabled> <span><strong>Known data-quality issues</strong> in this workflow are documented, not just "we know it's messy."</span></li>
-    <li><input type="checkbox" disabled> <span><strong>A sample of real (or realistically shaped) records</strong> can be shared for prototype-building under NDA.</span></li>
+    <li><label><input type="checkbox" id="chk-13"> <span><strong>Master data</strong> (vendor, customer, chart of accounts) for the target workflow is reasonably current.</span></label></li>
+    <li><label><input type="checkbox" id="chk-14"> <span><strong>Known data-quality issues</strong> in this workflow are documented, not just "we know it's messy."</span></label></li>
+    <li><label><input type="checkbox" id="chk-15"> <span><strong>A sample of real (or realistically shaped) records</strong> can be shared for prototype-building under NDA.</span></label></li>
   </ul>
 
   <h2>05 — Integration points</h2>
   <p class="section-note">Most exception workflows touch more than one system — worth mapping before scoping.</p>
   <ul class="check-list">
-    <li><input type="checkbox" disabled> <span><strong>Upstream/downstream systems</strong> for this workflow are identified (e.g. OCR/AP capture tool, bank file, CRM).</span></li>
-    <li><input type="checkbox" disabled> <span><strong>Existing middleware or iPaaS</strong> (MuleSoft, Boomi, etc.) that a governed agent would sit alongside is known.</span></li>
-    <li><input type="checkbox" disabled> <span><strong>No conflicting automation</strong> (RPA bots, legacy scripts) already writes to the same path unmonitored.</span></li>
+    <li><label><input type="checkbox" id="chk-16"> <span><strong>Upstream/downstream systems</strong> for this workflow are identified (e.g. OCR/AP capture tool, bank file, CRM).</span></label></li>
+    <li><label><input type="checkbox" id="chk-17"> <span><strong>Existing middleware or iPaaS</strong> (MuleSoft, Boomi, etc.) that a governed agent would sit alongside is known.</span></label></li>
+    <li><label><input type="checkbox" id="chk-18"> <span><strong>No conflicting automation</strong> (RPA bots, legacy scripts) already writes to the same path unmonitored.</span></label></li>
   </ul>
 
   <h2>06 — Organizational readiness</h2>
   <p class="section-note">The best governed write-path in the world doesn't matter if no one owns adopting it.</p>
   <ul class="check-list">
-    <li><input type="checkbox" disabled> <span><strong>An executive sponsor</strong> is willing to own the pilot's outcome, not just approve budget.</span></li>
-    <li><input type="checkbox" disabled> <span><strong>The team executing this workflow today</strong> has been part of scoping, not just informed after the fact.</span></li>
-    <li><input type="checkbox" disabled> <span><strong>Success criteria</strong> for a pilot are defined before it starts (hours reclaimed, error-rate change, cycle time).</span></li>
-    <li><input type="checkbox" disabled> <span><strong>A realistic decision timeline</strong> exists for moving from pilot to production if it works.</span></li>
+    <li><label><input type="checkbox" id="chk-19"> <span><strong>An executive sponsor</strong> is willing to own the pilot's outcome, not just approve budget.</span></label></li>
+    <li><label><input type="checkbox" id="chk-20"> <span><strong>The team executing this workflow today</strong> has been part of scoping, not just informed after the fact.</span></label></li>
+    <li><label><input type="checkbox" id="chk-21"> <span><strong>Success criteria</strong> for a pilot are defined before it starts (hours reclaimed, error-rate change, cycle time).</span></label></li>
+    <li><label><input type="checkbox" id="chk-22"> <span><strong>A realistic decision timeline</strong> exists for moving from pilot to production if it works.</span></label></li>
   </ul>
 
   <div class="card">
+    <p class="progress" style="margin:0 0 8px"><span class="num" id="progress-count">0</span> of 22 checked <button type="button" class="reset-btn" id="reset-btn">Reset</button></p>
     <strong style="color:#fff">Scoring this yourself:</strong> most orgs check 10–15 of these 22 on a first pass. That's normal — the gaps are exactly what a 5-day discovery sprint is scoped to close before any larger commitment, not a reason to wait. See a real example of the sprint's actual scope: <a href="/samples/discovery-sprint-scope.html" style="color:var(--accent)">sample discovery sprint document</a>, or watch the governed write-path pattern itself run live: <a href="/demos/ap-exception-workflow" style="color:var(--accent)">AP exception workflow demo</a>.
   </div>
 
@@ -98,5 +107,54 @@
     Tioga AI — governed AI automation for Oracle EBS, SAP, and other complex enterprise systems. This checklist is a free self-assessment tool, not an audit or a substitute for a scoped engagement.
   </div>
 </div>
+<script>
+(function () {
+  var STORAGE_KEY = "tioga-erp-readiness-checklist";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.check-list input[type="checkbox"]'));
+  var counter = document.getElementById("progress-count");
+  var resetBtn = document.getElementById("reset-btn");
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function save(state) {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      // localStorage unavailable (private browsing, disabled storage) -- state just won't persist across reloads.
+    }
+  }
+
+  function updateCount() {
+    var checked = boxes.filter(function (b) { return b.checked; }).length;
+    counter.textContent = String(checked);
+  }
+
+  var state = load();
+  boxes.forEach(function (box) {
+    if (state[box.id]) box.checked = true;
+    box.addEventListener("change", function () {
+      var next = load();
+      if (box.checked) next[box.id] = true;
+      else delete next[box.id];
+      save(next);
+      updateCount();
+    });
+  });
+  updateCount();
+
+  resetBtn.addEventListener("click", function () {
+    boxes.forEach(function (b) { b.checked = false; });
+    save({});
+    updateCount();
+  });
+})();
+</script>
 </body>
 </html>

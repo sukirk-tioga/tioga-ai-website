@@ -126,7 +126,7 @@ export default function HowWeDeliverPage() {
             <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               Every client engagement below is built to be executed under
               that same discipline going forward: Tioga sells one thing in
-              fifteen shapes — the connection between agent behavior,
+              sixteen shapes — the connection between agent behavior,
               governance evidence, and the enterprise transaction itself. An
               assessment sells that connection as a map. A pilot or
               write-path build sells it as running, evidenced software. A

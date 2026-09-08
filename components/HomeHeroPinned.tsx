@@ -157,7 +157,10 @@ export default function HomeHeroPinned() {
           AI agents, built and governed in your real systems.
         </h1>
         <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto md:mx-0 mb-3 leading-relaxed">
-          Built, connected, and governed by the principal responsible for the work — not handed off to a delivery team. Whether you run QuickBooks or Oracle EBS, an AI agent that touches your system of record needs a safe implementation: the right connection, clear controls, and evidence of what it did — who approved it, what it accessed, what it changed, and why. The depth of that work changes with the system and the risk; the standard doesn&apos;t.
+          Built and governed by the principal responsible for the work — not
+          handed off to a delivery team. Whether you run QuickBooks or Oracle
+          EBS, you get the right connection, clear controls, and evidence of
+          what it did.
         </p>
         <p className="text-sm text-[var(--text-muted)] max-w-xl mx-auto md:mx-0 mb-8">
           Five-day discovery sprint, $5,000 flat — scoped to your workflow, credited toward what comes next.
