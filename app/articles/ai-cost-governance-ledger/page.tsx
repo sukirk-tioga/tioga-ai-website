@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ArticlePage, { type ArticleContent } from "@/components/ArticlePage";
-import { TOTAL_CALLS, PAID_COUNT, FREE_COUNT, FREE_ZERO_COST_COUNT, FREE_ZERO_COST_PCT } from "@/lib/governance-ledger";
+import { TOTAL_CALLS, PAID_COUNT, FREE_COUNT, FREE_ZERO_COST_COUNT, FREE_ZERO_COST_PCT, TOTAL_SPEND } from "@/lib/governance-ledger";
 
 export const metadata: Metadata = {
   title: "What a Real AI Cost-Governance Ledger Looks Like",
@@ -28,7 +28,7 @@ const content: ArticleContent = {
       body: (
         <p>
           My own routing gateway has logged {TOTAL_CALLS} model calls in its
-          current window, spending $0.000958 against a $30 cap. The
+          current window, spending ${TOTAL_SPEND.toFixed(6)} against a $30 cap. The
           interesting number isn&apos;t the total — it&apos;s that only{" "}
           {PAID_COUNT} of those {TOTAL_CALLS} calls ever touched a paid
           backend ({FREE_COUNT} routed to a local or free tier instead, by

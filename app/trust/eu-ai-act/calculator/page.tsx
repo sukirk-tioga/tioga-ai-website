@@ -7,7 +7,8 @@ import Link from "next/link";
 // regulatory classification isn't something we're willing to let an LLM
 // improvise; this is authored logic against the Act's published risk tiers.
 
-type Tier = "none" | "prohibited" | "high" | "limited" | "minimal";
+type Tier = "none" | "prohibited" | "high" | "limited" | "minimal" | "unsure";
+type EuExposureAnswer = "yes" | "no" | "unsure" | null;
 
 const PROHIBITED_ITEMS = [
   { id: "social-scoring", label: "Social scoring of individuals by a public authority" },
@@ -35,11 +36,18 @@ const LIMITED_RISK_ITEMS = [
 
 const RESULTS: Record<Tier, { title: string; color: string; penalty: string; body: string; cta: { label: string; href: string } }> = {
   none: {
-    title: "Likely minimal exposure today",
+    title: "No EU exposure based on what you answered",
     color: "var(--success)",
     penalty: "—",
-    body: "Based on what you selected, you don't have EU exposure to worry about right now. That can change fast as AI usage grows inside an organization — worth revisiting if that's in motion.",
+    body: "You told us your organization doesn't deploy or provide AI systems used by people in the EU, so none of the Act's risk tiers apply right now. That can change fast as AI usage grows inside an organization — worth revisiting if that's in motion.",
     cta: { label: "See the full exposure breakdown →", href: "/trust/eu-ai-act" },
+  },
+  unsure: {
+    title: "Not enough information yet",
+    color: "var(--warning)",
+    penalty: "Unknown until you can answer with confidence",
+    body: "\"Not sure\" isn't the same as \"no\" — don't read this as a clean bill of health. Before ruling out EU exposure, check whether any AI system output reaches a person located in the EU, including indirectly through a vendor, a subsidiary, or a customer-facing product, regardless of where your company is based. Come back and answer Yes or No once you know.",
+    cta: { label: "See what counts as EU exposure →", href: "/trust/eu-ai-act" },
   },
   prohibited: {
     title: "This falls under prohibited practices",
@@ -90,7 +98,7 @@ function CheckItem({ checked, onChange, label }: { checked: boolean; onChange: (
 }
 
 export default function EUAIActCalculatorPage() {
-  const [euExposure, setEuExposure] = useState<boolean | null>(null);
+  const [euExposure, setEuExposure] = useState<EuExposureAnswer>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [gpai, setGpai] = useState(false);
 
@@ -103,15 +111,16 @@ export default function EUAIActCalculatorPage() {
   };
 
   const tier: Tier = useMemo(() => {
-    if (euExposure === false) return "none";
-    if (euExposure === null) return "none";
+    if (euExposure === "no") return "none";
+    if (euExposure === "unsure") return "unsure";
+    if (euExposure !== "yes") return "none";
     if (PROHIBITED_ITEMS.some((i) => selected.has(i.id))) return "prohibited";
     if (HIGH_RISK_ITEMS.some((i) => selected.has(i.id))) return "high";
     if (LIMITED_RISK_ITEMS.some((i) => selected.has(i.id))) return "limited";
     return "minimal";
   }, [euExposure, selected]);
 
-  const showQuestions = euExposure === true;
+  const showQuestions = euExposure === "yes";
   const result = RESULTS[tier];
 
   return (
@@ -150,18 +159,25 @@ export default function EUAIActCalculatorPage() {
               </p>
               <div className="flex gap-3">
                 <button
-                  onClick={() => setEuExposure(true)}
+                  onClick={() => setEuExposure("yes")}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === true ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === true ? "var(--accent)" : "var(--border)"}`, color: euExposure === true ? "var(--accent)" : "var(--text-muted)" }}
+                  style={{ background: euExposure === "yes" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "yes" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "yes" ? "var(--accent)" : "var(--text-muted)" }}
                 >
                   Yes
                 </button>
                 <button
-                  onClick={() => setEuExposure(false)}
+                  onClick={() => setEuExposure("no")}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === false ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === false ? "var(--accent)" : "var(--border)"}`, color: euExposure === false ? "var(--accent)" : "var(--text-muted)" }}
+                  style={{ background: euExposure === "no" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "no" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "no" ? "var(--accent)" : "var(--text-muted)" }}
                 >
-                  No / not sure
+                  No
+                </button>
+                <button
+                  onClick={() => setEuExposure("unsure")}
+                  className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
+                  style={{ background: euExposure === "unsure" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "unsure" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "unsure" ? "var(--accent)" : "var(--text-muted)" }}
+                >
+                  Not sure
                 </button>
               </div>
             </div>
@@ -228,7 +244,7 @@ export default function EUAIActCalculatorPage() {
                   <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>{result.penalty}</p>
                 </div>
                 <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-5">{result.body}</p>
-                {gpai && euExposure && (
+                {gpai && euExposure === "yes" && (
                   <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-5 p-3 rounded-lg" style={{ background: "var(--bg-dark)" }}>
                     You also flagged building your own model — that adds GPAI
                     provider obligations (documentation, copyright policy, and

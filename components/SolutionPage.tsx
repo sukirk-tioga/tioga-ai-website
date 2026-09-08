@@ -66,10 +66,10 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           {content.eyebrow}
         </div>
-        <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6 tracking-tight" style={{ color: "var(--text)" }}>
+        <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6 tracking-tight" style={{ color: "var(--text-on-dark)" }}>
           {content.title}
         </h1>
-        <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto mb-8 leading-relaxed">{content.problem}</p>
+        <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "var(--text-muted-on-dark)" }}>{content.problem}</p>
         <div className="flex flex-col items-center sm:flex-row gap-4 justify-center">
           <TrackedCTA
             href="/contact"
@@ -85,8 +85,8 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
               href={content.demoLink.href}
               event="cta_view_demo"
               data={{ location: `solutions_${content.slug}` }}
-              className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-[var(--text)]"
-              style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
+              className="px-8 py-3.5 rounded-xl font-semibold transition-all hover:opacity-90"
+              style={{ border: "1px solid var(--text-muted-on-dark)", color: "var(--text-on-dark)" }}
             >
               {content.demoLink.label}
             </TrackedCTA>

@@ -34,6 +34,18 @@
   --success-dark: #375C33;
   --violet: #7A5CA3;
   --blue: #3D7373;
+
+  /* Text tokens for content sitting directly on the Solutions hero's
+     persistent dark WebGL field (SolutionsFieldLoader) -- the one true-dark
+     surface left on an otherwise light editorial site. Don't reuse --text/
+     --text-muted there; those are tuned for the light --bg-dark surface. */
+  --text-on-dark: #F5F3EF;
+  --text-muted-on-dark: rgba(245, 243, 239, 0.72);
+  /* Matches SolutionsFieldScene's own uBg shader uniform (#05070C) -- used
+     as an explicit background for the no-WebGL/reduced-motion/pre-hydration
+     StaticGlow fallback in SolutionsFieldLoader, so --text-on-dark stays
+     readable even when the animated field itself never mounts. */
+  --bg-solutions-field: #05070C;
 }
 
 * {

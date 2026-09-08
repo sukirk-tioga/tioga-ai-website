@@ -68,7 +68,7 @@ const FUNCTIONS = [
   },
   {
     name: "MEASURE",
-    body: "Token volume, cost, and output quality are recorded on every call — unsampled, not a spot check run once a quarter.",
+    body: "Token volume and cost are recorded on every call — unsampled, not a spot check run once a quarter. Response quality is scored and attached where evaluated.",
   },
   {
     name: "MANAGE",

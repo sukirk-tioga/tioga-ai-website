@@ -94,10 +94,26 @@ export default function SolutionsFieldLoader() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mood.color, mood.colorDark, mood.panX, mood.panY, reducedMotion]);
 
-  if (!showField) return <StaticGlow color={staticColor} />;
+  if (!showField) {
+    // Same base color as SolutionsFieldScene's uBg shader uniform, applied
+    // explicitly here so pages using --text-on-dark/--text-muted-on-dark
+    // (tuned for that dark surface) stay readable in this no-WebGL /
+    // reduced-motion / pre-hydration fallback too, not just once the
+    // animated field mounts.
+    return (
+      <div className="fixed -z-10 inset-0 pointer-events-none" style={{ background: "var(--bg-solutions-field)" }}>
+        <StaticGlow color={staticColor} />
+      </div>
+    );
+  }
 
   return (
-    <div className="fixed -z-10 inset-0 pointer-events-none" data-testid="solutions-field-canvas">
+    // Same explicit background as the fallback branch above -- the WebGL
+    // <Canvas> itself has its own async startup (context creation, shader
+    // compile) before its first frame paints, and without a base color on
+    // this wrapper that gap showed the light page background through,
+    // making --text-on-dark briefly invisible right after mount.
+    <div className="fixed -z-10 inset-0 pointer-events-none" data-testid="solutions-field-canvas" style={{ background: "var(--bg-solutions-field)" }}>
       <SolutionsFieldScene
         onContextLost={() => setShowField(false)}
         onReady={(material) => {
