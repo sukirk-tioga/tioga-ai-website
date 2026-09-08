@@ -5,7 +5,7 @@ import { test, expect } from "@playwright/test";
 // <title>" SEO regression found during the 2026-07-27 audit.
 
 const PAGES = [
-  { path: "/", title: "Tioga AI — Governed AI Agents for Oracle and SAP" },
+  { path: "/", title: "Tioga AI — AI Agents, Built and Governed in Your Real Systems" },
   { path: "/services", title: "Services — Tioga AI" },
   { path: "/mcp", title: "MCP Integrations — Tioga AI" },
   { path: "/mcp/vs-custom-integration", title: "MCP vs. Custom Integration — Tioga AI" },
