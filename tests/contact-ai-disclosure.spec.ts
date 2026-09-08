@@ -41,7 +41,7 @@ for (const { name, size } of VIEWPORTS) {
     );
     await expect(disclosure).toBeVisible();
 
-    const trustLink = page.getByRole("link", { name: "how we use AI on this site" });
+    const trustLink = page.getByRole("link", { name: "how I use AI on this site" });
     await expect(trustLink).toBeVisible();
     await expect(trustLink).toHaveAttribute("href", "/trust#ai-use");
 
