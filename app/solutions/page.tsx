@@ -13,24 +13,27 @@ export const metadata: Metadata = {
   },
 };
 
-// Real solution-detail routes, mapped to the hub's workflow IDs only where
-// the mapping is genuinely 1:1 accurate. Left unmapped (renders as plain
-// text via the component's own honesty behavior):
-//  - "oracle-sap": names two systems (Oracle EBS and SAP) but only one
-//    URL is possible per workflow row — a single href here would
-//    misrepresent which system it points to. Both are still reachable via
-//    the "Browse by system" section below instead.
-//  - "sales-orders", "field-service", "erp-reporting": no live /solutions
-//    detail page exists for these yet.
-//  - "ledger", "oversight", "autonomy": each has a live /demos page but no
-//    dedicated /solutions detail page — mapping to a demo would blur the
-//    "solution page" destination this hub's link affordance implies.
+// Real destination for every "live" workflow, mapped to the hub's
+// workflow IDs. Prefers a dedicated /solutions detail page; falls back to
+// the matching /demos page where no /solutions page exists yet, so no
+// live entry dead-ends. Left unmapped (renders as plain text via the
+// component's own honesty behavior):
 //  - "hr-procurement", "salesforce": marked not-built; no destination.
 const LINKS: Record<string, string> = {
   "ap-exceptions": "/solutions/ap-automation",
   "write-paths": "/solutions/governed-write-path",
   "mcp": "/solutions/mcp-security",
   "watch": "/solutions/standing-watch",
+  "sales-orders": "/demos/capital-equipment-order",
+  "field-service": "/demos/field-service-classification",
+  "erp-reporting": "/demos/erp-reporting-copilot",
+  "ledger": "/demos/governance-ledger",
+  "oversight": "/demos/automation-oversight",
+  "autonomy": "/demos/agent-autonomy-mapper",
+  // Names two systems (Oracle EBS and SAP); a single href can't point to
+  // both accurately, so this jumps to the "Browse by system" section
+  // below instead of picking one system to misrepresent as "the" answer.
+  "oracle-sap": "/solutions#by-system-title",
 };
 
 // "AI Governance" is a real /solutions page but covers compliance programs

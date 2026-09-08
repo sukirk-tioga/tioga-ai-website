@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import "./solutions-hub.css";
+import ExploreCTA from "./ExploreCTA";
 
 type Workflow = { id: string; name: string; status: "live" | "not-built" };
 type Family = { id: string; shortName: string; name: string; purpose: string; workflows: Workflow[] };
@@ -89,13 +90,13 @@ export default function SolutionsHub({ variant = "editorial", id = "solutions", 
         <div className="sh-hero">
           <div><h1 id={`${id}-title`}>Find the right workflow for your business.</h1>
             <p className="sh-intro">Start with the problem. Explore workflows across your operations, systems, and AI oversight.</p>
-            <div className="sh-actions"><a className="sh-primary" href={`#${id}-index`}>Explore {totalLive} live workflows <span aria-hidden="true">&nbsp;↓</span></a><a className="sh-secondary" href={`#${id}-scope`}>See current scope</a></div>
+            <div className="sh-actions"><ExploreCTA targetId={`${id}-index`} label={`Explore ${totalLive} live workflows`} /><a className="sh-secondary" href={`#${id}-scope`}>See current scope</a></div>
           </div>
           <aside className="sh-process" aria-label="Illustrative workflow, not evidence of an implementation">
             <p>Illustrative workflow</p><ol className="sh-flow"><li><span>01</span>Business input</li><li><span>02</span>Review & control</li><li><span>03</span>Recorded action</li></ol>
           </aside>
         </div>
-        <div id={`${id}-index`}>
+        <div id={`${id}-index`} className="sh-index">
           <section className="sh-feature" id={`${id}-governance`} aria-labelledby={`${id}-gov-title`}>
             <div className="sh-feature-top"><div><p className="sh-eyebrow">Focus area</p><h2 id={`${id}-gov-title`}>{governance.name}</h2><p className="sh-purpose">{governance.purpose}</p></div><span className="sh-status sh-status-live">{countLabel(governance)}</span></div>
             <details><summary>Explore governance</summary><WorkflowRows family={governance} links={links}/></details>

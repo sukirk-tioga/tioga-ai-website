@@ -53,7 +53,7 @@
 .sh .sh-feature-top {display: flex; gap: 16px; align-items: flex-start; justify-content: space-between}
 .sh .sh-feature h2 {font-size: 27px; line-height: 1.16; letter-spacing: -.025em; margin-top: 8px; font-weight: 650}
 .sh .sh-feature p.sh-purpose {color: var(--sh-muted); margin-top: 10px; max-width: 56ch}
-.sh .sh-status {display: inline-block; align-self: flex-start; font-size: 13px; line-height: 1.35; border: 1px solid var(--sh-rule); border-radius: 4px; padding: 4px 8px; color: var(--sh-muted); white-space: nowrap}
+.sh .sh-status {display: inline-block; align-self: flex-start; font: 700 13px/1.35 var(--font-display), system-ui, sans-serif; letter-spacing: .02em; border: 1px solid var(--sh-rule); border-radius: 4px; padding: 4px 8px; color: var(--sh-muted); white-space: nowrap}
 .sh .sh-status-live {color: var(--sh-live); background: var(--sh-live-bg); border-color: var(--sh-live-border)}
 .sh .sh-feature details {margin-top: 16px}
 .sh .sh-family-link {display: inline-block; margin-top: 14px; font-size: 14px; font-weight: 600}
@@ -62,7 +62,8 @@
 .sh .sh-index-title h2 {font-size: 23px; letter-spacing: -.02em; font-weight: 650}
 .sh .sh-index-title p {font-size: 13px; color: var(--sh-muted)}
 .sh .sh-family-grid {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 28px}
-.sh .sh-family {min-width: 0; padding: 20px 0 8px; border-top: 1px solid var(--sh-rule); scroll-margin-top: 20px}
+.sh .sh-index {scroll-margin-top: 110px}
+.sh .sh-family {min-width: 0; padding: 20px 0 8px; border-top: 1px solid var(--sh-rule); scroll-margin-top: 110px}
 .sh .sh-family-head {display: flex; flex-direction: column; align-items: flex-start; gap: 8px}
 .sh .sh-family h3 {font-size: 21px; line-height: 1.25; letter-spacing: -.025em; font-weight: 650}
 .sh .sh-meta {font-size: 13px; color: var(--sh-muted)}
@@ -72,7 +73,7 @@
 .sh .sh-row > :first-child {min-width: 0}
 .sh .sh-row a {font-weight: 500}
 .sh .sh-row:has(a):hover {background: var(--sh-feature)}
-.sh .sh-scope {margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--sh-rule)}
+.sh .sh-scope {margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--sh-rule); scroll-margin-top: 110px}
 .sh .sh-scope h2 {font-size: 18px; font-weight: 650}
 .sh .sh-scope p {color: var(--sh-muted); font-size: 14px; margin-top: 8px; max-width: 85ch}
 .sh .sh-catalog-layout {display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 36px; margin-top: 30px}
@@ -97,3 +98,11 @@
   .sh[data-variant="catalog"] .sh-family-head {flex-direction: column; gap: 6px}
 }
 @media print {.sh {padding: 0} .sh details:not([open]) > :not(summary) {display: block} .sh .sh-family, .sh .sh-feature {break-inside: avoid}}
+
+/* Interface elements (workflow names, status labels, counts, controls) use
+   the heading's sans-serif family, matching every other page's h1-h6.
+   The serif body font stays for the editorial intro/purpose copy only. */
+.sh summary, .sh .sh-primary, .sh .sh-secondary, .sh .sh-family-link,
+.sh .sh-family-nav a, .sh .sh-meta, .sh .sh-row a, .sh .sh-row > span:first-child {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
