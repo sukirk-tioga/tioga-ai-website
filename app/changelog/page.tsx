@@ -28,6 +28,12 @@ interface Entry {
 // shipped unit of work into one entry. Dates are the day the unit landed.
 const ENTRIES: Entry[] = [
   {
+    date: "2026-09-09",
+    kind: "Content",
+    title: "Governance Ledger window refreshed — Jul 2026 excerpt replaced with a current Sep 8-9 window",
+    body: "The original ledger excerpt (captured Jul 17-25) had gone stale — a business-readiness audit finding flagged it needed either a longer window or a relabel. Refreshed it with a genuinely current window instead: 16 real calls from Sep 8-9, pulled from the same JARVIS gateway ledger, excluding the gateway's separate claude_max billing pool (personal Claude subscription spend stays private, unlike the shared $30/30-day OpenRouter pool this page documents). The underlying numbers moved a lot since July — real call volume has grown past what the free-tier backends alone can absorb, so this window is 15/16 paid versus the original's 15/17 free. Total spend is still a rounding error against the $30 cap. Reframed the copy on /demos/governance-ledger, /showcase, and /engineering/governance-ledger to tell that real story honestly rather than keep asserting the old free-tier-heavy framing against new data. STATS on the demo page now compute from the ledger data instead of being hand-typed, closing off the same class of drift this page's own G-11 fix (71%-vs-88% metric) already closed elsewhere.",
+  },
+  {
     date: "2026-09-02",
     kind: "Content",
     title: "Salesforce Governed Write-Path & Evidence Build added to /services",

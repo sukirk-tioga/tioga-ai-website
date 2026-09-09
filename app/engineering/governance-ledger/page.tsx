@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BenchmarkCard from "@/components/BenchmarkCard";
-import { TOTAL_CALLS, FREE_ZERO_COST_COUNT, FREE_ZERO_COST_PCT } from "@/lib/governance-ledger";
+import { TOTAL_CALLS, PAID_COUNT, FREE_ZERO_COST_COUNT, FREE_ZERO_COST_PCT } from "@/lib/governance-ledger";
 import { EvidenceTierTag } from "@/app/demos/_lib/evidence-tier";
 
 export const metadata: Metadata = {
@@ -42,20 +42,20 @@ export default function GovernanceLedgerWriteup() {
 
         <p className="text-sm text-slate-500 mb-4">
           Last reviewed{" "}
-          <time dateTime="2026-09-08">September 8, 2026</time>
+          <time dateTime="2026-09-09">September 9, 2026</time>
         </p>
         <EvidenceTierTag
           tier="internal-operational-excerpt"
-          detail="Real, dated excerpt from Tioga's own JARVIS routing gateway ledger — 17 logged calls, Jul 17–25, 2026, snapshot captured Jul 27, 2026."
+          detail="Real, dated excerpt from Tioga's own JARVIS routing gateway ledger — 16 logged calls, Sep 8–9, 2026, snapshot captured Sep 9, 2026."
         />
 
         <div className="space-y-10">
           <div>
             <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>A snapshot, not a ticker — on purpose</h2>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-              The 17-row ledger and the &quot;live gateway snapshot&quot; stats above
+              The 16-row ledger and the &quot;live gateway snapshot&quot; stats above
               it are hardcoded, dated, and captured at two different times
-              (the ledger rows span Jul 17–25, the snapshot is Jul 27) rather
+              (the ledger rows span Sep 8–9, the snapshot is Sep 9) rather
               than fetched from a live endpoint on page load. That&apos;s a
               deliberate tradeoff, not a shortcut: a public demo page that
               live-queries an internal cost/routing gateway is an unnecessary
@@ -90,19 +90,24 @@ export default function GovernanceLedgerWriteup() {
           <div>
             <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>What &quot;requested → served&quot; is actually showing</h2>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-              Most rows show a cheap model name requested (<code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>glm-flash</code>)
-              resolving to a different model actually serving it
-              (<code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>qwen/qwen3-8b</code>) at $0.000000 —
-              that&apos;s the routing policy working: local/free-tier backends
-              absorb calls before anything touches billed credit, and the
-              ledger records both the request and the resolution so that
-              substitution is auditable rather than invisible. {FREE_ZERO_COST_COUNT} of the {TOTAL_CALLS}
-              rows in this excerpt settled at exactly $0 for that reason — the
-              other 3 free-pool rows resolved to a Gemini backend that still
-              carries a fraction-of-a-cent cost, so they route free but aren&apos;t
-              zero-cost — consistent with the &quot;{FREE_ZERO_COST_PCT}%&quot; stat in the
-              strip above it, which is computed from the same rows, not
-              asserted separately.
+              This window looks different from the one this page originally
+              shipped with (captured Jul 2026), and that difference is the
+              point, not an embarrassment to hide. Back then, most calls
+              resolved to a free local/Google backend before touching billed
+              credit. By Sep 8–9, real call volume has grown past what those
+              free backends alone can absorb, so {PAID_COUNT} of the {TOTAL_CALLS} rows in this
+              window route to paid OpenRouter backends
+              (<code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>glm-5.2</code>,{" "}
+              <code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>gpt-terra</code>) —
+              only {FREE_ZERO_COST_COUNT} of {TOTAL_CALLS} ({FREE_ZERO_COST_PCT}%) still settle at exactly $0 in this
+              particular window. The mechanism hasn&apos;t changed: every
+              request still records what was requested and what actually
+              served it, and the routing policy still tries free/cheap
+              backends first — it&apos;s just that there&apos;s more real traffic
+              now than the free tier alone covers. Total spend for this
+              16-call window is still a rounding error against the $30 cap
+              (see the strip above), which is the actual claim this page
+              makes — not that free tier absorbs everything forever.
             </p>
           </div>
 
@@ -125,20 +130,21 @@ export default function GovernanceLedgerWriteup() {
 
           <BenchmarkCard
             data={{
-              date: "2026-07-27",
+              date: "2026-09-09",
               model: "No model call — static ledger excerpt (governance/observability data only)",
               dataSource:
                 "Real excerpt from Tioga AI's own JARVIS routing gateway ledger — not synthetic, not a demo dataset.",
-              sampleSize: "17 logged calls, unsampled (every call in the captured window, not a spot check)",
+              sampleSize: "16 logged calls, unsampled (every call in the captured window, not a spot check)",
               metrics: [
-                { label: "Calls logged", value: "17 (unsampled)" },
-                { label: "Free-tier resolution", value: `${FREE_ZERO_COST_COUNT}/${TOTAL_CALLS} calls (${FREE_ZERO_COST_PCT}%) settled at exactly $0 via local/free-tier routing` },
-                { label: "Ledger window", value: "Jul 17–25, 2026" },
-                { label: "Snapshot captured", value: "Jul 27, 2026" },
+                { label: "Calls logged", value: "16 (unsampled)" },
+                { label: "Free-tier resolution", value: `${FREE_ZERO_COST_COUNT}/${TOTAL_CALLS} calls (${FREE_ZERO_COST_PCT}%) settled at exactly $0 via local/free-tier routing this window` },
+                { label: "Ledger window", value: "Sep 8–9, 2026" },
+                { label: "Snapshot captured", value: "Sep 9, 2026" },
               ],
               limitations: [
                 "This is a fixed, dated snapshot, not a live feed — updated manually when the page is refreshed, not real-time.",
-                "17 calls is Tioga's own internal AI-operations volume in this window, not a claim about the scale a client engagement would produce.",
+                "16 calls is Tioga's own internal AI-operations volume in this window, not a claim about the scale a client engagement would produce.",
+                "Free-tier resolution varies by window with real call volume — an earlier Jul 2026 capture of this same ledger settled 12/17 (71%) at $0; this window settled fewer because volume grew past what the free backends absorb, not because the routing policy changed.",
                 "Demonstrates the pattern (governance data as a byproduct of routing infrastructure), not a benchmark of model accuracy or task performance — there's no task being scored here.",
               ],
             }}

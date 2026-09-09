@@ -5,7 +5,7 @@ import { TOTAL_CALLS, PAID_COUNT, FREE_COUNT, FREE_ZERO_COST_COUNT, FREE_ZERO_CO
 export const metadata: Metadata = {
   title: "What a Real AI Cost-Governance Ledger Looks Like",
   description:
-    `${FREE_ZERO_COST_PCT}% of my own model calls settle at exactly $0 before touching billed credit — real numbers from a live routing gateway, not a projected savings estimate.`,
+    `A live AI routing gateway logs, costs, and caps every model call automatically — real numbers, not a projected savings estimate, even as real usage growth shifts the free/paid mix window to window.`,
   alternates: { canonical: "/articles/ai-cost-governance-ledger" },
   openGraph: {
     type: "article",
@@ -28,16 +28,22 @@ const content: ArticleContent = {
       body: (
         <p>
           My own routing gateway has logged {TOTAL_CALLS} model calls in its
-          current window, spending ${TOTAL_SPEND.toFixed(6)} against a $30 cap. The
-          interesting number isn&apos;t the total — it&apos;s that only{" "}
-          {PAID_COUNT} of those {TOTAL_CALLS} calls ever touched a paid
-          backend ({FREE_COUNT} routed to a local or free tier instead, by
-          policy, not by luck). Of those {FREE_COUNT} free-pool calls,{" "}
-          {FREE_ZERO_COST_COUNT} settled at exactly $0 — the remaining few
-          resolved to a Gemini backend that still carries a
-          fraction-of-a-cent cost, so &quot;free-tier&quot; and &quot;$0&quot;
-          aren&apos;t quite the same claim: {FREE_ZERO_COST_PCT}% of all{" "}
-          {TOTAL_CALLS} calls settled at exactly $0.
+          current window, spending ${TOTAL_SPEND.toFixed(6)} against a $30
+          cap — still a rounding error. The interesting number isn&apos;t the
+          total, though; it&apos;s what happens to the free/paid split as
+          real usage grows. {PAID_COUNT} of those {TOTAL_CALLS} calls
+          resolved to a paid OpenRouter backend this window, versus{" "}
+          {FREE_COUNT} that stayed on a local or Google free tier — a very
+          different ratio from an earlier capture of this same ledger, when
+          the free tier absorbed most of the volume. The routing policy
+          hasn&apos;t changed: free and cheap backends are still tried
+          first, by policy, not by luck. What changed is that real call
+          volume has grown past what those backends alone can cover, so more
+          calls now resolve to paid credit before the $30 cap is ever at
+          risk. {FREE_ZERO_COST_COUNT} of {TOTAL_CALLS} calls in this window
+          settled at exactly $0 ({FREE_ZERO_COST_PCT}%) — worth naming
+          honestly rather than only ever citing whichever window&apos;s
+          numbers look best.
         </p>
       ),
     },

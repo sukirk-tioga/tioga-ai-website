@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DemoShell from "../_lib/demo-shell";
-import { LEDGER, STATS, LIVE_STATS, FUNCTIONS } from "../../../lib/governance-ledger";
+import { LEDGER, STATS, LIVE_STATS, FUNCTIONS, TOTAL_CALLS } from "../../../lib/governance-ledger";
 
 export const metadata: Metadata = {
   title: "Governance Ledger Demo — Tioga AI",
@@ -16,7 +16,8 @@ export const metadata: Metadata = {
 };
 
 // Real excerpt from Tioga's own AI routing gateway ledger (JARVIS), captured
-// 2026-07-26. Not synthetic — this is what the governed-write-path and
+// 2026-09-09 (refreshed from an earlier Jul 2026 capture). Not synthetic —
+// this is what the governed-write-path and
 // insurance-readiness offers are built on: every model call logged, costed,
 // budget-capped, and attributed as a byproduct of routing, not bolted on.
 //
@@ -43,7 +44,7 @@ export default function GovernanceLedgerPage() {
       description="Every model call my own AI infrastructure makes is logged, costed, budget-capped, and attributed — automatically, as a byproduct of how it routes work. This is a real excerpt from that ledger."
     >
       <p className="text-xs mb-6 -mt-4" style={{ color: "var(--text-muted-3)" }}>
-        Last updated: Jul 27, 2026 — real operational data, refreshed periodically, not a live-refreshing feed.
+        Last updated: Sep 9, 2026 — real operational data, refreshed periodically, not a live-refreshing feed.
       </p>
 
       {/* Stat strip */}
@@ -118,7 +119,7 @@ export default function GovernanceLedgerPage() {
       <div className="mt-8">
         <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Gateway snapshot</h2>
         <p className="text-xs text-[var(--text-muted)] mb-4">
-          Checked directly against the gateway&apos;s own status tool on Jul 27,
+          Checked directly against the gateway&apos;s own status tool on Sep 9,
           2026 — a separate, fresher check than the ledger rows above, not a
           live-refreshing counter on this page.
         </p>
@@ -153,7 +154,7 @@ export default function GovernanceLedgerPage() {
       {/* Showcase tie-in */}
       <div className="mt-8 p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div>
-          <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Same 17 rows, as an interactive 3D scene</p>
+          <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Same {TOTAL_CALLS} rows, as an interactive 3D scene</p>
           <p className="text-xs text-[var(--text-muted)] leading-relaxed max-w-md">
             The Gateway Corridor renders this exact ledger as a scene every call passes through —
             one governed checkpoint, three real backend destinations.

@@ -114,7 +114,7 @@ export default function ShowcasePage() {
         <h2 className="text-lg font-bold mb-4" style={{ color: "var(--text)" }}>What you&apos;re looking at</h2>
         <EvidenceTierTag
           tier="internal-operational-excerpt"
-          detail="Same dated Jul 17–25, 2026 governance-ledger excerpt as /demos/governance-ledger, rendered as a 3D scene instead of a table."
+          detail="Same dated Sep 8–9, 2026 governance-ledger excerpt as /demos/governance-ledger, rendered as a 3D scene instead of a table."
         />
         <div className="space-y-4 text-sm text-[var(--text-muted)] leading-relaxed">
           <p>
@@ -124,7 +124,7 @@ A GPU particle field on the left renders the same 17 real rows already live at{"
             </Link>
             , converging through a single glass gate and fanning out to three real backend
             destinations on the right. Every ribbon is one real call from Tioga&apos;s own AI
-            routing gateway, captured Jul 17–25, 2026 — nothing here was written for this page.
+            routing gateway, captured Sep 8–9, 2026 — nothing here was written for this page.
             Ribbon width is each row&apos;s real token count, not a decoration.
           </p>
           <p>
@@ -197,7 +197,7 @@ A GPU particle field on the left renders the same 17 real rows already live at{"
         <p className="text-sm text-[var(--text-muted)] leading-relaxed">
           React Three Fiber v9 (React 19 / Next 15) over the same typed{" "}
           <code className="font-mono text-xs">lib/governance-ledger.ts</code>{" "}
-          module the table page imports, so the two views can never drift. The 17-row table on
+          module the table page imports, so the two views can never drift. The 16-row table on
           the left is a real GPU particle field — the same rows rasterized to a texture and
           simulated with a compute shader (GPUComputationRenderer), not an image or a decoration.
           At the resolution this renders at, individual characters aren&apos;t crisply legible —

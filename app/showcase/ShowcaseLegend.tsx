@@ -33,7 +33,7 @@ export default function ShowcaseLegend() {
           <span className="font-mono">/demos/governance-ledger</span>, made of light instead of
           HTML. Ribbon width is each row&apos;s real token count — wider ribbons carried more
           tokens, not a decoration. Press Replay to watch each row&apos;s own particles detach and
-          travel the real, compressed Jul 17–25 timeline.
+          travel the real, compressed Sep 8–9 timeline.
         </p>
       </div>
       <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
