@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s — Tioga AI",
   },
   description:
-    "Tioga AI builds AI agents inside the systems you already run — from QuickBooks to Oracle EBS and SAP — with governance mapped to NIST AI RMF, ISO 42001, and the EU AI Act built in, not bolted on.",
+    "Tioga AI builds AI agents inside the systems you already run — from SAP and Oracle to Salesforce, Snowflake, and QuickBooks — with governance mapped to NIST AI RMF, ISO 42001, and the EU AI Act built in, not bolted on.",
   alternates: {
     canonical: "/",
   },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tioga AI — AI Agents, Built and Governed in Your Real Systems",
     description:
-      "Tioga AI builds AI agents inside the systems you already run — from QuickBooks to Oracle EBS and SAP — with governance mapped to NIST AI RMF, ISO 42001, and the EU AI Act built in, not bolted on.",
+      "Tioga AI builds AI agents inside the systems you already run — from SAP and Oracle to Salesforce, Snowflake, and QuickBooks — with governance mapped to NIST AI RMF, ISO 42001, and the EU AI Act built in, not bolted on.",
     url: "https://tioga.ai",
     siteName: "Tioga AI",
     type: "website",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tioga AI — AI Agents, Built and Governed in Your Real Systems",
     description:
-      "Tioga AI builds AI agents inside the systems you already run — from QuickBooks to Oracle EBS and SAP — with governance mapped to NIST AI RMF, ISO 42001, and the EU AI Act built in, not bolted on.",
+      "Tioga AI builds AI agents inside the systems you already run — from SAP and Oracle to Salesforce, Snowflake, and QuickBooks — with governance mapped to NIST AI RMF, ISO 42001, and the EU AI Act built in, not bolted on.",
   },
 };
 
@@ -69,7 +69,7 @@ export default function RootLayout({
     name: "Tioga AI",
     url: "https://tioga.ai",
     description:
-      "Tioga AI builds AI agents inside the systems businesses already run — from QuickBooks to Oracle EBS and SAP — with NIST AI RMF, ISO 42001, and EU AI Act governance built into the architecture.",
+      "Tioga AI builds AI agents inside the systems businesses already run — from SAP and Oracle to Salesforce, Snowflake, and QuickBooks — with NIST AI RMF, ISO 42001, and EU AI Act governance built into the architecture.",
     areaServed: "Global",
     knowsAbout: [
       "Oracle ERP",
