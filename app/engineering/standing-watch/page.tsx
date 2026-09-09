@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BenchmarkCard from "@/components/BenchmarkCard";
+import { EvidenceTierTag } from "@/app/demos/_lib/evidence-tier";
 
 export const metadata: Metadata = {
   title: "How I Built Standing Watch",
@@ -40,6 +41,15 @@ export default function StandingWatchWriteup() {
           the policy self-check I call <code className="text-xs px-1 py-0.5 rounded" style={{ background: "var(--bg-card)" }}>NEVER_COMPARE</code>)
           that generalize cleanly to an enterprise estate.
         </p>
+
+        <p className="text-sm text-slate-500 mb-4">
+          Last reviewed{" "}
+          <time dateTime="2026-09-08">September 8, 2026</time>
+        </p>
+        <EvidenceTierTag
+          tier="internal-operational-excerpt"
+          detail="Real, dated excerpts from Tioga's own router-watch and security-watch automations (Aug 10, 2026 run), redacted for hostnames/IPs — not synthetic, not a demo dataset."
+        />
 
         <div className="space-y-10">
           <div>

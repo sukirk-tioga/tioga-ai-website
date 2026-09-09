@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EvidenceTierTag } from "@/app/demos/_lib/evidence-tier";
 
 export const metadata: Metadata = {
   title: "How Tioga AI Delivers",
@@ -104,6 +105,15 @@ export default function HowWeDeliverPage() {
           under internally, with the process detail specific to that
           internal estate trimmed out.
         </p>
+
+        <p className="text-sm text-slate-500 mb-4">
+          Last reviewed{" "}
+          <time dateTime="2026-09-08">September 8, 2026</time>
+        </p>
+        <EvidenceTierTag
+          tier="internal-operational-excerpt"
+          detail="Describes Tioga's own internal delivery process and self-application practices (deny lists, evidence ledger, verification jobs) — methodology documentation, not a dated data excerpt; specifics (e.g. the 16-offer catalog) are verifiable on request, not exhibited as raw data here."
+        />
 
         <div className="space-y-10">
           {/* Philosophy */}

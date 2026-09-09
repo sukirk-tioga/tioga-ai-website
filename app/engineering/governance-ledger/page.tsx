@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BenchmarkCard from "@/components/BenchmarkCard";
 import { TOTAL_CALLS, FREE_ZERO_COST_COUNT, FREE_ZERO_COST_PCT } from "@/lib/governance-ledger";
+import { EvidenceTierTag } from "@/app/demos/_lib/evidence-tier";
 
 export const metadata: Metadata = {
   title: "How I Built the Governance Ledger Demo",
@@ -38,6 +39,15 @@ export default function GovernanceLedgerWriteup() {
           prompt; it&apos;s what the ledger had to look like for this page to
           be honest.
         </p>
+
+        <p className="text-sm text-slate-500 mb-4">
+          Last reviewed{" "}
+          <time dateTime="2026-09-08">September 8, 2026</time>
+        </p>
+        <EvidenceTierTag
+          tier="internal-operational-excerpt"
+          detail="Real, dated excerpt from Tioga's own JARVIS routing gateway ledger — 17 logged calls, Jul 17–25, 2026, snapshot captured Jul 27, 2026."
+        />
 
         <div className="space-y-10">
           <div>
