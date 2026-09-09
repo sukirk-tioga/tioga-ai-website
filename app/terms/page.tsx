@@ -69,11 +69,14 @@ export default function TermsPage() {
         <Section title="The demos are illustrative, not advice">
           <p>
             The invoice processing, email triage, document classification,
-            migration assessment, and governance ledger demos exist to show
-            how Tioga AI builds AI features against real systems. Outputs are
-            generated live by an AI model and are provided for evaluation
-            purposes only — they are not financial, legal, tax, accounting,
-            or compliance advice, and should not be relied on as such for any
+            and migration assessment demos exist to show how Tioga AI builds
+            AI features against real systems. Their outputs are generated
+            live by an AI model on the file or text you provide. The
+            governance ledger demo instead shows a dated excerpt from Tioga
+            AI&apos;s own operational history — it is not a live model call
+            on your input. Both kinds are provided for evaluation purposes
+            only — they are not financial, legal, tax, accounting, or
+            compliance advice, and should not be relied on as such for any
             real business decision. Don&apos;t submit information you rely on
             being accurate without independent verification.
           </p>

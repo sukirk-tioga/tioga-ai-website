@@ -47,6 +47,7 @@ const SUBPROCESSORS = [
   { name: "Anthropic", purpose: "Processes text submitted to demos, the chat widget, and contact-form classification, per Anthropic's own privacy policy." },
   { name: "Google (Gmail SMTP)", purpose: "Delivers contact-form notifications and optional demo-result emails — nothing beyond that." },
   { name: "Vercel", purpose: "Hosts this site and its serverless functions." },
+  { name: "Cal.com", purpose: "Processes the name, email, and scheduling details you provide when you book a fit call, per its own privacy policy." },
 ];
 
 const SECURITY_PRACTICES = [
@@ -250,9 +251,9 @@ export default function TrustPage() {
             tracking, no resale of anything you submit. The full breakdown,
             endpoint by endpoint, is in the{" "}
             <Link href="/privacy" className="underline hover:text-[var(--text)] transition-colors">Privacy Policy</Link>.
-            Exactly three external parties ever touch your data:
+            Exactly four external parties ever touch your data:
           </p>
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             {SUBPROCESSORS.map((s) => (
               <div key={s.name} className="p-5 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
                 <p className="text-sm font-semibold mb-1.5" style={{ color: "var(--text)" }}>{s.name}</p>
