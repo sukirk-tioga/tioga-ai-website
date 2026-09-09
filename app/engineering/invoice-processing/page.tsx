@@ -30,7 +30,7 @@ export default function InvoiceProcessingWriteup() {
         </h1>
         <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
           Pull structured data — vendor, line items, totals, due date — out of
-          an invoice in any format a finance team actually receives one in.
+          a PDF, Word doc, or plain text invoice with a real text layer.
           Not a formatted sample PDF; whatever gets forwarded to AP.
         </p>
 
@@ -42,7 +42,11 @@ export default function InvoiceProcessingWriteup() {
               docs, or plain email text pasted into a form. Most invoice-AI
               demos quietly assume the first case. Real AP inboxes get all of
               them, plus the occasional file that isn&apos;t actually an invoice
-              at all.
+              at all. <strong style={{ color: "var(--text)" }}>This demo currently
+              covers PDFs, DOCX, and plain text with a real text layer</strong> —
+              a scanned image with no embedded text (a photo, or a PDF that&apos;s
+              really just a picture) needs an OCR step this pipeline doesn&apos;t
+              run yet, and isn&apos;t demonstrated here.
             </p>
           </div>
 

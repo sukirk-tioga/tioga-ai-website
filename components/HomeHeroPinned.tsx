@@ -175,7 +175,7 @@ export default function HomeHeroPinned() {
             className="px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
             style={{ background: "var(--accent-dark)" }}
           >
-            Book a 20-minute fit call
+            Book a 20-minute intro call
           </TrackedCTA>
           <TrackedCTA
             href="/ai-fit-check"

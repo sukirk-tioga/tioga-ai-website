@@ -47,7 +47,7 @@ const SUBPROCESSORS = [
   { name: "Anthropic", purpose: "Processes text submitted to demos, the chat widget, and contact-form classification, per Anthropic's own privacy policy." },
   { name: "Google (Gmail SMTP)", purpose: "Delivers contact-form notifications and optional demo-result emails — nothing beyond that." },
   { name: "Vercel", purpose: "Hosts this site and its serverless functions." },
-  { name: "Cal.com", purpose: "Processes the name, email, and scheduling details you provide when you book a fit call, per its own privacy policy." },
+  { name: "Cal.com", purpose: "Processes the name, email, and scheduling details you provide when you book an intro call, per its own privacy policy." },
 ];
 
 const SECURITY_PRACTICES = [

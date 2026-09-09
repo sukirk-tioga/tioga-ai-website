@@ -118,7 +118,7 @@ export default function PrivacyPage() {
           </p>
           <p>
             <strong style={{ color: "var(--text)" }}>Booking a call.</strong> "Book a
-            20-minute fit call" links open Cal.com, a third-party scheduling
+            20-minute intro call" links open Cal.com, a third-party scheduling
             service, in a new tab or embedded widget. Any name, email, and
             scheduling details you provide there are collected and processed
             by Cal.com directly, under its own privacy policy — not by this
@@ -170,7 +170,7 @@ export default function PrivacyPage() {
             <li>
               <strong style={{ color: "var(--text)" }}>Cal.com</strong> — processes
               the name, email, and scheduling details you provide when you
-              book a fit call, per{" "}
+              book an intro call, per{" "}
               <a
                 href="https://cal.com/privacy"
                 target="_blank"

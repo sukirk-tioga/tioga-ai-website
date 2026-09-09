@@ -131,7 +131,7 @@ export default function HomePage() {
  Live in my environment — demo data
  </div>
  <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>Try It Right Now</h2>
- <p className="text-[var(--text-muted)] max-w-lg mx-auto text-sm">Four real AI workflows. No signup. No mockups. The same Claude models built into every Tioga AI engagement.</p>
+ <p className="text-[var(--text-muted)] max-w-lg mx-auto text-sm">No signup, no mockups — try model-powered tools and inspect real operational evidence. Each card below states its own operating mode.</p>
  </div>
  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
  {[
@@ -166,7 +166,7 @@ export default function HomePage() {
  {
  icon: "🛡️",
  title: "Standing Watch",
- desc: "Real, dated findings from Tioga's own governance automations — what got auto-fixed, and what it correctly left for a human.",
+ desc: "Real, dated findings from Tioga's own governance automations — what was found, reviewed, and fixed by hand. Propose-only by design: nothing here writes to live config on its own.",
  tag: "AI Governance",
  href: "/demos/standing-watch"
  },

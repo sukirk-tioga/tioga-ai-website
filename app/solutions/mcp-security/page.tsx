@@ -19,7 +19,7 @@ const content: SolutionContent = {
   buyer:
     "Security and compliance reviewers evaluating an MCP-based AI integration who need to know what's actually enforced — not just what protocol it technically supports.",
   problem:
-    "MCP standardizes how an agent talks to a tool. It says nothing about who's allowed to call what, what gets logged, or what happens when an agent asks for something it shouldn't have. Vendors selling \"MCP integration\" rarely address any of that.",
+    "MCP standardizes how an agent talks to a tool, and its own spec does define an OAuth-based authorization flow — but that flow is optional, many servers skip it, and even a compliant one only answers \"can this client reach this server,\" not \"should this specific action be approved\" or \"log this decision.\" Tool-level permissions, call-level audit logging, and approval policy still have to be built around it. Vendors selling \"MCP integration\" rarely address any of that.",
   outcome:
     "An MCP integration with scoped permissions per tool, call-level audit logging, and policy enforcement — reviewed the way your security team actually reviews a system, not glossed over as \"it's just an API.\"",
   proof: [
@@ -61,7 +61,7 @@ const content: SolutionContent = {
   faq: [
     {
       q: "Is MCP itself secure?",
-      a: "MCP is a protocol for how an agent talks to a tool — it doesn't define authentication, authorization, or audit logging for you. Those have to be built around it, which is exactly what this engagement scopes.",
+      a: "MCP's spec defines an optional, OAuth-based authorization flow — but it stops at whether a client can reach a server at all. It doesn't give you tool-level business permissions or call-level audit logging. Those have to be built around it, which is exactly what this engagement scopes.",
     },
     {
       q: "What does \"scoped permissions\" mean in practice?",
