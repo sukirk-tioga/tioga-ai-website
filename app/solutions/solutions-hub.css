@@ -96,6 +96,12 @@
   .sh .sh-row {flex-wrap: wrap; gap: 8px}
   .sh .sh-row > :first-child {flex-basis: 100%}
   .sh[data-variant="catalog"] .sh-family-head {flex-direction: column; gap: 6px}
+  /* Reserve clearance so body copy never wraps under the fixed chat
+     launcher (bottom-right, ~4rem footprint on narrow viewports) — the
+     ch-based max-width on these paragraphs scales with zoom/font-size, so
+     on a narrow viewport (real mobile, or desktop at high zoom) it can
+     reach full viewport width with no margin left for the launcher. */
+  .sh .sh-intro, .sh .sh-purpose {padding-right: 4.5rem}
 }
 @media print {.sh {padding: 0} .sh details:not([open]) > :not(summary) {display: block} .sh .sh-family, .sh .sh-feature {break-inside: avoid}}
 
