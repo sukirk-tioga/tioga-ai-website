@@ -528,7 +528,7 @@ export default function MCPPage() {
  and Claude can query SAP, Salesforce and more in plain English.
  </p>
  <div className="flex flex-wrap gap-3 justify-center text-sm text-[var(--text-muted)]">
- {["Open standard by Anthropic", "Works with any MCP-capable client", "Enterprise-grade security", "Built on Anthropic's MCP spec"].map((f) => (
+ {["Open standard by Anthropic", "Works with any MCP-capable client", "Auth & controls built in per system", "Built on Anthropic's MCP spec"].map((f) => (
  <span key={f} className="flex items-center gap-1.5">
  <span style={{ color: "var(--accent)" }}>✓</span> {f}
  </span>
