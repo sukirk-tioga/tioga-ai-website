@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/demos" },
   openGraph: {
     title: "Live AI Demos — Tioga AI",
-    description: "Four real AI workflows, no signup, no mockups — the same models built into every Tioga AI engagement.",
+    description: "Four real AI workflows, no signup, no mockups — a mix of live model calls, browser simulations, and dated operational excerpts, the same models and evidence built into every Tioga AI engagement.",
   },
 };
 
