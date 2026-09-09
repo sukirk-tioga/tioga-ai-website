@@ -15,6 +15,31 @@ export const metadata: Metadata = {
   },
 };
 
+// Evidence trio (2026-09-08 design review, ~/Downloads/tioga-final-visual-
+// and-ai-showcase-review.pdf, "09 / Expertise without founder identity"):
+// Demonstration / Delivery artifact / Evaluation, applied to this one
+// currently-thin offer page per that decision — not a rollout to every
+// offer. Written honestly for what the Fit Check actually is: a
+// human-delivered interview-and-document-review engagement with no live
+// software demo and, pre-launch, no completed engagement to cite a track
+// record from yet.
+const EVIDENCE_TRIO = [
+  {
+    title: "Demonstration",
+    body: "This is an interview-and-document-review engagement, not software — there's no live tool call to run or output to inspect the way there is on a /demos page. What's inspectable instead: the exact three readiness criteria the go/no-go call is scored against (stated above), and the go/no-go reasoning format the readout below follows.",
+  },
+  {
+    title: "Delivery artifact",
+    body: "The Fit Check doesn't have its own public sample readout yet. The closest real artifact is the Discovery Sprint's scope document — see the format and rigor bar the Fit Check's shorter, 1-2 page readout follows, not a claim that the two documents are identical.",
+    href: "/samples/discovery-sprint-scope.html",
+    linkLabel: "See the Discovery Sprint scope sample →",
+  },
+  {
+    title: "Evaluation",
+    body: "Tioga AI is a pre-launch, solo-founder practice — there's no completed Fit Check yet to report a track record from. Stated limitation: the go/no-go call is one practitioner's judgment against the three named criteria, not a benchmarked or peer-reviewed instrument.",
+  },
+];
+
 const DELIVERABLES = [
   {
     title: "A go / no-go on proceeding to a Discovery Sprint",
@@ -110,6 +135,34 @@ export default function AiFitCheckPage() {
               about whether they&apos;re ready for a five-day Sprint that
               needs far more from them.
             </p>
+          </div>
+
+          {/* Evidence trio — Demonstration / Delivery artifact / Evaluation */}
+          <div>
+            <h2 className="text-xl font-bold mb-4" style={{ color: "var(--text)" }}>Why this is real, not a pitch deck</h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              {EVIDENCE_TRIO.map((item) => (
+                <div
+                  key={item.title}
+                  className="p-5 rounded-xl"
+                  style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+                >
+                  <p className="text-sm font-semibold mb-1.5" style={{ color: "var(--text)" }}>{item.title}</p>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">{item.body}</p>
+                  {item.href && (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block mt-3 text-xs underline underline-offset-2 transition-colors hover:text-[var(--text)]"
+                      style={{ color: "var(--accent)" }}
+                    >
+                      {item.linkLabel}
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* What happens at the end */}

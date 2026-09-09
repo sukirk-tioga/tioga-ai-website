@@ -3,6 +3,8 @@ import TrackedCTA from "@/components/TrackedCTA";
 import HomeHeroPinned from "@/components/HomeHeroPinned";
 import ScrollReveal from "@/components/ScrollReveal";
 import GovernanceLedgerPreview from "@/components/GovernanceLedgerPreview";
+import OfferChooser from "@/components/OfferChooser";
+import { EvidenceTierTag } from "@/app/demos/_lib/evidence-tier";
 import { CAL_LINK } from "@/lib/site-config";
 
 export default function HomePage() {
@@ -15,6 +17,13 @@ export default function HomePage() {
  hardcoded sprint copy — see that component for the honesty-rule
  dated label this requires. */}
  <HomeHeroPinned />
+
+ {/* Offer chooser — two entry points, prominently placed right after the
+ hero, with a link out to the full sixteen-offer catalog. See
+ components/OfferChooser.tsx for why this exists. */}
+ <ScrollReveal>
+ <OfferChooser />
+ </ScrollReveal>
 
  {/* Frameworks strip — still intentionally secondary to the systems-led hero
  (per the 2026-08-04 positioning decision), just legible now: was
@@ -63,9 +72,13 @@ export default function HomePage() {
 
  {/* Workflow examples — two evidence levels, not one shared "simulation"
  label. This section exists specifically so a reader can't mistake an
- illustrative smaller-business sketch for the shipped Oracle EBS demo:
- each card carries its own explicit evidence-level label instead of a
- generic badge both would otherwise share. */}
+ illustrative smaller-business sketch for the shipped Oracle EBS demo.
+ The right card now carries the site's real four-tier EvidenceTierTag
+ (same component every /demos page uses) instead of its own ad-hoc
+ badge. The left card stays on its own plain label deliberately — it's
+ a hypothetical sketch with no demo or code behind it, so none of the
+ four evidence tiers (all of which describe a real artifact) accurately
+ applies to it. */}
  <ScrollReveal>
  <section className="px-6 pb-16 max-w-5xl mx-auto">
  <div className="text-center mb-8">
@@ -85,12 +98,10 @@ export default function HomePage() {
  </p>
  </div>
  <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
- <span
- className="inline-block mb-3 text-xs font-mono px-2 py-0.5 rounded-full"
- style={{ color: "var(--accent)", background: "#C8340610", border: "1px solid #C8340625" }}
- >
- Shipped Oracle EBS demo — uses demo data, not a live client environment
- </span>
+ <EvidenceTierTag
+ tier="browser-simulation"
+ detail="Shipped Oracle EBS demo — synthetic records, no live client environment. Same tier as the demo page itself."
+ />
  <p className="text-sm text-[var(--text-muted)] leading-relaxed">
  A real Oracle EBS AP-exception flow: an exception is raised, checked against policy, routed for approval, and the outcome — and the reasoning behind it — is recorded.{" "}
  <Link href="/demos/ap-exception-workflow" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>

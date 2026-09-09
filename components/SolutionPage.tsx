@@ -28,6 +28,17 @@ interface WhyNotPlatformContent {
   paragraphs: string[];
 }
 
+interface InputsAndSystemsItem {
+  label: string;
+  detail: string;
+}
+
+interface WorkflowStep {
+  step: string;
+  title: string;
+  detail: string;
+}
+
 export interface SolutionContent {
   slug: string;
   eyebrow: string;
@@ -48,6 +59,17 @@ export interface SolutionContent {
       Salesforce hosted MCP servers). Optional so pages that don't need it
       (most solution pages) are unaffected. */
   whyNotPlatform?: WhyNotPlatformContent;
+  /** Sections 2 and 3 of the six-section solution-page template from the
+      2026-09-08 design review (~/Downloads/tioga-final-visual-and-ai-
+      showcase-review.pdf, "05 / Solutions and detail templates"): "Inputs
+      and systems" (what comes in, systems in scope, prerequisite access,
+      sandbox vs. production) and "The workflow" (input > proposed action >
+      policy/approval > execution boundary > verified result). Both
+      optional and rendered only when a page's content supplies them, per
+      the 2026-09-08 decision to apply the template to exactly one
+      currently-thin solution page, not roll it out to every page. */
+  inputsAndSystems?: InputsAndSystemsItem[];
+  workflowSteps?: WorkflowStep[];
 }
 
 export default function SolutionPage({ content }: { content: SolutionContent }) {
@@ -117,6 +139,43 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
       {/* Optional visual (e.g. an estate diagram) */}
       {content.visual && (
         <section className="px-6 pb-16 max-w-4xl mx-auto">{content.visual}</section>
+      )}
+
+      {/* Inputs and systems (optional, section 2 of the six-section template) */}
+      {content.inputsAndSystems && (
+        <section className="px-6 pb-16 max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Inputs and systems</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {content.inputsAndSystems.map((item) => (
+              <div
+                key={item.label}
+                className="p-5 rounded-xl"
+                style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+              >
+                <p className="text-sm font-semibold mb-1.5" style={{ color: "var(--text)" }}>{item.label}</p>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* The workflow (optional, section 3 of the six-section template) */}
+      {content.workflowSteps && (
+        <section className="px-6 pb-16 max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>The workflow</h2>
+          <div className="space-y-3">
+            {content.workflowSteps.map((s, i) => (
+              <div key={s.step} className="flex gap-5 p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+                <div className="text-xl font-bold font-mono shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>{String(i + 1).padStart(2, "0")}</div>
+                <div>
+                  <h3 className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>{s.step}: {s.title}</h3>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">{s.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
 
       {/* Proof */}

@@ -381,9 +381,6 @@ export default function ApExceptionWorkflowPage() {
         </div>
       </div>
 
-      {/* Value ledger — live hours/$ rollup of this session's actions */}
-      <ValueLedgerPanel ledger={ledger} />
-
       {/* Propose panel */}
       <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Propose an exception resolution</h2>
@@ -483,6 +480,13 @@ export default function ApExceptionWorkflowPage() {
           </div>
         </div>
       )}
+
+      {/* Value ledger — live hours/$ rollup of this session's actions. Placed
+          after the scenario/decision panels above (per the 2026-09-08 design
+          review: the page should lead with what invoice, what the agent
+          proposes, and what a human approves/rejects, not with a savings
+          counter) — same section, same content, just reordered. */}
+      <ValueLedgerPanel ledger={ledger} />
 
       {/* Scheduled reconciliation — runs unconditionally, not on suspicion */}
       <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
