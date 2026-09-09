@@ -6,12 +6,12 @@ import { CAL_LINK } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Book a 20-minute fit call or send a project inquiry — classified instantly by the same AI routing behind every Tioga AI engagement.",
+    "Book a 20-minute intro call or send a project inquiry — classified instantly by the same AI routing behind every Tioga AI engagement.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact — Tioga AI",
     description:
-      "Book a 20-minute fit call or send a project inquiry — classified instantly by the same AI routing behind every Tioga AI engagement.",
+      "Book a 20-minute intro call or send a project inquiry — classified instantly by the same AI routing behind every Tioga AI engagement.",
   },
 };
 
@@ -45,7 +45,7 @@ export default function ContactPage() {
               className="block text-center w-full px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
               style={{ background: "var(--accent-dark)" }}
             >
-              Book a 20-minute fit call →
+              Book a 20-minute intro call →
             </TrackedCTA>
             <p className="text-xs text-[var(--text-muted)] mt-4 text-center">
               Prefer email? <a href="mailto:hello@tioga.ai" className="underline hover:text-[var(--text)] transition-colors">hello@tioga.ai</a>

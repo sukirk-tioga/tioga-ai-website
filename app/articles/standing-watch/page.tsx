@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import ArticlePage, { type ArticleContent } from "@/components/ArticlePage";
 
 export const metadata: Metadata = {
-  title: "Why Every Automation I Run Only Proposes — Never Applies",
+  title: "Why Router-Watch and Security-Watch Only Propose — Never Apply",
   description:
-    "The real 12-day cross-machine auth gap that motivated my security-watch automation, and why propose-and-approve — never auto-apply — is the whole point of Standing Watch.",
+    "The real 12-day cross-machine auth gap that motivated my security-watch automation, and why propose-and-approve — never auto-apply — is the rule for this class of governance automation.",
   alternates: { canonical: "/articles/standing-watch" },
   openGraph: {
     type: "article",
     publishedTime: "2026-08-10",
-    title: "Why Every Automation I Run Only Proposes — Tioga AI",
-    description: "Propose-and-approve governance, forged on a real incident, run on my own two-machine estate.",
+    title: "Why Router-Watch and Security-Watch Only Propose — Tioga AI",
+    description: "Propose-and-approve governance for two of my own security-finding automations, forged on a real incident, run on my own two-machine estate.",
   },
 };
 
@@ -18,8 +18,8 @@ const content: ArticleContent = {
   slug: "standing-watch",
   query: "AI agent governance propose and approve automation",
   date: "2026-08-10",
-  title: "Why every automation I run only proposes — never applies",
-  dek: "Standing Watch is a name for six governance disciplines I already run in production on my own multi-vendor AI estate. Here's the incident that started it and the rule that hasn't changed since.",
+  title: "Why router-watch and security-watch only propose — never apply",
+  dek: "Standing Watch is a name for six governance disciplines I already run in production, on my own multi-vendor AI estate, as router-watch and security-watch. Here's the incident that started it and the rule that hasn't changed since.",
   evidenceLabel: "Evidence: real, dated excerpts from my own router-watch and security-watch automations — not a projection or a mockup.",
   sections: [
     {
