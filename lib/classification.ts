@@ -4,10 +4,16 @@
 // structurally incapable of carrying arbitrary free-form AI-generated text
 // back to the caller. A malformed or off-schema model response is rejected
 // outright (validateClassification throws) rather than passed through.
+// "Unclassified" is never in the model's own prompt enum (app/api/classify/
+// route.ts only ever asks it to pick one of the 3 real practices) — it
+// exists solely so FALLBACK_CLASSIFICATION below has a genuinely neutral
+// value instead of being forced to pick one of the 3 real service lines
+// when the classifier failed and doesn't actually know.
 export const VALID_SERVICES = [
   "Automate finance and operations",
   "Modernize ERP with an agent layer",
   "Govern enterprise AI",
+  "Unclassified",
 ] as const;
 export const VALID_URGENCY = ["low", "medium", "high", "critical"] as const;
 export const VALID_COMPLEXITY = ["small", "medium", "large", "enterprise"] as const;
@@ -41,7 +47,7 @@ export interface Classification {
 // Deliberately generic/neutral rather than guessed from the raw model
 // output — see the comment at that call site for why.
 export const FALLBACK_CLASSIFICATION: Classification = {
-  service: "Automate finance and operations",
+  service: "Unclassified",
   urgency: "medium",
   complexity: "medium",
   summary: "Automatic classification failed — review the inquiry manually.",
