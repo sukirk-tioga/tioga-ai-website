@@ -34,6 +34,11 @@ const content: SolutionContent = {
         "The Governed AP Exception Workflow demo runs the full loop — propose, policy decision, approval or block, simulated write, audit, and rollback — the same pattern this engagement builds around your write path.",
     },
     {
+      label: "A real write into a live system of record, not a mock",
+      detail:
+        "On 2026-07-31 this pattern executed against a real, paid Snowflake sandbox tenant — not a free trial, not a mock: 3 real writes to an open PO's committed amount persisted and were confirmed by re-reading state afterward, plus 2 correctly rejected writes (a vendor on hold, a closed PO), with the full gateway-to-Snowflake round trip logged with real policy-check and audit-trail data. Ask and I'll walk you through it directly.",
+    },
+    {
       label: "Operator experience on both sides",
       detail:
         "Before founding Tioga AI, the founder managed ERP systems across four sister companies — including the approval and control workflows a governed write has to respect.",
@@ -86,7 +91,7 @@ const content: SolutionContent = {
     },
     {
       q: "Can we see the audit trail this produces?",
-      a: "Yes — see the live Governed AP Exception Workflow demo: every proposal, decision, approval, execution, rejection, and rollback lands in the ledger with its full policy-check trail.",
+      a: "Yes — see the live Governed AP Exception Workflow demo for the interactive version. This pattern has also run against a real Snowflake sandbox tenant, not just the mock (3 real writes persisted, 2 correctly rejected, full policy-check and audit-trail data on 2026-07-31) — ask and I'll walk you through the real run directly.",
     },
   ],
   related: [
