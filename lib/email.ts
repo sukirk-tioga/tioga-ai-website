@@ -24,6 +24,18 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Sent to sukir.kumaresan@tioga.ai directly, not the hello@tioga.ai alias.
+// Confirmed live 2026-09-09 while testing inquiry delivery end to end: an
+// SMTP send authenticated as this same Workspace account, addressed to its
+// own hello@tioga.ai alias, only lands in that account's Sent folder — it
+// never loops back into Inbox, even after hours (verified against Feb 2026
+// test emails to the alias that still show no INBOX label 7+ months later).
+// A genuinely external sender emailing hello@tioga.ai directly (a prospect,
+// or a personal-account test) does land in Inbox as expected — this is
+// specifically a self-send-to-own-alias quirk. Every founder-facing
+// notification in this file targets the primary address for that reason;
+// hello@tioga.ai stays the right public-facing/reply-to address since real
+// replies to it are genuine external sends.
 export async function sendInquiryEmail({
   name,
   email,
@@ -99,7 +111,7 @@ export async function sendInquiryEmail({
 
   await transporter.sendMail({
     from: `"Tioga AI" <${process.env.SMTP_USER}>`,
-    to: "hello@tioga.ai",
+    to: "sukir.kumaresan@tioga.ai",
     replyTo: email,
     subject: `[${urgencyEmoji} ${classification.urgency.toUpperCase()}] New Inquiry: ${classification.service} — ${name}${company ? ` (${company})` : ""}`,
     html,
@@ -131,7 +143,7 @@ export async function sendContactLogEmail(entry: {
 
   await transporter.sendMail({
     from: `"Tioga AI Audit Log" <${process.env.SMTP_USER}>`,
-    to: "hello@tioga.ai",
+    to: "sukir.kumaresan@tioga.ai",
     subject: `[contact-log] ${entry.timestamp}`,
     html,
   });
@@ -232,8 +244,12 @@ export async function sendMigrationAssessmentCopy({
 // Reply-To is set to reply+{threadId}@agent.tioga.ai so a prospect's reply
 // round-trips through Postmark's Inbound Parse webhook with the thread ID
 // recoverable from the recipient address (see lib/postmark-inbound.ts).
-// Every send is BCC'd to hello@tioga.ai as a passive audit trail, mirroring
-// the existing appendContactLog audit discipline.
+// Every send is BCC'd to the founder's primary address as a passive audit
+// trail, mirroring the existing appendContactLog audit discipline. BCC'd
+// to sukir.kumaresan@tioga.ai rather than the hello@tioga.ai alias — a
+// self-send from this same SMTP account to its own alias only lands in
+// Sent, not Inbox (confirmed live 2026-09-09; see the comment on
+// sendInquiryEmail's `to` for the full story).
 export async function sendAgentEmail({
   to,
   subject,
@@ -249,7 +265,7 @@ export async function sendAgentEmail({
     from: `"Tioga AI" <${process.env.SMTP_USER}>`,
     to,
     replyTo: `reply+${threadId}@agent.tioga.ai`,
-    bcc: "hello@tioga.ai",
+    bcc: "sukir.kumaresan@tioga.ai",
     subject,
     text,
   });
@@ -284,7 +300,7 @@ export async function sendAgentReplyApprovalEmail({
 
   await transporter.sendMail({
     from: `"Tioga AI Agent" <${process.env.SMTP_USER}>`,
-    to: "hello@tioga.ai",
+    to: "sukir.kumaresan@tioga.ai",
     subject: `[APPROVE REPLY] ${draftSubject}`,
     text: `The email agent drafted a reply to ${prospectName || "(no name)"} <${prospectEmail}> and is holding it for your approval before sending.\n\n--- Draft subject ---\n${draftSubject}\n\n--- Draft body ---\n${draftBody}\n\nApprove and send: ${approveUrl}\n\nReject (do not send): ${rejectUrl}\n\nNote: even after approving, nothing sends unless AGENT_EMAIL_AUTOSEND_ENABLED is set to "true" in the deployment environment.`,
   });
@@ -310,7 +326,7 @@ export async function sendFounderAlertEmail({
 }) {
   await transporter.sendMail({
     from: `"Tioga AI Agent" <${process.env.SMTP_USER}>`,
-    to: "hello@tioga.ai",
+    to: "sukir.kumaresan@tioga.ai",
     subject: `[NEEDS FOUNDER] ${subject}`,
     text: `${note}\n\nThread: ${threadId}\nProspect: ${prospectEmail}`,
   });
@@ -328,7 +344,7 @@ export async function sendBuildLogSubscribeEmail(entry: {
 }) {
   await transporter.sendMail({
     from: `"Tioga AI" <${process.env.SMTP_USER}>`,
-    to: "hello@tioga.ai",
+    to: "sukir.kumaresan@tioga.ai",
     replyTo: entry.email,
     subject: `[build-log subscribe] ${entry.email}`,
     text: `New build-log subscriber.\n\nEmail: ${entry.email}\nTime: ${entry.timestamp}\nIP: ${entry.ip}`,
