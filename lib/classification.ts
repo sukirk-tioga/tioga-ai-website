@@ -35,6 +35,21 @@ export interface Classification {
   fitScore: number;
 }
 
+// Used by app/api/classify/route.ts when the model's output fails
+// validateClassification (off-schema value, bad JSON, etc.) so the inquiry
+// still reaches the founder's inbox instead of the whole request 500ing.
+// Deliberately generic/neutral rather than guessed from the raw model
+// output — see the comment at that call site for why.
+export const FALLBACK_CLASSIFICATION: Classification = {
+  service: "Automate finance and operations",
+  urgency: "medium",
+  complexity: "medium",
+  summary: "Automatic classification failed — review the inquiry manually.",
+  nextStep: "Read the full inquiry below and triage by hand.",
+  responseTime: "within 1 business day",
+  fitScore: 5,
+};
+
 export function validateClassification(raw: unknown): Classification {
   if (typeof raw !== "object" || raw === null) {
     throw new Error("Classification response was not an object.");
