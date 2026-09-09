@@ -2,7 +2,7 @@ import { anthropic } from "@/lib/anthropic";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { sendInquiryEmail, sendAgentReplyApprovalEmail } from "@/lib/email";
 import { appendContactLog } from "@/lib/contact-log";
-import { validateClassification } from "@/lib/classification";
+import { validateClassification, FALLBACK_CLASSIFICATION } from "@/lib/classification";
 import { generateAgentReply } from "@/lib/agent-reply";
 import { generateThreadId } from "@/lib/thread-store";
 import { createPendingApproval } from "@/lib/agent-approval";
@@ -65,9 +65,25 @@ Base complexity on: scope, number of systems mentioned, enterprise vs SMB signal
 
  const text = response.content[0].type === "text" ? response.content[0].text : "";
 
+ // A malformed or off-schema model response (e.g. the model punting on an
+ // ambiguous/self-referential description with something like
+ // "N/A - Internal Test" for `service`) must not drop the inquiry entirely
+ // — confirmed live 2026-09-09: this used to throw straight into the outer
+ // catch below, which returned a 500 to the visitor and skipped
+ // sendInquiryEmail entirely, silently losing the submission. Falling back
+ // to a generic, schema-valid classification keeps the strict-validation
+ // security property (arbitrary model text still never reaches the
+ // caller unvalidated) while guaranteeing every real inquiry still reaches
+ // the founder's inbox for manual triage.
+ let classification;
+ try {
  const jsonMatch = text.match(/\{[\s\S]*\}/);
  if (!jsonMatch) throw new Error("No JSON in response");
- const classification = validateClassification(JSON.parse(jsonMatch[0]));
+ classification = validateClassification(JSON.parse(jsonMatch[0]));
+ } catch (validationErr) {
+ console.error("Classification validation failed, using fallback:", validationErr);
+ classification = FALLBACK_CLASSIFICATION;
+ }
 
  // Send email — must be awaited or serverless fn shuts down before it sends
  let notificationSent = true;
