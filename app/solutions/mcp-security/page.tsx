@@ -22,6 +22,51 @@ const content: SolutionContent = {
     "MCP standardizes how an agent talks to a tool, and its own spec does define an OAuth-based authorization flow — but that flow is optional, many servers skip it, and even a compliant one only answers \"can this client reach this server,\" not \"should this specific action be approved\" or \"log this decision.\" Tool-level permissions, call-level audit logging, and approval policy still have to be built around it. Vendors selling \"MCP integration\" rarely address any of that.",
   outcome:
     "An MCP integration with scoped permissions per tool, call-level audit logging, and policy enforcement — reviewed the way your security team actually reviews a system, not glossed over as \"it's just an API.\"",
+  inputsAndSystems: [
+    {
+      label: "Systems in scope",
+      detail: "Any MCP server your agent needs to call — a vendor-hosted server (Salesforce, SAP, ServiceNow) or a custom internal one — plus your identity provider for the OAuth flow, when the server implements it.",
+    },
+    {
+      label: "Prerequisite access",
+      detail: "Read-only access to the MCP server's tool catalog and your identity provider's OAuth configuration, provisioned before day one — no write access requested up front.",
+    },
+    {
+      label: "Sandbox vs. production",
+      detail: "The permission model and audit logging are designed and tested against a sandbox or staging MCP server first. Production write scopes are enabled only after your team reviews the policy.",
+    },
+    {
+      label: "What can be read or changed",
+      detail: "Exactly the tools you allow-list, nothing implicit — an agent scoped to read invoices never inherits write access to your GL just because both live behind the same MCP server.",
+    },
+  ],
+  workflowSteps: [
+    {
+      step: "01",
+      title: "Tool call requested",
+      detail: "The agent requests a call against an allow-listed MCP server tool — anything not on the allow-list is rejected before it reaches the server.",
+    },
+    {
+      step: "02",
+      title: "Scope check",
+      detail: "The request is checked against that tool's own permission boundary — read vs. write, which records, which fields.",
+    },
+    {
+      step: "03",
+      title: "Policy / approval",
+      detail: "A write action isn't auto-approved by default. It routes to whatever approval boundary you set — auto-execute inside a tight boundary, or a human decision for anything wider.",
+    },
+    {
+      step: "04",
+      title: "Execution boundary enforced",
+      detail: "The call executes only within the allow-listed scope. Anything outside it is blocked outright, not silently downgraded or best-effort attempted.",
+    },
+    {
+      step: "05",
+      title: "Verified, logged result",
+      detail: "Input, output, and which policy check ran are logged at call level — reviewable evidence of what actually happened, not just what was requested.",
+    },
+  ],
   proof: [
     {
       label: "Scoped by design",

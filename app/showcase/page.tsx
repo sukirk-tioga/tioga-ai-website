@@ -4,6 +4,7 @@ import Link from "next/link";
 import TrackedCTA from "../../components/TrackedCTA";
 import ShowcaseCanvasLoader from "./ShowcaseCanvasLoader";
 import ShowcaseLegend from "./ShowcaseLegend";
+import { EvidenceTierTag } from "../demos/_lib/evidence-tier";
 import { CAL_LINK } from "../../lib/site-config";
 import {
   TOTAL_CALLS,
@@ -111,6 +112,10 @@ export default function ShowcasePage() {
       {/* What you're looking at */}
       <section className="px-6 max-w-3xl mx-auto pb-16">
         <h2 className="text-lg font-bold mb-4" style={{ color: "var(--text)" }}>What you&apos;re looking at</h2>
+        <EvidenceTierTag
+          tier="internal-operational-excerpt"
+          detail="Same dated Jul 17–25, 2026 governance-ledger excerpt as /demos/governance-ledger, rendered as a 3D scene instead of a table."
+        />
         <div className="space-y-4 text-sm text-[var(--text-muted)] leading-relaxed">
           <p>
 A GPU particle field on the left renders the same 17 real rows already live at{" "}
