@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BenchmarkCard from "@/components/BenchmarkCard";
+import { EvidenceTierTag } from "@/app/demos/_lib/evidence-tier";
 
 export const metadata: Metadata = {
   title: "How I Built the Migration Assessment Demo",
@@ -36,6 +37,15 @@ export default function MigrationAssessmentWriteup() {
           reasoning about a client&apos;s actual system, not extracting
           fields from a document they uploaded.
         </p>
+
+        <p className="text-sm text-slate-500 mb-4">
+          Last reviewed{" "}
+          <time dateTime="2026-09-08">September 8, 2026</time>
+        </p>
+        <EvidenceTierTag
+          tier="model-demonstration"
+          detail="Claude Sonnet 5 reasons live, via the production endpoint, over the allowlisted EBS footprint a visitor selects; this page's benchmark (4 configurations, run 2026-08-02) is reported below, not pre-scripted."
+        />
 
         <div className="space-y-10">
           <div>

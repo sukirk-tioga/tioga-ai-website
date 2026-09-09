@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BenchmarkCard from "@/components/BenchmarkCard";
+import { EvidenceTierTag } from "@/app/demos/_lib/evidence-tier";
 
 export const metadata: Metadata = {
   title: "How I Built the Invoice Processing Demo",
@@ -33,6 +34,15 @@ export default function InvoiceProcessingWriteup() {
           a PDF, Word doc, or plain text invoice with a real text layer.
           Not a formatted sample PDF; whatever gets forwarded to AP.
         </p>
+
+        <p className="text-sm text-slate-500 mb-4">
+          Last reviewed{" "}
+          <time dateTime="2026-09-08">September 8, 2026</time>
+        </p>
+        <EvidenceTierTag
+          tier="model-demonstration"
+          detail="Claude Haiku 4.5 processes the real file or text a visitor submits, live, via the production endpoint; this page's benchmark (8 hand-authored synthetic invoices, run 2026-08-02) is reported below, not pre-scripted."
+        />
 
         <div className="space-y-10">
           <div>
