@@ -1,7 +1,7 @@
 import { LEDGER } from "../../lib/governance-ledger";
 
 // Deterministic fallback — no WebGL, prefers-reduced-motion, or a lost
-// WebGL context all land here. Same 17 rows as the 3D scene and the
+// WebGL context all land here. Same rows as the 3D scene and the
 // /demos/governance-ledger table, rendered as a real HTML table (not a
 // blank canvas, not a static image standing in for the data). This path
 // is a first-class deliverable per the plan §3, not an afterthought.
@@ -21,7 +21,7 @@ export default function ShowcaseFallback() {
         <h2 className="font-semibold text-sm" style={{ color: "var(--text)" }}>Per-call ledger (table view)</h2>
         <p className="text-xs text-[var(--text-muted)] mt-1">
           Your browser or system settings turned off the 3D scene (no WebGL, reduced motion, or a
-          lost graphics context) — here are the same 17 rows without it.
+          lost graphics context) — here are the same {LEDGER.length} rows without it.
         </p>
       </div>
       <div className="overflow-x-auto">

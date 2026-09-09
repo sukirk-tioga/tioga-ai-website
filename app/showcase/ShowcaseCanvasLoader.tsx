@@ -26,7 +26,7 @@ export default function ShowcaseCanvasLoader() {
   // 2026-08-15: the scene defaults to rest (every particle already landed)
   // instead of an always-running ambient loop — see ShowcaseScene.tsx for
   // why. This button is the only way to trigger the real, compressed
-  // Jul 17-25 replay; playSignal increments on each click, isPlaying tracks
+  // Sep 8-9 replay; playSignal increments on each click, isPlaying tracks
   // the scene's own play/pause edges so the button can't be double-clicked
   // into a second overlapping playthrough.
   const [playSignal, setPlaySignal] = useState(0);
@@ -77,7 +77,7 @@ export default function ShowcaseCanvasLoader() {
       </div>
       <div className="flex items-center justify-between mt-3">
         <p className="text-xs" style={{ color: "var(--text-muted-3)" }}>
-          Resting at the completed ledger — press Replay to watch the real Jul 17–25 sequence.
+          Resting at the completed ledger — press Replay to watch the real Sep 8–9 sequence.
         </p>
         <div className="flex items-center gap-2">
           <button
@@ -103,7 +103,7 @@ export default function ShowcaseCanvasLoader() {
             className="shrink-0 text-xs font-mono px-3 py-1.5 rounded-full transition-colors disabled:opacity-50"
             style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}
           >
-            {isPlaying ? "Replaying…" : "▶ Replay Jul 17–25"}
+            {isPlaying ? "Replaying…" : "▶ Replay Sep 8–9"}
           </button>
         </div>
       </div>
