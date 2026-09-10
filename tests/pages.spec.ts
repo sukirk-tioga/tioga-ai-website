@@ -13,6 +13,7 @@ const PAGES = [
   { path: "/demos", title: "Live AI Demos — Tioga AI" },
   { path: "/demos/governance-ledger", title: "Governance Ledger Demo — Tioga AI" },
   { path: "/demos/ap-exception-workflow", title: "Governed AP Exception Workflow Demo — Tioga AI" },
+  { path: "/demos/quickbooks-bill-approval", title: "Governed QuickBooks Bill Approval Demo — Tioga AI" },
   { path: "/demos/capital-equipment-order", title: "Governed Capital Equipment Order Booking Demo — Tioga AI" },
   { path: "/demos/field-service-classification", title: "Governed Field Service Billable Classification Demo — Tioga AI" },
   { path: "/demos/erp-reporting-copilot", title: "ERP Reporting Copilot Demo — Tioga AI" },

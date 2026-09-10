@@ -70,31 +70,31 @@ export default function HomePage() {
  </section>
  </ScrollReveal>
 
- {/* Workflow examples — two evidence levels, not one shared "simulation"
- label. This section exists specifically so a reader can't mistake an
- illustrative smaller-business sketch for the shipped Oracle Fusion
- Cloud ERP demo. The right card now carries the site's real four-tier
- EvidenceTierTag (same component every /demos page uses) instead of
- its own ad-hoc badge. The left card stays on its own plain label
- deliberately — it's a hypothetical sketch with no demo or code behind
- it, so none of the four evidence tiers (all of which describe a real
- artifact) accurately applies to it. */}
+ {/* Workflow examples — a smaller-business (QuickBooks) demo and an
+ enterprise (Oracle Fusion Cloud ERP) demo, side by side. Both cards
+ carry the site's real four-tier EvidenceTierTag (same component every
+ /demos page uses) — as of the QuickBooks bill-approval demo shipping
+ (2026-09-10) and the EBS -> Fusion Cloud ERP pivot (2026-09-10), this
+ section no longer contrasts a real demo against a hypothetical sketch,
+ and no longer references Oracle EBS; both are shipped,
+ browser-simulation-tier demos with real code behind them. */}
  <ScrollReveal>
  <section className="px-6 pb-16 max-w-5xl mx-auto">
  <div className="text-center mb-8">
  <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>What this looks like in practice</h2>
- <p className="text-[var(--text-muted)] text-sm max-w-lg mx-auto">Two examples, two different levels of evidence — labeled as such.</p>
+ <p className="text-[var(--text-muted)] text-sm max-w-lg mx-auto">Two examples, one smaller-business and one enterprise — same evidence tier.</p>
  </div>
  <div className="grid md:grid-cols-2 gap-6">
  <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
- <span
- className="inline-block mb-3 text-xs font-mono px-2 py-0.5 rounded-full"
- style={{ color: "var(--text-muted)", background: "var(--bg-dark)", border: "1px solid var(--border)" }}
- >
- Illustrative smaller-business workflow — not a shipped demo
- </span>
+ <EvidenceTierTag
+ tier="browser-simulation"
+ detail="Shipped QuickBooks demo — synthetic bills and vendors, no live QuickBooks connection. Same tier as the demo page itself."
+ />
  <p className="text-sm text-[var(--text-muted)] leading-relaxed">
- A QuickBooks invoice workflow could check an invoice against the relevant purchase order and vendor terms, route exceptions to the owner, and record the approval reason before posting.
+ A real QuickBooks bill-approval flow: a bill is checked against vendor status and duplicate-bill history, routed by spend tier, and the outcome — and the reasoning behind it — is recorded.{" "}
+ <Link href="/demos/quickbooks-bill-approval" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
+ Run it yourself →
+ </Link>
  </p>
  </div>
  <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
