@@ -56,7 +56,7 @@ test("chat widget renders markdown, not raw asterisks", async ({ page }) => {
   await page.getByRole("button", { name: /open chat/i }).click();
   await expect(page.getByText("Tioga AI Assistant")).toBeVisible();
 
-  const input = page.getByPlaceholder("Ask about our services...");
+  const input = page.getByPlaceholder("Ask about my services...");
   await input.fill("What's your typical project timeline and pricing structure?");
   await input.press("Enter");
 

@@ -15,7 +15,21 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("2026-08-08 homepage design review changes", () => {
-  test("hero headline, subhead, and reduced CTAs render correctly (desktop)", async ({ page }) => {
+  // Rewritten 2026-09-10: this test originally pinned exact hero headline
+  // copy ("...principal responsible for the work...") from the one-time
+  // 2026-08-08 design review it's named after. That copy is long gone —
+  // the hero has been rewritten multiple times since (most recently again
+  // via PR #63/#64's merge-conflict resolution, and separately PR #53) —
+  // so the dated assertion had permanently expired and was failing the
+  // prod health check every day. `tests/pages.spec.ts` already covers
+  // "homepage loads, has a title, no console errors" as an ongoing smoke
+  // check, so this is narrowed to the one structural claim from the
+  // original review that's still true and still worth checking on an
+  // undated basis: the hero always renders exactly 2 CTAs, whatever their
+  // copy is. `data-testid="hero-cta-group"` on the CTA wrapper (see
+  // HomeHeroPinned.tsx) keeps this decoupled from both copy and layout
+  // classes.
+  test("hero renders a visible heading and exactly 2 CTAs (desktop)", async ({ page }) => {
     const errors: string[] = [];
     page.on("console", (msg) => { if (msg.type() === "error") errors.push(msg.text()); });
     page.on("pageerror", (err) => errors.push(err.message));
@@ -23,15 +37,12 @@ test.describe("2026-08-08 homepage design review changes", () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
 
-    await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "AI agents, built and governed in your real systems."
-    );
-    await expect(page.getByText(/principal responsible for the work/)).toBeVisible();
-    await expect(page.getByText(/click the chat bubble/)).toHaveCount(0);
+    const heading = page.getByRole("heading", { level: 1 });
+    await expect(heading).toBeVisible();
+    await expect(heading).not.toBeEmpty();
 
-    // Exactly 2 CTAs in the hero now
-    await expect(page.getByRole("link", { name: "Book a 20-minute fit call" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Start with the AI Fit Check — $1,500" })).toBeVisible();
+    // Exactly 2 CTAs in the hero
+    await expect(page.getByTestId("hero-cta-group").getByRole("link")).toHaveCount(2);
 
     await page.screenshot({ path: "/tmp/redesign-hero-desktop.png", fullPage: false });
     expect(errors, `console errors: ${errors.join("; ")}`).toEqual([]);

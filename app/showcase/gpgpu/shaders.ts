@@ -11,10 +11,20 @@
 // deliberately simple so the one place real behavior lives is the spring
 // target logic, not split across two shaders.
 //
-// ROW_COUNT is a compile-time constant (must match LEDGER.length, 17 as of
-// 2026-08-18 -- see lib/governance-ledger.ts) since GLSL array uniforms
-// need a fixed size known at shader-compile time.
-export const ROW_COUNT = 17;
+// ROW_COUNT is a compile-time constant (must match LEDGER.length -- see
+// lib/governance-ledger.ts) since GLSL array uniforms need a fixed size
+// known at shader-compile time. Computed from LEDGER.length directly
+// (2026-09-10 fix -- was hardcoded to 17, which silently desynced from the
+// real ledger the moment the 2026-09-09 window refresh dropped LEDGER to
+// 16 rows: the GLSL array size stayed 17 while the JS-side uniform arrays
+// -- uRowPool, uReplayStartOffset -- shrank to 16, so three.js's uniform
+// flattening read the shader's declared length, hit an undefined 17th
+// element, and threw "Cannot read properties of undefined (reading
+// 'toArray')" every frame on /showcase). Same pattern ledgerTexture.ts's
+// own ROW_COUNT already used -- this file just hadn't been updated to
+// match when the ledger row count last changed.
+import { LEDGER } from "../../../lib/governance-ledger";
+export const ROW_COUNT = LEDGER.length;
 
 const COMMON_HEAD = `
   #define ROW_COUNT ${ROW_COUNT}
