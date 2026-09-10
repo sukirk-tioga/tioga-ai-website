@@ -165,7 +165,7 @@ export default function HomeHeroPinned() {
         <p className="text-sm text-[var(--text-muted)] max-w-xl mx-auto md:mx-0 mb-8">
           Five-day discovery sprint, $5,000 flat — scoped to your workflow, credited toward what comes next.
         </p>
-        <div className="flex flex-col items-center sm:flex-row gap-4 justify-center md:justify-start">
+        <div data-testid="hero-cta-group" className="flex flex-col items-center sm:flex-row gap-4 justify-center md:justify-start">
           <TrackedCTA
             href={CAL_LINK}
             target="_blank"

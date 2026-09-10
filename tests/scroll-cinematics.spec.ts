@@ -1,9 +1,21 @@
 import { test, expect } from "@playwright/test";
 
 // Homepage scroll cinematics (Phase 4 of the boundary-push plan): pinned
-// hero + shader-field rotation + governance-ledger stat count-up, staggered
-// scrub reveals on the sections below, and a character-level headline
-// reveal. Scope: "/" only.
+// hero + shader-field rotation, staggered scrub reveals on the sections
+// below, and a character-level headline reveal. Scope: "/" only.
+//
+// Note (2026-09-10): the hero used to also carry a governance-ledger stat
+// count-up (four numbers from lib/governance-ledger.ts's STATS, scrubbing
+// in as you scrolled the pin). That was removed from the hero entirely on
+// 2026-09-07 per the Astra + Fable adversarial launch-readiness reviews —
+// see HomeHeroPinned.tsx's comment. The old "stat-strip shows the real
+// governance-ledger numbers" test below was testing a feature that no
+// longer exists on this page at all (confirmed live: STATS's values don't
+// render anywhere in the homepage HTML any more), not stale copy on a
+// still-live feature, so it was removed rather than rewritten — there was
+// nothing left on "/" to point it at. The underlying data is still real
+// and still on the site via GovernanceLedgerPreview further down this page
+// and the full /demos/governance-ledger page.
 
 test.beforeEach(async ({ page }) => {
   await page.route("**/_vercel/insights/**", (route) =>
@@ -61,31 +73,7 @@ test("headline text survives the SplitText character reveal", async ({ page }) =
   const h1 = page.getByRole("heading", { level: 1 });
   await expect(h1).toBeVisible();
   await page.waitForTimeout(1200); // let the one-time SplitText reveal finish
-  await expect(h1).toContainText("Every action your AI takes, on the record.");
-});
-
-test("stat-strip shows the real governance-ledger numbers at rest, and after scrolling past the pin", async ({ page }) => {
-  await page.goto("/");
-
-  // Resting state (no scroll yet): must show the real numbers, never a
-  // zeroed/broken-looking stat — see HomeHeroPinned.tsx's
-  // COUNT_UP_SCRUB_FRACTION comment.
-  await expect(page.getByText("$0.000753")).toBeVisible();
-  await expect(page.getByText("2 / 17")).toBeVisible();
-
-  // Scroll well past the pinned range.
-  for (let i = 0; i < 10; i++) {
-    await page.mouse.wheel(0, 500);
-    await page.waitForTimeout(120);
-  }
-  await page.waitForTimeout(500);
-
-  // Numbers must settle back to the exact real values, not something the
-  // count-up invented.
-  await expect(page.getByText("$0.000753")).toBeVisible();
-  await expect(page.getByText("17", { exact: true }).first()).toBeVisible();
-  await expect(page.getByText("2 / 17")).toBeVisible();
-  await expect(page.getByText(/Jul 17.25 2026/)).toBeVisible();
+  await expect(h1).toContainText("AI agents, built and governed in your real systems.");
 });
 
 test("Lenis and the ScrollTrigger pin are active under normal motion", async ({ page }) => {
@@ -134,10 +122,6 @@ test("prefers-reduced-motion fully bypasses Lenis and the pin — normal scrolli
   // No ScrollTrigger pin-spacer — the hero is never taken out of normal flow.
   await expect(page.locator(".pin-spacer")).toHaveCount(0);
 
-  // Real numbers show immediately, with no count-up ever having run.
-  await expect(page.getByText("$0.000753")).toBeVisible();
-  await expect(page.getByText("2 / 17")).toBeVisible();
-
   // The document actually scrolls like a normal page: native scrollTo
   // moves scrollY without any smoothing/pin interception.
   const before = await page.evaluate(() => window.scrollY);
@@ -147,5 +131,5 @@ test("prefers-reduced-motion fully bypasses Lenis and the pin — normal scrolli
   expect(after).toBeGreaterThan(before);
 
   const h1 = page.getByRole("heading", { level: 1 });
-  await expect(h1).toContainText("Every action your AI takes, on the record.");
+  await expect(h1).toContainText("AI agents, built and governed in your real systems.");
 });

@@ -42,11 +42,16 @@ test("canvas mounts without throwing and with no console errors", async ({ page 
 test("DOM legend and provenance strip show the real, corrected figures", async ({ page }) => {
   await page.goto("/showcase");
 
-  // The corrected 12/17 (not the draft plan's wrong 15/17) free-$0 figure,
-  // and the same $0.000753 / $30.00 spend-vs-cap figure as the table page.
-  await expect(page.getByText("12", { exact: false }).first()).toBeVisible();
-  await expect(page.locator("text=/12.*of those.*71%.*settle at exactly \\$0/")).toBeVisible();
-  await expect(page.locator("text=/\\$0\\.000753/").first()).toBeVisible();
+  // ShowcaseLegend.tsx reads these live from lib/governance-ledger.ts's
+  // derived exports (TOTAL_CALLS, FREE_COUNT, FREE_ZERO_COST_COUNT/PCT,
+  // TOTAL_SPEND, BUDGET_CAP) -- verified 2026-09-10 against the real,
+  // current 16-row ledger window (refreshed 2026-09-09): 1 of 16 calls are
+  // free-pool, 0 of those settle at exactly $0 (the one free-pool call in
+  // this window still carries a small Gemini cost), spend is $0.356603 of
+  // the $30.00 cap.
+  await expect(page.locator("text=/1 of 16 calls are free-pool/")).toBeVisible();
+  await expect(page.locator("text=/0 of those \\(0%\\) settle at exactly \\$0/")).toBeVisible();
+  await expect(page.locator("text=/\\$0\\.356603/").first()).toBeVisible();
   await expect(page.locator("text=/\\$30\\.00/").first()).toBeVisible();
 });
 
@@ -67,10 +72,12 @@ test("no-WebGL fallback renders the real table", async ({ page }) => {
   await expect(fallback).toBeVisible();
   await expect(page.getByTestId("showcase-canvas")).toHaveCount(0);
 
-  // Real data, not a placeholder: 17 rows, header row not counted.
+  // Real data, not a placeholder: 16 rows (the real current lib/governance
+  // -ledger.ts LEDGER length, refreshed 2026-09-09 -- was 17 before that
+  // window refresh), header row not counted.
   const rows = fallback.locator("tbody tr");
-  await expect(rows).toHaveCount(17);
-  await expect(fallback.locator("text=/\\$0\\.000002/")).toBeVisible();
+  await expect(rows).toHaveCount(16);
+  await expect(fallback.locator("text=/\\$0\\.000770/")).toBeVisible();
 });
 
 test("canvas keeps changing over time — catches the autoRotate freeze-at-boundary bug", async ({ page }) => {
