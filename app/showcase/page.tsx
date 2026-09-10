@@ -27,7 +27,7 @@ import {
 export const metadata: Metadata = {
   title: "The Gateway Corridor",
   description:
-    "An interactive 3D scene rendering the same real governance-ledger excerpt as the /demos/governance-ledger table — 17 real calls, one governed checkpoint, three real backend destinations.",
+    "An interactive 3D scene rendering the same real governance-ledger excerpt as the /demos/governance-ledger table — 16 real calls, one governed checkpoint, three real backend destinations.",
   robots: { index: false, follow: false },
   alternates: { canonical: "/showcase" },
   openGraph: {
@@ -99,7 +99,7 @@ export default function ShowcasePage() {
           >
             <Image
               src="/showcase/hero-poster.png"
-              alt="A captured still of the Gateway Corridor 3D scene — 17 real calls converging through one governed checkpoint to three real backend destinations"
+              alt="A captured still of the Gateway Corridor 3D scene — 16 real calls converging through one governed checkpoint to three real backend destinations"
               width={976}
               height={560}
               priority
@@ -118,7 +118,7 @@ export default function ShowcasePage() {
         />
         <div className="space-y-4 text-sm text-[var(--text-muted)] leading-relaxed">
           <p>
-A GPU particle field on the left renders the same 17 real rows already live at{" "}
+A GPU particle field on the left renders the same 16 real rows already live at{" "}
             <Link href="/demos/governance-ledger" style={{ color: "var(--accent)" }}>
               /demos/governance-ledger
             </Link>
@@ -214,7 +214,7 @@ A GPU particle field on the left renders the same 17 real rows already live at{"
           cadence: each row&apos;s own particles detach from the field and stream the corridor
           alongside its pulse, flashing green for the moment it actually crosses the gate. An
           optional sound toggle (off by default) plays a short synthesized tick per crossing,
-          pitched by that row&apos;s real token count — 17 real rows, 17 real notes, never
+          pitched by that row&apos;s real token count — 16 real rows, 16 real notes, never
           autoplayed.
         </p>
       </section>
