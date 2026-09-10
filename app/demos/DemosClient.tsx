@@ -931,6 +931,44 @@ function DemosPageInner() {
           </span>
         </Link>
 
+        {/* Featured: QuickBooks Bill Approval */}
+        <Link
+          href="/demos/quickbooks-bill-approval"
+          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
+          style={{
+            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
+          }}
+        >
+          <span
+            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 mb-1">
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Governed QuickBooks Bill Approval</p>
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+              >
+                Interactive
+              </span>
+            </div>
+            <p className="text-sm text-[var(--text-muted)]">
+              Propose a QuickBooks bill for approval — watch it get checked against vendor status and
+              duplicate-bill history, then auto-execute, escalate, or get blocked through a governed write-path.
+            </p>
+          </div>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
+            Try it live →
+          </span>
+        </Link>
+
         {/* Featured: Capital Equipment Order Booking */}
         <Link
           href="/demos/capital-equipment-order"
