@@ -103,8 +103,8 @@ export default function InvoiceProcessingWriteup() {
               parsed out of the source file — there&apos;s no multi-step
               reasoning, no judgment call, no ambiguity to weigh. Claude
               Haiku 4.5 handles it at a fraction of the latency and cost of a
-              larger model. The Migration Assessment demo, which does
-              require judgment, runs on Sonnet 5 instead — matching model
+              larger model. The Fusion Cloud AI-Readiness Assessment demo,
+              which does require judgment, runs on Sonnet 5 instead — matching model
               size to the actual reasoning load is a cost decision I apply
               to client work, not just this site.
             </p>

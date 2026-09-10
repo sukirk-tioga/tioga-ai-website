@@ -20,8 +20,8 @@ export const families: Family[] = [
   { id: "reporting", shortName: "Reporting", name: "Reporting & Business Information", purpose: "Querying and extracting from composite ERP-style data; not general database connectivity.", workflows: [
     { id: "erp-reporting", name: "ERP reporting & document extraction", status: "live" },
   ] },
-  { id: "integration", shortName: "Integration", name: "Systems Integration & Modernization", purpose: "Oracle EBS, SAP, governed write-paths, MCP-based agent connections, and migration assessment.", workflows: [
-    { id: "oracle-sap", name: "Oracle EBS & SAP (by system)", status: "live" },
+  { id: "integration", shortName: "Integration", name: "Systems Integration & Modernization", purpose: "Oracle Fusion Cloud ERP, Oracle EBS, SAP, governed write-paths, MCP-based agent connections, and AI-agent readiness assessment.", workflows: [
+    { id: "oracle-sap", name: "Oracle Fusion Cloud ERP, EBS & SAP (by system)", status: "live" },
     { id: "write-paths", name: "Governed write-paths", status: "live" },
     { id: "mcp", name: "Connecting agents safely (MCP)", status: "live" },
     { id: "salesforce", name: "Salesforce solution & demo", status: "not-built" },

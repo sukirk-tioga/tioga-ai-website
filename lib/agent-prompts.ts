@@ -20,7 +20,7 @@ Tioga AI is a solo, pre-launch practice built on decades of hands-on enterprise-
    - AI Operations Assessment — $10–15K, 2–3 weeks
    - AI Agent Pilot — $25–50K, 4–8 weeks
 
-2. **Modernize ERP with an agent layer** — add AI capability to Oracle EBS, SAP, Salesforce, or a legacy ERP without ripping out what already works.
+2. **Modernize ERP with an agent layer** — add AI capability to Oracle Fusion Cloud ERP, Oracle EBS, SAP, Salesforce, or a legacy ERP without ripping out what already works.
    - Agent-Ready ERP Diagnostic & Governed Write-Path — $60–120K, ~6 weeks. This is the flagship offer: assess one stalled agent-to-ERP write path, then build a governed version of it, executing through the application's own logic layer with policy enforcement and an audit-grade evidence trail.
    - Salesforce Governed Write-Path & Evidence Build — $50–100K, 5–8 weeks
    - Legacy System AI Augmentation — $40–100K, 8–16 weeks
@@ -54,7 +54,7 @@ Most enterprise AI projects stall because they never connect to the real system 
 1. **Invoice Processing** — upload a PDF, get structured data instantly
 2. **Email Triage** — paste an email, watch AI classify, route, and draft a reply
 3. **Document Classification** — upload any document, identify type and extract entities
-4. **Migration Assessment** — a sample Oracle EBS → SAP S/4HANA migration readiness assessment in ~60 seconds (flagship)
+4. **Fusion Cloud AI-Readiness Assessment** — a sample Oracle Fusion Cloud ERP AI-agent-readiness assessment in ~60 seconds (flagship)
 5. **Governance Ledger** — a real excerpt of Tioga's own AI routing gateway, logged, costed, budget-capped, and mapped to the NIST AI RMF — real operational data, not a live-refreshing feed
 6. **Governed AP Exception Workflow** — propose a fix to an invoice that failed three-way match and watch it auto-execute, escalate, get blocked, or roll back through a governed write-path
 
@@ -62,7 +62,7 @@ Most enterprise AI projects stall because they never connect to the real system 
 - Invoices / AP / procurement documents → Invoice Processing demo
 - Email / support routing → Email Triage demo
 - General document handling → Document Classification demo
-- Oracle EBS → SAP migration questions → Migration Assessment demo
+- Oracle Fusion Cloud ERP or EBS AI-agent-readiness/integration questions → Fusion Cloud AI-Readiness Assessment demo
 - Questions about **agent-to-ERP write actions, audit trails, approval blocking, or AI governance evidence** → route to the **Governed AP Exception Workflow demo** and the **Agent-Ready ERP Diagnostic & Governed Write-Path offer** — not the invoice-extraction demo.
 - Cost/spend governance, model routing, or "how do you govern your own AI" questions → Governance Ledger demo
 

@@ -4,6 +4,17 @@
 // reskinned as an accounts-payable three-way-match exception story instead
 // of generic procurement. Kept deliberately simple and readable, same as
 // the source — an audit reviewer should be able to read this in a minute.
+//
+// Reskinned again 2026-09-10 to model Oracle Fusion Cloud ERP's Payables/AP
+// flow specifically, not Oracle E-Business Suite: Fusion Payables invoices,
+// invoice holds (matching/tax/variance), and validation are a real,
+// REST-native resource set (payablesInvoices, payablesInvoiceHolds — see
+// docs.oracle.com's "REST API for Oracle Fusion Cloud Financials"), unlike
+// EBS, which has no REST-native surface of its own (agent access to EBS
+// goes through Oracle Integration Cloud's E-Business Suite Adapter,
+// HTTP Basic Auth only). "PO adjustment" and "vendor" naming below is kept
+// for readability; Fusion's own REST terminology calls the same party a
+// "Supplier" (the `suppliers` resource in Oracle Fusion Cloud Procurement).
 
 export const AUTHORIZED_ACTION_TYPES = new Set(["po_adjustment", "vendor_bank_detail_change"]);
 
@@ -181,8 +192,8 @@ export function vendorMasterCheck(result: { accepted: boolean; errors: string[] 
       name: "erp_validation",
       result: result.accepted ? "pass" : "fail",
       detail: result.accepted
-        ? "ERP accepted the vendor master-data change through the application-logic layer"
-        : `ERP rejected: ${result.errors.join("; ")}`,
+        ? "Fusion Payables accepted the vendor master-data change through the application-logic layer"
+        : `Fusion Payables rejected: ${result.errors.join("; ")}`,
       controlTag: CONTROL_TAGS.erpValidation,
       latencyMs,
     },
@@ -255,10 +266,10 @@ export function cloneSeed() {
   };
 }
 
-// Simulates the ERP application-logic layer re-validating the change on
-// every call — the same sanctioned write path, whoever the caller is.
-// Mirrors erp-mock's /pos/:id/change: vendor status, PO status, and
-// ceiling checks, never a raw table write.
+// Simulates Fusion Payables' application-logic layer re-validating the
+// change on every call — the same sanctioned write path, whoever the
+// caller is. Mirrors erp-mock's /pos/:id/change: vendor status, PO status,
+// and ceiling checks, never a raw table write.
 export function validateErpChange(
   po: PurchaseOrder | undefined,
   vendor: Vendor | undefined,
@@ -283,8 +294,8 @@ export function erpCheck(result: { accepted: boolean; errors: string[]; newCommi
       name: "erp_validation",
       result: result.accepted ? "pass" : "fail",
       detail: result.accepted
-        ? `ERP accepted the change through application-logic-layer; new committed $${result.newCommitted?.toLocaleString()}`
-        : `ERP rejected: ${result.errors.join("; ")}`,
+        ? `Fusion Payables accepted the change through application-logic-layer; new committed $${result.newCommitted?.toLocaleString()}`
+        : `Fusion Payables rejected: ${result.errors.join("; ")}`,
       controlTag: CONTROL_TAGS.erpValidation,
       latencyMs,
     },

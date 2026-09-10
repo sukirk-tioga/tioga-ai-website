@@ -149,8 +149,8 @@ export default function McpVsCustomIntegrationPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-[var(--text-muted)] mb-4">
             See the pattern applied to a real workflow in the{" "}
-            <Link href="/engineering/migration-assessment" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
-              Migration Assessment writeup →
+            <Link href="/engineering/fusion-ai-readiness-assessment" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+              Fusion Cloud AI-Readiness Assessment writeup →
             </Link>
           </p>
           <Link

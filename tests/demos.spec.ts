@@ -17,13 +17,15 @@ test.beforeEach(async ({ page }) => {
 // Functional tests — these actually invoke Claude and cost real (small)
 // money. Run on a schedule against production, not on every push. This
 // suite exists because of two real bugs found in production on 2026-07-27:
-//   1. migration-assessment called a retired model ID and 502'd on every
-//      submission, with the UI silently reverting with no visible error.
+//   1. migration-assessment (retired 2026-09-10; replaced by
+//      fusion-ai-readiness-assessment, same underlying scaffolding) called
+//      a retired model ID and 502'd on every submission, with the UI
+//      silently reverting with no visible error.
 //   2. The chat widget rendered raw "**markdown**" syntax instead of
 //      formatting it, because it had no markdown renderer.
 // Both would have been caught immediately by the tests below.
 
-test("migration assessment demo returns a real assessment", async ({ page }) => {
+test("fusion AI-readiness assessment demo returns a real assessment", async ({ page }) => {
   // The demo's own copy tells users to expect "about 60 seconds" — the
   // previous 30s assertion timeout (and Playwright's 30s default overall
   // test timeout) was tighter than that from the day this test was
@@ -35,16 +37,16 @@ test("migration assessment demo returns a real assessment", async ({ page }) => 
   // test and the assertion real headroom above the documented 60s.
   test.setTimeout(90_000);
 
-  await page.goto("/demos/migration-assessment");
+  await page.goto("/demos/fusion-ai-readiness-assessment");
   await page.getByRole("button", { name: /generate readiness assessment/i }).click();
 
   // Give the model time to respond — this is a live API call, not a mock.
-  const complexityHeading = page.getByText("Migration Complexity");
-  await expect(complexityHeading).toBeVisible({ timeout: 75_000 });
+  const readinessHeading = page.getByText("AI-Agent Readiness");
+  await expect(readinessHeading).toBeVisible({ timeout: 75_000 });
 
-  // The score circle, risks, and next steps should all render — if the
+  // The score circle, gaps, and next steps should all render — if the
   // API call fails, the button just reverts with no result section at all.
-  await expect(page.getByText("TOP RISKS")).toBeVisible();
+  await expect(page.getByText("KEY GAPS TO CLOSE")).toBeVisible();
   await expect(page.getByText("RECOMMENDED APPROACH")).toBeVisible();
   await expect(page.getByText("NEXT STEPS")).toBeVisible();
 });

@@ -71,12 +71,13 @@ export default function HomePage() {
  </ScrollReveal>
 
  {/* Workflow examples — a smaller-business (QuickBooks) demo and an
- enterprise (Oracle EBS) demo, side by side. Both cards now carry the
- site's real four-tier EvidenceTierTag (same component every /demos
- page uses) — as of the QuickBooks bill-approval demo shipping, this
- section no longer contrasts a real demo against a hypothetical sketch;
- both are shipped, browser-simulation-tier demos with real code behind
- them. */}
+ enterprise (Oracle Fusion Cloud ERP) demo, side by side. Both cards
+ carry the site's real four-tier EvidenceTierTag (same component every
+ /demos page uses) — as of the QuickBooks bill-approval demo shipping
+ (2026-09-10) and the EBS -> Fusion Cloud ERP pivot (2026-09-10), this
+ section no longer contrasts a real demo against a hypothetical sketch,
+ and no longer references Oracle EBS; both are shipped,
+ browser-simulation-tier demos with real code behind them. */}
  <ScrollReveal>
  <section className="px-6 pb-16 max-w-5xl mx-auto">
  <div className="text-center mb-8">
@@ -99,10 +100,10 @@ export default function HomePage() {
  <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
  <EvidenceTierTag
  tier="browser-simulation"
- detail="Shipped Oracle EBS demo — synthetic records, no live client environment. Same tier as the demo page itself."
+ detail="Shipped Oracle Fusion Cloud ERP demo — synthetic records, no live Fusion tenant. Same tier as the demo page itself."
  />
  <p className="text-sm text-[var(--text-muted)] leading-relaxed">
- A real Oracle EBS AP-exception flow: an exception is raised, checked against policy, routed for approval, and the outcome — and the reasoning behind it — is recorded.{" "}
+ A real Oracle Fusion Cloud ERP AP-exception flow: an exception is raised, checked against policy, routed for approval, and the outcome — and the reasoning behind it — is recorded.{" "}
  <Link href="/demos/ap-exception-workflow" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
  Run it yourself →
  </Link>
@@ -168,10 +169,10 @@ export default function HomePage() {
  <ellipse cx="17" cy="16" rx="4" ry="2" />
  </svg>
  ),
- title: "Migration Assessment",
- desc: "Get a sample EBS → SAP migration readiness assessment in 60 seconds.",
- tag: "Oracle EBS → S/4HANA",
- href: "/demos/migration-assessment"
+ title: "Fusion AI-Readiness Assessment",
+ desc: "Get a sample Oracle Fusion Cloud ERP AI-agent-readiness assessment in 60 seconds.",
+ tag: "Oracle Fusion Cloud ERP",
+ href: "/demos/fusion-ai-readiness-assessment"
  },
  {
  icon: "🛡️",
@@ -545,7 +546,7 @@ export default function HomePage() {
  <div className="p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
  <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>Do you only work with large enterprises?</h3>
  <p className="text-sm text-[var(--text-muted)] leading-relaxed">
- No. Company size isn&apos;t the qualifier. The question is whether you have a real system of record that an AI agent would need to read from, write to, or influence — and whether that can be connected and controlled safely. That might be QuickBooks, NetSuite, Salesforce, Oracle EBS, SAP, or something else. Fit depends on the actual workflow, the access involved, and the controls it needs — not the size of the company asking.
+ No. Company size isn&apos;t the qualifier. The question is whether you have a real system of record that an AI agent would need to read from, write to, or influence — and whether that can be connected and controlled safely. That might be QuickBooks, NetSuite, Salesforce, Oracle Fusion Cloud ERP, Oracle EBS, SAP, or something else. Fit depends on the actual workflow, the access involved, and the controls it needs — not the size of the company asking.
  </p>
  </div>
  </div>

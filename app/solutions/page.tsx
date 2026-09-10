@@ -45,9 +45,8 @@ const FAMILY_LINKS: Record<string, string> = {
 };
 
 const BY_SYSTEM = [
-  { href: "/solutions/oracle", label: "Oracle EBS" },
+  { href: "/solutions/oracle", label: "Oracle Fusion Cloud ERP & EBS" },
   { href: "/solutions/sap", label: "SAP" },
-  { href: "/solutions/ebs-to-s4hana", label: "EBS → S/4HANA migration" },
 ];
 
 export default function SolutionsHubPage() {

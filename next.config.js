@@ -40,6 +40,15 @@ const nextConfig = {
     return [
       { source: "/pricing", destination: "/services", permanent: false },
       { source: "/blog", destination: "/articles", permanent: false },
+      // Retired 2026-09-10 with the Oracle EBS -> Fusion Cloud ERP pivot:
+      // the EBS -> S/4HANA migration-assessment demo was replaced by the
+      // Fusion Cloud AI-Readiness Assessment (a different question — "is it
+      // safe to run governed AI agents here" vs. "should you migrate off
+      // EBS"), so these route to the closest live equivalent rather than
+      // 404ing on any inbound link/bookmark.
+      { source: "/demos/migration-assessment", destination: "/demos/fusion-ai-readiness-assessment", permanent: true },
+      { source: "/engineering/migration-assessment", destination: "/engineering/fusion-ai-readiness-assessment", permanent: true },
+      { source: "/solutions/ebs-to-s4hana", destination: "/solutions/oracle", permanent: true },
     ];
   },
 };

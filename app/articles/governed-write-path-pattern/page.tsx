@@ -49,8 +49,10 @@ const content: ArticleContent = {
         <p>
           The policy engine is one layer. The ERP&apos;s own application logic
           is a second, independent one — my mock validates vendor status and
-          PO ceiling on every write, the same way real Oracle EBS Forms/PL-SQL
-          logic does. In my demo, a scenario can pass every policy check the
+          PO ceiling on every write, the same way Oracle Fusion Cloud ERP&apos;s
+          own Payables application-logic layer does (EBS enforces the
+          equivalent through Forms/PL-SQL instead — same principle, different
+          runtime). In my demo, a scenario can pass every policy check the
           gateway runs and still get blocked because the vendor is on credit
           hold — the governance layer isn&apos;t pretending to replace the
           system&apos;s own business rules, it sits alongside them.
