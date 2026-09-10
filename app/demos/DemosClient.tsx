@@ -730,9 +730,9 @@ function DemosPageInner() {
           </div>
         </div>
 
-        {/* Featured: Migration Assessment */}
+        {/* Featured: Fusion Cloud AI-Readiness Assessment */}
         <Link
-          href="/demos/migration-assessment"
+          href="/demos/fusion-ai-readiness-assessment"
           className="group flex items-center gap-5 p-6 rounded-2xl mb-2 transition-all hover:border-slate-500"
           style={{
             background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
@@ -753,7 +753,7 @@ function DemosPageInner() {
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Migration Assessment</p>
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Fusion Cloud AI-Readiness Assessment</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
                 style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
@@ -762,7 +762,7 @@ function DemosPageInner() {
               </span>
             </div>
             <p className="text-sm text-[var(--text-muted)]">
-              Get a sample EBS → SAP migration readiness assessment in 60 seconds.
+              Get a sample Oracle Fusion Cloud ERP AI-agent-readiness assessment in 60 seconds.
             </p>
           </div>
           <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
@@ -770,7 +770,7 @@ function DemosPageInner() {
           </span>
         </Link>
         <div className="text-right mb-8">
-          <Link href="/engineering/migration-assessment" className="text-xs hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
+          <Link href="/engineering/fusion-ai-readiness-assessment" className="text-xs hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
             How I built this →
           </Link>
         </div>

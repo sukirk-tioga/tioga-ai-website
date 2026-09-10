@@ -4,33 +4,46 @@ import { useEffect, useState } from "react";
 import DemoShell from "../_lib/demo-shell";
 
 // ── Options (must mirror the API's allowed enums) ────────────────────────────
-const VERSIONS = ["R12.1", "R12.2"];
-const MODULES = [
-  { id: "FI", label: "FI · Financials" },
-  { id: "AP", label: "AP · Payables" },
-  { id: "AR", label: "AR · Receivables" },
-  { id: "GL", label: "GL · General Ledger" },
-  { id: "FA", label: "FA · Fixed Assets" },
-  { id: "INV", label: "INV · Inventory" },
-  { id: "PO", label: "PO · Purchasing" },
+const USE_CASES = [
+  "AP invoice exceptions (Fusion Payables)",
+  "Procurement requisition triage (Fusion Procurement)",
+  "GL journal review & anomaly detection (Fusion General Ledger)",
+  "Expense report auditing (Fusion Expenses)",
 ];
-const VOLUMES = ["1-10GB", "10-100GB", "100GB-1TB", "1TB+"];
-const TARGETS = ["S/4HANA Cloud", "S/4HANA Private Cloud", "S/4HANA On-Premise"];
+const VOLUMES = ["<1,000/month", "1,000–10,000/month", "10,000–100,000/month", "100,000+/month"];
+const INTEGRATION_METHODS = [
+  "No integration yet — planning phase",
+  "Calling Fusion REST APIs directly",
+  "Oracle Integration Cloud (OIC) as middleware",
+  "Oracle AI Agent Studio (business-object + deep-link tools)",
+];
+const GOVERNANCE_CONTROLS = [
+  { id: "roles", label: "Agent-scoped security roles (not just seeded Fusion roles)" },
+  { id: "api-scope", label: "REST API access scoped to specific endpoints, not broad admin access" },
+  { id: "audit", label: "Structured audit trail exported to a governance/audit system" },
+  { id: "approval", label: "Human-approval rules extended to agent-initiated actions" },
+  { id: "incident", label: "Named incident-response owner for agent actions" },
+];
 
 const PROGRESS_STAGES = [
-  "Analyzing module footprint…",
-  "Scoring complexity…",
+  "Reviewing governance posture…",
+  "Scoring readiness…",
   "Drafting assessment…",
 ];
 
 interface Assessment {
-  complexityScore: number;
+  readinessScore: number;
   scoreReasoning: string;
-  timelineRange: string;
-  topRisks: { title: string; detail: string }[];
+  keyGaps: { title: string; detail: string }[];
   recommendedApproach: { approach: string; reasoning: string };
   nextSteps: string[];
 }
+
+const APPROACH_LABELS: Record<string, string> = {
+  "pilot-ready": "Pilot-ready",
+  "needs-guardrails": "Needs guardrails",
+  "not-ready": "Not ready",
+};
 
 const inputStyle = {
   background: "var(--bg-dark)",
@@ -49,7 +62,9 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 function ScoreRing({ score }: { score: number }) {
   const r = 34;
   const c = 2 * Math.PI * r;
-  const color = score <= 3 ? "var(--success)" : score <= 6 ? "var(--warning-light)" : "var(--error-light)";
+  // Inverted from the retired migration-complexity ring: here, higher is
+  // better (more ready to safely run agents), not worse.
+  const color = score >= 8 ? "var(--success)" : score >= 5 ? "var(--warning-light)" : "var(--error-light)";
   return (
     <div className="relative w-24 h-24 flex-none">
       <svg viewBox="0 0 80 80" className="w-24 h-24 -rotate-90">
@@ -68,11 +83,11 @@ function ScoreRing({ score }: { score: number }) {
   );
 }
 
-export default function MigrationAssessmentPage() {
-  const [version, setVersion] = useState(VERSIONS[1]);
-  const [modules, setModules] = useState<string[]>(["FI", "GL", "AP"]);
-  const [dataVolume, setDataVolume] = useState(VOLUMES[1]);
-  const [target, setTarget] = useState(TARGETS[0]);
+export default function FusionAiReadinessAssessmentPage() {
+  const [useCase, setUseCase] = useState(USE_CASES[0]);
+  const [transactionVolume, setTransactionVolume] = useState(VOLUMES[1]);
+  const [integrationMethod, setIntegrationMethod] = useState(INTEGRATION_METHODS[0]);
+  const [governanceControls, setGovernanceControls] = useState<string[]>([]);
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [stage, setStage] = useState(0);
@@ -90,18 +105,18 @@ export default function MigrationAssessmentPage() {
     return () => clearInterval(t);
   }, [state]);
 
-  const toggleModule = (id: string) =>
-    setModules((m) => (m.includes(id) ? m.filter((x) => x !== id) : [...m, id]));
+  const toggleControl = (label: string) =>
+    setGovernanceControls((c) => (c.includes(label) ? c.filter((x) => x !== label) : [...c, label]));
 
   const submit = async () => {
     setState("loading");
     setError("");
     setResult(null);
     try {
-      const res = await fetch("/api/demos/migration-assessment", {
+      const res = await fetch("/api/demos/fusion-ai-readiness-assessment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ version, modules, dataVolume, target, email: email || undefined }),
+        body: JSON.stringify({ useCase, transactionVolume, integrationMethod, governanceControls, email: email || undefined }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error ?? "Request failed.");
@@ -116,86 +131,86 @@ export default function MigrationAssessmentPage() {
 
   return (
     <DemoShell
-      title="Migration Assessment"
+      title="Oracle Fusion Cloud AI-Readiness Assessment"
       evidenceTier="model-demonstration"
-      description="Answer four questions about your Oracle EBS environment and get a sample S/4HANA migration readiness assessment — generated in about 60 seconds."
+      evidenceDetail="Claude Sonnet 5 reasons live, via the production endpoint, over the allowlisted Fusion Cloud ERP scenario you select — it does not connect to a live Fusion tenant. A real Fusion sandbox connection is a planned follow-up (Phase B), not yet built."
+      description="Answer a few questions about your Oracle Fusion Cloud ERP environment and get a sample AI-agent-readiness assessment — covering role/security scope, REST API discipline, audit-trail readiness, and human-approval gates — generated in about 60 seconds."
     >
       {/* Form */}
       <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold mb-5" style={{ color: "var(--text)" }}>Tell me about your Oracle EBS environment</h2>
+        <h2 className="font-semibold mb-5" style={{ color: "var(--text)" }}>Tell me about your Fusion Cloud ERP environment</h2>
         <div className="space-y-5">
           <div className="grid sm:grid-cols-2 gap-5">
-            <Field label="Oracle EBS version">
+            <Field label="Target agent use case">
               <select
-                value={version}
-                onChange={(e) => setVersion(e.target.value)}
+                value={useCase}
+                onChange={(e) => setUseCase(e.target.value)}
                 className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500"
                 style={inputStyle}
               >
-                {VERSIONS.map((v) => <option key={v} value={v}>{v}</option>)}
+                {USE_CASES.map((v) => <option key={v} value={v}>{v}</option>)}
               </select>
             </Field>
-            <Field label="Approximate data volume">
+            <Field label="Approximate transaction volume">
               <select
-                value={dataVolume}
-                onChange={(e) => setDataVolume(e.target.value)}
+                value={transactionVolume}
+                onChange={(e) => setTransactionVolume(e.target.value)}
                 className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500"
                 style={inputStyle}
               >
-                {VOLUMES.map((v) => <option key={v} value={v}>{v.replace("-", "–")}</option>)}
+                {VOLUMES.map((v) => <option key={v} value={v}>{v}</option>)}
               </select>
             </Field>
           </div>
 
-          <Field label="Modules in use">
-            <div className="flex flex-wrap gap-2">
-              {MODULES.map((m) => {
-                const on = modules.includes(m.id);
+          <Field label="Current integration method">
+            <select
+              value={integrationMethod}
+              onChange={(e) => setIntegrationMethod(e.target.value)}
+              className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500"
+              style={inputStyle}
+            >
+              {INTEGRATION_METHODS.map((v) => <option key={v} value={v}>{v}</option>)}
+            </select>
+          </Field>
+
+          <Field label="Governance controls already in place — select any that apply">
+            <div className="flex flex-col gap-2">
+              {GOVERNANCE_CONTROLS.map((c) => {
+                const on = governanceControls.includes(c.label);
                 return (
                   <button
-                    key={m.id}
+                    key={c.id}
                     type="button"
-                    onClick={() => toggleModule(m.id)}
-                    className="px-3 py-1.5 rounded-full text-xs font-medium transition-all"
+                    onClick={() => toggleControl(c.label)}
+                    className="text-left px-3 py-2 rounded-lg text-xs font-medium transition-all"
                     style={{
                       background: on ? "#C8340615" : "transparent",
                       border: `1px solid ${on ? "#C8340650" : "var(--border)"}`,
                       color: on ? "var(--accent)" : "var(--text-muted)",
                     }}
                   >
-                    {m.label}
+                    {on ? "✓ " : ""}{c.label}
                   </button>
                 );
               })}
             </div>
           </Field>
 
-          <div className="grid sm:grid-cols-2 gap-5">
-            <Field label="Target SAP edition">
-              <select
-                value={target}
-                onChange={(e) => setTarget(e.target.value)}
-                className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500"
-                style={inputStyle}
-              >
-                {TARGETS.map((t) => <option key={t} value={t}>{t}</option>)}
-              </select>
-            </Field>
-            <Field label="Send me a copy — optional">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@company.com"
-                className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500 placeholder:text-[var(--text-muted)]"
-                style={inputStyle}
-              />
-            </Field>
-          </div>
+          <Field label="Send me a copy — optional">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@company.com"
+              className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500 placeholder:text-[var(--text-muted)]"
+              style={inputStyle}
+            />
+          </Field>
 
           <button
             onClick={submit}
-            disabled={state === "loading" || modules.length === 0}
+            disabled={state === "loading"}
             className="w-full py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-dark))" }}
           >
@@ -211,9 +226,6 @@ export default function MigrationAssessmentPage() {
               "Generate Readiness Assessment"
             )}
           </button>
-          {modules.length === 0 && (
-            <p className="text-xs text-[var(--text-muted)] text-center -mt-2">Select at least one module.</p>
-          )}
           {state === "error" && (
             <p className="text-sm text-center" style={{ color: "var(--error-light)" }}>{error}</p>
           )}
@@ -224,31 +236,27 @@ export default function MigrationAssessmentPage() {
       {state === "done" && result && (
         <div className="mt-8">
           <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid #C8340630" }}>
-            {/* Score + timeline */}
+            {/* Score + approach */}
             <div className="flex flex-col sm:flex-row items-start gap-6 pb-6 mb-6" style={{ borderBottom: "1px solid var(--border)" }}>
-              <ScoreRing score={result.complexityScore} />
+              <ScoreRing score={result.readinessScore} />
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-3 mb-2">
-                  <h3 className="text-lg font-semibold" style={{ color: "var(--text)" }}>Migration Complexity</h3>
+                  <h3 className="text-lg font-semibold" style={{ color: "var(--text)" }}>AI-Agent Readiness</h3>
                   <span
                     className="text-xs px-2.5 py-1 rounded-full font-medium uppercase tracking-wide"
                     style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
                   >
-                    {result.recommendedApproach.approach}
+                    {APPROACH_LABELS[result.recommendedApproach.approach] ?? result.recommendedApproach.approach}
                   </span>
                 </div>
-                <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-3">{result.scoreReasoning}</p>
-                <p className="text-sm">
-                  <span className="text-[var(--text-muted)]">Estimated timeline: </span>
-                  <span className="font-semibold font-mono" style={{ color: "var(--text)" }}>{result.timelineRange}</span>
-                </p>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed">{result.scoreReasoning}</p>
               </div>
             </div>
 
-            {/* Risks */}
-            <h4 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "var(--text)" }}>Top Risks</h4>
+            {/* Gaps */}
+            <h4 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "var(--text)" }}>Key Gaps To Close</h4>
             <div className="grid sm:grid-cols-3 gap-3 mb-6">
-              {result.topRisks.map((r, i) => (
+              {result.keyGaps.map((r, i) => (
                 <div key={i} className="p-4 rounded-xl" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
                   <p className="text-sm font-semibold mb-1.5" style={{ color: "var(--warning-light)" }}>{r.title}</p>
                   <p className="text-xs text-[var(--text-muted)] leading-relaxed">{r.detail}</p>
@@ -277,8 +285,9 @@ export default function MigrationAssessmentPage() {
           </div>
 
           <p className="text-xs text-[var(--text-muted)] text-center mt-4 max-w-lg mx-auto">
-            This is a sample assessment. A full assessment includes data profiling, code analysis,
-            and a module-by-module roadmap.
+            This is a sample assessment against a scenario you selected, not your live tenant.
+            A full assessment includes a real role/security-role audit, endpoint-by-endpoint API
+            scope review, and a named rollout plan.
           </p>
           {emailed && (
             <p className="text-xs text-center mt-2" style={{ color: "var(--success)" }}>

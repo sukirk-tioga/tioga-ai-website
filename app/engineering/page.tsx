@@ -38,10 +38,10 @@ const WRITEUPS = [
     summary: "Classification, routing, and reply-drafting in one call — and the enum-constrained prompt design that keeps the output usable without a parser fighting free text.",
   },
   {
-    href: "/engineering/migration-assessment",
-    title: "Migration Assessment",
+    href: "/engineering/fusion-ai-readiness-assessment",
+    title: "Fusion Cloud AI-Readiness Assessment",
     model: "Claude Sonnet 5",
-    summary: "Why this demo runs on a reasoning model behind a strict allowlist, with conditional compliance logic and clamped, validated output — the most defensive route on the site.",
+    summary: "Why this demo runs on a reasoning model behind a strict allowlist, with conditional governance logic and clamped, validated output — the most defensive route on the site.",
   },
   {
     href: "/engineering/standing-watch",

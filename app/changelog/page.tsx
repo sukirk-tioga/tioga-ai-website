@@ -28,6 +28,12 @@ interface Entry {
 // shipped unit of work into one entry. Dates are the day the unit landed.
 const ENTRIES: Entry[] = [
   {
+    date: "2026-09-10",
+    kind: "Feature",
+    title: "Oracle ERP story rebalanced from EBS-led to Oracle Fusion Cloud ERP-led",
+    body: "Founder research (see the linked Oracle EBS agent-attribution-gap article) confirmed EBS has no REST-native surface — agent access goes through Oracle Integration Cloud's E-Business Suite Adapter, HTTP Basic Auth only — while Oracle Fusion Cloud ERP is REST-native with a real AI Agent Studio, making a real (non-simulated-in-spirit) Fusion demo genuinely more buildable than a real EBS one. Reskinned the AP-exception-workflow demo's copy and policy comments from Oracle EBS to Oracle Fusion Cloud ERP's Payables flow (same policy engine, same browser-simulation evidence tier — a live Fusion sandbox connection is a planned Phase B follow-up). Retired the Oracle EBS -> S/4HANA migration-assessment demo, its engineering write-up, and the dedicated /solutions/ebs-to-s4hana page (each now redirects to a live equivalent) and replaced them with a new Oracle Fusion Cloud AI-Readiness Assessment demo at /demos/fusion-ai-readiness-assessment — same real-Claude-call, model-demonstration evidence tier, new domain: how ready a Fusion Cloud ERP environment is to safely run governed AI agents (role/security scope, REST API discipline, audit-trail readiness, human-approval gates), not whether to migrate off EBS. General site copy (/, /about, /services, /solutions/oracle and related pages) rebalanced to lead with Fusion Cloud ERP alongside EBS rather than EBS alone; historical changelog entries below and the founder's own biographical EBS/SAP operating history were left untouched as a record of what actually happened, not live positioning.",
+  },
+  {
     date: "2026-09-09",
     kind: "Content",
     title: "Governance Ledger window refreshed — Jul 2026 excerpt replaced with a current Sep 8-9 window",

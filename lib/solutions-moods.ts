@@ -20,7 +20,6 @@ export const SOLUTION_MOODS: Record<string, SolutionMood> = {
   "governed-write-path": { color: "#8B5CF6", colorDark: "#5B32B0", panX: 0.9, panY: 0.5 },
   "mcp-security": { color: "#EF4444", colorDark: "#A82A2A", panX: -0.8, panY: -0.5 },
   "ai-governance": { color: "#00D4FF", colorDark: "#0057B8", panX: 0.3, panY: 0.9 },
-  "ebs-to-s4hana": { color: "#4ADE80", colorDark: "#0088AA", panX: -0.3, panY: -0.8 },
   "standing-watch": { color: "#8B5CF6", colorDark: "#0088AA", panX: 1.1, panY: 0.1 },
 };
 

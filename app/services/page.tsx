@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Three practices, sixteen priced engagements — systems-led AI automation, agent layers for your existing systems, and AI governance, for businesses on QuickBooks, NetSuite, Salesforce, Oracle EBS, SAP, or something else.",
+    "Three practices, sixteen priced engagements — systems-led AI automation, agent layers for your existing systems, and AI governance, for businesses on QuickBooks, NetSuite, Salesforce, Oracle Fusion Cloud ERP, Oracle EBS, SAP, or something else.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Services — Tioga AI",
@@ -57,14 +57,14 @@ const PRACTICES: Practice[] = [
     key: "erp",
     name: "Modernize ERP with an agent layer",
     blurb:
-      "Add AI capability to Oracle EBS, SAP, or a legacy ERP without ripping out what already works — including the one stalled agent-to-ERP write path that's actually blocking you.",
+      "Add AI capability to Oracle Fusion Cloud ERP, Oracle EBS, SAP, or a legacy ERP without ripping out what already works — including the one stalled agent-to-ERP write path that's actually blocking you.",
     offers: [
       {
         name: "Agent-Ready ERP Diagnostic & Governed Write-Path",
         desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear.",
         price: "$60–120K",
         duration: "~6 weeks",
-        buyer: "Oracle EBS or SAP teams with one stalled agent-to-ERP write path already identified.",
+        buyer: "Oracle Fusion Cloud ERP, Oracle EBS, or SAP teams with one stalled agent-to-ERP write path already identified.",
       },
       {
         name: "Salesforce Governed Write-Path & Evidence Build",
@@ -82,10 +82,10 @@ const PRACTICES: Practice[] = [
       },
       {
         name: "ERP Modernization Advisory",
-        desc: "Ongoing strategic guidance for organizations modernizing Oracle EBS, SAP legacy, or custom ERP environments — with AI integration as a first-class requirement.",
+        desc: "Ongoing strategic guidance for organizations modernizing Oracle Fusion Cloud ERP, Oracle EBS, SAP legacy, or custom ERP environments — with AI integration as a first-class requirement.",
         price: "$15–25K/month",
         duration: "3–12 months",
-        buyer: "Organizations modernizing Oracle EBS, SAP legacy, or custom ERP environments who need ongoing strategic guidance, not a one-off engagement.",
+        buyer: "Organizations modernizing Oracle Fusion Cloud ERP, Oracle EBS, SAP legacy, or custom ERP environments who need ongoing strategic guidance, not a one-off engagement.",
       },
     ],
   },

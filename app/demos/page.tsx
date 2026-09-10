@@ -18,7 +18,7 @@ import DemosClient from "./DemosClient";
 export const metadata: Metadata = {
   title: "Live AI Demos",
   description:
-    "Four real AI workflows running against Tioga AI's own agent infrastructure: invoice processing, email triage, an EBS-to-S/4HANA migration assessment, and Standing Watch governance findings. No signup, no mockups.",
+    "Four real AI workflows running against Tioga AI's own agent infrastructure: invoice processing, email triage, an Oracle Fusion Cloud AI-readiness assessment, and Standing Watch governance findings. No signup, no mockups.",
   alternates: { canonical: "/demos" },
   openGraph: {
     title: "Live AI Demos — Tioga AI",
@@ -40,10 +40,10 @@ const DEMOS = [
     href: "/demos?tab=email",
   },
   {
-    title: "Migration Assessment",
-    desc: "Get a sample Oracle EBS → SAP S/4HANA migration readiness assessment in 60 seconds.",
-    tag: "Oracle EBS → S/4HANA",
-    href: "/demos/migration-assessment",
+    title: "Fusion Cloud AI-Readiness Assessment",
+    desc: "Get a sample Oracle Fusion Cloud ERP AI-agent-readiness assessment in 60 seconds.",
+    tag: "Oracle Fusion Cloud ERP",
+    href: "/demos/fusion-ai-readiness-assessment",
   },
   {
     title: "Standing Watch",

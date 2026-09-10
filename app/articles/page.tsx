@@ -5,7 +5,7 @@ import { FREE_ZERO_COST_PCT } from "@/lib/governance-ledger";
 export const metadata: Metadata = {
   title: "Articles",
   description:
-    "Technical writing on governed AI write-paths, AI governance frameworks, MCP security, ERP migration, and AI cost governance — grounded in Tioga AI's own live demos and infrastructure.",
+    "Technical writing on governed AI write-paths, AI governance frameworks, MCP security, Oracle Fusion Cloud ERP AI-agent readiness, and AI cost governance — grounded in Tioga AI's own live demos and infrastructure.",
   alternates: { canonical: "/articles" },
   openGraph: {
     title: "Articles — Tioga AI",
@@ -36,8 +36,8 @@ const ARTICLES = [
   },
   {
     href: "/articles/migration-complexity-scoring",
-    title: "What actually drives Oracle EBS → S/4HANA migration complexity",
-    summary: "A real, reproducible scoring model from module footprint and data volume.",
+    title: "What actually drives Oracle Fusion Cloud ERP AI-agent readiness",
+    summary: "A real, reproducible scoring model from use case, integration method, and existing governance controls.",
   },
   {
     href: "/articles/ai-cost-governance-ledger",

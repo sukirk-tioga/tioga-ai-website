@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 const PILLARS = [
   {
     label: "Enterprise systems",
-    body: "Oracle EBS, SAP, finance, HR, procurement — the operational core most AI vendors have never had to touch, let alone integrate against.",
+    body: "Oracle Fusion Cloud ERP, Oracle EBS, SAP, finance, HR, procurement — the operational core most AI vendors have never had to touch, let alone integrate against.",
   },
   {
     label: "Hands-on AI engineering",
-    body: "Every demo on this site — the migration assessment, the governance ledger, the MCP connectors — is built and run by the same person writing this page. Not a slide, not an outsourced dev shop.",
+    body: "Every demo on this site — the Fusion AI-readiness assessment, the governance ledger, the MCP connectors — is built and run by the same person writing this page. Not a slide, not an outsourced dev shop.",
   },
   {
     label: "AI governance",
@@ -155,12 +155,12 @@ export default function AboutPage() {
           <h2 className="text-xl font-bold mb-4" style={{ color: "var(--text)" }}>See it, don&apos;t take my word for it</h2>
           <div className="grid sm:grid-cols-3 gap-3">
             <a
-              href="/demos/migration-assessment"
+              href="/demos/fusion-ai-readiness-assessment"
               className="p-4 rounded-xl transition-all hover:border-slate-500"
               style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
-              <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Migration Assessment →</p>
-              <p className="text-xs text-[var(--text-muted)]">A live EBS → S/4HANA readiness agent, running against real assessment logic.</p>
+              <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Fusion AI-Readiness Assessment →</p>
+              <p className="text-xs text-[var(--text-muted)]">A live Oracle Fusion Cloud ERP AI-readiness scan, running against real assessment logic.</p>
             </a>
             <a
               href="/demos/governance-ledger"

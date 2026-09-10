@@ -95,7 +95,7 @@ const content: SolutionContent = {
     },
   ],
   related: [
-    { href: "/solutions/oracle", label: "Governed write-path for Oracle EBS" },
+    { href: "/solutions/oracle", label: "Governed write-path for Oracle Fusion Cloud ERP & EBS" },
     { href: "/solutions/sap", label: "Governed write-path for SAP" },
     { href: "/demos/governance-ledger", label: "See the Governance Ledger demo" },
     { href: "/articles/governed-write-path-pattern", label: "Read: how the governed write-path pattern works" },

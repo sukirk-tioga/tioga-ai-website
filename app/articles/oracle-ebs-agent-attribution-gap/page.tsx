@@ -134,6 +134,36 @@ const content: ArticleContent = {
       ),
     },
     {
+      heading: "Where Oracle Fusion Cloud ERP is structurally different",
+      body: (
+        <p>
+          Worth stating plainly, since it&apos;s easy to read the finding
+          above as a knock on Oracle generally rather than on this specific
+          adapter and integration path: Oracle&apos;s newer Fusion Cloud ERP
+          doesn&apos;t share this constraint. Fusion is REST-native — its own
+          documented REST resources (Payables invoices and invoice holds
+          among them) sit behind Oracle Cloud Security Roles rather than a
+          single Basic-Auth service account, and Oracle ships a real AI Agent
+          Studio built directly against those APIs. That doesn&apos;t make
+          attribution automatic — a Fusion deployment still has to actually
+          configure agent-scoped roles and an exported audit trail rather
+          than defaulting to broad access — but the ceiling is structurally
+          higher: nothing about Fusion&apos;s own REST surface forces every
+          agent call through one shared identity the way EBS&apos;s adapter
+          does today. See the{" "}
+          <Link
+            href="/demos/fusion-ai-readiness-assessment"
+            className="underline hover:text-[var(--text)] transition-colors"
+            style={{ color: "var(--accent)" }}
+          >
+            Fusion Cloud AI-Readiness Assessment
+          </Link>{" "}
+          for what actually has to be configured to close that gap in
+          practice.
+        </p>
+      ),
+    },
+    {
       heading: "What this means if you're evaluating \"AI for EBS\"",
       body: (
         <p>
@@ -165,6 +195,7 @@ const content: ArticleContent = {
   related: [
     { href: "/solutions/governed-write-path", label: "The governed write-path pattern" },
     { href: "/demos/ap-exception-workflow", label: "Try the governed AP exception demo" },
+    { href: "/demos/fusion-ai-readiness-assessment", label: "See the Fusion Cloud AI-Readiness Assessment" },
   ],
 };
 

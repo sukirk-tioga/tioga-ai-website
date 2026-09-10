@@ -149,31 +149,31 @@ export async function sendContactLogEmail(entry: {
   });
 }
 
-interface MigrationAssessment {
-  complexityScore: number;
+interface FusionReadinessAssessment {
+  readinessScore: number;
   scoreReasoning: string;
-  timelineRange: string;
-  topRisks: { title: string; detail: string }[];
+  keyGaps: { title: string; detail: string }[];
   recommendedApproach: { approach: string; reasoning: string };
   nextSteps: string[];
 }
 
-export async function sendMigrationAssessmentCopy({
+// Replaces sendMigrationAssessmentCopy (retired with the migration-assessment
+// demo, 2026-09-10) — same email-delivery shape, new Fusion Cloud ERP
+// AI-agent-readiness domain. See app/api/demos/fusion-ai-readiness-assessment/route.ts.
+export async function sendFusionReadinessCopy({
   to,
-  version,
-  modules,
-  dataVolume,
-  target,
+  useCase,
+  transactionVolume,
+  integrationMethod,
   assessment,
 }: {
   to: string;
-  version: string;
-  modules: string;
-  dataVolume: string;
-  target: string;
-  assessment: MigrationAssessment;
+  useCase: string;
+  transactionVolume: string;
+  integrationMethod: string;
+  assessment: FusionReadinessAssessment;
 }) {
-  const riskRows = assessment.topRisks
+  const gapRows = assessment.keyGaps
     .map(
       (r) => `
       <div style="padding: 12px 0; border-top: 1px solid #e2e8f0;">
@@ -188,21 +188,20 @@ export async function sendMigrationAssessmentCopy({
   const html = `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #f8fafc; padding: 24px; border-radius: 12px;">
       <div style="background: linear-gradient(135deg, #00D4FF, #0066CC); padding: 20px 24px; border-radius: 8px; margin-bottom: 24px;">
-        <h1 style="color: white; margin: 0; font-size: 20px;">Your Migration Readiness Assessment</h1>
-        <p style="color: rgba(255,255,255,0.8); margin: 4px 0 0; font-size: 14px;">${escapeHtml(version)} → ${escapeHtml(target)}</p>
+        <h1 style="color: white; margin: 0; font-size: 20px;">Your Oracle Fusion Cloud AI-Readiness Assessment</h1>
+        <p style="color: rgba(255,255,255,0.8); margin: 4px 0 0; font-size: 14px;">${escapeHtml(useCase)}</p>
       </div>
 
       <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
-        <p style="margin: 0 0 8px;"><strong>Modules in scope:</strong> ${escapeHtml(modules)}</p>
-        <p style="margin: 0 0 8px;"><strong>Data volume:</strong> ${escapeHtml(dataVolume)}</p>
-        <p style="margin: 0 0 8px;"><strong>Complexity score:</strong> ${assessment.complexityScore}/10</p>
-        <p style="margin: 0 0 8px;"><strong>Estimated timeline:</strong> ${escapeHtml(assessment.timelineRange)}</p>
+        <p style="margin: 0 0 8px;"><strong>Transaction volume:</strong> ${escapeHtml(transactionVolume)}</p>
+        <p style="margin: 0 0 8px;"><strong>Current integration method:</strong> ${escapeHtml(integrationMethod)}</p>
+        <p style="margin: 0 0 8px;"><strong>Readiness score:</strong> ${assessment.readinessScore}/10</p>
         <p style="margin: 0; color: #334155;">${escapeHtml(assessment.scoreReasoning)}</p>
       </div>
 
       <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
-        <h2 style="font-size: 14px; text-transform: uppercase; color: #64748b; margin: 0 0 8px;">Top Risks</h2>
-        ${riskRows}
+        <h2 style="font-size: 14px; text-transform: uppercase; color: #64748b; margin: 0 0 8px;">Key Gaps To Close</h2>
+        ${gapRows}
       </div>
 
       <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
@@ -223,7 +222,7 @@ export async function sendMigrationAssessmentCopy({
     from: `"Tioga AI" <${process.env.SMTP_USER}>`,
     to,
     replyTo: "hello@tioga.ai",
-    subject: `Your ${version} → ${target} migration readiness assessment`,
+    subject: `Your Oracle Fusion Cloud AI-readiness assessment — ${useCase}`,
     html,
   });
 }
