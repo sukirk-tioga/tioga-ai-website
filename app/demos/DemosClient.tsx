@@ -367,10 +367,17 @@ function InvoiceDemo() {
             </div>
           </div>
 
-          <div style={{ background: "#C8340608", border: "1px solid #C8340620", borderRadius: 8, padding: "10px 12px" }}>
-            <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>→ Ready to route to AP team</p>
-            <p className="text-xs text-[var(--text-muted)]">{data.paymentInstructions}</p>
-          </div>
+          {data.confidence >= 40 && data.vendor !== "N/A" && data.total !== "N/A" ? (
+            <div style={{ background: "#C8340608", border: "1px solid #C8340620", borderRadius: 8, padding: "10px 12px" }}>
+              <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>→ Ready to route to AP team</p>
+              <p className="text-xs text-[var(--text-muted)]">{data.paymentInstructions}</p>
+            </div>
+          ) : (
+            <div style={{ background: "#A8681E10", border: "1px solid #A8681E30", borderRadius: 8, padding: "10px 12px" }}>
+              <p className="text-xs font-medium mb-1" style={{ color: "var(--warning)" }}>⚠ Not recognized as an invoice — needs manual review</p>
+              <p className="text-xs text-[var(--text-muted)]">Required fields are missing or the input doesn&apos;t match invoice structure. Nothing was routed.</p>
+            </div>
+          )}
         </ResultCard>
       )}
     </div>

@@ -18,11 +18,11 @@ import DemosClient from "./DemosClient";
 export const metadata: Metadata = {
   title: "Live AI Demos",
   description:
-    "Four real AI workflows running against Tioga AI's own agent infrastructure: invoice processing, email triage, an Oracle Fusion Cloud AI-readiness assessment, and Standing Watch governance findings. No signup, no mockups.",
+    "Real AI workflows running against Tioga AI's own agent infrastructure, including invoice processing, email triage, an Oracle Fusion Cloud AI-readiness assessment, and Standing Watch governance findings. No signup, no mockups.",
   alternates: { canonical: "/demos" },
   openGraph: {
     title: "Live AI Demos — Tioga AI",
-    description: "Four real AI workflows, no signup, no mockups — a mix of live model calls, browser simulations, and dated operational excerpts, the same models and evidence built into every Tioga AI engagement.",
+    description: "Real AI workflows, no signup, no mockups — a mix of live model calls, browser simulations, and dated operational excerpts, the same models and evidence built into every Tioga AI engagement.",
   },
 };
 
@@ -62,7 +62,7 @@ export default function DemosPage() {
           rather than duplicating the full interactive UI. */}
       <h1 className="sr-only">Live AI Demos — Tioga AI</h1>
       <p className="sr-only">
-        Four real AI workflows running against Tioga AI&apos;s own agent infrastructure, no signup and no mockups:
+        Real AI workflows running against Tioga AI&apos;s own agent infrastructure, no signup and no mockups. A few examples (see the full, current catalog below):
       </p>
       <ul className="sr-only">
         {DEMOS.map((demo) => (

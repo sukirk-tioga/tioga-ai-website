@@ -21,6 +21,8 @@ export async function POST(req: NextRequest) {
 Document:
 ${text.slice(0, 3000)}
 
+Consistency rule, check before responding: a printed date next to a signature block is NOT evidence the document was executed — only an actually-filled-in signature (a name, mark, or explicit "signed"/"executed" statement in the signature area itself) is. If signature lines are blank, unfilled, or only show placeholder underscores, the document is unexecuted/pending signature, and "summary" must say so (e.g. "drafted, not yet executed" or "awaiting signature"), not "executed on [date]". Never let "summary" assert an execution/signing status that contradicts what "riskFlags" says about the same document — resolve any tension before writing either field, don't write them independently.
+
 Respond ONLY with a JSON object:
 {
   "documentType": "one of: Contract | Invoice | Purchase Order | Resume | Legal Brief | Policy Document | Report | Memo | NDA | Proposal | Receipt | Email | Other",
