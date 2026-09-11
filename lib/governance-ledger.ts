@@ -93,7 +93,7 @@ export const BACKEND_COUNT = 3;
 export const BACKEND_ROUTES = Array.from(new Set(LEDGER.map((r) => r.served)));
 
 export const STATS = [
-  { label: "Spend vs. cap", value: `$${TOTAL_SPEND.toFixed(6)}`, sub: `of $${BUDGET_CAP.toFixed(2)} · 30-day rolling window` },
+  { label: "Excerpt subtotal", value: `$${TOTAL_SPEND.toFixed(6)}`, sub: `${TOTAL_CALLS} calls, Sep 8-9 2026 — not the same figure as the live window spend below` },
   { label: "Calls logged", value: `${TOTAL_CALLS}`, sub: "unsampled — every call, not a spot check" },
   { label: "Backends in rotation", value: `${BACKEND_COUNT}`, sub: "local free-tier → Google → OpenRouter, by policy" },
   { label: "Paid vs. free-tier", value: `${PAID_COUNT} / ${TOTAL_CALLS}`, sub: "call volume has grown past what the free tier absorbs — spend is still nowhere near the $30 cap" },

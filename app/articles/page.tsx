@@ -51,7 +51,7 @@ const ARTICLES = [
   },
   {
     href: "/articles/standing-watch",
-    title: "Why every automation I run only proposes — never applies",
+    title: "Why router-watch and security-watch only propose — never apply",
     summary: "The real 12-day cross-machine auth gap that motivated security-watch, and why propose-and-approve is the whole point.",
   },
   {

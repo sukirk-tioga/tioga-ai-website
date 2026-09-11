@@ -59,7 +59,7 @@ export default function DemoShell({
           </h2>
           <p className="text-sm text-[var(--text-muted)] mb-6 max-w-md mx-auto">
             A discovery call gets you a scoped assessment from the person who builds these
-            migrations — not a form, a conversation.
+            engagements — not a form, a conversation.
           </p>
           <a
             href="/contact"

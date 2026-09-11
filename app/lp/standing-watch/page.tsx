@@ -156,7 +156,7 @@ export default function StandingWatchLandingPage() {
                 Book a walkthrough
               </TrackedCTA>
               <TrackedCTA
-                href="/demos/standing-watch"
+                href="/demos/governance-ledger"
                 event="cta_view_demo"
                 data={{ location: "lp_standing_watch" }}
                 className="px-8 py-3.5 rounded-xl font-semibold text-center transition-all hover:border-slate-500 hover:text-[var(--text)]"
