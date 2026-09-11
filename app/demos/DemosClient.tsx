@@ -1250,6 +1250,45 @@ function DemosPageInner() {
           </span>
         </Link>
 
+        {/* Featured: Timecard Exception Agent, Shadow-Mode */}
+        <Link
+          href="/demos/timecard-exception-shadow-mode"
+          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
+          style={{
+            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
+          }}
+        >
+          <span
+            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 mb-1">
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Timecard Exception Agent, Shadow-Mode</p>
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+              >
+                Interactive
+              </span>
+            </div>
+            <p className="text-sm text-[var(--text-muted)]">
+              An agent proposes corrections for missed punches, unapproved overtime, and PTO requests — never
+              auto-executing — citing the named payroll-cycle control and FLSA/state rule behind each one. See the
+              measured human-agreement rate over a defined shadow-mode review window.
+            </p>
+          </div>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
+            Try it live →
+          </span>
+        </Link>
+
         {/* Demo selector */}
         <div className="grid grid-cols-3 gap-3 mb-8" style={{ scrollMarginTop: "110px" }} ref={activeDemoRef}>
           {DEMOS.map((demo) => (
