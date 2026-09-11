@@ -51,6 +51,12 @@ export default function AboutPage() {
             operating side of enterprise systems — Oracle EBS, SAP, finance,
             HR, procurement, and the governance and compliance work that keeps
             all of it audit-ready. Not consulting from the outside: running it.
+            That operating experience includes UKG Pro on the payroll and
+            workforce side, and Workday Adaptive Planning — formerly Adaptive
+            Insights, spanning both the pre- and post-Workday-acquisition
+            generations of the product — on the FP&A side, in each case
+            across configuration, implementation, and ongoing operation, not
+            a vendor-partner or advisory role.
           </p>
           <p>
             That&apos;s the terrain I&apos;m building AI agents on now. Most AI

@@ -93,6 +93,10 @@ const content: SolutionContent = {
       q: "Can we see the audit trail this produces?",
       a: "Yes — see the live Governed AP Exception Workflow demo for the interactive version. This pattern has also run against a real Snowflake sandbox tenant, not just the mock (3 real writes persisted, 2 correctly rejected, full policy-check and audit-trail data on 2026-07-31) — ask and I'll walk you through the real run directly.",
     },
+    {
+      q: "Does the diagnostic cover payroll/HRIS or FP&A write paths too, or only the ERP?",
+      a: "Yes, where a candidate write path originates in or lands in payroll/workforce management or FP&A planning rather than the ERP alone — grounded in hands-on configuration, implementation, and operating experience with UKG Pro and Workday Adaptive Planning (formerly Adaptive Insights, spanning both its pre- and post-Workday-acquisition generations), not a general \"AI in HR\" or \"AI in FP&A\" framework applied from the outside. Two examples: a timecard exception agent proposing punch corrections carries the same attribution-loss risk this diagnostic already looks for on the ERP side — now against real wage-and-hour exposure (FLSA/state overtime rules) rather than only a posting-period control; a headcount-forecast drafting agent has to write into a draft, never a locked/approved, version, with each number tagged to its source data and stated assumption. Any demo shown ahead of a live engagement runs on synthetic data — UKG doesn't issue developer sandboxes outside its formal partner program, and Adaptive Planning sandboxes come bundled with a customer license — stated plainly, not implied away.",
+    },
   ],
   related: [
     { href: "/solutions/oracle", label: "Governed write-path for Oracle Fusion Cloud ERP & EBS" },
