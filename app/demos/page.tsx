@@ -47,7 +47,7 @@ const DEMOS = [
   },
   {
     title: "Standing Watch",
-    desc: "Real, dated findings from Tioga's own governance automations — what got auto-fixed, and what it correctly left for a human.",
+    desc: "Real, dated findings from Tioga's own governance automations — what was fixed after human approval, and what it correctly left for a human to decide.",
     tag: "AI Governance",
     href: "/demos/standing-watch",
   },

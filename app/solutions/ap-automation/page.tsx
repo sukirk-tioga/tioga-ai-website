@@ -24,9 +24,9 @@ const content: SolutionContent = {
     "An AI agent that reads an invoice, checks it against PO and policy, flags exceptions, and routes for approval — with every step logged for audit, not just the final result.",
   proof: [
     {
-      label: "Live invoice-extraction demo",
+      label: "Governed exception-handling demo",
       detail:
-        "Try the invoice-processing demo below — upload a PDF, get structured vendor, amount, and line-item data in under 5 seconds. Real extraction, not a mockup.",
+        "Try the exception-workflow demo below — a synthetic invoice moves through approval, spend-change escalation, and rollback, with every step logged. Browser simulation, not a live connected system.",
     },
     {
       label: "Built by someone who ran AP, not just automated it",
@@ -69,7 +69,7 @@ const content: SolutionContent = {
     },
     {
       q: "Can we see this working before committing?",
-      a: "Yes — try the live invoice-processing demo on this page, or start with the 5-day Discovery Sprint against your real invoice formats.",
+      a: "Yes — try the exception-handling demo on this page (or the invoice-extraction demo below it), or start with the 5-day Discovery Sprint against your real invoice formats.",
     },
     {
       q: "Does this integrate with our existing AP system, or replace it?",
@@ -77,12 +77,13 @@ const content: SolutionContent = {
     },
   ],
   related: [
+    { href: "/demos?tab=invoice", label: "Try the invoice-extraction demo" },
     { href: "/solutions/oracle", label: "AP automation for Oracle Fusion Cloud ERP & EBS" },
     { href: "/solutions/sap", label: "AP automation for SAP" },
     { href: "/articles/ap-exception-auto-approve-antipattern", label: "Read: why a single spend threshold isn't a policy" },
     { href: "/services", label: "See all engagements" },
   ],
-  demoLink: { href: "/demos?tab=invoice", label: "Try the invoice-processing demo" },
+  demoLink: { href: "/demos/ap-exception-workflow", label: "Try the AP exception-handling demo" },
 };
 
 export default function ApAutomationSolutionPage() {

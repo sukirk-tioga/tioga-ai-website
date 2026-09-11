@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 const PROVENANCE = [
-  { label: "Spend vs. cap", value: `$${TOTAL_SPEND.toFixed(6)}`, sub: `of $${BUDGET_CAP.toFixed(2)}` },
+  { label: "Excerpt subtotal", value: `$${TOTAL_SPEND.toFixed(6)}`, sub: `${TOTAL_CALLS} calls in this scene, not a cap-relative figure` },
   { label: "Calls in this scene", value: String(TOTAL_CALLS), sub: "every row, not a sample" },
   { label: "Backends", value: String(BACKEND_ROUTES.length), sub: "local free-tier → Google → OpenRouter" },
   { label: "Paid / total", value: `${PAID_COUNT} / ${TOTAL_CALLS}`, sub: `${FREE_ZERO_COST_PCT}% settle at exactly $0` },
