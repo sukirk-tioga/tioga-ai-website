@@ -1250,6 +1250,45 @@ function DemosPageInner() {
           </span>
         </Link>
 
+        {/* Featured: Context-Window Data Minimization */}
+        <Link
+          href="/demos/context-window-data-minimization"
+          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
+          style={{
+            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
+          }}
+        >
+          <span
+            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 10-8 0v2" />
+            </svg>
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 mb-1">
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Context-Window Data Minimization</p>
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+              >
+                Interactive
+              </span>
+            </div>
+            <p className="text-sm text-[var(--text-muted)]">
+              The same HR question, answered two ways — a naive agent that pulls whole employee
+              records into context, and a governed agent enforcing a field-level allowlist. See
+              exactly which fields entered each agent&apos;s prompt.
+            </p>
+          </div>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
+            Try it live →
+          </span>
+        </Link>
+
         {/* Demo selector */}
         <div className="grid grid-cols-3 gap-3 mb-8" style={{ scrollMarginTop: "110px" }} ref={activeDemoRef}>
           {DEMOS.map((demo) => (
