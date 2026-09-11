@@ -20,6 +20,8 @@ const PAGES = [
   { path: "/demos/composed-evidence", title: "Composed Evidence Demo — Tioga AI" },
   { path: "/demos/fusion-ai-readiness-assessment", title: "Oracle Fusion Cloud AI-Readiness Assessment — Tioga AI" },
   { path: "/demos/agent-autonomy-mapper", title: "Agent Autonomy Tier Mapper — Tioga AI" },
+  { path: "/demos/context-window-data-minimization", title: "Context-Window Data Minimization Demo — Tioga AI" },
+  { path: "/demos/timecard-exception-shadow-mode", title: "Timecard Exception Agent, Shadow-Mode Demo — Tioga AI" },
   { path: "/demos/headcount-forecast-draft-provenance", title: "Headcount Forecast Draft, Per-Cell Provenance Demo — Tioga AI" },
   { path: "/about", title: "About — Tioga AI" },
   { path: "/contact", title: "Contact — Tioga AI" },
