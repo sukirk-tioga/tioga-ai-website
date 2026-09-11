@@ -28,6 +28,29 @@ interface Disposition {
   disposition: "approved" | "auto-implemented";
 }
 
+// Real scheduled job names from `launchctl list` (laptop, com.sukir.*) plus
+// the mini's own com.tioga.* entries, Tioga-business jobs only — excludes
+// personal automations (bay-area-robotics-digest, portfolio-digest). This
+// list is the source of truth for SCHEDULED_AUTOMATIONS_COUNT below so the
+// stat can't silently drift the way a bare literal did until 2026-09-10 (it
+// said 28 while the real count had already grown to 29 as of this refresh,
+// after new jobs were added following the original Aug 30 snapshot). Same
+// "manually refreshed, not live" discipline as the rest of this page --
+// re-verify against `launchctl list` at the next real refresh, don't assume.
+const SCHEDULED_AUTOMATIONS = [
+  "automation-wake-guard", "automation-watchdog", "automation-watchdog-late",
+  "catchup-on-login", "check-automations", "check-launchd-status",
+  "check-memory-integrity", "daily-synthesis", "digest-compound",
+  "digest-compound-check", "digest-health-check", "digest-qa-check",
+  "market-brief", "mission-control", "os-audit", "pre-deploy-gate",
+  "router-watch", "second-brain-audit", "security-watch", "session-digest",
+  "tioga-intel-digest", "tj-reaper", "tj-worker", "validator-holdout",
+  "vault-autocommit", "youtube-ai-digest", "youtube-lens-review",
+  "claude-budget-sync", "jarvis-gateway",
+];
+const SCHEDULED_AUTOMATIONS_COUNT = SCHEDULED_AUTOMATIONS.length;
+const AUTOMATIONS_COUNT_AS_OF = "2026-09-10";
+
 const RECENT: Disposition[] = [
   {
     date: "2026-08-30",
@@ -88,8 +111,9 @@ export default function AutomationOversightPage() {
       {/* Stat strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden mb-8" style={{ background: "var(--border)" }}>
         <div className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
-          <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>28</div>
+          <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>{SCHEDULED_AUTOMATIONS_COUNT}</div>
           <div className="text-xs text-[var(--text-muted)] uppercase tracking-wide">Scheduled automations</div>
+          <div className="text-[10px] mt-0.5" style={{ color: "var(--text-muted-3)" }}>as of {AUTOMATIONS_COUNT_AS_OF}</div>
         </div>
         <div className="px-6 py-5 text-center" style={{ background: "var(--bg-card)" }}>
           <div className="text-2xl font-bold mb-1" style={{ color: "var(--accent)" }}>11</div>
