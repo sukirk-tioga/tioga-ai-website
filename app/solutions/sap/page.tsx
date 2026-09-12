@@ -49,7 +49,7 @@ const content: SolutionContent = {
       name: "Agent-Ready ERP Diagnostic & Governed Write-Path",
       price: "$60–120K",
       duration: "~6 weeks",
-      desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through SAP's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear.",
+      desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through SAP's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear. Also covers payroll/HRIS and FP&A write paths where those are the boundary system instead, grounded in hands-on experience with UKG Pro and Workday Adaptive Planning (formerly Adaptive Insights, spanning both pre- and post-Workday-acquisition generations).",
     },
     {
       name: "Legacy System AI Augmentation",
