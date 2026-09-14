@@ -31,7 +31,15 @@ const CAMERA_FROM: [number, number, number] = [2.6, 6.8, 18.5];
 const CAMERA_TO: [number, number, number] = [1.6, 1.0, 11.5];
 
 const TOKEN_NAMES = {
-  bgDarker: "--bg-darker",
+  // Not --bg-darker: the 2026-09-02 "audit-ledger" redesign (see
+  // app/globals.css's :root comment) repointed --bg-dark/--bg-darker to a
+  // light paper palette while keeping their old (now misleading) names —
+  // "'dark' in a name no longer describes the value it holds." The one
+  // sanctioned true-dark WebGL surface token left on this now-light site is
+  // --bg-solutions-field (#05070C), already used by SolutionsFieldScene —
+  // this scene's additive-glow/emissive hero-object language (3D standard
+  // §5.1) needs a real dark backdrop to read at all, same reasoning.
+  bgDarker: "--bg-solutions-field",
   border: "--border",
   textMuted: "--text-muted",
   accent: "--accent",
