@@ -46,6 +46,25 @@
      StaticGlow fallback in SolutionsFieldLoader, so --text-on-dark stays
      readable even when the animated field itself never mounts. */
   --bg-solutions-field: #05070C;
+
+  /* "The Boundary" (Standing Watch 3D scene, /demos/standing-watch) —
+     Sukirk's explicit, session-recorded override of this site's default 3D
+     visual-restraint calibration (docs/design/3d-design-standard.md §1.1),
+     decided 2026-09-14 via iterated concept-render review. These are the
+     scene's own bold accent colors, distinct from the muted sitewide
+     --accent/--success/--error trio used everywhere else — reserved for
+     this one scene's gate bloom, rim lighting, and wall-impact burst.
+     Severity coloring on the scene's tiles/pulses still reads the ordinary
+     --error/--warning-light/--text-muted-3 tokens (matching the live
+     findings table exactly), not these. */
+  --boundary-gold: #FFD400;
+  --boundary-amber: #FF8A00;
+  --boundary-cyan: #00E5FF;
+  --boundary-violet: #C14EFF;
+  --boundary-green: #39FF6A;
+  --boundary-wall-core: #FFFAF0;
+  --boundary-wall-magenta: #FF3D6B;
+  --boundary-wall-edge: #FF6A00;
 }
 
 * {
