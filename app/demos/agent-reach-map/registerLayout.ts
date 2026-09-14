@@ -131,6 +131,60 @@ function edgeJitter(agentIndex: number, writeIndex: number): number {
   return (h - Math.floor(h)) * 2 - 1; // -1..1
 }
 
+// Bounding sphere of every agent + system node position (not edges — the
+// nodes are what the camera-framing bug (2026-09-14 blind critique: "the
+// ambient camera drift regularly frames zero nodes/no hero") is actually
+// about). Plain math, no three.js import, same as this file's own
+// convention. Camera distance is derived from this in Scene.tsx rather
+// than a hand-tuned constant -- a sphere is rotationally symmetric around
+// its own center, so a camera positioned at radius >= sphere.radius /
+// sin(halfFOV) from that center is guaranteed to keep every node in frame
+// at EVERY azimuth/polar angle, not just the one the constant happened to
+// be tuned against.
+export interface BoundingSphere {
+  center: [number, number, number];
+  radius: number;
+}
+
+export function computeNodeBoundingSphere(): BoundingSphere {
+  const positions: [number, number, number][] = [
+    ...buildAgentNodes().map((n) => n.position),
+    ...buildSystemNodes().map((n) => n.position),
+  ];
+  // Bounding-BOX midpoint, not a point-average centroid -- caught live:
+  // this layout has 29 agent nodes (left column) and only 12 system nodes
+  // (right column), so averaging every point's position pulls the
+  // "center" toward the denser agent column (computed: x=-1.82, when the
+  // two columns actually sit at x=-4.4/+4.4, a true midpoint of x=0). The
+  // sphere's whole correctness argument (rotationally symmetric around its
+  // OWN center, so a camera at radius >= sphere.radius/sin(halfFOV) sees
+  // every node at every angle) only holds if the camera's actual orbit
+  // target matches this center -- DriftRig/OrbitControls orbits around the
+  // world origin (0,0,0) by default, so this must resolve to (0,0,0) for
+  // this layout, not the off-center centroid.
+  const min: [number, number, number] = [Infinity, Infinity, Infinity];
+  const max: [number, number, number] = [-Infinity, -Infinity, -Infinity];
+  for (const [x, y, z] of positions) {
+    if (x < min[0]) min[0] = x;
+    if (y < min[1]) min[1] = y;
+    if (z < min[2]) min[2] = z;
+    if (x > max[0]) max[0] = x;
+    if (y > max[1]) max[1] = y;
+    if (z > max[2]) max[2] = z;
+  }
+  const center: [number, number, number] = [
+    (min[0] + max[0]) / 2,
+    (min[1] + max[1]) / 2,
+    (min[2] + max[2]) / 2,
+  ];
+  let radius = 0;
+  for (const [x, y, z] of positions) {
+    const d = Math.hypot(x - center[0], y - center[1], z - center[2]);
+    if (d > radius) radius = d;
+  }
+  return { center, radius };
+}
+
 export function buildEdges(): EdgeLayout[] {
   const agentNodes = buildAgentNodes();
   const systemNodes = buildSystemNodes();

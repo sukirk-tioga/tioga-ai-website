@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
+import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
 import DriftRig from "../../../components/three/DriftRig";
 import { useTokens } from "../../../components/three/useTokens";
@@ -10,6 +10,7 @@ import {
   buildAgentNodes,
   buildSystemNodes,
   buildEdges,
+  computeNodeBoundingSphere,
   type AgentNode,
   type SystemNode,
   type EdgeLayout,
@@ -27,8 +28,104 @@ import type { SystemId, Tier } from "../../../lib/agent-register";
 // readCssToken (repo convention, docs/design/3d-design-standard.md §5) —
 // zero hex literals in this file.
 
-const CAMERA_FROM: [number, number, number] = [2.6, 6.8, 18.5];
-const CAMERA_TO: [number, number, number] = [1.6, 1.0, 11.5];
+// Original hand-tuned direction/feel, kept as-is -- only the DISTANCE
+// along these directions is now derived reactively per the real canvas
+// aspect ratio (see FramedRig below), fixing the 2026-09-14 blind
+// critique's "ambient camera drift regularly frames zero nodes/no hero"
+// (confirmed live: at some azimuth angles within the drift range, the node
+// columns rotated edge-on and vanished, leaving only the connecting edge
+// tubes visible). Root cause: this constant's distance (|CAMERA_TO| ~=
+// 11.65) was tuned to look right at ONE azimuth angle, but never verified
+// against the actual node bounding sphere (radius ~6.4) -- 11.65 < 6.4 /
+// sin(21 deg FOV-half) ~= 17.9, the minimum distance that guarantees every
+// node stays in frame at every azimuth, not just the one this was
+// eyeballed against.
+const CAMERA_FROM_DIRECTION: [number, number, number] = [2.6, 6.8, 18.5];
+const CAMERA_TO_DIRECTION: [number, number, number] = [1.6, 1.0, 11.5];
+const FOV_DEGREES = 42;
+const CAMERA_TO_ORIGINAL_DISTANCE = new THREE.Vector3(...CAMERA_TO_DIRECTION).length();
+const CAMERA_FROM_TO_RATIO =
+  new THREE.Vector3(...CAMERA_FROM_DIRECTION).length() / CAMERA_TO_ORIGINAL_DISTANCE;
+// Covers node/edge radius and canvas letterboxing on top of the pure
+// point-center bounding sphere -- not load-bearing for the core guarantee
+// (that's the sin(halfFOV) term), just a margin so nodes don't sit flush
+// against the frame edge.
+const FRAMING_SAFETY_MARGIN = 1.15;
+const NODE_BOUNDING_SPHERE = computeNodeBoundingSphere();
+
+function safeCameraDistance(sphereRadius: number, aspect: number): number {
+  const vFovHalf = THREE.MathUtils.degToRad(FOV_DEGREES) / 2;
+  const hFovHalf = Math.atan(Math.tan(vFovHalf) * aspect);
+  // Whichever axis is tighter (a narrow/portrait canvas is horizontally
+  // constrained, not vertically) is the one that must contain the sphere.
+  const limitingHalfAngle = Math.min(vFovHalf, hFovHalf);
+  return (sphereRadius / Math.sin(limitingHalfAngle)) * FRAMING_SAFETY_MARGIN;
+}
+
+// Rendered inside <Canvas> (needs useThree for the live canvas aspect
+// ratio) -- reactively derives camera distance and fog range from the real
+// viewport instead of one static worst-case guess. A first pass used a
+// fixed ASSUMED_WORST_CASE_ASPECT=0.6 (avoiding useThree entirely, out of
+// caution) -- confirmed live that this over-corrected: at this demo's
+// actual aspect (well above 0.6), it zoomed out far more than needed,
+// leaving nodes as barely-visible specks. This version uses the real
+// size.width/size.height, with a size.width===0 guard (R3F's measured
+// canvas size can briefly be 0x0 before its ResizeObserver's first
+// callback fires -- an earlier unguarded attempt produced NaN camera
+// positions that never recovered) falling back to aspect=1 for that one
+// frame, then recomputing correctly once real dimensions arrive. Also
+// forgot the fog range needs to scale with camera distance too, the first
+// time around -- caught live (fully black canvas, camera framing was
+// correct but everything was fogged into invisibility) and fixed by
+// deriving FOG_NEAR/FOG_FAR from the same distance here.
+function FramedRig({ isMobile, bgToken }: { isMobile: boolean; bgToken: string }) {
+  const size = useThree((state) => state.size);
+  const aspect = size.width > 0 && size.height > 0 ? size.width / size.height : 1;
+  const toDistance = safeCameraDistance(NODE_BOUNDING_SPHERE.radius, aspect);
+  const fromDistance = toDistance * CAMERA_FROM_TO_RATIO;
+  const cameraTo = useMemo(
+    () =>
+      new THREE.Vector3(...CAMERA_TO_DIRECTION)
+        .normalize()
+        .multiplyScalar(toDistance)
+        .toArray() as [number, number, number],
+    [toDistance]
+  );
+  const cameraFrom = useMemo(
+    () =>
+      new THREE.Vector3(...CAMERA_FROM_DIRECTION)
+        .normalize()
+        .multiplyScalar(fromDistance)
+        .toArray() as [number, number, number],
+    [fromDistance]
+  );
+  const fogNear = toDistance - NODE_BOUNDING_SPHERE.radius * 0.5;
+  const fogFar = toDistance + NODE_BOUNDING_SPHERE.radius * 3;
+  return (
+    <>
+      <fog attach="fog" args={[bgToken, fogNear, fogFar]} />
+      <DriftRig
+        cameraFrom={cameraFrom}
+        cameraTo={cameraTo}
+        minAzimuthAngle={-0.5}
+        maxAzimuthAngle={0.35}
+        enableRotate={!isMobile}
+      />
+    </>
+  );
+}
+
+// Fallback camera position for the Canvas's initial (pre-mount) camera
+// prop only -- DriftRig's intro lerp overrides this on the very first
+// frame regardless, using FramedRig's freshly-computed cameraFrom, so this
+// never needs to be exact. Aspect=1 matches FramedRig's own pre-measurement
+// fallback.
+const INITIAL_CAMERA_POSITION: [number, number, number] = new THREE.Vector3(
+  ...CAMERA_FROM_DIRECTION
+)
+  .normalize()
+  .multiplyScalar(safeCameraDistance(NODE_BOUNDING_SPHERE.radius, 1) * CAMERA_FROM_TO_RATIO)
+  .toArray();
 
 const TOKEN_NAMES = {
   // Not --bg-darker: the 2026-09-02 "audit-ledger" redesign (see
@@ -364,7 +461,7 @@ export default function AgentReachMapScene({ onContextLost }: { onContextLost: (
 
   return (
     <Canvas
-      camera={{ position: CAMERA_FROM, fov: 42 }}
+      camera={{ position: INITIAL_CAMERA_POSITION, fov: FOV_DEGREES }}
       onCreated={({ gl }) => {
         gl.domElement.addEventListener(
           "webglcontextlost",
@@ -377,7 +474,6 @@ export default function AgentReachMapScene({ onContextLost }: { onContextLost: (
       }}
     >
       <color attach="background" args={[tokens.bgDarker]} />
-      <fog attach="fog" args={[tokens.bgDarker, 11, 28]} />
       {/* Three-point lighting, same recipe as ShowcaseScene.tsx: ambient
           near-black, one hard key, one cool rim, one low fill. */}
       <ambientLight intensity={0.15} />
@@ -407,13 +503,7 @@ export default function AgentReachMapScene({ onContextLost }: { onContextLost: (
         onHover={hoverSystem}
         onSelect={selectSystem}
       />
-      <DriftRig
-        cameraFrom={CAMERA_FROM}
-        cameraTo={CAMERA_TO}
-        minAzimuthAngle={-0.5}
-        maxAzimuthAngle={0.35}
-        enableRotate={!isMobile}
-      />
+      <FramedRig isMobile={isMobile} bgToken={tokens.bgDarker} />
     </Canvas>
   );
 }

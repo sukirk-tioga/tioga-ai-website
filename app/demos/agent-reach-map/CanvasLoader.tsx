@@ -23,12 +23,35 @@ export default function AgentReachMapCanvasLoader() {
 
   return (
     <ReachMapProvider>
-      <SceneLoader
-        testIdPrefix="agent-reach-map-canvas"
-        renderScene={(onContextLost) => <AgentReachMapScene onContextLost={onContextLost} />}
-        fallback={<Fallback />}
-        onModeChange={setMode}
-      />
+      <div style={{ position: "relative" }}>
+        <SceneLoader
+          testIdPrefix="agent-reach-map-canvas"
+          renderScene={(onContextLost) => <AgentReachMapScene onContextLost={onContextLost} />}
+          fallback={<Fallback />}
+          onModeChange={setMode}
+        />
+        {/* In-canvas legend -- 2026-09-14 blind critique: "nothing
+            currently tells a non-interacting visitor what a node/edge is."
+            The DOM agent list/detail panel below (Interaction.tsx) already
+            explains this in depth, but that's below the fold and requires
+            scrolling/clicking first -- this is the one-glance version for
+            someone who never interacts at all. Absolutely positioned over
+            the canvas corner, not inside the R3F scene itself (Scene.tsx
+            stays a pure Canvas, matching its existing separation from this
+            file's own DOM-wrapper responsibilities). Only shown once the
+            real scene has mounted -- the loading/fallback states already
+            explain themselves without this. */}
+        {mode === "scene" && (
+          <div
+            className="absolute bottom-3 left-3 rounded-lg px-3 py-2 text-[10px] leading-relaxed pointer-events-none"
+            style={{ background: "#05070Ccc", border: "1px solid var(--border)", color: "var(--text-muted-on-dark)" }}
+          >
+            <span style={{ color: "var(--text-on-dark)" }}>Left:</span> 29 scheduled agents ·{" "}
+            <span style={{ color: "var(--text-on-dark)" }}>Right:</span> systems they read/write ·{" "}
+            <span style={{ color: "var(--text-on-dark)" }}>Lines:</span> authorization tier
+          </div>
+        )}
+      </div>
       {mode === "scene" && <Interaction />}
     </ReachMapProvider>
   );
