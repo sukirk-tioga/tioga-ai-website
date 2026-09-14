@@ -50,11 +50,18 @@ const TIER_STYLE: Record<Tier, { radius: number; restOpacity: number; restIntens
 };
 
 // One instanced sphere per agent (left column). Pointer events on an
-// instancedMesh use `e.instanceId` — verified in this build (not assumed):
-// hover/click both correctly resolve the instance under OrbitControls with
-// autoRotate active, confirmed via the canvas-click Playwright coverage in
-// tests/agent-reach-map.spec.ts and by direct screenshot inspection of a
-// hover state (see this task's verification notes).
+// instancedMesh use `e.instanceId` — this was flagged as a real hypothesis
+// to verify, not assumed, and the first version genuinely did not work: a
+// raw click/pointermove sweep across the whole node column produced zero
+// R3F pointer events, even though rendering, plain (non-instanced) mesh
+// picking (the system nodes below), and raw DOM pointer events on the
+// canvas all worked fine. Root cause, confirmed by instrumenting the
+// handlers directly: three r159+'s `InstancedMesh` needs its aggregate
+// `boundingSphere` computed explicitly — `computeBoundingSphere()` below,
+// right after `setMatrixAt`/`instanceMatrix.needsUpdate` — or raycasting
+// silently misses every instance while still rendering correctly. Fixed
+// and re-verified (see this task's verification notes: a direct canvas
+// click at a computed node position now correctly selects it).
 function NodeInstances({
   nodes,
   tokens,
@@ -85,6 +92,7 @@ function NodeInstances({
       mesh.setMatrixAt(i, dummy.matrix);
     });
     mesh.instanceMatrix.needsUpdate = true;
+    mesh.computeBoundingSphere();
   }, [nodes, dummy]);
 
   useFrame(({ clock }) => {
