@@ -9,3 +9,4 @@ playwright-report/
 logs/
 /blob-report/
 /playwright/.cache/
+/scripts/out/

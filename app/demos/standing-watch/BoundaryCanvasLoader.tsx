@@ -17,6 +17,12 @@ export default function BoundaryCanvasLoader() {
   const [playSignal, setPlaySignal] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [mode, setMode] = useState<SceneLoaderMode>("loading");
+  // `?cinematic=1` forces the 5-shot intro to play — used only by
+  // scripts/capture-boundary-hero.mjs to record the hero video. Ordinary
+  // visitors never see this param and land straight on the rest pose.
+  const [forceCinematic] = useState(
+    () => typeof window !== "undefined" && new URLSearchParams(window.location.search).get("cinematic") === "1"
+  );
 
   return (
     <div>
@@ -32,6 +38,7 @@ export default function BoundaryCanvasLoader() {
             onPlayStateChange={setIsPlaying}
             selectedIndex={selectedIndex}
             onArrive={(i) => setSelectedIndex(i)}
+            forceCinematic={forceCinematic}
           />
         )}
       />
