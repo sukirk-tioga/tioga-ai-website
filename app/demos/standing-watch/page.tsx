@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DemoShell from "../_lib/demo-shell";
+import BoundaryCanvasLoader from "./BoundaryCanvasLoader";
+import { FLAGGED, severityStyle, statusStyle } from "../../../lib/standing-watch-findings";
 
 export const metadata: Metadata = {
   title: "Standing Watch Demo — Tioga AI",
@@ -20,80 +22,10 @@ export const metadata: Metadata = {
 // (real hostnames, IPs, ports beyond the finding itself) have been redacted
 // or generalized to device class ([internal-host-1], "Mac Mini", "MacBook")
 // — dates, severities, CVE IDs, and the narrative arc are real and unedited.
-
-interface FindingRow {
-  severity: "CRITICAL" | "HIGH" | "LOW";
-  host: string;
-  finding: string;
-  status: "fixed" | "human";
-  note: string;
-}
-
-const FLAGGED: FindingRow[] = [
-  {
-    severity: "CRITICAL",
-    host: "[internal-host-1]",
-    finding: "JARVIS AI gateway had no authentication — unauthenticated /v1/models returned 200",
-    status: "fixed",
-    note: "Auth token added; re-checked live — unauthenticated request now returns 401",
-  },
-  {
-    severity: "HIGH",
-    host: "[internal-host-1]",
-    finding: "Remote Management (ARD) listener open, allowInsecureDH=1",
-    status: "fixed",
-    note: "Disabled; verified closed via port check",
-  },
-  {
-    severity: "HIGH",
-    host: "[internal-host-1]",
-    finding: "Kerberos KDC listener open (pulled up by Remote Management)",
-    status: "fixed",
-    note: "Closed as a side effect of disabling Remote Management; verified via port check",
-  },
-  {
-    severity: "HIGH",
-    host: "[internal-host-1]",
-    finding: "Screen Sharing / VNC listener open on all interfaces",
-    status: "fixed",
-    note: "Disabled; verified closed via port check",
-  },
-  {
-    severity: "HIGH",
-    host: "[internal-host-1]",
-    finding: "SSH listening with PasswordAuthentication not explicitly disabled (macOS default: yes)",
-    status: "fixed",
-    note: "Set to key-only; verified key-based access still worked before closing the session",
-  },
-  {
-    severity: "HIGH",
-    host: "both machines",
-    finding: "Syncthing admin API has no username/password — any local process can reconfigure sync",
-    status: "fixed",
-    note: "GUI auth added on both machines; API keys rotated",
-  },
-  {
-    severity: "HIGH",
-    host: "both machines",
-    finding: "Security-relevant Homebrew packages outdated (gh, node, openssl@3, syncthing, and related CVEs)",
-    status: "fixed",
-    note: "Upgraded on both machines, including a GitHub CLI update that resolved 4 tracked gh CVEs",
-  },
-  {
-    severity: "LOW",
-    host: "both machines",
-    finding: "Docker Desktop outdated",
-    status: "fixed",
-    note: "Upgraded on both machines",
-  },
-  {
-    severity: "HIGH",
-    host: "[internal-host-1]",
-    finding: "FileVault is OFF",
-    status: "human",
-    note: "Needs Recovery Mode / physical console access — the automation has no path to enable this itself",
-  },
-];
+// FLAGGED/severityStyle/statusStyle now live in
+// lib/standing-watch-findings.ts — the "Boundary" 3D scene below imports the
+// same module, so this table and the scene can never drift apart
+// (docs/design/3d-design-standard.md §6.4).
 
 const RAW_COUNTS = [
   { label: "Critical", value: "1", color: "var(--error)" },
@@ -101,17 +33,6 @@ const RAW_COUNTS = [
   { label: "Medium", value: "4", color: "var(--warning)" },
   { label: "Low", value: "33", color: "var(--text-muted-3)" },
 ];
-
-const severityStyle: Record<string, { background: string; border: string; color: string }> = {
-  CRITICAL: { background: "#EF444420", border: "1px solid var(--error)", color: "var(--error-light)" },
-  HIGH: { background: "#FBBF2415", border: "1px solid #FBBF2440", color: "var(--warning-light)" },
-  LOW: { background: "#70809615", border: "1px solid #70809640", color: "var(--text-muted-3)" },
-};
-
-const statusStyle: Record<string, { background: string; border: string; color: string }> = {
-  fixed: { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" },
-  human: { background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" },
-};
 
 export default function StandingWatchDemoPage() {
   return (
@@ -271,6 +192,19 @@ export default function StandingWatchDemoPage() {
             &ldquo;a human has to do this part.&rdquo;
           </p>
         </div>
+      </div>
+
+      {/* ── The Boundary (3D scene) ── */}
+      <div className="mb-8 scroll-mt-24" id="the-boundary">
+        <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>The Boundary</h2>
+        <p className="text-xs text-[var(--text-muted)] mb-4 leading-relaxed">
+          The same 9 findings above, in 3D: every finding enters left and passes through one glass
+          gate — the router-watch report&apos;s own &ldquo;this report is a PROPOSAL&rdquo; footer,
+          drawn honestly. Eight cross through and land, fixed. One — FileVault — travels straight
+          to a physical wall just past the gate and stops there, permanently: not a failure, the
+          system correctly recognizing the one thing it can&apos;t safely do itself.
+        </p>
+        <BoundaryCanvasLoader />
       </div>
 
       {/* Offer tie-in */}
