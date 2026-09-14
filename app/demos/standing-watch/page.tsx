@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import DemoShell from "../_lib/demo-shell";
 import BoundaryCanvasLoader from "./BoundaryCanvasLoader";
+import BoundaryHero from "./BoundaryHero";
 import { FLAGGED, severityStyle, statusStyle } from "../../../lib/standing-watch-findings";
 
 export const metadata: Metadata = {
@@ -204,6 +205,14 @@ export default function StandingWatchDemoPage() {
           to a physical wall just past the gate and stops there, permanently: not a failure, the
           system correctly recognizing the one thing it can&apos;t safely do itself.
         </p>
+
+        <BoundaryHero />
+        <p className="text-[11px] text-slate-500 mb-6 -mt-1">
+          A captured recording of the scene&apos;s own cinematic camera sequence — not a live
+          render on every page load. The interactive version is below.
+        </p>
+
+        <h3 className="text-sm font-semibold mb-3" style={{ color: "var(--text)" }}>The scene</h3>
         <BoundaryCanvasLoader />
       </div>
 

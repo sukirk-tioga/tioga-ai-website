@@ -247,6 +247,15 @@ export interface BoundarySceneProps {
   selectedIndex: number | null;
   onCross?: (rowIndex: number) => void;
   onArrive?: (rowIndex: number) => void;
+  /** Play the full 5-shot cinematic intro. Default false: ordinary visitors
+   *  land straight on the Resolved/rest pose and can interact immediately —
+   *  the cinematic itself is meant to be seen as a captured hero video
+   *  (like /showcase's poster), not re-run live for every visitor on the
+   *  interactive scene (research doc §6: "not a live-rendered default for
+   *  every visitor"). Set via BoundaryCanvasLoader's `?cinematic=1` query
+   *  param, used only by the one-off capture script that records the hero
+   *  video — see scripts/capture-boundary-hero.mjs. */
+  forceCinematic?: boolean;
 }
 
 export default function BoundaryScene({
@@ -256,10 +265,11 @@ export default function BoundaryScene({
   selectedIndex,
   onCross,
   onArrive,
+  forceCinematic = false,
 }: BoundarySceneProps) {
   const tokens = useTokens(TOKEN_NAMES);
   const [isMobile, setIsMobile] = useState(false);
-  const [cinematicDone, setCinematicDone] = useState(false);
+  const [cinematicDone, setCinematicDone] = useState(!forceCinematic);
   const gateActivity = useRef(0);
   const wallImpact = useRef(0);
 
@@ -298,7 +308,7 @@ export default function BoundaryScene({
 
   return (
     <Canvas
-      camera={{ position: CINEMATIC_SHOTS[0].position, fov: 42 }}
+      camera={{ position: forceCinematic ? CINEMATIC_SHOTS[0].position : RESOLVED_SHOT.position, fov: 42 }}
       onCreated={({ gl }) => {
         gl.domElement.addEventListener(
           "webglcontextlost",

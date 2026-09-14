@@ -58,12 +58,34 @@ test("no-WebGL fallback points at the real findings table, not a blank canvas", 
   await expect(rows).toHaveCount(9);
 });
 
-test("prefers-reduced-motion falls back to the table view", async ({ page }) => {
+test("prefers-reduced-motion falls back to the table view and the hero stays a static image", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/demos/standing-watch");
 
   await expect(page.getByTestId("boundary-fallback")).toBeVisible();
   await expect(page.getByTestId("boundary-canvas")).toHaveCount(0);
+
+  // BoundaryHero.tsx: reduced motion must never render an autoplaying
+  // <video> — this applies to the hero, not just the canvas
+  // (docs/design/3d-design-standard.md §4.4).
+  const boundarySection = page.locator("#the-boundary");
+  await expect(boundarySection.locator("video")).toHaveCount(0);
+  const heroImg = boundarySection.locator('img[alt*="Boundary"]');
+  await expect(heroImg).toBeVisible();
+  await expect(heroImg).toHaveAttribute("src", /boundary-hero-poster/);
+});
+
+test("hero video autoplays (muted, looped) when motion is allowed", async ({ page }) => {
+  await page.goto("/demos/standing-watch");
+  const boundarySection = page.locator("#the-boundary");
+  const heroVideo = boundarySection.locator("video");
+  await expect(heroVideo).toBeVisible();
+  await expect(heroVideo).toHaveAttribute("autoplay", "");
+  await expect(heroVideo).toHaveAttribute("loop", "");
+  // React sets `muted` as a live DOM property (needed for autoplay to
+  // actually take effect), not as a reflected HTML attribute — check the
+  // real property, not toHaveAttribute.
+  await expect(heroVideo).toHaveJSProperty("muted", true);
 });
 
 test("findings list selects a real row and shows its real detail", async ({ page }) => {
