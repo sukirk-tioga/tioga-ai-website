@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { MeshTransmissionMaterial } from "@react-three/drei";
 import * as THREE from "three";
 import DriftRig from "../../../components/three/DriftRig";
 import { useTokens } from "../../../components/three/useTokens";
@@ -72,6 +73,7 @@ function Gate({ tokens, activity }: { tokens: SceneTokens; activity: React.Mutab
   const haloMatRef = useRef<THREE.MeshBasicMaterial>(null);
   const scanRingRef = useRef<THREE.Mesh>(null);
   const scanMatRef = useRef<THREE.MeshBasicMaterial>(null);
+  const glassPaneRef = useRef<THREE.Mesh>(null);
   const displayed = useRef(0);
 
   useFrame(({ clock }, delta) => {
@@ -87,6 +89,14 @@ function Gate({ tokens, activity }: { tokens: SceneTokens; activity: React.Mutab
     if (haloMatRef.current) haloMatRef.current.opacity = 0.16 + displayed.current * 0.3;
     if (scanRingRef.current) scanRingRef.current.rotation.z = clock.elapsedTime * 0.9;
     if (scanMatRef.current) scanMatRef.current.opacity = 0.35 + 0.25 * Math.sin(clock.elapsedTime * 1.1);
+    if (glassPaneRef.current) {
+      // Same transform-level breathing pulse as ShowcaseScene.tsx's glass
+      // pane -- MeshTransmissionMaterial has no emissive/opacity uniform to
+      // drive the way the old flat disc did, so the "alive" signal moves to
+      // scale instead, still driven by the same real `activity` ref.
+      const s = 1 + 0.015 * Math.sin(clock.elapsedTime * 0.9) + displayed.current * 0.06;
+      glassPaneRef.current.scale.setScalar(s);
+    }
   });
 
   const frameWidth = 1.0;
@@ -104,6 +114,36 @@ function Gate({ tokens, activity }: { tokens: SceneTokens; activity: React.Mutab
           opacity={0.16}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
+        />
+      </mesh>
+      {/* Glass portal pane -- added 2026-09-14, the one piece ShowcaseScene's
+          Gate has that this duplicate never got (2026-09-14 blind critique:
+          "the three.js-starter look," no material/lighting/depth). Real
+          refraction/iridescence via drei's MeshTransmissionMaterial, same
+          settings as ShowcaseScene.tsx's own gate -- renders whatever's
+          actually behind it (the walk pulse / replay pulses) with visible
+          bend as it crosses, instead of passing behind a flat glow. Pure
+          chrome, no data claim, same honesty framing as the halo/scan ring
+          it sits alongside. Radius kept at Showcase's own 0.62 rather than
+          scaled to this gate's taller frameHeight (2.6 vs Showcase's 1.7) --
+          verified live this still reads correctly inside the taller frame,
+          not stretched or too small.*/}
+      <mesh ref={glassPaneRef} position={[0, 0, -0.02]}>
+        <circleGeometry args={[0.62, 48]} />
+        <MeshTransmissionMaterial
+          color={tokens.accent}
+          roughness={0}
+          transmission={1}
+          thickness={2}
+          ior={1.4}
+          chromaticAberration={0.04}
+          iridescence={1}
+          iridescenceIOR={1.3}
+          iridescenceThicknessRange={[100, 400]}
+          distortion={0.15}
+          distortionScale={0.3}
+          temporalDistortion={0.08}
+          backside
         />
       </mesh>
       <mesh ref={scanRingRef} position={[0, 0, -0.01]}>
