@@ -61,7 +61,7 @@ const PRACTICES: Practice[] = [
     offers: [
       {
         name: "Agent-Ready ERP Diagnostic & Governed Write-Path",
-        desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear. Also covers payroll/HRIS and FP&A write paths where those are the boundary system instead, grounded in hands-on experience with UKG Pro and Workday Adaptive Planning (formerly Adaptive Insights, spanning both pre- and post-Workday-acquisition generations).",
+        desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear. Also covers payroll/HRIS and FP&A write paths where those are the boundary system instead — UKG Pro and Workday Adaptive Planning are both in scope. (See About for the founder's hands-on operating history with these systems.)",
         price: "$60–120K",
         duration: "~6 weeks",
         buyer: "Oracle Fusion Cloud ERP, Oracle EBS, or SAP teams with one stalled agent-to-ERP write path already identified.",
