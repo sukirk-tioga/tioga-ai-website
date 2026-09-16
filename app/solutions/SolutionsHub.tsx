@@ -24,7 +24,7 @@ export const families: Family[] = [
     { id: "oracle-sap", name: "Oracle Fusion Cloud ERP, EBS & SAP (by system)", status: "live" },
     { id: "write-paths", name: "Governed write-paths", status: "live" },
     { id: "mcp", name: "Connecting agents safely (MCP)", status: "live" },
-    { id: "salesforce", name: "Salesforce solution & demo", status: "not-built" },
+    { id: "salesforce", name: "Salesforce interactive demo", status: "not-built" },
   ] },
   { id: "governance", shortName: "Governance", name: "AI Oversight & Governance", purpose: "Explore the four governance workflows.", workflows: [
     { id: "ledger", name: "Governance Ledger", status: "live" },
@@ -123,7 +123,7 @@ export default function SolutionsHub({ variant = "editorial", id = "solutions", 
       </>}
       <section className="sh-scope" id={`${id}-scope`} aria-labelledby={`${id}-scope-title`}>
         <h2 id={`${id}-scope-title`}>Current scope</h2>
-        <p>HR & procurement workflows and the Salesforce solution & demo are not yet built. ERP reporting covers composite ERP-style data; it does not provide general database connectivity.</p>
+        <p>HR & procurement workflows and the Salesforce interactive demo are not yet built — but the Salesforce Governed Write-Path & Evidence Build engagement itself is live and priced; see <a href="/services">Services</a>. ERP reporting covers composite ERP-style data; it does not provide general database connectivity. This page tracks interactive workflow demos, a narrower set than the full priced engagement catalog — see <a href="/services">Services</a> for all sixteen priced engagements across three practices.</p>
       </section>
     </div>
   </section>;
