@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DemoShell from "../_lib/demo-shell";
+import { AGENTS, DISPOSITIONS, type DispositionEvent } from "../../../lib/agent-register";
 
 export const metadata: Metadata = {
   title: "Automation Oversight — Tioga AI",
@@ -21,80 +22,19 @@ export const metadata: Metadata = {
 // divide the story. Data here is manually refreshed, same "not a
 // live-refreshing feed" discipline as /demos/governance-ledger.
 
-interface Disposition {
-  date: string;
-  finding: string;
-  category: string;
-  disposition: "approved" | "auto-implemented";
-}
-
-// Real scheduled job names from `launchctl list` (laptop, com.sukir.*) plus
-// the mini's own com.tioga.* entries, Tioga-business jobs only — excludes
-// personal automations (bay-area-robotics-digest, portfolio-digest). This
-// list is the source of truth for SCHEDULED_AUTOMATIONS_COUNT below so the
-// stat can't silently drift the way a bare literal did until 2026-09-10 (it
-// said 28 while the real count had already grown to 29 as of this refresh,
-// after new jobs were added following the original Aug 30 snapshot). Same
-// "manually refreshed, not live" discipline as the rest of this page --
-// re-verify against `launchctl list` at the next real refresh, don't assume.
-const SCHEDULED_AUTOMATIONS = [
-  "automation-wake-guard", "automation-watchdog", "automation-watchdog-late",
-  "catchup-on-login", "check-automations", "check-launchd-status",
-  "check-memory-integrity", "daily-synthesis", "digest-compound",
-  "digest-compound-check", "digest-health-check", "digest-qa-check",
-  "market-brief", "mission-control", "os-audit", "pre-deploy-gate",
-  "router-watch", "second-brain-audit", "security-watch", "session-digest",
-  "tioga-intel-digest", "tj-reaper", "tj-worker", "validator-holdout",
-  "vault-autocommit", "youtube-ai-digest", "youtube-lens-review",
-  "claude-budget-sync", "jarvis-gateway",
-];
-const SCHEDULED_AUTOMATIONS_COUNT = SCHEDULED_AUTOMATIONS.length;
+// Job count and disposition history now come from lib/agent-register.ts —
+// the Reach Map scene's data module (app/demos/agent-reach-map/) — instead
+// of a second, driftable copy of the same facts. That file's AGENTS array
+// is the canonical 29-job list (sourced from `launchctl list`, laptop
+// com.sukir.* plus the mini's com.tioga.*/com.jarvis.* entries) and
+// DISPOSITIONS is the same 7 real, dated findings this page has always
+// shown. See docs/design/3d-design-standard.md §6.4 ("data has exactly one
+// source of truth") — re-verify AGENTS against `launchctl list` at the next
+// real refresh, don't assume either file is still current on its own.
+const SCHEDULED_AUTOMATIONS_COUNT = AGENTS.length;
 const AUTOMATIONS_COUNT_AS_OF = "2026-09-10";
 
-const RECENT: Disposition[] = [
-  {
-    date: "2026-08-30",
-    finding: "A verified market-development note was created — a pure addition, syntax-checked, matching the narrow rule that's allowed to apply itself without waiting on review.",
-    category: "Tioga AI Business",
-    disposition: "auto-implemented",
-  },
-  {
-    date: "2026-08-30",
-    finding: "The one script in the estate that writes files had no per-run spend cap — every sibling script had one.",
-    category: "AI OS Hardening",
-    disposition: "approved",
-  },
-  {
-    date: "2026-08-30",
-    finding: "A source feed with a genuinely quiet publishing cadence was being reported as \"unreachable\" every time it had nothing new — a false alarm on a feed working exactly as designed.",
-    category: "AI OS Hardening",
-    disposition: "approved",
-  },
-  {
-    date: "2026-08-30",
-    finding: "A deterministic pre-flight check existed but was never wired into the daily pipeline it was built for.",
-    category: "AI OS Hardening",
-    disposition: "approved",
-  },
-  {
-    date: "2026-08-30",
-    finding: "A model-routing environment variable was left as an unpinned alias in the one script that edits production files, risking a silent model swap with no diff or approval.",
-    category: "Model routing",
-    disposition: "approved",
-  },
-  {
-    date: "2026-08-30",
-    finding: "A background cost-tracking pass had grown noticeably more expensive over several days for no clear reason — flagged for measurement, not yet root-caused.",
-    category: "Token/cost optimization",
-    disposition: "approved",
-  },
-  {
-    date: "2026-08-29",
-    finding: "A pre-deploy safety gate was flagging a real, working script as a syntax error every single morning — a false positive traced to the gate checking the wrong shell dialect.",
-    category: "AI OS Hardening",
-    disposition: "approved",
-  },
-];
+const RECENT: DispositionEvent[] = DISPOSITIONS;
 
 export default function AutomationOversightPage() {
   return (
