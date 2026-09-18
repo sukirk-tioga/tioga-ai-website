@@ -6,16 +6,14 @@ import { EvidenceTierTag } from "../_lib/evidence-tier";
 import { CAL_LINK } from "../../../lib/site-config";
 import { STATS, TOTAL_AGENTS, SYSTEMS, UNSUPERVISED_WRITE_COUNT } from "../../../lib/agent-register";
 
-// Unapproved pilot page (working-list.md, $30-75K "Agentic AI Governance
-// Framework" offer) — noindex until Sukir has seen it and signed off, per
-// docs/design/3d-design-standard.md §5.3. Deliberately not linked from any
-// nav, /solutions/ai-governance, or /demos' own listing — that's a
-// separate, later approval step, out of scope for this build.
+// Pilot page for the $30-75K "Agentic AI Governance Framework" offer
+// (working-list.md). Published 2026-09-18 on Sukir's instruction: indexable,
+// included in the generated sitemap, and linked from
+// /solutions/ai-governance. Not listed on /demos' own featured cards yet.
 export const metadata: Metadata = {
   title: "The Reach Map",
   description:
     "An interactive 3D scene rendering Tioga's own 29 scheduled automation jobs against the 12 real systems they're authorized to touch, colored by real authorization tier.",
-  robots: { index: false, follow: false },
   alternates: { canonical: "/demos/agent-reach-map" },
   openGraph: {
     title: "The Reach Map — Tioga AI",
