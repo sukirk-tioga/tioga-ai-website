@@ -530,7 +530,7 @@ export default function HomePage() {
  <div className="p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
  <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>What support do I get?</h3>
  <p className="text-sm text-[var(--text-muted)] leading-relaxed">
- I personally review and respond to everything — no ticket queue. As a pre-launch, solo-founder practice there&apos;s no formal uptime SLA published yet; that&apos;s disclosed on the{" "}
+ I personally review and respond to everything — no ticket queue. As a pre-launch, principal-led practice there&apos;s no formal uptime SLA published yet; that&apos;s disclosed on the{" "}
  <Link href="/trust" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>Trust page</Link>
  , not hidden.
  </p>

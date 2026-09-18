@@ -71,8 +71,10 @@ export default function AboutPage() {
             operating discipline this practice is built on.
           </p>
           <p>
-            Tioga AI is a solo practice by design, at least for now. Every
-            live demo on this site is code I wrote and infrastructure I run —
+            Tioga AI is a principal-led practice: the person who scopes your
+            engagement is the person who does the engineering and prepares
+            the evidence your control owners review. Every live demo on this
+            site is code I wrote and infrastructure I run —
             including the governance ledger, which isn&apos;t a mockup but a
             real excerpt from the routing gateway this business runs on
             internally. What you see here is what shipped, not what&apos;s planned.
