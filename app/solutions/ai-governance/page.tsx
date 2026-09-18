@@ -149,6 +149,8 @@ const content: SolutionContent = {
     { href: "/trust/framework-mapping", label: "NIST / ISO 42001 / EU AI Act mapping" },
     { href: "/articles/framework-mapping-not-three-checklists", label: "Read: one mapping, not three checklists" },
     { href: "/articles/oracle-ebs-agent-attribution-gap", label: "Read: the attribution gap in Oracle's own agent path" },
+    { href: "/demos/agent-reach-map", label: "Explore: the Reach Map, our own automations by authorization tier" },
+    { href: "/demos/agent-checkpoint-walk", label: "Explore: the Checkpoint Walk" },
     { href: "/services", label: "See all 10 governance engagements" },
   ],
   demoLink: { href: "/demos/governance-ledger", label: "See the Governance Ledger demo" },
