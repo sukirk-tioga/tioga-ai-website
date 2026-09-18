@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
  });
  }
 
- const prompt = `You are an AI classifier for Tioga AI, a solo-founder AI implementation practice. Analyze this inbound inquiry and classify it.
+ const prompt = `You are an AI classifier for Tioga AI, a principal-led AI implementation practice. Analyze this inbound inquiry and classify it.
 
 Inquiry details:
 - Name: ${name}

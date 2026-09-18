@@ -81,7 +81,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Accountability: what verification looks like for a solo,
+        {/* Accountability: what verification looks like for a principal-led,
             not-yet-named practice — direct engagement and demonstrated work
             you can check yourself, not a bio you have to take on faith.
             Replaces a prior block that dwelt on what's missing from this

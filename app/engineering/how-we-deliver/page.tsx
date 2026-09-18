@@ -57,7 +57,7 @@ const SELF_APPLICATION_ROWS: { runs: string; client: string }[] = [
     client: "The evidence behind the capability-not-instruction standard; the honesty statement in Tioga's methodology",
   },
   {
-    runs: "Engagement-level data handling with named subprocessors, deletion at close, and a plainly stated solo-founder incident posture",
+    runs: "Engagement-level data handling with named subprocessors, deletion at close, and a plainly stated principal-led incident posture",
     client: "The data-handling section of every proposal; the deletion schedule at handover",
   },
 ];
@@ -181,7 +181,7 @@ export default function HowWeDeliverPage() {
               accepted outputs.
             </p>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-              Tioga is a solo practice by design, not by apology. One person
+              Tioga is a principal-led practice by design, not by apology. One person
               scopes, engineers, maps governance, and produces evidence — the
               promise (&quot;no handoff to a junior team&quot;) is also the
               constraint the methodology below is built to make workable at
@@ -255,7 +255,7 @@ export default function HowWeDeliverPage() {
                   Tioga to hold production credentials or act as a runtime
                   dependency after handover; requires a reference-customer
                   list as a precondition to paid work; requires a 24/7 SLA a
-                  solo practice can&apos;t honestly make; or can&apos;t fund
+                  principal-led practice can&apos;t honestly make; or can&apos;t fund
                   the Discovery Sprint. A declined prospect isn&apos;t a
                   failed lead — it&apos;s evidence of where the offer
                   boundary sits.
@@ -428,7 +428,7 @@ export default function HowWeDeliverPage() {
                   decision log and risk register kept for the life of the
                   engagement, named approvers for every higher-risk action,
                   the shadow-window definition, the reconciliation-control
-                  definition, and — honestly, for a solo practice — the
+                  definition, and — honestly, for a principal-led practice — the
                   escalation path: Tioga, by email, promptly. A delivery
                   runbook is delivered in draft at kickoff and finalized by
                   the first milestone; it&apos;s the document a client

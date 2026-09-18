@@ -36,7 +36,7 @@ const EVIDENCE_TRIO = [
   },
   {
     title: "Evaluation",
-    body: "Tioga AI is a pre-launch, solo-founder practice — there's no completed Fit Check yet to report a track record from. Stated limitation: the go/no-go call is one practitioner's judgment against the three named criteria, not a benchmarked or peer-reviewed instrument.",
+    body: "Tioga AI is a pre-launch, principal-led practice — there's no completed Fit Check yet to report a track record from. Stated limitation: the go/no-go call is one practitioner's judgment against the three named criteria, not a benchmarked or peer-reviewed instrument.",
   },
 ];
 

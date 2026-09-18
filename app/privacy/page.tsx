@@ -40,7 +40,7 @@ export default function PrivacyPage() {
           <p>
             This page describes, plainly, what actually happens to data you
             submit on tioga.ai — the contact form and the live AI demos. Tioga
-            AI is a solo-run practice; there is no marketing database, no ad
+            AI is a principal-led practice; there is no marketing database, no ad
             tracking, and no resale of your data to anyone. What we collect,
             we collect to respond to you or to run the demo you asked to see.
           </p>

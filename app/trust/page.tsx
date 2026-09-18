@@ -247,7 +247,7 @@ export default function TrustPage() {
         <div className="mb-16">
           <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Data handling &amp; sub-processors</h2>
           <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-2xl mb-6">
-            Tioga AI is a solo-run practice — no marketing database, no ad
+            Tioga AI is a principal-led practice — no marketing database, no ad
             tracking, no resale of anything you submit. The full breakdown,
             endpoint by endpoint, is in the{" "}
             <Link href="/privacy" className="underline hover:text-[var(--text)] transition-colors">Privacy Policy</Link>.
@@ -285,7 +285,7 @@ export default function TrustPage() {
             <h2 className="text-lg font-bold mb-2" style={{ color: "var(--text)" }}>Availability</h2>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               Hosted on Vercel&apos;s global edge network. As a pre-launch,
-              solo-founder practice, there is no formal uptime SLA published
+              principal-led practice, there is no formal uptime SLA published
               yet — that&apos;s a real gap, not hidden. If tioga.ai is down,
               there is currently no separate status page; check the site
               directly or email me.
