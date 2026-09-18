@@ -333,7 +333,7 @@ export default function ChangelogPage() {
           What actually shipped
         </h1>
         <p className="text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-16">
-          Tioga AI is a solo practice, pre-launch — there are no client case
+          Tioga AI is a principal-led practice, pre-launch — there are no client case
           studies yet. This is the substitute: a running log of what&apos;s
           actually built and live on this site, in order, sourced directly
           from the commit history. No slide decks, no roadmap items presented
