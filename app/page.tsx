@@ -259,48 +259,13 @@ export default function HomePage() {
  <ScrollReveal>
  <section id="services" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-24">
  <div className="text-center mb-12">
- <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>Three scoped first engagements</h2>
+ <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>Fuller engagements, priced up front</h2>
  <p className="text-[var(--text-muted)] text-sm max-w-lg mx-auto">
- Three entry-point offers — each delivers a concrete, reviewable output in weeks, not quarters.
+ Once the first step is done — or if you already know what you need. Each delivers a concrete, reviewable output in weeks, not quarters.
  </p>
  <p className="text-xs max-w-lg mx-auto mt-2" style={{ color: "var(--text-muted-3)" }}>
- Pricing published up front, not gated behind a sales call. The $5,000 discovery sprint is credited toward whichever offer you move forward with.
+ Pricing published up front, not gated behind a sales call. The $5,000 Discovery Sprint is credited toward whichever engagement you move forward with.
  </p>
- </div>
- <div
- className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl mb-6"
- style={{ background: "linear-gradient(135deg, #C8340610, #A5000010)", border: "1px solid #C8340625" }}
- >
- <div>
- <p className="font-semibold mb-1" style={{ color: "var(--text)" }}>Not sure where to start?</p>
- <p className="text-sm" style={{ color: "var(--text-muted)" }}>
- Five-day{" "}
- <Link href="/discovery-sprint" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--text)" }}>Discovery Sprint</Link>
- , $5,000 flat — credited in full toward whichever offer below you move forward with. Not sure yet whether you have a real, provisionable use case? Start with the{" "}
- <Link href="/ai-fit-check" className="underline hover:text-[var(--text)] transition-colors" style={{ color: "var(--text)" }}>AI Fit Check</Link>
- {" "}instead — one day, $1,500, fully remote.
- </p>
- </div>
- <div className="flex shrink-0 items-center gap-3">
- <Link
- href="/discovery-sprint"
- className="px-6 py-3 rounded-xl font-semibold text-sm whitespace-nowrap transition-all hover:border-slate-500 hover:text-[var(--text)]"
- style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
- >
- Learn more
- </Link>
- <TrackedCTA
- href={CAL_LINK}
- target="_blank"
- rel="noopener noreferrer"
- event="cta_book_call"
- data={{ location: "services_sprint_banner" }}
- className="px-6 py-3 rounded-xl text-white font-semibold text-sm whitespace-nowrap transition-all hover:opacity-90"
- style={{ background: "var(--accent-dark)" }}
- >
- Book the sprint
- </TrackedCTA>
- </div>
  </div>
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
  {[
@@ -310,7 +275,6 @@ export default function HomePage() {
  desc: "2–3 weeks. Map manual workflows across finance, HR, procurement, and operations. Rank automation opportunities by ROI and feasibility. Concrete plan in your hands.",
  investment: "$10–15K",
  ctaLabel: "Scope an assessment",
- recommended: true,
  },
  {
  name: "AI Governance Readiness Assessment",
@@ -318,7 +282,6 @@ export default function HomePage() {
  desc: "3–4 weeks. NIST AI RMF, ISO 42001, EU AI Act, and US state law gap analysis with a prioritized remediation roadmap. Sample executive summary included.",
  investment: "$20–35K",
  ctaLabel: "Check my readiness",
- recommended: false,
  },
  {
  name: "AI Agent Pilot",
@@ -326,7 +289,6 @@ export default function HomePage() {
  desc: "4–8 weeks. Production-ready agent. Governance built in from day one. Working pilot you can extend or hand off.",
  investment: "$25–50K",
  ctaLabel: "Plan a pilot",
- recommended: false,
  },
  ].map((offer) => (
  <div
@@ -334,26 +296,18 @@ export default function HomePage() {
  className="flex flex-col rounded-2xl overflow-hidden"
  style={{
  background: "var(--bg-card)",
- border: offer.recommended ? "1px solid var(--accent)" : "1px solid rgba(255,255,255,0.08)",
+ border: "1px solid var(--border)",
  }}
  >
  <div className="h-px w-full" style={{ background: "linear-gradient(90deg, var(--accent), var(--accent-dark))" }} />
  <div className="flex flex-col flex-1 p-8">
- {offer.recommended && (
- <span
- className="inline-block self-start mb-4 px-3 py-1 rounded-full text-xs font-semibold"
- style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
- >
- Start here
- </span>
- )}
  <h3 className="text-2xl font-semibold mb-3 leading-snug" style={{ color: "var(--text)" }}>{offer.name}</h3>
  <p className="text-lg font-medium text-[var(--text-muted)] mb-5 leading-snug">{offer.valueProp}</p>
  <p className="text-base leading-relaxed flex-1 mb-8" style={{ color: "var(--text-body)" }}>{offer.desc}</p>
  <div className="space-y-4">
  <p className="text-2xl font-semibold" style={{ color: "var(--text)" }}>{offer.investment}</p>
  <a
- href="/contact"
+ href={`/contact?offer=${encodeURIComponent(offer.name)}`}
  className="block text-center w-full px-8 py-3.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
  style={{ background: "var(--accent-dark)" }}
  >

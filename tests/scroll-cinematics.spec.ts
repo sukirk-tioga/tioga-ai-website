@@ -107,7 +107,7 @@ test("/#services deep link lands on the actual Services section, not short by on
   await page.waitForTimeout(1200);
   const rect = await page.evaluate(() => document.getElementById("services")?.getBoundingClientRect().top);
   expect(rect, "distance from viewport top to #services after landing").toBeLessThan(150);
-  await expect(page.locator("#services").getByRole("heading", { name: "Three scoped first engagements" })).toBeVisible();
+  await expect(page.locator("#services").getByRole("heading", { name: "Fuller engagements, priced up front" })).toBeVisible();
 });
 
 test("prefers-reduced-motion fully bypasses Lenis and the pin — normal scrolling document", async ({ page }) => {

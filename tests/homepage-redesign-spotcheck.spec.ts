@@ -54,15 +54,19 @@ test.describe("2026-08-08 homepage design review changes", () => {
     await expect(page.getByText(/See it running, not a slide about it/)).toBeVisible();
   });
 
-  test("pricing section: sprint banner + recommended flag + distinct CTA labels", async ({ page }) => {
+  test("pricing section: single where-to-start block + distinct CTA labels", async ({ page }) => {
     // Navigates straight to the homepage's #services anchor rather than
     // clicking the Nav's "Services" link — as of the 2026-08-16 Nav/Footer
     // consistency fix, Nav "Services" now points to the dedicated /services
     // page (matching the Footer), not this homepage section. This test is
     // about the homepage pricing section's own content, which is unchanged.
     await page.goto("/#services");
-    await expect(page.getByText("Not sure where to start?")).toBeVisible();
-    await expect(page.getByText("Start here")).toBeVisible();
+    // 2026-09-19: the homepage has exactly one "where to start" block
+    // (OfferChooser, three routes); this section holds the fuller follow-on
+    // engagements, so the old banner and "Start here" flag are gone.
+    await expect(page.getByText("Not sure where to start?")).toHaveCount(0);
+    await expect(page.getByText("Start here")).toHaveCount(0);
+    await expect(page.getByRole("heading", { name: "Where to start" })).toHaveCount(1);
     await expect(page.getByRole("link", { name: "Scope an assessment" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Check my readiness" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Plan a pilot" })).toBeVisible();
