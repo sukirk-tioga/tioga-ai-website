@@ -38,7 +38,8 @@ test("standing-watch landing page scopes its platform and propose-only claims", 
   const body = await page.locator("body").innerText();
   expect(body).not.toMatch(/None of them govern the aggregate/);
   expect(body).not.toMatch(/No automation ever writes to live configuration/);
-  expect(body).toMatch(/None of the four governs the aggregate/);
+  expect(body).not.toMatch(/governs the aggregate|neutral layer that governs/);
+  expect(body).toMatch(/Who verifies what your agents do across all of them/);
 });
 
 for (const route of ["/ai-fit-check", "/discovery-sprint"]) {
@@ -60,4 +61,17 @@ test("standing-watch landing page cites its third-party stats with dated source 
   await expect(page.getByRole("link", { name: /SD Times coverage/ })).toHaveAttribute("href", /sdtimes\.com/);
   const body = await page.locator("body").innerText();
   expect(body).not.toMatch(/OutSystems, 1,900 IT leaders/);
+});
+
+test("Standing Watch pages no longer claim to govern the aggregate or consume undemonstrated connectors", async ({ page }) => {
+  for (const route of ["/solutions/standing-watch", "/services", "/lp/standing-watch"]) {
+    await page.goto(route);
+    const body = await page.locator("body").innerText();
+    expect(body, route).not.toMatch(/governs the aggregate|neutral layer that governs|no vendor platform currently ships/i);
+    expect(body, route).not.toMatch(/consuming your existing SAP Agent Hub/i);
+  }
+  await page.goto("/solutions/standing-watch");
+  await expect(page.getByRole("heading", { name: "Works alongside your control plane" })).toBeVisible();
+  await page.goto("/solutions/governed-write-path");
+  await expect(page.locator("body")).toContainText("sit behind it");
 });
