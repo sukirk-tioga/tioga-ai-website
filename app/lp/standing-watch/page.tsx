@@ -72,15 +72,17 @@ export default function StandingWatchLandingPage() {
           <ScrollReveal>
             <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
               <p className="text-3xl font-bold" style={{ color: "var(--accent)" }}>13%</p>
-              <p className="text-sm text-[var(--text-muted)] mt-1">of enterprises believe their agent governance is adequate</p>
-              <p className="text-xs text-slate-500 mt-2">Gartner, cited in SAP&apos;s Aug 2026 agent-sprawl analysis</p>
+              <p className="text-sm text-[var(--text-muted)] mt-1">of organizations believe they have the right governance in place to manage AI agents</p>
+              <p className="text-xs text-slate-500 mt-2">Gartner estimate, as cited in{" "}
+                <a href="https://news.sap.com/2026/08/agent-sprawl-why-ai-governance-is-now-board-level-issue/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">SAP News Center, Aug 3, 2026</a></p>
             </div>
           </ScrollReveal>
           <ScrollReveal>
             <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
               <p className="text-3xl font-bold" style={{ color: "var(--accent)" }}>94% / 12%</p>
-              <p className="text-sm text-[var(--text-muted)] mt-1">of IT leaders report agent-sprawl concern; only 12% run centralized governance</p>
-              <p className="text-xs text-slate-500 mt-2">OutSystems, 1,900 IT leaders surveyed</p>
+              <p className="text-sm text-[var(--text-muted)] mt-1">of surveyed organizations are concerned about AI sprawl; only 12% have a centralized platform to manage it</p>
+              <p className="text-xs text-slate-500 mt-2">OutSystems research, April 2026 (nearly 1,900 global IT leaders; third-party survey) —{" "}
+                <a href="https://sdtimes.com/ai/agentic-ai-goes-mainstream-in-the-enterprise-but-94-raise-concern-about-sprawl-outsystems-research-finds/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">SD Times coverage</a></p>
             </div>
           </ScrollReveal>
         </div>

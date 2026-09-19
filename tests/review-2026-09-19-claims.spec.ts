@@ -50,3 +50,14 @@ for (const route of ["/ai-fit-check", "/discovery-sprint"]) {
     expect(body).not.toMatch(/only delivery capacity/i);
   });
 }
+
+test("standing-watch landing page cites its third-party stats with dated source links", async ({ page }) => {
+  await page.goto("/lp/standing-watch");
+  await expect(page.getByRole("link", { name: /SAP News Center, Aug 3, 2026/ })).toHaveAttribute(
+    "href",
+    /news\.sap\.com\/2026\/08\/agent-sprawl/
+  );
+  await expect(page.getByRole("link", { name: /SD Times coverage/ })).toHaveAttribute("href", /sdtimes\.com/);
+  const body = await page.locator("body").innerText();
+  expect(body).not.toMatch(/OutSystems, 1,900 IT leaders/);
+});
