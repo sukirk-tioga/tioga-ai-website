@@ -30,9 +30,9 @@ const content: SolutionContent = {
         "The six disciplines below are generalized from automations Tioga actually operates in production — the JARVIS router, router-watch, and security-watch — across a genuinely heterogeneous stack (a free local model, multiple OpenRouter-hosted vendors, direct-billed Gemini, and a subscription Claude that's never auto-routed). This is a single-operator, personal-infrastructure-scale implementation, not an enterprise deployment — volunteered here, not extracted in a pitch.",
     },
     {
-      label: "Propose-and-approve, never auto-applied",
+      label: "Propose-and-approve by default",
       detail:
-        "No automation ever writes to live configuration. Every finding becomes a dated proposal a human applies by hand — the durable, framework-mapped record of agent actions plus human approvals that no vendor platform currently ships as a byproduct of operating.",
+        "Findings are proposals, not changes: nothing is applied on a finding's own authority. A small, hard-coded set of bounded change types (pure additions, syntax-checked afterward) may be applied automatically; everything else becomes a dated proposal a human reviews and applies — the durable, framework-mapped record of agent actions plus human approvals that no vendor platform currently ships as a byproduct of operating.",
     },
     {
       label: "Six disciplines, one running mechanism each",

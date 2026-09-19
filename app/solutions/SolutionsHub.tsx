@@ -13,9 +13,10 @@ export const families: Family[] = [
     { id: "ap-exceptions", name: "AP exceptions & invoice governance", status: "live" },
     { id: "sales-orders", name: "Sales & order operations", status: "live" },
   ] },
-  { id: "service", shortName: "Service", name: "Service & Operational Workflows", purpose: "Field service decisions and email/document triage. HR & procurement workflows are not yet built.", workflows: [
+  { id: "service", shortName: "Service", name: "Service & Operational Workflows", purpose: "Field service decisions, email/document triage, and HR workforce demos. Procurement workflows are not yet built.", workflows: [
     { id: "field-service", name: "Field service & operations", status: "live" },
-    { id: "hr-procurement", name: "HR & procurement workflows", status: "not-built" },
+    { id: "hr-workforce", name: "HR & workforce workflows (timecard exceptions, headcount drafts)", status: "live" },
+    { id: "procurement", name: "Procurement workflows", status: "not-built" },
   ] },
   { id: "reporting", shortName: "Reporting", name: "Reporting & Business Information", purpose: "Querying and extracting from composite ERP-style data; not general database connectivity.", workflows: [
     { id: "erp-reporting", name: "ERP reporting & document extraction", status: "live" },
@@ -123,7 +124,7 @@ export default function SolutionsHub({ variant = "editorial", id = "solutions", 
       </>}
       <section className="sh-scope" id={`${id}-scope`} aria-labelledby={`${id}-scope-title`}>
         <h2 id={`${id}-scope-title`}>Current scope</h2>
-        <p>HR & procurement workflows and the Salesforce interactive demo are not yet built — but the Salesforce Governed Write-Path & Evidence Build engagement itself is live and priced; see <a href="/services">Services</a>. ERP reporting covers composite ERP-style data; it does not provide general database connectivity. This page tracks interactive workflow demos, a narrower set than the full priced engagement catalog — see <a href="/services">Services</a> for all sixteen priced engagements across three practices.</p>
+        <p>Procurement workflows and the Salesforce interactive demo are not yet built — but the Salesforce Governed Write-Path & Evidence Build engagement itself is live and priced; see <a href="/services">Services</a>. ERP reporting covers composite ERP-style data; it does not provide general database connectivity. &ldquo;Live&rdquo; here means a public interactive demonstration on synthetic data is available — not a production deployment at a client. This page tracks interactive workflow demos, a narrower set than the full priced engagement catalog — see <a href="/services">Services</a> for all sixteen priced engagements across three practices.</p>
       </section>
     </div>
   </section>;

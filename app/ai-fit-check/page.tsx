@@ -47,7 +47,7 @@ const DELIVERABLES = [
   },
   {
     title: "A first-pass candidate use case",
-    desc: "Named and scoped from what came up in the interviews and whatever documentation (process docs, system inventories, prior audit findings) the prospect can hand over without needing new system access — not yet validated the way the Sprint would validate it, but concrete enough to name.",
+    desc: "Named and scoped from what came up in the interviews and whatever documentation (process docs, system inventories, prior audit findings) you can hand over without needing new system access — not yet validated the way the Sprint would validate it, but concrete enough to name.",
   },
   {
     title: "A readiness read on the three things that actually block a Discovery Sprint from running well",
@@ -92,7 +92,7 @@ export default function AiFitCheckPage() {
           , not replacing it. Where the Discovery Sprint needs read-only
           sandbox access provisioned before day one (most mid-market IT
           groups can&apos;t clear that in under a week) and consumes a full
-          week of Tioga&apos;s only delivery capacity, the Fit Check needs
+          week of dedicated principal time, the Fit Check needs
           neither — it&apos;s interviews and document review only, and it
           exists specifically to answer one question cheaply before either
           side commits a week: <strong style={{ color: "var(--text)" }}>is there a real, scoped candidate use case here, and is this organization actually ready for a Discovery Sprint right now?</strong>
@@ -126,10 +126,10 @@ export default function AiFitCheckPage() {
             <h2 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>How the one day runs</h2>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed">
               A single remote session (or a small number of shorter calls
-              across one day, whichever fits the prospect&apos;s calendar)
+              across one day, whichever fits your calendar)
               with the sponsor and one or two people who actually do the
               work in the candidate area. No system access, no sandbox
-              provisioning, no data export — if a prospect can&apos;t
+              provisioning, no data export — if you can&apos;t
               produce a sponsor and a working-level contact for even one
               day without IT involvement, that itself is a real finding
               about whether they&apos;re ready for a five-day Sprint that
@@ -177,13 +177,13 @@ export default function AiFitCheckPage() {
                 <strong style={{ color: "var(--text)" }}>Go — proceed to a Discovery Sprint.</strong>{" "}
                 The $1,500 credits in full against the Sprint&apos;s $5,000
                 fee, so the full ladder costs exactly what the Sprint alone
-                costs today if the prospect proceeds — the point is
-                qualification economics, not an extra fee. Credit valid for
+                costs today if you proceed — the Fit Check is a
+                qualification step, not an extra fee. Credit valid for
                 60 days from the Fit Check readout.
               </li>
               <li>
-                <strong style={{ color: "var(--text)" }}>No-go, or not yet.</strong> The
-                prospect keeps the readout and the named use case either
+                <strong style={{ color: "var(--text)" }}>No-go, or not yet.</strong> You
+                keep the readout and the named use case either
                 way. No obligation to proceed, and Tioga doesn&apos;t ask
                 for one — same principle as the Sprint&apos;s own no-go
                 outcome.

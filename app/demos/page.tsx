@@ -18,7 +18,7 @@ import DemosClient from "./DemosClient";
 export const metadata: Metadata = {
   title: "Live AI Demos",
   description:
-    "Real AI workflows running against Tioga AI's own agent infrastructure, including invoice processing, email triage, an Oracle Fusion Cloud AI-readiness assessment, and Standing Watch governance findings. No signup, no mockups.",
+    "Interactive AI workflows — live model calls, browser simulations and dated operational excerpts from Tioga AI's own infrastructure — including invoice processing, email triage, an Oracle Fusion Cloud AI-readiness assessment, and Standing Watch governance findings. No signup; each demo labels whether it runs live or on synthetic data.",
   alternates: { canonical: "/demos" },
   openGraph: {
     title: "Live AI Demos — Tioga AI",

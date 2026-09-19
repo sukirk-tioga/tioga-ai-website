@@ -32,9 +32,9 @@ const proof = [
       "Generalized from the JARVIS router, router-watch, and security-watch — running across a free local model, multiple OpenRouter-hosted vendors, direct-billed Gemini, and a subscription Claude that's never auto-routed. Single-operator scale, volunteered here, not extracted in a pitch.",
   },
   {
-    label: "Propose-and-approve, never auto-applied",
+    label: "Propose-and-approve by default",
     detail:
-      "No automation ever writes to live configuration. Every finding becomes a dated proposal a human applies by hand — a durable, framework-mapped record of agent actions plus human approvals.",
+      "Findings are proposals, not changes: nothing is applied on a finding's own authority. A small, hard-coded set of bounded change types (pure additions, syntax-checked afterward) may be applied automatically; everything else becomes a dated proposal a human reviews and applies — a durable, framework-mapped record of agent actions plus human approvals.",
   },
   {
     label: "See the real ledger, not a mockup",
@@ -57,8 +57,8 @@ export default function StandingWatchLandingPage() {
             Standing Watch
           </div>
           <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight text-balance" style={{ color: "var(--text)" }}>
-            Every platform ships its own governance pane.{" "}
-            <span style={{ color: "var(--accent)" }}>None of them govern the aggregate.</span>
+            SAP, Workday, Databricks and ServiceNow each ship a governance pane.{" "}
+            <span style={{ color: "var(--accent)" }}>None of the four governs the aggregate.</span>
           </h1>
           <p className="text-lg text-[var(--text-muted)] max-w-2xl leading-relaxed">
             SAP, Workday, Databricks, and ServiceNow each anchor their AI agent governance to their own estate.

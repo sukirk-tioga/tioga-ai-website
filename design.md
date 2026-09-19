@@ -32,12 +32,21 @@ the palette that silently drifts from the real one in `globals.css`. Use
 
 ## Typography
 
-- **Body font:** Inter (`next/font/google`, CSS var `--font-inter`), applied
-  site-wide via `body` in `globals.css`.
-- **Mono font:** JetBrains Mono / Fira Code (`font-mono` Tailwind utility,
-  configured in `tailwind.config.ts`) — used for code-like content: stat
-  labels, small pill badges (see Card patterns below), the flagship demo's
-  ledger/data displays. Not the default; opt in with `font-mono`.
+- **Display font (headings):** Libre Franklin (`next/font/google`, CSS var
+  `--font-display`), applied to `h1`-`h6` in `globals.css`. Bold sans-serif
+  headings carry the "document masthead" authority.
+- **Body font:** Spectral (serif, CSS var `--font-body`), applied site-wide via
+  `body` in `globals.css`. Chosen 2026-09-01 (audit-ledger redesign; see
+  `app/layout.tsx`) so the site reads as a report rather than a SaaS landing
+  page. **Inter is no longer used** - earlier versions of this doc said it was.
+- **Mono font:** Martian Mono (JetBrains Mono / monospace fallback), via the
+  `font-mono` Tailwind utility configured in `tailwind.config.ts` - used for
+  code-like content: stat labels, small pill badges (see Card patterns below),
+  the ledger/data displays. Not the default; opt in with `font-mono`.
+- **Known tension (2026-09-19 review):** serif body text in dense controls,
+  tables and metadata can compete with the sans headings. Whether form
+  controls and tables should opt into `--font-display` is an open taste call,
+  not a defect - decide it deliberately rather than per component.
 - **Scale in practice** (not an exhaustive Tailwind reference, just what's
   actually used where):
   - Hero H1: `text-4xl lg:text-6xl font-bold tracking-tight text-balance`
