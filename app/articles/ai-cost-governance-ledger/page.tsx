@@ -27,12 +27,12 @@ const content: ArticleContent = {
       heading: "The number that matters isn't the total spend",
       body: (
         <p>
-          My own routing gateway has logged {TOTAL_CALLS} model calls in its
-          current window, spending ${TOTAL_SPEND.toFixed(6)} against a $30
-          cap — still a rounding error. The interesting number isn&apos;t the
+          My own routing gateway has logged {TOTAL_CALLS} model calls in a
+          two-day excerpt (Sep 8–9, 2026), an excerpt subtotal of ${TOTAL_SPEND.toFixed(6)}
+          — not the 30-day window figure — against a $30-per-30-day cap: still a rounding error. The interesting number isn&apos;t the
           total, though; it&apos;s what happens to the free/paid split as
           real usage grows. {PAID_COUNT} of those {TOTAL_CALLS} calls
-          resolved to a paid OpenRouter backend this window, versus{" "}
+          resolved to a paid OpenRouter backend in this excerpt, versus{" "}
           {FREE_COUNT} that stayed on a local or Google free tier — a very
           different ratio from an earlier capture of this same ledger, when
           the free tier absorbed most of the volume. The routing policy
@@ -40,7 +40,7 @@ const content: ArticleContent = {
           first, by policy, not by luck. What changed is that real call
           volume has grown past what those backends alone can cover, so more
           calls now resolve to paid credit before the $30 cap is ever at
-          risk. {FREE_ZERO_COST_COUNT} of {TOTAL_CALLS} calls in this window
+          risk. {FREE_ZERO_COST_COUNT} of {TOTAL_CALLS} calls in this excerpt
           settled at exactly $0 ({FREE_ZERO_COST_PCT}%) — worth naming
           honestly rather than only ever citing whichever window&apos;s
           numbers look best.

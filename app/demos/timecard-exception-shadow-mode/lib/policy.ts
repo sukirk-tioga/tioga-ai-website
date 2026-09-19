@@ -104,8 +104,8 @@ export interface Proposal {
   statutoryCheck: string;
   reviewingRole: ReviewingRole;
   reviewingRoleDetail: string;
-  // What the human reviewer actually did during the shadow-mode window —
-  // this is a completed, logged review window, not a live decision.
+  // The seeded reviewer decision for this synthetic shadow-mode window —
+  // illustrative data, not a logged human review and not a live decision.
   defaultDecision: "accepted" | "overridden";
   overrideNote?: string;
 }

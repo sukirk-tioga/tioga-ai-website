@@ -87,8 +87,8 @@ export interface DraftProposal {
   assumption: string;
   mrcHook: MrcHook;
   mrcDetail: string | null;
-  // What the human reviewer actually decided during this draft's review
-  // pass — a completed, logged review, not a live decision.
+  // The seeded reviewer decision for this synthetic draft review pass —
+  // illustrative data, not a logged human review and not a live decision.
   defaultDecision: "approved" | "rejected";
   reviewerNote?: string;
 }

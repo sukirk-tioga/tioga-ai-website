@@ -1320,7 +1320,7 @@ function DemosPageInner() {
             <p className="text-sm text-[var(--text-muted)]">
               An agent proposes corrections for missed punches, unapproved overtime, and PTO requests — never
               auto-executing — citing the named payroll-cycle control and FLSA/state rule behind each one. See the
-              measured human-agreement rate over a defined shadow-mode review window.
+              how a simulated agreement rate moves against seeded reviewer decisions in a synthetic shadow-mode window.
             </p>
           </div>
           <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>

@@ -174,7 +174,7 @@ export default function FusionAiReadinessAssessmentPage() {
             </select>
           </Field>
 
-          <Field label="Governance controls already in place — select any that apply">
+          <Field label="Governance controls you can confirm are in place — unchecked controls are scored as not confirmed, not as absent">
             <div className="flex flex-col gap-2">
               {GOVERNANCE_CONTROLS.map((c) => {
                 const on = governanceControls.includes(c.label);
@@ -250,6 +250,7 @@ export default function FusionAiReadinessAssessmentPage() {
                   </span>
                 </div>
                 <p className="text-sm text-[var(--text-muted)] leading-relaxed">{result.scoreReasoning}</p>
+                <p className="text-xs text-[var(--text-muted)] mt-2">Score reflects only the controls you confirmed above; unchecked controls are treated as unknown, not absent.</p>
               </div>
             </div>
 

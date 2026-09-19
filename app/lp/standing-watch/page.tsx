@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Standing Watch — Cross-System AI Agent Governance",
   description:
     "SAP, Workday, Databricks, and ServiceNow each ship their own AI agent governance pane, anchored to their own estate. Standing Watch is the discipline that governs across them.",
+  alternates: { canonical: "/lp/standing-watch" },
   robots: { index: false, follow: true },
 };
 

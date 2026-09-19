@@ -35,7 +35,7 @@ function MrcBadge({ proposal }: { proposal: DraftProposal }) {
   if (!proposal.mrcHook) {
     return (
       <span
-        className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide whitespace-nowrap"
+        className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide max-w-full text-left"
         style={{ color: "var(--text-muted)", border: "1px solid var(--border)" }}
       >
         Routine planning line
@@ -44,7 +44,7 @@ function MrcBadge({ proposal }: { proposal: DraftProposal }) {
   }
   return (
     <span
-      className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide whitespace-nowrap"
+      className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide max-w-full text-left"
       style={{ color: "var(--error-light)", border: "1px solid #C6402B60" }}
     >
       MRC-sensitive: {MRC_HOOK_LABEL[proposal.mrcHook]}
@@ -180,7 +180,7 @@ export default function HeadcountForecastDraftProvenancePage() {
     setDecisions((prev) => ({ ...prev, [id]: decision }));
   }
 
-  function resetToActual() {
+  function resetToSeeded() {
     setDecisions(defaultDecisions());
   }
 
@@ -230,11 +230,11 @@ export default function HeadcountForecastDraftProvenancePage() {
           allowance) — this is what makes the control SOX-adjacent rather than just a planning nicety.
         </p>
         <button
-          onClick={resetToActual}
+          onClick={resetToSeeded}
           className="text-xs px-3 py-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
           style={{ border: "1px solid var(--border)" }}
         >
-          Reset to actual review outcomes
+          Reset to seeded reviewer decisions
         </button>
       </div>
 

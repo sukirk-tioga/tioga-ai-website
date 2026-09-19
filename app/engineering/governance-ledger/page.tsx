@@ -31,7 +31,7 @@ export default function GovernanceLedgerWriteup() {
           How I built the Governance Ledger demo
         </h1>
         <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-12">
-          The other three demos on this site take an input and run it through
+          Most demos on this site take an input and run it through
           a model live. This one doesn&apos;t take an input at all — it&apos;s a
           real, dated excerpt from the routing ledger that Tioga&apos;s own AI
           infrastructure (JARVIS) writes to on every call it makes, anywhere,

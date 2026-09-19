@@ -76,7 +76,7 @@ export default function OfferChooser() {
       <p className="text-center mt-6 text-sm" style={{ color: "var(--text-muted-2)" }}>
         Or{" "}
         <Link href="/services" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
-          browse all sixteen workflows
+          browse all sixteen engagements
         </Link>
         {" "}across automation, ERP, and governance.
       </p>

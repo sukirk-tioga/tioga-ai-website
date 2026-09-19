@@ -94,7 +94,7 @@ export async function POST(req: NextRequest) {
 Rules:
 - Be SPECIFIC to the use case selected — reference real Fusion Cloud ERP concepts for that use case (e.g. Payables invoice holds and matching for AP exceptions, supplier and purchase-order approval for procurement triage, chart-of-accounts and period-close controls for GL review, expense policy violations for expense auditing), not generic AI-governance advice.
 - Be conservative on readiness. Err toward flagging real gaps rather than declaring an environment "ready" on the strength of good intentions.
-- ${controlsAreThin ? "Fewer than two governance controls are already in place: you MUST explicitly call this a structural blocker to any autonomous (non-human-gated) agent action in the risks or reasoning, not a minor gap." : "Note any remaining governance gap even where several controls are already in place — no environment should be scored a 10 on selected controls alone."}
+- ${controlsAreThin ? "Fewer than two governance controls are confirmed in place: you MUST explicitly call this a structural blocker to any autonomous (non-human-gated) agent action in the risks or reasoning, not a minor gap — while stating that the score reflects only what was confirmed in this form, not a finding that the controls are absent." : "Note any remaining governance gap even where several controls are already in place — no environment should be scored a 10 on selected controls alone."}
 - Respond with VALID JSON ONLY. No markdown, no code fences, no commentary outside the JSON object. Every string value must be valid JSON: escape internal double quotes as \\", escape newlines as \\n, and never break out of a string value to use another format (e.g. XML tags) inside it.`;
 
   const prompt = `Assess this Oracle Fusion Cloud ERP AI-agent-readiness scenario:
@@ -102,7 +102,8 @@ Rules:
 - Target agent use case: ${useCase}
 - Approximate transaction volume: ${transactionVolume}
 - Current integration method: ${integrationMethod}
-- Governance controls already in place: ${selectedControls.length > 0 ? selectedControls.join("; ") : "none selected"}
+- Governance controls confirmed in place: ${selectedControls.length > 0 ? selectedControls.join("; ") : "none confirmed"}
+- Every control not listed above is NOT CONFIRMED (unknown), not absent: describe it as "not confirmed" and never assert that the organization lacks it.
 
 Return exactly this JSON structure:
 {

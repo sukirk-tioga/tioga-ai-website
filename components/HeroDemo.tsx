@@ -166,7 +166,7 @@ export default function HeroDemo() {
         className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:text-[var(--text)]"
         style={{ color: "var(--accent)" }}
       >
-        Run this yourself, with your own file or email →
+        Run this AP exception scenario yourself →
       </TrackedCTA>
     </div>
   );
