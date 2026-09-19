@@ -4,7 +4,7 @@ import ArticlePage, { type ArticleContent } from "@/components/ArticlePage";
 export const metadata: Metadata = {
   title: "NIST AI RMF vs. ISO 42001 vs. EU AI Act: One Mapping, Not Three Checklists",
   description:
-    "How the same underlying control — an audit-grade decision log — satisfies NIST AI RMF, ISO 42001, and EU AI Act evidence requirements at once, instead of three separate compliance projects.",
+    "How the same underlying control — an audit-grade decision log — can supply mapped evidence for NIST AI RMF, ISO 42001, and EU AI Act requirements at once, subject to applicability and review, instead of three separate compliance projects.",
   alternates: { canonical: "/articles/framework-mapping-not-three-checklists" },
   openGraph: {
     type: "article",
@@ -19,7 +19,7 @@ const content: ArticleContent = {
   query: "NIST AI RMF ISO 42001 EU AI Act mapping",
   date: "2026-08-03",
   title: "NIST AI RMF, ISO 42001, EU AI Act: one mapping, not three checklists",
-  dek: "Governance teams often treat these as three separate compliance projects. In practice, the same underlying evidence — a decision log with control tags — satisfies all three, if it's built that way from the start.",
+  dek: "Governance teams often treat these as three separate compliance projects. In practice, the same underlying evidence — a decision log with control tags — supports the mapped evidence requirements of all three, subject to applicability and review, if it's built that way from the start.",
   evidenceLabel: "Evidence: the actual control-tag structure from my live Governance Ledger and AP Exception Workflow demos.",
   sections: [
     {

@@ -64,7 +64,7 @@ export default function DiscoverySprintPage() {
           Five business days. $5,000 flat. Includes a working prototype.
         </p>
         <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-8">
-          For a prospect who already has a candidate use case and can
+          For a team that already has a candidate use case and can
           provision read-only sandbox access within a week, this is where
           Tioga&apos;s scoping work starts. It&apos;s not a sales pitch and
           not a free consultation: the output is a written recommendation

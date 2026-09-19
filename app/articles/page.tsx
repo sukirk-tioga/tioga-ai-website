@@ -27,7 +27,7 @@ const ARTICLES = [
   {
     href: "/articles/framework-mapping-not-three-checklists",
     title: "NIST AI RMF, ISO 42001, EU AI Act: one mapping, not three checklists",
-    summary: "Why the same evidence trail satisfies all three, if it's architectural from the start.",
+    summary: "Why the same evidence trail can support all three mapped frameworks, if it's architectural from the start.",
   },
   {
     href: "/articles/mcp-scoped-permissions",

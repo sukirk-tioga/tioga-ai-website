@@ -25,7 +25,7 @@ const CHOICES = [
     name: "The Discovery Sprint",
     price: "$5,000",
     duration: "Five days · scoped to your systems",
-    desc: "A working prototype and a delivery plan against your real systems — the $1,500 Fit Check credits in full if you started there.",
+    desc: "A working prototype on a read-only sandbox or scoped sample data shaped like your systems, plus a delivery plan — the $1,500 Fit Check credits in full if you started there.",
     href: "/discovery-sprint",
     ctaLabel: "Book the Discovery Sprint",
     event: "cta_book_discovery_sprint",

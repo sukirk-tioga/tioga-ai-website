@@ -426,7 +426,7 @@ export default function HomePage() {
  { icon: "⚡", title: "Speed to value", desc: "My 5-day discovery sprint gives you a working prototype and a delivery plan before most firms finish scoping." },
  { icon: "🔐", title: "Enterprise-grade security", desc: "Security controls — role-based access, audit logging, and architecture aligned to SOC 2 Trust Services Criteria — so your systems of record stay under your control. No independent SOC 2 report exists yet." },
  { icon: "🎯", title: "Integration-first approach", desc: "I build for your stack from day one. No rip-and-replace. Your existing systems become more powerful." },
- { icon: "🧪", title: "No toy demos", desc: "Every pilot runs against your real data and real systems, built to carry into production, not thrown away after the demo." },
+ { icon: "🧪", title: "No toy demos", desc: "Pilots are built to integrate with your real systems, with access scope and acceptance gates agreed up front — built to carry into production, not thrown away after the demo." },
  { icon: "📐", title: "MCP-native builds", desc: "I specialize in Model Context Protocol — the emerging standard for connecting AI to enterprise systems at scale." },
  { icon: "📈", title: "Measurable ROI", desc: "I define success metrics up front. You see ROI calculations in the pilot, not after a 6-month engagement." },
  ].map((item) => (

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 // the matching /demos page where no /solutions page exists yet, so no
 // live entry dead-ends. Left unmapped (renders as plain text via the
 // component's own honesty behavior):
-//  - "hr-procurement", "salesforce": marked not-built; no destination.
+//  - "procurement", "salesforce": marked not-built; no destination.
 const LINKS: Record<string, string> = {
   "ap-exceptions": "/solutions/ap-automation",
   "write-paths": "/solutions/governed-write-path",
@@ -26,6 +26,7 @@ const LINKS: Record<string, string> = {
   "watch": "/solutions/standing-watch",
   "sales-orders": "/demos/capital-equipment-order",
   "field-service": "/demos/field-service-classification",
+  "hr-workforce": "/demos/timecard-exception-shadow-mode",
   "erp-reporting": "/demos/erp-reporting-copilot",
   "ledger": "/demos/governance-ledger",
   "oversight": "/demos/automation-oversight",

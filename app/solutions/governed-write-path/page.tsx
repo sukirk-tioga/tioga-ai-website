@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 const content: SolutionContent = {
   slug: "governed-write-path",
   eyebrow: "Governed Write-Path",
-  title: "The one thing every \"AI for ERP\" pitch skips: how the agent actually writes",
+  title: "The one thing most \"AI for ERP\" pitches skip: how the agent actually writes",
   buyer:
-    "IT and security leaders who've been pitched AI-for-ERP demos that all quietly stop at read-only — and want to know how a write actually gets approved, logged, and rolled back.",
+    "IT and security leaders who've been pitched AI-for-ERP demos that mostly stop at read-only — and want to know how a write actually gets approved, logged, and rolled back.",
   problem:
-    "Every AI-agent vendor can show you a read. Almost none can show you a write that a security review would actually pass — policy enforcement, approval gates, and a rollback path, not a direct database write with a prayer.",
+    "AI-for-ERP demos routinely stop at a read. The hard part — a write that a security review would actually pass, with policy enforcement, approval gates, and a rollback path rather than a direct database write with a prayer — is what most pitches skip.",
   outcome:
     "A working, governed write path from your AI agent into your ERP — executing through the application's own logic layer, with a policy-enforcement gate, a full evidence trail, and a defined rejection/rollback flow.",
   proof: [
