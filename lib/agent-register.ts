@@ -53,7 +53,7 @@ export type SystemId =
   | "SMTP_EMAIL"
   | "SYSTEM_POWER"
   | "LAUNCHD_QUEUE"
-  | "ROBINHOOD"
+  | "MARKET_DATA"
   | "OWN_OUTPUT"
   | "AUDIT_REPORTS";
 
@@ -76,18 +76,18 @@ export interface AgentRow {
 // --- Systems of record --------------------------------------------------
 
 export const SYSTEMS: SystemRow[] = [
-  { id: "PIPELINE_CODE", name: "Pipeline source code", description: "Other pipelines' own .py/.sh files — the one target in this estate a background process can write to unsupervised, in a bounded way." },
+  { id: "PIPELINE_CODE", name: "Automation code", description: "Other automations' own script files — the one target in this estate a background process can write to unsupervised, in a bounded way." },
   { id: "WORKING_LIST", name: "working-list.md", description: "The founder's own action-item tracker (projects/working-list.md) — written directly by DailySynthesis." },
   { id: "VAULT_RESEARCH", name: "Vault research/", description: "research/inbox/, research/knowledge/, research/market-developments/ — Tioga AI business content." },
   { id: "VAULT_GIT", name: "Vault git history", description: "The vault's own git log — the recovery mechanism for every other unsupervised vault write in this register." },
-  { id: "MEMORY_STORE", name: "Claude memory store", description: "~/.claude/projects/-Users-sukirk/memory/ — read-only in this register; no scheduled job writes here." },
+  { id: "MEMORY_STORE", name: "Claude memory store", description: "Claude's local memory store — read-only in this register; no scheduled job writes here." },
   { id: "GATEWAY_STATE", name: "JARVIS gateway + budget state", description: "The MCP routing daemon and its shared $30/30-day budget state, read by every AI-calling pipeline in the estate." },
-  { id: "SMTP_EMAIL", name: "Email (Keychain SMTP)", description: "Outbound alert/report emails via the shared tioga-intel-digest-smtp credential." },
+  { id: "SMTP_EMAIL", name: "Outbound email", description: "Outbound alert/report emails via a shared service credential." },
   { id: "SYSTEM_POWER", name: "System power settings", description: "pmset/Power Nap/standby state on the laptop." },
   { id: "LAUNCHD_QUEUE", name: "launchd / tj dispatch queue", description: "Job scheduling state and the cross-machine tj job-dispatch queue." },
-  { id: "ROBINHOOD", name: "RobinHood account (read-only)", description: "Market/quote data only — no trade-execution tool is granted to any job in this register." },
+  { id: "MARKET_DATA", name: "Market-data account (read-only)", description: "Market/quote data only — no trade-execution tool is granted to any job in this register." },
   { id: "OWN_OUTPUT", name: "Pipeline-local output dirs", description: "Non-vault-synced out/ directories (e.g. YouTubeAIDigest/out/) — contained by construction." },
-  { id: "AUDIT_REPORTS", name: "~/audits/ reports", description: "Weekly/monthly audit report files, written only by the audit jobs that generate them." },
+  { id: "AUDIT_REPORTS", name: "Audit reports", description: "Weekly/monthly audit report files, written only by the audit jobs that generate them." },
 ];
 
 const APPROVER = "Sukir (founder review)";
@@ -239,7 +239,7 @@ export const AGENTS: AgentRow[] = [
     name: "Market Brief",
     schedule: "5:45 AM daily",
     purpose: "Pre-market brief drafted from WSJ/Barron's/MarketWatch RSS; explicitly not wired to any brokerage.",
-    reads: ["ROBINHOOD"],
+    reads: ["MARKET_DATA"],
     writes: [
       { system: "OWN_OUTPUT", tier: "agent-owned", note: "Writes its own brief unsupervised. Research digest only — worst case is a bad trading idea reaching Sukir's own read, not an autonomous action." },
     ],
@@ -248,7 +248,7 @@ export const AGENTS: AgentRow[] = [
   {
     id: "mission-control",
     name: "Mission Control",
-    schedule: "Always-on daemon (localhost:7788)",
+    schedule: "Always-on local daemon",
     purpose: "Serves a read-only ops dashboard over the whole estate's status.",
     reads: ["LAUNCHD_QUEUE"],
     writes: [],
@@ -261,7 +261,7 @@ export const AGENTS: AgentRow[] = [
     purpose: "Weekly structural audit of routing integrity, automation freshness, bloat, and context clash.",
     reads: ["PIPELINE_CODE", "VAULT_RESEARCH"],
     writes: [
-      { system: "AUDIT_REPORTS", tier: "agent-owned", note: "Writes its own weekly report to ~/audits/ unsupervised — contained, not a business-critical system." },
+      { system: "AUDIT_REPORTS", tier: "agent-owned", note: "Writes its own weekly report to its audit-reports folder unsupervised — contained, not a business-critical system." },
     ],
     blastRadius: "Read-only audit; writes only to its own report directory.",
   },
