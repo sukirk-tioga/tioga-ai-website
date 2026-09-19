@@ -78,7 +78,7 @@ export default function AgentReachMapPage() {
             <code className="font-mono text-xs">com.tioga.*</code>/
             <code className="font-mono text-xs">com.jarvis.*</code>), one node each. Right column:
             the {SYSTEMS.length} real systems of record those jobs can read or write — the
-            brightest one is Tioga&apos;s own pipeline source code, the single highest-blast-radius
+            brightest one is Tioga&apos;s own automation code, the single highest-blast-radius
             system in the estate. Every edge between them is a real write surface, colored by its
             real authorization tier: brightest for a write that lands with no approval gate before
             it happens, dimmer for one a named approver must act on first, a thin hairline for a
