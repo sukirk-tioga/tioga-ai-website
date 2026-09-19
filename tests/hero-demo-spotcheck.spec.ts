@@ -31,7 +31,7 @@ test.describe("2026-08-08 hero demo widget (design review item #10)", () => {
     await expect(widget.getByText(/Structured in/)).toBeVisible({ timeout: 5000 });
 
     await expect(
-      widget.getByRole("link", { name: /Run this yourself, with your own file or email/ })
+      widget.getByRole("link", { name: /Run this AP exception scenario yourself/ })
     ).toBeVisible();
 
     expect(errors, `console errors: ${errors.join("; ")}`).toEqual([]);
@@ -50,7 +50,7 @@ test.describe("2026-08-08 hero demo widget (design review item #10)", () => {
 
   test("demo widget CTA links to the real live demo, not a dead end", async ({ page }) => {
     await page.goto("/");
-    const link = page.getByRole("link", { name: /Run this yourself, with your own file or email/ });
+    const link = page.getByRole("link", { name: /Run this AP exception scenario yourself/ });
     await expect(link).toHaveAttribute("href", "/demos/ap-exception-workflow");
   });
 });

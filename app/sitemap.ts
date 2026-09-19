@@ -17,6 +17,11 @@ import { execSync } from "node:child_process";
 const APP_DIR = path.join(process.cwd(), "app");
 const BASE_URL = "https://tioga.ai";
 
+// Routes that set robots: { index: false } — a noindex page should not be
+// advertised in the sitemap (contradictory signal to crawlers). Keep in sync
+// with each page's own metadata.
+const NOINDEX_ROUTES = new Set(["/lp/standing-watch"]);
+
 // Priority tiers by path shape — same rough weighting the old hand-written
 // list used (home highest, top-level sections next, nested/legal lowest),
 // just derived from the route instead of re-typed per entry.
@@ -82,6 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = findPageFiles(APP_DIR);
 
   return pages
+    .filter(({ route }) => !NOINDEX_ROUTES.has(route))
     .map(({ route, absPath }) => ({
       url: `${BASE_URL}${route}`,
       lastModified: lastModifiedFor(absPath),

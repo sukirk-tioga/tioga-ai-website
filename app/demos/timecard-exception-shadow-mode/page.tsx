@@ -131,7 +131,7 @@ export default function TimecardExceptionShadowModePage() {
     setDecisions((prev) => ({ ...prev, [id]: decision }));
   }
 
-  function resetToActual() {
+  function resetToSeeded() {
     setDecisions(defaultDecisions());
   }
 
@@ -160,7 +160,7 @@ export default function TimecardExceptionShadowModePage() {
           <p className="text-xs text-[var(--text-muted)] mt-1">statutory premium, missing data, or policy exception</p>
         </div>
         <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-          <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Agreement rate</p>
+          <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Simulated agreement rate</p>
           <p className="text-xl font-bold font-mono" style={{ color: "var(--accent)" }}>{rate}%</p>
           <p className="text-xs text-[var(--text-muted)] mt-1">{overriddenCount} of {PROPOSALS.length} overridden</p>
         </div>
@@ -173,15 +173,16 @@ export default function TimecardExceptionShadowModePage() {
           This mirrors Tioga&apos;s shadow-mode delivery standard: before any agent action is authorized to execute
           live, it runs for a defined window against real activity, proposing only — never executing — and cutover
           to live execution is gated on measured agreement between what the agent proposed and what a human
-          reviewer actually decided during that window, not a calendar date. Below is that window&apos;s actual, logged
-          outcome; toggle any card to see how the rate changes if a decision had gone the other way.
+          reviewer actually decided during that window, not a calendar date. Below is a seeded, illustrative set of
+          reviewer decisions for a synthetic window (seven of eight accepted) — not a measured human study; toggle any
+          card to see how the simulated rate changes if a decision had gone the other way.
         </p>
         <button
-          onClick={resetToActual}
+          onClick={resetToSeeded}
           className="text-xs px-3 py-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
           style={{ border: "1px solid var(--border)" }}
         >
-          Reset to actual review outcomes
+          Reset to seeded reviewer decisions
         </button>
       </div>
 

@@ -46,6 +46,7 @@ function SmartContactFormInner() {
   const [state, setState] = useState<"idle" | "classifying" | "done" | "error">("idle");
   const [classification, setClassification] = useState<Classification | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -239,12 +240,28 @@ function SmartContactFormInner() {
             name="email"
             type="email"
             value={form.email}
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              if (emailError && e.target.validity.valid) setEmailError("");
+            }}
+            onBlur={(e) => {
+              const v = e.target.validity;
+              if (v.valueMissing) setEmailError("Enter your email address so we can reply.");
+              else if (v.typeMismatch) setEmailError("Enter a valid email address, for example jane@acme.com.");
+              else setEmailError("");
+            }}
             placeholder="jane@acme.com"
             required
+            aria-invalid={emailError ? true : undefined}
+            aria-describedby={emailError ? "contact-email-error" : undefined}
             className="w-full px-3 py-2.5 rounded-lg text-sm placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)]"
-            style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
+            style={{ background: "var(--bg-dark)", border: `1px solid ${emailError ? "var(--error)" : "var(--border)"}`, color: "var(--text)" }}
           />
+          {emailError && (
+            <p id="contact-email-error" role="alert" className="text-xs mt-1.5" style={{ color: "var(--error)" }}>
+              {emailError}
+            </p>
+          )}
         </div>
 
         <div>
@@ -268,7 +285,7 @@ function SmartContactFormInner() {
         </div>
 
         {state === "error" && (
-          <p role="alert" className="text-sm text-red-400">{errorMsg}</p>
+          <p role="alert" className="text-sm" style={{ color: "var(--error)" }}>{errorMsg}</p>
         )}
         <p aria-live="polite" className="sr-only">
           {state === "classifying" ? "Classifying your inquiry…" : ""}

@@ -259,7 +259,7 @@ export default function HomePage() {
  <ScrollReveal>
  <section id="services" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-24">
  <div className="text-center mb-12">
- <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>Where to start</h2>
+ <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>Three scoped first engagements</h2>
  <p className="text-[var(--text-muted)] text-sm max-w-lg mx-auto">
  Three entry-point offers — each delivers a concrete, reviewable output in weeks, not quarters.
  </p>
@@ -460,14 +460,14 @@ export default function HomePage() {
  detail: "System audit · Use-case prioritization · Prototype · Delivery plan"
  },
  {
- step: "02", title: "Pilot Build", duration: "2–8 weeks · scope-dependent",
- desc: "I build a production-ready proof of concept integrated with your real systems. No toy demos — this runs against live data and real integrations. You see exactly what the full system will do.",
+ step: "02", title: "Pilot Build", duration: "4–8 weeks · scope-dependent",
+ desc: "I build a working pilot integrated with your real systems, with acceptance gates agreed up front. No toy demos — you see exactly what the full system will do.",
  detail: "Full integration · Real data · Stakeholder review · Go/no-go decision"
  },
  {
  step: "03", title: "Deploy & Scale", duration: "Ongoing",
- desc: "Full production deployment with monitoring, SLAs, ongoing support retainers and continuous improvement as your AI needs grow. I stay a partner, not a vendor.",
- detail: "Production deploy · Monitoring · Support SLA · Continuous improvement"
+ desc: "Full production deployment with monitoring, agreed support terms, ongoing retainers and continuous improvement as your AI needs grow. I stay a partner, not a vendor.",
+ detail: "Production deploy · Monitoring · Support terms · Continuous improvement"
  },
  ].map((p) => (
  <div key={p.step} className="flex gap-6 p-7 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>

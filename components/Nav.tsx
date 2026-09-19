@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +9,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -18,6 +19,19 @@ export default function Nav() {
 
   // Close mobile menu on route change
   useEffect(() => { setMenuOpen(false); }, [pathname]);
+
+  // Escape closes the open mobile menu and returns focus to the toggle
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   // Trimmed 2026-08-08 from 8 items to 5: MCP and Engineering are jargon a
   // CFO/CIO buyer won't recognize from a nav bar and were already duplicated
@@ -83,6 +97,7 @@ export default function Nav() {
 
           {/* Hamburger — mobile only */}
           <button
+            ref={toggleRef}
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg transition-colors hover:bg-black/5"
             aria-label="Toggle menu"
