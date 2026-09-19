@@ -85,7 +85,11 @@ export default function OfferChooser() {
         ))}
       </div>
       <p className="text-center mt-6 text-sm" style={{ color: "var(--text-muted-2)" }}>
-        Or{" "}
+        Not sure which route fits? Take the free{" "}
+        <Link href="/demos/agent-write-path-exposure-check" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
+          write-path exposure check
+        </Link>
+        {" "}— five minutes, runs in your browser. Or{" "}
         <Link href="/services" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
           browse all sixteen engagements
         </Link>
