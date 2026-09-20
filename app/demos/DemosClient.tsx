@@ -1,7 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import FileUpload from "@/components/FileUpload";
 import { DemoActivityProvider, useSetDemoActivity } from "./_lib/demo-activity-context";
@@ -686,10 +685,14 @@ const DEMOS = [
 ];
 
 function DemosPageInner() {
-  const searchParams = useSearchParams();
-  const tabParam = searchParams.get("tab");
-  const initialTab = DEMOS.some((d) => d.id === tabParam) ? (tabParam as string) : "invoice";
-  const [active, setActive] = useState(initialTab);
+  // The ?tab= deep link is read from window.location in the mount effect
+  // below rather than via useSearchParams(). useSearchParams() forced this
+  // whole page to bail out of static prerendering to client-only rendering
+  // (the Suspense fallback is null), so the server HTML held no page body:
+  // the header/cards appeared only after hydration, pushing the footer down
+  // (CLS 0.293 on mobile) and delaying LCP. Now the default ("invoice") tab
+  // is prerendered, and a deep link switches tab once on mount.
+  const [active, setActive] = useState("invoice");
 
   const activeDemo = DEMOS.find((d) => d.id === active)!;
 
@@ -700,7 +703,9 @@ function DemosPageInner() {
   // the tab actually came from the URL (not from clicking a tab locally).
   const activeDemoRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    const tabParam = new URLSearchParams(window.location.search).get("tab");
     if (tabParam && DEMOS.some((d) => d.id === tabParam)) {
+      setActive(tabParam);
       activeDemoRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1480,12 +1485,14 @@ function DemosPageInner() {
   );
 }
 
+// No <Suspense> wrapper here on purpose: it existed only for useSearchParams()
+// (removed above). Left in place, React outlines this ~30KB boundary out of
+// the initial HTML and reveals it via a throttled $RC swap after first paint,
+// so the footer painted first and then jumped down ~5,000px (the CLS).
 export default function DemosClient() {
   return (
-    <Suspense fallback={null}>
-      <DemoActivityProvider>
-        <DemosPageInner />
-      </DemoActivityProvider>
-    </Suspense>
+    <DemoActivityProvider>
+      <DemosPageInner />
+    </DemoActivityProvider>
   );
 }

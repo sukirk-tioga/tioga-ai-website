@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Libre_Franklin, Spectral } from "next/font/google";
+import { Libre_Franklin, Martian_Mono, Spectral } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -21,6 +21,19 @@ const bodyFont = Spectral({
   weight: ["400", "500", "600"],
   variable: "--font-body",
   display: "swap",
+});
+
+// Martian Mono was previously pulled in via a render-blocking @import of
+// fonts.googleapis.com at the top of globals.css (~760ms of Lighthouse
+// render-blocking on every page) for a single rule in solutions-hub.css.
+// Self-hosted via next/font instead; preload:false because only /solutions
+// uses it, so other pages don't download it.
+const monoFont = Martian_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono-martian",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -83,7 +96,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
+    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}>
       <body>
         <script
           type="application/ld+json"
