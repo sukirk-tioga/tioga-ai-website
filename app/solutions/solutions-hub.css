@@ -48,7 +48,7 @@
 .sh .sh-process > p {font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--sh-muted); margin-bottom: 18px}
 .sh .sh-flow {display: grid; gap: 10px; list-style: none; padding: 0; margin: 0}
 .sh .sh-flow li {display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: center; padding: 12px 14px; background: var(--sh-paper); border: 1px solid var(--sh-rule); border-radius: 6px; font-size: 15px}
-.sh .sh-flow span {font: 400 13px/1.5 "Martian Mono", "JetBrains Mono", monospace; color: var(--sh-accent)}
+.sh .sh-flow span {font: 400 13px/1.5 var(--font-mono-martian), "Martian Mono", "JetBrains Mono", monospace; color: var(--sh-accent)}
 .sh .sh-feature {background: var(--sh-feature); border-radius: var(--sh-radius); padding: 26px; margin-bottom: 36px}
 .sh .sh-feature-top {display: flex; gap: 16px; align-items: flex-start; justify-content: space-between}
 .sh .sh-feature h2 {font-size: 27px; line-height: 1.16; letter-spacing: -.025em; margin-top: 8px; font-weight: 650}
