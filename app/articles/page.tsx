@@ -59,6 +59,11 @@ const ARTICLES = [
     title: "Oracle's own sanctioned path into EBS can't tell you which agent did what",
     summary: "Oracle's own documentation: HTTP Basic Auth only, a single shared service account for every call — verified against Oracle's own docs.",
   },
+  {
+    href: "/articles/vendor-governance-is-vendor-evidence",
+    title: "A vendor's governance module is the vendor's evidence about itself",
+    summary: "ERP vendors are expected to ship their own agent-governance modules. What they can and can't evidence, with SAP's and Oracle's own documentation, and five questions to ask.",
+  },
 ];
 
 export default function ArticlesIndexPage() {

@@ -21,6 +21,8 @@ const PAGES = [
   { path: "/demos/fusion-ai-readiness-assessment", title: "Oracle Fusion Cloud AI-Readiness Assessment — Tioga AI" },
   { path: "/demos/agent-autonomy-mapper", title: "Agent Autonomy Tier Mapper — Tioga AI" },
   { path: "/demos/agent-write-path-exposure-check", title: "Agent Write-Path Exposure Check — Tioga AI" },
+  { path: "/trust/evidence-map", title: "Agent Action Evidence Map — Tioga AI" },
+  { path: "/articles/vendor-governance-is-vendor-evidence", title: "A Vendor's Governance Module Is the Vendor's Evidence About Itself — Tioga AI" },
   { path: "/demos/context-window-data-minimization", title: "Context-Window Data Minimization Demo — Tioga AI" },
   { path: "/demos/timecard-exception-shadow-mode", title: "Timecard Exception Agent, Shadow-Mode Demo — Tioga AI" },
   { path: "/demos/headcount-forecast-draft-provenance", title: "Headcount Forecast Draft, Per-Cell Provenance Demo — Tioga AI" },
