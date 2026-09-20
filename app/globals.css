@@ -17,6 +17,11 @@
   --border: #CDCAC2;
   --accent: #C83406;
   --accent-dark: #A50000;
+  /* Accent text on the 8% accent tint (#C8340615 pill/badge backgrounds):
+     --accent itself is only 4.24:1 there (WCAG AA needs 4.5:1); this is
+     5.06:1. Use ONLY for text on that tint -- plain --accent on the page
+     background/cards already passes and stays as is. */
+  --accent-on-tint: #B32E05;
   --bg-darker: #E6E4DF;
   --bg-card-alt: #F6F5F1;
   --text: #221F19;

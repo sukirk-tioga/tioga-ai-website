@@ -61,7 +61,7 @@ export default function ContactPage() {
             </p>
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6 mt-2 max-w-[260px] sm:max-w-none"
-              style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
+              style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" }}
             >
               <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse shrink-0" />
               {/* max-w-[260px] on mobile only (sm:max-w-none) keeps this pill
