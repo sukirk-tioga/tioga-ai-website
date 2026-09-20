@@ -104,6 +104,13 @@ export default function FrameworkMappingPage() {
             See the ISO 42001 Implementation Sprint →
           </a>
           <a
+            href="/trust/evidence-map"
+            className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-[var(--text)]"
+            style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
+          >
+            What an agent write should leave behind →
+          </a>
+          <a
             href="/trust/eu-ai-act/calculator"
             className="inline-block px-8 py-3.5 rounded-xl font-semibold transition-all hover:border-slate-500 hover:text-[var(--text)]"
             style={{ border: "1px solid var(--border)", color: "var(--text-muted)" }}
