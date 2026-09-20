@@ -109,7 +109,7 @@ export default function Interaction() {
             const isSelected = agent.id === selectedAgentId;
             const hasUnsupervised = agent.writes.some((w) => w.tier === "agent-owned");
             return (
-              <li key={agent.id}>
+              <li key={agent.id} role="presentation">
                 <button
                   type="button"
                   data-agent-item

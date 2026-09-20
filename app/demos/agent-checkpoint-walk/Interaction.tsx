@@ -90,7 +90,7 @@ export default function Interaction() {
           {AGENTS.map((agent) => {
             const isSelected = agent.id === selectedAgentId;
             return (
-              <li key={agent.id}>
+              <li key={agent.id} role="presentation">
                 <button
                   type="button"
                   data-agent-item

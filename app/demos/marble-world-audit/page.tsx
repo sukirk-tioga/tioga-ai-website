@@ -115,7 +115,7 @@ export default function MarbleWorldAuditPage() {
           >
             Panel 1
           </span>
-          <h3 className="font-semibold" style={{ color: "var(--text)" }}>Commercial rights &amp; ToS</h3>
+          <h2 className="font-semibold" style={{ color: "var(--text)" }}>Commercial rights &amp; ToS</h2>
         </div>
         <p className="text-xs text-[var(--text-muted)] mb-3">Checked against the actual terms, not a summary of them.</p>
         {!revealed.has("tos") ? (
@@ -138,7 +138,7 @@ export default function MarbleWorldAuditPage() {
           >
             Panel 2
           </span>
-          <h3 className="font-semibold" style={{ color: "var(--text)" }}>Provenance scan</h3>
+          <h2 className="font-semibold" style={{ color: "var(--text)" }}>Provenance scan</h2>
         </div>
         <p className="text-xs text-[var(--text-muted)] mb-3">Byte-level scan of every exported file for C2PA/XMP/EXIF/glTF-extras/PLY-comment markers.</p>
         {!revealed.has("provenance") ? (
@@ -178,7 +178,7 @@ export default function MarbleWorldAuditPage() {
           >
             Panel 3
           </span>
-          <h3 className="font-semibold" style={{ color: "var(--text)" }}>Metric-scale accuracy</h3>
+          <h2 className="font-semibold" style={{ color: "var(--text)" }}>Metric-scale accuracy</h2>
         </div>
         <p className="text-xs text-[var(--text-muted)] mb-3">A real physical measurement, compared to the reconstruction — not a spec-sheet number.</p>
         {!revealed.has("scale") ? (
