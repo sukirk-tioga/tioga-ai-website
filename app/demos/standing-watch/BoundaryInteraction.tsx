@@ -86,7 +86,7 @@ export default function BoundaryInteraction({
             onClick={onReplay}
             disabled={isPlaying || !canReplay}
             className="w-full text-xs font-semibold px-3 py-2 rounded-lg transition-colors disabled:opacity-50"
-            style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" }}
           >
             {isPlaying ? "Replaying…" : "▶ Replay Aug 10, 2026"}
           </button>

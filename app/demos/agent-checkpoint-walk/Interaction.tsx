@@ -124,7 +124,7 @@ export default function Interaction() {
             style={{
               background: replayRunning ? "var(--bg-dark)" : "#C8340615",
               border: "1px solid #C8340630",
-              color: replayRunning ? "var(--text-muted-3)" : "var(--accent)",
+              color: replayRunning ? "var(--text-muted-3)" : "var(--accent-on-tint)",
             }}
           >
             {replayRunning ? "Replaying real findings…" : "Replay real findings"}

@@ -111,7 +111,7 @@ export default function MarbleWorldAuditPage() {
         <div className="flex items-center gap-2.5 mb-1">
           <span
             className="text-[11px] font-mono px-2 py-0.5 rounded-full"
-            style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340640" }}
+            style={{ color: "var(--accent-on-tint)", background: "#C8340615", border: "1px solid #C8340640" }}
           >
             Panel 1
           </span>

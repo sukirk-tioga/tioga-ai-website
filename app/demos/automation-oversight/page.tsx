@@ -106,7 +106,7 @@ export default function AutomationOversightPage() {
                   style={
                     r.disposition === "approved"
                       ? { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" }
-                      : { background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }
+                      : { background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" }
                   }
                 >
                   {r.disposition === "approved" ? "human-approved" : "auto-implemented, bounded"}

@@ -22,7 +22,7 @@ export default function EmailTriageWriteup() {
           ← How I Built It
         </Link>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full" style={{ color: "var(--accent-on-tint)", background: "#C8340615", border: "1px solid #C8340630" }}>
             Claude Haiku 4.5
           </span>
         </div>

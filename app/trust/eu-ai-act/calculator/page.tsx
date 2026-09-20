@@ -131,7 +131,7 @@ export default function EUAIActCalculatorPage() {
         </Link>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Readiness Calculator
@@ -161,21 +161,21 @@ export default function EUAIActCalculatorPage() {
                 <button
                   onClick={() => setEuExposure("yes")}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === "yes" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "yes" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "yes" ? "var(--accent)" : "var(--text-muted)" }}
+                  style={{ background: euExposure === "yes" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "yes" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "yes" ? "var(--accent-on-tint)" : "var(--text-muted)" }}
                 >
                   Yes
                 </button>
                 <button
                   onClick={() => setEuExposure("no")}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === "no" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "no" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "no" ? "var(--accent)" : "var(--text-muted)" }}
+                  style={{ background: euExposure === "no" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "no" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "no" ? "var(--accent-on-tint)" : "var(--text-muted)" }}
                 >
                   No
                 </button>
                 <button
                   onClick={() => setEuExposure("unsure")}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{ background: euExposure === "unsure" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "unsure" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "unsure" ? "var(--accent)" : "var(--text-muted)" }}
+                  style={{ background: euExposure === "unsure" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "unsure" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "unsure" ? "var(--accent-on-tint)" : "var(--text-muted)" }}
                 >
                   Not sure
                 </button>
