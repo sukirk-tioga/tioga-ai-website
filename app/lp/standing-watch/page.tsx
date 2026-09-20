@@ -13,6 +13,17 @@ export const metadata: Metadata = {
   description:
     "SAP, Workday, Databricks, and ServiceNow each ship their own AI agent governance pane, anchored to their own estate. Standing Watch is the independent layer that verifies agent behavior and composes one evidence record across them.",
   alternates: { canonical: "/lp/standing-watch" },
+  // Share metadata added 2026-09-20: without its own openGraph this page
+  // inherited the homepage's og:title and og:url (verified live), so a shared
+  // link previewed as the homepage. Mirrors this page's own title/description.
+  openGraph: {
+    title: "Standing Watch — Independent AI Agent Verification",
+    description:
+      "SAP, Workday, Databricks, and ServiceNow each ship their own AI agent governance pane, anchored to their own estate. Standing Watch is the independent layer that verifies agent behavior and composes one evidence record across them.",
+    url: "/lp/standing-watch",
+    siteName: "Tioga AI",
+    type: "website",
+  },
   robots: { index: false, follow: true },
 };
 
