@@ -387,7 +387,7 @@ export default function HomePage() {
  <div key={item.title} className="flex gap-3">
  <span className="text-xl shrink-0 mt-0.5">{item.icon}</span>
  <div>
- <h4 className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>{item.title}</h4>
+ <h3 className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>{item.title}</h3>
  <p className="text-xs text-[var(--text-muted)] leading-relaxed">{item.desc}</p>
  </div>
  </div>

@@ -44,7 +44,7 @@ export function EvidenceTierTag({ tier, detail }: { tier: EvidenceTier; detail?:
       className="inline-flex flex-col gap-0.5 mb-6 px-3 py-2 rounded-xl"
       style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
     >
-      <span className="text-[10px] font-mono uppercase tracking-wide" style={{ color: "var(--text-muted-3)" }}>
+      <span className="text-[10px] font-mono uppercase tracking-wide" style={{ color: "var(--text-muted)" }}>
         Evidence type
       </span>
       <span className="text-xs" style={{ color: "var(--text-muted)" }}>
