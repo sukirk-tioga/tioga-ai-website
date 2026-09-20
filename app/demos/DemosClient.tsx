@@ -1092,6 +1092,45 @@ function DemosPageInner() {
           </span>
         </Link>
 
+        {/* Featured: Agent Write-Path Exposure Check (free, rules-based) */}
+        <Link
+          href="/demos/agent-write-path-exposure-check"
+          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
+          style={{
+            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
+            border: "1px solid #C8340640",
+            boxShadow: "0 0 30px #C834060A",
+          }}
+        >
+          <span
+            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+            </svg>
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 mb-1">
+              <p className="font-semibold" style={{ color: "var(--text)" }}>Agent Write-Path Exposure Check</p>
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+              >
+                Free · 5 min
+              </span>
+            </div>
+            <p className="text-sm text-[var(--text-muted)]">
+              Twelve control points on one agent write into an ERP or CRM — identity, application-logic path,
+              attribution, approval, verification, rollback, evidence. Scored for exposure, with unknowns kept
+              separate from gaps. Runs in your browser.
+            </p>
+          </div>
+          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
+            Take the check →
+          </span>
+        </Link>
+
         {/* Featured: Agent Autonomy Tier Mapper */}
         <Link
           href="/demos/agent-autonomy-mapper"
