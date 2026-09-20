@@ -9,9 +9,9 @@ import ScrollReveal from "@/components/ScrollReveal";
 // the lowest-commitment entry point). noindex so it doesn't compete with
 // the full solutions page for the same search terms.
 export const metadata: Metadata = {
-  title: "Standing Watch — Cross-System AI Agent Governance",
+  title: "Standing Watch — Independent AI Agent Verification",
   description:
-    "SAP, Workday, Databricks, and ServiceNow each ship their own AI agent governance pane, anchored to their own estate. Standing Watch is the discipline that governs across them.",
+    "SAP, Workday, Databricks, and ServiceNow each ship their own AI agent governance pane, anchored to their own estate. Standing Watch is the independent layer that verifies agent behavior and composes one evidence record across them.",
   alternates: { canonical: "/lp/standing-watch" },
   robots: { index: false, follow: true },
 };
@@ -57,14 +57,14 @@ export default function StandingWatchLandingPage() {
             Standing Watch
           </div>
           <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight text-balance" style={{ color: "var(--text)" }}>
-            SAP, Workday, Databricks and ServiceNow each ship a governance pane.{" "}
-            <span style={{ color: "var(--accent)" }}>None of the four governs the aggregate.</span>
+            Each platform ships its own governance pane.{" "}
+            <span style={{ color: "var(--accent)" }}>Who verifies what your agents do across all of them?</span>
           </h1>
           <p className="text-lg text-[var(--text-muted)] max-w-2xl leading-relaxed">
             SAP, Workday, Databricks, and ServiceNow each anchor their AI agent governance to their own estate.
             Run three or four of these platforms and you own three or four single panes of glass — and still
-            have no neutral layer that governs across them, which is exactly where the EU AI Act&apos;s deployer
-            obligations and NIST/ISO program requirements actually attach.
+            have no independent layer that verifies agent behavior and composes one evidence record across them,
+            which is where the EU AI Act&apos;s deployer obligations and NIST/ISO program requirements actually attach.
           </p>
         </ScrollReveal>
 
@@ -143,10 +143,10 @@ export default function StandingWatchLandingPage() {
             <p className="text-4xl font-bold text-center my-2" style={{ color: "var(--accent)" }}>$15–35K</p>
             <p className="text-sm text-slate-500 text-center mb-6">3–4 weeks</p>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-8">
-              Agent inventory across your estate — consuming your existing SAP Agent Hub, Workday ASOR, Control
-              Tower, or Unity AI Gateway data as sources. Delivers a qualification register and autonomy-tier
-              map, a cross-vendor spend arbitration baseline, a first behavioral probe run across two or more
-              systems, and a seeded findings ledger you keep.
+              Reconciles the agent inventory you already have — from your control plane, platform exports, or a
+              manual list; Tioga does not compete with discovery tooling — and adds a qualification register and
+              autonomy-tier map, a cross-vendor spend arbitration baseline, a first behavioral probe run across
+              two or more systems, and a seeded findings ledger you keep.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <TrackedCTA

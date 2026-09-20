@@ -32,11 +32,11 @@ const CHOICES = [
     event: "cta_book_discovery_sprint",
   },
   {
-    eyebrow: "We already run agents and need control",
+    eyebrow: "We already run agents and need proof",
     name: "Standing Watch Assessment",
     price: "$15–35K",
     duration: "3–4 weeks · scoped to your estate",
-    desc: "An inventory of the agents across your systems, the evidence sources behind each, and a findings ledger you keep — with owners and practical remediation priorities.",
+    desc: "Reconciles the agent inventory you already have, then adds independent behavioral verification, a spend baseline across platforms, and a findings ledger you keep — with owners and practical remediation priorities.",
     href: "/solutions/standing-watch",
     ctaLabel: "See the Standing Watch ladder",
     event: "cta_standing_watch_assessment",
