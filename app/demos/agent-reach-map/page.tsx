@@ -94,7 +94,7 @@ export default function AgentReachMapPage() {
           <p className="text-xs" style={{ color: "var(--text-muted-3)" }}>
             Honesty note: this is a dated excerpt, refreshed periodically — not a live-refreshing
             feed. Same {TOTAL_AGENTS}-job register as{" "}
-            <Link href="/demos/automation-oversight" style={{ color: "var(--accent)" }}>
+            <Link href="/demos/automation-oversight" className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
               /demos/automation-oversight
             </Link>
             .
@@ -160,7 +160,7 @@ export default function AgentReachMapPage() {
         <p className="text-sm text-[var(--text-muted)] leading-relaxed">
           React Three Fiber over the same typed{" "}
           <code className="font-mono text-xs">lib/agent-register.ts</code> module{" "}
-          <Link href="/demos/automation-oversight" style={{ color: "var(--accent)" }}>
+          <Link href="/demos/automation-oversight" className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
             /demos/automation-oversight
           </Link>{" "}
           imports, so the two views can never drift. {TOTAL_AGENTS} agent nodes render as one

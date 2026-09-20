@@ -78,6 +78,7 @@
 .sh .sh-scope {margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--sh-rule); scroll-margin-top: 110px}
 .sh .sh-scope h2 {font-size: 18px; font-weight: 650}
 .sh .sh-scope p {color: var(--sh-muted); font-size: 14px; margin-top: 8px; max-width: 85ch}
+.sh .sh-scope p a {text-decoration: underline}
 .sh .sh-catalog-layout {display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 36px; margin-top: 30px}
 .sh .sh-family-nav {display: flex; flex-direction: column; align-items: flex-start; gap: 5px; border-top: 1px solid var(--sh-rule); padding-top: 12px}
 .sh .sh-family-nav a {padding: 10px 0; min-height: 44px; font-size: 14px; color: var(--sh-muted)}

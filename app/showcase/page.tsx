@@ -119,7 +119,7 @@ export default function ShowcasePage() {
         <div className="space-y-4 text-sm text-[var(--text-muted)] leading-relaxed">
           <p>
 A GPU particle field on the left renders the same 16 real rows already live at{" "}
-            <Link href="/demos/governance-ledger" style={{ color: "var(--accent)" }}>
+            <Link href="/demos/governance-ledger" className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
               /demos/governance-ledger
             </Link>
             , converging through a single glass gate and fanning out to three real backend

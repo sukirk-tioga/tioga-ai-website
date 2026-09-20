@@ -179,7 +179,7 @@ export default function GovernanceLedgerPage() {
         <p className="text-xs text-slate-500 mt-3">
           This is spend-level detail. For how findings across the whole automation estate get
           reviewed and approved, see{" "}
-          <Link href="/demos/automation-oversight" className="hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
+          <Link href="/demos/automation-oversight" className="underline underline-offset-2 hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
             Automation Oversight →
           </Link>
         </p>

@@ -375,11 +375,11 @@ export default function ChangelogPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-[var(--text-muted)] mb-4">
             Curious how something was built?{" "}
-            <Link href="/engineering" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/engineering" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               Read the engineering writeups →
             </Link>
             {" "}or see the{" "}
-            <Link href="/trust" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/trust" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               governance approach →
             </Link>
           </p>

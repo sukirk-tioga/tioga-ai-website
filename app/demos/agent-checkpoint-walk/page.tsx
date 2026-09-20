@@ -102,11 +102,11 @@ export default function AgentCheckpointWalkPage() {
             Honesty note: this is a dated excerpt, not a live-refreshing feed, and every duration you see in an
             animation (how long a walk takes, how long the replay is spaced) is a declared UI pacing choice, not a
             claim about a real elapsed time. Same {TOTAL_AGENTS}-agent register as{" "}
-            <Link href="/demos/agent-reach-map" style={{ color: "var(--accent)" }}>
+            <Link href="/demos/agent-reach-map" className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
               /demos/agent-reach-map
             </Link>{" "}
             and{" "}
-            <Link href="/demos/automation-oversight" style={{ color: "var(--accent)" }}>
+            <Link href="/demos/automation-oversight" className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
               /demos/automation-oversight
             </Link>
             .
@@ -130,11 +130,11 @@ export default function AgentCheckpointWalkPage() {
         <p className="text-sm text-[var(--text-muted)] leading-relaxed">
           React Three Fiber over the same typed{" "}
           <code className="font-mono text-xs">lib/agent-register.ts</code> module{" "}
-          <Link href="/demos/agent-reach-map" style={{ color: "var(--accent)" }}>
+          <Link href="/demos/agent-reach-map" className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
             /demos/agent-reach-map
           </Link>{" "}
           imports, so the two scenes can never drift. Reuses the corridor Gate metaphor from{" "}
-          <Link href="/showcase" style={{ color: "var(--accent)" }}>
+          <Link href="/showcase" className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
             /showcase
           </Link>
           &apos;s Gateway Corridor — a breathing halo and a slowly rotating scan ring, both decorative chrome tied to

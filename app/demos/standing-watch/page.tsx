@@ -226,7 +226,7 @@ export default function StandingWatchDemoPage() {
         <p className="text-xs text-slate-500 mt-3">
           This is one incident, in full detail. For the ongoing, aggregate record across the whole
           estate, see{" "}
-          <Link href="/demos/automation-oversight" className="hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
+          <Link href="/demos/automation-oversight" className="underline underline-offset-2 hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
             Automation Oversight →
           </Link>
         </p>

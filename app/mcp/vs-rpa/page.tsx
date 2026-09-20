@@ -109,7 +109,7 @@ export default function McpVsRpaPage() {
               order, so it can handle requests the tool server&apos;s author
               never explicitly scripted, as long as the underlying tools
               exist. See{" "}
-              <Link href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+              <Link href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
                 MCP vs. custom integration →
               </Link>{" "}
               for how that compares to building the same thing by hand.
@@ -158,7 +158,7 @@ export default function McpVsRpaPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-[var(--text-muted)] mb-4">
             See the same tradeoff against building integrations by hand in{" "}
-            <Link href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/mcp/vs-custom-integration" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               MCP vs. custom integration →
             </Link>
           </p>

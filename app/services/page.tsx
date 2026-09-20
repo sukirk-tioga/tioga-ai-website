@@ -284,7 +284,7 @@ export default function ServicesPage() {
           </Link>
           <p className="text-xs text-[var(--text-muted)] mt-4">
             Not sure where to start?{" "}
-            <Link href="/#services" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/#services" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               See the three entry-point offers →
             </Link>
           </p>

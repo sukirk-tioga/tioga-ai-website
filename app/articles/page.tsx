@@ -109,7 +109,7 @@ export default function ArticlesIndexPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-[var(--text-muted)] mb-4">
             Prefer how the demos themselves were built?{" "}
-            <Link href="/engineering" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/engineering" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               See the engineering writeups →
             </Link>
           </p>

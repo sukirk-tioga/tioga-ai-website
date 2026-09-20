@@ -100,16 +100,16 @@ export default function AboutPage() {
             practice that runs the demos below — no handoff to a delivery
             team, no account manager standing between you and the person
             doing the work. Accountability runs through one channel:{" "}
-            <Link href="/contact" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/contact" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               Contact
             </Link>
             . A{" "}
-            <Link href="/discovery-sprint" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/discovery-sprint" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               Discovery Sprint
             </Link>{" "}
             is the fastest way to test how this practice actually operates on
             your own workflow — or the{" "}
-            <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               AI Fit Check
             </Link>{" "}
             if you want a cheaper, lower-commitment first look.

@@ -165,7 +165,7 @@ export default function HowWeDeliverPage() {
             </p>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               Every engagement starts with the same 5-day, $5,000{" "}
-              <Link href="/discovery-sprint" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+              <Link href="/discovery-sprint" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
                 Discovery Sprint
               </Link>
               , and a no-go finding out of that sprint is a first-class
@@ -289,7 +289,7 @@ export default function HowWeDeliverPage() {
                   than a week&apos;s notice for. If you&apos;re not yet sure
                   you have a real, provisionable candidate use case, or
                   can&apos;t clear that access fast enough, the one-day{" "}
-                  <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+                  <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
                     AI Fit Check
                   </Link>{" "}
                   answers that question first, for less than a third of the
