@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "test:e2e": "playwright test tests/pages.spec.ts",
     "test:e2e:full": "playwright test",
     "test:e2e:prod": "BASE_URL=https://tioga.ai playwright test"
@@ -39,6 +39,7 @@
     "unpdf": "^1.4.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.7",
     "@playwright/test": "^1.62.0",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^25.3.0",
@@ -46,6 +47,8 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.24",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.23",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
