@@ -89,7 +89,7 @@ export default function StandingWatchDemoPage() {
           </div>
 
           <div className="rounded-xl p-4" style={{ background: "#C8340608", border: "1px solid #C8340620" }}>
-            <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>→ Propose-only. No config auto-changed.</p>
+            <p className="text-xs font-medium mb-1" style={{ color: "var(--accent-on-tint)" }}>→ Propose-only. No config auto-changed.</p>
             <p className="text-xs text-[var(--text-muted)] leading-relaxed">
               The report&apos;s own footer: &ldquo;This report is a PROPOSAL. No file was modified by
               this job. To adopt a swap, hand-edit the router config, run the test suite, and
@@ -178,7 +178,7 @@ export default function StandingWatchDemoPage() {
 
         {/* Why the 2 human-only items matter */}
         <div className="mx-5 mb-5 rounded-xl p-4" style={{ background: "#C8340608", border: "1px solid #C8340620" }}>
-          <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>
+          <p className="text-xs font-medium mb-1" style={{ color: "var(--accent-on-tint)" }}>
             → 8 of 10 flagged items fixed and verified live. 2 correctly left for a human.
           </p>
           <p className="text-xs text-[var(--text-muted)] leading-relaxed">

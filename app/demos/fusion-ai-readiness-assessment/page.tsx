@@ -187,7 +187,7 @@ export default function FusionAiReadinessAssessmentPage() {
                     style={{
                       background: on ? "#C8340615" : "transparent",
                       border: `1px solid ${on ? "#C8340650" : "var(--border)"}`,
-                      color: on ? "var(--accent)" : "var(--text-muted)",
+                      color: on ? "var(--accent-on-tint)" : "var(--text-muted)",
                     }}
                   >
                     {on ? "✓ " : ""}{c.label}
@@ -244,7 +244,7 @@ export default function FusionAiReadinessAssessmentPage() {
                   <h3 className="text-lg font-semibold" style={{ color: "var(--text)" }}>AI-Agent Readiness</h3>
                   <span
                     className="text-xs px-2.5 py-1 rounded-full font-medium uppercase tracking-wide"
-                    style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                    style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
                   >
                     {APPROACH_LABELS[result.recommendedApproach.approach] ?? result.recommendedApproach.approach}
                   </span>

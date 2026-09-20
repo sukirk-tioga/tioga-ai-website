@@ -61,7 +61,7 @@ export default function OfferChooser() {
           >
             <span
               className="inline-block self-start mb-3 text-xs font-mono px-2 py-0.5 rounded-full max-w-full text-left"
-              style={{ color: "var(--accent)", background: "#C8340610", border: "1px solid #C8340625" }}
+              style={{ color: "var(--accent-on-tint)", background: "#C8340610", border: "1px solid #C8340625" }}
             >
               {choice.eyebrow}
             </span>

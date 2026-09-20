@@ -136,7 +136,7 @@ export default function HomePage() {
  </TrackedCTA>
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
- style={{ background: "#C8340610", border: "1px solid #C8340625", color: "var(--accent)" }}
+ style={{ background: "#C8340610", border: "1px solid #C8340625", color: "var(--accent-on-tint)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  Live in my environment — demo data
@@ -192,7 +192,7 @@ export default function HomePage() {
  <span className="text-3xl">{demo.icon}</span>
  <span
  className="text-xs px-2 py-0.5 rounded-full"
- style={{ background: "#C8340610", color: "var(--accent)", border: "1px solid #C8340625" }}
+ style={{ background: "#C8340610", color: "var(--accent-on-tint)", border: "1px solid #C8340625" }}
  >
  {demo.tag}
  </span>
@@ -437,7 +437,7 @@ export default function HomePage() {
  </h3>
  <span
  className="text-xs px-2 py-0.5 rounded-full"
- style={{ background: "#C8340615", color: "var(--accent)", border: "1px solid #C8340630" }}
+ style={{ background: "#C8340615", color: "var(--accent-on-tint)", border: "1px solid #C8340630" }}
  >
  {p.duration}
  </span>
@@ -519,7 +519,7 @@ export default function HomePage() {
  <div>
  <div
  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-3"
- style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
+ style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" }}
  >
  New Standard
  </div>

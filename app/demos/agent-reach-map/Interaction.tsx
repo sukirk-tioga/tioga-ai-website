@@ -91,7 +91,7 @@ export default function Interaction() {
             className="text-[11px] font-mono px-3 py-1.5 rounded-full transition-colors shrink-0"
             style={
               unsupervisedOnly
-                ? { color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }
+                ? { color: "var(--accent-on-tint)", background: "#C8340615", border: "1px solid #C8340630" }
                 : { color: "var(--text-muted-3)", background: "var(--bg-dark)", border: "1px solid var(--border)" }
             }
           >

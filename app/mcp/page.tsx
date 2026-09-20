@@ -475,7 +475,7 @@ function Comparison() {
 
  {/* After */}
  <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #C8340630" }}>
- <div className="px-4 py-3 text-sm font-semibold" style={{ color: "var(--accent)", background: "#C8340608", borderBottom: "1px solid #C8340630" }}>
+ <div className="px-4 py-3 text-sm font-semibold" style={{ color: "var(--accent-on-tint)", background: "#C8340608", borderBottom: "1px solid #C8340630" }}>
  ✓ After MCP
  </div>
  <div className="divide-y" style={{ borderColor: "#C8340615" }}>
@@ -513,7 +513,7 @@ export default function MCPPage() {
  <div className="text-center mb-16 fade-in">
  <div
  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-5 font-mono"
- style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
+ style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" }}
  >
  <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
  Model Context Protocol

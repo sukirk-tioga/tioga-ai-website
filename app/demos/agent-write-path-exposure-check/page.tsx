@@ -66,7 +66,7 @@ function Choice({
       style={{
         background: selected ? "#C8340615" : "var(--bg-dark)",
         border: `1px solid ${selected ? "#C8340650" : "var(--border)"}`,
-        color: selected ? "var(--accent)" : "var(--text-muted)",
+        color: selected ? "var(--accent-on-tint)" : "var(--text-muted)",
       }}
     >
       {children}

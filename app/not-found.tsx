@@ -4,7 +4,7 @@ export default function NotFound() {
       <div className="max-w-lg w-full text-center">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" }}
         >
           404
         </div>

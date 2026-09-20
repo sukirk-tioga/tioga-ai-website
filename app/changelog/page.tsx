@@ -311,8 +311,9 @@ const ENTRIES: Entry[] = [
   },
 ];
 
-const KIND_STYLE: Record<Kind, { color: string; bg: string }> = {
-  Feature: { color: "var(--accent)", bg: "#C8340615" },
+const KIND_STYLE: Record<Kind, { color: string; bg: string; text?: string }> = {
+  // `text` = the label colour on the tinted pill; `color` alone also drives the timeline dot border.
+  Feature: { color: "var(--accent)", bg: "#C8340615", text: "var(--accent-on-tint)" },
   Fix: { color: "var(--warning)", bg: "#F59E0B15" },
   Infra: { color: "var(--violet)", bg: "#8B5CF615" },
   Content: { color: "var(--success)", bg: "#4ADE8015" },
@@ -324,7 +325,7 @@ export default function ChangelogPage() {
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
-          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
+          style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" }}
         >
           <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
           Build Log
@@ -357,7 +358,7 @@ export default function ChangelogPage() {
                   <span className="text-xs font-mono text-[var(--text-muted)]">{e.date}</span>
                   <span
                     className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
-                    style={{ color: KIND_STYLE[e.kind].color, background: KIND_STYLE[e.kind].bg }}
+                    style={{ color: KIND_STYLE[e.kind].text ?? KIND_STYLE[e.kind].color, background: KIND_STYLE[e.kind].bg }}
                   >
                     {e.kind}
                   </span>

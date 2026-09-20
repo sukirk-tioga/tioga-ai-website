@@ -37,7 +37,7 @@ export default function DemoShell({
         <div className="mb-10">
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
-            style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" }}
+            style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" }}
           >
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
             {badge}

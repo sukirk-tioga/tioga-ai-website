@@ -59,7 +59,7 @@ export default function StandingWatchEstateDiagram() {
         className="rounded-xl p-4 relative z-10"
         style={{ background: "#C8340615", border: "1px solid #C8340640" }}
       >
-        <p className="text-xs uppercase tracking-wide mb-2 text-center" style={{ color: "var(--accent)" }}>
+        <p className="text-xs uppercase tracking-wide mb-2 text-center" style={{ color: "var(--accent-on-tint)" }}>
           Standing Watch — six disciplines, cross-cutting
         </p>
         <div className="flex flex-wrap justify-center gap-2">

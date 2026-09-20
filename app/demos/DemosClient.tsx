@@ -368,7 +368,7 @@ function InvoiceDemo() {
 
           {data.confidence >= 40 && data.vendor !== "N/A" && data.total !== "N/A" ? (
             <div style={{ background: "#C8340608", border: "1px solid #C8340620", borderRadius: 8, padding: "10px 12px" }}>
-              <p className="text-xs font-medium mb-1" style={{ color: "var(--accent)" }}>→ Ready to route to AP team</p>
+              <p className="text-xs font-medium mb-1" style={{ color: "var(--accent-on-tint)" }}>→ Ready to route to AP team</p>
               <p className="text-xs text-[var(--text-muted)]">{data.paymentInstructions}</p>
             </div>
           ) : (
@@ -768,7 +768,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Fusion Cloud AI-Readiness Assessment</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Flagship
               </span>
@@ -928,7 +928,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Governed AP Exception Workflow</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>
@@ -966,7 +966,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Governed QuickBooks Bill Approval</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>
@@ -1004,7 +1004,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Governed Capital Equipment Order Booking</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>
@@ -1043,7 +1043,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Governed Field Service Billable Classification</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>
@@ -1081,7 +1081,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>ERP Reporting Copilot</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>
@@ -1120,7 +1120,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Agent Write-Path Exposure Check</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Free · 5 min
               </span>
@@ -1159,7 +1159,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Agent Autonomy Tier Mapper</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>
@@ -1198,7 +1198,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>SAP Joule Capability Gate Map</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>
@@ -1238,7 +1238,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Composed Evidence</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>
@@ -1278,7 +1278,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Marble World-Generation Audit</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Real Trial Data
               </span>
@@ -1317,7 +1317,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Context-Window Data Minimization</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>
@@ -1356,7 +1356,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Timecard Exception Agent, Shadow-Mode</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>
@@ -1395,7 +1395,7 @@ function DemosPageInner() {
               <p className="font-semibold" style={{ color: "var(--text)" }}>Headcount Forecast Draft, Per-Cell Provenance</p>
               <span
                 className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" }}
+                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
               >
                 Interactive
               </span>

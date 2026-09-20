@@ -163,7 +163,7 @@ export default function GovernanceLedgerPage() {
         <Link
           href="/showcase"
           className="shrink-0 text-xs font-mono px-3 py-1.5 rounded-full transition-colors hover:border-slate-500"
-          style={{ color: "var(--accent)", background: "#C8340615", border: "1px solid #C8340630" }}
+          style={{ color: "var(--accent-on-tint)", background: "#C8340615", border: "1px solid #C8340630" }}
         >
           View the scene →
         </Link>

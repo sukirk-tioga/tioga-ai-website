@@ -18,7 +18,7 @@ const TIER_LABEL: Record<Tier, string> = {
 // of each token they tint (--accent #C83406, --warning #A8681E) — same
 // pattern already used in ShowcaseFallback.tsx and DemoShell.tsx.
 const TIER_STYLE: Record<Tier, CSSProperties> = {
-  "agent-owned": { background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent)" },
+  "agent-owned": { background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" },
   "human-supervised": { background: "#A8681E15", border: "1px solid #A8681E30", color: "var(--warning)" },
   "human-owned": { background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text-muted)" },
 };

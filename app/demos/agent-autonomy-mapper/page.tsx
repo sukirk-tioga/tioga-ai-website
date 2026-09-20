@@ -59,7 +59,7 @@ function SelectButton({
       style={{
         background: selected ? "#C8340615" : "var(--bg-dark)",
         border: `1px solid ${selected ? "#C8340650" : "var(--border)"}`,
-        color: selected ? "var(--accent)" : "var(--text-muted)",
+        color: selected ? "var(--accent-on-tint)" : "var(--text-muted)",
       }}
     >
       {children}
@@ -139,14 +139,14 @@ export default function AgentAutonomyMapperPage() {
         <div className="space-y-2 mb-4">
           {PRESETS.map((p) => (
             <SelectButton key={p.id} selected={mode === "preset" && presetId === p.id} onClick={() => selectPreset(p.id)}>
-              <p className="text-sm font-medium mb-0.5" style={{ color: mode === "preset" && presetId === p.id ? "var(--accent)" : "var(--text)" }}>
+              <p className="text-sm font-medium mb-0.5" style={{ color: mode === "preset" && presetId === p.id ? "var(--accent-on-tint)" : "var(--text)" }}>
                 {p.label}
               </p>
               <p className="text-xs text-[var(--text-muted)] leading-relaxed">{p.description}</p>
             </SelectButton>
           ))}
           <SelectButton selected={mode === "custom"} onClick={selectCustom}>
-            <p className="text-sm font-medium" style={{ color: mode === "custom" ? "var(--accent)" : "var(--text)" }}>
+            <p className="text-sm font-medium" style={{ color: mode === "custom" ? "var(--accent-on-tint)" : "var(--text)" }}>
               Describe my own agent
             </p>
           </SelectButton>

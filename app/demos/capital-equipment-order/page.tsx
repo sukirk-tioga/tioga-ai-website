@@ -397,7 +397,7 @@ export default function CapitalEquipmentOrderPage() {
                       <span
                         className="text-[11px] px-2 py-0.5 rounded-full font-medium"
                         style={{
-                          color: o.status === "configured" ? "var(--success)" : o.status === "rejected" ? "var(--error-light)" : "var(--accent)",
+                          color: o.status === "configured" ? "var(--success)" : o.status === "rejected" ? "var(--error-light)" : "var(--accent-on-tint)",
                           background: o.status === "configured" ? "#4ADE8015" : o.status === "rejected" ? "#EF444415" : "#C8340615",
                         }}
                       >
