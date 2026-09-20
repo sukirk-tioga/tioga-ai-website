@@ -57,8 +57,8 @@ function readTokens(): Tokens {
   return {
     accent: new THREE.Color(readCssToken("--accent")),
     accentDark: new THREE.Color(readCssToken("--accent-dark")),
-    error: new THREE.Color(readCssToken("--error")),
-    warningLight: new THREE.Color(readCssToken("--warning-light")),
+    error: new THREE.Color(readCssToken("--scene-error")),
+    warningLight: new THREE.Color(readCssToken("--scene-warning-light")),
     textMuted: new THREE.Color(readCssToken("--text-muted")),
   };
 }

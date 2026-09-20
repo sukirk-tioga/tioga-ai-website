@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* Tailwind's stock slate-500 (#62748E) is 4.29:1 on --bg-dark, under WCAG AA
+   (4.5:1) for the small breadcrumb/eyebrow text that uses text-slate-500.
+   Same hue, ~4% darker: 4.61:1 on --bg-dark, 4.96:1 on --bg-card (was 4.30 / 4.63). Also feeds
+   the hover:border-slate-500 borders (slightly darker on hover, no issue). */
+@theme {
+  --color-slate-500: #5E6F89;
+}
+
 /* Audit-ledger / "printed report" redesign, 2026-09-02 — corrected to the
    design canvas's LIGHT/paper mode (its actual default state, and what was
    reviewed and approved) after the first port shipped the dark "operations
@@ -26,18 +34,50 @@
   --bg-card-alt: #F6F5F1;
   --text: #221F19;
   --text-muted: #625D54;
-  --text-muted-2: #7F7971;
-  --text-muted-3: #979188;
+  /* AA text tiers on the light surfaces (2026-09-20 live a11y audit). The old
+     values (muted-2 #7F7971, muted-3 #979188) were 3.9:1 / 2.8:1 on --bg-dark.
+     Ratios on --bg-dark / --bg-card / --bg-darker:
+       --text-muted   #625D54  5.90 / 6.36 / 5.14  (unchanged)
+       --text-muted-2 #6A655F  5.21 / 5.61 / 4.54  (was #7F7971 3.89 / 4.19 / 3.39)
+       --text-muted-3 #736E68  4.56 / 4.91 / 3.97  (was #979188 2.82 / 3.04 / 2.46)
+     muted-3 does NOT reach 4.5 on --bg-darker or on tints darker than
+     --bg-dark; use --text-muted-2 (or --text-muted) for text on those. The
+     3D scenes keep the old pale values via --scene-* below (dark canvas). */
+  --text-muted-2: #6A655F;
+  --text-muted-3: #736E68;
   --text-body: rgba(34, 31, 25, 0.75);
   --text-faint: rgba(34, 31, 25, 0.4);
-  --error: #C6402B;
-  --error-light: #E8917C;
-  --warning: #A8681E;
-  --warning-light: #D9A868;
-  --success: #4B7A45;
+  /* Semantic text colours, darkened for WCAG AA (4.5:1) on their own tints
+     and on --bg-darker (2026-09-20 live a11y audit). Ratios on the worst
+     surface each one sits on, before -> after:
+       --error    #C6402B -> #B43A28  4.11 (on #EF444415 tint) -> 4.80; 4.62 on --bg-darker
+       --warning  #A8681E -> #90591A  3.54 (on --bg-darker) -> 4.55; 3.77 (#A8681E20 tint) -> 4.85
+       --success  #4B7A45 -> #457040  4.19 (on #4B7A4520 tint) -> 4.79; 4.53 on --bg-darker
+       --violet   #7A5CA3 -> #75589D  4.43 (on #8B5CF615 tint) -> 4.74; 4.54 on --bg-darker
+       --blue     #3D7373 -> #3B6E6E  4.23 (on --bg-darker) -> 4.54
+     --error-light / --warning-light were pale values designed for a dark
+     canvas (2.0-2.3:1 as text on light surfaces); as light-theme text
+     they are now the same values as --error / --warning. The 3D scenes
+     that want the pale originals read --scene-* below. */
+  --error: #B43A28;
+  --error-light: var(--error);
+  --warning: #90591A;
+  --warning-light: var(--warning);
+  --success: #457040;
   --success-dark: #375C33;
-  --violet: #7A5CA3;
-  --blue: #3D7373;
+  --violet: #75589D;
+  --blue: #3B6E6E;
+
+  /* Pre-2026-09-20 values of the tokens above, kept ONLY for WebGL scene
+     code that paints them on a dark canvas (BoundaryScene, agent-reach-map,
+     agent-checkpoint-walk, DemoParticleField, ShowcaseScene). The AA
+     darkening above would dim those; the scenes are decorative and were
+     approved with these values. Do not use these for DOM text. */
+  --scene-error: #C6402B;
+  --scene-warning: #A8681E;
+  --scene-warning-light: #D9A868;
+  --scene-success: #4B7A45;
+  --scene-text-muted-3: #979188;
 
   /* Text tokens for content sitting directly on the Solutions hero's
      persistent dark WebGL field (SolutionsFieldLoader) -- the one true-dark

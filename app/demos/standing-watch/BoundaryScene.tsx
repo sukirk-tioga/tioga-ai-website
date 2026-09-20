@@ -34,18 +34,20 @@ import type { FindingRow } from "../../../lib/standing-watch-findings";
 // Colors still come exclusively from CSS custom properties (readToken
 // pattern via useTokens) — zero hex literals in this file — they're just
 // the new --boundary-* tokens (app/globals.css) instead of the muted
-// sitewide --accent/--success trio. Severity coloring reads the *ordinary*
-// --error/--warning-light/--text-muted-3 tokens, matching the live findings
-// table exactly.
+// sitewide --accent/--success trio. Severity coloring reads the
+// --scene-error/--scene-warning-light/--scene-text-muted-3 tokens, which hold
+// the original --error/--warning-light/--text-muted-3 values (the DOM tokens
+// were darkened 2026-09-20 for WCAG AA text contrast on light surfaces; the
+// dark canvas keeps the pale originals).
 
 const TOKEN_NAMES = {
   bg: "--bg-solutions-field",
   border: "--border",
   accent: "--accent",
   accentDark: "--accent-dark",
-  error: "--error",
-  warningLight: "--warning-light",
-  textMuted3: "--text-muted-3",
+  error: "--scene-error",
+  warningLight: "--scene-warning-light",
+  textMuted3: "--scene-text-muted-3",
   gold: "--boundary-gold",
   amber: "--boundary-amber",
   cyan: "--boundary-cyan",

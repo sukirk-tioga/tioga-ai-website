@@ -53,7 +53,7 @@ const TOKEN_NAMES = {
   textMuted: "--text-muted",
   accent: "--accent",
   accentDark: "--accent-dark",
-  warning: "--warning",
+  warning: "--scene-warning",
 } as const;
 
 export type SceneTokens = { [K in keyof typeof TOKEN_NAMES]: string };

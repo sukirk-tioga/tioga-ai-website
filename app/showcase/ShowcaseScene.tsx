@@ -546,7 +546,7 @@ export default function ShowcaseScene({
       border: readCssToken("--border"),
       accent: readCssToken("--accent"),
       accentDark: readCssToken("--accent-dark"),
-      success: readCssToken("--success"),
+      success: readCssToken("--scene-success"),
     });
     setIsMobile(window.innerWidth < 768);
   }, []);
