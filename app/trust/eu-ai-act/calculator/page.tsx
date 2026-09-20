@@ -186,7 +186,7 @@ export default function EUAIActCalculatorPage() {
               <>
                 <div className="mb-8">
                   <p className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Does your AI system do any of the following?</p>
-                  <p className="text-xs text-red-400 mb-3">These are prohibited practices under Article 5 — select if any apply.</p>
+                  <p className="text-xs text-[var(--error)] mb-3">These are prohibited practices under Article 5 — select if any apply.</p>
                   <div className="space-y-2">
                     {PROHIBITED_ITEMS.map((i) => (
                       <CheckItem key={i.id} checked={selected.has(i.id)} onChange={() => toggle(i.id)} label={i.label} />

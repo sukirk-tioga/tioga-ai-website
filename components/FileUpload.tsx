@@ -83,7 +83,7 @@ export default function FileUpload({ onTextExtracted, accept = ".pdf,.docx,.doc,
           </>
         )}
       </button>
-      {error && <p role="alert" className="text-xs text-red-400 mt-1.5">{error}</p>}
+      {error && <p role="alert" className="text-xs text-[var(--error)] mt-1.5">{error}</p>}
       <label htmlFor="file-upload-input" className="sr-only">Upload a file</label>
       <input
         ref={inputRef}
