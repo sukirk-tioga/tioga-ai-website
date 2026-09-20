@@ -35,8 +35,18 @@ const content: SolutionContent = {
     },
     {
       label: "A real write into a live system of record, not a mock",
-      detail:
-        "On 2026-07-31 this pattern executed against a real, paid Snowflake sandbox tenant — not a free trial, not a mock: 3 real writes to an open PO's committed amount persisted and were confirmed by re-reading state afterward, plus 2 correctly rejected writes (a vendor on hold, a closed PO), with the full gateway-to-Snowflake round trip logged with real policy-check and audit-trail data. Ask and I'll walk you through it directly.",
+      detail: (
+        <>
+          {"On 2026-07-31 this pattern executed against a real, paid Snowflake sandbox tenant — not a free trial, not a mock: 3 real writes to an open PO's committed amount persisted and were confirmed by re-reading state afterward, plus 2 correctly rejected writes (a vendor on hold, a closed PO), with the full gateway-to-Snowflake round trip logged with real policy-check and audit-trail data. Ask and I'll walk you through it directly."}{" "}
+          <a
+            href="#snowflake-run-2026-07-31"
+            className="underline underline-offset-2 transition-colors hover:text-[var(--text)]"
+            style={{ color: "var(--accent)" }}
+          >
+            Read the dated run record below →
+          </a>
+        </>
+      ),
     },
     {
       label: "Operator experience on both sides",
@@ -57,6 +67,57 @@ const content: SolutionContent = {
       desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear.",
     },
   ],
+  /* Sourced from: sales/dated-run-record-snowflake-2026-07-31-DRAFT.md
+     (confirmed as written by Sukir 2026-09-20). Redacted from the dated
+     verification notes of the 2026-07-31 run, not from a preserved raw
+     transcript -- the "does not have" list below says so on the page. */
+  runRecord: {
+    id: "snowflake-run-2026-07-31",
+    heading: "Dated run record: a governed write against a real Snowflake account (2026-07-31)",
+    label: "Real system, synthetic data",
+    evidenceTier: "internal-operational-excerpt",
+    evidenceDetail:
+      "Dated record of a run against a real, paid Snowflake sandbox tenant Tioga created that day, redacted from that day's verification notes. Real system, synthetic data; not a client's system.",
+    whatThisIs:
+      "On 2026-07-31 Tioga's governed-write pattern was run end to end against a real, paid Snowflake account (a sandbox tenant Tioga created that day, not a client's system and not a free trial). The record below is what was checked and what came back. Account, user, role, host and key identifiers are removed.",
+    labelNote:
+      "real system, synthetic data. The purchase-order rows are seed data created for this test. This shows the pattern working against a real database's stored procedure; it is not a client deployment and not evidence about throughput or scale.",
+    setup: [
+      "A scoped service role, user and warehouse, provisioned with one setup script that ran without error: schema, tables, seed rows and a CHANGE_PO stored procedure.",
+      "The agent gateway called the ERP only through the one sanctioned change endpoint; the Snowflake-backed service exposed the same HTTP contract as the mock it replaced, so the gateway needed no code change.",
+    ],
+    resultsHeading: "What was run and what came back",
+    results: [
+      { check: "List purchase orders (GET /pos)", result: "Returned the 4 seeded rows correctly" },
+      {
+        check: "Change a purchase order's committed amount (POST /pos/:id/change), three separate times",
+        result: "3 real writes succeeded and persisted; state was re-read after each one to confirm",
+      },
+      { check: "A change against a vendor on hold", result: "Rejected, with the accurate error message" },
+      { check: "A change against a closed purchase order", result: "Rejected, with the accurate error message" },
+      {
+        check: "Gateway policy check → ERP round trip, recorded in the ledger",
+        result:
+          "Confirmed; measured latency about 2.2 seconds for the ERP call, likely dominated by the warehouse resuming from auto-suspend",
+      },
+      { check: "Optimistic-concurrency write logic across sequential real calls", result: "Worked" },
+    ],
+    resultsNote:
+      "On the same day, a scripted rerun of the six canned scenarios reproduced five exactly. The sixth (auto-approve) came back blocked because earlier test writes had already pushed that order's committed amount up, so a further $2,000 genuinely exceeded its ceiling. That is expected behavior for stateful test data, not a defect; the setup script includes a reset to restore the seed values.",
+    reverified: {
+      lead: "Re-verified 2026-08-17:",
+      text: "the connection and key-pair authentication still worked against the same account.",
+    },
+    doesNotHaveHeading: "What this record does not have",
+    doesNotHave: [
+      {
+        lead: "No preserved raw transcript or ledger export of the 2026-07-31 writes.",
+        text: "The details above come from the dated verification notes written that day. If a primary artifact is wanted (a ledger export or a recording), it has to come from a new run, dated when it is run, against the same account.",
+      },
+      { text: "No rehearsal on a live prospect call has happened." },
+      { text: "Nothing here says how the pattern behaves on a client's production system." },
+    ],
+  },
   /* Sourced from: sales/proposals/09-agentic-ai-governance-framework.md
      "Why Tioga" section (ServiceNow Action Fabric / AI Control Tower
      paragraph, added 2026-08-17, citing [[palantir-servicenow-native-agents-2026-08-17]]
