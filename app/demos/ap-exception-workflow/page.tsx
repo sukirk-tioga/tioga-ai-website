@@ -405,6 +405,7 @@ export default function ApExceptionWorkflowPage() {
           <p className="text-xs text-[var(--text-muted)] mb-3">Or propose your own — pick a PO and an amount:</p>
           <div className="flex flex-col sm:flex-row gap-3">
             <select
+              aria-label="Purchase order"
               value={freeformPoId}
               onChange={(e) => setFreeformPoId(e.target.value)}
               className="px-3 py-2.5 rounded-lg text-sm"

@@ -441,6 +441,7 @@ export default function CapitalEquipmentOrderPage() {
           <p className="text-xs text-[var(--text-muted)] mb-3">Or finalize a TBD order yourself — pick one and set the final price:</p>
           <div className="flex flex-col sm:flex-row gap-3">
             <select
+              aria-label="TBD order to finalize"
               value={freeformOrderId}
               onChange={(e) => setFreeformOrderId(e.target.value)}
               className="px-3 py-2.5 rounded-lg text-sm"

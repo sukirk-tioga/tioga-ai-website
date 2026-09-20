@@ -430,6 +430,7 @@ function LiveDemo() {
  style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
  />
  <button
+ aria-label="Send"
  onClick={() => send(input)}
  disabled={loading || !input.trim()}
  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:opacity-90 disabled:opacity-40"
