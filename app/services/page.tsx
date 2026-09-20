@@ -61,14 +61,14 @@ const PRACTICES: Practice[] = [
     offers: [
       {
         name: "Agent-Ready ERP Diagnostic & Governed Write-Path",
-        desc: "Assess one stalled agent-to-ERP write path, then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear. Also covers payroll/HRIS and FP&A write paths where those are the boundary system instead — UKG Pro and Workday Adaptive Planning are both in scope. (See About for the founder's hands-on operating history with these systems.)",
+        desc: "Assess one stalled agent-to-ERP write path, including what the agent does when the ERP or a dependency it needs is down or degraded (fail closed, queue the action, or fall back to an ungated path), then build a governed version of it — executing through your application's own logic layer, with policy enforcement and an audit-grade evidence trail your control owners can actually clear. Also covers payroll/HRIS and FP&A write paths where those are the boundary system instead — UKG Pro and Workday Adaptive Planning are both in scope. (See About for the founder's hands-on operating history with these systems.)",
         price: "$60–120K",
         duration: "~6 weeks",
         buyer: "Oracle Fusion Cloud ERP, Oracle EBS, or SAP teams with one stalled agent-to-ERP write path already identified.",
       },
       {
         name: "Salesforce Governed Write-Path & Evidence Build",
-        desc: "Closes the gap Salesforce's own architects admit exists — hosted MCP servers on Salesforce are GA and free on Enterprise Edition+ with full user attribution, but the governance layer above that (a value/velocity policy an agent's permission set can't express, a server-side approval gate independent of which AI client is calling, a decision ledger recording policy version, approver, and reason for every evaluated write) is yours to build. Tioga builds that layer for one high-value Salesforce write path.",
+        desc: "Closes the gap Salesforce's own architects admit exists — hosted MCP servers on Salesforce are GA and free on Enterprise Edition+ with full user attribution, but the governance layer above that (a value/velocity policy an agent's permission set can't express, a server-side approval gate independent of which AI client is calling, a decision ledger recording policy version, approver, and reason for every evaluated write) is yours to build. Tioga builds that layer for one high-value Salesforce write path, and the Phase 1 diagnostic records what the agent does when the platform or a dependency is unavailable (fail closed, queue the action, or fall back to an ungated path).",
         price: "$50–100K",
         duration: "5–8 weeks",
         buyer: "Salesforce teams who already have hosted MCP servers live and need the governance layer above it for one high-value write path.",
