@@ -161,7 +161,7 @@ export const AGENTS: AgentRow[] = [
     id: "check-launchd-status",
     name: "Check launchd Status",
     schedule: "11:15 AM daily",
-    purpose: "Watches launchd's own Status column for every com.sukir.*/com.tioga.* job.",
+    purpose: "Watches launchd's own Status column for every scheduled job.",
     reads: ["LAUNCHD_QUEUE"],
     writes: [
       { system: "SMTP_EMAIL", tier: "human-owned", note: "Emails Sukir only on a nonzero exit status; read-only otherwise, no data write." },
@@ -475,7 +475,7 @@ export const CONVERGENCE_SYSTEMS: SystemId[] = SYSTEMS.filter(
 export const HERO_SYSTEM: SystemId = "PIPELINE_CODE";
 
 export const STATS = [
-  { label: "Scheduled agents", value: `${TOTAL_AGENTS}`, sub: "every com.sukir.*/com.tioga.*/com.jarvis.* job, not a sample" },
+  { label: "Scheduled agents", value: `${TOTAL_AGENTS}`, sub: "every scheduled job, not a sample" },
   { label: "Unsupervised write edges", value: `${UNSUPERVISED_WRITE_COUNT}`, sub: "land with no approval gate before they happen" },
   { label: "Advisory-only agents", value: `${ADVISORY_ONLY_AGENTS}`, sub: "may alert a human, never mutate a system directly" },
   { label: "Systems touched", value: `${SYSTEMS.length}`, sub: `${CONVERGENCE_SYSTEMS.length} are shared convergence points (2+ agents)` },
