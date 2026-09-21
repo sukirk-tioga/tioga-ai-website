@@ -82,7 +82,7 @@ export default function DiscoverySprintPage() {
           </p>
           <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
             Start with the{" "}
-            <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors font-semibold">
+            <Link href="/ai-fit-check" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors font-semibold">
               AI Fit Check
             </Link>{" "}
             instead — one day, $1,500, fully remote, no system access needed.

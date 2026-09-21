@@ -114,7 +114,7 @@ export default function AgentWritePathExposureCheckPage() {
       <div className="grid sm:grid-cols-2 gap-4 mb-8">
         <div>
           <label htmlFor="wpec-system" className="text-xs text-[var(--text-muted)] mb-1.5 block">
-            Which system does the agent write to? <span className="opacity-70">(optional, not scored)</span>
+            Which system does the agent write to? <span className="opacity-90">(optional, not scored)</span>
           </label>
           <select
             id="wpec-system"
@@ -131,7 +131,7 @@ export default function AgentWritePathExposureCheckPage() {
         </div>
         <div>
           <label htmlFor="wpec-path" className="text-xs text-[var(--text-muted)] mb-1.5 block">
-            How does the agent reach it today? <span className="opacity-70">(optional, not scored)</span>
+            How does the agent reach it today? <span className="opacity-90">(optional, not scored)</span>
           </label>
           <select
             id="wpec-path"

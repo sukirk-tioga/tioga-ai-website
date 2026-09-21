@@ -385,6 +385,7 @@ export default function FieldServiceClassificationPage() {
           <p className="text-xs text-[var(--text-muted)] mb-3">Or classify an open call yourself — pick one and a classification:</p>
           <div className="flex flex-col sm:flex-row gap-3">
             <select
+              aria-label="Open call to classify"
               value={freeformCallId}
               onChange={(e) => setFreeformCallId(e.target.value)}
               className="px-3 py-2.5 rounded-lg text-sm"
@@ -399,6 +400,7 @@ export default function FieldServiceClassificationPage() {
                 ))}
             </select>
             <select
+              aria-label="Classification"
               value={freeformAction}
               onChange={(e) => setFreeformAction(e.target.value as "classify_no_charge" | "classify_billable")}
               className="px-3 py-2.5 rounded-lg text-sm"

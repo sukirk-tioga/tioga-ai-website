@@ -101,7 +101,7 @@ export default function McpVsCustomIntegrationPage() {
               <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--bg-card)", color: "var(--accent)" }}>get_pipeline</code> — not around any one workflow. Any
               MCP-aware model can call those tools, decide which ones it
               needs for a given question, and chain them. The{" "}
-              <Link href="/mcp" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+              <Link href="/mcp" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
                 live MCP demo
               </Link>{" "}
               on this site shows the actual tool-server code for SAP,
@@ -149,7 +149,7 @@ export default function McpVsCustomIntegrationPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-[var(--text-muted)] mb-4">
             See the pattern applied to a real workflow in the{" "}
-            <Link href="/engineering/fusion-ai-readiness-assessment" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/engineering/fusion-ai-readiness-assessment" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               Fusion Cloud AI-Readiness Assessment writeup →
             </Link>
           </p>

@@ -102,13 +102,13 @@ export default function EngineeringIndexPage() {
         <div className="mt-16 text-center">
           <p className="text-xs text-[var(--text-muted)] mb-4">
             Prefer the running history?{" "}
-            <Link href="/changelog" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/changelog" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               See the build log →
             </Link>
           </p>
           <p className="text-xs text-[var(--text-muted)] mb-8">
             Or see the governance ledger rendered as an interactive 3D scene —{" "}
-            <Link href="/showcase" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+            <Link href="/showcase" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
               The Gateway Corridor →
             </Link>
           </p>

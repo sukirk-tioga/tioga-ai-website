@@ -85,7 +85,7 @@ export default function BuildLogSubscribe() {
         </button>
       </div>
       {state === "error" && (
-        <p role="alert" className="text-xs text-red-400 sm:basis-full">{errorMsg}</p>
+        <p role="alert" className="text-xs text-[var(--error)] sm:basis-full">{errorMsg}</p>
       )}
     </form>
   );

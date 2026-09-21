@@ -317,7 +317,7 @@ function InvoiceDemo() {
         ) : "Extract Invoice Data"}
       </button>
 
-      {state === "error" && <p className="text-red-400 text-sm mt-2">{error}</p>}
+      {state === "error" && <p className="text-[var(--error)] text-sm mt-2">{error}</p>}
 
       {state === "done" && data && (
         <ResultCard>
@@ -460,7 +460,7 @@ function EmailTriageDemo() {
         ) : "Triage Email"}
       </button>
 
-      {state === "error" && <p className="text-red-400 text-sm mt-2">{error}</p>}
+      {state === "error" && <p className="text-[var(--error)] text-sm mt-2">{error}</p>}
 
       {state === "loading" && <Spinner />}
 
@@ -584,7 +584,7 @@ function DocumentDemo() {
         ) : "Classify Document"}
       </button>
 
-      {state === "error" && <p className="text-red-400 text-sm mt-2">{error}</p>}
+      {state === "error" && <p className="text-[var(--error)] text-sm mt-2">{error}</p>}
 
       {state === "loading" && <Spinner />}
 
@@ -639,7 +639,7 @@ function DocumentDemo() {
 
           {result.riskFlags.length > 0 && (
             <div className="rounded-lg p-3" style={{ background: "#EF444410", border: "1px solid #EF444430" }}>
-              <p className="text-xs font-medium mb-1 text-red-400">⚠ Risk Flags</p>
+              <p className="text-xs font-medium mb-1 text-[var(--error)]">⚠ Risk Flags</p>
               {result.riskFlags.map((f, i) => (
                 <p key={i} className="text-sm text-red-300">{f}</p>
               ))}

@@ -104,7 +104,7 @@ export default function JouleCapabilityGateMapPage() {
           {AREAS.map((a) => (
             <AreaButton key={a.id} selected={area === a.id} onClick={() => setArea(a.id)}>
               {a.label}
-              <span className="ml-1.5 opacity-60">({WRITE_CAPABILITIES[a.id].length})</span>
+              <span className="ml-1.5 opacity-90">({WRITE_CAPABILITIES[a.id].length})</span>
             </AreaButton>
           ))}
         </div>

@@ -226,7 +226,7 @@ function CodeBlock() {
  onClick={() => setActive(i)}
  className="px-4 py-2.5 text-xs font-medium transition-all"
  style={{
- color: active === i ? "var(--accent)" : "var(--text-muted-2)",
+ color: active === i ? "var(--accent-on-tint)" : "var(--text-muted-2)",
  borderBottom: active === i ? "2px solid var(--accent)" : "2px solid transparent",
  background: "transparent",
  }}
@@ -247,7 +247,7 @@ function CodeBlock() {
  return (
  <div key={i}>
  <span style={{
- color: isComment ? "var(--text-muted-3)" : isDecorator ? "var(--warning)" : isKeyword ? "var(--accent)" : "var(--text-muted)"
+ color: isComment ? "var(--text-muted-2)" : isDecorator ? "var(--warning)" : isKeyword ? "var(--accent-on-tint)" : "var(--text-muted)"
  }}>
  {line || " "}
  </span>
@@ -430,6 +430,7 @@ function LiveDemo() {
  style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
  />
  <button
+ aria-label="Send"
  onClick={() => send(input)}
  disabled={loading || !input.trim()}
  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:opacity-90 disabled:opacity-40"
@@ -460,7 +461,7 @@ function Comparison() {
  <div className="grid grid-cols-2 gap-4">
  {/* Before */}
  <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #EF444430" }}>
- <div className="px-4 py-3 text-sm font-semibold text-red-400" style={{ background: "#EF444408", borderBottom: "1px solid #EF444430" }}>
+ <div className="px-4 py-3 text-sm font-semibold text-[var(--error)]" style={{ background: "#EF444408", borderBottom: "1px solid #EF444430" }}>
  ✗ Before MCP
  </div>
  <div className="divide-y" style={{ borderColor: "#EF444420" }}>

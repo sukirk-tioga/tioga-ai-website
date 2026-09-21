@@ -54,7 +54,7 @@ export default function BoundaryInteraction({
           {FLAGGED.map((row, i) => {
             const isSelected = i === selectedIndex;
             return (
-              <li key={i} className="min-w-0">
+              <li key={i} className="min-w-0" role="presentation">
                 <button
                   type="button"
                   data-finding-item

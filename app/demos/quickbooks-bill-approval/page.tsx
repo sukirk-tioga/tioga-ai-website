@@ -409,6 +409,7 @@ export default function QuickbooksBillApprovalPage() {
           <p className="text-xs text-[var(--text-muted)] mb-3">Or process another bill from the queue, at its stated amount:</p>
           <div className="flex flex-col sm:flex-row gap-3">
             <select
+              aria-label="Bill to process"
               value={freeformBillId}
               onChange={(e) => setFreeformBillId(e.target.value)}
               className="px-3 py-2.5 rounded-lg text-sm flex-1"

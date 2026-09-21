@@ -50,6 +50,8 @@
 .sh .sh-flow li {display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: center; padding: 12px 14px; background: var(--sh-paper); border: 1px solid var(--sh-rule); border-radius: 6px; font-size: 15px}
 .sh .sh-flow span {font: 400 13px/1.5 var(--font-mono-martian), "Martian Mono", "JetBrains Mono", monospace; color: var(--sh-accent)}
 .sh .sh-feature {background: var(--sh-feature); border-radius: var(--sh-radius); padding: 26px; margin-bottom: 36px}
+/* --accent is 4.18:1 on --bg-darker (this panel's background); --accent-on-tint is 4.99:1. Eyebrow, summary and family link inherit it. */
+.sh .sh-feature {--sh-accent: var(--accent-on-tint)}
 .sh .sh-feature-top {display: flex; gap: 16px; align-items: flex-start; justify-content: space-between}
 .sh .sh-feature h2 {font-size: 27px; line-height: 1.16; letter-spacing: -.025em; margin-top: 8px; font-weight: 650}
 .sh .sh-feature p.sh-purpose {color: var(--sh-muted); margin-top: 10px; max-width: 56ch}
@@ -76,6 +78,7 @@
 .sh .sh-scope {margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--sh-rule); scroll-margin-top: 110px}
 .sh .sh-scope h2 {font-size: 18px; font-weight: 650}
 .sh .sh-scope p {color: var(--sh-muted); font-size: 14px; margin-top: 8px; max-width: 85ch}
+.sh .sh-scope p a {text-decoration: underline}
 .sh .sh-catalog-layout {display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 36px; margin-top: 30px}
 .sh .sh-family-nav {display: flex; flex-direction: column; align-items: flex-start; gap: 5px; border-top: 1px solid var(--sh-rule); padding-top: 12px}
 .sh .sh-family-nav a {padding: 10px 0; min-height: 44px; font-size: 14px; color: var(--sh-muted)}

@@ -143,6 +143,7 @@ export default function FusionAiReadinessAssessmentPage() {
           <div className="grid sm:grid-cols-2 gap-5">
             <Field label="Target agent use case">
               <select
+                aria-label="Target agent use case"
                 value={useCase}
                 onChange={(e) => setUseCase(e.target.value)}
                 className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500"
@@ -153,6 +154,7 @@ export default function FusionAiReadinessAssessmentPage() {
             </Field>
             <Field label="Approximate transaction volume">
               <select
+                aria-label="Approximate transaction volume"
                 value={transactionVolume}
                 onChange={(e) => setTransactionVolume(e.target.value)}
                 className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500"
@@ -165,6 +167,7 @@ export default function FusionAiReadinessAssessmentPage() {
 
           <Field label="Current integration method">
             <select
+              aria-label="Current integration method"
               value={integrationMethod}
               onChange={(e) => setIntegrationMethod(e.target.value)}
               className="w-full rounded-lg px-3 py-2.5 text-sm text-[var(--text)] outline-none focus:border-slate-500"

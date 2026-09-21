@@ -86,7 +86,7 @@ export default function AiFitCheckPage() {
         </p>
         <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-12">
           The new first rung of the ladder, sitting in front of the{" "}
-          <Link href="/discovery-sprint" style={{ color: "var(--accent)" }} className="hover:text-[var(--text)] transition-colors">
+          <Link href="/discovery-sprint" style={{ color: "var(--accent)" }} className="underline underline-offset-2 hover:text-[var(--text)] transition-colors">
             Discovery Sprint
           </Link>
           , not replacing it. Where the Discovery Sprint needs read-only
