@@ -1,5 +1,10 @@
 # Visual system reference — reverse-engineered from what's actually shipped
 
+*Repo moved 2026-09-21 to `github.com/tioga-ai/tioga-ai-website` (was
+`sukirk-tioga/tioga-ai-website`) — Tioga AI business repos now live under
+a dedicated GitHub org, separate from Sukir's personal automation repos,
+ahead of adding real engineering hires. Old URLs redirect.*
+
 Do Soon/Backlog item 5 from the practitioner backlog
 (`~/SecondBrain/TiogaAI/projects/practitioner-backlog-2026-08-09.md`),
 "Awesome Design reverse-engineered design.md" pattern: this doc describes
