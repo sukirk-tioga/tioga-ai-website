@@ -74,9 +74,9 @@ export default function AgentReachMapPage() {
         <div className="space-y-4 text-sm text-[var(--text-muted)] leading-relaxed">
           <p>
             Left column: every one of Tioga&apos;s {TOTAL_AGENTS} real scheduled jobs (
-            <code className="font-mono text-xs">com.sukir.*</code>/
             <code className="font-mono text-xs">com.tioga.*</code>/
-            <code className="font-mono text-xs">com.jarvis.*</code>), one node each. Right column:
+            <code className="font-mono text-xs">com.jarvis.*</code>, plus a few others under their
+            own label prefix), one node each. Right column:
             the {SYSTEMS.length} real systems of record those jobs can read or write — the
             brightest one is Tioga&apos;s own automation code, the single highest-blast-radius
             system in the estate. Every edge between them is a real write surface, colored by its
