@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ComponentRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, MeshTransmissionMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -15,7 +15,7 @@ import {
 import { readCssToken } from "../../lib/site-config";
 import ShowcaseEffects from "./ShowcaseEffects";
 import LedgerParticleField from "./gpgpu/LedgerParticleField";
-import { CORRIDOR_X, TILE_Y_RANGE, POOL_Y_RANGE, tileY, tileZ, poolY } from "./corridorLayout";
+import { CORRIDOR_X, tileY, tileZ, poolY } from "./corridorLayout";
 
 // The Gateway Corridor — full rebuild, 2026-08-15 (round 3).
 //
@@ -453,11 +453,11 @@ function Rig({ isMobile }: { isMobile: boolean }) {
   const introStart = useRef<number | null>(null);
   const from = useMemo(() => new THREE.Vector3(...CAMERA_FROM), []);
   const to = useMemo(() => new THREE.Vector3(...CAMERA_TO), []);
-  // Loosely typed (any): only .getAzimuthalAngle()/.autoRotateSpeed are
-  // used here, and depending on three-stdlib's exact exported OrbitControls
-  // type (drei's transitive dependency, not a direct one of this repo) is
-  // fragile -- JSX's ref prop is otherwise strictly typed to that class.
-  const controlsRef = useRef<any>(null);
+  // Typed off drei's own component (ComponentRef) rather than importing
+  // three-stdlib's OrbitControls class directly -- three-stdlib is drei's
+  // transitive dependency, not a direct one of this repo, so this stays
+  // correct however drei re-exports it.
+  const controlsRef = useRef<ComponentRef<typeof OrbitControls>>(null);
   const direction = useRef(1);
 
   useEffect(() => {

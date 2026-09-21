@@ -65,7 +65,7 @@ export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) 
           <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Value ledger — this session</h2>
           <p className="text-xs text-[var(--text-muted)] max-w-md">
             Computed live from the actions above. Baseline time and hourly rate are starting points — edit them
-            to match your own team's numbers, per Tioga's{" "}
+            to match your own team&apos;s numbers, per Tioga&apos;s{" "}
             <a href="/samples/weekly-value-report.html" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "var(--accent)" }}>
               value-report methodology
             </a>
@@ -94,7 +94,7 @@ export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) 
             className="px-3 py-2 rounded-lg text-sm"
             style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
           />
-          <span className="text-[11px] text-slate-500">Your team's own estimate — not an industry average.</span>
+          <span className="text-[11px] text-slate-500">Your team&apos;s own estimate — not an industry average.</span>
         </label>
         <label className="flex-1 flex flex-col gap-1">
           <span className="text-[11px] text-[var(--text-muted)] uppercase tracking-wide">Loaded hourly rate (USD)</span>
@@ -155,7 +155,7 @@ export default function ValueLedgerPanel({ ledger }: { ledger: LedgerEntry[] }) 
       <p className="text-[11px] text-slate-500">
         Only completed actions (auto-approved or escalated-then-approved) count toward hours/value — escalated and
         blocked actions are tallied above as evidence the governance layer works, not folded into the total. A
-        rolled-back action's hours are removed once reversed. Net hours saved already subtracts human review time
+        rolled-back action&apos;s hours are removed once reversed. Net hours saved already subtracts human review time
         for escalated actions — see the exported report for the gross-vs-net breakdown per row.
       </p>
     </div>

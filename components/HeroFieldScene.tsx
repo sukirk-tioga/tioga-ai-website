@@ -132,7 +132,6 @@ function Field({ flowAngleRef }: { flowAngleRef?: React.MutableRefObject<number>
       depthWrite: false,
       depthTest: false,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
