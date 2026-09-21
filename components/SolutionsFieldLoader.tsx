@@ -91,7 +91,6 @@ export default function SolutionsFieldLoader() {
         mat.uniforms.uPan.value.set(tweenState.panX, tweenState.panY);
       },
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mood.color, mood.colorDark, mood.panX, mood.panY, reducedMotion]);
 
   if (!showField) {

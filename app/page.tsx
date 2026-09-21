@@ -5,7 +5,6 @@ import ScrollReveal from "@/components/ScrollReveal";
 import GovernanceLedgerPreview from "@/components/GovernanceLedgerPreview";
 import OfferChooser from "@/components/OfferChooser";
 import { EvidenceTierTag } from "@/app/demos/_lib/evidence-tier";
-import { CAL_LINK } from "@/lib/site-config";
 
 export default function HomePage() {
  return (

@@ -708,7 +708,6 @@ function DemosPageInner() {
       setActive(tabParam);
       activeDemoRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

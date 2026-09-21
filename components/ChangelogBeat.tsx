@@ -114,7 +114,6 @@ export default function ChangelogBeat({
       split.revert();
       el.style.willChange = "auto";
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
