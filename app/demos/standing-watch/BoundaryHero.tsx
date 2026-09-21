@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 // Captured hero for "The Boundary" — a real recording of the scene's own
@@ -32,9 +33,16 @@ export default function BoundaryHero() {
     // motion is allowed.
     return (
       <div className="rounded-2xl overflow-hidden mb-4" style={frameStyle}>
-        <img
+        <Image
           src="/demos/standing-watch/boundary-hero-poster.jpg"
           alt="A captured still of The Boundary 3D scene — nine real findings passing through one gate, eight landing fixed, one stopping at a wall"
+          width={718}
+          height={558}
+          // Served as-is (no optimizer re-encode) so the still stays pixel-
+          // identical to the <video poster> it swaps to, and stays eager as
+          // the plain <img> always was.
+          unoptimized
+          loading="eager"
           className="w-full h-full object-cover"
         />
       </div>
@@ -44,9 +52,16 @@ export default function BoundaryHero() {
   if (reducedMotion) {
     return (
       <div className="rounded-2xl overflow-hidden mb-4" style={frameStyle}>
-        <img
+        <Image
           src="/demos/standing-watch/boundary-hero-poster.jpg"
           alt="A captured still of The Boundary 3D scene — nine real findings passing through one gate, eight landing fixed, one stopping at a wall"
+          width={718}
+          height={558}
+          // Served as-is (no optimizer re-encode) so the still stays pixel-
+          // identical to the <video poster> it swaps to, and stays eager as
+          // the plain <img> always was.
+          unoptimized
+          loading="eager"
           className="w-full h-full object-cover"
         />
       </div>
