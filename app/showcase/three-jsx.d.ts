@@ -13,6 +13,9 @@ import type { ThreeElements } from "@react-three/fiber";
 
 declare module "react" {
   namespace JSX {
+    // Declaration merging needs an interface (a type alias cannot merge into
+    // React's IntrinsicElements), so the empty-extends form is intentional.
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     interface IntrinsicElements extends ThreeElements {}
   }
 }

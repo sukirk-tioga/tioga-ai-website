@@ -32,6 +32,9 @@ import {
 // outright on lower-end GPUs.
 export default function ShowcaseEffects({ isMobile }: { isMobile: boolean }) {
   const { gl, scene, camera, size } = useThree();
+  // Stable accessor for the *current* size without subscribing the pass-
+  // building effect below to it (see the DepthOfFieldEffect note there).
+  const getState = useThree((state) => state.get);
 
   const composer = useMemo(() => new EffectComposer(gl), [gl]);
 
@@ -61,7 +64,11 @@ export default function ShowcaseEffects({ isMobile }: { isMobile: boolean }) {
       const dof = new DepthOfFieldEffect(camera, {
         focalLength: 0.02,
         bokehScale: 0.9,
-        height: size.height,
+        // Initial resolution only: composer.setSize() (effect above) resizes
+        // every pass, DoF included, on later viewport changes, so this must
+        // not be a dependency -- that would rebuild the whole bloom/DoF/
+        // chroma chain (and its GPU targets) on every resize.
+        height: getState().size.height,
       });
       // Auto-focus on the gate at world origin every frame rather than a
       // fixed normalized focusDistance — the camera's distance to the gate
@@ -90,7 +97,7 @@ export default function ShowcaseEffects({ isMobile }: { isMobile: boolean }) {
       composer.removePass(renderPass);
       passes.forEach((pass) => pass.dispose());
     };
-  }, [composer, scene, camera, isMobile]);
+  }, [composer, scene, camera, isMobile, getState]);
 
   // Nonzero render priority hands the per-frame render call to this
   // composer and stops R3F's own default render — documented pattern for
