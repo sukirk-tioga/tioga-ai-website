@@ -91,11 +91,15 @@ const INTEGRATION_METHODS = ["No integration yet — planning phase",
               supplier and purchase-order approval for procurement triage,
               chart-of-accounts and period-close controls for GL review —
               rather than returning generic AI-governance advice that would
-              apply to any input. One conditional line does real work: if
-              fewer than two governance controls are already selected as in
-              place, the prompt requires the response to call that out as a
+              apply to any input. Each governance control is marked Present,
+              Absent, or Unknown (the default), and the prompt keeps those
+              apart. One conditional line does real work: if fewer than two
+              controls are confirmed present and at least one is confirmed
+              absent, the prompt requires the response to call that out as a
               structural blocker to autonomous agent action, not a minor
-              gap to note in passing.
+              gap to note in passing. Unknown controls are never described
+              as missing and never trigger that verdict on their own; they
+              come back as items to confirm, with a provisional score.
             </p>
           </div>
 

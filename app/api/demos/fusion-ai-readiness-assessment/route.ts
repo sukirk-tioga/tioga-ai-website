@@ -1,6 +1,7 @@
 import { callClaude } from "@/app/demos/_lib/anthropic";
 import { sendFusionReadinessCopy } from "@/lib/email";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
+import { controlsPromptLines, controlsSystemRules, parseControlSelections, summarizeControls } from "@/lib/fusion-readiness";
 import { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
@@ -28,13 +29,8 @@ const INTEGRATION_METHODS = [
   "Oracle AI Agent Studio (business-object + deep-link tools)",
 ] as const;
 
-const GOVERNANCE_CONTROLS = [
-  "Agent-scoped security roles (not just seeded Fusion roles)",
-  "REST API access scoped to specific endpoints, not broad admin access",
-  "Structured audit trail exported to a governance/audit system",
-  "Human-approval rules extended to agent-initiated actions, not just human-initiated ones",
-  "Named incident-response owner for agent actions",
-] as const;
+// Governance controls are three-state (present / absent / unknown) and live in
+// lib/fusion-readiness.ts, shared with the page so the two cannot drift.
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -70,31 +66,27 @@ export async function POST(req: NextRequest) {
   if (typeof integrationMethod !== "string" || !(INTEGRATION_METHODS as readonly string[]).includes(integrationMethod)) {
     return bad("Invalid integration method.");
   }
-  if (
-    !Array.isArray(governanceControls) ||
-    governanceControls.length > GOVERNANCE_CONTROLS.length ||
-    !governanceControls.every((c) => typeof c === "string" && (GOVERNANCE_CONTROLS as readonly string[]).includes(c))
-  ) {
+  const controlSelections = parseControlSelections(governanceControls);
+  if (!controlSelections) {
     return bad("Invalid governance controls selection.");
   }
-  const selectedControls = Array.from(new Set(governanceControls as string[]));
+  const controls = summarizeControls(controlSelections);
   if (email !== undefined && email !== "" && (typeof email !== "string" || email.length > 254 || !EMAIL_RE.test(email))) {
     return bad("Invalid email address.");
   }
 
-  // A conditional rule mirroring the retired migration-assessment demo's
-  // SOX-disclosure rule: fewer than two governance controls already in
-  // place is a real, structural blocker for agent-initiated writes, not a
-  // stylistic nitpick — the prompt below must say so explicitly rather than
-  // softening it into generic advice.
-  const controlsAreThin = selectedControls.length < 2;
+  // The conditional "thin controls" rule (fewer than two controls confirmed
+  // present) and the Present / Absent / Unknown rules are built in
+  // lib/fusion-readiness.ts. Only ABSENT (confirmed missing) controls can
+  // support a structural-blocker finding; UNKNOWN must never be described as
+  // absent and is listed as "to confirm".
 
   const system = `You are a senior AI-governance architect at Tioga AI with deep experience deploying governed AI agents against Oracle Fusion Cloud ERP environments via Fusion's REST APIs and Oracle's AI Agent Studio. You produce honest, conservative AI-agent-readiness assessments — you are assessing whether it is safe to deploy AI agents against an existing Fusion Cloud ERP environment, not whether the organization should adopt or migrate to Fusion itself.
 
 Rules:
 - Be SPECIFIC to the use case selected — reference real Fusion Cloud ERP concepts for that use case (e.g. Payables invoice holds and matching for AP exceptions, supplier and purchase-order approval for procurement triage, chart-of-accounts and period-close controls for GL review, expense policy violations for expense auditing), not generic AI-governance advice.
 - Be conservative on readiness. Err toward flagging real gaps rather than declaring an environment "ready" on the strength of good intentions.
-- ${controlsAreThin ? "Fewer than two governance controls are confirmed in place: you MUST explicitly call this a structural blocker to any autonomous (non-human-gated) agent action in the risks or reasoning, not a minor gap — while stating that the score reflects only what was confirmed in this form, not a finding that the controls are absent." : "Note any remaining governance gap even where several controls are already in place — no environment should be scored a 10 on selected controls alone."}
+- ${controlsSystemRules(controls)}
 - Respond with VALID JSON ONLY. No markdown, no code fences, no commentary outside the JSON object. Every string value must be valid JSON: escape internal double quotes as \\", escape newlines as \\n, and never break out of a string value to use another format (e.g. XML tags) inside it.`;
 
   const prompt = `Assess this Oracle Fusion Cloud ERP AI-agent-readiness scenario:
@@ -102,8 +94,7 @@ Rules:
 - Target agent use case: ${useCase}
 - Approximate transaction volume: ${transactionVolume}
 - Current integration method: ${integrationMethod}
-- Governance controls confirmed in place: ${selectedControls.length > 0 ? selectedControls.join("; ") : "none confirmed"}
-- Every control not listed above is NOT CONFIRMED (unknown), not absent: describe it as "not confirmed" and never assert that the organization lacks it.
+${controlsPromptLines(controls)}
 
 Return exactly this JSON structure:
 {
@@ -201,6 +192,7 @@ Return exactly this JSON structure:
           useCase,
           transactionVolume,
           integrationMethod,
+          controlCounts: { present: controls.present.length, absent: controls.absent.length, unknown: controls.unknown.length },
           assessment,
         });
         emailed = true;

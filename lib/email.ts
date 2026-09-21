@@ -165,12 +165,14 @@ export async function sendFusionReadinessCopy({
   useCase,
   transactionVolume,
   integrationMethod,
+  controlCounts,
   assessment,
 }: {
   to: string;
   useCase: string;
   transactionVolume: string;
   integrationMethod: string;
+  controlCounts: { present: number; absent: number; unknown: number };
   assessment: FusionReadinessAssessment;
 }) {
   const gapRows = assessment.keyGaps
@@ -195,7 +197,8 @@ export async function sendFusionReadinessCopy({
       <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
         <p style="margin: 0 0 8px;"><strong>Transaction volume:</strong> ${escapeHtml(transactionVolume)}</p>
         <p style="margin: 0 0 8px;"><strong>Current integration method:</strong> ${escapeHtml(integrationMethod)}</p>
-        <p style="margin: 0 0 8px;"><strong>Readiness score:</strong> ${assessment.readinessScore}/10</p>
+        <p style="margin: 0 0 8px;"><strong>Governance controls:</strong> ${controlCounts.present} present, ${controlCounts.absent} absent, ${controlCounts.unknown} unknown${controlCounts.unknown > 0 ? " (unknown means not confirmed, not counted as missing)" : ""}</p>
+        <p style="margin: 0 0 8px;"><strong>Readiness score:</strong> ${assessment.readinessScore}/10${controlCounts.unknown > 0 ? " (provisional)" : ""}</p>
         <p style="margin: 0; color: #334155;">${escapeHtml(assessment.scoreReasoning)}</p>
       </div>
 

@@ -2,8 +2,20 @@
 
 import { useEffect, useState } from "react";
 import DemoShell from "../_lib/demo-shell";
+import {
+  CONTROL_STATES,
+  CONTROL_STATE_LABELS,
+  GOVERNANCE_CONTROLS,
+  defaultControlSelections,
+  summarizeControls,
+  type ControlId,
+  type ControlSelections,
+  type ControlState,
+} from "@/lib/fusion-readiness";
 
 // ── Options (must mirror the API's allowed enums) ────────────────────────────
+// The governance controls and their three states are shared with the API
+// route via lib/fusion-readiness.ts.
 const USE_CASES = [
   "AP invoice exceptions (Fusion Payables)",
   "Procurement requisition triage (Fusion Procurement)",
@@ -16,13 +28,6 @@ const INTEGRATION_METHODS = [
   "Calling Fusion REST APIs directly",
   "Oracle Integration Cloud (OIC) as middleware",
   "Oracle AI Agent Studio (business-object + deep-link tools)",
-];
-const GOVERNANCE_CONTROLS = [
-  { id: "roles", label: "Agent-scoped security roles (not just seeded Fusion roles)" },
-  { id: "api-scope", label: "REST API access scoped to specific endpoints, not broad admin access" },
-  { id: "audit", label: "Structured audit trail exported to a governance/audit system" },
-  { id: "approval", label: "Human-approval rules extended to agent-initiated actions" },
-  { id: "incident", label: "Named incident-response owner for agent actions" },
 ];
 
 const PROGRESS_STAGES = [
@@ -59,12 +64,16 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function ScoreRing({ score }: { score: number }) {
+function ScoreRing({ score, provisional }: { score: number; provisional: boolean }) {
   const r = 34;
   const c = 2 * Math.PI * r;
   // Inverted from the retired migration-complexity ring: here, higher is
-  // better (more ready to safely run agents), not worse.
-  const color = score >= 8 ? "var(--success)" : score >= 5 ? "var(--warning-light)" : "var(--error-light)";
+  // better (more ready to safely run agents), not worse. While any control is
+  // Unknown the score is provisional, so the ring stays neutral: a low number
+  // caused by unconfirmed controls must not read as a red "fail".
+  const color = provisional
+    ? "var(--text-muted)"
+    : score >= 8 ? "var(--success)" : score >= 5 ? "var(--warning-light)" : "var(--error-light)";
   return (
     <div className="relative w-24 h-24 flex-none">
       <svg viewBox="0 0 80 80" className="w-24 h-24 -rotate-90">
@@ -87,7 +96,11 @@ export default function FusionAiReadinessAssessmentPage() {
   const [useCase, setUseCase] = useState(USE_CASES[0]);
   const [transactionVolume, setTransactionVolume] = useState(VOLUMES[1]);
   const [integrationMethod, setIntegrationMethod] = useState(INTEGRATION_METHODS[0]);
-  const [governanceControls, setGovernanceControls] = useState<string[]>([]);
+  // Every control defaults to Unknown (not confirmed), never to Absent.
+  const [governanceControls, setGovernanceControls] = useState<ControlSelections>(defaultControlSelections);
+  // The Present / Absent / Unknown split the result was generated from; the
+  // radios can change afterwards without the shown result changing.
+  const [submittedControls, setSubmittedControls] = useState<ControlSelections | null>(null);
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [stage, setStage] = useState(0);
@@ -105,13 +118,16 @@ export default function FusionAiReadinessAssessmentPage() {
     return () => clearInterval(t);
   }, [state]);
 
-  const toggleControl = (label: string) =>
-    setGovernanceControls((c) => (c.includes(label) ? c.filter((x) => x !== label) : [...c, label]));
+  const setControl = (id: ControlId, value: ControlState) =>
+    setGovernanceControls((c) => ({ ...c, [id]: value }));
+  const liveCounts = summarizeControls(governanceControls);
+  const resultCounts = submittedControls ? summarizeControls(submittedControls) : null;
 
   const submit = async () => {
     setState("loading");
     setError("");
     setResult(null);
+    setSubmittedControls(governanceControls);
     try {
       const res = await fetch("/api/demos/fusion-ai-readiness-assessment", {
         method: "POST",
@@ -177,29 +193,61 @@ export default function FusionAiReadinessAssessmentPage() {
             </select>
           </Field>
 
-          <Field label="Governance controls you can confirm are in place — unchecked controls are scored as not confirmed, not as absent">
+          <div role="group" aria-labelledby="fusion-controls-heading" aria-describedby="fusion-controls-help">
+            <p id="fusion-controls-heading" className="text-sm font-medium text-[var(--text-muted)] mb-1">
+              Governance controls — mark each one Present, Absent, or Unknown
+            </p>
+            <p id="fusion-controls-help" className="text-xs text-[var(--text-muted)] leading-relaxed mb-3">
+              <strong style={{ color: "var(--text)" }}>Present</strong> = you can confirm it is in place.{" "}
+              <strong style={{ color: "var(--text)" }}>Absent</strong> = you can confirm it is missing.{" "}
+              <strong style={{ color: "var(--text)" }}>Unknown</strong> = you can&apos;t confirm either way (the default).
+              Unknown controls are reported as &ldquo;to confirm&rdquo;, never as missing.
+            </p>
             <div className="flex flex-col gap-2">
-              {GOVERNANCE_CONTROLS.map((c) => {
-                const on = governanceControls.includes(c.label);
-                return (
-                  <button
-                    key={c.id}
-                    type="button"
-                    aria-pressed={on}
-                    onClick={() => toggleControl(c.label)}
-                    className="text-left px-3 py-2 rounded-lg text-xs font-medium transition-all"
-                    style={{
-                      background: on ? "#C8340615" : "transparent",
-                      border: `1px solid ${on ? "#C8340650" : "var(--border)"}`,
-                      color: on ? "var(--accent-on-tint)" : "var(--text-muted)",
-                    }}
-                  >
-                    {on ? "✓ " : ""}{c.label}
-                  </button>
-                );
-              })}
+              {GOVERNANCE_CONTROLS.map((c) => (
+                <fieldset
+                  key={c.id}
+                  className="min-w-0 px-3 py-2.5 rounded-lg"
+                  style={{ border: "1px solid var(--border)" }}
+                >
+                  <legend className="float-left w-full text-xs font-medium mb-2" style={{ color: "var(--text)" }}>
+                    {c.label}
+                  </legend>
+                  <div className="clear-both flex flex-wrap gap-2">
+                    {CONTROL_STATES.map((s) => {
+                      const on = governanceControls[c.id] === s;
+                      return (
+                        <label
+                          key={s}
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all"
+                          style={{
+                            background: on ? "#C8340615" : "transparent",
+                            border: `1px solid ${on ? "#C8340650" : "var(--border)"}`,
+                            color: on ? "var(--accent-on-tint)" : "var(--text-muted)",
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            name={`fusion-control-${c.id}`}
+                            value={s}
+                            checked={on}
+                            onChange={() => setControl(c.id, s)}
+                            className="h-4 w-4 cursor-pointer"
+                            style={{ accentColor: "var(--accent)" }}
+                          />
+                          {CONTROL_STATE_LABELS[s]}
+                        </label>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+              ))}
             </div>
-          </Field>
+            <p role="status" aria-live="polite" data-testid="fusion-control-counts" className="text-xs text-[var(--text-muted)] mt-3">
+              {liveCounts.present.length} Present · {liveCounts.absent.length} Absent · {liveCounts.unknown.length} Unknown
+              {liveCounts.unknown.length > 0 ? " — Unknown is not counted as missing." : ""}
+            </p>
+          </div>
 
           <Field label="Send me a copy — optional">
             <input
@@ -245,7 +293,7 @@ export default function FusionAiReadinessAssessmentPage() {
           <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid #C8340630" }}>
             {/* Score + approach */}
             <div className="flex flex-col sm:flex-row items-start gap-6 pb-6 mb-6" style={{ borderBottom: "1px solid var(--border)" }}>
-              <ScoreRing score={result.readinessScore} />
+              <ScoreRing score={result.readinessScore} provisional={(resultCounts?.unknown.length ?? 0) > 0} />
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-3 mb-2">
                   <h3 className="text-lg font-semibold" style={{ color: "var(--text)" }}>AI-Agent Readiness</h3>
@@ -257,9 +305,31 @@ export default function FusionAiReadinessAssessmentPage() {
                   </span>
                 </div>
                 <p className="text-sm text-[var(--text-muted)] leading-relaxed">{result.scoreReasoning}</p>
-                <p className="text-xs text-[var(--text-muted)] mt-2">Score reflects only the controls you confirmed above; unchecked controls are treated as unknown, not absent.</p>
+                {resultCounts && (
+                  <p data-testid="fusion-result-counts" className="text-xs text-[var(--text-muted)] mt-2">
+                    Controls you reported: {resultCounts.present.length} Present · {resultCounts.absent.length} Absent · {resultCounts.unknown.length} Unknown.{" "}
+                    {resultCounts.unknown.length > 0
+                      ? "The score is provisional: it reflects only the controls you confirmed. Unknown controls are not confirmed either way. They are not counted as missing and are not a failing mark."
+                      : "Every control was confirmed one way or the other, so the score reflects all five."}
+                  </p>
+                )}
               </div>
             </div>
+
+            {resultCounts && resultCounts.unknown.length > 0 && (
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold uppercase tracking-wide mb-2" style={{ color: "var(--text)" }}>To confirm</h4>
+                <p className="text-xs text-[var(--text-muted)] mb-2">These were marked Unknown. Finding out is the next step; none of them is reported as a gap.</p>
+                <ul data-testid="fusion-to-confirm" className="space-y-1">
+                  {resultCounts.unknown.map((label) => (
+                    <li key={label} className="text-sm text-[var(--text-muted)] flex gap-2">
+                      <span style={{ color: "var(--accent)" }} aria-hidden="true">?</span>
+                      <span>{label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Gaps */}
             <h4 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "var(--text)" }}>Key Gaps To Close</h4>

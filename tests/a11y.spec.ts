@@ -55,6 +55,7 @@ const PAGES = [
   "/articles/mcp-scoped-permissions",
   "/demos/standing-watch",
   "/demos/ap-exception-workflow",
+  "/demos/fusion-ai-readiness-assessment",
   "/trust/eu-ai-act/calculator",
 ];
 
@@ -93,6 +94,39 @@ test("axe: ledger demo after proposing a scenario", async ({ page }) => {
   await page.goto("/demos/ap-exception-workflow", { waitUntil: "load" });
   await page.getByRole("button", { name: /^1 — /}).click();
   await expect(page.locator("p[role=status]").filter({ hasText: "Audit ledger now has" })).toContainText("Latest decision");
+  await scan(page);
+});
+
+test("axe: Fusion readiness demo with Present / Absent / Unknown selections and a (mocked) result", async ({ page }) => {
+  // The model call is mocked: no API key or network is needed.
+  await page.route("**/api/demos/fusion-ai-readiness-assessment", (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        assessment: {
+          readinessScore: 4,
+          scoreReasoning: "Mock reasoning.",
+          keyGaps: [
+            { title: "Gap one", detail: "Detail one." },
+            { title: "Gap two", detail: "Detail two." },
+            { title: "Gap three", detail: "Detail three." },
+          ],
+          recommendedApproach: { approach: "needs-guardrails", reasoning: "Mock approach." },
+          nextSteps: ["Step one", "Step two"],
+        },
+        emailed: false,
+      }),
+    })
+  );
+  await page.goto("/demos/fusion-ai-readiness-assessment", { waitUntil: "load" });
+  const sets = page.locator("fieldset");
+  await sets.nth(0).getByRole("radio", { name: "Present", exact: true }).check();
+  await sets.nth(1).getByRole("radio", { name: "Absent", exact: true }).check();
+  await expect(sets.nth(1).getByRole("radio", { name: "Absent", exact: true })).toBeChecked();
+  await scan(page);
+  await page.getByRole("button", { name: /generate readiness assessment/i }).click();
+  await expect(page.getByTestId("fusion-to-confirm")).toBeVisible();
   await scan(page);
 });
 
