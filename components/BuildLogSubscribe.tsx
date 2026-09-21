@@ -61,7 +61,7 @@ export default function BuildLogSubscribe() {
         </p>
         <p className="text-xs text-[var(--text-muted)]">No spam, no schedule — just what actually ships.</p>
       </div>
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         <label htmlFor="build-log-email" className="sr-only">Email</label>
         <input
           id="build-log-email"
@@ -72,7 +72,7 @@ export default function BuildLogSubscribe() {
           placeholder="jane@acme.com"
           required
           disabled={state === "submitting"}
-          className="px-3 py-2.5 rounded-lg text-sm placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)] w-48"
+          className="px-3 py-2.5 rounded-lg text-sm placeholder-slate-600 outline-none focus:ring-2 focus:ring-[var(--accent)] w-48 max-w-full"
           style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
         />
         <button

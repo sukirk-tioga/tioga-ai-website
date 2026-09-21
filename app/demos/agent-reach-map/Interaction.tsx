@@ -144,6 +144,7 @@ export default function Interaction() {
         className="rounded-2xl p-4"
         style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
         data-testid="reach-map-detail-panel"
+        aria-live="polite"
       >
         {selectedAgent ? (
           <div data-testid="reach-map-agent-detail">

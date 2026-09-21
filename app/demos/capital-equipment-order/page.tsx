@@ -375,7 +375,7 @@ export default function CapitalEquipmentOrderPage() {
       <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Order pipeline</h2>
         <p className="text-xs text-[var(--text-muted)] mb-4">The seed orders each canned scenario targets — watch this update as scenarios execute.</p>
-        <div className="overflow-x-auto">
+        <div role="region" aria-label="Table: order pipeline" tabIndex={0} className="overflow-x-auto">
           <table className="w-full text-sm" style={{ minWidth: 560 }}>
             <thead>
               <tr style={{ borderBottom: "1px solid var(--border)" }}>
@@ -444,7 +444,7 @@ export default function CapitalEquipmentOrderPage() {
               aria-label="TBD order to finalize"
               value={freeformOrderId}
               onChange={(e) => setFreeformOrderId(e.target.value)}
-              className="px-3 py-2.5 rounded-lg text-sm"
+              className="px-3 py-2.5 rounded-lg text-sm min-w-0"
               style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
             >
               {Object.values(orders)
@@ -457,10 +457,11 @@ export default function CapitalEquipmentOrderPage() {
             </select>
             <input
               type="number"
+              aria-label="Final price in dollars"
               placeholder="Final price, e.g. 2500000"
               value={freeformFinalPrice}
               onChange={(e) => setFreeformFinalPrice(e.target.value)}
-              className="px-3 py-2.5 rounded-lg text-sm flex-1"
+              className="px-3 py-2.5 rounded-lg text-sm flex-1 min-w-0"
               style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
             />
             <button
@@ -521,6 +522,15 @@ export default function CapitalEquipmentOrderPage() {
         </div>
       )}
 
+      {/* Screen-reader announcement for results that land in the table below
+          (a live region must exist before its text changes, so it is always
+          rendered and only its text updates). */}
+      <p role="status" aria-live="polite" className="sr-only">
+        {ledger.length === 0
+          ? ""
+          : `Audit ledger now has ${ledger.length} ${ledger.length === 1 ? "entry" : "entries"}. Latest decision: ${decisionStyle[ledger[0].decision].label}.`}
+      </p>
+
       {/* Ledger */}
       <div className="rounded-2xl overflow-hidden mb-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div className="px-5 pt-5 pb-3 flex items-center justify-between">
@@ -540,7 +550,7 @@ export default function CapitalEquipmentOrderPage() {
         {ledger.length === 0 ? (
           <p className="text-sm text-[var(--text-muted)] px-5 pb-6">No actions proposed yet — try a scenario above.</p>
         ) : (
-          <div className="overflow-x-auto">
+          <div role="region" aria-label="Table: action ledger" tabIndex={0} className="overflow-x-auto">
             <table className="w-full text-sm" style={{ minWidth: 640 }}>
               <thead>
                 <tr style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
@@ -561,6 +571,7 @@ export default function CapitalEquipmentOrderPage() {
                       <td className="px-4 py-2.5"><Badge decision={e.decision} /></td>
                       <td className="px-4 py-2.5 whitespace-nowrap">
                         <button
+                          aria-expanded={expanded === e.actionId}
                           onClick={() => setExpanded(expanded === e.actionId ? null : e.actionId)}
                           className="text-xs"
                           style={{ color: "var(--accent)" }}

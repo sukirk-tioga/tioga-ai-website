@@ -412,7 +412,7 @@ export default function QuickbooksBillApprovalPage() {
               aria-label="Bill to process"
               value={freeformBillId}
               onChange={(e) => setFreeformBillId(e.target.value)}
-              className="px-3 py-2.5 rounded-lg text-sm flex-1"
+              className="px-3 py-2.5 rounded-lg text-sm flex-1 min-w-0"
               style={{ background: "var(--bg-dark)", border: "1px solid var(--border)", color: "var(--text)" }}
             >
               {Object.values(bills).map((bill) => (
@@ -514,6 +514,15 @@ export default function QuickbooksBillApprovalPage() {
         )}
       </div>
 
+      {/* Screen-reader announcement for results that land in the table below
+          (a live region must exist before its text changes, so it is always
+          rendered and only its text updates). */}
+      <p role="status" aria-live="polite" className="sr-only">
+        {ledger.length === 0
+          ? ""
+          : `Audit ledger now has ${ledger.length} ${ledger.length === 1 ? "entry" : "entries"}. Latest decision: ${decisionStyle[ledger[0].decision].label}.`}
+      </p>
+
       {/* Ledger */}
       <div className="rounded-2xl overflow-hidden mb-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div className="px-5 pt-5 pb-3 flex items-center justify-between">
@@ -533,7 +542,7 @@ export default function QuickbooksBillApprovalPage() {
         {ledger.length === 0 ? (
           <p className="text-sm text-[var(--text-muted)] px-5 pb-6">No bills proposed yet — try a scenario above.</p>
         ) : (
-          <div className="overflow-x-auto">
+          <div role="region" aria-label="Table: action ledger" tabIndex={0} className="overflow-x-auto">
             <table className="w-full text-sm" style={{ minWidth: 640 }}>
               <thead>
                 <tr style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
@@ -554,6 +563,7 @@ export default function QuickbooksBillApprovalPage() {
                       <td className="px-4 py-2.5"><Badge decision={e.decision} /></td>
                       <td className="px-4 py-2.5 whitespace-nowrap">
                         <button
+                          aria-expanded={expanded === e.actionId}
                           onClick={() => setExpanded(expanded === e.actionId ? null : e.actionId)}
                           className="text-xs mr-3"
                           style={{ color: "var(--accent)" }}

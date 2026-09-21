@@ -29,6 +29,7 @@ function AreaButton({
   return (
     <button
       type="button"
+      aria-pressed={selected}
       onClick={onClick}
       className="text-left px-3.5 py-2.5 rounded-xl transition-all text-sm font-medium"
       style={{
@@ -109,7 +110,7 @@ export default function JouleCapabilityGateMapPage() {
           ))}
         </div>
 
-        <div className="pt-4" style={{ borderTop: "1px solid var(--border)" }}>
+        <div className="pt-4" style={{ borderTop: "1px solid var(--border)" }} aria-live="polite">
           <p className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-3">
             {areaLabel} — {capabilities.length} write-capable {capabilities.length === 1 ? "capability" : "capabilities"}
           </p>

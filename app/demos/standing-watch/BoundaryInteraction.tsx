@@ -103,6 +103,7 @@ export default function BoundaryInteraction({
         className="rounded-2xl p-4 min-w-0"
         style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
         data-testid="boundary-detail-panel"
+        aria-live="polite"
       >
         {selected ? (
           <div data-testid="boundary-finding-detail">

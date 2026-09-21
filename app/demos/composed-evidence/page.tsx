@@ -133,6 +133,9 @@ export default function ComposedEvidencePage() {
         >
           {busy ? "Running…" : allRevealed ? "Replay the scenario" : "Send the request"}
         </button>
+        <p role="status" aria-live="polite" className="sr-only">
+          {busy ? "Running the scenario…" : allRevealed ? "Scenario complete: the assistant log, ERP log and composed record are shown below." : ""}
+        </p>
       </div>
 
       {/* Audit question banner */}

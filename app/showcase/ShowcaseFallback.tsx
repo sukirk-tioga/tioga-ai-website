@@ -24,7 +24,7 @@ export default function ShowcaseFallback() {
           lost graphics context) — here are the same {LEDGER.length} rows without it.
         </p>
       </div>
-      <div className="overflow-x-auto">
+      <div role="region" aria-label="Table: ledger rows" tabIndex={0} className="overflow-x-auto">
         <table className="w-full text-sm" style={{ minWidth: 640 }}>
           <thead>
             <tr style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>

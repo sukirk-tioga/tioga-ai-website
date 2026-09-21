@@ -185,6 +185,7 @@ export default function FusionAiReadinessAssessmentPage() {
                   <button
                     key={c.id}
                     type="button"
+                    aria-pressed={on}
                     onClick={() => toggleControl(c.label)}
                     className="text-left px-3 py-2 rounded-lg text-xs font-medium transition-all"
                     style={{
@@ -229,8 +230,11 @@ export default function FusionAiReadinessAssessmentPage() {
               "Generate Readiness Assessment"
             )}
           </button>
+          <p role="status" aria-live="polite" className="sr-only">
+            {state === "loading" ? PROGRESS_STAGES[stage] : state === "done" ? "Assessment ready; the results are shown below." : ""}
+          </p>
           {state === "error" && (
-            <p className="text-sm text-center" style={{ color: "var(--error-light)" }}>{error}</p>
+            <p role="alert" className="text-sm text-center" style={{ color: "var(--error-light)" }}>{error}</p>
           )}
         </div>
       </div>

@@ -132,6 +132,7 @@ function ProposalCard({
       <div className="flex items-center justify-between gap-3 flex-wrap mt-1">
         <div className="flex gap-2">
           <button
+            aria-pressed={decision === "approved"}
             onClick={() => onToggle(proposal.id, "approved")}
             className="text-xs px-3 py-1.5 rounded-lg font-semibold transition-all"
             style={
@@ -143,6 +144,7 @@ function ProposalCard({
             Approve line
           </button>
           <button
+            aria-pressed={decision === "rejected"}
             onClick={() => onToggle(proposal.id, "rejected")}
             className="text-xs px-3 py-1.5 rounded-lg font-semibold transition-all"
             style={
@@ -245,6 +247,10 @@ export default function HeadcountForecastDraftProvenancePage() {
         ))}
       </div>
 
+      <p role="status" aria-live="polite" className="sr-only">
+        {`${approvedCount} of ${DRAFT_PROPOSALS.length} lines approved; net budget impact ${fmtSigned(netImpact)}.`}
+      </p>
+
       {/* Diff summary */}
       <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Diff summary: {PLAN_LABEL} vs. {APPROVED_LABEL}</h2>
@@ -252,7 +258,7 @@ export default function HeadcountForecastDraftProvenancePage() {
           Recomputed live from the Approve/Reject decisions above — a rejected line stays at its current approved
           value and contributes zero diff.
         </p>
-        <div className="overflow-x-auto">
+        <div role="region" aria-label="Table: recomputed FY2027 budget diff" tabIndex={0} className="overflow-x-auto">
           <table className="w-full text-sm" style={{ minWidth: 640 }}>
             <thead>
               <tr style={{ borderBottom: "1px solid var(--border)" }}>
@@ -302,7 +308,7 @@ export default function HeadcountForecastDraftProvenancePage() {
           The current approved FY2027 budget the draft above diffs against — an invented five-department org. Every
           department, headcount, comp, and burden-rate figure is synthetic and does not represent any real company.
         </p>
-        <div className="overflow-x-auto">
+        <div role="region" aria-label="Table: current approved FY2027 budget" tabIndex={0} className="overflow-x-auto">
           <table className="w-full text-sm" style={{ minWidth: 560 }}>
             <thead>
               <tr style={{ borderBottom: "1px solid var(--border)" }}>

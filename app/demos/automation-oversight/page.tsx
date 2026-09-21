@@ -99,7 +99,7 @@ export default function AutomationOversightPage() {
                 borderBottom: i === RECENT.length - 1 ? "1px solid var(--border)" : "none",
               }}
             >
-              <div className="flex items-start justify-between gap-4 mb-1.5">
+              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-1 mb-1.5">
                 <span className="text-[11px] font-mono text-slate-500 whitespace-nowrap pt-0.5">{r.date}</span>
                 <span
                   className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide whitespace-nowrap"

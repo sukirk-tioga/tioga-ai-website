@@ -75,7 +75,7 @@ export default function ShowcaseCanvasLoader() {
           onGateCross={playTick}
         />
       </div>
-      <div className="flex items-center justify-between mt-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 mt-3">
         <p className="text-xs" style={{ color: "var(--text-muted-3)" }}>
           Resting at the completed ledger — press Replay to watch the real Sep 8–9 sequence.
         </p>

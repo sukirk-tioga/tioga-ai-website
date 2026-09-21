@@ -54,6 +54,7 @@ function SelectButton({
   return (
     <button
       type="button"
+      aria-pressed={selected}
       onClick={onClick}
       className="w-full text-left p-3.5 rounded-xl transition-all"
       style={{
@@ -200,6 +201,10 @@ export default function AgentAutonomyMapperPage() {
           </div>
         )}
       </div>
+
+      <p role="status" aria-live="polite" className="sr-only">
+        {tiogaTierInfo && gartnerTierInfo ? `Result: ${gartnerTierInfo.label}, mapped to ${tiogaTierInfo.label}.` : ""}
+      </p>
 
       {/* Results */}
       {gartnerTierInfo && tiogaTierInfo && result && (

@@ -60,17 +60,23 @@ export default function DemosPage() {
           visually redundant with DemosClient's own hero/cards for a real
           browser (which hydrates immediately), so this is kept minimal
           rather than duplicating the full interactive UI. */}
-      <h1 className="sr-only">Live AI Demos — Tioga AI</h1>
-      <p className="sr-only">
-        Real AI workflows running against Tioga AI&apos;s own agent infrastructure, no signup and no mockups. A few examples (see the full, current catalog below):
-      </p>
-      <ul className="sr-only">
-        {DEMOS.map((demo) => (
-          <li key={demo.title}>
-            <a href={demo.href}>{demo.title}</a> ({demo.tag}): {demo.desc}
-          </li>
-        ))}
-      </ul>
+      {/* aria-hidden + tabIndex -1: the interactive page below already exposes
+          this same catalog and its own h1 to assistive tech; this copy is only
+          for crawlers/non-JS readers, so it must not add a second h1, sit
+          outside a landmark, or put invisible links in the tab order. */}
+      <div className="sr-only" aria-hidden="true">
+        <p>Live AI Demos — Tioga AI</p>
+        <p>
+          Real AI workflows running against Tioga AI&apos;s own agent infrastructure, no signup and no mockups. A few examples (see the full, current catalog below):
+        </p>
+        <ul>
+          {DEMOS.map((demo) => (
+            <li key={demo.title}>
+              <a href={demo.href} tabIndex={-1}>{demo.title}</a> ({demo.tag}): {demo.desc}
+            </li>
+          ))}
+        </ul>
+      </div>
       <DemosClient />
     </>
   );

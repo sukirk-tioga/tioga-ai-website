@@ -140,7 +140,7 @@ export default function StandingWatchDemoPage() {
             rules, was flagged the same day but sits outside this report and outside anything
             reachable from either machine — see below)
           </p>
-          <div className="rounded-xl overflow-hidden" style={{ border: "1px solid var(--border)" }}>
+          <div role="region" aria-label="Table: security-watch findings" tabIndex={0} className="rounded-xl overflow-x-auto" style={{ border: "1px solid var(--border)" }}>
             <table className="w-full text-sm" style={{ minWidth: 640 }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid var(--border)" }}>
