@@ -17,7 +17,7 @@ const ROW_STEP_MS = 220;
 
 const poolStyle = {
   free: { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" },
-  paid: { background: "#FBBF2415", border: "1px solid #FBBF2440", color: "var(--warning-light)" },
+  paid: { background: "#FBBF2415", border: "1px solid #FBBF2440", color: "var(--warning-on-tint)" },
 } as const;
 
 export default function GovernanceLedgerPreview() {
@@ -72,7 +72,7 @@ export default function GovernanceLedgerPreview() {
         ))}
       </div>
 
-      <div className="px-4 py-2.5 text-[11px]" style={{ borderTop: "1px solid var(--border)", color: "var(--text-muted-3)" }}>
+      <div className="px-4 py-2.5 text-[11px]" style={{ borderTop: "1px solid var(--border)", color: "var(--text-muted-2)" }}>
         Real operational data, refreshed periodically — not a live-refreshing feed.
       </div>
     </div>

@@ -182,7 +182,7 @@ const PRACTICES: Practice[] = [
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <h1 className="text-4xl font-bold mb-6" style={{ color: "var(--text)" }}>Services</h1>
         <p className="text-[var(--text-muted)] text-lg max-w-2xl leading-relaxed mb-4">

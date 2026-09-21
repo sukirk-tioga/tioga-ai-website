@@ -22,7 +22,7 @@ export default function DemoShell({
   children: ReactNode;
 }) {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <div className="pt-28 pb-20 px-6 max-w-3xl mx-auto">
         <Link
           href="/demos"

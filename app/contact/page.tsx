@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl lg:text-5xl font-bold mb-4 tracking-tight text-balance" style={{ color: "var(--text)" }}>

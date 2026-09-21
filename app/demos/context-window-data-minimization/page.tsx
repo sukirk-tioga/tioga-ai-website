@@ -135,6 +135,10 @@ export default function ContextWindowDataMinimizationPage() {
         </div>
       </div>
 
+      <p role="status" aria-live="polite" className="sr-only">
+        {busy ? "Assembling context…" : ranOnce ? "Both agents have answered; the naive and governed contexts are shown below." : ""}
+      </p>
+
       {ranOnce && (
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           {/* Naive agent */}
@@ -185,7 +189,7 @@ export default function ContextWindowDataMinimizationPage() {
           employees for {MONTH_LABEL}. Every name, SSN, pay rate, and shift below is synthetic and does not represent any
           real person or any real UKG tenant.
         </p>
-        <div className="overflow-x-auto">
+        <div role="region" aria-label="Table: synthetic employee records" tabIndex={0} className="overflow-x-auto">
           <table className="w-full text-sm" style={{ minWidth: 560 }}>
             <thead>
               <tr style={{ borderBottom: "1px solid var(--border)" }}>

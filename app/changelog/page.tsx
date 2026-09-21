@@ -320,8 +320,11 @@ const KIND_STYLE: Record<Kind, { color: string; bg: string; text?: string }> = {
 };
 
 export default function ChangelogPage() {
+  // overflow-x-clip on <main>: the title scatter animation (ChangelogBeat)
+  // briefly throws characters past the viewport edge; clip, unlike hidden, adds
+  // no scroll container, so this only stops that becoming page-wide scroll.
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen overflow-x-clip" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"

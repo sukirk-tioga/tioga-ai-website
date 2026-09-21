@@ -144,6 +144,7 @@ export default function ErpReportingCopilotPage() {
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="text"
+              aria-label="Ask a question about the ERP dataset"
               placeholder="e.g. which quotes expire soon and haven't converted?"
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -162,6 +163,11 @@ export default function ErpReportingCopilotPage() {
           </div>
         </div>
       </div>
+
+      {/* Live region: always rendered so the answer is announced when it lands. */}
+      <p role="status" aria-live="polite" className="sr-only">
+        {busy ? "Reasoning…" : askedQuestion ? (unsupported || !result ? "No canned answer for that question." : `Answer ready: ${result.rows.length} matching ${result.rows.length === 1 ? "record" : "records"}.`) : ""}
+      </p>
 
       {/* Answer */}
       {askedQuestion && !busy && (
@@ -204,7 +210,7 @@ export default function ErpReportingCopilotPage() {
               {result.rows.length === 0 ? (
                 <p className="text-sm text-[var(--text-muted)] px-5 pb-6">No matching records.</p>
               ) : (
-                <div className="overflow-x-auto">
+                <div role="region" aria-label="Table: query results" tabIndex={0} className="overflow-x-auto">
                   <table className="w-full text-sm" style={{ minWidth: 640 }}>
                     <thead>
                       <tr style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
@@ -244,7 +250,7 @@ export default function ErpReportingCopilotPage() {
         <p className="text-xs text-[var(--text-muted)] mb-4">
           The full illustrative dataset every question above is run against — reference date {fmtDate(AS_OF_DATE)}.
         </p>
-        <div className="overflow-x-auto">
+        <div role="region" aria-label="Table: illustrative dataset" tabIndex={0} className="overflow-x-auto">
           <table className="w-full text-sm" style={{ minWidth: 720 }}>
             <thead>
               <tr style={{ borderBottom: "1px solid var(--border)" }}>

@@ -171,7 +171,10 @@ export default function ChatWidget() {
       {isOpen && (
         <div
           role="dialog"
-          aria-modal="true"
+          // Non-modal: the page behind stays usable and focus is not trapped
+          // (Escape closes and returns focus to the toggle), so claiming
+          // aria-modal would misdescribe it.
+          aria-modal="false"
           aria-label="Tioga AI Assistant chat"
           className="fixed bottom-[4.5rem] right-4 sm:bottom-24 sm:right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           style={{
@@ -212,6 +215,7 @@ export default function ChatWidget() {
             role="log"
             aria-live="polite"
             aria-label="Chat messages"
+            tabIndex={0}
             className="flex-1 overflow-y-auto p-4 space-y-4 chat-scroll"
           >
             {messages.map((message) => (

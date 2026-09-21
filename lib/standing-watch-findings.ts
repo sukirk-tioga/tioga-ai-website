@@ -83,14 +83,14 @@ export const FLAGGED: FindingRow[] = [
 ];
 
 export const severityStyle: Record<FindingRow["severity"], { background: string; border: string; color: string }> = {
-  CRITICAL: { background: "#EF444420", border: "1px solid var(--error)", color: "var(--error-light)" },
+  CRITICAL: { background: "#EF444420", border: "1px solid var(--error)", color: "var(--error-on-tint)" },
   HIGH: { background: "#FBBF2415", border: "1px solid #FBBF2440", color: "var(--warning-light)" },
   LOW: { background: "#70809615", border: "1px solid #70809640", color: "var(--text-muted-2)" },
 };
 
 export const statusStyle: Record<FindingRow["status"], { background: string; border: string; color: string }> = {
   fixed: { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" },
-  human: { background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent)" },
+  human: { background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" },
 };
 
 // Real severity -> CSS token, matching severityStyle's own colors exactly

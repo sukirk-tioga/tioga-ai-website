@@ -49,7 +49,7 @@ const ROWS: Row[] = [
 
 export default function McpVsRpaPage() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link href="/mcp" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← MCP Integrations
@@ -118,7 +118,7 @@ export default function McpVsRpaPage() {
 
           <div>
             <h2 className="text-xl font-bold mb-4" style={{ color: "var(--text)" }}>Side by side</h2>
-            <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid var(--border)" }}>
+            <div role="region" aria-label="Table: MCP versus RPA side by side" tabIndex={0} className="overflow-x-auto rounded-2xl" style={{ border: "1px solid var(--border)" }}>
               <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: "var(--bg-card)" }}>

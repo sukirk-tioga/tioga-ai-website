@@ -85,6 +85,7 @@ function ProposalCard({
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div className="flex gap-2">
           <button
+            aria-pressed={decision === "accepted"}
             onClick={() => onToggle(proposal.id, "accepted")}
             className="text-xs px-3 py-1.5 rounded-lg font-semibold transition-all"
             style={
@@ -96,6 +97,7 @@ function ProposalCard({
             Accept as proposed
           </button>
           <button
+            aria-pressed={decision === "overridden"}
             onClick={() => onToggle(proposal.id, "overridden")}
             className="text-xs px-3 py-1.5 rounded-lg font-semibold transition-all"
             style={
@@ -142,6 +144,10 @@ export default function TimecardExceptionShadowModePage() {
       evidenceTier="browser-simulation"
       description="An agent reviews a synthetic two-week pay period's timecard exceptions — missed punches, late punches, unapproved overtime, a missed meal break, a daily-overtime day, a PTO request — and proposes a correction or approval for each. It never auto-executes: every proposal names the payroll-cycle control that authorizes it, the FLSA/state wage-and-hour rule it checked, and the role required to sign off. Toggle any proposal below to see how the agreement rate moves. 100% synthetic data: an invented six-person roster and pay period, not connected to any real UKG tenant."
     >
+      <p role="status" aria-live="polite" className="sr-only">
+        {`Simulated agreement rate: ${rate}%.`}
+      </p>
+
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         <div className="p-4 rounded-xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
@@ -201,7 +207,7 @@ export default function TimecardExceptionShadowModePage() {
           in {PAY_PERIOD_LABEL}. Every name, punch, and exception is synthetic and does not represent any real person
           or any real UKG tenant. Rows with a highlighted exception feed a proposal above.
         </p>
-        <div className="overflow-x-auto">
+        <div role="region" aria-label="Table: timecard punches and exceptions" tabIndex={0} className="overflow-x-auto">
           <table className="w-full text-sm" style={{ minWidth: 640 }}>
             <thead>
               <tr style={{ borderBottom: "1px solid var(--border)" }}>

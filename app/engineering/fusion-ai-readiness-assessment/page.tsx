@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function FusionAiReadinessAssessmentWriteup() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← How I Built It
@@ -58,7 +58,7 @@ export default function FusionAiReadinessAssessmentWriteup() {
               method, governance controls — is validated against a fixed
               allowlist before anything is assembled into a prompt:
             </p>
-            <pre className="p-4 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)", color: "var(--text-muted)" }}>
+            <pre tabIndex={0} aria-label="Code sample" className="p-4 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)", color: "var(--text-muted)" }}>
 {`const USE_CASES = [
   "AP invoice exceptions (Fusion Payables)",
   "Procurement requisition triage (Fusion Procurement)",

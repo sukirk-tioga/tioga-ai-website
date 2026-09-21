@@ -8,7 +8,7 @@ import { EvidenceTierTag } from "@/app/demos/_lib/evidence-tier";
 
 export default function HomePage() {
  return (
- <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+ <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
 
  {/* Hero + Stats Bar — pinned scroll cinematic, see HomeHeroPinned.tsx
  (Phase 4 of the boundary-push plan). Stats now source real numbers
@@ -317,7 +317,7 @@ export default function HomePage() {
  </div>
  ))}
  </div>
- <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "var(--text-faint)" }}>
+ <p className="text-center mt-10 text-sm leading-relaxed" style={{ color: "var(--text-muted-2)" }}>
  Plus thirteen more engagements across two practices — modernizing ERP with an agent layer, and governing enterprise AI end to end.{" "}
  <Link href="/services" className="underline underline-offset-2 transition-colors hover:text-[var(--text)]" style={{ color: "var(--accent)" }}>
  See all services →

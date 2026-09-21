@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { tint } from "@/lib/tint";
 
 // Deterministic, rules-based classification — not a model call. Real
 // regulatory classification isn't something we're willing to let an LLM
@@ -82,6 +83,9 @@ const RESULTS: Record<Tier, { title: string; color: string; penalty: string; bod
 function CheckItem({ checked, onChange, label }: { checked: boolean; onChange: () => void; label: string }) {
   return (
     <button
+      type="button"
+      role="checkbox"
+      aria-checked={checked}
       onClick={onChange}
       className="w-full flex items-start gap-3 p-3 rounded-xl text-left transition-all"
       style={{ background: checked ? "#C8340610" : "transparent", border: `1px solid ${checked ? "#C8340640" : "var(--border)"}` }}
@@ -125,7 +129,7 @@ export default function EUAIActCalculatorPage() {
   const result = RESULTS[tier];
 
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <Link href="/trust/eu-ai-act" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← EU AI Act Exposure
@@ -160,6 +164,8 @@ export default function EUAIActCalculatorPage() {
               </p>
               <div className="flex gap-3">
                 <button
+                  type="button"
+                  aria-pressed={euExposure === "yes"}
                   onClick={() => setEuExposure("yes")}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
                   style={{ background: euExposure === "yes" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "yes" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "yes" ? "var(--accent-on-tint)" : "var(--text-muted)" }}
@@ -167,6 +173,8 @@ export default function EUAIActCalculatorPage() {
                   Yes
                 </button>
                 <button
+                  type="button"
+                  aria-pressed={euExposure === "no"}
                   onClick={() => setEuExposure("no")}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
                   style={{ background: euExposure === "no" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "no" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "no" ? "var(--accent-on-tint)" : "var(--text-muted)" }}
@@ -174,6 +182,8 @@ export default function EUAIActCalculatorPage() {
                   No
                 </button>
                 <button
+                  type="button"
+                  aria-pressed={euExposure === "unsure"}
                   onClick={() => setEuExposure("unsure")}
                   className="flex-1 py-3 rounded-xl text-sm font-medium transition-all"
                   style={{ background: euExposure === "unsure" ? "#C8340615" : "var(--bg-card)", border: `1px solid ${euExposure === "unsure" ? "var(--accent)" : "var(--border)"}`, color: euExposure === "unsure" ? "var(--accent-on-tint)" : "var(--text-muted)" }}
@@ -228,7 +238,7 @@ export default function EUAIActCalculatorPage() {
           </div>
 
           {/* Result panel */}
-          <div className="lg:sticky lg:top-28 h-fit">
+          <div className="lg:sticky lg:top-28 h-fit" aria-live="polite">
             {euExposure === null ? (
               <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
                 <p className="text-[11px] uppercase tracking-wide text-[var(--text-muted)] mb-2">Result</p>
@@ -237,7 +247,7 @@ export default function EUAIActCalculatorPage() {
                 </p>
               </div>
             ) : (
-              <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: `1px solid ${result.color}40` }}>
+              <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: `1px solid ${tint(result.color, 25)}` }}>
                 <p className="text-[11px] uppercase tracking-wide text-[var(--text-muted)] mb-2">Result</p>
                 <h2 className="text-lg font-bold mb-3" style={{ color: result.color }}>{result.title}</h2>
                 <div className="mb-4 pb-4" style={{ borderBottom: "1px solid var(--border)" }}>

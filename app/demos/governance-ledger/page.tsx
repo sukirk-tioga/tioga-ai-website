@@ -67,7 +67,7 @@ export default function GovernanceLedgerPage() {
             function it evidences. Nothing here was written for this page.
           </p>
         </div>
-        <div className="overflow-x-auto">
+        <div role="region" aria-label="Table: governance ledger" tabIndex={0} className="overflow-x-auto">
           <table className="w-full text-sm" style={{ minWidth: 720 }}>
             <thead>
               <tr style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>

@@ -43,7 +43,7 @@ export default function Fallback() {
           lost graphics context) — here are the same {AGENTS.length} scheduled agents without it.
         </p>
       </div>
-      <div className="overflow-x-auto">
+      <div role="region" aria-label="Table: scheduled agents" tabIndex={0} className="overflow-x-auto">
         <table className="w-full text-sm" style={{ minWidth: 800 }}>
           <thead>
             <tr style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
@@ -71,14 +71,14 @@ export default function Fallback() {
                 </td>
                 <td className="px-4 py-2.5 text-xs text-[var(--text-muted)] align-top" style={{ minWidth: 160 }}>
                   {agent.reads.length === 0 ? (
-                    <span className="text-slate-400">—</span>
+                    <span className="text-slate-500">—</span>
                   ) : (
                     agent.reads.map(systemName).join(", ")
                   )}
                 </td>
                 <td className="px-4 py-2.5 align-top" style={{ minWidth: 220 }}>
                   {agent.writes.length === 0 ? (
-                    <span className="text-[11px] text-slate-400">advisory only — no writes</span>
+                    <span className="text-[11px] text-slate-500">advisory only — no writes</span>
                   ) : (
                     <div className="flex flex-col gap-1">
                       {agent.writes.map((w, wi) => (

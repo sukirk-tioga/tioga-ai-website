@@ -86,7 +86,7 @@ function GateBox({ label, children }: { label: string; children: React.ReactNode
 
 export default function HowWeDeliverPage() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← How I Built It
@@ -644,7 +644,7 @@ export default function HowWeDeliverPage() {
               shown, mapped to the client-facing artifact that embodies the
               same discipline:
             </p>
-            <div className="overflow-x-auto rounded-2xl mb-8" style={{ border: "1px solid var(--border)" }}>
+            <div role="region" aria-label="Table: disciplines mapped to client-facing artifacts" tabIndex={0} className="overflow-x-auto rounded-2xl mb-8" style={{ border: "1px solid var(--border)" }}>
               <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: "var(--bg-card)" }}>
@@ -666,7 +666,7 @@ export default function HowWeDeliverPage() {
             <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
               <strong style={{ color: "var(--text)" }}>What a control owner should be able to ask, and get:</strong>
             </p>
-            <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid var(--border)" }}>
+            <div role="region" aria-label="Table: what a control owner can ask" tabIndex={0} className="overflow-x-auto rounded-2xl" style={{ border: "1px solid var(--border)" }}>
               <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: "var(--bg-card)" }}>

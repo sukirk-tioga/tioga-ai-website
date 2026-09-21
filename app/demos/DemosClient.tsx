@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { tint } from "@/lib/tint";
+import { scrollBehavior } from "@/lib/motion";
 import FileUpload from "@/components/FileUpload";
 import { DemoActivityProvider, useSetDemoActivity } from "./_lib/demo-activity-context";
 import DemoParticleCanvasLoader from "./_lib/DemoParticleCanvasLoader";
@@ -187,7 +189,7 @@ function Badge({ label, color = "var(--accent)" }: { label: string; color?: stri
   return (
     <span
       className="text-xs px-2 py-0.5 rounded-full font-medium"
-      style={{ background: `${color}15`, color, border: `1px solid ${color}40` }}
+      style={{ background: tint(color, 8), color, border: `1px solid ${tint(color, 25)}` }}
     >
       {label}
     </span>
@@ -298,6 +300,7 @@ function InvoiceDemo() {
         rows={10}
         className="w-full px-4 py-3 rounded-xl text-sm text-[var(--text-muted)] placeholder-slate-600 outline-none resize-none font-mono"
         style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+        aria-label="Invoice text"
         placeholder="Paste invoice text here..."
       />
       <button
@@ -317,7 +320,10 @@ function InvoiceDemo() {
         ) : "Extract Invoice Data"}
       </button>
 
-      {state === "error" && <p className="text-[var(--error)] text-sm mt-2">{error}</p>}
+      <p role="status" aria-live="polite" className="sr-only">
+        {state === "loading" ? "Analyzing…" : state === "done" ? "Result ready below." : ""}
+      </p>
+      {state === "error" && <p role="alert" className="text-[var(--error)] text-sm mt-2">{error}</p>}
 
       {state === "done" && data && (
         <ResultCard>
@@ -447,6 +453,7 @@ function EmailTriageDemo() {
         rows={8}
         className="w-full px-4 py-3 rounded-xl text-sm text-[var(--text-muted)] placeholder-slate-600 outline-none resize-none"
         style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+        aria-label="Email text"
         placeholder="Or paste an email here..."
       />
       <button
@@ -460,7 +467,10 @@ function EmailTriageDemo() {
         ) : "Triage Email"}
       </button>
 
-      {state === "error" && <p className="text-[var(--error)] text-sm mt-2">{error}</p>}
+      <p role="status" aria-live="polite" className="sr-only">
+        {state === "loading" ? "Analyzing…" : state === "done" ? "Result ready below." : ""}
+      </p>
+      {state === "error" && <p role="alert" className="text-[var(--error)] text-sm mt-2">{error}</p>}
 
       {state === "loading" && <Spinner />}
 
@@ -571,6 +581,7 @@ function DocumentDemo() {
         rows={8}
         className="w-full px-4 py-3 rounded-xl text-sm text-[var(--text-muted)] placeholder-slate-600 outline-none resize-none"
         style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}
+        aria-label="Document text"
         placeholder="Or paste document text here..."
       />
       <button
@@ -584,7 +595,10 @@ function DocumentDemo() {
         ) : "Classify Document"}
       </button>
 
-      {state === "error" && <p className="text-[var(--error)] text-sm mt-2">{error}</p>}
+      <p role="status" aria-live="polite" className="sr-only">
+        {state === "loading" ? "Analyzing…" : state === "done" ? "Result ready below." : ""}
+      </p>
+      {state === "error" && <p role="alert" className="text-[var(--error)] text-sm mt-2">{error}</p>}
 
       {state === "loading" && <Spinner />}
 
@@ -706,12 +720,12 @@ function DemosPageInner() {
     const tabParam = new URLSearchParams(window.location.search).get("tab");
     if (tabParam && DEMOS.some((d) => d.id === tabParam)) {
       setActive(tabParam);
-      activeDemoRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      activeDemoRef.current?.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
     }
   }, []);
 
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
 
       <div className="pt-28 pb-20 px-6 max-w-4xl mx-auto">
         {/* Header */}

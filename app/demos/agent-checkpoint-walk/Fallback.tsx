@@ -83,7 +83,7 @@ export default function Fallback() {
           rows the interactive scene lets you walk.
         </p>
       </div>
-      <div className="overflow-x-auto">
+      <div role="region" aria-label="Table: agent write edges" tabIndex={0} className="overflow-x-auto">
         <table className="w-full text-sm" style={{ minWidth: 800 }}>
           <thead>
             <tr style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
@@ -110,7 +110,7 @@ export default function Fallback() {
                   <div className="text-[11px] text-slate-500">{row.schedule}</div>
                 </td>
                 <td className="px-4 py-2.5 text-xs text-[var(--text-muted)] align-top" style={{ minWidth: 160 }}>
-                  {row.system ?? <span className="text-slate-400">—</span>}
+                  {row.system ?? <span className="text-slate-500">—</span>}
                 </td>
                 <td className="px-4 py-2.5 align-top" style={{ minWidth: 160 }}>
                   {row.tier ? (
@@ -121,11 +121,11 @@ export default function Fallback() {
                       {TIER_LABEL[row.tier]}
                     </span>
                   ) : (
-                    <span className="text-slate-400 text-[11px]">no write</span>
+                    <span className="text-slate-500 text-[11px]">no write</span>
                   )}
                 </td>
                 <td className="px-4 py-2.5 text-xs text-[var(--text-muted)] align-top" style={{ minWidth: 160 }}>
-                  {row.approver ?? <span className="text-slate-400">—</span>}
+                  {row.approver ?? <span className="text-slate-500">—</span>}
                 </td>
                 <td className="px-4 py-2.5 text-xs text-[var(--text-muted)] align-top" style={{ minWidth: 260 }}>
                   {row.note}

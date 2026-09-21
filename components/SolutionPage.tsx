@@ -106,13 +106,13 @@ export interface SolutionContent {
 
 export default function SolutionPage({ content }: { content: SolutionContent }) {
   return (
-    <main className="min-h-screen text-[var(--text)]">
+    <main id="main-content" className="min-h-screen text-[var(--text)]">
       {/* Hero -- deliberately no opaque background here (Phase 4): this
           band is transparent so the persistent, mood-tweened
           <SolutionsFieldLoader> mounted in app/solutions/layout.tsx shows
           through as the "shared abstract space" backdrop. Everything from
           Buyer+Outcome down sits in its own opaque wrapper below. */}
-      <section className="pt-36 pb-16 px-6 max-w-4xl mx-auto text-center">
+      <section className="on-dark-surface pt-36 pb-16 px-6 max-w-4xl mx-auto text-center">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
           style={{ background: "#C8340615", border: "1px solid #C8340630", color: "var(--accent-on-tint)" }}
@@ -264,7 +264,7 @@ export default function SolutionPage({ content }: { content: SolutionContent }) 
 
             <div>
               <h3 className="text-base font-semibold mb-3" style={{ color: "var(--text)" }}>{content.runRecord.resultsHeading}</h3>
-              <div className="overflow-x-auto rounded-2xl mb-4" style={{ border: "1px solid var(--border)" }}>
+              <div role="region" aria-label="Table: run record results" tabIndex={0} className="overflow-x-auto rounded-2xl mb-4" style={{ border: "1px solid var(--border)" }}>
                 <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
                   <thead>
                     <tr style={{ background: "var(--bg-card)" }}>
