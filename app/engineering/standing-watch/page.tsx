@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function StandingWatchWriteup() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← How I Built It
@@ -95,7 +95,7 @@ export default function StandingWatchWriteup() {
               applies by hand — the router-watch report&apos;s own footer
               says it plainly:
             </p>
-            <pre className="p-4 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed mb-4" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)", color: "var(--text-muted)" }}>
+            <pre tabIndex={0} aria-label="Code sample" className="p-4 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed mb-4" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)", color: "var(--text-muted)" }}>
 {`This report is a PROPOSAL. No file was modified by this job.
 To adopt a swap, hand-edit the router config, run the test suite,
 and restart the gateway.`}
@@ -128,7 +128,7 @@ and restart the gateway.`}
               dollars, then multiplies by a separate weight for selection
               only — real cost is never faked:
             </p>
-            <pre className="p-4 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed mb-4" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)", color: "var(--text-muted)" }}>
+            <pre tabIndex={0} aria-label="Code sample" className="p-4 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed mb-4" style={{ background: "var(--bg-darker)", border: "1px solid var(--border)", color: "var(--text-muted)" }}>
 {`POOL_WEIGHT = {
     "free": 0.0,          # local hardware; electricity only
     "google": 0.05,       # linked Google billing / free tier

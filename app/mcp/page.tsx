@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { tint, onTint } from "@/lib/tint";
+import { scrollBehavior } from "@/lib/motion";
 
 // ── Animated flow line component ──────────────────────────────────────────────
 
@@ -65,14 +67,14 @@ function ArchDiagram() {
  <div key={node.id} className="flex items-center flex-1">
  {/* Node */}
  <div
- className="flex flex-col items-center text-center flex-shrink-0"
+ className="flex flex-col items-center text-center min-w-0 sm:flex-shrink-0"
  style={{ animation: `fadeInUp 0.5s ${i * 0.15}s both` }}
  >
  <div
  className="w-14 h-14 rounded-xl flex items-center justify-center text-xl mb-2 font-mono"
  style={{
- background: `${node.color}15`,
- border: `1px solid ${node.color}40`,
+ background: tint(node.color, 8),
+ border: `1px solid ${tint(node.color, 25)}`,
  animation: node.id === "claude" ? "pulse-glow 2s infinite" : undefined,
  color: node.color,
  }}
@@ -85,12 +87,12 @@ function ArchDiagram() {
 
  {/* Connector arrow */}
  {i < nodes.length - 1 && (
- <div className="flex-1 mx-3 relative h-0.5 flex items-center" style={{ background: "var(--border)" }}>
+ <div className="flex-1 mx-1 sm:mx-3 relative h-0.5 flex items-center" style={{ background: "var(--border)" }}>
  <FlowDot delay={i * 0.7} />
  <FlowDot delay={i * 0.7 + 0.5} />
  <span className="absolute right-0 text-[var(--text-muted)] text-xs">▶</span>
  {/* Label */}
- <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-xs text-[var(--text-muted)] whitespace-nowrap font-mono">
+ <span className="hidden sm:inline absolute -top-4 left-1/2 -translate-x-1/2 text-xs text-[var(--text-muted)] whitespace-nowrap font-mono">
  {i === 0 ? "query" : "tool_call()"}
  </span>
  </div>
@@ -114,14 +116,14 @@ function ArchDiagram() {
  </div>
 
  {/* Bottom row: Enterprise systems */}
- <div className="grid grid-cols-4 gap-3">
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
  {systems.map((sys, i) => (
  <div
  key={sys.label}
  className="p-3 rounded-xl text-center"
  style={{
- background: `${sys.color}08`,
- border: `1px solid ${sys.color}30`,
+ background: tint(sys.color, 3),
+ border: `1px solid ${tint(sys.color, 19)}`,
  animation: `fadeInUp 0.5s ${0.5 + i * 0.1}s both`,
  }}
  >
@@ -237,6 +239,8 @@ function CodeBlock() {
  </div>
  {/* Code */}
  <pre
+ tabIndex={0}
+ aria-label="Code example"
  className="p-5 text-xs leading-relaxed overflow-x-auto font-mono"
  style={{ color: "var(--text-muted)" }}
  >
@@ -288,7 +292,7 @@ function LiveDemo() {
 
  useEffect(() => {
  if (messages.length > 1) {
- bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+ bottomRef.current?.scrollIntoView({ behavior: scrollBehavior() });
  }
  }, [messages]);
 
@@ -345,7 +349,7 @@ function LiveDemo() {
  <span
  key={s.label}
  className="text-xs px-2 py-0.5 rounded-full font-mono"
- style={{ background: `${s.color}15`, color: s.color, border: `1px solid ${s.color}30` }}
+ style={{ background: tint(s.color, 8), color: onTint(s.color), border: `1px solid ${tint(s.color, 19)}` }}
  >
  ● {s.label}
  </span>
@@ -353,7 +357,7 @@ function LiveDemo() {
  </div>
 
  {/* Messages */}
- <div className="p-4 space-y-4 overflow-y-auto" style={{ height: "280px" }}>
+ <div className="p-4 space-y-4 overflow-y-auto" style={{ height: "280px" }} role="log" aria-live="polite" aria-label="Demo conversation" tabIndex={0}>
  {messages.map((msg, i) => (
  <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
  <div className="max-w-[85%]">
@@ -374,7 +378,7 @@ function LiveDemo() {
  <span
  key={tool}
  className="text-xs px-2 py-0.5 rounded-md font-mono"
- style={{ background: "#C8340608", color: "#C8340680", border: "1px solid #C8340620" }}
+ style={{ background: "#C8340608", color: "var(--accent-on-tint)", border: "1px solid #C8340620" }}
  >
  ⚡ {tool}
  </span>
@@ -424,6 +428,7 @@ function LiveDemo() {
  value={input}
  onChange={(e) => setInput(e.target.value)}
  onKeyDown={(e) => e.key === "Enter" && send(input)}
+ aria-label="Ask a question about your enterprise data"
  placeholder="Ask anything about your enterprise data..."
  disabled={loading}
  className="flex-1 rounded-lg px-3 py-2 text-sm placeholder-slate-600 outline-none font-mono"
@@ -496,7 +501,7 @@ function Comparison() {
 
 export default function MCPPage() {
  return (
- <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+ <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
  <style>{`
  @keyframes fadeInUp {
  from { opacity: 0; transform: translateY(20px); }

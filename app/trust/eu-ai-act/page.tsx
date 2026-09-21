@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { tint } from "@/lib/tint";
 
 export const metadata: Metadata = {
   title: "EU AI Act Exposure",
@@ -41,7 +42,7 @@ const TIERS = [
 
 export default function EUAIActPage() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
@@ -76,7 +77,7 @@ export default function EUAIActPage() {
                     <h3 className="font-semibold" style={{ color: "var(--text)" }}>{t.scope}</h3>
                     <span
                       className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                      style={{ color: t.statusColor, background: `${t.statusColor}15`, border: `1px solid ${t.statusColor}30` }}
+                      style={{ color: t.statusColor, background: tint(t.statusColor, 8), border: `1px solid ${tint(t.statusColor, 19)}` }}
                     >
                       {t.status}
                     </span>

@@ -47,7 +47,7 @@ const content: ArticleContent = {
     {
       heading: "The landscape, system by system",
       body: (
-        <div className="overflow-x-auto -mx-2 px-2">
+        <div role="region" aria-label="Table: the landscape, system by system" tabIndex={0} className="overflow-x-auto -mx-2 px-2">
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr style={{ borderBottom: "1px solid var(--border)" }}>
