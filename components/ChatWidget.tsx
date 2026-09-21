@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import Image from "next/image";
 import { track } from "@vercel/analytics";
 
 interface Message {
@@ -188,7 +189,7 @@ export default function ChatWidget() {
             style={{ borderBottom: "1px solid var(--border)" }}
           >
             <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden" style={{ background: "var(--bg-dark)" }}>
-              <img src="/logo-icon.png" alt="Tioga AI" className="w-full h-full object-contain object-bottom" />
+              <Image src="/logo-icon.png" alt="Tioga AI" width={996} height={670} unoptimized className="w-full h-full object-contain object-bottom" />
             </div>
             <div>
               <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>Tioga AI Assistant</p>

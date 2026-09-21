@@ -132,7 +132,7 @@ export default function AgentAutonomyMapperPage() {
     >
       {/* Step 1: pick a use case */}
       <div className="p-6 rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>What's the use case?</h2>
+        <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>What&apos;s the use case?</h2>
         <p className="text-sm text-[var(--text-muted)] mb-5">
           Pick one of these SAP/Oracle-relevant examples, or describe your own agent.
         </p>
@@ -233,8 +233,8 @@ export default function AgentAutonomyMapperPage() {
             </div>
 
             <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-              This is a near-exact structural match: Gartner's four-tier scale (Observe → Advise → Act with
-              Approval → Act Autonomously) and Tioga's own three-tier policy (Safe → Ask-first → Never) are
+              This is a near-exact structural match: Gartner&apos;s four-tier scale (Observe → Advise → Act with
+              Approval → Act Autonomously) and Tioga&apos;s own three-tier policy (Safe → Ask-first → Never) are
               measuring the same thing — how much unsupervised authority an agent has over a given action — from
               two independent directions. Gartner arrived at this shape as an outside analyst firm surveying the
               market broadly; Tioga arrived at it building governed write-paths for real SAP/Oracle transactions.

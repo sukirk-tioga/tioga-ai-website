@@ -71,7 +71,7 @@ export function useReplayChime(enabled: boolean) {
     (row: LedgerRow) => {
       if (!enabled) return;
       if (typeof window === "undefined") return;
-      const AudioContextCtor = window.AudioContext || (window as any).webkitAudioContext;
+      const AudioContextCtor = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       if (!AudioContextCtor) return;
 
       if (!ctxRef.current) {

@@ -314,7 +314,7 @@ export default function ComposedEvidencePage() {
         addressed,&rdquo; and assigns the mitigations to the customer. This demo dramatizes that gap with a single
         composite scenario: a universal AI assistant (Claude/ChatGPT-class) that logs conversation and intent, and an
         ERP vendor&apos;s own execution agent that logs the transaction under a shared integration account — neither
-        composes the other's half into one attributable record on its own. Everything on this page runs in your
+        composes the other&apos;s half into one attributable record on its own. Everything on this page runs in your
         browser; nothing is sent to a server. Illustrative composite scenario grounded in a real, documented gap —
         not a real client engagement.
       </p>

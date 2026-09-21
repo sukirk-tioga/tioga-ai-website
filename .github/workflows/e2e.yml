@@ -16,7 +16,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - name: Lint (errors fail; pre-existing issues are configured as warnings)
+      - name: Lint (zero warnings allowed)
         run: npm run lint
       - run: npx playwright install --with-deps chromium webkit
       - name: Run structural + accessibility tests (page loads, links, SEO, axe — no AI calls)
