@@ -1,6 +1,6 @@
 export default function NotFound() {
   return (
-    <main className="min-h-screen flex items-center justify-center text-[var(--text)] px-6" style={{ background: "var(--bg-dark)" }}>
+    <main id="main-content" className="min-h-screen flex items-center justify-center text-[var(--text)] px-6" style={{ background: "var(--bg-dark)" }}>
       <div className="max-w-lg w-full text-center">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"

@@ -51,6 +51,7 @@ export default function Nav() {
   return (
     <>
       <nav
+        aria-label="Primary"
         className="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between transition-all duration-200"
         style={{
           background: scrolled ? "rgba(245,243,239,0.97)" : "rgba(245,243,239,0.92)",
@@ -67,7 +68,7 @@ export default function Nav() {
             height={52}
             className="w-12 h-12 object-contain"
           />
-          <span className="font-semibold text-xl tracking-tight" style={{ color: "var(--text)" }}>tioga<span style={{ color: "var(--accent)" }}>.ai</span></span>
+          <span className="font-semibold text-xl tracking-tight" style={{ color: "var(--text)" }}>tioga<span style={{ color: "var(--accent-on-tint)" }}>.ai</span></span>
         </Link>
 
         {/* Desktop links */}
@@ -105,15 +106,15 @@ export default function Nav() {
             aria-controls="mobile-nav-menu"
           >
             <span
-              className="block w-5 h-0.5 bg-slate-400 transition-all duration-200 origin-center"
+              className="block w-5 h-0.5 bg-[var(--text-muted)] transition-all duration-200 origin-center"
               style={menuOpen ? { transform: "rotate(45deg) translate(3px, 3px)" } : {}}
             />
             <span
-              className="block w-5 h-0.5 bg-slate-400 transition-all duration-200"
+              className="block w-5 h-0.5 bg-[var(--text-muted)] transition-all duration-200"
               style={menuOpen ? { opacity: 0 } : {}}
             />
             <span
-              className="block w-5 h-0.5 bg-slate-400 transition-all duration-200 origin-center"
+              className="block w-5 h-0.5 bg-[var(--text-muted)] transition-all duration-200 origin-center"
               style={menuOpen ? { transform: "rotate(-45deg) translate(3px, -3px)" } : {}}
             />
           </button>

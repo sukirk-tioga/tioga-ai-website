@@ -56,7 +56,7 @@ const proof = [
 
 export default function StandingWatchLandingPage() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       {/* Hero / Problem */}
       <section className="pt-36 pb-20 px-6 max-w-4xl mx-auto">
         <ScrollReveal>

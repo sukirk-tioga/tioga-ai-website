@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function InvoiceProcessingWriteup() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-3xl mx-auto">
         <Link href="/engineering" className="text-xs mb-6 inline-block hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
           ← How I Built It

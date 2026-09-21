@@ -40,7 +40,7 @@ export default function ArticlePage({ content }: { content: ArticleContent }) {
   };
 
   return (
-    <main className="min-h-screen text-[var(--text)]" style={{ background: "var(--bg-dark)" }}>
+    <main id="main-content" className="min-h-screen text-[var(--text)]" style={{ background: "var(--bg-dark)" }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

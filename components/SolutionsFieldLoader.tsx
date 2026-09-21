@@ -101,7 +101,7 @@ export default function SolutionsFieldLoader() {
     // reduced-motion / pre-hydration fallback too, not just once the
     // animated field mounts.
     return (
-      <div className="fixed -z-10 inset-0 pointer-events-none" style={{ background: "var(--bg-solutions-field)" }}>
+      <div aria-hidden="true" className="fixed -z-10 inset-0 pointer-events-none" style={{ background: "var(--bg-solutions-field)" }}>
         <StaticGlow color={staticColor} />
       </div>
     );
@@ -113,7 +113,7 @@ export default function SolutionsFieldLoader() {
     // compile) before its first frame paints, and without a base color on
     // this wrapper that gap showed the light page background through,
     // making --text-on-dark briefly invisible right after mount.
-    <div className="fixed -z-10 inset-0 pointer-events-none" data-testid="solutions-field-canvas" style={{ background: "var(--bg-solutions-field)" }}>
+    <div aria-hidden="true" className="fixed -z-10 inset-0 pointer-events-none" data-testid="solutions-field-canvas" style={{ background: "var(--bg-solutions-field)" }}>
       <SolutionsFieldScene
         onContextLost={() => setShowField(false)}
         onReady={(material) => {

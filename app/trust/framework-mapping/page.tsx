@@ -40,7 +40,7 @@ const MAPPING = [
 
 export default function FrameworkMappingPage() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
+    <main id="main-content" className="min-h-screen" style={{ background: "var(--bg-dark)", color: "var(--text)" }}>
       <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"

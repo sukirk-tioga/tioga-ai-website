@@ -60,6 +60,13 @@
      they are now the same values as --error / --warning. The 3D scenes
      that want the pale originals read --scene-* below. */
   --error: #B43A28;
+  /* Error text on the 12.5% error tint (CRITICAL severity pills, incl. when
+     the pill sits on an accent-tinted selected row): --error is only 4.36:1
+     there; this is 5.3:1. Use ONLY for text on an error tint. */
+  --error-on-tint: #A33222;
+  /* Warning text on its own 8% tint over the darker card surface
+     (--bg-darker): --warning is 4.43:1 there; this is 5.36:1. */
+  --warning-on-tint: #7F4E16;
   --error-light: var(--error);
   --warning: #90591A;
   --warning-light: var(--warning);
@@ -153,4 +160,63 @@ h1, h2, h3, h4, h5, h6 {
 }
 .field-fade-in {
   animation: fieldFadeIn 0.25s ease-out;
+}
+
+/* ---- Keyboard: skip link + site-wide focus indicator (2026-09-20) --------
+   Unlayered on purpose: it beats Tailwind's layered `outline-none` /
+   `focus:outline-none` utilities, so no control can silently lose its ring.
+   2px solid accent (4.9:1 on the paper background) offset 2px so it sits on
+   the surrounding surface even when the control itself is accent-filled. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* On the Solutions pages' dark WebGL field the accent ring is only ~3.5:1;
+   the light text-on-dark token is 17:1 there. */
+[data-theme="dark"] :focus-visible,
+.on-dark-surface :focus-visible {
+  outline-color: var(--text-on-dark);
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 1000;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  /* Visually hidden until focused (kept out of the layout, not display:none,
+     so it stays in the tab order). */
+  transform: translateY(-200%);
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ---- Reduced motion (2026-09-20) ------------------------------------------
+   Global backstop for every CSS animation/transition on the site (nav status
+   pulse, /mcp flow dots, streaming cursor, typing dots, hover transitions,
+   fade-in-up entrances). Animations collapse to a single instant iteration so
+   end states -- fully visible, opacity 1 -- still apply (fill-mode `both`
+   keyframes land on their final frame); delays go to 0 so nothing waits
+   invisible. Scenes, GSAP and video have their own scene-level checks. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
 }
