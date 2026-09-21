@@ -33,11 +33,13 @@
   --bg-darker: #E6E4DF;
   --bg-card-alt: #F6F5F1;
   --text: #221F19;
-  --text-muted: #625D54;
+  /* Top muted tier: 7.0:1 on --bg-dark (was #625D54, 5.9:1) so it reads as
+     clearly stronger than the two AA-floor tiers below it, same hue. */
+  --text-muted: #56524A;
   /* AA text tiers on the light surfaces (2026-09-20 live a11y audit). The old
      values (muted-2 #7F7971, muted-3 #979188) were 3.9:1 / 2.8:1 on --bg-dark.
      Ratios on --bg-dark / --bg-card / --bg-darker:
-       --text-muted   #625D54  5.90 / 6.36 / 5.14  (unchanged)
+       --text-muted   #56524A  7.01 / 7.56 / 6.12  (was #625D54, 5.90 / 6.36 / 5.14)
        --text-muted-2 #6A655F  5.21 / 5.61 / 4.54  (was #7F7971 3.89 / 4.19 / 3.39)
        --text-muted-3 #736E68  4.56 / 4.91 / 3.97  (was #979188 2.82 / 3.04 / 2.46)
      muted-3 does NOT reach 4.5 on --bg-darker or on tints darker than
