@@ -134,6 +134,15 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display), system-ui, sans-serif;
 }
 
+/* Dense controls/tables: design.md's 2026-09-19 "known tension" (serif body
+   text competing with sans headings in scannable UI), resolved 2026-09-21
+   (Sukir's call) as sans, not the site-wide serif -- narrow, element-level
+   scope on purpose (raw table + form-input elements only) so prose
+   paragraphs and headings are untouched everywhere else. */
+table, th, td, input, select, textarea {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
 /* Chat widget scrollbar */
 .chat-scroll::-webkit-scrollbar {
   width: 4px;
