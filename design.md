@@ -43,10 +43,16 @@ the palette that silently drifts from the real one in `globals.css`. Use
   `font-mono` Tailwind utility configured in `tailwind.config.ts` - used for
   code-like content: stat labels, small pill badges (see Card patterns below),
   the ledger/data displays. Not the default; opt in with `font-mono`.
-- **Known tension (2026-09-19 review):** serif body text in dense controls,
-  tables and metadata can compete with the sans headings. Whether form
-  controls and tables should opt into `--font-display` is an open taste call,
-  not a defect - decide it deliberately rather than per component.
+- **Dense controls/tables use sans, decided 2026-09-21** (was: "known
+  tension... open taste call" per the 2026-09-19 review). Serif body text in
+  dense controls, tables and metadata competed with the sans headings —
+  resolved by opting real `table`/`th`/`td`/`input`/`select`/`textarea`
+  elements into `--font-display` site-wide, in `globals.css`, rather than
+  per component. Prose paragraphs and headings are unaffected. Note: a
+  visually-tabular layout built from styled `div`s rather than a real
+  `<table>` element does not pick this up automatically (see `/mcp`'s
+  "Before & After" comparison) — a component built that way needs the same
+  font applied explicitly if it should match.
 - **Scale in practice** (not an exhaustive Tailwind reference, just what's
   actually used where):
   - Hero H1: `text-4xl lg:text-6xl font-bold tracking-tight text-balance`
