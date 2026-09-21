@@ -14,11 +14,12 @@ import AxeBuilder from "@axe-core/playwright";
 // colour mid-fade. Disabled controls are excluded: WCAG 1.4.3 exempts inactive
 // components, and busy-state buttons briefly render at half opacity.
 
-test.use({ reducedMotion: "reduce" });
+test.use({ contextOptions: { reducedMotion: "reduce" } });
 
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];
 
 async function scan(page: Page) {
+  expect(await page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches)).toBe(true);
   // Let entrance animations/transitions land on their end state first, so axe
   // never reads a half-faded colour. (Under reduced motion they are ~instant.)
   await page.evaluate(() =>
