@@ -32,16 +32,16 @@ export default function TermsPage() {
           Terms of Service
         </div>
         <h1 className="text-4xl font-bold mb-4" style={{ color: "var(--text)" }}>Terms of Service</h1>
-        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-09-08</p>
+        <p className="text-sm text-[var(--text-muted)] mb-14">Last updated: 2026-09-21</p>
 
         <Section title="Agreement">
           <p>
             These terms govern your use of tioga.ai, including the live demos,
             chat assistant, and contact form (the &ldquo;Site&rdquo;), operated
-            by Tioga AI LLC, a California limited liability company
-            (&ldquo;Tioga AI,&rdquo; &ldquo;we,&rdquo; or &ldquo;us&rdquo;). By
-            using the Site, you agree to them. If you don&apos;t agree,
-            don&apos;t use the Site.
+            by Tiogasoft, L.L.C., a California limited liability company doing
+            business as Tioga AI (&ldquo;Tioga AI,&rdquo; &ldquo;we,&rdquo; or
+            &ldquo;us&rdquo;). By using the Site, you agree to them. If you
+            don&apos;t agree, don&apos;t use the Site.
           </p>
           <p>
             These terms are governed by the laws of the State of California,
