@@ -1,4 +1,35 @@
 import { test, expect } from "@playwright/test";
+import fs from "node:fs";
+import path from "node:path";
+
+// Every test in this file drives a live LLM through the site's own API
+// routes, so it can only pass where the server under test has an Anthropic
+// key. Against a remote BASE_URL (production, a Vercel preview) the key lives
+// on that server, so always run. Against a LOCAL server (no BASE_URL, or
+// localhost) the server is started from this checkout and reads ANTHROPIC_API_KEY
+// from the process env or Next's .env files; with neither, these tests can
+// only fail with "Could not resolve authentication method", which says
+// nothing about the site. Skip them there instead of failing. The
+// prod-health-check workflow sets BASE_URL=https://tioga.ai, so scheduled
+// production runs are unaffected.
+const BASE_URL = process.env.BASE_URL;
+const targetsLocalServer = !BASE_URL || /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/.test(BASE_URL);
+
+function localServerHasLlmKey(): boolean {
+  if (process.env.ANTHROPIC_API_KEY) return true;
+  return [".env.local", ".env.production.local", ".env"].some((name) => {
+    try {
+      return /^\s*ANTHROPIC_API_KEY\s*=\s*\S+/m.test(fs.readFileSync(path.join(process.cwd(), name), "utf8"));
+    } catch {
+      return false;
+    }
+  });
+}
+
+test.skip(
+  targetsLocalServer && !localServerHasLlmKey(),
+  "no ANTHROPIC_API_KEY for the local server (set it in the env or .env.local, or point BASE_URL at a deployment)"
+);
 
 // @vercel/analytics and @vercel/speed-insights only resolve their script
 // paths on real Vercel infra — every other environment (local, CI) 404s,
