@@ -583,7 +583,7 @@ export default function MCPPage() {
  <div className="mb-16">
  <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>What I Build</h2>
  <p className="text-[var(--text-muted)] text-sm mb-5">
- Tioga AI builds and maintains your MCP servers. Here's what my connectors look like —
+ Tioga AI builds and maintains your MCP servers. Here&apos;s what my connectors look like —
  each tool is a typed function Claude can call by name.
  </p>
  <CodeBlock />
@@ -626,7 +626,7 @@ export default function MCPPage() {
  >
  <h2 className="text-2xl font-bold mb-3" style={{ color: "var(--text)" }}>Ready to connect your enterprise?</h2>
  <p className="text-[var(--text-muted)] mb-6 max-w-lg mx-auto">
- I'll scope your integration in a 5-day discovery sprint and have your first
+ I&apos;ll scope your integration in a 5-day discovery sprint and have your first
  MCP connector live within 2 weeks.
  </p>
  <Link

@@ -101,7 +101,7 @@ function SmartContactFormInner() {
           </div>
           <div>
             <p className="font-semibold" style={{ color: "var(--text)" }}>Inquiry Received & Classified</p>
-            <p className="text-sm text-[var(--text-muted)]">I'll be in touch {classification.responseTime}</p>
+            <p className="text-sm text-[var(--text-muted)]">I&apos;ll be in touch {classification.responseTime}</p>
           </div>
         </div>
 

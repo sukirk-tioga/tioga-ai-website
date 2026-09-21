@@ -438,7 +438,7 @@ export default function QuickbooksBillApprovalPage() {
         <div className="rounded-2xl p-5 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--warning-light)" }}>
           <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Pending human approvals</h2>
           <p className="text-xs text-[var(--text-muted)] mb-4">
-            Approver name (optional — defaults to "Compliance Reviewer"):
+            Approver name (optional — defaults to &quot;Compliance Reviewer&quot;):
           </p>
           <input
             type="text"
@@ -485,7 +485,7 @@ export default function QuickbooksBillApprovalPage() {
           <div>
             <h2 className="font-semibold mb-1" style={{ color: "var(--text)" }}>Scheduled reconciliation</h2>
             <p className="text-xs text-[var(--text-muted)]">
-              Compares every agent self-reported status update against the ledger's actual decision — runs on a fixed cadence in production, not only when something looks wrong. Click it any time, whether or not anything here looks suspicious.
+              Compares every agent self-reported status update against the ledger&apos;s actual decision — runs on a fixed cadence in production, not only when something looks wrong. Click it any time, whether or not anything here looks suspicious.
             </p>
           </div>
           <button
@@ -568,7 +568,7 @@ export default function QuickbooksBillApprovalPage() {
                           <div className="rounded-lg p-3 flex flex-col gap-2" style={{ background: "var(--bg-dark)", border: "1px solid var(--border)" }}>
                             {e.claimedOutcome && (
                               <div className="text-xs pb-2 mb-1" style={{ borderBottom: "1px solid var(--border)" }}>
-                                <span className="text-slate-500">agent's own status update: </span>
+                                <span className="text-slate-500">agent&apos;s own status update: </span>
                                 <span className="italic text-[var(--text-muted)]">&ldquo;{e.claimedOutcome}&rdquo;</span>
                               </div>
                             )}
@@ -593,7 +593,7 @@ export default function QuickbooksBillApprovalPage() {
       </div>
 
       <p className="text-xs text-slate-500">
-        Policy: bills under {fmtUsd(AUTO_APPROVE_CEILING)} execute autonomously; up to {fmtUsd(HUMAN_APPROVAL_CEILING)} require human approval; above that, blocked entirely — no override exists at this layer, on purpose. Duplicate-bill and vendor-status checks (scenarios 5 and 8) run as absolute preconditions, independent of amount — the honest SMB stand-in for a three-way match. Master-data changes (scenario 6) skip the dollar ladder entirely and are gated on a documented authorized-change record instead. Scenario 7's claimed-vs-actual gap is invisible until reconciliation runs — that's deliberate, and the point. Everything on this page runs in your browser; nothing is sent to a server.
+        Policy: bills under {fmtUsd(AUTO_APPROVE_CEILING)} execute autonomously; up to {fmtUsd(HUMAN_APPROVAL_CEILING)} require human approval; above that, blocked entirely — no override exists at this layer, on purpose. Duplicate-bill and vendor-status checks (scenarios 5 and 8) run as absolute preconditions, independent of amount — the honest SMB stand-in for a three-way match. Master-data changes (scenario 6) skip the dollar ladder entirely and are gated on a documented authorized-change record instead. Scenario 7&apos;s claimed-vs-actual gap is invisible until reconciliation runs — that&apos;s deliberate, and the point. Everything on this page runs in your browser; nothing is sent to a server.
       </p>
     </DemoShell>
   );

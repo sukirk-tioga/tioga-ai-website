@@ -117,8 +117,8 @@ export default function PrivacyPage() {
             below) ever receives the address.
           </p>
           <p>
-            <strong style={{ color: "var(--text)" }}>Booking a call.</strong> "Book a
-            20-minute intro call" links open Cal.com, a third-party scheduling
+            <strong style={{ color: "var(--text)" }}>Booking a call.</strong> &quot;Book a
+            20-minute intro call&quot; links open Cal.com, a third-party scheduling
             service, in a new tab or embedded widget. Any name, email, and
             scheduling details you provide there are collected and processed
             by Cal.com directly, under its own privacy policy — not by this
