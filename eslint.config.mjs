@@ -23,13 +23,14 @@ const eslintConfig = [
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
-    // Pre-existing violations (counts recorded in the PR that added this
-    // config). Downgraded from error to warn so lint/CI doesn't fail on code
-    // that predates the config; fix them down over time, don't turn them off.
+    // These three rules were downgraded to "warn" while pre-existing
+    // violations were burned down (done 2026-09-20: lint is at zero
+    // warnings). Back to errors, and `npm run lint` uses --max-warnings 0,
+    // so new violations fail CI instead of accumulating again.
     rules: {
-      "react/no-unescaped-entities": "warn",
-      "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/no-empty-object-type": "warn",
+      "react/no-unescaped-entities": "error",
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/no-empty-object-type": "error",
     },
   },
 ];
