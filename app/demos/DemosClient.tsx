@@ -7,7 +7,7 @@ import { scrollBehavior } from "@/lib/motion";
 import FileUpload from "@/components/FileUpload";
 import { DemoActivityProvider, useSetDemoActivity } from "./_lib/demo-activity-context";
 import DemoParticleCanvasLoader from "./_lib/DemoParticleCanvasLoader";
-import { EvidenceTierTag } from "./_lib/evidence-tier";
+import { EvidenceTierTag, EVIDENCE_TIERS, type EvidenceTier } from "./_lib/evidence-tier";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -698,6 +698,388 @@ const DEMOS = [
   },
 ];
 
+// ── Featured-demo cards ──────────────────────────────────────────────────────
+// 2026-09-22 design pass (v1): replaced a stack of full-width horizontal rows
+// with a real card grid -- see design.md's "Card container" pattern.
+//
+// 2026-09-22 revision (v2), after an independent Astra/gpt-6-astra critique
+// (full text quoted in this change's PR description): 17 undifferentiated
+// cards left visitors unsure where to start, and the old badge slot
+// (Flagship/Real Data/Interactive/Free·5min) mixed four incompatible signal
+// types -- priority, data-type, interaction-type, and cost -- into one pill.
+// Fix, per Sukir's decision on the critique:
+//   1. A "Start Here" section (4 cards Sukir picked) now carries the
+//      priority signal via placement/heading, not a "Flagship" pill.
+//   2. The badge is now exactly one signal -- the demo's real evidence type,
+//      reusing the same four-way EvidenceTier classification already shown
+//      on every individual demo page (see ./_lib/evidence-tier.tsx) instead
+//      of ad hoc per-card wording. Tint follows the one meaningful
+//      distinction visitors care about: dated, real internal evidence
+//      (success/green) vs. everything else (accent).
+//   3. The one demo with a genuine duration/cost note ("Free · 5 min", the
+//      rules-based write-path check -- pre-existing copy, see its own
+//      `badge` prop on app/demos/agent-write-path-exposure-check/page.tsx)
+//      keeps that signal, but as separate small text next to its CTA, not
+//      crammed into the evidence-type pill.
+//   4. The remaining 13 cards are grouped under the site's own, already-
+//      published five practice families (app/solutions/SolutionsHub.tsx's
+//      `families` array/copy) rather than left as one flat 13-card block or
+//      split into a new, invented taxonomy.
+
+type BadgeTint = "accent" | "success";
+
+const BADGE_STYLE: Record<BadgeTint, React.CSSProperties> = {
+  accent: { background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" },
+  success: { background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" },
+};
+
+// The one meaningful color distinction for a visitor scanning the grid:
+// dated, real evidence from Tioga's own infrastructure vs. every other
+// evidence type (a live model call or a browser-only simulation).
+function tintForTier(tier: EvidenceTier): BadgeTint {
+  return tier === "internal-operational-excerpt" ? "success" : "accent";
+}
+
+interface FeaturedDemo {
+  href: string;
+  title: string;
+  desc: string;
+  cta: string;
+  evidenceTier: EvidenceTier;
+  icon: React.ReactNode;
+  engineeringHref?: string;
+  /** Secondary cost/duration signal -- only set where a demo genuinely has
+   * one (see comment above); rendered separately from the evidence-type
+   * badge, never merged into it. */
+  note?: string;
+}
+
+const FUSION_READINESS: FeaturedDemo = {
+  href: "/demos/fusion-ai-readiness-assessment",
+  title: "Fusion Cloud AI-Readiness Assessment",
+  desc: "Get a sample Oracle Fusion Cloud ERP AI-agent-readiness assessment in 60 seconds.",
+  cta: "Try it live →",
+  evidenceTier: "model-demonstration",
+  engineeringHref: "/engineering/fusion-ai-readiness-assessment",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <ellipse cx="7" cy="6" rx="4" ry="2" />
+      <path d="M3 6v6c0 1.1 1.8 2 4 2s4-.9 4-2V6" />
+      <path strokeLinecap="round" d="M13.5 12H18m0 0l-2.5-2.5M18 12l-2.5 2.5" />
+      <ellipse cx="17" cy="18" rx="4" ry="2" transform="translate(0 -2)" />
+    </svg>
+  ),
+};
+
+const GOVERNANCE_LEDGER: FeaturedDemo = {
+  href: "/demos/governance-ledger",
+  title: "Governance Ledger",
+  desc: "Every AI call my own infrastructure makes — logged, costed, budget-capped, and mapped to NIST AI RMF. Not a mockup.",
+  cta: "View the ledger →",
+  evidenceTier: "internal-operational-excerpt",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
+    </svg>
+  ),
+};
+
+const STANDING_WATCH: FeaturedDemo = {
+  href: "/demos/standing-watch",
+  title: "Standing Watch",
+  desc: "Real, dated excerpts from Tioga's own router-watch and security-watch automations — a propose-only finding, and a same-day fix sequence that knows what it can't safely do itself.",
+  cta: "View the findings →",
+  evidenceTier: "internal-operational-excerpt",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
+    </svg>
+  ),
+};
+
+const AUTOMATION_OVERSIGHT: FeaturedDemo = {
+  href: "/demos/automation-oversight",
+  title: "Automation Oversight",
+  desc: "The ongoing propose-and-approve record across Tioga's whole automation estate — what a daily review found, and what a human approved before anything changed.",
+  cta: "View the record →",
+  evidenceTier: "internal-operational-excerpt",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5a2 2 0 012-2h2a2 2 0 012 2v0H9v0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
+    </svg>
+  ),
+};
+
+const AP_EXCEPTION_WORKFLOW: FeaturedDemo = {
+  href: "/demos/ap-exception-workflow",
+  title: "Governed AP Exception Workflow",
+  desc: "Propose a fix to an invoice that failed three-way match — watch it auto-execute, escalate, get blocked, or roll back through a governed write-path.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+    </svg>
+  ),
+};
+
+const QUICKBOOKS_BILL_APPROVAL: FeaturedDemo = {
+  href: "/demos/quickbooks-bill-approval",
+  title: "Governed QuickBooks Bill Approval",
+  desc: "Propose a QuickBooks bill for approval — watch it get checked against vendor status and duplicate-bill history, then auto-execute, escalate, or get blocked through a governed write-path.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+    </svg>
+  ),
+};
+
+const CAPITAL_EQUIPMENT_ORDER: FeaturedDemo = {
+  href: "/demos/capital-equipment-order",
+  title: "Governed Capital Equipment Order Booking",
+  desc: "Book a sales order against a placeholder material before the final configuration is known — a real SAP fit-gap pattern from configure-to-order capital equipment sales.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+    </svg>
+  ),
+};
+
+const FIELD_SERVICE_CLASSIFICATION: FeaturedDemo = {
+  href: "/demos/field-service-classification",
+  title: "Governed Field Service Billable Classification",
+  desc: "Classify a completed field-service call as contract-covered or billable T&M — a governance shape about interpretation risk, not a dollar threshold.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 15h5.5L21 8.5a1.5 1.5 0 00-3-3L11.5 12v3.5z" />
+    </svg>
+  ),
+};
+
+const ERP_REPORTING_COPILOT: FeaturedDemo = {
+  href: "/demos/erp-reporting-copilot",
+  title: "ERP Reporting Copilot",
+  desc: "Ask a plain-English question about expiring quotes, pricing changes, or aging quotations — watch it decompose into SAP-style tables and reporting gaps standard SAP leaves to a custom query.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M11 19a8 8 0 100-16 8 8 0 000 16zm8 2l-4.35-4.35" />
+    </svg>
+  ),
+};
+
+const AGENT_WRITE_PATH_EXPOSURE_CHECK: FeaturedDemo = {
+  href: "/demos/agent-write-path-exposure-check",
+  title: "Agent Write-Path Exposure Check",
+  desc: "Twelve control points on one agent write into an ERP or CRM — identity, application-logic path, attribution, approval, verification, rollback, evidence. Scored for exposure, with unknowns kept separate from gaps. Runs in your browser.",
+  cta: "Take the check →",
+  evidenceTier: "browser-simulation",
+  note: "Free · 5 min",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+    </svg>
+  ),
+};
+
+const AGENT_AUTONOMY_MAPPER: FeaturedDemo = {
+  href: "/demos/agent-autonomy-mapper",
+  title: "Agent Autonomy Tier Mapper",
+  desc: "Map an AI-agent use case to Gartner's four-tier autonomy framework and see how it lines up with Tioga's own Safe/Ask-first/Never governance tiers — independently arrived at, not copied from each other.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v18M3 9h6m0 0l7-6m-7 6l7 6M15 3v18m0-6h6m-6 0l-6-6m6 6l-6 6" />
+    </svg>
+  ),
+};
+
+const JOULE_CAPABILITY_GATE_MAP: FeaturedDemo = {
+  href: "/demos/joule-capability-gate-map",
+  title: "SAP Joule Capability Gate Map",
+  desc: "SAP says 200+ agents automate your business. See what's actually documented to write versus view-and-hand-off, by area — plus one real worked example of the gates a capability sits behind.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+    </svg>
+  ),
+};
+
+const COMPOSED_EVIDENCE: FeaturedDemo = {
+  href: "/demos/composed-evidence",
+  title: "Composed Evidence",
+  desc: "A universal AI assistant logs the conversation, an ERP's own execution agent logs the transaction — neither composes the other's half. Try answering a real audit question from each log alone, then see what only a composed record can prove.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 12h1m16 0h1" />
+    </svg>
+  ),
+};
+
+const MARBLE_WORLD_AUDIT: FeaturedDemo = {
+  href: "/demos/marble-world-audit",
+  title: "Marble World-Generation Audit",
+  desc: "A vendor claims their AI-generated 3D world is commercially usable and dimensionally accurate. I ran the actual trial — real generations, a byte-level provenance scan, a real physical measurement — and found a real 19% scale error.",
+  cta: "Try it live →",
+  evidenceTier: "internal-operational-excerpt",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" />
+    </svg>
+  ),
+};
+
+const CONTEXT_WINDOW_DATA_MINIMIZATION: FeaturedDemo = {
+  href: "/demos/context-window-data-minimization",
+  title: "Context-Window Data Minimization",
+  desc: "The same HR question, answered two ways — a naive agent that pulls whole employee records into context, and a governed agent enforcing a field-level allowlist. See exactly which fields entered each agent's prompt.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 10-8 0v2" />
+    </svg>
+  ),
+};
+
+const TIMECARD_EXCEPTION_SHADOW_MODE: FeaturedDemo = {
+  href: "/demos/timecard-exception-shadow-mode",
+  title: "Timecard Exception Agent, Shadow-Mode",
+  desc: "An agent proposes corrections for missed punches, unapproved overtime, and PTO requests — never auto-executing — citing the named payroll-cycle control and FLSA/state rule behind each one. See the how a simulated agreement rate moves against seeded reviewer decisions in a synthetic shadow-mode window.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  ),
+};
+
+const HEADCOUNT_FORECAST_DRAFT_PROVENANCE: FeaturedDemo = {
+  href: "/demos/headcount-forecast-draft-provenance",
+  title: "Headcount Forecast Draft, Per-Cell Provenance",
+  desc: "An agent drafts headcount/comp/burden changes into a draft version only — never the locked budget — with every line tagged to its source data, its stated assumption, and whether it feeds a goodwill-impairment, going-concern, or deferred-tax forecast. A human reviewer approves or rejects each line before the diff is final.",
+  cta: "Try it live →",
+  evidenceTier: "browser-simulation",
+  icon: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-2m3 2v-4m3 4v-6M6 21h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2z" />
+    </svg>
+  ),
+};
+
+// Sukir's pick, in his stated order -- the four demos that show the most
+// range in one pass: one live model call, two dated internal-evidence
+// tools, and one governed write-path decision.
+const START_HERE_DEMOS: FeaturedDemo[] = [
+  STANDING_WATCH,
+  GOVERNANCE_LEDGER,
+  AP_EXCEPTION_WORKFLOW,
+  FUSION_READINESS,
+];
+
+// The remaining 13, grouped under the site's own already-published five
+// practice families (names/order copied verbatim from the `families` array
+// in app/solutions/SolutionsHub.tsx -- not duplicated as an import, since
+// that module also pulls in its own page-scoped stylesheet; kept as a
+// literal string here with this comment as the sync note). Every remaining
+// demo maps to a family that already names its exact workflow in that
+// file's `purpose` text; nothing here is a new, invented category.
+const EXPLORE_FAMILIES: { name: string; demos: FeaturedDemo[] }[] = [
+  {
+    name: "Finance & Purchasing Operations",
+    demos: [QUICKBOOKS_BILL_APPROVAL, CAPITAL_EQUIPMENT_ORDER],
+  },
+  {
+    name: "Service & Operational Workflows",
+    demos: [FIELD_SERVICE_CLASSIFICATION, TIMECARD_EXCEPTION_SHADOW_MODE, HEADCOUNT_FORECAST_DRAFT_PROVENANCE],
+  },
+  {
+    name: "Reporting & Business Information",
+    demos: [ERP_REPORTING_COPILOT],
+  },
+  {
+    name: "Systems Integration & Modernization",
+    demos: [JOULE_CAPABILITY_GATE_MAP, AGENT_WRITE_PATH_EXPOSURE_CHECK],
+  },
+  {
+    name: "AI Oversight & Governance",
+    demos: [AUTOMATION_OVERSIGHT, AGENT_AUTONOMY_MAPPER, COMPOSED_EVIDENCE, CONTEXT_WINDOW_DATA_MINIMIZATION, MARBLE_WORLD_AUDIT],
+  },
+];
+
+// Card is a plain <div> (not itself a Link) with a stretched, invisible
+// full-card anchor as its first child. That anchor paints on top of the
+// card's other in-flow content (per CSS stacking rules for a position:absolute,
+// z-index:auto element vs. non-positioned siblings), making the whole card
+// clickable without nesting a second <a> inside it. The one card with a
+// secondary link ("How I built this") lifts that link into the same
+// stacking bucket via `relative`, so it paints after -- on top of -- the
+// stretched overlay and stays independently clickable.
+function FeaturedDemoCard({ demo }: { demo: FeaturedDemo }) {
+  return (
+    <div
+      className="relative flex flex-col p-6 rounded-2xl transition-all hover:border-slate-500"
+      style={{
+        background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
+        border: "1px solid #C8340640",
+        boxShadow: "0 0 30px #C834060A",
+      }}
+    >
+      <Link href={demo.href} className="absolute inset-0 rounded-2xl" aria-label={demo.title} />
+      <div className="flex items-start justify-between gap-3 mb-4">
+        <span
+          className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
+          style={{ background: "#C8340615", border: "1px solid #C8340630" }}
+        >
+          {demo.icon}
+        </span>
+        <span
+          className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide text-right"
+          style={BADGE_STYLE[tintForTier(demo.evidenceTier)]}
+        >
+          {EVIDENCE_TIERS[demo.evidenceTier].label}
+        </span>
+      </div>
+      <p className="font-semibold mb-1.5" style={{ color: "var(--text)" }}>{demo.title}</p>
+      <p className="text-sm text-[var(--text-muted)] flex-1">{demo.desc}</p>
+      <div className="mt-4 flex items-center justify-between gap-3">
+        <span className="text-sm font-medium" style={{ color: "var(--accent)" }}>{demo.cta}</span>
+        {demo.engineeringHref && (
+          <Link
+            href={demo.engineeringHref}
+            className="relative text-xs hover:text-[var(--text)] transition-colors"
+            style={{ color: "var(--accent)" }}
+          >
+            How I built this →
+          </Link>
+        )}
+        {demo.note && (
+          <span className="text-xs" style={{ color: "var(--text-muted)" }}>{demo.note}</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function DemosPageInner() {
   // The ?tab= deep link is read from window.location in the mount effect
   // below rather than via useSearchParams(). useSearchParams() forced this
@@ -755,675 +1137,46 @@ function DemosPageInner() {
           </div>
         </div>
 
-        {/* Featured: Fusion Cloud AI-Readiness Assessment */}
-        <Link
-          href="/demos/fusion-ai-readiness-assessment"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-2 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <ellipse cx="7" cy="6" rx="4" ry="2" />
-              <path d="M3 6v6c0 1.1 1.8 2 4 2s4-.9 4-2V6" />
-              <path strokeLinecap="round" d="M13.5 12H18m0 0l-2.5-2.5M18 12l-2.5 2.5" />
-              <ellipse cx="17" cy="18" rx="4" ry="2" transform="translate(0 -2)" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Fusion Cloud AI-Readiness Assessment</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Flagship
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Get a sample Oracle Fusion Cloud ERP AI-agent-readiness assessment in 60 seconds.
-            </p>
+        {/* Start Here -- see START_HERE_DEMOS above. Priority is signaled by
+            this section/heading, not by a per-card "Flagship" badge. */}
+        <div className="mb-10">
+          <h2 className="text-2xl font-bold mb-1.5" style={{ color: "var(--text)" }}>Start Here</h2>
+          <p className="text-sm text-[var(--text-muted)] mb-4">
+            Four demos that show the range in one pass — a live model call, two dated internal-evidence
+            excerpts, and a governed write-path decision.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {START_HERE_DEMOS.map((demo) => (
+              <FeaturedDemoCard key={demo.href} demo={demo} />
+            ))}
           </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-        <div className="text-right mb-8">
-          <Link href="/engineering/fusion-ai-readiness-assessment" className="text-xs hover:text-[var(--text)] transition-colors" style={{ color: "var(--accent)" }}>
-            How I built this →
-          </Link>
         </div>
 
-        {/* Featured: Governance Ledger */}
-        <Link
-          href="/demos/governance-ledger"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Governance Ledger</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" }}
-              >
-                Real Data
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Every AI call my own infrastructure makes — logged, costed, budget-capped, and
-              mapped to NIST AI RMF. Not a mockup.
-            </p>
+        {/* Explore more -- see EXPLORE_FAMILIES above (grouped by the same
+            five practice families used on /solutions). */}
+        <div className="mb-10">
+          <h2 className="text-2xl font-bold mb-1.5" style={{ color: "var(--text)" }}>Explore More</h2>
+          <p className="text-sm text-[var(--text-muted)] mb-6">
+            Thirteen more, grouped by practice area.
+          </p>
+          <div className="space-y-8">
+            {EXPLORE_FAMILIES.map((family) => (
+              <div key={family.name}>
+                <h3
+                  className="text-xs font-semibold uppercase tracking-wide mb-3"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  {family.name}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {family.demos.map((demo) => (
+                    <FeaturedDemoCard key={demo.href} demo={demo} />
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            View the ledger →
-          </span>
-        </Link>
-
-        {/* Featured: Standing Watch */}
-        <Link
-          href="/demos/standing-watch"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Standing Watch</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" }}
-              >
-                Real Data
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Real, dated excerpts from Tioga&apos;s own router-watch and security-watch
-              automations — a propose-only finding, and a same-day fix sequence that knows what
-              it can&apos;t safely do itself.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            View the findings →
-          </span>
-        </Link>
-
-        {/* Featured: Automation Oversight */}
-        <Link
-          href="/demos/automation-oversight"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5a2 2 0 012-2h2a2 2 0 012 2v0H9v0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Automation Oversight</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#4ADE8015", border: "1px solid #4ADE8040", color: "var(--success)" }}
-              >
-                Real Data
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              The ongoing propose-and-approve record across Tioga&apos;s whole automation estate —
-              what a daily review found, and what a human approved before anything changed.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            View the record →
-          </span>
-        </Link>
-
-        {/* Featured: AP Exception Workflow */}
-        <Link
-          href="/demos/ap-exception-workflow"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Governed AP Exception Workflow</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Propose a fix to an invoice that failed three-way match — watch it auto-execute,
-              escalate, get blocked, or roll back through a governed write-path.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: QuickBooks Bill Approval */}
-        <Link
-          href="/demos/quickbooks-bill-approval"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Governed QuickBooks Bill Approval</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Propose a QuickBooks bill for approval — watch it get checked against vendor status and
-              duplicate-bill history, then auto-execute, escalate, or get blocked through a governed write-path.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: Capital Equipment Order Booking */}
-        <Link
-          href="/demos/capital-equipment-order"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Governed Capital Equipment Order Booking</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Book a sales order against a placeholder material before the final configuration is
-              known — a real SAP fit-gap pattern from configure-to-order capital equipment sales.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: Field Service Billable Classification */}
-        <Link
-          href="/demos/field-service-classification"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 15h5.5L21 8.5a1.5 1.5 0 00-3-3L11.5 12v3.5z" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Governed Field Service Billable Classification</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Classify a completed field-service call as contract-covered or billable T&amp;M — a
-              governance shape about interpretation risk, not a dollar threshold.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: ERP Reporting Copilot */}
-        <Link
-          href="/demos/erp-reporting-copilot"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M11 19a8 8 0 100-16 8 8 0 000 16zm8 2l-4.35-4.35" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>ERP Reporting Copilot</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Ask a plain-English question about expiring quotes, pricing changes, or aging
-              quotations — watch it decompose into SAP-style tables and reporting gaps standard
-              SAP leaves to a custom query.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: Agent Write-Path Exposure Check (free, rules-based) */}
-        <Link
-          href="/demos/agent-write-path-exposure-check"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Agent Write-Path Exposure Check</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Free · 5 min
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Twelve control points on one agent write into an ERP or CRM — identity, application-logic path,
-              attribution, approval, verification, rollback, evidence. Scored for exposure, with unknowns kept
-              separate from gaps. Runs in your browser.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Take the check →
-          </span>
-        </Link>
-
-        {/* Featured: Agent Autonomy Tier Mapper */}
-        <Link
-          href="/demos/agent-autonomy-mapper"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v18M3 9h6m0 0l7-6m-7 6l7 6M15 3v18m0-6h6m-6 0l-6-6m6 6l-6 6" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Agent Autonomy Tier Mapper</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Map an AI-agent use case to Gartner&apos;s four-tier autonomy framework and see how it lines
-              up with Tioga&apos;s own Safe/Ask-first/Never governance tiers — independently arrived at,
-              not copied from each other.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: SAP Joule Capability Gate Map */}
-        <Link
-          href="/demos/joule-capability-gate-map"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>SAP Joule Capability Gate Map</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              SAP says 200+ agents automate your business. See what&apos;s actually
-              documented to write versus view-and-hand-off, by area — plus one real
-              worked example of the gates a capability sits behind.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: Composed Evidence */}
-        <Link
-          href="/demos/composed-evidence"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 12h1m16 0h1" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Composed Evidence</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              A universal AI assistant logs the conversation, an ERP&apos;s own execution agent logs the
-              transaction — neither composes the other&apos;s half. Try answering a real audit question from
-              each log alone, then see what only a composed record can prove.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: Marble World-Generation Audit */}
-        <Link
-          href="/demos/marble-world-audit"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Marble World-Generation Audit</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Real Trial Data
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              A vendor claims their AI-generated 3D world is commercially usable and dimensionally
-              accurate. I ran the actual trial — real generations, a byte-level provenance scan, a real
-              physical measurement — and found a real 19% scale error.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: Context-Window Data Minimization */}
-        <Link
-          href="/demos/context-window-data-minimization"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 10-8 0v2" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Context-Window Data Minimization</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              The same HR question, answered two ways — a naive agent that pulls whole employee
-              records into context, and a governed agent enforcing a field-level allowlist. See
-              exactly which fields entered each agent&apos;s prompt.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: Timecard Exception Agent, Shadow-Mode */}
-        <Link
-          href="/demos/timecard-exception-shadow-mode"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Timecard Exception Agent, Shadow-Mode</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              An agent proposes corrections for missed punches, unapproved overtime, and PTO requests — never
-              auto-executing — citing the named payroll-cycle control and FLSA/state rule behind each one. See the
-              how a simulated agreement rate moves against seeded reviewer decisions in a synthetic shadow-mode window.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
-
-        {/* Featured: Headcount Forecast Draft, Per-Cell Provenance */}
-        <Link
-          href="/demos/headcount-forecast-draft-provenance"
-          className="group flex items-center gap-5 p-6 rounded-2xl mb-8 transition-all hover:border-slate-500"
-          style={{
-            background: "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-alt) 100%)",
-            border: "1px solid #C8340640",
-            boxShadow: "0 0 30px #C834060A",
-          }}
-        >
-          <span
-            className="flex-none w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#C8340615", border: "1px solid #C8340630" }}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" strokeWidth={1.8}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-2m3 2v-4m3 4v-6M6 21h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2z" />
-            </svg>
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2.5 mb-1">
-              <p className="font-semibold" style={{ color: "var(--text)" }}>Headcount Forecast Draft, Per-Cell Provenance</p>
-              <span
-                className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide"
-                style={{ background: "#C8340615", border: "1px solid #C8340640", color: "var(--accent-on-tint)" }}
-              >
-                Interactive
-              </span>
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              An agent drafts headcount/comp/burden changes into a draft version only — never the locked
-              budget — with every line tagged to its source data, its stated assumption, and whether it feeds
-              a goodwill-impairment, going-concern, or deferred-tax forecast. A human reviewer approves or
-              rejects each line before the diff is final.
-            </p>
-          </div>
-          <span className="flex-none text-sm font-medium hidden sm:inline-flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
-            Try it live →
-          </span>
-        </Link>
+        </div>
 
         {/* Demo selector */}
         <div className="grid grid-cols-3 gap-3 mb-8" style={{ scrollMarginTop: "110px" }} ref={activeDemoRef}>
