@@ -16,55 +16,75 @@ export const metadata: Metadata = {
 const ARTICLES = [
   {
     href: "/articles/who-runs-your-ai",
+    date: "2026-08-26",
     title: "Who's really running your AI?",
     summary: "Seven of nine enterprise systems I track each signed their own LLM-vendor deal in the last year — a system-by-system look at who anchored to which lab.",
   },
   {
     href: "/articles/governed-write-path-pattern",
+    date: "2026-08-03",
     title: "How a governed AI write-path actually works",
     summary: "Read, decide, approve, execute, audit, reject, rollback — with a real bug I caught building it.",
   },
   {
     href: "/articles/framework-mapping-not-three-checklists",
+    date: "2026-08-03",
     title: "NIST AI RMF, ISO 42001, EU AI Act: one mapping, not three checklists",
     summary: "Why the same evidence trail can support all three mapped frameworks, if it's architectural from the start.",
   },
   {
     href: "/articles/mcp-scoped-permissions",
+    date: "2026-08-03",
     title: "An MCP integration still needs the same approval gates a custom API needs",
     summary: "What Model Context Protocol standardizes, and what it doesn't — with real code.",
   },
   {
     href: "/articles/migration-complexity-scoring",
+    date: "2026-08-03",
     title: "What actually drives Oracle Fusion Cloud ERP AI-agent readiness",
     summary: "A real, reproducible scoring model from use case, integration method, and existing governance controls.",
   },
   {
     href: "/articles/ai-cost-governance-ledger",
+    date: "2026-08-03",
     title: "What a real AI cost-governance ledger looks like",
     summary: `${FREE_ZERO_COST_PCT}% of my own model calls settle at exactly $0 before touching billed credit — real numbers.`,
   },
   {
     href: "/articles/ap-exception-auto-approve-antipattern",
+    date: "2026-08-03",
     title: "Why \"auto-approve everything under $X\" is an AP governance anti-pattern",
     summary: "Scope, spend tiers, and ERP validation as independent layers — plus a rollback bug I found.",
   },
   {
     href: "/articles/standing-watch",
+    date: "2026-08-10",
     title: "Why router-watch and security-watch only propose — never apply",
     summary: "The real 12-day cross-machine auth gap that motivated security-watch, and why propose-and-approve is the whole point.",
   },
   {
     href: "/articles/oracle-ebs-agent-attribution-gap",
+    date: "2026-09-07",
     title: "Oracle's own sanctioned path into EBS can't tell you which agent did what",
     summary: "Oracle's own documentation: HTTP Basic Auth only, a single shared service account for every call — verified against Oracle's own docs.",
   },
   {
     href: "/articles/vendor-governance-is-vendor-evidence",
+    date: "2026-09-19",
     title: "A vendor's governance module is the vendor's evidence about itself",
     summary: "ERP vendors are expected to ship their own agent-governance modules. What they can and can't evidence, with SAP's and Oracle's own documentation, and five questions to ask.",
   },
 ];
+
+// Dates mirror each article page's openGraph publishedTime.
+function formatDate(iso: string) {
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+}
 
 export default function ArticlesIndexPage() {
   return (
@@ -97,6 +117,9 @@ export default function ArticlesIndexPage() {
             >
               <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
                 <div className="flex-1">
+                  <time dateTime={a.date} className="block text-xs font-mono mb-1.5 text-[var(--text-muted)]">
+                    {formatDate(a.date)}
+                  </time>
                   <h2 className="text-lg font-semibold mb-1.5" style={{ color: "var(--text)" }}>{a.title}</h2>
                   <p className="text-sm text-[var(--text-muted)] leading-relaxed max-w-xl">{a.summary}</p>
                 </div>

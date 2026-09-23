@@ -28,6 +28,72 @@ interface Entry {
 // shipped unit of work into one entry. Dates are the day the unit landed.
 const ENTRIES: Entry[] = [
   {
+    date: "2026-09-22",
+    kind: "Feature",
+    title: "/demos rebuilt as a featured-card grid with a Start Here section and evidence-type badges",
+    body: "The demos page had grown into a stack of 17 full-width rows, a plain list rather than a layout built for choosing. It is now a card grid with a short Start Here section for first-time visitors, and every card carries a badge naming its evidence type (a real model call, a browser simulation, and so on), so the kind of proof each demo offers is visible before anyone clicks into it.",
+  },
+  {
+    date: "2026-09-21",
+    kind: "Fix",
+    title: "Terms now name the real legal entity: Tiogasoft, L.L.C., d/b/a Tioga AI",
+    body: "The Terms page said \"Tioga AI LLC,\" which was never the entity's registered name. California's own entity-status record shows the registered name is Tiogasoft, L.L.C.; Tioga AI is the d/b/a. Corrected on /terms.",
+  },
+  {
+    date: "2026-09-21",
+    kind: "Fix",
+    title: "Accessibility pass across every page: automated audit fixes, then a manual pass",
+    body: "A live Lighthouse accessibility audit of all 64 sitemap pages (mobile) found failures on many of them, mostly color contrast (38 pages) and links inside text blocks (13). Every failing audit was fixed without copy or layout changes. A second, manual pass then covered what automated tools can't: a keyboard tab audit of every page (no traps; a skip link added as the first tab stop), reflow, reduced-motion behavior, focus states, and document structure, with an axe regression test added so the fixes stay fixed.",
+  },
+  {
+    date: "2026-09-20",
+    kind: "Fix",
+    title: "/demos layout shift fixed (CLS 0.293 to 0) and a render-blocking font removed",
+    body: "The demos page scored \"poor\" on Cumulative Layout Shift because a deep-link wrapper rendered nothing until client-side code ran, then pushed the page down. The deep link is now read once on mount instead, and a render-blocking font request was replaced, taking CLS from 0.293 to 0 in the before-and-after Lighthouse runs.",
+  },
+  {
+    date: "2026-09-20",
+    kind: "Feature",
+    title: "Free Agent Write-Path Exposure Check, an agent-action evidence map, and a vendor-evidence article",
+    body: "Three connected pieces. /demos/agent-write-path-exposure-check is a free, self-serve check of twelve control points on one agent write into an ERP or CRM (dedicated identity, least privilege, pre-write policy, approval, attribution, rollback and more). /trust/evidence-map shows, for each stage of an agent write, the evidence worth keeping and which framework references it supports. A new article, \"A vendor's governance module is the vendor's evidence about itself,\" sets out what ERP vendors' own agent-governance modules can and can't evidence, with five questions to ask.",
+  },
+  {
+    date: "2026-09-20",
+    kind: "Content",
+    title: "Standing Watch re-scoped to verification and evidence composition, alongside runtime control planes",
+    body: "A competitive review found that Standing Watch's original agent-inventory and hand-built gating steps overlap funded runtime control-plane products that do discovery and enforcement faster. Standing Watch now focuses on what those products don't claim: independently verifying that controls actually held, and composing one evidence trail across systems. It is positioned to work alongside a control plane, not to replace one.",
+  },
+  {
+    date: "2026-09-20",
+    kind: "Content",
+    title: "A dated run record for the 2026-07-31 Snowflake governed-write run",
+    body: "/solutions/governed-write-path now includes a dated record of the 2026-07-31 run of the governed-write pattern against a real, paid Snowflake sandbox account: a scoped service role, a stored-procedure write path, and seed purchase-order data. It is labeled plainly as a real system with synthetic data, not a client deployment, and sits next to the page's \"Why this is real\" section so the claim and its record are read together.",
+  },
+  {
+    date: "2026-09-19",
+    kind: "Feature",
+    title: "Homepage unified on three starting routes",
+    body: "The homepage answered \"where do I start?\" twice, with two routes near the hero and a separate block of offers further down. It now has one \"Where to start\" section with three routes framed by the visitor's situation, each leading to the matching entry point, including the one-day AI Fit Check.",
+  },
+  {
+    date: "2026-09-18",
+    kind: "Feature",
+    title: "Agent Reach Map and Checkpoint Walk: interactive 3D demos for the governance framework offer",
+    body: "Two interactive 3D pages for the Agentic AI Governance Framework offer, both built from Tioga's own automation estate rather than an invented example. /demos/agent-reach-map renders Tioga's 29 scheduled automation jobs against the 12 real systems they are authorized to touch, colored by authorization tier. /demos/agent-checkpoint-walk lets you pick one of those agents, trigger a write, and watch whether it crosses the approval gate. Both were piloted unlisted, then published to the sitemap after review.",
+  },
+  {
+    date: "2026-09-14",
+    kind: "Feature",
+    title: "\"The Boundary\": a 3D scene for Standing Watch built from its real findings",
+    body: "A new interactive scene on /demos/standing-watch uses Standing Watch's own nine real findings: severity-colored tiles pass through one gate, eight land fixed, and the one finding still open (a FileVault setting on a secondary machine) stops at the wall and stays visible. It shows the unfixed item rather than a clean run.",
+  },
+  {
+    date: "2026-09-11",
+    kind: "Feature",
+    title: "Three HRIS, workforce and FP&A demos on synthetic data, plus UKG Pro and Workday Adaptive Planning in the founder bio",
+    body: "Three demos apply the same propose-only discipline to people and planning systems, all on synthetic data: a context-window data-minimization demo (what an agent actually needs to see), a timecard-exception agent in shadow mode that proposes corrections with the payroll control and wage rule behind each one and never executes them, and a headcount-forecast agent that drafts into a draft version only, never the approved budget, with per-cell provenance. The about page now names UKG Pro and Workday Adaptive Planning alongside the existing Oracle EBS and SAP experience.",
+  },
+  {
     date: "2026-09-10",
     kind: "Feature",
     title: "Oracle ERP story rebalanced from EBS-led to Oracle Fusion Cloud ERP-led",
