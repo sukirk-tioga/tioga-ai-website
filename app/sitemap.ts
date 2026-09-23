@@ -20,7 +20,7 @@ const BASE_URL = "https://tioga.ai";
 // Routes that set robots: { index: false } — a noindex page should not be
 // advertised in the sitemap (contradictory signal to crawlers). Keep in sync
 // with each page's own metadata.
-const NOINDEX_ROUTES = new Set(["/lp/standing-watch"]);
+const NOINDEX_ROUTES = new Set(["/lp/standing-watch", "/present/governed-agent"]);
 
 // Priority tiers by path shape — same rough weighting the old hand-written
 // list used (home highest, top-level sections next, nested/legal lowest),

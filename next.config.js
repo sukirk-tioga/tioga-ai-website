@@ -18,6 +18,17 @@ const CSP = [
   "frame-ancestors 'none'",
 ].join("; ");
 
+// Presenter pages (/present/*, password-gated by middleware.ts) embed and
+// probe the governed-agent ledger UI running on the presenter's own laptop,
+// so they need exactly one extra origin. Everything else stays identical to
+// the site-wide policy. Next applies the last matching header of the same
+// key, so this entry must come after the /:path* one below.
+const PRESENTER_LIVE_ORIGIN = "http://localhost:4003";
+const PRESENTER_CSP = CSP.replace(
+  "connect-src 'self'",
+  `connect-src 'self' ${PRESENTER_LIVE_ORIGIN}`
+) + `; frame-src ${PRESENTER_LIVE_ORIGIN}`;
+
 const securityHeaders = [
   { key: "Content-Security-Policy", value: CSP },
   { key: "X-Frame-Options", value: "DENY" },
@@ -33,6 +44,10 @@ const nextConfig = {
       {
         source: "/:path*",
         headers: securityHeaders,
+      },
+      {
+        source: "/present/:path*",
+        headers: [{ key: "Content-Security-Policy", value: PRESENTER_CSP }],
       },
     ];
   },
