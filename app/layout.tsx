@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Libre_Franklin, Martian_Mono, Spectral } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -10,17 +10,35 @@ import Footer from "@/components/Footer";
 // Audit-ledger redesign, 2026-09-01: Libre Franklin (headings — document/
 // masthead authority) + Spectral (body — built for on-screen reading, reads
 // as report rather than SaaS landing page). Replaces Inter site-wide.
-const displayFont = Libre_Franklin({
-  subsets: ["latin"],
-  weight: ["600", "700", "800", "900"],
+//
+// 2026-09-23: all three fonts are committed woff2 files (app/fonts/, the
+// same latin subsets Google Fonts serves) loaded via next/font/local instead
+// of next/font/google. The google loader fetches font CSS at build time, and
+// when Google returned something unexpected to the CI runner the build died
+// in loader.js ("Cannot read properties of null (reading '1')"), failing E2E
+// before any test ran (09-21, 09-23). Local files mean no network at build.
+// The variable files are declared once per weight (not as a "600 900"
+// range), exactly as Google's CSS declared them, so in-between weights like
+// the 650 on /solutions keep snapping to 700 and rendering is unchanged.
+const displayFont = localFont({
+  src: [
+    { path: "./fonts/LibreFranklin-variable-latin.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/LibreFranklin-variable-latin.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/LibreFranklin-variable-latin.woff2", weight: "800", style: "normal" },
+    { path: "./fonts/LibreFranklin-variable-latin.woff2", weight: "900", style: "normal" },
+  ],
   variable: "--font-display",
   display: "swap",
 });
-const bodyFont = Spectral({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+const bodyFont = localFont({
+  src: [
+    { path: "./fonts/Spectral-400-latin.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/Spectral-500-latin.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/Spectral-600-latin.woff2", weight: "600", style: "normal" },
+  ],
   variable: "--font-body",
   display: "swap",
+  adjustFontFallback: "Times New Roman",
 });
 
 // Martian Mono was previously pulled in via a render-blocking @import of
@@ -28,9 +46,11 @@ const bodyFont = Spectral({
 // render-blocking on every page) for a single rule in solutions-hub.css.
 // Self-hosted via next/font instead; preload:false because only /solutions
 // uses it, so other pages don't download it.
-const monoFont = Martian_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
+const monoFont = localFont({
+  src: [
+    { path: "./fonts/MartianMono-variable-latin.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/MartianMono-variable-latin.woff2", weight: "500", style: "normal" },
+  ],
   variable: "--font-mono-martian",
   display: "swap",
   preload: false,
