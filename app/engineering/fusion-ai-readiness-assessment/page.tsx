@@ -159,6 +159,7 @@ const INTEGRATION_METHODS = ["No integration yet — planning phase",
                 "This is a reasoning/judgment task, not classification — there's no single \"correct\" readiness score to measure accuracy against. The metrics above check structural reliability (valid output, disclosure-instruction adherence), not correctness of the recommendation itself.",
                 "One test case was rejected by the demo's own 5-requests/10-minute rate limit during this benchmark run — a real constraint, not a bug.",
                 "Readiness scores haven't been validated against real agent-deployment outcomes; treat them as directional, not calibrated.",
+                "The thin-controls figure was measured on 2026-09-10 against the earlier rule, which treated any submission with fewer than two confirmed controls as a structural blocker. Since 2026-09-21 the demo calls it a structural blocker only when at least one control is confirmed Absent; controls marked Unknown alone no longer trigger it. The current rule hasn't been re-benchmarked yet.",
               ],
             }}
           />
