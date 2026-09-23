@@ -963,7 +963,7 @@ const CONTEXT_WINDOW_DATA_MINIMIZATION: FeaturedDemo = {
 const TIMECARD_EXCEPTION_SHADOW_MODE: FeaturedDemo = {
   href: "/demos/timecard-exception-shadow-mode",
   title: "Timecard Exception Agent, Shadow-Mode",
-  desc: "An agent proposes corrections for missed punches, unapproved overtime, and PTO requests — never auto-executing — citing the named payroll-cycle control and FLSA/state rule behind each one. See the how a simulated agreement rate moves against seeded reviewer decisions in a synthetic shadow-mode window.",
+  desc: "An agent proposes corrections for missed punches, unapproved overtime, and PTO requests — never auto-executing — citing the named payroll-cycle control and FLSA/state rule behind each one. See how a simulated agreement rate moves against seeded reviewer decisions in a synthetic shadow-mode window.",
   cta: "Try it live →",
   evidenceTier: "browser-simulation",
   icon: (
