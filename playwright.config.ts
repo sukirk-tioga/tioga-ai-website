@@ -7,7 +7,15 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  reporter: process.env.CI ? "github" : "list",
+  // Fail fast in CI (2026-09-23): on run 35891560009 a WebKit page.goto hung,
+  // every later test then timed out at 30s, and the job was cancelled at its
+  // 15-min limit with no report. Stop after 10 failures and cap the run at
+  // 12 min so a hang ends as a normal failure. The html reporter writes
+  // playwright-report/, which the workflow uploads on failure; "github"
+  // alone wrote nothing there.
+  maxFailures: process.env.CI ? 10 : 0,
+  globalTimeout: process.env.CI ? 12 * 60_000 : 0,
+  reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
   use: {
     baseURL: BASE_URL ?? "http://localhost:3000",
     trace: "retain-on-failure",
