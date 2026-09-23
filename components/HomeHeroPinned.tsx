@@ -80,9 +80,18 @@ export default function HomeHeroPinned() {
     // shipped once as "ERP y| ou already have." mid-word). Splitting words
     // first keeps each word's own wrapper as the line-break unit, then
     // chars animate within it.
+    //
+    // mask: "words" (added 2026-09-22): each char starts 110% below its
+    // final position, and without a clip the last line's chars ("real
+    // systems.") hung over the subhead paragraph for about a second on load,
+    // the "ghost text" reported 2026-09-01 and reproduced in a Playwright
+    // frame at 800ms. The mask wraps each word in a clipping box so chars
+    // rise into view from behind their own word. The split is reverted on
+    // completion because a permanent word mask at this tight leading
+    // (1.05) would clip descenders (g, y) at rest.
     let split: SplitText | null = null;
     if (headlineRef.current) {
-      split = new SplitText(headlineRef.current, { type: "words, chars" });
+      split = new SplitText(headlineRef.current, { type: "words, chars", mask: "words" });
       // Same synchronous block as the split, no frame gap: reveal the
       // headline (shipped opacity-0 in its static className) at the exact
       // moment its characters are ready to animate, instead of relying on
@@ -96,6 +105,10 @@ export default function HomeHeroPinned() {
         stagger: 0.018,
         ease: "power3.out",
         delay: 0.1,
+        onComplete: () => {
+          split?.revert();
+          split = null;
+        },
       });
     }
 
