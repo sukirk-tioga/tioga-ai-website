@@ -1,4 +1,4 @@
-export const CAL_LINK = "https://cal.com/sukir-kumaresan-rfgb7k/introduction-chat";
+export const CAL_LINK = "https://cal.com/tioga-ai/introduction-chat";
 
 // Shared by any 3D/WebGL surface that reads brand colors at runtime instead
 // of hardcoding hex literals (repo convention — see CLAUDE.md). Was defined
