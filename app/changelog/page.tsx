@@ -28,6 +28,12 @@ interface Entry {
 // shipped unit of work into one entry. Dates are the day the unit landed.
 const ENTRIES: Entry[] = [
   {
+    date: "2026-09-25",
+    kind: "Fix",
+    title: "\"Who's really running your AI?\" corrected for Microsoft's new Copilot",
+    body: "Two corrections to the Microsoft parts of the article. The table row said Claude was \"the default AI processor across most Microsoft 365 commercial tenants\", which overstated it. It now states what Microsoft itself published in September 2026: Copilot's Auto mode weighs accuracy, speed and cost on each request across models from Anthropic, OpenAI and others, and xAI joined as an opt-in subprocessor on September 12. The Agent 365 paragraph described it as an inventory across several vendors' systems; it now describes it as a registry for agents inside the Microsoft estate, which is what we could verify.",
+  },
+  {
     date: "2026-09-22",
     kind: "Feature",
     title: "/demos rebuilt as a featured-card grid with a Start Here section and evidence-type badges",

@@ -65,7 +65,7 @@ const content: ArticleContent = {
                 ["Snowflake", "Anthropic + OpenAI, both named", "Symmetric $200M partnerships with Anthropic and OpenAI; Claude specifically powers Snowflake’s own Intelligence/CoWork features."],
                 ["Databricks", "No single lab — hosts all of them", "Signed deals with Anthropic, OpenAI, and others, but the product itself is built to host and switch between any model — including open-weight ones — rather than anchor to one."],
                 ["Workday", "Google named", "Expanded Google partnership (May 2026): Gemini is now the default model for Workday’s Sana agent front door."],
-                ["Microsoft", "Anthropic + OpenAI, both deeply embedded", "~27% owner of OpenAI and a multi-billion-dollar investor in Anthropic at the same time; Claude is set as the default AI processor across most Microsoft 365 commercial tenants."],
+                ["Microsoft", "Anthropic + OpenAI, both deeply embedded", "~27% owner of OpenAI and a multi-billion-dollar investor in Anthropic at the same time. Copilot’s “Auto” mode weighs accuracy, speed and cost on each request across models “from Anthropic, OpenAI, and others” (Sept 2026), and xAI was added as an opt-in subprocessor on Sept 12, 2026."],
                 ["Palantir", "No lab partnership (by design)", "Stays strictly multi-model on its own platform. Its Anthropic relationship is a government-cloud distribution deal, not a product anchor."],
               ].map(([system, posture, change]) => (
                 <tr key={system} style={{ borderBottom: "1px solid var(--border)" }}>
@@ -93,10 +93,10 @@ const content: ArticleContent = {
             can&apos;t see SAP.
           </p>
           <p>
-            Microsoft&apos;s Agent 365 is the one product that markets a
-            cross-platform view, and it&apos;s a genuinely useful inventory
-            of which agents exist and how they&apos;re configured across
-            several of these systems. What it doesn&apos;t answer is which
+            Microsoft&apos;s Agent 365 is a genuinely useful registry of
+            which agents exist and how they&apos;re configured inside the
+            Microsoft estate, and it can quarantine unsanctioned ones there.
+            What it doesn&apos;t answer is which
             model lab sits under which vendor contract, on what data terms,
             or what your combined exposure looks like if one of those labs
             changes its terms — a different question, and one Microsoft has
